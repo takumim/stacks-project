@@ -2186,26 +2186,36 @@ reflects injections and surjections.
 
 \medskip\noindent
 For every $\mathcal{G}$ in $\textit{Mod}(\mathcal{O}_U)$
-the counit $j_U^*j_{U_!}\mathcal{G} \to \mathcal{G}$
-is surjective (see construction
-in the proof of Lemma \ref{lemma-extension-by-zero}).
-If $\mathcal{G} \to \mathcal{G}'$
-is a map of $\mathcal{O}_U$-modules with
-$j_{U!}\mathcal{G} \to j_{U!}\mathcal{G}'$ surjective,
-then $j_U^*j_{U!}\mathcal{G} \to j_U^*j_{U!}\mathcal{G}'$ is surjective
+we have the unit $\mathcal{G} \to j_U^*j_{U!}\mathcal{G}$
+of the adjunction. We claim this map is an injection of sheaves.
+Namely, looking at the construction of Lemma \ref{lemma-extension-by-zero}
+we see that this map is the sheafification of the rule sending the object
+$V/U$ of $\mathcal{C}/U$ to the injective map
+$$
+\mathcal{G}(V/U) \longrightarrow
+\bigoplus\nolimits_{\varphi \in \Mor_\mathcal{C}(V, U)}
+\mathcal{G}(V \xrightarrow{\varphi} U)
+$$
+given by the inclusion of the summand corresponding to the structure
+morphism $V \to U$. Since sheafification is exact the claim follows.
+Some details omitted.
+
+\medskip\noindent
+If $\mathcal{G} \to \mathcal{G}'$ is a map of $\mathcal{O}_U$-modules with
+$j_{U!}\mathcal{G} \to j_{U!}\mathcal{G}'$ injective,
+then $j_U^*j_{U!}\mathcal{G} \to j_U^*j_{U!}\mathcal{G}'$ is injective
 (restriction is exact), hence
-$j_U^*j_{U!}\mathcal{G} \to \mathcal{G}'$ is surjective, hence
-$\mathcal{G} \to \mathcal{G}'$ is surjective.
-We conclude that $j_{U!}$ reflects surjections.
+$\mathcal{G} \to j_U^*j_{U!}\mathcal{G}'$ is injective, hence
+$\mathcal{G} \to \mathcal{G}'$ is injective.
+We conclude that $j_{U!}$ reflects injections.
 
 \medskip\noindent
 Let $a : \mathcal{G} \to \mathcal{G}'$ be a map of $\mathcal{O}_U$-modules
-such that
-$j_{U!}\mathcal{G} \to j_{U!}\mathcal{G}'$ is injective.
-Let $\mathcal{H}$ be the kernel of $a$.
+such that $j_{U!}\mathcal{G} \to j_{U!}\mathcal{G}'$ is surjective.
+Let $\mathcal{H}$ be the cokernel of $a$.
 Then $j_{U!}\mathcal{H} = 0$ as $j_{U!}$ is exact.
-By the above the map $j^*_U j_{U!}\mathcal{H} \to \mathcal{H}$
-is surjective. Hence $\mathcal{H} = 0$ as desired.
+By the above the map $\mathcal{H} \to j^*_U j_{U!}\mathcal{H}$
+is injective. Hence $\mathcal{H} = 0$ as desired.
 \end{proof}
 
 \begin{lemma}
@@ -2300,31 +2310,6 @@ $$
 }
 $$
 commutes.
-\end{remark}
-
-\begin{remark}[Map from lower shriek to pushforward]
-\label{remark-from-shriek-to-star}
-Let $U$ be an object of $\mathcal{C}$. For any abelian sheaf
-$\mathcal{G}$ on $\mathcal{C}/U$ there is a canonical map
-$$
-c : j_{U!}\mathcal{G} \longrightarrow j_{U*}\mathcal{G}
-$$
-Namely, this is the same thing as a map
-$j_U^{-1}j_{U!}\mathcal{G} \to \mathcal{G}$.
-Note that restriction commutes with sheafification.
-Thus we can use the presheaf of Lemma \ref{lemma-extension-by-zero}.
-Hence it suffices to define for $V/U$ a map
-$$
-\bigoplus\nolimits_{\varphi \in \Mor_\mathcal{C}(V, U)} \mathcal{G}(V)
-\longrightarrow
-\mathcal{G}(V)
-$$
-compatible with restrictions. We simply take the map
-which is zero on all summands except for the one where $\varphi$
-is the structure morphism $V \to U$ where we take $1$.
-Moreover, if $\mathcal{O}$ is a sheaf of rings on $\mathcal{C}$ and
-$\mathcal{G}$ is an $\mathcal{O}_U$-module, then
-the displayed map above is a map of $\mathcal{O}$-modules.
 \end{remark}
 
 
@@ -3310,7 +3295,7 @@ definitions we could use.
 \begin{lemma}
 \label{lemma-i-star-equivalence}
 Let $i : (\Sh(\mathcal{C}), \mathcal{O}) \to (\Sh(\mathcal{D}), \mathcal{O}')$
-be a morphism of ringed topoi. Assume $i$ is a closed immersion of topi
+be a morphism of ringed topoi. Assume $i$ is a closed immersion of topoi
 and $i^\sharp : \mathcal{O}' \to i_*\mathcal{O}$ is surjective.
 Denote $\mathcal{I} \subset \mathcal{O}'$ the kernel of $i^\sharp$.
 The functor

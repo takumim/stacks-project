@@ -793,7 +793,7 @@ fiber products, see Categories, Section
 We declare $\{\varphi_i : U_i \to U\}_{i\in I}$ to be
 a covering if $\bigcup_{i\in I} \varphi_i(U_i) = U$.
 This gives a class of coverings on $G\textit{-Sets}$
-which is easily see to satisfy conditions (1), (2), and (3)
+which is easily seen to satisfy conditions (1), (2), and (3)
 of Definition \ref{definition-site}. The result is not a
 site since both the collection of objects of the underlying category and
 the collection of coverings form a proper class.
@@ -1675,9 +1675,13 @@ this element has the required property that $s_j = s|_{V_j}$.
 \label{example-singleton-sheaf}
 A particular example is the limit over the empty diagram.
 This gives the final object in the category of (pre)sheaves.
-It is the sheaf that associates to each object $U$ of $\mathcal{C}$
-a singleton set, with unique restriction mappings. We often denote
-this sheaf by $*$.
+It is the sheafification of the presheaf that associates
+to each object $U$ of $\mathcal{C}$ a singleton set, with unique
+restriction mappings. We often denote this sheaf by $*$.
+The value of $*$ on an object $U$ is empty if $U$ has
+an empty covering, i.e., the empty collection of morphisms
+with target $U$ is a covering of $U$. The value of $*$ on $U$
+is a singleton if $U$ does not have an empty covering.
 \end{example}
 
 \noindent
@@ -1725,8 +1729,9 @@ and hence, by the construction above, a functorial map of sets
 $H^0(\{U_i \to U\}, \mathcal{F}) \to
 H^0(\{U_i \times_U V \to V\}, \mathcal{F})$.
 In other words, there is a transformation of functors
-from $H^0(-, \mathcal{F}) : \mathcal{J}_U \to \textit{Sets}$
-to the composition $\mathcal{J}_U \to \mathcal{J}_V
+from $H^0(-, \mathcal{F}) : \mathcal{J}_U^{opp} \to \textit{Sets}$
+to the composition
+$\mathcal{J}_U^{opp} \to \mathcal{J}_V^{opp}
 \xrightarrow{H^0(-, \mathcal{F})} \textit{Sets}$. Hence by
 generalities of colimits we obtain a canonical map
 $\mathcal{F}^+(U) \to \mathcal{F}^+(V)$. In terms of the description
@@ -4521,7 +4526,7 @@ functor $f_!$ to the full subcategory of $\Sh(\mathcal{D})$ whose
 objects are coproducts of $h_V^\#$ with $V \in E$.
 
 \medskip\noindent
-Given an arbitrary sheaf $\mathcal{H}$ on $\mathcal{D}$ we choose an
+Given an arbitrary sheaf $\mathcal{H}$ on $\mathcal{D}$ we choose a
 coequalizer diagram
 $$
 \xymatrix{
@@ -4546,7 +4551,7 @@ f_!\mathcal{H}_0 \ar[r] &
 f_!\mathcal{H}
 }
 $$
-Then
+a coequalizer diagram. Then
 \begin{align*}
 \Mor(f_!\mathcal{H}, \mathcal{F})
 & =
@@ -5029,6 +5034,9 @@ Sheaves, Section \ref{sheaves-section-glueing-sheaves}.
 
 \begin{lemma}
 \label{lemma-glue-maps}
+\begin{slogan}
+Maps of sheaves glue.
+\end{slogan}
 Let $\mathcal{C}$ be a site.
 Let $\{U_i \to U\}$ be a covering of $\mathcal{C}$.
 Let $\mathcal{F}$, $\mathcal{G}$ be sheaves on $\mathcal{C}$.
@@ -5819,8 +5827,10 @@ We have a commutative diagram
 $$
 \vcenter{
 \xymatrix{
-{}^u_V\mathcal{I} \ar[r]_j \ar[d]_{u'} & \mathcal{C} \ar[d]^u \\
-\mathcal{D}/V \ar[r]^-{j_V} & \mathcal{D}
+{}_V^u\mathcal{I} \ar[r]_j \ar[d]_{u'} &
+\mathcal{C} \ar[d]^u \\
+\mathcal{D}/V \ar[r]^-{j_V} &
+\mathcal{D}
 }
 }
 \quad\text{where}\quad

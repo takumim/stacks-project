@@ -3,18 +3,28 @@ from functions import *
 # Preamble for the book does not have external references
 def print_preamble(path):
 	preamble = open(path + "preamble.tex", 'r')
+	next(preamble)
+	next(preamble)
+	next(preamble)
+	next(preamble)
+	next(preamble)
+	print "\\documentclass{book}"
+	print "\\usepackage{amsmath}"
 	for line in preamble:
 		if line.find("%") == 0:
 			continue
 		if line.find("externaldocument") >= 0:
 			continue
+		if line.find("\\newenvironment{reference}") >= 0:
+			continue
+		if line.find("\\newenvironment{slogan}") >= 0:
+			continue
+		if line.find("\\newenvironment{history}") >= 0:
+			continue
+		if line.find("multicol")>= 0:
+			continue
 		if line.find("xr-hyper") >= 0:
-			line = line.replace("xr-hyper", "CJKutf8")
-		if line.find("\\IfFileExists{") == 0:
-			line = line.replace("stacks-project", "stacks-project-book")
-		if line.find("\\documentclass") == 0:
-			line = line.replace("amsart", "amsbook")
-			line = line.replace("stacks-project", "stacks-project-book")
+			continue
 		print line,
 	preamble.close()
 	return
@@ -43,28 +53,6 @@ def print_version(path):
 	now = date.today()
 	version = git_version(path)
 	print "Version " + version + ", compiled on " + now.strftime('%h %d, %Y.')
-
-# Print names contributors
-def print_list_contrib(path):
-	filename = path + 'CONTRIBUTORS'
-	CONTRIBUTORS = open(filename, 'r')
-	first = 1
-	for line in CONTRIBUTORS:
-		if line.find("%") == 0:
-			continue
-		if len(line.rstrip()) == 0:
-			continue
-		contributor = line.rstrip()
-		contributor = contributor.replace("(", "(\\begin{CJK}{UTF8}{min}")
-		contributor = contributor.replace(")", "\\end{CJK})")
-		if first:
-			contributors = contributor
-			first = 0
-			continue
-		contributors = contributors + ", " + contributor
-	CONTRIBUTORS.close()
-	contributors = contributors + "."
-	print contributors
 
 # Print license blurp
 def print_license_blurp(path):
@@ -95,15 +83,10 @@ print "\\noindent"
 print "\\centerline{"
 print_version(path)
 print "}"
-print "\\vskip1in"
-print "\\noindent"
-print "The following people have contributed to this work:"
-print_list_contrib(path)
 print "\\end{titlepage}"
 print_license_blurp(path)
 
 lijstje = list_text_files(path)
-lijstje.append("index")
 
 parts = get_parts(path)
 
@@ -111,10 +94,9 @@ ext = ".tex"
 for name in lijstje:
 	if name in parts:
 		print "\\part{" + parts[name][0] + "}"
-	if name == "index":
-		filename = path + "tmp/index.tex"
-	else:
-		filename = path + name + ext
+		print "\\label{" + parts[name][1] + "}"
+	
+	filename = path + name + ext
 	tex_file = open(filename, 'r')
 	verbatim = 0
 	for line in tex_file:
@@ -149,7 +131,6 @@ for name in lijstje:
 		print line,
 
 	tex_file.close()
-	print_chapters(path)
 
 print "\\bibliography{my}"
 print "\\bibliographystyle{amsalpha}"

@@ -92,10 +92,10 @@ pdfs: $(FOOS) $(BARS) $(PDFS)
 
 # Automatically generated tex files
 tmp/index.tex: *.tex
-	python ./scripts/make_index.py "$(CURDIR)" > tmp/index.tex
+	python2 ./scripts/make_index.py "$(CURDIR)" > tmp/index.tex
 
 tmp/book.tex: *.tex tmp/index.tex
-	python ./scripts/make_book.py "$(CURDIR)" > tmp/book.tex
+	python2 ./scripts/make_book.py "$(CURDIR)" > tmp/book.tex
 
 # Creating aux files
 index.foo: tmp/index.tex
@@ -159,19 +159,19 @@ book.dvi: tmp/book.tex book.bar
 #
 #
 tags/tmp/book.tex: tmp/book.tex tags/tags
-	python ./scripts/tag_up.py "$(CURDIR)" book > tags/tmp/book.tex
+	python2 ./scripts/tag_up.py "$(CURDIR)" book > tags/tmp/book.tex
 
 tags/tmp/index.tex: tmp/index.tex
 	cp tmp/index.tex tags/tmp/index.tex
 
 tags/tmp/preamble.tex: preamble.tex tags/tags
-	python ./scripts/tag_up.py "$(CURDIR)" preamble > tags/tmp/preamble.tex
+	python2 ./scripts/tag_up.py "$(CURDIR)" preamble > tags/tmp/preamble.tex
 
 tags/tmp/chapters.tex: chapters.tex
 	cp chapters.tex tags/tmp/chapters.tex
 
 tags/tmp/%.tex: %.tex tags/tags
-	python ./scripts/tag_up.py "$(CURDIR)" $* > tags/tmp/$*.tex
+	python2 ./scripts/tag_up.py "$(CURDIR)" $* > tags/tmp/$*.tex
 
 tags/tmp/stacks-project.cls: stacks-project.cls
 	cp stacks-project.cls tags/tmp/stacks-project.cls
@@ -246,3 +246,13 @@ install:
 	@echo "% To install the project, use the tags_install target %"
 	@echo "% Be sure to change INSTALLDIR value in the Makefile! %"
 	@echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+
+WEBDIR=../WEB
+.PHONE: web
+web: tmp/index.tex
+	@echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+	@echo "% Stuff in WEBDIR will be overwritten!!!!!!!!!        %"
+	@echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+	cp my.bib $(WEBDIR)/my.bib
+	cp tags/tags $(WEBDIR)/tags
+	python2 ./scripts/web_book.py "$(CURDIR)" > $(WEBDIR)/book.tex
