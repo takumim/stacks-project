@@ -1372,7 +1372,7 @@ as we show in the following proposition.
 \begin{slogan}
 Localization is exact.
 \end{slogan}
-Let $L\xrightarrow{u} M\xrightarrow{v} N$ is an exact sequence
+Let $L\xrightarrow{u} M\xrightarrow{v} N$ be an exact sequence
 of $R$-modules. Then
 $S^{-1}L \to S^{-1}M \to S^{-1}N$ is also exact.
 \end{proposition}
@@ -1654,7 +1654,7 @@ In other words, the following diagram commutes:
 $$
 \xymatrix{
 M \times N \ar[rr]^f \ar[dr]_g & & P\\
-& T \ar[ur]_{f'}
+& T \ar[ur]_{\tilde f}
 }
 $$
 Moreover, if $(T, g)$ and $(T', g')$
@@ -2494,6 +2494,25 @@ $i = 1, \ldots, r - 1$. If $x \not\in I_r$ we are done. So assume
 $x \in I_r$. If $J I_1 \ldots I_{r - 1} \subset I_r$ then
 $J \subset I_r$ (by Lemma \ref{lemma-product-ideals-in-prime}) a contradiction.
 Pick $y \in J I_1 \ldots I_{r - 1}$, $y \not \in I_r$. Then $x + y$ works.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-silly-silly}
+Let $R$ be a ring. Let $x \in R$, $I \subset R$ an ideal, and
+$\mathfrak p_i$, $i = 1, \ldots, r$ be prime ideals.
+Suppose that $x + I \not \subset \mathfrak p_i$ for
+$i = 1, \ldots, r$. Then there exists an $y \in I$
+such that $x + y \not \in \mathfrak p_i$ for all $i$.
+\end{lemma}
+
+\begin{proof}
+We may assume there are no inclusions among the $\mathfrak p_i$.
+After reordering we may assume $x \not \in \mathfrak p_i$ for $i < s$
+and $x \in \mathfrak p_i$ for $i \geq s$. If $s = r + 1$ then we are done.
+If not, then we can find $y \in I$ with $y \not \in \mathfrak p_s$.
+Choose $f \in \bigcap_{i < s} \mathfrak p_i$ with $f \not \in \mathfrak p_s$.
+Then $x + fy$ is not contained in $\mathfrak p_1, \ldots, \mathfrak p_s$.
+Thus we win by induction on $s$.
 \end{proof}
 
 \begin{lemma}[Chinese remainder]
@@ -3570,7 +3589,7 @@ open and closed subsets $U \subset \Spec(R)$ and
 idempotents $e \in R$.
 \end{lemma}
 
-\begin{proof}[First proof of Lemma \ref{lemma-disjoint-decomposition}]
+\begin{proof}
 Let $U \subset \Spec(R)$ be open and closed.
 Since $U$ is closed it is quasi-compact by
 Lemma \ref{lemma-quasi-compact}, and similarly for
@@ -3735,322 +3754,7 @@ in $R/I$.
 
 
 
-
-
-\section{Glueing functions}
-\label{section-tilde-module-sheaf}
-
-\noindent
-In this section we show that given an open covering
-$$
-\Spec(R) = \bigcup\nolimits_{i = 1}^n D(f_i)
-$$
-by standard opens, and given an element $h_i \in R_{f_i}$
-for each $i$ such that $h_i = h_j$ as elements of $R_{f_i f_j}$
-then there exists a unique $h \in R$ such that the image of
-$h$ in $R_{f_i}$ is $h_i$. This result can be interpreted
-in two ways:
-\begin{enumerate}
-\item The rule $D(f) \mapsto R_f$ is a sheaf of rings
-on the standard opens, see Sheaves, Section \ref{sheaves-section-bases}.
-\item If we think of elements of $R_f$ as the ``algebraic''
-or ``regular'' functions on $D(f)$, then these glue
-as would continuous, resp.\ differentiable functions
-on a topological, resp.\ differentiable manifold.
-\end{enumerate}
-At the end of this section we use this result to reprove the
-lemma describing open and closed subsets in terms of
-idempotents.
-
-\begin{lemma}
-\label{lemma-standard-covering}
-Let $R$ be a ring, and let $f_1, f_2, \ldots f_n\in R$ generate
-the unit ideal in $R$.
-Then the following sequence is exact:
-$$
-0 \longrightarrow
-R \longrightarrow
-\bigoplus\nolimits_i R_{f_i} \longrightarrow
-\bigoplus\nolimits_{i, j}R_{f_if_j}
-$$
-where the maps $\alpha : R \longrightarrow \bigoplus_i R_{f_i}$
-and $\beta : \bigoplus_i R_{f_i} \longrightarrow \bigoplus_{i, j} R_{f_if_j}$
-are defined as
-$$
-\alpha(x) = \left(\frac{x}{1}, \ldots, \frac{x}{1}\right)
-\text{ and }
-\beta\left(\frac{x_1}{f_1^{r_1}}, \ldots, \frac{x_n}{f_n^{r_n}}\right)
-=
-\left(\frac{x_i}{f_i^{r_i}}-\frac{x_j}{f_j^{r_j}}~\text{in}~R_{f_if_j}\right).
-$$
-\end{lemma}
-
-\begin{proof}
-We first show that $\alpha$ is injective,
-and then that the image of $\alpha$ equals the kernel of $\beta$.
-Assume there exists $x\in R$ such that $\alpha(x) = (0, \ldots, 0)$.
-Then $\frac{x}{1} = 0$ in $R_{f_i}$ for all $i$.
-This means, for all $i$, there exists a number $n_i$ such that
-$$
-f_i^{n_i}x = 0
-$$
-Since the $f_i$ generate $R$, we can pick $a_i$ so
-$$
-1 = \sum\nolimits_{i = 1}^n a_if_i
-$$
-Then for all $M\geq\sum n_i$, we have
-$$
-1^M = \left(\sum a_if_i\right)^M
-= \sum {M \choose u_1, \ldots, u_n}
-a_1^{u_1} a_2^{u_2} \ldots a_n^{u_n}
-f_1^{u_1} f_2^{u_2} \ldots f_n^{u_n}
-$$
-where each term has a factor of at least $f_i^{n_i}$ for some $i$.
-Therefore,
-$$
-x = 1x = 1^Mx = \left(\sum a_if_i\right)^Mx = 0.
-$$
-Thus, if $\alpha(x) = 0$, $x = 0$ and $\alpha$ is injective.
-We check that the image of $\alpha$ equals the kernel of $\beta$.
-First, note that for $x\in R$,
-$$
-\beta(\alpha(x)) =
-\beta\left(\frac{x}{1}, \ldots, \frac{x}{1}\right) =
-(\frac{x}{1}-\frac{x}{1}~in~R_{f_if_j}) = 0.
-$$
-Therefore, the image of $\alpha$ is in the kernel of $\beta$,
-and it remains only to verify that if
-$$
-\beta\left(\frac{x_1}{f_1^{r_1}}, \ldots, \frac{x_n}{f_n^{r_n}}\right) = 0,
-$$
-then there exists $x\in R$ so that for all $i$,
-$$
-\frac{x}{1} = \frac{x_i}{f_i^{r_i}}
-$$
-Assume we have $x_1, \ldots, x_n$ such that
-$$
-\beta\left(\frac{x_1}{f_1^{r_1}}, \ldots, \frac{x_n}{f_n^{r_n}}\right) = 0.
-$$
-Then, for all pairs $i, j$, there exists an $n_{ij}$ such that
-$$
-f_i^{n_{ij}}f_j^{n_{ij}}(f_j^{r_j}x_i-f_i^{r_i}x_j) = 0
-$$
-Choosing $N$ so $N\geq n_{ij}$ for all $i, j$, we see that
-$$
-f_i^Nf_j^N(f_j^{r_j}x_i - f_i^{r_i}x_j) = 0
-$$
-Define elements $\widetilde{x_i}$ and $\widetilde{f_i}$ of $R$
-as follows:
-$$
-\widetilde{f_i} = f_i^{N + r_i}, \quad \widetilde{x_i} = f_i^N x_i.
-$$
-Notice that
-$$
-\frac{\widetilde{x_i}}{\widetilde{f_i}} = \frac{x_i}{f_i^{r_i}}.
-$$
-Also, we can use this to rewrite the above equation
-$f_i^Nf_j^N(f_j^{r_j}x_i - f_i^{r_i}x_j) = 0$ to get
-the following equality, for all $i, j$,
-$$
-\widetilde{f_j}\widetilde{x_i} = \widetilde{f_i}\widetilde{x_j}.
-$$
-Since $f_1, \ldots, f_n$ generate $R$, we clearly have that
-$\widetilde{f_1}, \ldots, \widetilde{f_n}$ also generate $R$.
-Therefore, there exist $a_1, \ldots, a_n$ in $R$ so that
-$$
-1 = \sum\nolimits_{i = 1}^n a_i\widetilde{f_i}
-$$
-Therefore, we finally conclude that for all $i$,
-$$
-\frac{x_i}{f_i^{r_i}} =
-\frac{\widetilde{x_i}}{\widetilde{f_i}} =
-\sum\nolimits_{j = 1}^n
-\frac{a_j\widetilde{f_j}\widetilde{x_i}}{\widetilde{f_i}} =
-\sum\nolimits_{j = 1}^n
-\frac{a_j\widetilde{f_i}\widetilde{x_j}}{\widetilde{f_i}} =
-\frac{\sum_{j = 1}^na_j\widetilde{x_j}}{1}.
-$$
-Thus, we have
-$$
-\alpha\left(\sum\nolimits_{j = 1}^na_j\widetilde{x_j}\right) =
-\left(\frac{x_1}{f_1^{r_1}}, \ldots, \frac{x_n}{f_n^{r_n}}\right),
-$$
-as required.  There the sequence is exact.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-cover-module}
-Let $R$ be a ring. Let $f_1, \ldots, f_n$ be elements of $R$
-generating the unit ideal. Let $M$ be an $R$-module.
-The sequence
-$$
-0 \to
-M \xrightarrow{\alpha}
-\bigoplus\nolimits_{i = 1}^n M_{f_i} \xrightarrow{\beta}
-\bigoplus\nolimits_{i, j = 1}^n M_{f_i f_j}
-$$
-is exact, where $\alpha(m) = (m/1, \ldots, m/1)$
-and $\beta(m_1/f_1^{e_1}, \ldots, m_n/f_n^{e_n})
-= (m_i/f_i^{e_i} - m_j/f_j^{e_j})_{(i, j)}$.
-\end{lemma}
-
-\begin{proof}
-The same as the proof of Lemma \ref{lemma-standard-covering}.
-\end{proof}
-
-\begin{proof}[Second proof of Lemma \ref{lemma-disjoint-decomposition}]
-Having assured ourselves (Lemma \ref{lemma-standard-covering})
-that for generators ${f_1, \ldots, f_n}$ for the unit
-ideal of a ring $R$ the sequence
-$$
-0 \to R
-\to \bigoplus\nolimits_{i = 1}^ {n} R_{f_i}
-\to \bigoplus\nolimits_{i, j} R_{f_if_j}
-$$
-is exact, we now provide an alternate proof of the surjectivity of
-the map from idempotents $e$ of $R$ to open and closed subsets of
-$\Spec(R)$
-presented in Lemma \ref{lemma-disjoint-decomposition}.
-Let $U \subset \Spec(R)$ be open and closed, and $W$ be its
-complement. We can
-write $U$ and $V$ as unions of standard opens such that
-$U = \bigcup_{i = 1}^{n}  D(f_i)$ and
-$W = \bigcup_{j = 1}^{m} D(g_j)$.  Since
-$\Spec(R) = \bigcup D(f_i) \cup \bigcup D(g_j)$,
-we observe that the collection $\{ f_i;g_j\}$ must
-generate the unit ideal in $R$ by Lemma \ref{lemma-Zariski-topology}.
-So the following sequence is exact.
-\begin{equation}
-\label{equation-idempotent-exact-sequence}
-0 \to R \stackrel{\alpha}{\to}
-\bigoplus\nolimits_{i = 1}^ {n} R_{f_i}
-\oplus \bigoplus\nolimits_{j = 1}^{m} R_{g_j}
-\to
-\bigoplus\nolimits_{i_1, i_2} R_{f_{i_1}f_{i_2}}
-\oplus \bigoplus\nolimits_{i, j} R_{f_ig_j}
-\oplus \bigoplus\nolimits_{j_1, j_2} R_{g_{j_1}g_{j_2}}
-\end{equation}
-However, notice that for any pair $i, j$,
-$D(f_i) \cap D(g_j) = \emptyset$
-since $D(f_i) \subset U$ and $D(g_j) \subset W)$. From part (15)
-of Lemma \ref{lemma-Zariski-topology}
-we recall that $D(f_i g_j) = D(f_i) \cap D(g_j) = \emptyset$. Therefore by
-Lemma \ref{lemma-spec-localization}
-$\Spec(R_{f_i g_j}) = D(f_i g_j) = \emptyset$,
-implying that $R_{f_i g_j}$ is the
-zero ring for each pair $i, j$ by part (3) of
-Lemma \ref{lemma-Zariski-topology}.
-Consider the element
-$(1, \ldots, 1, 0, \ldots, 0) \in \bigoplus_{i = 1}^ {n} R_{f_i}
-\oplus \bigoplus_{j = 1}^{m} R_{g_j}$
-whose coordinates are $1$ in each $R_{f_i}$ and
-$0$ in each $R_{g_j}$. This is sent to $0$ under the map
-$$
-\beta : \bigoplus\nolimits_{i = 1}^ {n} R_{f_i} \oplus
-\bigoplus\nolimits_{j = 1}^{m} R_{g_j}
-\to \bigoplus\nolimits_{i_1, i_2} R_{f_{i_1}f_{i_2}} \oplus
-\bigoplus\nolimits_{j_1, j_2}
-R_{g_{j_1}g_{j_2}}
-$$
-so by the exactness of the
-sequence (\ref{equation-idempotent-exact-sequence}), there must be some
-element of $R$ whose image under $\alpha$ is $(1, \ldots, 1, 0, \ldots, 0)$.
-Call it $e$. We see that
-$\alpha(e^2) = \alpha(e)^2 = (1, \ldots, 1, 0, \ldots, 0) = \alpha(e)$.
-Since $\alpha$ is
-injective, $e = e^2$ in $R$ and $e$ is an idempotent of $R$. We claim that
-$U = D(e)$.
-Notice that for arbitrary $j$, the map $R \to R_{g_j}$ maps $e$
-to $0$. Therefore there must be some positive integer $k_j$ such that
-$g_j^{k_j}(e-0) = 0$ in $R$. Multiplying by $e$ as necessary,
-we see that $(g_j e)^{k_j} = 0$,
-so $g_j e$ is nilpotent in $R$. By
-Lemma \ref{lemma-Zariski-topology}
-$D(g_j) \cap D(e) = D(g_j e) = \emptyset$. So since
-$V = \bigcup D(g_j)$, $D(e) \cap V = \emptyset$ and
-$D(e) \subset U$. Furthermore, for arbitrary $i$, the
-map $R \to R_{f_i}$ maps $e$ to $1$, so there must be some $l_i$ such
-that $f_i^{l_i}(e-1) =0$ in $R$. Hence $f_i^{l_i}e = f_i^{l_i}$. Suppose
-$\mathfrak{p} \in \Spec(R)$ contains $e$,
-then $\mathfrak{p}$ contains
-$f_i^{l_i}e = f_i^{l_i}$, and since $\mathfrak{p}$ is prime, $f_i \in
-\mathfrak{p}$. So $V(e) \subset V(f_i)$, implying that $D(f_i) \subset D(e)$.
-Therefore $U = \bigcup D(f_i) \subset D(e)$, and $U = D(e)$.
-Therefore any open
-and closed subset of $\Spec(R)$ is the standard open
-of an idempotent as
-desired.
-\end{proof}
-
-\noindent
-The following we have already seen above, but we state it explicitly here
-for convenience.
-
-\begin{lemma}
-\label{lemma-disjoint-implies-product}
-Let $R$ be a ring.
-If $\Spec(R) = U \amalg V$ with both $U$ and $V$ open
-then $R \cong R_1 \times R_2$ with $U \cong \Spec(R_1)$
-and $V \cong \Spec(R_2)$ via the maps in Lemma \ref{lemma-spec-product}.
-Moreover, both $R_1$ and $R_2$ are localizations as well as quotients
-of the ring $R$.
-\end{lemma}
-
-\begin{proof}
-By Lemma \ref{lemma-disjoint-decomposition} we have
-$U = D(e)$ and $V = D(1-e)$ for some idempotent $e$.
-By Lemma \ref{lemma-standard-covering} we see that
-$R \cong R_e \times R_{1 - e}$ (since clearly $R_{e(1-e)} = 0$
-so the glueing condition is trivial; of course it is
-trivial to prove the product decomposition directly in this
-case). The lemma follows.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-when-injective-covering}
-Let $R$ be a ring.
-Let $f_1, \ldots, f_n \in R$.
-Let $M$ be an $R$-module.
-Then $M \to \bigoplus M_{f_i}$ is injective if and only if
-$$
-M \longrightarrow \bigoplus\nolimits_{i = 1, \ldots, n} M, \quad
-m \longmapsto (f_1m, \ldots, f_nm)
-$$
-is injective.
-\end{lemma}
-
-\begin{proof}
-The map $M \to \bigoplus M_{f_i}$ is injective if and only if
-for all $m \in M$ and $e_1, \ldots, e_n \geq 1$ such that
-$f_i^{e_i}m = 0$, $i = 1, \ldots, n$ we have $m = 0$.
-This clearly implies the displayed map is injective.
-Conversely, suppose the displayed map is injective and
-$m \in M$ and $e_1, \ldots, e_n \geq 1$ are such that
-$f_i^{e_i}m = 0$, $i = 1, \ldots, n$. If $e_i = 1$ for all $i$,
-then we immediately conclude that $m = 0$ from the injectivity of
-the displayed map. Next, we prove this holds for any such data
-by induction on $e = \sum e_i$. The base case is $e = n$, and we have
-just dealt with this. If some $e_i > 1$, then set $m' = f_im$.
-By induction we see that $m' = 0$. Hence we see that $f_i m = 0$,
-i.e., we may take $e_i = 1$ which decreases $e$ and we win.
-\end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{More glueing results}
+\section{Glueing properties}
 \label{section-more-glueing}
 
 \noindent
@@ -4229,9 +3933,9 @@ application of (2) finishes the proof.
 \begin{lemma}
 \label{lemma-cover-upstairs}
 Let $R \to S$ be a ring map.
-Suppose that $g_1, \ldots, g_m$ is a finite list of
-elements of $S$ such that $\bigcup D(g_j) = \Spec(S)$
-in other words $(g_1, \ldots, g_m) = S$.
+Suppose that $g_1, \ldots, g_n$ is a finite list of
+elements of $S$ such that $\bigcup D(g_i) = \Spec(S)$
+in other words $(g_1, \ldots, g_n) = S$.
 \begin{enumerate}
 \item If each $S_{g_i}$ is of finite type over $R$, then $S$ is
 of finite type over $R$.
@@ -4241,7 +3945,203 @@ then $S$ is of finite presentation over $R$.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Choose $h_1, \ldots, h_n \in S$ such that $\sum h_i g_i = 1$.
+
+\medskip\noindent
+Proof of (1). For each $i$ choose a finite list of elements
+$x_{i, j} \in S_{g_i}$, $j = 1, \ldots, m_i$
+which generate $S_{g_i}$ as an $R$-algebra.
+Write $x_{i, j} = y_{i, j}/g_i^{n_{i, j}}$ for some $y_{i, j} \in S$ and
+some $n_{i, j} \ge 0$. Consider the $R$-subalgebra $S' \subset S$
+generated by $g_1, \ldots, g_n$, $h_1, \ldots, h_n$ and
+$y_{i, j}$, $i = 1, \ldots, n$, $j = 1, \ldots, m_i$.
+Since localization is exact (Proposition \ref{proposition-localization-exact}),
+we see that $S'_{g_i} \to S_{g_i}$ is injective.
+On the other hand, it is surjective by our choice of $y_{i, j}$.
+The elements $g_1, \ldots, g_n$ generate the unit ideal in $S'$
+as $h_1, \ldots, h_n \in S'$.
+Thus $S' \to S$ viewed as an $S'$-module map is an isomorphism
+by Lemma \ref{lemma-cover}.
+
+\medskip\noindent
+Proof of (2). We already know that $S$ is of finite type.
+Write $S = R[x_1, \ldots, x_m]/J$ for some ideal $J$.
+For each $i$ choose a lift $g'_i \in R[x_1, \ldots, x_m]$ of $g_i$
+and we choose a lift $h'_i \in R[x_1, \ldots, x_m]$ of $h_i$.
+Then we see that
+$$
+S_{g_i} = R[x_1, \ldots, x_m, y_i]/J_i + (1 - y_ig'_i)
+$$
+where $J_i$ is the ideal of $R[x_1, \ldots, x_m, y_i]$
+generated by $J$. Small detail omitted. By
+Lemma \ref{lemma-finite-presentation-independent}
+we may choose a finite list of elements
+$f_{i, j} \in J$, $j = 1, \ldots, m_i$
+such that the images of $f_{i, j}$ in $J_i$ and $1 - y_ig'_i$
+generate the ideal $J_i + (1 - y_ig'_i)$.
+Set
+$$
+S' = R[x_1, \ldots, x_m]/(\sum h'_ig'_i - 1, f_{i, j}; 
+i = 1, \ldots, n, j = 1, \ldots, m_i)
+$$
+There is a surjective $R$-algebra map $S' \to S$.
+The classes of the elements $g'_1, \ldots, g'_n$ in $S'$
+generate the unit ideal and by construction the maps
+$S'_{g'_i} \to S_{g_i}$ are injective.
+Thus we conclude as in part (1).
+\end{proof}
+
+
+
+
+
+\section{Glueing functions}
+\label{section-tilde-module-sheaf}
+
+\noindent
+In this section we show that given an open covering
+$$
+\Spec(R) = \bigcup\nolimits_{i = 1}^n D(f_i)
+$$
+by standard opens, and given an element $h_i \in R_{f_i}$
+for each $i$ such that $h_i = h_j$ as elements of $R_{f_i f_j}$
+then there exists a unique $h \in R$ such that the image of
+$h$ in $R_{f_i}$ is $h_i$. This result can be interpreted
+in two ways:
+\begin{enumerate}
+\item The rule $D(f) \mapsto R_f$ is a sheaf of rings
+on the standard opens, see Sheaves, Section \ref{sheaves-section-bases}.
+\item If we think of elements of $R_f$ as the ``algebraic''
+or ``regular'' functions on $D(f)$, then these glue
+as would continuous, resp.\ differentiable functions
+on a topological, resp.\ differentiable manifold.
+\end{enumerate}
+
+\begin{lemma}
+\label{lemma-cover-module}
+Let $R$ be a ring. Let $f_1, \ldots, f_n$ be elements of $R$
+generating the unit ideal. Let $M$ be an $R$-module.
+The sequence
+$$
+0 \to
+M \xrightarrow{\alpha}
+\bigoplus\nolimits_{i = 1}^n M_{f_i} \xrightarrow{\beta}
+\bigoplus\nolimits_{i, j = 1}^n M_{f_i f_j}
+$$
+is exact, where $\alpha(m) = (m/1, \ldots, m/1)$
+and $\beta(m_1/f_1^{e_1}, \ldots, m_n/f_n^{e_n})
+= (m_i/f_i^{e_i} - m_j/f_j^{e_j})_{(i, j)}$.
+\end{lemma}
+
+\begin{proof}
+It suffices to show that the localization of the sequence at
+any maximal ideal $\mathfrak m$ is exact, see
+Lemma \ref{lemma-characterize-zero-local}.
+Since $f_1, \ldots, f_n$ generate the unit ideal,
+there is an $i$ such that $f_i \not \in \mathfrak m$.
+After renumbering we may assume $i = 1$.
+Note that $(M_{f_i})_\mathfrak m = (M_\mathfrak m)_{f_i}$
+and $(M_{f_if_j})_\mathfrak m = (M_\mathfrak m)_{f_if_j}$, see
+Proposition \ref{proposition-localize-twice-module}.
+In particular $(M_{f_1})_\mathfrak m = M_\mathfrak m$ and
+$(M_{f_1 f_i})_\mathfrak m = (M_\mathfrak m)_{f_i}$, because
+$f_1$ is a unit.
+Note that the maps in the sequence are the canonical ones
+coming from
+Lemma \ref{lemma-universal-property-localization-module}
+and the identity map on $M$.
+Having said all of this, after replacing $R$ by $R_\mathfrak m$,
+$M$ by $M_\mathfrak m$, and $f_i$ by their image in $R_\mathfrak m$,
+and $f_1$ by $1 \in R_\mathfrak m$,
+we reduce to the case where $f_1 = 1$.
+
+\medskip\noindent
+Assume $f_1 = 1$. Injectivity of $\alpha$ is now trivial. Let
+$m = (m_i) \in \bigoplus_{i = 1}^n M_{f_i}$ be in the kernel of $\beta$.
+Then $m_1 \in M_{f_1} = M$. Moreover, $\beta(m) = 0$
+implies that $m_1$ and $m_i$ map to the same element of
+$M_{f_1f_i} = M_{f_i}$. Thus $\alpha(m_1) = m$ and the
+proof is complete.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-standard-covering}
+Let $R$ be a ring, and let $f_1, f_2, \ldots f_n\in R$ generate
+the unit ideal in $R$.
+Then the following sequence is exact:
+$$
+0 \longrightarrow
+R \longrightarrow
+\bigoplus\nolimits_i R_{f_i} \longrightarrow
+\bigoplus\nolimits_{i, j}R_{f_if_j}
+$$
+where the maps $\alpha : R \longrightarrow \bigoplus_i R_{f_i}$
+and $\beta : \bigoplus_i R_{f_i} \longrightarrow \bigoplus_{i, j} R_{f_if_j}$
+are defined as
+$$
+\alpha(x) = \left(\frac{x}{1}, \ldots, \frac{x}{1}\right)
+\text{ and }
+\beta\left(\frac{x_1}{f_1^{r_1}}, \ldots, \frac{x_n}{f_n^{r_n}}\right)
+=
+\left(\frac{x_i}{f_i^{r_i}}-\frac{x_j}{f_j^{r_j}}~\text{in}~R_{f_if_j}\right).
+$$
+\end{lemma}
+
+\begin{proof}
+Special case of Lemma \ref{lemma-cover-module}.
+\end{proof}
+
+\noindent
+The following we have already seen above, but we state it explicitly here
+for convenience.
+
+\begin{lemma}
+\label{lemma-disjoint-implies-product}
+Let $R$ be a ring.
+If $\Spec(R) = U \amalg V$ with both $U$ and $V$ open
+then $R \cong R_1 \times R_2$ with $U \cong \Spec(R_1)$
+and $V \cong \Spec(R_2)$ via the maps in Lemma \ref{lemma-spec-product}.
+Moreover, both $R_1$ and $R_2$ are localizations as well as quotients
+of the ring $R$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-disjoint-decomposition} we have
+$U = D(e)$ and $V = D(1-e)$ for some idempotent $e$.
+By Lemma \ref{lemma-standard-covering} we see that
+$R \cong R_e \times R_{1 - e}$ (since clearly $R_{e(1-e)} = 0$
+so the glueing condition is trivial; of course it is
+trivial to prove the product decomposition directly in this
+case). The lemma follows.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-when-injective-covering}
+Let $R$ be a ring.
+Let $f_1, \ldots, f_n \in R$.
+Let $M$ be an $R$-module.
+Then $M \to \bigoplus M_{f_i}$ is injective if and only if
+$$
+M \longrightarrow \bigoplus\nolimits_{i = 1, \ldots, n} M, \quad
+m \longmapsto (f_1m, \ldots, f_nm)
+$$
+is injective.
+\end{lemma}
+
+\begin{proof}
+The map $M \to \bigoplus M_{f_i}$ is injective if and only if
+for all $m \in M$ and $e_1, \ldots, e_n \geq 1$ such that
+$f_i^{e_i}m = 0$, $i = 1, \ldots, n$ we have $m = 0$.
+This clearly implies the displayed map is injective.
+Conversely, suppose the displayed map is injective and
+$m \in M$ and $e_1, \ldots, e_n \geq 1$ are such that
+$f_i^{e_i}m = 0$, $i = 1, \ldots, n$. If $e_i = 1$ for all $i$,
+then we immediately conclude that $m = 0$ from the injectivity of
+the displayed map. Next, we prove this holds for any such data
+by induction on $e = \sum e_i$. The base case is $e = n$, and we have
+just dealt with this. If some $e_i > 1$, then set $m' = f_im$.
+By induction we see that $m' = 0$. Hence we see that $f_i m = 0$,
+i.e., we may take $e_i = 1$ which decreases $e$ and we win.
 \end{proof}
 
 \noindent
@@ -4251,8 +4151,7 @@ since it fits well with the above.
 
 \begin{lemma}
 \label{lemma-glue-modules}
-Let $R$ be a ring. Let $f_1, \ldots, f_n \in R$ be elements
-which generate the unit ideal in $R$. Suppose we are given
+Let $R$ be a ring. Let $f_1, \ldots, f_n \in R$. Suppose we are given
 the following data:
 \begin{enumerate}
 \item For each $i$ an $R_{f_i}$-module $M_i$.
@@ -4276,18 +4175,65 @@ $$
 M = \Ker\left(
 \bigoplus\nolimits_{1 \leq i \leq n} M_i
 \longrightarrow
-\bigoplus\nolimits_{1 \leq i, j \leq n} (M_i)_{f_i}
+\bigoplus\nolimits_{1 \leq i, j \leq n} (M_i)_{f_j}
 \right)
 $$
 where $(m_1, \ldots, m_n)$ maps to the element whose
 $(i, j)$th entry is $m_i/1 - \psi_{ji}(m_j/1)$.
-Then the natural map $M \to M_i$ identifies
-$M_i$ with $M_{f_i}$. Moreover $\psi_{ij}(m/1) = m/1$
+Then the natural map $M \to M_i$ induces an isorphism
+$M_{f_i} \to M_i$. Moreover $\psi_{ij}(m/1) = m/1$
 for all $m \in M$ (with obvious notation).
 \end{lemma}
 
 \begin{proof}
-Omitted.
+To show that $M_{f_1} \to M_1$ is an isomorphism, it suffices
+to show that its localization at every prime $\mathfrak p'$
+of $R_{f_1}$ is an isomorphism, see
+Lemma \ref{lemma-characterize-zero-local}.
+Write $\mathfrak p' = \mathfrak p R_{f_1}$
+for some prime $\mathfrak p \subset R$, $f_1 \not \in \mathfrak p$, see
+Lemma \ref{lemma-standard-open}.
+Since localization is exact
+(Proposition \ref{proposition-localization-exact}),
+we see that
+\begin{align*}
+(M_{f_1})_{\mathfrak p'} & =
+M_\mathfrak p \\
+& =
+\Ker\left(
+\bigoplus\nolimits_{1 \leq i \leq n} M_{i, \mathfrak p}
+\longrightarrow
+\bigoplus\nolimits_{1 \leq i, j \leq n} ((M_i)_{f_j})_\mathfrak p
+\right) \\
+& =
+\Ker\left(
+\bigoplus\nolimits_{1 \leq i \leq n} M_{i, \mathfrak p}
+\longrightarrow
+\bigoplus\nolimits_{1 \leq i, j \leq n} (M_{i, \mathfrak p})_{f_j}
+\right)
+\end{align*}
+Here we also used Proposition \ref{proposition-localize-twice-module}.
+Since $f_1$ is a unit in $R_\mathfrak p$, this reduces us to the case
+where $f_1 = 1$ by replacing $R$ by $R_\mathfrak p$, $f_i$ by the
+image of $f_i$ in $R_\mathfrak p$, $M$ by $M_\mathfrak p$, and
+$f_1$ by $1$.
+
+\medskip\noindent
+Assume $f_1 = 1$. Then $\psi_{1j} : (M_1)_{f_j} \to M_j$
+is an isomorphism for $j = 2, \ldots, n$. If we use these
+isomorphisms to identify $M_j = (M_1)_{f_j}$, then we see
+that $\psi_{ij} : (M_1)_{f_if_j} \to (M_1)_{f_if_j}$ is
+the canonical identification. Thus the complex
+$$
+0 \to M_1 \to
+\bigoplus\nolimits_{1 \leq i \leq n} (M_1)_{f_i}
+\longrightarrow
+\bigoplus\nolimits_{1 \leq i, j \leq n}
+(M_1)_{f_if_j}
+$$
+is exact by Lemma \ref{lemma-cover-module}.
+Thus the first map identifies $M_1$ with $M$ in this case
+and everything is clear.
 \end{proof}
 
 
@@ -11349,10 +11295,14 @@ we see that $x = - \sum a_i x^{i - d} \in A$ as well.
 \begin{lemma}
 \label{lemma-find-valuation-rings}
 Let $A$ be a normal domain with fraction field $K$.
-For every $x \in K$, $x \not \in A$ there exists a
-valuation ring $A \subset V \subset K$ with fraction field $K$
-such that $x \not \in V$. In other words, $A$ is the intersection
-of all valuation rings in $K$ containing $A$.
+\begin{enumerate}
+\item For every $x \in K$, $x \not \in A$ there exists a valuation ring
+$A \subset V \subset K$ with fraction field $K$ such that $x \not \in V$.
+\item If $A$ is local, we can moreover choose $V$ which dominates $A$.
+\end{enumerate}
+In other words, $A$ is the intersection of all valuation rings in $K$
+containing $A$ and if $A$ is local, then $A$ is the intersection of
+all valuation rings in $K$ dominating $A$.
 \end{lemma}
 
 \begin{proof}
@@ -11366,6 +11316,19 @@ $\mathfrak p \subset B$ with $x^{-1} \in \mathfrak p$.
 Choose a valuation ring $V \subset K$ dominating $B_\mathfrak p$
 (Lemma \ref{lemma-dominate}).
 Then $x \not \in V$ as $x^{-1} \in \mathfrak m_V$.
+
+\medskip\noindent
+If $A$ is local, then we claim that $x^{-1} B + \mathfrak m_A B \not = B$.
+Namely, if $1 = (a_0 + a_1x^{-1} + \ldots + a_d x^{-d})x^{-1} +
+a'_0 + \ldots + a'_d x^{-d}$ with $a_i \in A$ and $a'_i \in \mathfrak m_A$,
+then we'd get
+$$
+(1 - a'_0) x^{d + 1} - (a_0 + a'_1) x^d - \ldots - a_d = 0
+$$
+Since $a'_0 \in \mathfrak m_A$ we see that $1 - a'_0$ is a unit in $A$
+and we conclude that $x$ would be integral over $A$, a contradiction as
+before. Then choose the prime $\mathfrak p \supset x^{-1} B + \mathfrak m_A B$
+we find $V$ dominating $A$.
 \end{proof}
 
 \noindent
@@ -12688,7 +12651,32 @@ $$
 $$
 We omit the definition of the multiplication.
 
-\medskip\noindent
+\begin{lemma}
+\label{lemma-graded-NAK}
+Let $S$ be a graded ring. Let $M$ be a graded $S$-module.
+\begin{enumerate}
+\item If $S_+M = M$ and $M$ is finite, then $M = 0$.
+\item If $N, N' \subset M$ are graded submodules,
+$M = N + S_+N'$, and $N'$ is finite, then $M = N$.
+\item If $N \to M$ is a map of graded modules, $N/S_+N \to M/S_+M$
+is surjective, and $M$ is finite, then $N \to M$ is surjective.
+\item If $x_1, \ldots, x_n \in M$ are homogeneous and generate $M/S_+M$
+and $M$ is finite, then $x_1, \ldots, x_n$ generate $M$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Proof of (1). Choose generators $y_1, \ldots, y_r$ of $M$ over $S$.
+We may assume that $x_i$ is homogeneous of degree $d_i$. After
+renumbering we may assume $d_r = \min(d_i)$. Then the condition that
+$S_+M = M$ implies $y_r = 0$. Hence $M = 0$ by induction on $r$.
+Part (2) follows by applying (1) to $M/N$. Part (3) follows by
+applying (2) to the submodules $\Im(N \to M)$ and $M$.
+Part (4) follows by applying (3) to the module map
+$\bigoplus S(-d_i) \to M$, $(s_1, \ldots, s_n) \mapsto \sum s_i x_i$.
+\end{proof}
+
+\noindent
 Let $S$ be a graded ring. Let $d \geq 1$ be an integer.
 We set $S^{(d)} = \bigoplus_{n \geq 0} S_{nd}$. We think of
 $S^{(d)}$ as a graded ring with degree $n$ summand
@@ -14931,20 +14919,20 @@ Discussion of relative assassins. Let $R \to S$ be a ring map.
 Let $N$ be an $S$-module. In this situation we can introduce the following
 sets of primes $\mathfrak q$ of $S$:
 \begin{enumerate}
-\item[$A$] with $\mathfrak p = R \cap \mathfrak q$ we have that
+\item $A$: with $\mathfrak p = R \cap \mathfrak q$ we have that
 $\mathfrak q \in \text{Ass}_S(N \otimes_R \kappa(\mathfrak p))$,
-\item[$A'$] with $\mathfrak p = R \cap \mathfrak q$ we have that
+\item $A'$: with $\mathfrak p = R \cap \mathfrak q$ we have that
 $\mathfrak q$ is in the image of
 $\text{Ass}_{S \otimes \kappa(\mathfrak p)}(N \otimes_R \kappa(\mathfrak p))$
 under the canonical map
 $\Spec(S \otimes_R \kappa(\mathfrak p)) \to \Spec(S)$,
-\item[$A_{fin}$] with $\mathfrak p = R \cap \mathfrak q$ we have that
+\item $A_{fin}$: with $\mathfrak p = R \cap \mathfrak q$ we have that
 $\mathfrak q \in \text{Ass}_S(N/\mathfrak pN)$,
-\item[$A'_{fin}$] for some prime $\mathfrak p' \subset R$ we have
+\item $A'_{fin}$: for some prime $\mathfrak p' \subset R$ we have
 $\mathfrak q \in \text{Ass}_S(N/\mathfrak p'N)$,
-\item[$B$] for some $R$-module $M$ we have
+\item $B$: for some $R$-module $M$ we have
 $\mathfrak q \in \text{Ass}_S(N \otimes_R M)$, and
-\item[$B_{fin}$] for some finite $R$-module $M$ we have
+\item $B_{fin}$: for some finite $R$-module $M$ we have
 $\mathfrak q \in \text{Ass}_S(N \otimes_R M)$.
 \end{enumerate}
 Let us determine some of the relations between theses sets.
@@ -15290,6 +15278,24 @@ $I = \{x \in R \mid xm = 0\}$ of $m$ in $M$ is such that
 $\sqrt{I_{\mathfrak p}} = \mathfrak pR_{\mathfrak p}$. Clearly
 this means that $\mathfrak p$ contains $I$ and is minimal among the
 primes containing $I$, i.e., (1) holds.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-reduced-weakly-ass-minimal}
+For a reduced ring the weakly associated primes of the ring are
+the minimal primes.
+\end{lemma}
+
+\begin{proof}
+Let $(R, \mathfrak m)$ be a reduced local ring.
+Suppose $x \in R$ is an element whose annihilator
+has radical $\mathfrak m$. If $\mathfrak m \not = 0$, then $x$
+cannot be a unit, so $x \in \mathfrak m$. Then in particular $x^{1 + n} = 0$
+for some $n \geq 0$. Hence $x = 0$. Which contradicts the assumption
+that the annihilator of $\mathfrak m$ is contained in $\mathfrak m$.
+Thus we see that $\mathfrak m = 0$, i.e., $R$ is a field.
+By Lemma \ref{lemma-weakly-ass-local} this
+implies the statement of the lemma.
 \end{proof}
 
 \begin{lemma}
@@ -21937,7 +21943,7 @@ Noetherian rings.
 
 \begin{lemma}
 \label{lemma-completion-tensor}
-Let $I$ be a ideal of a Noetherian ring $R$.
+Let $I$ be an ideal of a Noetherian ring $R$.
 Denote ${}^\wedge$ completion with respect to $I$.
 \begin{enumerate}
 \item If $N \to M$ is an injective map of finite $R$-modules,
@@ -22319,6 +22325,111 @@ $$
 Since $\lim K_n \to K_m$ is surjective we conclude that $M/I^mM = M_m$.
 It follows in particular that $M$ is $I$-adically complete.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-finiteness-graded}
+Let $A$ be a Noetherian graded ring. Let $I \subset A_+$ be a homogeneous
+ideal. Let $(N_n)$ be an inverse system of finite graded $A$-modules with
+$N_n = N_{n + 1}/I^n N_{n + 1}$. Then there is a finite graded $A$-module
+$N$ such that $N_n = N/I^nN$ as graded modules for all $n$.
+\end{lemma}
+
+\begin{proof}
+Pick $r$ and homogeneous elements $x_{1, 1}, \ldots, x_{1, r} \in N_1$ of
+degrees $d_1, \ldots, d_r$ generating $N_1$. Since the transition maps
+are surjective, we can pick a compatible system of homogeneous elements
+$x_{n, i} \in N_n$ lifting $x_{1, i}$. By the graded Nakayama lemma
+(Lemma \ref{lemma-graded-NAK}) we see that
+$N_n$ is generated by the elements $x_{n, 1}, \ldots, x_{n, r}$
+sitting in degrees $d_1, \ldots, d_r$.
+Thus for $m \leq n$ we see that $N_n \to N_n/I^m N_n$
+is an isomorphism in degrees $< \min(d_i) + m$ (as $I^mN_n$ is zero
+in those degrees). Thus the inverse system of degree $d$ parts
+$$
+\ldots
+= N_{2 + d - \min(d_i), d}
+= N_{1 + d - \min(d_i), d}
+= N_{d - \min(d_i), d} \to N_{-1 + d - \min(d_i), d} \to \ldots
+$$
+stabilizes as indicated. Let $N$ be the graded $A$-module whose
+$d$th graded part is this stabilization. In particular, we have the
+elements $x_i = \lim x_{n, i}$ in $N$. We claim the $x_i$ generate $N$:
+any $x \in N_d$ is a linear combination of $x_1, \ldots, x_r$
+because we can check this in $N_{d - \min(d_i), d}$ where it holds
+as $x_{d - \min(d_i), i}$ generate $N_{d - \min(d_i)}$.
+Finally, the reader checks that the surjective map
+$N/I^nN \to N_n$ is an isomorphism by checking to see
+what happens in each degree as before. Details omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-daniel-litt}
+Let $A$ be a graded ring. Let $I \subset A_+$ be a homogeneous ideal.
+Denote $A' = \lim A/I^n$. Let $(G_n)$ be an inverse system
+of graded $A$-modules with $G_n$ annihilated by $I^n$.
+Let $M$ be a graded $A$-module and let
+$\varphi_n : M \to G_n$ be a compatible system of graded
+$A$-module maps. If the induced map
+$$
+\varphi : M \otimes_A A' \longrightarrow \lim G_n
+$$
+is an isomorphism, then $M_d \to \lim G_{n, d}$
+is an isomorphism for all $d \in \mathbf{Z}$.
+\end{lemma}
+
+\begin{proof}
+By convention graded rings are in degrees $\geq 0$ and graded modules
+may have nonzero parts of any degree, see Section \ref{section-graded}.
+The map $\varphi$ exists because $\lim G_n$ is
+a module over $A'$ as $G_n$ is annihilated by $I^n$.
+Another useful thing to keep in mind is that we have
+$$
+\bigoplus\nolimits_{d \in \mathbf{Z}} \lim G_{n, d} \subset
+\lim G_n \subset
+\prod\nolimits_{d \in \mathbf{Z}} \lim G_{n, d}
+$$
+where a subscript ${\ }_d$ indicates the $d$th graded part.
+
+\medskip\noindent
+Injective. Let $x \in M_d$. If $x \mapsto 0$ in $\lim G_{n, d}$
+then $x \otimes 1 = 0$ in $M \otimes_A A'$. Then we can find
+a finitely generated submodule $M' \subset M$ with $x \in M'$
+such that $x \otimes 1$ is zero in $M' \otimes_A A'$.
+Say $M'$ is generated by homogeneous elements sitting
+in degrees $d_1, \ldots, d_r$. Let $n = d - \min(d_i) + 1$.
+Since $A'$ has a map to $A/I^n$ and since
+$A \to A/I^n$ is an isomorphism in degrees $\leq n - 1$
+we see that $M' \to M' \otimes_A A'$ is injective in
+degrees $\leq n - 1$. Thus $x = 0$ as desired.
+
+\medskip\noindent
+Surjective. Let $y \in \lim G_{n, d}$. Choose a finite
+sum $\sum x_i \otimes f'_i$ in $M \otimes_A A'$ mapping to $y$.
+We may assume $x_i$ is homogeneous, say of degree $d_i$.
+Observe that although $A'$ is not a graded ring, it is a
+limit of the graded rings $A/I^nA$ and moreover, in any
+given degree the transition maps eventually become isomorphisms
+(see above). This gives
+$$
+A = \bigoplus\nolimits_{d \geq 0} A_d \subset A' \subset
+\prod\nolimits_{d \geq 0} A_d
+$$
+Thus we can write
+$$
+f'_i = \sum\nolimits_{j = 0, \ldots, d - d_i - 1} f_{i, j} + f_i + g'_i
+$$
+with $f_{i, j} \in A_j$, $f_i \in A_{d - d_i}$, and
+$g'_i \in A'$ mapping to zero in $\prod_{j \leq d - d_i} A_j$.
+Now if we compute $\varphi_n(\sum_{i, j} f_{i, j}x_i) \in G_n$,
+then we get a sum of homogeneous elements of degree $< d$.
+Hence $\varphi(\sum x_i \otimes f_{i, j})$ maps to zero in
+$\lim G_{n, d}$.
+Similarly, a computation shows the element $\varphi(\sum x_i \otimes g'_i)$
+maps to zero in $\prod_{d' \leq d} \lim G_{n, d'}$.
+Since we know that $\varphi(\sum x_i \otimes f'_i)$
+is $y$, we conclude that $\sum f_ix_i \in M_d$ maps to $y$ as desired.
+\end{proof}
+
 
 
 
@@ -23590,6 +23701,9 @@ The lemma follows.
 
 \begin{lemma}[Acyclicity lemma]
 \label{lemma-acyclic}
+\begin{reference}
+\cite[Lemma 1.8]{Peskine-Szpiro}
+\end{reference}
 Let $R$ be a local Noetherian ring.
 Let $0 \to M_e \to M_{e-1} \to \ldots \to M_0$
 be a complex of finite $R$-modules.
@@ -23628,6 +23742,9 @@ implies the result.
 
 \begin{proposition}
 \label{proposition-what-exact}
+\begin{reference}
+\cite[Corollary 1]{WhatExact}
+\end{reference}
 In Situation \ref{situation-complex}, suppose $R$ is
 a local Noetherian ring. The following are equivalent
 \begin{enumerate}
@@ -27349,7 +27466,7 @@ $$
 Denote $K$ the fraction field of $R$. Denote
 $S_K = K \otimes_R S = K[x_1, \ldots, x_n]$, and similarly
 $N_K = K \otimes_R N$, $M_K = K \otimes_R M$.
-As $R \to K$ is flat the sequence remains flat after tensoring with $K$.
+As $R \to K$ is flat the sequence remains exact after tensoring with $K$.
 As $S_K = K[x_1, \ldots, x_n]$ is a Noetherian ring (see
 Lemma \ref{lemma-Noetherian-permanence})
 we can find finitely many elements $n'_1, \ldots, n'_s \in N_K$
@@ -28468,7 +28585,7 @@ of $I$. If $I$ is prime, then there is nothing to prove.
 If not, pick $I \subset \mathfrak p$ with $\mathfrak p \subset R$
 maximal. Let $J = \{x \in R \mid x \mathfrak p \subset I\}$.
 We claim $J \mathfrak p = I$. It suffices to check this after localization
-at the maximal ideals $\mathfrak m$ of $A$ (the formation of $J$ commutes with
+at the maximal ideals $\mathfrak m$ of $R$ (the formation of $J$ commutes with
 localization and we use Lemma \ref{lemma-characterize-zero-local}).
 Then either $\mathfrak p R_\mathfrak m = R_\mathfrak m$ and the result
 is clear, or $\mathfrak p R_\mathfrak m = \mathfrak m R_\mathfrak m$.
@@ -29627,7 +29744,7 @@ there exists an integral ring extension $R \to S'$, $S' \subset S$
 and an element $g \in S'$, $g\not \in \mathfrak q$ such that
 $S'_g \cong S_g$. Since $S$ and hence $S_g$ are of finite type
 over $R$ we may find finitely many elements
-$y_1, \ldots, y_N$ of $S'$ such that $S''_g \cong S$
+$y_1, \ldots, y_N$ of $S'$ such that $S''_g \cong S_g$
 where $S'' \subset S'$ is the sub $R$-algebra generated
 by $g, y_1, \ldots, y_N$. Since $S''$ is finite over $R$
 (see Lemma \ref{lemma-characterize-integral}) we see that
@@ -30316,7 +30433,7 @@ Write $a_i = b_i/f$ for some $f \in R$, $f \not \in \mathfrak p$.
 After replacing $R$ by $R_f$ and $x_i$ by $x_i - a_i$ we may
 assume that $S = R[x_1, \ldots, x_n]/(g_1, \ldots, g_m)$ such
 that $x_i$ maps to zero in $S_\mathfrak q$. Then if $c_j$ denotes
-the constant term of $g_i$ we conclude that $c_i$ maps to zero
+the constant term of $g_j$ we conclude that $c_j$ maps to zero
 in $R_\mathfrak p$. After another replacement of $R$ we may
 assume that the constant coefficients $c_j$ of the $g_j$ are zero.
 Thus we obtain an $R$-algebra map $S \to R$, $x_i \mapsto 0$ whose
@@ -30327,7 +30444,7 @@ Note that $\mathfrak q = \mathfrak pS + (x_1, \ldots, x_n)$.
 Write $g_j = \sum a_{ji}x_i + h.o.t.$. Since $S_\mathfrak q = R_\mathfrak p$
 we have $\mathfrak p \otimes \kappa(\mathfrak p) =
 \mathfrak q \otimes \kappa(\mathfrak q)$. It follows that
-$m \times n$ matrix $A = (a_{ij})$ defines a surjective
+$m \times n$ matrix $A = (a_{ji})$ defines a surjective
 map $\kappa(\mathfrak p)^{\oplus m} \to \kappa(\mathfrak p)^{\oplus n}$.
 Thus after inverting some element of $R$ not in $\mathfrak p$ we may
 assume there are $b_{ij} \in R$ such that $\sum b_{ij} g_j = x_i + h.o.t.$.
@@ -34426,12 +34543,12 @@ S_{\mathfrak p}\ar[u] &  k[x_1, \ldots, x_n]_{\mathfrak p'} \ar[u] \ar[l]
 }
 $$
 By Lemma \ref{lemma-lci} we know that $S_{\mathfrak p}$
-is cut out by some regular sequence $f_1, \ldots, f_e$ in
+is cut out by some regular sequence $f_1, \ldots, f_c$ in
 $k[x_1, \ldots, x_n]_{\mathfrak p'}$. Since the right vertical
 arrow is flat we see that the images of $f_1, \ldots, f_c$
 form a regular sequence in $K[x_1, \ldots, x_n]_{\mathfrak q'}$.
 Because tensoring with $K$ over $k$ is an exact functor we have
-$S'_{\mathfrak q} = K[x_1, \ldots, x_n]_{\mathfrak q'}/(f_1, \ldots, f_e)$.
+$S'_{\mathfrak q} = K[x_1, \ldots, x_n]_{\mathfrak q'}/(f_1, \ldots, f_c)$.
 Hence by Lemma \ref{lemma-lci} again we see that $S'$ is a local
 complete intersection in a neighbourhood of $\mathfrak q$. Since
 $\mathfrak q$ was arbitrary we see that $S'$ is a local complete
@@ -34459,13 +34576,11 @@ prime ideal of $K[x_1, \ldots, x_n]$.
 Note that since $V(\mathfrak mS')$ is finite, we see that
 $\mathfrak n$ is an isolated closed point of it, and we
 deduce that $\mathfrak mS'_{\mathfrak n}$ is an ideal of definition
-of $S'_{\mathfrak n}$. This implies that $\dim(S_{\mathfrak m})
-\geq \dim(S'_{\mathfrak n})$, for example by
-Lemma \ref{lemma-dimension-base-fibre-total}
-or by the characterization of dimension
-in terms of minimal number of generators of ideal of definition,
-see Section \ref{section-dimension}. (In reality the dimensions
-are equal but we do not need this.)
+of $S'_{\mathfrak n}$. This implies that
+$\dim(S_{\mathfrak m}) = \dim(S'_{\mathfrak n})$ for example by
+Lemma \ref{lemma-dimension-base-fibre-equals-total}.
+(This can also be seen using
+Lemma \ref{lemma-dimension-at-a-point-preserved-field-extension}.)
 Consider the corresponding diagram of Noetherian local rings
 $$
 \xymatrix{
@@ -34482,7 +34597,7 @@ $(I'/(I')^2)_{\mathfrak n} \otimes_{S'_{\mathfrak n}} \kappa(\mathfrak n)$
 have the same dimension. Since $(I'/(I')^2)_{\mathfrak n}$
 is free of rank $n - \dim S'_{\mathfrak n}$ we deduce that
 $(I/I^2)_{\mathfrak m}$ can be generated by
-$n - \dim S'_{\mathfrak n} \leq n - \dim S_{\mathfrak m}$ elements.
+$n - \dim S'_{\mathfrak n} = n - \dim S_{\mathfrak m}$ elements.
 By Lemma \ref{lemma-lci} we see that $S$ is a local
 complete intersection in a neighbourhood of $\mathfrak m$.
 Since $\mathfrak m$ was any maximal ideal we conclude that
@@ -34871,7 +34986,7 @@ be any element that maps to $g$.
 
 \noindent
 The following lemma says we can do absolute Noetherian
-approximation for relative complete intersections.
+approximation for relative global complete intersections.
 
 \begin{lemma}
 \label{lemma-relative-global-complete-intersection-Noetherian}
@@ -34882,7 +34997,7 @@ such that $f_i \in R_0[x_1, \ldots, x_n]$ and such that
 $$
 S_0 = R_0[x_1, \ldots, x_n]/(f_1, \ldots, f_c)
 $$
-is a relative global intersection over $R_0$.
+is a relative global complete intersection over $R_0$.
 \end{lemma}
 
 \begin{proof}
@@ -34932,7 +35047,8 @@ is free with basis given by the elements $f_i \bmod (f_1, \ldots, f_c)^2$.
 First, by Lemma \ref{lemma-regular-quasi-regular}, part (3) follows
 from part (1). Parts (1) and (2) immediately reduce to the Noetherian case
 by Lemma \ref{lemma-relative-global-complete-intersection-Noetherian}
-(some minor details omitted). Assume $R$ is Noetherian.
+(some minor details omitted). Assume $R$ is Noetherian. Let
+$\mathfrak p = R \cap \mathfrak q'$.
 By Lemma \ref{lemma-lci} for example we see
 that $f_1, \ldots, f_c$ form a regular sequence in the local ring
 $R[x_1, \ldots, x_n]_{\mathfrak q'} \otimes_R \kappa(\mathfrak p)$.
@@ -36004,23 +36120,9 @@ of Lemma \ref{lemma-differential-seq} is a split exact sequence.
 Assume $S$ is formally smooth over $R$. By
 Lemma \ref{lemma-characterize-formally-smooth}
 this means there exists an $R$-algebra map
-$S \to P/J^2$ which is a left inverse to the
-canonical map $P/J^2 \to S$. This means that
-$$
-P/J^2 \cong S \oplus J/J^2
-$$
-as an $R$-algebra where the multiplication on the right is
-such that $S$ is a subalgebra and $J/J^2$ is an ideal of square zero
-with the obvious $S$-module structure. Note that the middle term of
-the exact sequence is
-$\Omega_{P/R} \otimes_P S \cong \Omega_{(P/J^2)/R} \otimes_P S$
-by Lemma \ref{lemma-differential-mod-power-ideal}.
-A direct computation shows that
-$$
-\Omega_{(S \oplus J/J^2)/R} \otimes_{(S \oplus J/J^2)} S =
-\Omega_{S/R} \oplus J/J^2
-$$
-as desired.
+$S \to P/J^2$ which is a right inverse to the
+canonical map $P/J^2 \to S$. By Lemma \ref{lemma-differential-seq-split}
+we see that the sequence is split.
 
 \medskip\noindent
 Assume the exact sequence of the lemma is split exact.
@@ -37572,8 +37674,7 @@ assume that $R \to S$ is smooth. By
 Lemma \ref{lemma-smooth-syntomic} we may even assume that
 $R \to S$ is standard smooth, say $S = R[x_1, \ldots, x_n]/(f_1, \ldots, f_c)$.
 Since $S \otimes_R \kappa(\mathfrak p) = \kappa(\mathfrak q)$
-has dimension $0$ we conclude that $n = c$, i.e.,
-if $R \to S$ is \'etale.
+has dimension $0$ we conclude that $n = c$, i.e., $R \to S$ is \'etale.
 \end{proof}
 
 \noindent
@@ -39495,7 +39596,7 @@ Let $R \to S$ be a ring map. The following are equivalent
 \begin{enumerate}
 \item $R \to S$ is \'etale,
 \item $R \to S$ is flat and G-unramified, and
-\item $R \to S$ is flat, unramified, and of finite presentation,
+\item $R \to S$ is flat, unramified, and of finite presentation.
 \end{enumerate}
 \end{lemma}
 
@@ -39556,7 +39657,7 @@ there exists a finite ring map $R \to S'$, an $R$-algebra map
 $S' \to S$, an element $g' \in S'$ such that
 $g' \not \in \mathfrak q$ such that $S' \to S$ induces
 an isomorphism $S'_{g'} \cong S_{g'}$.
-(Note that $S'$ may not unramified over $R$.)
+(Note that $S'$ may not be unramified over $R$.)
 Thus we may assume that (a) $R$ is Noetherian, (b) $R \to S$ is finite
 and (c) $R \to S$ is unramified at $\mathfrak q$
 (but no longer necessarily unramified at all primes).
@@ -39761,7 +39862,7 @@ over $\mathfrak q$.
 \begin{proof}
 We may replace $(R \to S, \mathfrak p, \mathfrak q)$
 with any base change $(R' \to R'\otimes_R S, \mathfrak p', \mathfrak q')$
-by a \'etale ring map $R \to R'$ with a prime $\mathfrak p'$
+by an \'etale ring map $R \to R'$ with a prime $\mathfrak p'$
 lying over $\mathfrak p$, and a choice of $\mathfrak q'$ lying over
 both $\mathfrak q$ and $\mathfrak p'$. Note also that given
 $R \to R'$ and $\mathfrak p'$ a suitable $\mathfrak q'$ can always
@@ -43783,7 +43884,7 @@ $M$ is a finite $R$-module, and $N$ is a finite $S$-module flat over $R$.
 \begin{proof}
 In the statement and in the proof below, we take the depth of $M$
 as an $R$-module, the depth of $M \otimes_R N$ as an $S$-module, and
-the depth of $N/\mathfrak M_RN$ as an $S/\mathfrak m_RS$-module.
+the depth of $N/\mathfrak m_RN$ as an $S/\mathfrak m_RS$-module.
 Denote $n$ the right hand side. First assume that $n$ is zero.
 Then both $\text{depth}(M) = 0$ and
 $\text{depth}(N/\mathfrak m_RN) = 0$.

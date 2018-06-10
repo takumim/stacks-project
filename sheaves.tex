@@ -1479,7 +1479,7 @@ $$
 $$
 where $(*)$ is the property:
 \begin{itemize}
-\item[$(*)$] For every $u \in U$, there exists an open neighbourhood
+\item[(*)] For every $u \in U$, there exists an open neighbourhood
 $u \in V \subset U$, and a section $\sigma \in \mathcal{F}(V)$
 such that for all $v \in V$ we have $s_v = (V, \sigma)$
 in $\mathcal{F}_v$.
@@ -3631,6 +3631,7 @@ is a rule which assigns to each $U \in \mathcal{B}$ a set
 $\mathcal{F}(U)$ and to each inclusion $V \subset U$
 of elements of $\mathcal{B}$ a map
 $\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ such that
+$\rho^U_U = \text{id}_{\mathcal{F}(U)}$ for all $U \in \mathcal{B}$
 whenever $W \subset V \subset U$ in $\mathcal{B}$ we have
 $\rho^U_W = \rho^V_W \circ \rho ^U_V$.
 \item A {\it morphism $\varphi : \mathcal{F} \to \mathcal{G}$
@@ -3670,7 +3671,7 @@ $U = \bigcup_{i \in I} U_i$ with $U_i \in \mathcal{B}$, and
 any coverings $U_i \cap U_j = \bigcup_{k \in I_{ij}} U_{ijk}$ with
 $U_{ijk} \in \mathcal{B}$ the sheaf condition holds:
 \begin{itemize}
-\item[$(**)$] For any collection
+\item[(**)] For any collection
 of sections $s_i \in \mathcal{F}(U_i)$, $i \in I$ such that
 $\forall i, j\in I$, $\forall k\in I_{ij}$
 $$
@@ -3828,9 +3829,9 @@ $$
 identifies $\mathcal{F}(U)$ with the elements $(s_x)_{x\in U}$
 with the property
 \begin{itemize}
-\item[$(*)$] For any $x \in U$ there exists a $V \in \mathcal{B}$,
-$x \in V$ and a section $\sigma \in \mathcal{F}(V)$ such that
-for all $y \in V$ we have $s_y = (V, \sigma)$ in $\mathcal{F}_y$.
+\item[(*)] For any $x \in U$ there exists a $V \in \mathcal{B}$,
+with $x \in V \subset U$ and a section $\sigma \in \mathcal{F}(V)$
+such that for all $y \in V$ we have $s_y = (V, \sigma)$ in $\mathcal{F}_y$.
 \end{itemize}
 \end{lemma}
 
@@ -3933,7 +3934,8 @@ on $\mathcal{B}$} is a rule which assigns to each
 $U \in \mathcal{B}$ an object
 $\mathcal{F}(U)$ of $\mathcal{C}$ and to each inclusion $V \subset U$
 of elements of $\mathcal{B}$ a morphism
-$\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$  in $\mathcal{C}$ such that
+$\rho^U_V : \mathcal{F}(U) \to \mathcal{F}(V)$ in $\mathcal{C}$ such that
+$\rho^U_U = \text{id}_{\mathcal{F}(U)}$ for all $U \in \mathcal{B}$ and
 whenever $W \subset V \subset U$ in $\mathcal{B}$ we have
 $\rho^U_W = \rho^V_W \circ \rho ^U_V$.
 \item A {\it morphism $\varphi : \mathcal{F} \to \mathcal{G}$

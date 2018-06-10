@@ -226,18 +226,58 @@ Let $S$ be a scheme. We say an algebraic space $X$ over $S$ is
 \noindent
 In this case the irreducible topological space $|X|$ is sober
 (Decent Spaces, Proposition \ref{decent-spaces-proposition-reasonable-sober}).
-Hence it has a unique generic point $x$.
-Then $x$ is contained in the schematic locus of $X$
-(Decent Spaces, Theorem \ref{decent-spaces-theorem-decent-open-dense-scheme})
-and we can look at its residue field as a substitute for
-the function field of $X$ (not yet defined; insert future reference here).
-In Decent Spaces, Lemma
+Hence it has a unique generic point $x$. In fact, in
+Decent Spaces, Lemma
 \ref{decent-spaces-lemma-finitely-many-irreducible-components}
 we characterized decent algebraic spaces with finitely many
 irreducible components. Applying that lemma we see that an
 algebraic space $X$ is integral if it is
 reduced, has an irreducible dense open subscheme $X'$
 with generic point $x'$ and the morphism $x' \to X$ is quasi-compact.
+
+\begin{lemma}
+\label{lemma-integral-algebraic-space-rational-functions}
+Let $S$ be a scheme. Let $X$ be an integral algebraic space over $S$.
+Let $\eta \in |X|$ be the generic point of $X$.
+There are canonical identifications
+$$
+R(X) = \mathcal{O}_{X, \eta}^h = \kappa(\eta)
+$$
+where $R(X)$ is the ring of rational functions defined in
+Morphisms of Spaces, Definition
+\ref{spaces-morphisms-definition-ring-of-rational-functions},
+$\kappa(\eta)$ is the residue field defined in
+Decent Spaces, Definition \ref{decent-spaces-definition-residue-field},
+and $\mathcal{O}_{X, \eta}^h$ is the henselian local ring defined in
+Decent Spaces, Definition
+\ref{decent-spaces-definition-elemenary-etale-neighbourhood}.
+In particular, these rings are fields.
+\end{lemma}
+
+\begin{proof}
+Since $X$ is a scheme in an open neighbourhood of $\eta$ (see discussion
+above), this follows immediately from the corresponding result for
+schemes, see Morphisms, Lemma
+\ref{morphisms-lemma-integral-scheme-rational-functions}.
+We also use: the henselianization of a field is itself
+and that our definitions of these objects
+for algebraic spaces are compatible with those for schemes.
+Details omitted.
+\end{proof}
+
+\noindent
+This leads to the following definition.
+
+\begin{definition}
+\label{definition-function-field}
+Let $S$ be a scheme. Let $X$ be an integral algebraic space over $S$.
+The {\it function field}, or the {\it field of rational functions}
+of $X$ is the field $R(X)$ of
+Lemma \ref{lemma-integral-algebraic-space-rational-functions}.
+\end{definition}
+
+\noindent
+We may occasionally indicate this field $k(X)$ instead of $R(X)$.
 
 \begin{lemma}
 \label{lemma-integral-sections}
@@ -252,6 +292,92 @@ of $X$ cut out by $f$. Since $X$ is irreducible, we see that either
 $V(f) = X$ or $V(g) = X$. Then either $f = 0$ or $g = 0$ by
 Properties of Spaces, Lemma \ref{spaces-properties-lemma-reduced-space}.
 \end{proof}
+
+\noindent
+Here is a lemma about normal integral algebraic spaces.
+
+\begin{lemma}
+\label{lemma-normal-integral-cover-by-affines}
+Let $S$ be a scheme. Let $X$ be a normal integral algebraic space over $S$.
+For every $x \in |X|$ there exists a normal integral affine scheme $U$
+and an \'etale morphism $U \to X$ such that $x$ is in the image.
+\end{lemma}
+
+\begin{proof}
+Choose an affine scheme $U$ and an \'etale morphism $U \to X$ such that
+$x$ is in the image. Let $u_i$, $i \in I$ be the generic points of irreducible
+components of $U$. Then each $u_i$ maps to the generic point of $X$
+(Decent Spaces, Lemma \ref{decent-spaces-lemma-decent-generic-points}). By 
+our definition of a decent space
+(Decent Spaces, Definition \ref{decent-spaces-definition-very-reasonable}),
+we see that $I$ is finite. Hence $U = \Spec(A)$ where $A$ is a normal ring
+with finitely many minimal primes.
+Thus $A = \prod_{i \in I} A_i$ is a product of normal domains by
+Algebra, Lemma \ref{algebra-lemma-characterize-reduced-ring-normal}.
+Then $U = \coprod U_i$ with $U_i = \Spec(A_i)$ and $x$ is in the image of
+$U_i \to X$ for some $i$. This proves the lemma.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-normal-integral-sections}
+Let $S$ be a scheme. Let $X$ be a normal integral algebraic space over $S$.
+Then $\Gamma(X, \mathcal{O}_X)$ is a normal domain.
+\end{lemma}
+
+\begin{proof}
+Set $R = \Gamma(X, \mathcal{O}_X)$. Then $R$ is a domain by
+Lemma \ref{lemma-integral-sections}.
+Let $f = a/b$ be an element of the fraction field of $R$
+which is integral over $R$.
+For any $U \to X$ \'etale with $U$ a scheme there is at most one
+$f_U \in \Gamma(U, \mathcal{O}_U)$ with $b|_U f_U = a|_U$.
+Namely, $U$ is reduced and the generic points of $U$ map to
+the generic point of $X$ which implies that $b|_U$ is a
+nonzerodivisor.
+For every $x \in |X|$ we choose $U \to X$ as in
+Lemma \ref{lemma-normal-integral-cover-by-affines}.
+Then there is a unique $f_U \in \Gamma(U, \mathcal{O}_U)$
+with $b|_U f_U = a|_U$ because
+$\Gamma(U, \mathcal{O}_U)$ is a normal domain by
+Properties, Lemma \ref{properties-lemma-normal-integral-sections}.
+By the uniqueness mentioned above these $f_U$
+glue and define a global section $f$ of the structure
+sheaf, i.e., of $R$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-decent-irreducible-closed}
+Let $S$ be a scheme. Let $X$ be a decent algebraic space over $S$.
+There are canonical bijections between the following sets:
+\begin{enumerate}
+\item the set of points of $X$, i.e., $|X|$,
+\item the set of irreducible closed subsets of $|X|$,
+\item the set of integral closed subspaces of $X$.
+\end{enumerate}
+The bijection from (1) to (2) sends $x$ to $\overline{\{x\}}$.
+The bijection from (3) to (2) sends $Z$ to $|Z|$.
+\end{lemma}
+
+\begin{proof}
+Our map defines a bijection between (1) and (2) as $|X|$ is
+sober by 
+Decent Spaces, Proposition \ref{decent-spaces-proposition-reasonable-sober}.
+Given $T \subset |X|$ closed and irreducible, there is a
+unique reduced closed subspace $Z \subset X$ such that
+$|Z| = T$, namely, $Z$ is the reduced induced subspace structure
+on $T$, see Properties of Spaces, Definition
+\ref{spaces-properties-definition-reduced-induced-space}.
+This is an integral algebraic space because it is decent,
+reduced, and irreducible.
+\end{proof}
+
+
+
+
+
+
+\section{Morphisms between integral algebraic spaces}
+\label{section-morphisms-between-integral-spaces}
 
 \noindent
 The following lemma characterizes dominant morphisms of finite degree
@@ -334,57 +460,667 @@ $$
 is called the {\it degree of $X$ over $Y$}.
 \end{definition}
 
+\begin{lemma}
+\label{lemma-degree-composition}
+Let $S$ be a scheme.
+Let $X$, $Y$, $Z$ be integral algebraic spaces over $S$.
+Let $f : X \to Y$ and $g : Y \to Z$ be dominant morphisms locally
+of finite type. Assume any of the equivalent conditions
+(1) -- (5) of Lemma \ref{lemma-finite-degree} hold for $f$ and $g$. Then
+$$
+\deg(X/Z) = \deg(X/Y) \deg(Y/Z).
+$$
+\end{lemma}
+
+\begin{proof}
+This comes from the multiplicativity of degrees in towers
+of finite extensions of fields, see
+Fields, Lemma \ref{fields-lemma-multiplicativity-degrees}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Weil divisors}
+\label{section-Weil-divisors}
+
 \noindent
-Here is a lemma about normal integral algebraic spaces.
+This section is the analogue of Divisors, Section
+\ref{divisors-section-Weil-divisors}.
+
+\medskip\noindent
+We will introduce Weil divisors and rational equivalence of Weil
+divisors for locally Noetherian integral algebraic spaces.
+Since we are not assuming our algebraic spaces are quasi-compact we have
+to be a little careful when defining Weil divisors. We have to allow
+infinite sums of prime divisors because a rational function may have
+infinitely many poles for example. In the quasi-compact case our
+Weil divisors are finite sums as usual. Here is a basic lemma we will
+often use to prove collections of closed subspaces are locally finite.
 
 \begin{lemma}
-\label{lemma-normal-integral-cover-by-affines}
-Let $S$ be a scheme. Let $X$ be a normal integral algebraic space over $S$.
-For every $x \in |X|$ there exists a normal integral affine scheme $U$
-and an \'etale morphism $U \to X$ such that $x$ is in the image.
+\label{lemma-components-locally-finite}
+Let $S$ be a scheme and let $X$ be a locally Noetherian
+algebraic space over $S$. If $T \subset |X|$ is a closed subset,
+then the collection of irreducible components of $T$ is locally finite.
 \end{lemma}
 
 \begin{proof}
-Choose an affine scheme $U$ and an \'etale morphism $U \to X$ such that
-$x$ is in the image. Let $u_i$, $i \in I$ be the generic points of irreducible
-components of $U$. Then each $u_i$ maps to the generic point of $X$
-(Decent Spaces, Lemma \ref{decent-spaces-lemma-decent-generic-points}). By 
-our definition of a decent space
-(Decent Spaces, Definition \ref{decent-spaces-definition-very-reasonable}),
-we see that $I$ is finite. Hence $U = \Spec(A)$ where $A$ is a normal ring
-with finitely many minimal primes.
-Thus $A = \prod_{i \in I} A_i$ is a product of normal domains by
-Algebra, Lemma \ref{algebra-lemma-characterize-reduced-ring-normal}.
-Then $U = \coprod U_i$ with $U_i = \Spec(A_i)$ and $x$ is in the image of
-$U_i \to X$ for some $i$. This proves the lemma.
+The topological space $|X|$ is locally Noetherian
+(Properties of Spaces, Lemma \ref{spaces-properties-lemma-Noetherian-topology}).
+A Noetherian topological space has a finite number of
+irreducible components and a subspace of a Noetherian space is Noetherian
+(Topology, Lemma \ref{topology-lemma-Noetherian}).
+Thus the lemma follows from the definition of locally finite
+(Topology, Definition \ref{topology-definition-locally-finite}).
 \end{proof}
 
+\noindent
+Let $S$ be a scheme. Let $X$ be a decent algebraic space over $S$.
+Let $Z$ be an integral closed subspace of $X$ and let
+$\xi \in |Z|$ be the generic point. Then the codimension of
+$|Z|$ in $|X|$ is equal to the dimension of the local ring
+of $X$ at $\xi$ by
+Decent Spaces, Lemma \ref{decent-spaces-lemma-codimension-local-ring}.
+Recall that we also indicate this by saying that
+{\it $\xi$ is a point of codimension $1$ on $X$}, see
+Properties of Spaces, Definition
+\ref{spaces-properties-definition-dimension-local-ring}.
+
+\begin{definition}
+\label{definition-Weil-divisor}
+Let $S$ be a scheme.
+Let $X$ be a locally Noetherian integral algebraic space over $S$.
+\begin{enumerate}
+\item A {\it prime divisor} is an integral closed subspace $Z \subset X$
+of codimension $1$, i.e., the generic point of $|Z|$ is a point
+of codimension $1$ on $X$.
+\item A {\it Weil divisor} is a formal sum $D = \sum n_Z Z$ where
+the sum is over prime divisors of $X$ and the collection
+$\{|Z| : n_Z \not = 0\}$ is locally finite in $|X|$
+(Topology, Definition \ref{topology-definition-locally-finite}).
+\end{enumerate}
+The group of all Weil divisors on $X$ is denoted $\text{Div}(X)$.
+\end{definition}
+
+\noindent
+Our next task is to define the Weil divisor associated to a rational
+function. In order to do this we need to define the order of vanishing of a
+rational function on a locally Noetherian integral algebraic space $X$
+along a prime divisor $Z$. Let $\xi \in |Z|$ be the generic point.
+Here we run into the problem that the local ring $\mathcal{O}_{X, \xi}$
+doesn't exist and the henselian local ring $\mathcal{O}_{X, \xi}^h$
+may not be a domain, see Example \ref{example-not-a-domain}.
+To get around this we use the following lemma.
+
 \begin{lemma}
-\label{lemma-normal-integral-sections}
-Let $S$ be a scheme. Let $X$ be a normal integral algebraic space over $S$.
-Then $\Gamma(X, \mathcal{O}_X)$ is a normal domain.
+\label{lemma-order-vanishing}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$. Let $Z \subset X$ be a prime divisor and let $\xi \in |Z|$ be
+the generic point. Then the henselian local ring $\mathcal{O}_{X, \xi}^h$
+is a reduced $1$-dimensional Noetherian local ring and
+there is a canonical injective map
+$$
+R(X) \longrightarrow Q(\mathcal{O}_{X, \xi}^h)
+$$
+from the function field $R(X)$ of $X$ into the total ring of fractions.
 \end{lemma}
 
 \begin{proof}
-Set $R = \Gamma(X, \mathcal{O}_X)$. Then $R$ is a domain by
-Lemma \ref{lemma-integral-sections}.
-Let $f = a/b$ be an element of the fraction field of $R$
-which is integral over $R$.
-For any $U \to X$ \'etale with $U$ a scheme there is at most one
-$f_U \in \Gamma(U, \mathcal{O}_U)$ with $b|_U f_U = a|_U$.
-Namely, $U$ is reduced and the generic points of $U$ map to
-the generic point of $X$ which implies that $b|_U$ is a
-nonzerodivisor.
-For every $x \in |X|$ we choose $U \to X$ as in
-Lemma \ref{lemma-normal-integral-cover-by-affines}.
-Then there is a unique $f_U \in \Gamma(U, \mathcal{O}_U)$
-with $b|_U f_U = a|_U$ because
-$\Gamma(U, \mathcal{O}_U)$ is a normal domain by
-Properties, Lemma \ref{properties-lemma-normal-integral-sections}.
-By the uniqueness mentioned above these $f_U$
-glue and define a global section $f$ of the structure
-sheaf, i.e., of $R$.
+We will use the results of Decent Spaces, Section
+\ref{decent-spaces-section-residue-fields-henselian-local-rings}.
+Let $(U, u) \to (X, \xi)$ be an elementary \'etale neighbourhood.
+Observe that $U$ is locally Noetherian and reduced.
+Thus $\mathcal{O}_{U, u}$ is a $1$-dimensional
+(by our definition of prime divisors)
+reduced Noetherian ring.
+After replacing $U$ by an affine open neighbourhood of $u$
+we may assume $U$ is Noetherian and affine.
+After replacing $U$ by a smaller open, we may assume every irreducible
+component of $U$ passes through $u$.
+Since $U \to X$ is open and $X$ irreducible, $U \to X$ is dominant.
+Hence we obtain a ring map $R(X) \to R(U)$ by composing rational maps, see
+Morphisms of Spaces, Section \ref{spaces-morphisms-section-rational-maps}.
+Since $R(X)$ is a field, this map is injective.
+By our choice of $U$ we see that $R(U)$ is the total quotient
+ring $Q(\mathcal{O}_{U, u})$, see
+Morphisms, Lemma \ref{morphisms-lemma-integral-scheme-rational-functions}
+and
+Algebra, Lemma \ref{algebra-lemma-total-ring-fractions-no-embedded-points}.
+
+\medskip\noindent
+At this point we have proved all the statements in the lemma with
+$\mathcal{O}_{U, u}$ in stead of $\mathcal{O}_{X, \xi}^h$.
+However, $\mathcal{O}_{X, \xi}^h$ is the henselization of
+$\mathcal{O}_{U, u}$. Thus $\mathcal{O}_{X, \xi}^h$ is a $1$-dimensional
+reduced Noetherian ring, see
+More on Algebra, Lemmas
+\ref{more-algebra-lemma-henselization-reduced},
+\ref{more-algebra-lemma-henselization-dimension}, and
+\ref{more-algebra-lemma-henselization-noetherian}.
+Since $\mathcal{O}_{U, u} \to \mathcal{O}_{X, \xi}^h$ is
+faithfully flat by More on Algebra, Lemma
+\ref{more-algebra-lemma-dumb-properties-henselization}
+it sends nonzerodivisors to nonzerodivisors.
+Therefore we obtain a canonical map
+$Q(\mathcal{O}_{U, u}) \to Q(\mathcal{O}_{X, \xi}^h)$
+and we obtain our map.
+We omit the verification that the map is independent of
+the choice of $(U, u) \to (X, x)$; a slightly better
+approach would be to first observe that
+$\colim Q(\mathcal{O}_{U, u}) = Q(\mathcal{O}_{X, \xi}^h)$.
 \end{proof}
+
+\begin{definition}
+\label{definition-order-vanishing}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic
+space over $S$. Let $f \in R(X)^*$. For every prime divisor
+$Z \subset X$ we define the {\it order of vanishing of $f$ along $Z$}
+as the integer
+$$
+\text{ord}_Z(f) =
+\text{length}_{\mathcal{O}_{X, \xi}^h}
+(\mathcal{O}_{X, \xi}^h/a \mathcal{O}_{X, \xi}^h) -
+\text{length}_{\mathcal{O}_{X, \xi}^h}
+(\mathcal{O}_{X, \xi}^h/b \mathcal{O}_{X, \xi}^h)
+$$
+where $a, b \in \mathcal{O}_{X, \xi}^h$ are nonzerodivisors
+such that the image of $f$ in $Q(\mathcal{O}_{X, \xi}^h)$
+(Lemma \ref{lemma-order-vanishing}) is equal to $a/b$.
+This is well defined by
+Algebra, Lemma \ref{algebra-lemma-ord-additive}.
+\end{definition}
+
+\noindent
+If $\mathcal{O}_{X, \xi}^h$ happens to be a domain, then we obtain
+$$
+\text{ord}_Z(f) = \text{ord}_{\mathcal{O}_{X, \xi}^h}(f)
+$$
+where the right hand side is the notion of
+Algebra, Definition \ref{algebra-definition-ord}.
+Note that for $f, g \in R(X)^*$ we have
+$$
+\text{ord}_Z(fg) = \text{ord}_Z(f) + \text{ord}_Z(g).
+$$
+Of course it can happen that $\text{ord}_Z(f) < 0$.
+In this case we say that $f$ has a {\it pole} along $Z$
+and that $-\text{ord}_Z(f) > 0$ is the
+{\it order of pole of $f$ along $Z$}. It is important to note
+that the condition $\text{ord}_Z(f) \geq 0$ is {\bf not} equivalent
+to the condition $f \in \mathcal{O}_{X, \xi}^h$ unless the local
+ring $\mathcal{O}_{X, \xi}$ is a discrete valuation ring.
+
+\begin{lemma}
+\label{lemma-order-vanishing-agrees}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic
+space over $S$. Let $f \in R(X)^*$. If the prime divisor
+$Z \subset X$ meets the schematic locus of $X$, then the order
+of vanishing $\text{ord}_Z(f)$ of Definition \ref{definition-order-vanishing}
+agrees with the order of vanishing of
+Divisors, Definition \ref{divisors-definition-order-vanishing}.
+\end{lemma}
+
+\begin{proof}
+After shrinking $X$ we may assume $X$ is an integral Noetherian scheme.
+If $\xi \in Z$ denotes the generic point, then we find that
+$\mathcal{O}_{X, \xi}^h$ is the henselization of $\mathcal{O}_{X, \xi}$
+(Decent Spaces, Lemma \ref{decent-spaces-lemma-describe-henselian-local-ring}).
+To prove the lemma it suffices and is necessary to show that
+$$
+\text{length}_{\mathcal{O}_{X, \xi}}
+(\mathcal{O}_{X, \xi}/a \mathcal{O}_{X, \xi}) =
+\text{length}_{\mathcal{O}_{X, \xi}^h}
+(\mathcal{O}_{X, \xi}^h/a \mathcal{O}_{X, \xi}^h)
+$$
+This follows immediately from
+Algebra, Lemma \ref{algebra-lemma-pullback-module}
+(and the fact that $\mathcal{O}_{X, \xi} \to \mathcal{O}_{X, \xi}^h$
+is a flat local ring homomorphism of local Noetherian rings).
+\end{proof}
+
+\begin{lemma}
+\label{lemma-divisor-locally-finite}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$. Let $f \in R(X)^*$. Then the collections
+$$
+\{Z \subset X \mid Z\text{ a prime divisor with generic point }\xi
+\text{ and }f\text{ not in }\mathcal{O}_{X, \xi}\}
+$$
+and
+$$
+\{Z \subset X \mid Z \text{ a prime divisor and }\text{ord}_Z(f) \not = 0\}
+$$
+are locally finite in $X$.
+\end{lemma}
+
+\begin{proof}
+There exists a nonempty open subspace $U \subset X$
+such that $f$ corresponds to a section of $\Gamma(U, \mathcal{O}_X^*)$.
+Hence the prime divisors which can occur in the sets of the lemma all
+correspond to irreducible components of $|X| \setminus |U|$.
+Hence Lemma \ref{lemma-components-locally-finite} gives the desired result.
+\end{proof}
+
+\noindent
+This lemma allows us to make the following definition.
+
+\begin{definition}
+\label{definition-principal-divisor}
+Let $S$ be a scheme.
+Let $X$ be a locally Noetherian integral algebraic space over $S$.
+Let $f \in R(X)^*$.
+The {\it principal Weil divisor associated to $f$} is the Weil divisor
+$$
+\text{div}(f) = \text{div}_X(f) = \sum \text{ord}_Z(f) [Z]
+$$
+where the sum is over prime divisors and $\text{ord}_Z(f)$ is as in
+Definition \ref{definition-order-vanishing}. This makes sense
+by Lemma \ref{lemma-divisor-locally-finite}.
+\end{definition}
+
+\begin{lemma}
+\label{lemma-div-additive}
+Let $S$ be a scheme.
+Let $X$ be a locally Noetherian integral algebraic space over $S$.
+Let $f, g \in R(X)^*$. Then
+$$
+\text{div}_X(fg) = \text{div}_X(f) + \text{div}_X(g)
+$$
+as Weil divisors on $X$.
+\end{lemma}
+
+\begin{proof}
+This is clear from the additivity of the $\text{ord}$ functions.
+\end{proof}
+
+\noindent
+We see from the lemma above that the collection of principal Weil divisors
+form a subgroup of the group of all Weil divisors. This leads to the following
+definition.
+
+\begin{definition}
+\label{definition-class-group}
+Let $S$ be a scheme.
+Let $X$ be a locally Noetherian integral algebraic space over $S$. The
+{\it Weil divisor class group} of $X$ is the quotient of
+the group of Weil divisors by the subgroup of principal Weil divisors.
+Notation: $\text{Cl}(X)$.
+\end{definition}
+
+\noindent
+By construction we obtain an exact complex
+\begin{equation}
+\label{equation-Weil-divisor-class}
+R(X)^* \xrightarrow{\text{div}} \text{Div}(X) \to \text{Cl}(X) \to 0
+\end{equation}
+which we can think of as a presentation of $\text{Cl}(X)$. Our next task
+is to relate the Weil divisor class group to the Picard group.
+
+\begin{example}
+\label{example-Z-mod-2}
+This is a continuation of Morphisms of Spaces, Example
+\ref{spaces-morphisms-example-universal-homeomorphism}.
+Consider the algebraic space
+$X = \mathbf{A}^1_k/\{t \sim -t \mid t \not = 0\}$.
+This is a smooth algebraic space over the field $k$.
+There is a universal homeomorphism
+$$
+X \longrightarrow \mathbf{A}^1_k = \Spec(k[t])
+$$
+which is an isomorphism over $\mathbf{A}^1_k \setminus \{0\}$.
+We conclude that $X$ is Noetherian and integral.
+Since $\dim(X) = 1$, we see that the prime divisors of $X$ are
+the closed points of $X$.
+Consider the unique closed point $x \in |X|$ lying over $0 \in \mathbf{A}^1_k$.
+Since $X \setminus \{x\}$ maps isomorphically to $\mathbf{A}^1 \setminus \{0\}$
+we see that the classes in $\text{Cl}(X)$ of closed points different
+from $x$ are zero. However, the divisor of $t$ on $X$ is $2[x]$.
+We conclude that $\text{Cl}(X) = \mathbf{Z}/2\mathbf{Z}$.
+\end{example}
+
+\begin{example}
+\label{example-not-a-domain}
+Let $k$ be a field. Let
+$$
+U = \Spec(k[x, y]/(xy))
+$$
+be the union of the coordinate axes in $\mathbf{A}^2_k$.
+Denote $\Delta : U \to U \times_k U$ the diagonal and
+$\Delta' : U \to U \times_k U$ the map $u \mapsto (u, \sigma(u))$
+where $\sigma : U \to U$, $(x, y) \mapsto (y, x)$
+is the automorphism flipping the coordinate axes. Set
+$$
+R = \Delta(U) \amalg \Delta'(U \setminus \{0_U\})
+$$
+where $0_U \in U$ is the origin. It is easy to see that
+$R$ is an \'etale equivalence relation on $U$. The quotient $X = U/R$
+is an algebraic space. The morphism $U \to \mathbf{A}^1_k$,
+$(x, y) \mapsto x + y$ is $R$-invariant and hence defines
+a morphism
+$$
+X \longrightarrow \mathbf{A}^1_k
+$$
+This morphism is a universal homeomorphism and an isomorphism over
+$\mathbf{A}^1_k \setminus \{0\}$. It follows that $X$ is integral
+and Noetherian. Exactly as in Example \ref{example-Z-mod-2}
+the reader shows that $\text{Cl}(X) = \mathbf{Z}/2\mathbf{Z}$
+with generator corresponding to the unique closed point $x \in |X|$
+mapping to $0 \in \mathbf{A}^1_k$. However, in this case the henselian
+local ring of $X$ at $x$ isn't a domain, as it is the henselization
+of $\mathcal{O}_{U, 0_U}$.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{The Weil divisor class associated to an invertible module}
+\label{section-c1}
+
+\noindent
+In this section we go through exactly the same progression as in
+Section \ref{section-Weil-divisors} to define a canonical map
+$\Pic(X) \to \text{Cl}(X)$
+on a locally Noetherian integral algebraic space.
+
+\medskip\noindent
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$. Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
+By Divisors on Spaces, Lemma
+\ref{spaces-divisors-lemma-regular-meromorphic-section-exists}
+there exists a regular meromorphic section
+$s \in \Gamma(X, \mathcal{K}_X(\mathcal{L}))$.
+In fact, by Divisors on Spaces, Lemma
+\ref{spaces-divisors-lemma-compute-meromorphic}
+this is the same thing as a nonzero element in
+$\mathcal{L}_\eta$ where $\eta \in |X|$ is the generic point.
+The same lemma tells us that if $\mathcal{L} = \mathcal{O}_X$,
+then $s$ is the same thing as a nonzero rational function on $X$
+(so what we will do below matches the construction in
+Section \ref{section-Weil-divisors}).
+
+\medskip\noindent
+Let $Z \subset X$ be a prime divisor and let $\xi \in |Z|$ be the generic point.
+We are going to define the order of vanishing of $s$ along $Z$.
+Consider the canonical morphism
+$$
+c_\xi : \Spec(\mathcal{O}_{X, \xi}^h) \longrightarrow X
+$$
+whose source is the spectrum of the henselian local ring of $X$ as $\xi$
+(Decent Spaces, Definition \ref{decent-spaces-definition-henselian-local-ring}).
+The pullback $\mathcal{L}_\xi = c_\xi^*\mathcal{L}$
+is an invertible module and hence trivial; choose a generator $s_\xi$ of
+$\mathcal{L}_\xi$. Since $c_\xi$ is flat, pullbacks of meromorphic functions
+and (regular) sections are defined for $c_\xi$, see
+Divisors on Spaces, Definition
+\ref{spaces-divisors-definition-pullback-meromorphic-sections} and
+Lemmas \ref{spaces-divisors-lemma-pullback-meromorphic-sections-defined} and
+\ref{spaces-divisors-lemma-meromorphic-sections-pullback}.
+Thus we get
+$$
+c_\xi^*(s) = f s_\xi
+$$
+for some nonzerodivisor $f \in Q(\mathcal{O}_{X, \xi}^h)$.
+Here we are using Divisors, Lemma \ref{divisors-lemma-locally-Noetherian-K}
+to identify the space of meromorphic sections of
+$\mathcal{L}_\xi \cong \mathcal{O}_{\Spec(\mathcal{O}_{X, \xi}^h)}$
+in terms of the total ring of fractions of $\mathcal{O}_{X, \xi}^h$.
+Let us agree to denote this element
+$$
+s/s_\xi = f \in  Q(\mathcal{O}_{X, \xi}^h)
+$$
+Observe that $f = s/s_\xi$
+is replaced by $uf$ where $u \in \mathcal{O}_{X, \xi}^h$
+is a unit if we change our choice of $s_\xi$.
+
+\begin{definition}
+\label{definition-order-vanishing-meromorphic}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral
+algebraic algebraic space over $S$. Let $\mathcal{L}$ be an
+invertible $\mathcal{O}_X$-module.
+Let $s \in \Gamma(X, \mathcal{K}_X(\mathcal{L}))$
+be a regular meromorphic section of $\mathcal{L}$.
+For every prime divisor $Z \subset X$ with generic point $\xi \in |Z|$
+we define the
+{\it order of vanishing of $s$ along $Z$}
+as the integer
+$$
+\text{ord}_{Z, \mathcal{L}}(s) =
+\text{length}_{\mathcal{O}_{X, \xi}^h}
+(\mathcal{O}_{X, \xi}^h/a \mathcal{O}_{X, \xi}^h) -
+\text{length}_{\mathcal{O}_{X, \xi}^h}
+(\mathcal{O}_{X, \xi}^h/b \mathcal{O}_{X, \xi}^h)
+$$
+where $a, b \in \mathcal{O}_{X, \xi}^h$ are nonzerodivisors
+such that the element $s/s_\xi$ of $Q(\mathcal{O}_{X, \xi}^h)$
+constructed above is equal to $a/b$.
+This is well defined by the above and
+Algebra, Lemma \ref{algebra-lemma-ord-additive}.
+\end{definition}
+
+\noindent
+As explained above, a regular meromorphic section $s$ of $\mathcal{O}_X$
+can be written $s = f \cdot 1$ where $f$
+is a nonzero rational function on $X$ and we have
+$\text{ord}_Z(f) = \text{ord}_{Z, \mathcal{O}_X}(s)$.
+As in the case of principal divisors we have the following lemma.
+
+\begin{lemma}
+\label{lemma-divisor-meromorphic-locally-finite}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$. Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
+Let $s \in \mathcal{K}_X(\mathcal{L})$ be a
+regular (i.e., nonzero) meromorphic section of $\mathcal{L}$. Then the sets
+$$
+\{Z \subset X \mid Z \text{ a prime divisor with generic point }\xi
+\text{ and }s\text{ not in }\mathcal{L}_\xi\}
+$$
+and
+$$
+\{Z \subset X \mid Z \text{ is a prime divisor and }
+\text{ord}_{Z, \mathcal{L}}(s) \not = 0\}
+$$
+are locally finite in $X$.
+\end{lemma}
+
+\begin{proof}
+There exists a nonempty open subspace $U \subset X$ such that $s$
+corresponds to a section of $\Gamma(U, \mathcal{L})$ which generates
+$\mathcal{L}$ over $U$. Hence the prime divisors which can occur
+in the sets of the lemma all correspond to irreducible components of
+$|X| \setminus |U|$. Hence Lemma \ref{lemma-components-locally-finite}.
+gives the desired result.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-divisor-meromorphic-well-defined}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$ Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
+Let $s, s' \in \mathcal{K}_X(\mathcal{L})$ be nonzero
+meromorphic sections of $\mathcal{L}$. Then $f = s/s'$
+is an element of $R(X)^*$ and we have
+$$
+\sum \text{ord}_{Z, \mathcal{L}}(s)[Z]
+=
+\sum \text{ord}_{Z, \mathcal{L}}(s')[Z]
++
+\text{div}(f)
+$$
+as Weil divisors.
+\end{lemma}
+
+\begin{proof}
+This is clear from the definitions.
+Note that Lemma \ref{lemma-divisor-meromorphic-locally-finite}
+guarantees that the sums are indeed Weil divisors.
+\end{proof}
+
+\begin{definition}
+\label{definition-divisor-invertible-sheaf}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$. Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
+\begin{enumerate}
+\item For any nonzero meromorphic section $s$ of $\mathcal{L}$
+we define the {\it Weil divisor associated to $s$} as
+$$
+\text{div}_\mathcal{L}(s) =
+\sum \text{ord}_{Z, \mathcal{L}}(s) [Z] \in \text{Div}(X)
+$$
+where the sum is over prime divisors. This is well defined by
+Lemma \ref{lemma-divisor-meromorphic-locally-finite}.
+\item We define {\it Weil divisor class associated to $\mathcal{L}$}
+as the image of $\text{div}_\mathcal{L}(s)$ in $\text{Cl}(X)$
+where $s$ is any nonzero meromorphic section of $\mathcal{L}$ over $X$.
+This is well defined by
+Lemma \ref{lemma-divisor-meromorphic-well-defined}.
+\end{enumerate}
+\end{definition}
+
+\noindent
+As expected this construction is additive in the invertible module.
+
+\begin{lemma}
+\label{lemma-c1-additive}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$. Let $\mathcal{L}$, $\mathcal{N}$ be invertible
+$\mathcal{O}_X$-modules. Let $s$, resp.\ $t$ be a nonzero meromorphic section
+of $\mathcal{L}$, resp.\ $\mathcal{N}$. Then $st$ is a nonzero
+meromorphic section of $\mathcal{L} \otimes_{\mathcal{O}_X} \mathcal{N}$ and
+$$
+\text{div}_{\mathcal{L} \otimes \mathcal{N}}(st)
+=
+\text{div}_\mathcal{L}(s) + \text{div}_\mathcal{N}(t)
+$$
+in $\text{Div}(X)$. In particular, the Weil divisor class of
+$\mathcal{L} \otimes_{\mathcal{O}_X} \mathcal{N}$ is the sum
+of the Weil divisor classes of $\mathcal{L}$ and $\mathcal{N}$.
+\end{lemma}
+
+\begin{proof}
+Let $s$, resp.\ $t$ be a nonzero meromorphic section
+of $\mathcal{L}$, resp.\ $\mathcal{N}$. Then $st$ is a nonzero
+meromorphic section of $\mathcal{L} \otimes \mathcal{N}$.
+Let $Z \subset X$ be a prime divisor. Let $\xi \in |Z|$ be its generic
+point. Choose generators $s_\xi \in \mathcal{L}_\xi$, and
+$t_\xi \in \mathcal{N}_\xi$ with notation as described earlier
+in this section. Then $s_\xi \otimes t_\xi$ is a generator
+for $(\mathcal{L} \otimes \mathcal{N})_\xi$.
+So $st/(s_\xi t_\xi) = (s/s_\xi)(t/t_\xi)$ in
+$Q(\mathcal{O}_{X, \xi}^h)$. Applying the additivity of
+Algebra, Lemma \ref{algebra-lemma-ord-additive}
+we conclude that
+$$
+\text{div}_{\mathcal{L} \otimes \mathcal{N}, Z}(st)
+=
+\text{div}_{\mathcal{L}, Z}(s) + \text{div}_{\mathcal{N}, Z}(t)
+$$
+Some details omitted.
+\end{proof}
+
+\noindent
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$. By the constructions and lemmas above we obtain a homomorphism
+of abelian groups
+\begin{equation}
+\label{equation-c1}
+\Pic(X) \longrightarrow \text{Cl}(X)
+\end{equation}
+which assigns to an invertible module its Weil divisor class.
+
+\begin{lemma}
+\label{lemma-normal-c1-injective}
+Let $S$ be a scheme. Let $X$ be a locally Noetherian integral algebraic space
+over $S$. If $X$ is normal, then the map (\ref{equation-c1})
+$\Pic(X) \to \text{Cl}(X)$ is injective.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module whose
+associated Weil divisor class is trivial. Let $s$ be a regular
+meromorphic section of $\mathcal{L}$. The assumption means that
+$\text{div}_\mathcal{L}(s) = \text{div}(f)$ for some
+$f \in R(X)^*$. Then we see that $t = f^{-1}s$ is a regular
+meromorphic section of $\mathcal{L}$ with
+$\text{div}_\mathcal{L}(t) = 0$, see
+Lemma \ref{lemma-divisor-meromorphic-well-defined}.
+We claim that $t$ defines a trivialization of $\mathcal{L}$.
+The claim finishes the proof of the lemma.
+Our proof of the claim is a bit awkward as we
+don't yet have a lot of theory at our dispposal; we suggest
+the reader skip the proof.
+
+\medskip\noindent
+We may check our claim \'etale locally. Let $U \in X_\etale$ be affine
+such that $\mathcal{L}|_U$ is trivial. Say $s_U \in \Gamma(U, \mathcal{L}|_U)$
+is a trivialization. By
+Properties, Lemma \ref{properties-lemma-normal-locally-finite-nr-irreducibles}
+we may also assume $U$ is integral. Write $U = \Spec(A)$ as the spectrum of a
+normal Noetherian domain $A$ with fraction field $K$.
+We may write $t|_U = f s_U$ for some element $f$ of $K$, see
+Divisors on Spaces, Lemma \ref{spaces-divisors-lemma-meromorphic-quasi-coherent}
+for example. Let $\mathfrak p \subset A$ be a height one prime
+corresponding to a codimension $1$ point $u \in U$ which maps
+to a codimension $1$ point $\xi \in |X|$. Choose a trivialization
+$s_\xi$ of $\mathcal{L}_\xi$ as in the beginning of this section.
+Choose a geometric point $\overline{u}$ of $U$ lying over $u$.
+Then
+$$
+(\mathcal{O}_{X, \xi}^h)^{sh} =
+\mathcal{O}_{X, \overline{u}} =
+\mathcal{O}_{U, u}^{sh} = (A_\mathfrak p)^{sh}
+$$
+see Decent Spaces, Lemmas
+\ref{decent-spaces-lemma-henselian-local-ring-strict}
+and
+Properties of Spaces, Lemma
+\ref{spaces-properties-lemma-describe-etale-local-ring}.
+The normality of $X$ shows that all of these are
+discrete valuation rings. The trivializations $s_U$ and $s_\xi$
+differ by a unit as sections of $\mathcal{L}$ pulled back to
+$\Spec(\mathcal{O}_{X, \overline{u}})$.
+Write $t = f_\xi s_\xi$ with $f_\xi \in Q(\mathcal{O}_{X, \xi}^h)$.
+We conclude that $f_\xi$ and $f$ differ by a unit
+in $Q(\mathcal{O}_{X, \overline{u}})$.
+If $Z \subset X$ denotes the prime divisor corresponding to $\xi$
+(Lemma \ref{lemma-decent-irreducible-closed}), then
+$0 = \text{ord}_{Z, \mathcal{L}}(t) =
+\text{ord}_{\mathcal{O}_{X, \xi}^h}(f_\xi)$
+and since $\mathcal{O}_{X, \xi}^h$ is a discrete valuation ring
+we see that $f_\xi$ is a unit.
+Thus $f$ is a unit in $\mathcal{O}_{X, \overline{u}}$
+and hence in particular $f \in A_\mathfrak p$.
+This implies $f \in A$ by Algebra, Lemma
+\ref{algebra-lemma-normal-domain-intersection-localizations-height-1}.
+We conclude that $t \in \Gamma(X, \mathcal{L})$.
+Repeating the argument with $t^{-1}$ viewed as a meromorphic
+section of $\mathcal{L}^{\otimes -1}$ finishes the proof.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -491,6 +1227,8 @@ Since $Y$ is decent and $X' \to Y$ is separated we see that $X'$ is decent
 Thus $f'$ is an alteration by
 Lemma \ref{lemma-alteration-generically-finite}.
 \end{proof}
+
+
 
 
 

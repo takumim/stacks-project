@@ -163,7 +163,7 @@ and that $\rho^{U'}_U \circ \rho^{U''}_{U'} = \rho^{U''}_U$
 when we have morphisms $U \to U' \to U''$ of schemes \'etale over $X$
 as well as the following {\it sheaf axiom}:
 \begin{itemize}
-\item[$(*)$] for every \'etale covering $\{ \varphi_i : U_i \to U\}_{i \in
+\item[(*)] for every \'etale covering $\{ \varphi_i : U_i \to U\}_{i \in
 I}$, the diagram
 $$
 \xymatrix{
@@ -2274,7 +2274,7 @@ The result is true for $p = 0$ by the sheaf property.
 Assume that $U$ is affine. Then we want to prove that
 $H^p_\tau(U, \mathcal{F}^a) = 0$ for all $p > 0$. We use induction on $p$.
 \begin{enumerate}
-\item[$p = 1$]
+\item[p = 1]
 Pick $\xi \in H^1_\tau(U, \mathcal{F}^a)$.
 By Lemma \ref{lemma-locality-cohomology},
 there exists an fpqc covering $\mathcal{U} = \{U_i \to U\}_{i \in I}$
@@ -2296,7 +2296,7 @@ is none other than the complex $(B/A)_\bullet \otimes_A M$.
 Now by Lemma \ref{lemma-descent-modules},
 $H^p((B/A)_\bullet \otimes_A M) = 0$ for $p>0$, hence $\check \xi = 0$
 and so $\xi = 0$.
-\item[$p > 1$]
+\item[p > 1]
 Pick $\xi \in H^p_\tau(U, \mathcal{F}^a)$. By
 Lemma \ref{lemma-locality-cohomology},
 there exists an fpqc covering $\mathcal{U} = \{U_i \to U\}_{i \in I}$
@@ -2711,7 +2711,7 @@ Let $\{\varphi_i : U_i \to U\}_{i \in I}$ be an \'etale covering.
 Since an \'etale morphism is flat, and the elements of the covering should
 cover its target, the property fp (faithfully flat) is satisfied.
 To check the property qc (quasi-compact), let $V \subset U$ be an affine
-open, and write $\varphi_i^{-1} = \bigcup_{j \in J_i} V_{ij}$
+open, and write $\varphi_i^{-1}(V) = \bigcup_{j \in J_i} V_{ij}$
 for some affine opens $V_{ij} \subset U_i$. Since $\varphi_i$ is open
 (as \'etale morphisms are open), we see that
 $V = \bigcup_{i\in I} \bigcup_{j \in J_i} \varphi_i(V_{ij})$
@@ -2803,7 +2803,7 @@ this is a representable functor, and the scheme representing it
 is denoted $\mu_n$ also. By
 Lemma \ref{lemma-representable-sheaf-fpqc}
 this functor satisfies the sheaf condition for the fpqc topology
-(in particular, it is also satisfies the sheaf condition for the
+(in particular, it also satisfies the sheaf condition for the
 \'etale, Zariski, etc topology).
 
 \begin{lemma}
@@ -3017,6 +3017,7 @@ $$
 \xrightarrow{\alpha}
 (\mathcal{O}_S, 1)
 $$
+is an isomorphism
 hence every element of this group has order dividing $n$. We warn the reader
 that this group is in general {\bf not} the $n$-torsion in $\Pic(S)$.
 
@@ -3372,7 +3373,7 @@ Lemma \ref{lemma-geometric-lift-to-cover}.
 Hence
 Sites, Proposition \ref{sites-proposition-point-limits}
 applies, so $p$ is a point of the site $S_\etale$.
-Finally, the our functor $\mathcal{F} \mapsto \mathcal{F}_{\overline{s}}$
+Finally, our functor $\mathcal{F} \mapsto \mathcal{F}_{\overline{s}}$
 is given by exactly the same colimit as the functor
 $\mathcal{F} \mapsto \mathcal{F}_p$ associated to $p$ in
 Sites, Equation \ref{sites-equation-stalk}
@@ -4994,14 +4995,20 @@ two projections. Let $\overline{s} \to S$ be a geometric point.
 It suffices to show the agreement holds over $(T \times_S T)_{\overline{s}}$
 as every geometric point of $T \times_S T$ is contained in one of
 these geometric fibres. In other words, we are trying to show that
-$\alpha|_{X_{\overline{s}}}$ pulls back to the same section over
-$(T \times_S T)_{\overline{s}}$ by the two projections
-$T_{\overline{s}} \times_{\overline{s}} T_{\overline{s}}$.
+$\alpha|_{T_{\overline{s}}}$ pulls back to the same section over
+$$
+(T \times_S T)_{\overline{s}} =
+T_{\overline{s}} \times_{\overline{s}} T_{\overline{s}}
+$$
+by the two projections to $T_{\overline{s}}$.
 However, since $\mathcal{F}|_{T_{\overline{s}}}$ is the
 pullback of $\mathcal{F}|_{\overline{s}}$ it is a constant sheaf
 with value $\mathcal{F}_{\overline{s}}$. Since $T_{\overline{s}}$
-is connected by assumption, any section of a constant sheaf is constant
-and this proves what we want.
+is connected by assumption, any section of a constant sheaf is constant.
+Hence $\alpha|_{T_{\overline{s}}}$ corresponds to an element
+of $\mathcal{F}_{\overline{s}}$. Thus the two pullbacks to
+$(T \times_S T)_{\overline{s}}$ both
+correspond to this same element and we conclude.
 \end{proof}
 
 \begin{lemma}
@@ -6515,7 +6522,7 @@ $$
 \left\{
 \begin{matrix}
 * & \text{if} & \overline{x} \not \in Z \\
-\mathcal{F}_{\overline{x}} & \text{if} & \overline{x} \in Z
+\mathcal{G}_{\overline{x}} & \text{if} & \overline{x} \in Z
 \end{matrix}
 \right.
 $$
@@ -7919,7 +7926,7 @@ the $G$-set $M = \mathcal{F}_{\overline{s}}$ we have
 \Gamma(S, \mathcal{F}) & = &
 \Mor_{\Sh(S_\etale)}(h_{\Spec(K)},  \mathcal{F})
 \\
-& = & \Mor_{G\textit{-Sets})}(\{*\}, M) \\
+& = & \Mor_{G\textit{-Sets}}(\{*\}, M) \\
 & = & M^G
 \end{eqnarray*}
 Here the first identification is explained in
@@ -8061,7 +8068,7 @@ $R^i\Gamma_G(M) = H^i(G, M)$ for any $i \geq 0$.
 
 \medskip\noindent
 The same construction works for
-$H^0(G, -) : \text{Mod}_{R, G} \to \text{mod}_R$. We will see in
+$H^0(G, -) : \text{Mod}_{R, G} \to \text{Mod}_R$. We will see in
 Lemma \ref{lemma-modules-abelian} that this agrees with the cohomology
 of the underlying $G$-module.
 
@@ -8562,7 +8569,7 @@ $[K] = [\text{Mat}(d \times d, K)]$ for any $d \geq 1$.
 \noindent
 The previous lemma implies that inverses exist and that $-[A] = [A^{opp}]$.
 The Brauer group of a field is always torsion.
-In fact, we will see that $[A]$ has order $\deg(A)$
+In fact, we will see that $[A]$ has order dividing $\deg(A)$
 for any finite central simple algebra $A$ (see
 Lemma \ref{lemma-annihilated-by-degree}).
 In general the Brauer group is not finitely generated, for example
@@ -8571,6 +8578,9 @@ The Brauer group of $\mathbf{C}(x, y)$ is uncountable.
 
 \begin{lemma}
 \label{lemma-central-simple-algebra-pgln}
+\begin{slogan}
+Central simple algebras are classified by Galois cohomology of PGL.
+\end{slogan}
 Let $K$ be a field and let $K^{sep}$ be a separable algebraic closure.
 Then the set of isomorphism classes of central simple algebras of degree
 $d$ over $K$ is in bijection with the non-abelian cohomology
@@ -10524,7 +10534,7 @@ We omit the proof in this case.
 \label{lemma-ses-associated-to-open}
 Let $X$ be a scheme. Let $Z \subset X$ be a closed subscheme and let
 $U \subset X$ be the complement. Denote $i : Z \to X$ and $j : U \to X$
-the inclusion morphisms. For every abelian sheaf on $X_\etale$
+the inclusion morphisms. For every abelian sheaf $\mathcal{F}$ on $X_\etale$
 there is a canonical short exact sequence
 $$
 0 \to j_!j^{-1}\mathcal{F} \to \mathcal{F} \to i_*i^{-1}\mathcal{F} \to 0
@@ -12948,7 +12958,7 @@ Statements (\ref{item-vanishing}) -- (\ref{item-surjective}) hold
 for $\underline{\mathbf{Z}/\ell\mathbf{Z}}$ by
 Lemma \ref{lemma-constant-smooth-statements}.
 Since the inclusion morphisms $i_x : x \to X$ are finite
-and since $x$ is the spectrum of an irreducible curve,
+and since $x$ is the spectrum of an algebraically closed field,
 we see that $H^q_\etale(X, i_{x*}\underline{\mathbf{Z}/\ell\mathbf{Z}})$
 is zero for $q > 0$ and equal to $\mathbf{Z}/\ell\mathbf{Z}$
 for $q = 0$. Thus we get from the long exact cohomology sequence
@@ -13668,7 +13678,7 @@ Let $f : X \to Y$ and $g : Y \to Z$ be proper morphisms of schemes. Assume
 \item cohomology commutes with base change for $f$, and
 \item cohomology commutes with base change for $g$.
 \end{enumerate}
-Then cohomology commutes with base change for $f \circ g$.
+Then cohomology commutes with base change for $g \circ f$.
 \end{lemma}
 
 \begin{proof}
@@ -14183,10 +14193,10 @@ in $D(S'_\etale)$.
 $i_g^*(Rf_{big, *}K) = Rf'_{small, *}(i_{g'}^*K)$
 in $D(\textit{Mod}(S'_\etale, \mathcal{O}_{S'}))$.
 \item[(5)] For $K$ in $D((\Sch/T)_\etale)$ we have
-$g_{big}^{-1}(Rf_{big, *}K) = Rf'_{small, *}((g'_{big})^{-1}K)$
+$g_{big}^{-1}(Rf_{big, *}K) = Rf'_{big, *}((g'_{big})^{-1}K)$
 in $D((\Sch/S')_\etale)$.
 \item[(6)] For $K$ in $D((\Sch/T)_\etale, \mathcal{O})$ we have
-$g_{big}^*(Rf_{big, *}K) = Rf'_{small, *}((g'_{big})^*K)$
+$g_{big}^*(Rf_{big, *}K) = Rf'_{big, *}((g'_{big})^*K)$
 in $D(\textit{Mod}(S'_\etale, \mathcal{O}_{S'}))$.
 \end{enumerate}
 \end{lemma}
@@ -16161,9 +16171,8 @@ Notes on derived categories.
 There are some set-theoretical problems when $\mathcal{A}$ is somewhat
 arbitrary, which we will happily disregard.
 \item
-The categories $K(A)$ and $D(A)$ may be endowed with the structure of
-triangulated category, but we will not need these structures in the following
-discussion.
+The categories $K(A)$ and $D(A)$ are endowed with the structure of a
+triangulated category.
 \item
 The categories $\text{Comp}(\mathcal{A})$ and $K(\mathcal{A})$ can also be
 defined when $\mathcal{A}$ is an additive category.

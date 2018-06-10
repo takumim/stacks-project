@@ -3793,6 +3793,499 @@ Since the vertical arrows are isomorphisms
 
 
 
+\section{Restriction to a closed subscheme}
+\label{section-lefschetz}
+
+\noindent
+In this section we prove some results about the restriction functor
+$$
+\textit{F\'Et}_X \longrightarrow \textit{F\'Et}_Y,\quad
+U \longmapsto V = U \times_X Y
+$$
+where $X$ is a scheme and $Y$ is a closed subscheme. Using the
+topological invariance of the fundamental group, we can relate
+the study of this functor to the completion functor on
+finite locally free modules.
+
+\medskip\noindent
+In the following lemmas we use the concept of coherent formal modules
+defined in
+Cohomology of Schemes, Section \ref{coherent-section-coherent-formal}.
+Given a Noetherian scheme and a quasi-coherent sheaf of ideals
+$\mathcal{I} \subset \mathcal{O}_X$ we will say
+an object $(\mathcal{F}_n)$ of $\textit{Coh}(X, \mathcal{I})$
+is {\it finite locally free} if each $\mathcal{F}_n$ is a finite
+locally free $\mathcal{O}_X/\mathcal{I}^n$-module.
+
+\begin{lemma}
+\label{lemma-restriction-fully-faithful}
+Let $X$ be a Noetherian scheme and let $Y \subset X$ be a closed subscheme
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Assume the completion functor
+$$
+\textit{Coh}(\mathcal{O}_X)
+\longrightarrow 
+\textit{Coh}(X, \mathcal{I}),\quad
+\mathcal{F} \longmapsto \mathcal{F}^\wedge
+$$
+is fully faithful on the full subcategory of finite locally free objects
+(see above).
+Then the restriction functor $\textit{F\'Et}_X \to \textit{F\'Et}_Y$
+is fully faithful.
+\end{lemma}
+
+\begin{proof}
+Since the category of finite \'etale coverings has an
+internal hom (Lemma \ref{lemma-internal-hom-finite-etale})
+it suffices to prove the following: Given $U$ finite \'etale over $X$
+and a morphism $t : Y \to U$ over $X$ there exists a unique section
+$s : X \to U$ such that $t = s|_Y$. Picture
+$$
+\xymatrix{
+& U \ar[d]^f \\
+Y \ar[r] \ar[ru] & X \ar@{..>}@/^1em/[u]
+}
+$$
+Finding the dotted arrow $s$ is the same thing as finding an
+$\mathcal{O}_X$-algebra map
+$$
+s^\sharp : f_*\mathcal{O}_U \longrightarrow \mathcal{O}_X
+$$
+which reduces modulo the ideal sheaf of $Y$ to the given algebra map
+$t^\sharp : f_*\mathcal{O}_U \to \mathcal{O}_Y$.
+By Lemma \ref{lemma-thickening} we can lift $t$ uniquely to a compatible
+system of maps $t_n : Y_n \to U$ and hence a map
+$$
+\lim t_n^\sharp : f_*\mathcal{O}_U \longrightarrow \lim \mathcal{O}_{Y_n}
+$$
+of sheaves of algebras on $X$.
+Since $f_*\mathcal{O}_U$ is a finite locally free $\mathcal{O}_X$-module,
+we conclude that we get a unique $\mathcal{O}_X$-module map
+$\sigma : f_*\mathcal{O}_U \to \mathcal{O}_X$ whose completion
+is $\lim t_n^\sharp$. To see that $\sigma$ is an algebra homomorphism,
+we need to check that the diagram
+$$
+\xymatrix{
+f_*\mathcal{O}_U \otimes_{\mathcal{O}_X} f_*\mathcal{O}_U
+\ar[r] \ar[d]_{\sigma \otimes \sigma} &
+f_*\mathcal{O}_U \ar[d]^\sigma \\
+\mathcal{O}_X \otimes_{\mathcal{O}_X} \mathcal{O}_X \ar[r] &
+\mathcal{O}_X
+}
+$$
+commutes. For every $n$ we know this diagram commutes after restricting
+to $Y_n$, i.e., the diagram commutes after applying the completion functor.
+Hence by faithfulness of the completion functor we conclude.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-restriction-equivalence}
+Let $X$ be a Noetherian scheme and let $Y \subset X$ be a closed subscheme
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Assume the completion functor
+$$
+\textit{Coh}(\mathcal{O}_X)
+\longrightarrow 
+\textit{Coh}(X, \mathcal{I}),\quad
+\mathcal{F} \longmapsto \mathcal{F}^\wedge
+$$
+is an equivalence on full subcategories of finite locally free objects
+(see above).
+Then the restriction functor $\textit{F\'Et}_X \to \textit{F\'Et}_Y$
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+The restriction functor is fully faithful by
+Lemma \ref{lemma-restriction-fully-faithful}.
+
+\medskip\noindent
+Let $U_1 \to Y$ be a finite \'etale morphism. To finish the proof
+we will show that $U_1$ is in the essential image of the
+restriction functor.
+
+\medskip\noindent
+For $n \geq 1$ let $Y_n$ be the $n$th infinitesimal neighbourhood of $Y$.
+By Lemma \ref{lemma-thickening}
+there is a unique finite \'etale morphism
+$\pi_n : U_n \to Y_n$ whose base change to $Y = Y_1$
+recovers $U_1 \to Y_1$.
+Consider the sheaves $\mathcal{F}_n = \pi_{n, *}\mathcal{O}_{U_n}$.
+We may and do view $\mathcal{F}_n$ as an $\mathcal{O}_X$-module on $X$
+wich is locally isomorphic to
+$(\mathcal{O}_X/f^{n + 1}\mathcal{O}_X)^{\oplus r}$.
+This $(\mathcal{F}_n)$ is a finite locally free object of
+$\textit{Coh}(X, \mathcal{I})$.
+By assumption there exists a finite locally free $\mathcal{O}_X$-module
+$\mathcal{F}$ and a compatible system of isomorphisms
+$$
+\mathcal{F}/\mathcal{I}^n\mathcal{F} \to \mathcal{F}_n
+$$
+of $\mathcal{O}_X$-modules.
+
+\medskip\noindent
+To construct an algebra structure on $\mathcal{F}$ consider the multiplication
+maps
+$\mathcal{F}_n \otimes_{\mathcal{O}_X} \mathcal{F}_n \to \mathcal{F}_n$
+coming from the fact that $\mathcal{F}_n = \pi_{n, *}\mathcal{O}_{U_n}$
+are sheaves of algebras. These define a map
+$$
+(\mathcal{F}\otimes_{\mathcal{O}_X} \mathcal{F})^\wedge
+\longrightarrow
+\mathcal{F}^\wedge
+$$
+in the category $\textit{Coh}(X, \mathcal{I})$. Hence by assumption
+we may assume there is a map
+$\mu : \mathcal{F}\otimes_{\mathcal{O}_X} \mathcal{F} \to \mathcal{F}$
+whose restriction to $Y_n$ gives the multiplication maps above.
+After possibly shrinking further we may assume $\mu$
+defines a commutative $\mathcal{O}_X$-algebra
+structure on $\mathcal{F}$ compatible with the given algebra
+structures on $\mathcal{F}_n$.
+Setting
+$$
+U = \underline{\Spec}_X((\mathcal{F}, \mu))
+$$
+we obtain a finite locally free scheme $\pi : U \to X$ whose restriction
+to $Y$ is isomorphic to $U_1$. The the discriminant of $\pi$ is the zero
+set of the section
+$$
+\det(Q_\pi) :
+\mathcal{O}_X
+\longrightarrow
+\wedge^{top}(\pi_*\mathcal{O}_U)^{\otimes -2}
+$$
+constructed in
+Discriminants, Section \ref{discriminant-section-discriminant}.
+Since the restriction of this to $Y_n$ is an isomorphism for all $n$
+by Discriminants, Lemma \ref{discriminant-lemma-discriminant}
+we conclude that it is an isomorphism. Thus $\pi$ is \'etale by
+Discriminants, Lemma \ref{discriminant-lemma-discriminant}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-restriction-fully-faithful-general}
+Let $X$ be a Noetherian scheme and let $Y \subset X$ be a closed subscheme
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Let $\mathcal{V}$ be the set of open subschemes $V \subset X$ containing $Y$
+ordered by reverse inclusion. Assume the completion functor
+$$
+\colim_\mathcal{V} \textit{Coh}(\mathcal{O}_V)
+\longrightarrow
+\textit{Coh}(X, \mathcal{I}),
+\quad
+\mathcal{F} \longmapsto \mathcal{F}^\wedge
+$$
+defines is fully faithful on the full subcategory of
+finite locally free objects (see above).
+Then the restriction functor
+$\colim_\mathcal{V} \textit{F\'Et}_V \to \textit{F\'Et}_Y$
+is fully faithful.
+\end{lemma}
+
+\begin{proof}
+Observe that $\mathcal{V}$ is a directed set, so the colimits are
+as in Categories, Section \ref{categories-section-directed-colimits}.
+The rest of the argument is almost exactly the same as the argument
+in the proof of Lemma \ref{lemma-restriction-fully-faithful}; we urge
+the reader to skip it.
+
+\medskip\noindent
+Since the category of finite \'etale coverings has an
+internal hom (Lemma \ref{lemma-internal-hom-finite-etale})
+it suffices to prove the following: Given $U$ finite \'etale over
+$V \in \mathcal{V}$
+and a morphism $t : Y \to U$ over $V$ there exists a $V' \geq V$
+and a morphism $s : V' \to U$ over $V$ such that $t = s|_Y$. Picture
+$$
+\xymatrix{
+& & U \ar[d]^f \\
+Y \ar[r] \ar[rru] & V' \ar@{..>}[ru] \ar[r] & V
+}
+$$
+Finding the dotted arrow $s$ is the same thing as finding an
+$\mathcal{O}_{V'}$-algebra map
+$$
+s^\sharp : f_*\mathcal{O}_U|_{V'} \longrightarrow \mathcal{O}_{V'}
+$$
+which reduces modulo the ideal sheaf of $Y$ to the given algebra map
+$t^\sharp : f_*\mathcal{O}_U \to \mathcal{O}_Y$.
+By Lemma \ref{lemma-thickening} we can lift $t$ uniquely to a compatible
+system of maps $t_n : Y_n \to U$ and hence a map
+$$
+\lim t_n^\sharp : f_*\mathcal{O}_U \longrightarrow \lim \mathcal{O}_{Y_n}
+$$
+of sheaves of algebras on $V$.
+Observe that $f_*\mathcal{O}_U$ is a finite locally free
+$\mathcal{O}_V$-module. Hence we get a $V' \geq V$ a map
+$\sigma : f_*\mathcal{O}_U|_{V'} \to \mathcal{O}_{V'}$
+whose completion is $\lim t_n^\sharp$.
+To see that $\sigma$ is an algebra homomorphism, we need to check
+that the diagram
+$$
+\xymatrix{
+(f_*\mathcal{O}_U \otimes_{\mathcal{O}_V} f_*\mathcal{O}_U)|_{V'}
+\ar[r] \ar[d]_{\sigma \otimes \sigma} &
+f_*\mathcal{O}_U|_{V'} \ar[d]^\sigma \\
+\mathcal{O}_{V'} \otimes_{\mathcal{O}_{V'}} \mathcal{O}_{V'} \ar[r] &
+\mathcal{O}_{V'}
+}
+$$
+commutes. For every $n$ we know this diagram commutes after restricting
+to $Y_n$, i.e., the diagram commutes after applying the completion functor.
+Hence by faithfulness of the completion functor
+we deduce that there exists a $V'' \geq V'$ such that
+$\sigma|_{V''}$ is an algebra homomorphism as desired.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-restriction-equivalence-general}
+Let $X$ be a Noetherian scheme and let $Y \subset X$ be a closed subscheme
+with ideal sheaf $\mathcal{I} \subset \mathcal{O}_X$.
+Let $\mathcal{V}$ be the set of open subschemes $V \subset X$ containing $Y$
+ordered by reverse inclusion. Assume the completion functor
+$$
+\colim_\mathcal{V} \textit{Coh}(\mathcal{O}_V)
+\longrightarrow
+\textit{Coh}(X, \mathcal{I}),
+\quad
+\mathcal{F} \longmapsto \mathcal{F}^\wedge
+$$
+defines an equivalence of the full subcategories of
+finite locally free objects (see explanation above).
+Then the restriction functor
+$$
+\colim_\mathcal{V} \textit{F\'Et}_V \to \textit{F\'Et}_Y
+$$
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Observe that $\mathcal{V}$ is a directed set, so the colimits are
+as in Categories, Section \ref{categories-section-directed-colimits}.
+The rest of the argument is almost exactly the same as the argument
+in the proof of Lemma \ref{lemma-restriction-equivalence}; we urge
+the reader to skip it.
+
+\medskip\noindent
+The restriction functor is fully faithful by
+Lemma \ref{lemma-restriction-fully-faithful-general}.
+
+\medskip\noindent
+Let $U_1 \to Y$ be a finite \'etale morphism. To finish the proof
+we will show that $U_1$ is in the essential image of the
+restriction functor.
+
+\medskip\noindent
+For $n \geq 1$ let $Y_n$ be the $n$th infinitesimal neighbourhood of $Y$.
+By Lemma \ref{lemma-thickening}
+there is a unique finite \'etale morphism
+$\pi_n : U_n \to Y_n$ whose base change to $Y = Y_1$
+recovers $U_1 \to Y_1$.
+Consider the sheaves $\mathcal{F}_n = \pi_{n, *}\mathcal{O}_{U_n}$.
+We may and do view $\mathcal{F}_n$ as an $\mathcal{O}_X$-module on $X$
+wich is locally isomorphic to
+$(\mathcal{O}_X/f^{n + 1}\mathcal{O}_X)^{\oplus r}$.
+This $(\mathcal{F}_n)$ is a finite locally free object of
+$\textit{Coh}(X, \mathcal{I})$.
+By assumption there exists a $V \in \mathcal{V}$
+and a finite locally free $\mathcal{O}_V$-module $\mathcal{F}$
+and a compatible system of isomorphisms
+$$
+\mathcal{F}/\mathcal{I}^n\mathcal{F} \to \mathcal{F}_n
+$$
+of $\mathcal{O}_V$-modules.
+
+\medskip\noindent
+To construct an algebra structure on $\mathcal{F}$ consider the multiplication
+maps
+$\mathcal{F}_n \otimes_{\mathcal{O}_V} \mathcal{F}_n \to \mathcal{F}_n$
+coming from the fact that $\mathcal{F}_n = \pi_{n, *}\mathcal{O}_{U_n}$
+are sheaves of algebras. These define a map
+$$
+(\mathcal{F}\otimes_{\mathcal{O}_V} \mathcal{F})^\wedge
+\longrightarrow
+\mathcal{F}^\wedge
+$$
+in the category $\textit{Coh}(X, \mathcal{I})$. Hence by assumption
+after shrinking $V$ we may assume there is a map
+$\mu : \mathcal{F}\otimes_{\mathcal{O}_V} \mathcal{F} \to \mathcal{F}$
+whose restriction to $Y_n$ gives the multiplication maps above.
+After possibly shrinking further we may assume $\mu$
+defines a commutative $\mathcal{O}_V$-algebra
+structure on $\mathcal{F}$ compatible with the given algebra
+structures on $\mathcal{F}_n$.
+Setting
+$$
+U = \underline{\Spec}_V((\mathcal{F}, \mu))
+$$
+we obtain a finite locally free scheme over $V$ whose restriction
+to $Y$ is isomorphic to $U_1$. It follows that $U \to V$
+is \'etale at all points lying over $Y$, see
+More on Morphisms, Lemma
+\ref{more-morphisms-lemma-check-smoothness-on-infinitesimal-nbhds}.
+Thus after shrinking $V$ once more we may assume $U \to V$ is
+finite \'etale. This finishes the proof.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-restriction-faithful}
+Let $X$ be a scheme and let $Y \subset X$ be a closed subscheme.
+If every connected component of $X$ meets $Y$, then
+the restriction functor $\textit{F\'Et}_X \to \textit{F\'Et}_Y$
+is faithful.
+\end{lemma}
+
+\begin{proof}
+Let $a, b : U \to U'$ be two morphisms of schemes finite \'etale over $X$
+whose restriction to $Y$ are the same. The image of a connected component
+of $U$ is an connected component of $X$; this follows from
+Topology, Lemma \ref{topology-lemma-finite-fibre-connected-components}
+applied to the restriction of $U \to X$ to a connected component of $X$.
+Hence the image of every connected component of $U$ meets $Y$
+by assumption. We conclude that $a = b$ after restriction to each
+connected component of $U$ by \'Etale Morphisms, Proposition
+\ref{etale-proposition-equality}. Since the equalizer of $a$ and $b$
+is an open subscheme of $U$ (as the diagonal of $U'$ over $X$ is open)
+we conclude.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-restriction-fully-faithful-special}
+Let $X$ be a Noetherian scheme and let $Y \subset X$ be a closed subscheme.
+Let $Y_n \subset X$ be the $n$th infinitesimal neighbourhood of $Y$ in $X$.
+Assume one of the following holds
+\begin{enumerate}
+\item $X$ is quasi-affine and
+$\Gamma(X, \mathcal{O}_X) \to \lim \Gamma(Y_n, \mathcal{O}_{Y_n})$
+is an isomorphism, or
+\item $X$ has an ample invertible module $\mathcal{L}$ and
+$\Gamma(X, \mathcal{L}^{\otimes m}) \to
+\lim \Gamma(Y_n, \mathcal{L}^{\otimes m}|_{Y_n})$
+is an isomorphism for all $m \gg 0$, or
+\item for every finite locally free $\mathcal{O}_X$-module
+$\mathcal{E}$ the map
+$\Gamma(X, \mathcal{E}) \to \lim \Gamma(Y_n, \mathcal{E}|_{Y_n})$
+is an isomorphism.
+\end{enumerate}
+Then the restriction functor $\textit{F\'Et}_X \to \textit{F\'Et}_Y$
+is fully faithful.
+\end{lemma}
+
+\begin{proof}
+This lemma follows formally from
+Lemma \ref{lemma-restriction-fully-faithful} and
+Algebraic and Formal Geometry, Lemma
+\ref{algebraization-lemma-completion-fully-faithful}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-restriction-fully-faithful-general-special}
+Let $X$ be a Noetherian scheme and let $Y \subset X$ be a closed subscheme.
+Let $Y_n \subset X$ be the $n$th infinitesimal neighbourhood of $Y$ in $X$.
+Let $\mathcal{V}$ be the set of open subschemes $V \subset X$ containing $Y$
+ordered by reverse inclusion. Assume one of the following holds
+\begin{enumerate}
+\item $X$ is quasi-affine and
+$$
+\colim_\mathcal{V} \Gamma(V, \mathcal{O}_V)
+\longrightarrow
+\lim \Gamma(Y_n, \mathcal{O}_{Y_n})
+$$
+is an isomorphism, or
+\item $X$ has an ample invertible module $\mathcal{L}$ and
+$$
+\colim_\mathcal{V} \Gamma(V, \mathcal{L}^{\otimes m})
+\longrightarrow
+\lim \Gamma(Y_n, \mathcal{L}^{\otimes m}|_{Y_n})
+$$
+is an isomorphism for all $m \gg 0$, or
+\item for every $V \in \mathcal{V}$ and every finite locally free
+$\mathcal{O}_V$-module $\mathcal{E}$ the map
+$$
+\colim_{V' \geq V} \Gamma(V', \mathcal{E}|_{V'})
+\longrightarrow
+\lim \Gamma(Y_n, \mathcal{E}|_{Y_n})
+$$
+is an isomorphism.
+\end{enumerate}
+Then the functor
+$$
+\colim_\mathcal{V} \textit{F\'Et}_V \to \textit{F\'Et}_Y
+$$
+is fully faithful.
+\end{lemma}
+
+\begin{proof}
+This lemma follows formally from
+Lemma \ref{lemma-restriction-fully-faithful-general} and
+Algebraic and Formal Geometry, Lemma
+\ref{algebraization-lemma-completion-fully-faithful-general}.
+\end{proof}
+
+
+
+
+
+
+\section{Pushouts and fundamental groups}
+\label{section-pushouts}
+
+\noindent
+Here is the main result.
+
+\begin{lemma}
+\label{lemma-pushout-along-closed-immersion-and-integral}
+In More on Morphisms, Situation
+\ref{more-morphisms-situation-pushout-along-closed-immersion-and-integral},
+for example if $Z \to Y$ and $Z \to X$ are closed immersions of schemes,
+there is an equivalence of categories
+$$
+\textit{F\'Et}_{Y \amalg_Z X}
+\longrightarrow
+\textit{F\'Et}_Y
+\times_{\textit{F\'Et}_Z}
+\textit{F\'Et}_X
+$$
+\end{lemma}
+
+\begin{proof}
+The pushout exists by
+More on Morphisms, Proposition
+\ref{more-morphisms-proposition-pushout-along-closed-immersion-and-integral}.
+The functor is given by sending a scheme $U$ finite \'etale over the
+pushout to the base changes $Y' = U \times_{Y \amalg_Z X} Y$
+and $X' = U \times_{Y \amalg_Z X} X$ and the natural isomorphism
+$Y' \times_Y Z \to X' \times_X Z$ over $Z$. To prove this functor
+is an equivalence we use
+More on Morphisms, Lemma
+\ref{more-morphisms-lemma-pushout-functor-equivalence-flat}
+to construct a quasi-inverse functor.
+The only thing left to prove is to show that given a morphism
+$U \to Y \amalg_Z X$ which is separated, quasi-finite and \'etale
+such that $X' \to X$ and $Y' \to Y$ are finite,
+then $U \to Y \amalg_Z X$ is finite.
+This can either be deduced from the corresponding algebra fact
+(More on Algebra, Lemma
+\ref{more-algebra-lemma-finite-module-over-fibre-product})
+or it can be seen because
+$$
+X' \amalg Y' \to U
+$$
+is surjective and $X'$ and $Y'$ are proper over $Y \amalg_Z X$
+(this uses the description of the pushout in More on Morphisms, Proposition
+\ref{more-morphisms-proposition-pushout-along-closed-immersion-and-integral})
+and then we can apply
+Morphisms, Lemma \ref{morphisms-lemma-scheme-theoretic-image-is-proper}
+to conclude that $U$ is proper over $Y \amalg_Z X$.
+Since a quasi-finite and proper morphism is finite
+(More on Morphisms, Lemma \ref{more-morphisms-lemma-characterize-finite})
+we win.
+\end{proof}
+
+
+
+
 
 \section{Finite \'etale covers of punctured spectra, I}
 \label{section-pi1-punctured-spec}
@@ -3841,17 +4334,10 @@ is a faithful functor.
 \end{lemma}
 
 \begin{proof}
-Let $a, b : V \to W$ be two morphisms of schemes finite \'etale over $U$
-whose restriction to $U_0$ are the same. Assumption (1)
-means that every irreducible component of $U$ meets $U_0$, see
+Case (2) is immediate from Lemma \ref{lemma-restriction-faithful}.
+Assumption (1) implies every irreducible component of $U$ meets $U_0$, see
 Algebra, Lemma \ref{algebra-lemma-one-equation}.
-The image of any irreducible component of $V$ is an
-irreducible component of $U$ and hence meets $U_0$.
-Hence $V_0$ meets every connected component of $V$ and
-we conclude that $a = b$ by \'Etale Morphisms, Proposition
-\ref{etale-proposition-equality}.
-In case (2) the argument is the same using that the image
-of a connected component of $V$ is a connected component of $U$.
+Hence (1) follows from (2).
 \end{proof}
 
 \noindent
@@ -3965,81 +4451,60 @@ Then we conclude as before.
 \end{proof}
 
 \noindent
-The following lemma will be superseded by
-Lemma \ref{lemma-fully-faithful-minimal} below.
+In Situation \ref{situation-local-lefschetz}
+fully faithfulness of the restriction functor
+$\textit{F\'Et}_U \longrightarrow \textit{F\'Et}_{U_0}$
+holds under fairly mild assumptions.
+In particular, the assumptions often do not imply
+$U$ is a connected scheme, but the conclusion guarantees
+that $U$ and $U_0$ have the same number of connected components.
 
 \begin{lemma}
-\label{lemma-fully-faithful}
-In Situation \ref{situation-local-lefschetz}.
-Assume $f$ is a nonzerodivisor, that $A$ has depth $\geq 3$, and that
-$A$ is henselian or more generally $(A, (f))$ is a henselian pair. Then
-$$
-\textit{F\'Et}_U \longrightarrow \textit{F\'Et}_{U_0},\quad
-V \longmapsto V_0 = V \times_U U_0
-$$
-is a fully faithful functor.
+\label{lemma-fully-faithful-simple}
+In Situation \ref{situation-local-lefschetz}. Assume
+\begin{enumerate}
+\item[(a)] $A$ has a dualizing complex,
+\item[(b)] the pair $(A, (f))$ is henselian,
+\item[(c)] one of the following is true
+\begin{enumerate}
+\item[(i)] $A_f$ is $(S_2)$ and every irreducible component of $X$
+not contained in $X_0$ has dimension $\geq 3$, or
+\item[(ii)] for every prime
+$\mathfrak p \subset A$, $f \not \in \mathfrak p$ we have
+$\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 2$.
+\end{enumerate}
+\end{enumerate}
+Then the restriction functor
+$\textit{F\'Et}_U \longrightarrow \textit{F\'Et}_{U_0}$
+is fully faithful.
 \end{lemma}
 
 \begin{proof}
-By Lemma \ref{lemma-fully-faithful-henselian-completion} we may assume $A$
-is a complete local Noetherian ring. The functor is faithful by
-Lemma \ref{lemma-faithful} (to see the assumption of that lemma holds, apply
-Algebra, Lemma \ref{algebra-lemma-depth-dim-associated-primes}).
-Since the category of finite \'etale coverings has an internal hom
-(Lemma \ref{lemma-internal-hom-finite-etale})
-it suffices to prove the following: Given $V$ finite \'etale over $U$ we have
-$$
-\Mor_U(U, V) = \Mor_{U_0}(U_0, V_0)
-$$
-If we have a morphism $U_0 \to V_0$ over $U_0$, then we obtain an
-decomposition $V_0 = U_0 \amalg V'_0$ into open and closed subschemes.
-We will show that this implies the same thing for $V$ thereby
-finishing the proof.
+Let $A'$ be the $\mathfrak m$-adic completion of $A$. We will show that
+the hypotheses remain true for $A'$. This is clear for conditions
+(a) and (b). Condition (c)(ii) is preserved by
+Local Cohomology, Lemma \ref{local-cohomology-lemma-change-completion}.
+Next, assume (c)(i) holds. Since $A$ is universally catenary
+(Dualizing Complexes, Lemma \ref{dualizing-lemma-universally-catenary})
+we see that every irreducible component of $\Spec(A')$ not contained in $V(f)$
+has dimension $\geq 3$, see
+More on Algebra, Proposition \ref{more-algebra-proposition-ratliff}.
+Since $A \to A'$ is flat with Gorenstein fibres,
+the condition that $A_f$ is $(S_2)$ implies that $A'_f$ is $(S_2)$.
+References used:
+Dualizing Complexes, Section \ref{dualizing-section-formal-fibres},
+More on Algebra, Section \ref{more-algebra-section-properties-formal-fibres},
+and Algebra, Lemma \ref{algebra-lemma-Sk-goes-up}.
+Thus by Lemma \ref{lemma-fully-faithful-henselian-completion}
+we may assume that $A$ is a Noetherian complete local ring.
 
 \medskip\noindent
-For $n \geq 1$ let $U_n$ be the punctured spectrum of $A/f^{n + 1}A$
-and let $V_n \to U_n$ be the base change of $V \to U$. By
-\'Etale Morphisms, Theorem \ref{etale-theorem-remarkable-equivalence}
-we conclude that there is a unique decomposition
-$V_n = U_n \amalg V'_n$
-into open and closed subschemes whose base change to $U_0$ recovers
-the given decomposition.
-
-\medskip\noindent
-Since $A$ has depth $\geq 3$ and $f$ is a nonzerodivisor, we see
-that $A/fA$ has depth $\geq 2$
-(Algebra, Lemma \ref{algebra-lemma-depth-drops-by-one}).
-This implies the
-vanishing of $H^0_\mathfrak m(A/fA)$ and $H^1_\mathfrak m(A/fA)$, see
-Dualizing Complexes, Lemma \ref{dualizing-lemma-depth}.
-This in turn
-tells us that $A/fA \to \Gamma(U_0, \mathcal{O}_{U_0})$ is an isomorphism, see
-Local Cohomology, Lemma
-\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
-As $f$ is a nonzerodivisor we obtain short exact sequences
-$$
-0 \to A/fA \xrightarrow{f^n} A/f^{n + 1}A \to A/f^n A \to 0
-$$
-Induction on $n$ shows that
-$H^0_\mathfrak m(A/f^{n + 1}A) = H^1_\mathfrak m(A/f^{n + 1}A) = 0$
-for all $n$. Hence the same reasoning shows that
-$A/f^{n + 1}A \to \Gamma(U_n, \mathcal{O}_{U_n})$
-is an isomorphism.
-Combined with the decompositions above this determines a map
-$$
-\Gamma(V, \mathcal{O}_V) \to
-\lim \Gamma(V_n, \mathcal{O}_{V_n}) \to
-\lim \Gamma(U_n, \mathcal{O}_{U_n}) = A
-$$
-Since $V \to U$ is affine, this $A$-algebra map corresponds to
-a section $U \to V$ as desired.
+Assume $A$ is a complete local ring in addition to the other assumptions.
+By Lemma \ref{lemma-restriction-fully-faithful} the result follows from
+Algebraic and Formal Geometry, Lemmas
+\ref{algebraization-lemma-fully-faithful-simple-one} and
+\ref{algebraization-lemma-fully-faithful-simple-two}.
 \end{proof}
-
-\noindent
-In the following lemma we prove fully faithfulness under very weak assumptions.
-Note that the assumptions do not imply that $U$ is a connected scheme, but
-the conclusion guarantees that $U$ and $U_0$ have the same number of
-connected components.
 
 \begin{lemma}
 \label{lemma-fully-faithful-minimal}
@@ -4048,17 +4513,13 @@ connected components.
 \end{reference}
 In Situation \ref{situation-local-lefschetz}. Assume
 \begin{enumerate}
-\item $f$ is a nonzerodivisor,
-\item $H^1_\mathfrak m(A)$ is finite,
-\item $H^2_\mathfrak m(A)$ is annihilated by a power of $f$, and
+\item $H^1_\mathfrak m(A)$ and $H^2_\mathfrak m(A)$ are
+annihilated by a power of $f$, and
 \item $A$ is henselian or more generally $(A, (f))$ is a henselian pair.
 \end{enumerate}
-Then
-$$
-\textit{F\'Et}_U \longrightarrow \textit{F\'Et}_{U_0},\quad
-V \longmapsto V_0 = V \times_U U_0
-$$
-is a fully faithful functor.
+Then the restriction functor
+$\textit{F\'Et}_U \longrightarrow \textit{F\'Et}_{U_0}$
+is fully faithful.
 \end{lemma}
 
 \begin{proof}
@@ -4066,76 +4527,26 @@ By Lemma \ref{lemma-fully-faithful-henselian-completion}
 we may assume that $A$ is a Noetherian complete local ring.
 (The assumptions carry over; use
 Dualizing Complexes, Lemma \ref{dualizing-lemma-torsion-change-rings}.)
+By Lemma \ref{lemma-restriction-fully-faithful}
+the result follows from
+Algebraic and Formal Geometry, Lemma
+\ref{algebraization-lemma-fully-faithful-alternative}.
+\end{proof}
 
-\medskip\noindent
-Assume $A$ is complete in addition to the other conditions.
-We will show that given $\pi : V \to U$ finite \'etale, the set
-of connected components of $V$ agrees with the set of connected
-components of $V_0$. This will prove the lemma because the
-category of finite \'etale covers has internal hom
-(Lemma \ref{lemma-internal-hom-finite-etale})
-and images of sections are connected components
-(\'Etale Morphisms, Proposition \ref{etale-proposition-properties-sections}).
-Some details omitted.
+\begin{lemma}
+\label{lemma-fully-faithful}
+In Situation \ref{situation-local-lefschetz} assume $A$ has depth $\geq 3$
+and $A$ is henselian or more generally $(A, (f))$ is a henselian pair. Then
+the restriction functor
+$\textit{F\'Et}_U \to \textit{F\'Et}_{U_0}$
+is fully faithful.
+\end{lemma}
 
-\medskip\noindent
-Set $\mathcal{B} = \pi_*\mathcal{O}_V$. This is a finite locally free
-$\mathcal{O}_U$-algebra. Thus
-$\text{Ass}(\mathcal{B}) = \text{Ass}(\mathcal{O}_U)$.
-Assumption (2) means that $H^0(U, \mathcal{O}_U)$ is a finite
-$A$-module and equivalently that $j_*\mathcal{O}_U$ is coherent
-(Local Cohomology, Lemma
-\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}).
-By Local Cohomology, Proposition \ref{local-cohomology-proposition-kollar}
-and the agreement of $\text{Ass}$
-we see that the same holds for $\mathcal{B}$ and we conclude
-that $B = \Gamma(U, \mathcal{B}) = \Gamma(V, \mathcal{O}_V)$
-is a finite $A$-algebra.
-
-\medskip\noindent
-Next, using that $H^2_\mathfrak m(A) = H^1(U, \mathcal{O}_U)$
-is annihilated by $f^n$ for some $n$ we see that
-$H^1(U, \mathcal{B}) = H^1(V, \mathcal{O}_V)$
-is annihilated by $f^m$ for some $m$, see
-Local Cohomology, Lemma \ref{local-cohomology-lemma-annihilate-Hp}.
-
-\medskip\noindent
-At this point we apply Local Cohomology, Lemma
-\ref{local-cohomology-lemma-formal-functions-principal} to
-the scheme $V$ over $\Spec(A)$ and the sheaf $\mathcal{O}_V$
-with $p = 0$. Since $f$ is a nonzerodivisor in $A$ the $f$-power torsion
-subsheaf of $\mathcal{O}_V$ is zero. The first short exact sequence
-of the lemma collapses to become
-$$
-H^0 = \lim H^0(V, \mathcal{O}_V/f^n\mathcal{O}_V) =
-\lim H^0(V_n, \mathcal{O}_{V_n})
-$$
-where $V_n \subset V$ is the closed subscheme cut out by $f^{n + 1}$.
-Since $H^1(V, \mathcal{O}_V)$ is annihilated by a power
-of $f$ we see that the Tate module $T_f(H^1(V, \mathcal{O}_V))$ is zero.
-On the other hand, since $A$ is complete and
-$B = H^0(V, \mathcal{O}_V)$ is a finite $A$-module
-it is complete (Algebra, Lemma \ref{algebra-lemma-completion-tensor})
-hence derived complete
-(More on Algebra,
-Proposition \ref{more-algebra-proposition-derived-complete-modules})
-and hence equal to its derived $f$-adic completion.
-Thus we see that $H^0 = B$.
-Since
-$$
-V_0 \subset V_1 \subset V_2 \subset \ldots
-$$
-are nilpotent thickenings the connected components of these schemes
-agree. Correspondingly the maps
-$$
-\ldots \to
-H^0(V_2, \mathcal{O}_{V_2}) \to
-H^0(V_1, \mathcal{O}_{V_1}) \to
-H^0(V_0, \mathcal{O}_{V_0})
-$$
-induce bijections between idempotents. Hence the map
-$B \to H^0(V_0, \mathcal{O}_{V_0})$ induces a bijection between
-idempotents and we conclude.
+\begin{proof}
+The assumption of depth forces
+$H^1_\mathfrak m(A) = H^2_\mathfrak m(A) = 0$, see
+Dualizing Complexes, Lemma \ref{dualizing-lemma-depth}.
+Hence Lemma \ref{lemma-fully-faithful-minimal} applies.
 \end{proof}
 
 
@@ -4333,56 +4744,54 @@ By descent we see that $Y \to X$ is finite \'etale
 \end{proof}
 
 \noindent
-The following lemma will be superseded by
-Lemma \ref{lemma-lift-purity-general}.
+The point of the following two lemmas is that the assumptions do not force
+$A$ to have depth $\geq 3$. For example if $A$ is a complete normal
+local domain of dimension $\geq 3$ and $f \in \mathfrak m$ is nonzero,
+then the assumptions are satisfied.
 
 \begin{lemma}
-\label{lemma-lift-purity}
-In Situation \ref{situation-local-lefschetz}.
-Let $V$ be finite \'etale over $U$. Assume
+\label{lemma-lift-simple}
+In Situation \ref{situation-local-lefschetz}. Let $V$ be finite
+\'etale over $U$. Assume
 \begin{enumerate}
-\item $f$ is a nonzerodivisor,
-\item $A$ has depth $\geq 3$,
-\item $V_0 = V \times_U U_0$ is equal to $Y_0 \times_{X_0} U_0$
+\item[(a)] $A$ has a dualizing complex,
+\item[(b)] the pair $(A, (f))$ is henselian,
+\item[(c)] one of the following is true
+\begin{enumerate}
+\item[(i)] $A_f$ is $(S_2)$ and every irreducible component of $X$
+not contained in $X_0$ has dimension $\geq 3$, or
+\item[(ii)] for every prime $\mathfrak p \subset A$, $f \not \in \mathfrak p$
+we have $\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 2$.
+\end{enumerate}
+\item[(d)] $V_0 = V \times_U U_0$ is equal to $Y_0 \times_{X_0} U_0$
 for some $Y_0 \to X_0$ finite \'etale.
 \end{enumerate}
 Then $V = Y \times_X U$ for some $Y \to X$ finite \'etale.
 \end{lemma}
 
 \begin{proof}
-We reduce to the complete case by Lemma \ref{lemma-purity-and-completion}.
-Alternatively you can use Lemma \ref{lemma-reformulate-purity},
-cohomology and base change
-(Cohomology of Schemes, Lemma
-\ref{coherent-lemma-flat-base-change-cohomology}), and descent
-(Algebra, Lemmas \ref{algebra-lemma-descend-properties-modules} and
-\ref{algebra-lemma-etale}).
+We reduce to the complete case using Lemma \ref{lemma-purity-and-completion}.
+(The assumptions carry over; see proof of
+Lemma \ref{lemma-fully-faithful-simple}.)
 
 \medskip\noindent
-In the complete case we can lift $Y_0 \to X_0$ to a finite
-\'etale morphism $Y \to X$ by
+In the complete case we can lift $Y_0 \to X_0$ to a finite \'etale
+morphism $Y \to X$ by
 More on Algebra, Lemma \ref{more-algebra-lemma-finite-etale-equivalence};
 observe that $(A, fA)$ is a henselian pair by
 More on Algebra, Lemma \ref{more-algebra-lemma-complete-henselian}.
-Then we can use Lemma \ref{lemma-fully-faithful}
+Then we can use Lemma \ref{lemma-fully-faithful-simple}
 to see that $V$ is isomorphic to $Y \times_X U$ and
 the proof is complete.
 \end{proof}
-
-\noindent
-The point of the following lemma is that the assumptions do not force
-$A$ to have depth $\geq 3$. For example if $A$ is a complete normal
-local domain of dimension $\geq 3$ and $f \in \mathfrak m$ is nonzero,
-then the assumptions are satisfied.
 
 \begin{lemma}
 \label{lemma-lift-purity-general}
 In Situation \ref{situation-local-lefschetz}.
 Let $V$ be finite \'etale over $U$. Assume
 \begin{enumerate}
-\item $f$ is a nonzerodivisor,
-\item $H^1_\mathfrak m(A)$ is a finite $A$-module,
-\item a power of $f$ annihilates $H^2_\mathfrak m(A)$,
+\item $H^1_\mathfrak m(A)$ and $H^2_\mathfrak m(A)$
+are annihilated by a power of $f$,
 \item $V_0 = V \times_U U_0$ is equal to $Y_0 \times_{X_0} U_0$
 for some $Y_0 \to X_0$ finite \'etale.
 \end{enumerate}
@@ -4403,6 +4812,25 @@ More on Algebra, Lemma \ref{more-algebra-lemma-complete-henselian}.
 Then we can use Lemma \ref{lemma-fully-faithful-minimal}
 to see that $V$ is isomorphic to $Y \times_X U$ and
 the proof is complete.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-lift-purity}
+In Situation \ref{situation-local-lefschetz}.
+Let $V$ be finite \'etale over $U$. Assume
+\begin{enumerate}
+\item $A$ has depth $\geq 3$,
+\item $V_0 = V \times_U U_0$ is equal to $Y_0 \times_{X_0} U_0$
+for some $Y_0 \to X_0$ finite \'etale.
+\end{enumerate}
+Then $V = Y \times_X U$ for some $Y \to X$ finite \'etale.
+\end{lemma}
+
+\begin{proof}
+The assumption of depth forces
+$H^1_\mathfrak m(A) = H^2_\mathfrak m(A) = 0$, see
+Dualizing Complexes, Lemma \ref{dualizing-lemma-depth}.
+Hence Lemma \ref{lemma-lift-purity-general} applies.
 \end{proof}
 
 
@@ -4543,8 +4971,7 @@ Then $A/fA$ is a regular local ring of dimension $d - 1 \geq 2$, see
 Algebra, Lemma \ref{algebra-lemma-regular-ring-CM}.
 Let $U_0$ be the punctured spectrum of $A/fA$ and let
 $V_0 = V \times_U U_0$.
-By Lemma \ref{lemma-lift-purity} (or the more general
-Lemma \ref{lemma-lift-purity-general})
+By Lemma \ref{lemma-lift-purity}
 it suffices to show that $V_0$ is in the essential
 image of $\textit{F\'Et}_{\Spec(A/fA)} \to \textit{F\'Et}_{U_0}$.
 This follows from the induction hypothesis.
@@ -4676,11 +5103,11 @@ let $U = X \setminus \{\mathfrak m\}$ and
 $U_0 = X_0 \setminus \{\mathfrak m\}$ be the punctured spectrum of
 $A$ and $A/fA$. All of this is exactly as in
 Situation \ref{situation-local-lefschetz}.
-The difference is that we will consider the functor
+The difference is that we will consider the restriction functor
 $$
-\colim_{U_0 \subset U' \subset U} \textit{F\'Et}_{U'}
-\longrightarrow \textit{F\'Et}_{U_0},\quad
-V' \longmapsto V_0 = V' \times_{U'} U_0
+\colim_{U_0 \subset U' \subset U\text{ open}} \textit{F\'Et}_{U'}
+\longrightarrow
+\textit{F\'Et}_{U_0}
 $$
 In other words, we will not try to lift finite \'etale coverings
 of $U_0$ to all of $U$, but just to some open neighbourhood
@@ -4688,34 +5115,39 @@ $U'$ of $U_0$ in $U$.
 
 \begin{lemma}
 \label{lemma-faithful-general}
-In Situation \ref{situation-local-lefschetz}.
-Let $U' \subset U$ be open and contain $U_0$.
-Assume $\dim(A/\mathfrak p) \geq 2$ for every minimal prime
-$\mathfrak p \subset A$ corresponding to a point of $U'$. Then
+In Situation \ref{situation-local-lefschetz}. Let $U' \subset U$
+be open and contain $U_0$. Assume for $\mathfrak p \subset A$ minimal
+with $\mathfrak p \in U'$, $\mathfrak p \not \in U_0$ we have
+$\dim(A/\mathfrak p) \geq 2$. Then
 $$
 \textit{F\'Et}_{U'} \longrightarrow \textit{F\'Et}_{U_0},\quad
 V' \longmapsto V_0 = V' \times_{U'} U_0
 $$
 is a faithful functor. Moreover, there exists a $U'$ satisfying
-these assumptions.
+the assumption and any smaller open $U'' \subset U'$ containing
+$U_0$ also satisfies this assumption. In particular, the restriction
+functor
+$$
+\colim_{U_0 \subset U' \subset U\text{ open}} \textit{F\'Et}_{U'}
+\longrightarrow
+\textit{F\'Et}_{U_0}
+$$
+is faithful.
 \end{lemma}
 
 \begin{proof}
-Let $a, b : V' \to W'$ be two morphisms of schemes finite \'etale
-over $U'$ whose restriction to $U_0$ are the same. By
-Algebra, Lemma \ref{algebra-lemma-one-equation}
+By Algebra, Lemma \ref{algebra-lemma-one-equation}
 we see that $V(\mathfrak p)$ meets $U_0$ for
 every prime $\mathfrak p$ of $A$ with $\dim(A/\mathfrak p) \geq 2$.
-The assumption therefore implies that every
-irreducible component of $U'$ meets $U_0$.
-The image of any irreducible component of $V'$ is an
-irreducible component of $U'$ and hence meets $U_0$.
-Hence $V_0$ meets every connected component of $V'$ and
-we conclude that $a = b$ by \'Etale Morphisms, Proposition
-\ref{etale-proposition-equality}.
-To see the existence of such a $U'$ note that if
-$\mathfrak p \subset A$ is a prime with $\dim(A/\mathfrak p) = 1$
-then $\mathfrak p$ corresponds to a closed point of $U$.
+Thus the displayed functor is faithful for a $U$ as in the statement
+by Lemma \ref{lemma-restriction-faithful}.
+To see the existence of such a $U'$ note that for
+$\mathfrak p \subset A$ with $\mathfrak p \in U$,
+$\mathfrak p \not \in U_0$ with $\dim(A/\mathfrak p) = 1$
+then $\mathfrak p$ corresponds to a closed point of $U$
+and hence $V(\mathfrak p) \cap U_0 = \emptyset$.
+Thus we can take $U'$ to be the complement of the irreducible
+components of $X$ which do not meet $U_0$ and have dimension $1$.
 \end{proof}
 
 \begin{lemma}
@@ -4723,53 +5155,25 @@ then $\mathfrak p$ corresponds to a closed point of $U$.
 In Situation \ref{situation-local-lefschetz} assume
 \begin{enumerate}
 \item $A$ has a dualizing complex and is $f$-adically complete,
-\item $f$ is a nonzerodivisor,
-\item for $x \in X \setminus X_0$ whose closure $\overline{\{x\}}$
-in $X$ meets $U_0$ we have $\text{depth}(\mathcal{O}_{X, x}) \geq 1$
-or $\text{depth}(\mathcal{O}_{X, x}) + \dim(\overline{\{x\}}) > 2$.
+\item every irreducible component of $X$ not contained in $X_0$
+has dimension $\geq 3$.
 \end{enumerate}
-Let $V'$, $W'$ be finite \'etale over an open $U' \subset U$
-which contains $U_0$. Let
-$\varphi_0 : V' \times_{U'} U_0 \to W' \times_{U'} U_0$
-be a morphism over $U_0$.
-Then there exists an open $U'' \subset U'$
-containing $U_0$ and a morphism
-$\varphi : V' \times_{U'} U'' \to W' \times_{U'} U''$
-lifting $\varphi_0$.
+Then the restriction functor
+$$
+\colim_{U_0 \subset U' \subset U\text{ open}} \textit{F\'Et}_{U'}
+\longrightarrow
+\textit{F\'Et}_{U_0}
+$$
+is fully faithful.
 \end{lemma}
 
 \begin{proof}
-Since the category of finite \'etale coverings has an internal hom
-(Lemma \ref{lemma-internal-hom-finite-etale})
-it suffices to prove the following: Given $V'$ finite \'etale over $U'$
-any section $U_0 \to V' \times_{U'} U_0$ extends to a section of $V'$
-over some open $U'' \subset U'$ containing $U_0$.
-Given our section we obtain a decomposition
-$V' \times_{U'} U_0 = U_0 \amalg R_0$ into open and closed subschemes.
-We will show that this implies the same thing for $V' \times_{U'} U''$
-for some $U'' \subset U'$ open containing $U_0$ thereby
-finishing the proof.
-
-\medskip\noindent
-For $n \geq 1$ let $U_n$ be the punctured spectrum of $A/f^{n + 1}A$. By
-\'Etale Morphisms, Theorem \ref{etale-theorem-remarkable-equivalence}
-we conclude that there is a unique decomposition
-$V' \times_{U'} U_n = U_n \amalg R_n$
-into open and closed subschemes whose base change to $U_0$ recovers
-the given decomposition.
-
-\medskip\noindent
-Via the inclusions $U_n \to V' \times_{U'} U_n \to V'$
-we obtain an $A$-algebra map
-$$
-\Gamma(V', \mathcal{O}_{V'}) \to B = \lim H^0(U_n, \mathcal{O}_{U_n})
-$$
-By Local Cohomology, Theorem
-\ref{local-cohomology-theorem-algebraization-formal-sections}
-applied with $s = 1$ and $\mathcal{F} = \mathcal{O}_U$ we see that
-$B = H^0(U'', \mathcal{O}_{U''})$ for some open $U'' \subset U$
-containing $U_0$. Since $V \to U$ is affine, this $A$-algebra map
-corresponds to a morphism $U'' \to V'$ over $U'$ as desired.
+To prove this we may replace $A$ by its reduction by the topological
+invariance of the fundamental group, see Lemma \ref{lemma-thickening}.
+Then the result follows from
+Lemma \ref{lemma-restriction-fully-faithful-general}
+and Algebraic and Formal Geometry, Lemma
+\ref{algebraization-lemma-fully-faithful-general}.
 \end{proof}
 
 \begin{lemma}
@@ -4777,158 +5181,73 @@ corresponds to a morphism $U'' \to V'$ over $U'$ as desired.
 In Situation \ref{situation-local-lefschetz} assume
 \begin{enumerate}
 \item $A$ is $f$-adically complete,
-\item $f$ is a nonzerodivisor, and
+\item $f$ is a nonzerodivisor.
 \item $H^1_\mathfrak m(A/fA)$ is a finite $A$-module.
 \end{enumerate}
-Let $V'$, $W'$ be finite \'etale over an open $U' \subset U$
-which contains $U_0$. Let
-$\varphi_0 : V' \times_{U'} U_0 \to W' \times_{U'} U_0$
-be a morphism over $U_0$.
-Then there exists an open $U'' \subset U'$
-containing $U_0$ and a morphism
-$\varphi : V' \times_{U'} U'' \to W' \times_{U'} U''$
-lifting $\varphi_0$.
+Then the restriction functor
+$$
+\colim_{U_0 \subset U' \subset U\text{ open}} \textit{F\'Et}_{U'}
+\longrightarrow
+\textit{F\'Et}_{U_0}
+$$
+is fully faithful.
 \end{lemma}
 
 \begin{proof}
-This lemma is a variant of
-Lemma \ref{lemma-fully-faithful-general-better}
-and if $A$ is a complete local ring, then it follows from that lemma.
-We suggest the reader skip the proof.
-
-\medskip\noindent
-Since the category of finite \'etale coverings has an internal hom
-(Lemma \ref{lemma-internal-hom-finite-etale})
-it suffices to prove the following: Given $V'$ finite \'etale over $U'$
-any section $U_0 \to V' \times_{U'} U_0$ extends to a section of $V'$
-over some open $U'' \subset U'$ containing $U_0$.
-Given our section we obtain a decomposition
-$V' \times_{U'} U_0 = U_0 \amalg R_0$ into open and closed subschemes.
-We will show that this implies the same thing for $V' \times_{U'} U''$
-for some $U'' \subset U'$ open containing $U_0$ thereby
-finishing the proof.
-
-\medskip\noindent
-For $n \geq 1$ let $U_n$ be the punctured spectrum of $A/f^{n + 1}A$. By
-\'Etale Morphisms, Theorem \ref{etale-theorem-remarkable-equivalence}
-we conclude that there is a unique decomposition
-$V' \times_{U'} U_n = U_n \amalg R_n$
-into open and closed subschemes whose base change to $U_0$ recovers
-the given decomposition.
-
-\medskip\noindent
-The finiteness of $H^1_\mathfrak m(A/fA)$ tells us that
-$B_0 = \Gamma(U_0, \mathcal{O}_{U_0})$ is a finite $A$-module, see
-Local Cohomology, Lemma
-\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
-Set $B_n = \Gamma(U_n, \mathcal{O}_{U_n})$.
-As $f$ is a nonzerodivisor we have exact sequences
-$$
-0 \to A/f^nA \xrightarrow{f} A/f^{n + 1}A \to A/fA \to 0
-$$
-and hence short exact sequences $0 \to \mathcal{O}_{U_n} \to
-\mathcal{O}_{U_{n + 1}} \to \mathcal{O}_{U_0} \to 0$.
-Thus we may apply Local Cohomology, Lemma
-\ref{local-cohomology-lemma-limit-finite}
-to the inverse system $\mathcal{O}_{U_n}$ on $U$.
-We find that $B = \lim B_n$ is a finite $A$-algebra, such that
-$f$ is a nonzerodivisor on $B$,
-and such that $B/fB \subset B_0$.
-Via the inclusions $U_n \to V' \times_{U'} U_n \to V'$
-we obtain an $A$-algebra map $\Gamma(V', \mathcal{O}_{V'}) \to B$.
-Since $V \to U$ is affine, this $A$-algebra map corresponds to
-a morphism
-$$
-\Spec(B) \times_{\Spec(A)} U' \longrightarrow V'
-$$
-over $U'$.
-
-\medskip\noindent
-Let $\mathfrak q \in U_0$ be a prime. The kernel and cokernel of
-$A/fA \to B_0$ have support contained in $\{\mathfrak m\}$ (see above).
-Hence the same is true for the map $A/fA \to B/fB$.
-Then $A_\mathfrak q \to B_\mathfrak q$ is finite and
-induces an isomorphism $(A/fA)_\mathfrak q \to (B/fB)_\mathfrak q$.
-Since $f$ is a nonzerodivisor on $B$ it follows that
-$A_\mathfrak q \to B_\mathfrak q$ is an isomorphism.
-Using finiteness again we find $g \in A$, $g \not \in \mathfrak q$
-such that $A_g \to B_g$ is an isomorphism.
-It follows that $\Spec(B) \to \Spec(A)$ is an
-isomorphism over an open $U'' \subset U'$ which produces
-the desired section by the above.
+Follows from
+Lemma \ref{lemma-restriction-fully-faithful-general} and
+Algebraic and Formal Geometry, Lemma
+\ref{algebraization-lemma-fully-faithful-general-alternative}.
 \end{proof}
+
+
+
+
+
+
+
+
+\section{Finite \'etale covers of punctured spectra, III}
+\label{section-pi1-punctured-spec-III}
+
+\noindent
+In this section we study when in Situation \ref{situation-local-lefschetz}.
+the restriction functor
+$$
+\colim_{U_0 \subset U' \subset U\text{ open}} \textit{F\'Et}_{U'}
+\longrightarrow
+\textit{F\'Et}_{U_0}
+$$
+is an equivalence of categories.
 
 \begin{lemma}
 \label{lemma-essentially-surjective-general-better}
 In Situation \ref{situation-local-lefschetz} assume
 \begin{enumerate}
 \item $A$ has a dualizing complex and is $f$-adically complete,
-\item $f$ is a nonzerodivisor,
-\item $A$ is $f$-adically complete,
-\item if $\mathfrak p \in V(f) \setminus \{\mathfrak m\}$, then
-$\text{depth}((A/f)_\mathfrak p) + \dim(A/\mathfrak p) > 1$, and
+\item one of the following is true
+\begin{enumerate}
+\item $A_f$ is $(S_2)$ and every irreducible component of $X$
+not contained in $X_0$ has dimension $\geq 4$, or
 \item if $\mathfrak p \not \in V(f)$ and
 $V(\mathfrak p) \cap V(f) \not = \{\mathfrak m\}$, then
 $\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 3$.
 \end{enumerate}
-For any finite \'etale morphism $V_0 \to U_0$ there exists an open
-$U' \subset U$ containing $U_0$ and a finite \'etale morphism
-$V' \to U'$ whose base change to $U_0$ is $V_0 \to U_0$.
+\end{enumerate}
+Then the restriction functor
+$$
+\colim_{U_0 \subset U' \subset U\text{ open}} \textit{F\'Et}_{U'}
+\longrightarrow
+\textit{F\'Et}_{U_0}
+$$
+is an equivalence.
 \end{lemma}
 
 \begin{proof}
-For $n \geq 1$ let $U_n$ be the punctured spectrum of $A/f^{n + 1}A$.
-By \'Etale Morphisms, Theorem \ref{etale-theorem-remarkable-equivalence}
-we conclude that there is a unique finite \'etale morphism
-$\pi_n : V_n \to U_n$ whose base change to $U_0$ recovers $V_0 \to U_0$.
-Consider the sheaves $\mathcal{F}_n = \pi_{n, *}\mathcal{O}_{V_n}$.
-We may and do view $\mathcal{F}_n$ as an $\mathcal{O}_U$-module on $U$
-wich is locally isomorphic to
-$(\mathcal{O}_U/f^{n + 1}\mathcal{O}_U)^{\oplus r}$. By
-Local Cohomology, Lemma \ref{local-cohomology-lemma-algebraization-principal}
-there exists a coherent $\mathcal{O}_U$-module $\mathcal{F}$
-and a compatible system of isomorphisms
-$$
-\mathcal{F}/f^{n + 1}\mathcal{F} \to \mathcal{F}_n
-$$
-of $\mathcal{O}_U$-modules. If $x \in U_0$, then the $f$-adic
-completion of the stalk $\mathcal{F}_x$ is isomorphic to
-a finite free module over the $f$-adic completion of $\mathcal{O}_{U, u}$.
-Hence $\mathcal{F}$ is finite locally free in an open neighbourhood
-$U'$ of $U_0$.
-
-\medskip\noindent
-To construct an algebra structure on $\mathcal{F}$ consider the coherent
-$\mathcal{O}_U$-module
-$$
-\mathcal{H} = \SheafHom_{\mathcal{O}_U}(
-\mathcal{F}\otimes_{\mathcal{O}_U} \mathcal{F}, \mathcal{F})
-$$
-Observe that $\mathcal{H}|_{U'}$ is finite locally free. The multiplication
-maps
-$\mathcal{F}_n \otimes_{\mathcal{O}_U} \mathcal{F}_n \to \mathcal{F}_n$
-coming from the fact that $\mathcal{F}_n = \pi_{n, *}\mathcal{O}_{V_n}$
-are sheaves of algebras defines an element in
-$$
-\lim \Gamma(U, \mathcal{H}/f^{n + 1}\mathcal{H})
-$$
-By Local Cohomology, Theorem
-\ref{local-cohomology-theorem-algebraization-formal-sections}
-this comes from a section $\mu \in \Gamma(U', \mathcal{F})$
-after possibly shrinking $U'$. After possibly shrinking furter
-we may assume $\mu$ defines a commutative $\mathcal{O}_{U'}$-algebra
-structure on $\mathcal{F}$ compatible with the given algebra
-structures on $\mathcal{F}_n$.
-Setting
-$$
-V' = \underline{\Spec}_{U'}((\mathcal{F}|_{U'}, \mu))
-$$
-we obtain a finite locally free scheme over $U'$ whose restriction
-to $U_n$ is isomorphic to $V_n$. It follows that $V' \to U'$
-is \'etale at all points lying over $U_0$, see
-More on Morphisms, Lemma
-\ref{more-morphisms-lemma-check-smoothness-on-infinitesimal-nbhds}.
-This finishes the proof.
+This follows from Lemma \ref{lemma-restriction-equivalence-general}
+and
+Algebraic and Formal Geometry, Lemma
+\ref{algebraization-lemma-equivalence-better}.
 \end{proof}
 
 \begin{lemma}
@@ -4940,103 +5259,120 @@ In Situation \ref{situation-local-lefschetz} assume
 \item $H^1_\mathfrak m(A/fA)$ and $H^2_\mathfrak m(A/fA)$
 are finite $A$-modules.
 \end{enumerate}
-For any finite \'etale morphism $V_0 \to U_0$ there exists an open
-$U' \subset U$ containing $U_0$ and a finite \'etale morphism
-$V' \to U'$ whose base change to $U_0$ is $V_0 \to U_0$.
+Then the restriction functor
+$$
+\colim_{U_0 \subset U' \subset U\text{ open}} \textit{F\'Et}_{U'}
+\longrightarrow
+\textit{F\'Et}_{U_0}
+$$
+is an equivalence.
 \end{lemma}
 
 \begin{proof}
-This lemma is a variant of
-Lemma \ref{lemma-essentially-surjective-general-better}
-and if $A$ is a complete local ring, then it follows from that lemma.
-We suggest the reader skip the proof.
-
-\medskip\noindent
-For $n \geq 1$ let $U_n$ be the punctured spectrum of $A/f^{n + 1}A$.
-By \'Etale Morphisms, Theorem \ref{etale-theorem-remarkable-equivalence}
-we conclude that there is a unique finite \'etale morphism
-$\pi_n : V_n \to U_n$ whose base change to $U_0$ recovers $V_0 \to U_0$.
-Consider the sheaves $\mathcal{F}_n = \pi_{n, *}\mathcal{O}_{V_n}$.
-We may view $\mathcal{F}_n$ as an $\mathcal{O}_U$-module on $U$.
-As $f$ is a nonzerodivisor we obtain short exact sequences
-$$
-0 \to A/f^nA \xrightarrow{f} A/f^{n + 1}A \to A/fA \to 0
-$$
-and because $V_n \to U_n$ is finite locally free we have corresponding
-short exact sequences
-$0 \to \mathcal{F}_n \to \mathcal{F}_{n + 1} \to \mathcal{F}_0 \to 0$.
-
-\medskip\noindent
-We will use Local Cohomology, Lemma
-\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}
-without further mention.
-Our assumptions imply that $H^0(U, \mathcal{O}_{U_0})$ and
-$H^1(U, \mathcal{O}_{U_0})$ are finite $A$-modules.
-Hence the same thing is true for $\mathcal{F}_0$, see
-Local Cohomology, Lemma
-\ref{local-cohomology-lemma-finiteness-for-finite-locally-free}.
-Thus $H^0(U, \mathcal{F}_0)$ is a finite $A$-module
-and $H^1(U, \mathcal{F}_0)$ has finite length
-(as a finite $A$-module which is $\mathfrak m$-power torsion).
-Thus Local Cohomology, Lemmas \ref{local-cohomology-lemma-limit-finite} and
-\ref{local-cohomology-lemma-ML} apply to the system above. Set
-$$
-B_n = \Gamma(V_n, \mathcal{O}_{V_n}) = \Gamma(U, \mathcal{F}_n)
-$$
-We conclude that the system $(B_n)$ satisfies the Mittag-Leffler condition,
-that $B = \lim B_n$ is a finite $A$-algebra, that $f$ is a nonzerodivisor
-on $B$ and that $B/fB \subset B_0$. To finish the proof,
-we will show that the finite morphism
-$\Spec(B) \to \Spec(A)$ (a) becomes isomorphic to $V_0 \to U_0$
-after base change to $U_0$ and (b) is \'etale at all points lying
-over $U_0$.
-
-\medskip\noindent
-Let $\mathfrak q \in U_0$ be a prime. By the Mittag-Leffler
-condition, we know that $B/fB \subset B_0$ is the image of
-$B_{n + 1} \to B_0$ for some $n$. Since the cokernel of $B_{n + 1} \to B_0$
-is contained in $H^1(U, \mathcal{F}_n)$ which is $\mathfrak m$-power
-torsion, we conclude that $B/fB \to B_0$ becomes an isomorphism
-after localizing at $\mathfrak q$. This proves (a).
-Thus $A_\mathfrak q \to B_\mathfrak q$
-is finite and $(A/fA)_\mathfrak q \to (B/fB)_\mathfrak q$ is \'etale.
-Since $f$ is a nonzerodivisor on $B$ it follows that
-$A_\mathfrak q \to B_\mathfrak q$ is flat
-(Algebra, Lemma \ref{algebra-lemma-variant-local-criterion-flatness}).
-Thus $A \to B$ is \'etale at all primes lying over $\mathfrak q$
-(for example by Algebra, Lemma \ref{algebra-lemma-characterize-etale})
-which proves (b).
+This follows from Lemma \ref{lemma-restriction-equivalence-general}
+and
+Algebraic and Formal Geometry, Lemma
+\ref{algebraization-lemma-equivalence}.
 \end{proof}
 
 \begin{remark}
 \label{remark-combine}
-Let $(A, \mathfrak m)$ be a complete local ring and $f \in \mathfrak m$
-a nonzerodivisor. Let $U$, resp.\ $U_0$ be the punctured spectrum of
-$A$, resp.\ $A/fA$. Assume
-\begin{enumerate}
-\item if $\mathfrak p \in V(f) \setminus \{\mathfrak m\}$, then
-$\text{depth}((A/f)_\mathfrak p) + \dim(A/\mathfrak p) > 1$, and
-\item if $\mathfrak p \not \in V(f)$ and
-$V(\mathfrak p) \cap V(f) \not = \{\mathfrak m\}$, then
-$\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 3$.
-\end{enumerate}
-Combining Lemmas \ref{lemma-faithful-general},
-\ref{lemma-fully-faithful-general-better}, and
-\ref{lemma-essentially-surjective-general-better}
-we see that the category
+Let $(A, \mathfrak m)$ be a complete local Noetherian ring and
+$f \in \mathfrak m$ nonzero. Suppose that $A_f$ is $(S_2)$ and
+every irreducible component of $\Spec(A)$ has dimension $\geq 4$.
+Then Lemma \ref{lemma-essentially-surjective-general-better}
+tells us that the category
 $$
 \colim\nolimits_{U' \subset U\text{ open, }U_0 \subset U}
 \text{ category of schemes finite \'etale over }U'
 $$
 is equivalent to the category of schemes finite \'etale over $U_0$.
-For example it suffices if every irreducible component of $\Spec(A)$
-has dimension $\geq 4$ and $A$ is $(S_2)$.
-For example, if $A$ is a normal domain of dimension $\geq 4$!
+For example this holds if $A$ is a normal domain of dimension $\geq 4$!
 \end{remark}
 
 
 
 
+\section{Finite \'etale covers of punctured spectra, IV}
+\label{section-pi1-punctured-spec-IV}
+
+\noindent
+In this section we study when in Situation \ref{situation-local-lefschetz}.
+the restriction functor
+$$
+\textit{F\'Et}_U
+\longrightarrow
+\textit{F\'Et}_{U_0}
+$$
+is essentially surjective.
+We will do this by taking results from
+Section \ref{section-pi1-punctured-spec-III}
+and then filling in the gaps using purity. Recall that
+we say {\it purity holds} for a Noetherian local ring
+$(A, \mathfrak m)$ if the restriction functor
+$\textit{F\'Et}_X \to \textit{F\'Et}_U$ is essentially
+surjective where $X = \Spec(A)$ and $U = X \setminus \{\mathfrak m\}$.
+
+\begin{lemma}
+\label{lemma-equivalence-better}
+In Situation \ref{situation-local-lefschetz} assume
+\begin{enumerate}
+\item $A$ has a dualizing complex and is $f$-adically complete,
+\item one of the following is true
+\begin{enumerate}
+\item $A_f$ is $(S_2)$ and every irreducible component of $X$
+not contained in $X_0$ has dimension $\geq 4$, or
+\item if $\mathfrak p \not \in V(f)$ and
+$V(\mathfrak p) \cap V(f) \not = \{\mathfrak m\}$, then
+$\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 3$.
+\end{enumerate}
+\item for every maximal ideal $\mathfrak p \subset A_f$
+purity holds for $(A_f)_\mathfrak p$.
+\end{enumerate}
+Then the restriction functor $\textit{F\'Et}_U \to \textit{F\'Et}_{U_0}$
+is essentially surjective.
+\end{lemma}
+
+\begin{proof}
+Let $V_0 \to U_0$ be a finite \'etale morphism. By
+Lemma \ref{lemma-essentially-surjective-general-better}
+there exists an open $U' \subset U$ containing $U_0$ and
+a finite \'etale morphism $V' \to U$ whose base change to $U_0$
+is isomorphic to $V_0 \to U_0$. Since $U' \supset U_0$
+we see that $U \setminus U'$ consists of points corresponding
+to prime ideals $\mathfrak p_1, \ldots, \mathfrak p_n$ as in (3).
+By assumption we can find finite \'etale morphisms
+$V'_i \to \Spec(A_{\mathfrak p_i})$ agreeing with
+$V' \to U'$ over $U' \times_U \Spec(A_{\mathfrak p_i})$.
+By Limits, Lemma \ref{limits-lemma-glueing-near-closed-point}
+applied $n$ times we see that $V' \to U'$ extends to a finite \'etale
+morphism $V \to U$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-equivalence}
+Let $(A, \mathfrak m)$ be a Noetherian local ring.
+Let $f \in \mathfrak m$. Assume
+\begin{enumerate}
+\item $A$ is $f$-adically complete,
+\item $f$ is a nonzerodivisor,
+\item $H^1_\mathfrak m(A/fA)$ and $H^2_\mathfrak m(A/fA)$ are finite
+$A$-modules,
+\item for every maximal ideal $\mathfrak p \subset A_f$
+purity holds for $(A_f)_\mathfrak p$.
+\end{enumerate}
+Then the restriction functor $\textit{F\'Et}_U \to \textit{F\'Et}_{U_0}$
+is essentially surjective.
+\end{lemma}
+
+\begin{proof}
+The proof is identical to the proof of
+Lemma \ref{lemma-equivalence-better}
+using
+Lemma \ref{lemma-essentially-surjective-general}
+in stead of
+Lemma \ref{lemma-essentially-surjective-general-better}.
+\end{proof}
 
 
 
@@ -5045,11 +5381,10 @@ For example, if $A$ is a normal domain of dimension $\geq 4$!
 
 \noindent
 This section is the continuation of Section \ref{section-local-purity}.
-In the next lemma we say {\it purity holds} for a Noetherian local ring
+Recall that we say {\it purity holds} for a Noetherian local ring
 $(A, \mathfrak m)$ if the restriction functor
 $\textit{F\'Et}_X \to \textit{F\'Et}_U$ is essentially
-surjective where $X = \Spec(A)$ and $U = X \setminus \{\mathfrak m\}$
-is the punctured spectrum.
+surjective where $X = \Spec(A)$ and $U = X \setminus \{\mathfrak m\}$.
 
 \begin{lemma}
 \label{lemma-purity-inherited-by-hypersurface-better}
@@ -5057,12 +5392,14 @@ Let $(A, \mathfrak m)$ be a Noetherian local ring.
 Let $f \in \mathfrak m$. Assume
 \begin{enumerate}
 \item $A$ has a dualizing complex and is $f$-adically complete,
-\item $f$ is a nonzerodivisor,
-\item if $\mathfrak p \in V(f) \setminus \{\mathfrak m\}$, then
-$\text{depth}((A/f)_\mathfrak p) + \dim(A/\mathfrak p) > 1$, and
+\item one of the following is true
+\begin{enumerate}
+\item $A_f$ is $(S_2)$ and every irreducible component of $X$
+not contained in $X_0$ has dimension $\geq 4$, or
 \item if $\mathfrak p \not \in V(f)$ and
 $V(\mathfrak p) \cap V(f) \not = \{\mathfrak m\}$, then
-$\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 3$,
+$\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 3$.
+\end{enumerate}
 \item for every maximal ideal $\mathfrak p \subset A_f$
 purity holds for $(A_f)_\mathfrak p$, and
 \item purity holds for $A$.
@@ -5075,18 +5412,11 @@ Denote $X = \Spec(A)$ and $U = X \setminus \{\mathfrak m\}$
 the punctured spectrum. Similarly we have $X_0 = \Spec(A/fA)$
 and $U_0 = X_0 \setminus \{\mathfrak m\}$.
 Let $V_0 \to U_0$ be a finite \'etale morphism. By
-Lemma \ref{lemma-essentially-surjective-general-better}
-there exists an open $U' \subset U$ containing $U_0$ and
-a finite \'etale morphism $V' \to U$ whose base change to $U_0$
-is isomorphic to $V_0 \to U_0$. Since $U' \supset U_0$
-we see that $U \setminus U'$ consists of points corresponding
-to prime ideals $\mathfrak p_1, \ldots, \mathfrak p_n$ as in (4).
-By assumption we can find finite \'etale morphisms
-$V'_i \to \Spec(A_{\mathfrak p_i})$ agreeing with
-$V' \to U'$ over $U' \times_U \Spec(A_{\mathfrak p_i})$.
-By Limits, Lemma \ref{limits-lemma-glueing-near-closed-point}
-applied $n$ times we see that $V' \to U'$ extends to a finite \'etale
-morphism $V \to U$. By assumption (5) we find that $V \to U$ extends
+Lemma \ref{lemma-equivalence-better}
+we find a finite \'etale morphism $V \to U$
+whose base change to $U_0$
+is isomorphic to $V_0 \to U_0$.
+By assumption (5) we find that $V \to U$ extends
 to a finite \'etale morphism $Y \to X$. Then the restriction of
 $Y$ to $X_0$ is the desired extension of $V_0 \to U_0$.
 \end{proof}
@@ -5111,9 +5441,9 @@ Then purity holds for $A/fA$.
 The proof is identical to the proof of
 Lemma \ref{lemma-purity-inherited-by-hypersurface-better}
 using
-Lemma \ref{lemma-essentially-surjective-general}
+Lemma \ref{lemma-equivalence}
 in stead of
-Lemma \ref{lemma-essentially-surjective-general-better}.
+Lemma \ref{lemma-equivalence-better}.
 \end{proof}
 
 \noindent
@@ -5158,6 +5488,124 @@ $(A'_{f_r})_\mathfrak p = B_\mathfrak q/(f_1, \ldots, f_{r - 1})$
 for some $\mathfrak q \subset B$,
 condition (5) holds by induction hypothesis.
 \end{proof}
+
+
+
+
+
+
+\section{Lefschetz for the fundamental group}
+\label{section-global-lefschetz}
+
+\noindent
+Of course we have already proven a bunch of results of this type
+in the local case. In this section we discuss the projective case.
+
+\begin{proposition}
+\label{proposition-lefschetz-fully-faithful}
+Let $k$ be a field. Let $X$ be a proper scheme over $k$.
+Let $\mathcal{L}$ be an ample invertible $\mathcal{O}_X$-module.
+Let $s \in \Gamma(X, \mathcal{L})$. Let $Y = Z(s)$ be the
+zero scheme of $s$. Assume that for all $x \in X \setminus Y$
+we have
+$$
+\text{depth}(\mathcal{O}_{X, x}) + \dim(\overline{\{x\}}) > 1
+$$
+Then the restriction functor $\textit{F\'Et}_X \to \textit{F\'Et}_Y$
+is fully faithful. In fact, for any open subscheme $V \subset X$
+containing $Y$ the restriction functor
+$\textit{F\'Et}_V \to \textit{F\'Et}_Y$
+is fully faithful. 
+\end{proposition}
+
+\begin{proof}
+The first statement is a formal consequence of
+Lemma \ref{lemma-restriction-fully-faithful-special}
+and
+Algebraic and Formal Geometry, Proposition
+\ref{algebraization-proposition-lefschetz}.
+The second statement follows from
+Lemma \ref{lemma-restriction-fully-faithful-special}
+and
+Algebraic and Formal Geometry, Lemma
+\ref{algebraization-lemma-lefschetz-addendum}.
+\end{proof}
+
+\begin{proposition}
+\label{proposition-lefschetz-equivalence-general}
+Let $k$ be a field. Let $X$ be a proper scheme over $k$.
+Let $\mathcal{L}$ be an ample invertible $\mathcal{O}_X$-module.
+Let $s \in \Gamma(X, \mathcal{L})$. Let $Y = Z(s)$ be the
+zero scheme of $s$. Let $\mathcal{V}$ be the set of open
+subschemes of $X$ containing $Y$ ordered by reverse inclusion.
+Assume that for all $x \in X \setminus Y$ we have
+$$
+\text{depth}(\mathcal{O}_{X, x}) + \dim(\overline{\{x\}}) > 2
+$$
+Then the restriction functor
+$$
+\colim_\mathcal{V} \textit{F\'Et}_V \to \textit{F\'Et}_Y
+$$
+is an equivalence.
+\end{proposition}
+
+\begin{proof}
+This is a formal consequence of
+Lemma \ref{lemma-restriction-equivalence-general} and
+Algebraic and Formal Geometry, Proposition
+\ref{algebraization-proposition-lefschetz-equivalence}.
+\end{proof}
+
+\begin{proposition}
+\label{proposition-lefschetz-equivalence}
+Let $k$ be a field. Let $X$ be a proper scheme over $k$.
+Let $\mathcal{L}$ be an ample invertible $\mathcal{O}_X$-module.
+Let $s \in \Gamma(X, \mathcal{L})$. Let $Y = Z(s)$ be the
+zero scheme of $s$.
+Assume that for all $x \in X \setminus Y$ we have
+$$
+\text{depth}(\mathcal{O}_{X, x}) + \dim(\overline{\{x\}}) > 2
+$$
+and that for $x \in X \setminus Y$ closed purity holds for
+$\mathcal{O}_{X, x}$. Then the restriction functor
+$\textit{F\'Et}_X \to \textit{F\'Et}_Y$
+is an equivalence. If $X$ or equivalently $Y$ is connected, then
+$$
+\pi_1(Y, \overline{y}) \to \pi_1(X, \overline{y})
+$$
+is an isomorphism for any geometric point $\overline{y}$ of $Y$.
+\end{proposition}
+
+\begin{proof}
+Fully faithfulness holds by
+Proposition \ref{proposition-lefschetz-fully-faithful}.
+By Proposition \ref{proposition-lefschetz-equivalence-general}
+any object of $\textit{F\'Et}_Y$
+is isomorphic to the fibre product $U \times_V Y$ for some
+finite \'etale morphism $U \to V$ where $V \subset X$
+is an open subscheme containing $Y$.
+The complement $T = X \setminus V$
+is\footnote{Namely, $T$ is proper over $k$ (being closed in $X$)
+and affine (being closed in the affine scheme $X \setminus Y$, see
+Morphisms, Lemma \ref{morphisms-lemma-proper-ample-delete-affine})
+and hence finite over $k$
+(Morphisms, Lemma \ref{morphisms-lemma-finite-proper}).
+Thus $T$ is a finite set of closed points.}
+a finite set of closed points of $X \setminus Y$.
+Say $T = \{x_1, \ldots, x_n\}$.
+By assumption we can find finite \'etale morphisms
+$V'_i \to \Spec(\mathcal{O}_{X, x_i})$ agreeing with
+$U \to V$ over $V \times_X \Spec(\mathcal{O}_{X, x_i})$.
+By Limits, Lemma \ref{limits-lemma-glueing-near-closed-point}
+applied $n$ times we see that $U \to V$ extends to a finite \'etale
+morphism $U' \to X$ as desired.
+See Lemma \ref{lemma-what-equivalence-gives} for the final statement.
+\end{proof}
+
+
+
+
+
 
 
 
@@ -5234,7 +5682,7 @@ Let $x \in X$ be a point. Assume
 \item $\mathcal{O}_{X, x}$ is normal of dimension $2$,
 \item $f$ is \'etale outside of $\overline{\{x\}}$.
 \end{enumerate}
-Then $f$ is \'etale at $X$.
+Then $f$ is \'etale at $x$.
 \end{lemma}
 
 \begin{proof}

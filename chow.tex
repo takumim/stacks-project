@@ -793,7 +793,7 @@ $$
 \partial_A(\frac{a}{b}, \frac{c}{d}) =
 \partial_A(a, b) \partial_A(a, d)^{-1} \partial_A(b, c)^{-1} \partial_A(b, d)
 $$
-we get a welldefined map $Q(A)^* \times Q(A)^* \to \kappa(\mathfrak m)^*$
+we get a well defined map $Q(A)^* \times Q(A)^* \to \kappa(\mathfrak m)^*$
 satisfying (\ref{item-bilinear}), (\ref{item-skew}), (\ref{item-1-x})
 as well as the other properties.
 
@@ -983,6 +983,60 @@ The result follows by transitivity of norms
 for $\kappa(\mathfrak m_{j, k})/\kappa(\mathfrak m_j)/\kappa(\mathfrak m)$, see
 Fields, Lemma \ref{fields-lemma-trace-and-norm-tower}.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-tame-symbol-formally-smooth}
+Let $(A, \mathfrak m, \kappa) \to (A', \mathfrak m', \kappa')$
+be a local homomorphism of Noetherian local rings of dimension $1$.
+If $A \to A'$ is flat, $\mathfrak m' = \mathfrak m A'$, and $\kappa'/\kappa$
+is separable, then for $a_1, a_2 \in A$ nonzerodivisors the tame symbol
+$\partial_A(a_1, a_2)$ maps to $\partial_{A'}(a_1, a_2)$.
+\end{lemma}
+
+\begin{proof}
+If $a_1, a_2$ are both units, then $\partial_A(a_1, a_2) = 1$
+and $\partial_{A'}(a_1, a_2) = 1$ and the result is true.
+If not, then we can choose a ring extension $A \subset B$ and
+local factorizations as in Lemma \ref{lemma-prepare-tame-symbol}.
+Set $B' = A' \otimes_A B$. Since $A'$ is flat over $A$ we see
+that $A' \subset B'$ is a ring extension with $B'/A'$ annihilated
+by a power of $\mathfrak m'$. Let $\mathfrak m_1, \ldots, \mathfrak m_m$
+be the maximal ideals of $B$. For each $j \in \{1, \ldots, m\}$
+denote $\kappa_j = \kappa(\mathfrak m_j)$ the residue field.
+Then
+$$
+\kappa_j \otimes_\kappa \kappa' =
+\prod\nolimits_{l = 1, \ldots, n_j} \kappa'_{j, l}
+$$
+is a product of fields each finite over $\kappa'$ because $\kappa'/\kappa$
+is a separable field extension
+(Algebra, Lemma \ref{algebra-lemma-separable-extension-preserves-reducedness}).
+It follows that $B'$ has corresponding maximal ideals $\mathfrak m'_{j, l}$
+lying over $\mathfrak m_j$. As factorizations in
+$B'_{j, l} = B'_{\mathfrak m'_{j, l}}$ we use the image of the factorizations
+$a_i = u_{i, j} \pi_j^{e_{i, j}}$ given to us in $B_j$.
+Thus we obtain
+$$
+\partial_A(a_1, a_2) = \prod\nolimits_j
+\text{Norm}_{\kappa_j/\kappa}
+((-1)^{e_{1, j}e_{2, j}}u_{1, j}^{e_{2, j}}u_{2, j}^{-e_{1, j}}
+\bmod \mathfrak m_j)^{m_j}
+$$
+by definition and similarly
+$$
+\partial_{A'}(a_1, a_2) = \prod\nolimits_{j, l}
+\text{Norm}_{\kappa'_{j, l}/\kappa'}
+((-1)^{e_{1, j}e_{2, j}}u_{1, j}^{e_{2, j}}u_{2, j}^{-e_{1, j}}
+\bmod \mathfrak m'_{j, l})^{m_j}
+$$
+To finish the proof we observe that if $u \in \kappa_j$
+has image $u_l \in \kappa'_{j, l}$, then
+$\text{Norm}_{\kappa_j/\kappa}(u)$ in $\kappa$ maps to
+$\prod_l \text{Norm}_{\kappa'_{j, l}/\kappa'}(u_l)$ in $\kappa'$.
+This follows from the fact that taking determinants of linear
+maps commutes with ground field extension.
+\end{proof}
+
 
 
 
@@ -1917,6 +1971,7 @@ For any closed subset $Z \subset Y$ we have
 $$
 \dim_\delta(f^{-1}(Z)) = \dim_\delta(Z) + r.
 $$
+provided $f^{-1}(Z)$ is nonempty.
 If $Z$ is irreducible and $Z' \subset f^{-1}(Z)$ is an irreducible
 component, then $Z'$ dominates $Z$ and
 $\dim_\delta(Z') = \dim_\delta(Z) + r$.
@@ -2798,6 +2853,81 @@ In this section we show that flat pullback and proper pushforward
 commute with rational equivalence.
 
 \begin{lemma}
+\label{lemma-prepare-flat-pullback-rational-equivalence}
+Let $(S, \delta)$ be as in Situation \ref{situation-setup}.
+Let $X$, $Y$ be schemes locally of finite type over $S$.
+Assume $Y$ integral with $\dim_\delta(Y) = k$.
+Let $f : X \to Y$ be a flat morphism of
+relative dimension $r$. Then for $g \in R(Y)^*$ we have
+$$
+f^*\text{div}_Y(g) =
+\sum n_j i_{j, *}\text{div}_{X_j}(g \circ f|_{X_j})
+$$
+as $(k + r - 1)$-cycles on $X$ where the sum is over the irreducible
+components $X_j$ of $X$ and $n_j$ is the multiplicity of $X_j$ in $X$.
+\end{lemma}
+
+\begin{proof}
+Let $Z \subset X$ be an integral closed subscheme of $\delta$-dimension
+$k + r - 1$. We have to show that the coefficient $n$ of $[Z]$ in
+$f^*\text{div}(g)$ is equal to the coefficient
+$m$ of $[Z]$ in $\sum i_{j, *} \text{div}(g \circ f|_{X_j})$.
+Let $Z'$ be the closure of $f(Z)$ which is an integral closed
+subscheme of $Y$. By Lemma \ref{lemma-flat-inverse-image-dimension}
+we have $\dim_\delta(Z') \geq k - 1$. Thus either $Z' = Y$
+or $Z'$ is a prime divisor on $Y$. If $Z' = Y$, then the coefficients
+$n$ and $m$ are both zero: this is clear for $n$ by definition
+of $f^*$ and follows for $m$ because $g \circ f|_{X_j}$ is
+a unit in any point of $X_j$ mapping to the generic point of $Y$.
+Hence we may assume that $Z' \subset Y$ is a prime divisor.
+
+\medskip\noindent
+We are going to translate the equality of $n$ and $m$ into algebra.
+Namely, let $\xi' \in Z'$ and $\xi \in Z$ be the generic points.
+Set $A = \mathcal{O}_{Y, \xi'}$ and $B = \mathcal{O}_{X, \xi}$.
+Note that $A$, $B$ are Noetherian, $A \to B$ is flat, local,
+$A$ is a domain, and $\mathfrak m_AB$ is an ideal of definition
+of the local ring $B$. The rational function $g$ is an element
+of the fraction field $Q(A)$ of $A$.
+By construction, the closed subschemes $X_j$
+which meet $\xi$ correspond $1$-to-$1$ with minimal primes
+$$
+\mathfrak q_1, \ldots, \mathfrak q_s \subset B
+$$
+The integers $n_j$ are the corresponding lengths
+$$
+n_i = \text{length}_{B_{\mathfrak q_i}}(B_{\mathfrak q_i})
+$$
+The rational functions $g \circ f|_{X_j}$ correspond to the image
+$g_i \in \kappa(\mathfrak q_i)^*$ of $g \in Q(A)$.
+Putting everything together we see that
+$$
+n = \text{ord}_A(g) \text{length}_B(B/\mathfrak m_AB)
+$$
+and that
+$$
+m = \sum \text{ord}_{B/\mathfrak q_i}(g_i)
+\text{length}_{B_{\mathfrak q_i}}(B_{\mathfrak q_i})
+$$
+Writing $g = x/y$ for some nonzero $x, y \in A$ we see that it suffices
+to prove
+$$
+\text{length}_A(A/(x)) \text{length}_B(B/\mathfrak m_AB) =
+\text{length}_B(B/xB)
+$$
+(equality uses Algebra, Lemma \ref{algebra-lemma-pullback-module})
+equals
+$$
+\sum\nolimits_{i = 1, \ldots, s}
+\text{length}_{B/\mathfrak q_i}(B/(x, \mathfrak q_i))
+\text{length}_{B_{\mathfrak q_i}}(B_{\mathfrak q_i})
+$$
+and similarly for $y$. As $A \to B$ is flat it follows that $x$
+is a nonzerodivisor in $B$. Hence the desired equality follows from
+Lemma \ref{lemma-additivity-divisors-restricted}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-flat-pullback-rational-equivalence}
 Let $(S, \delta)$ be as in Situation \ref{situation-setup}.
 Let $X$, $Y$ be schemes locally of finite type over $S$.
@@ -2812,133 +2942,33 @@ $$
 i_j : W_j \longrightarrow Y
 $$
 of closed immersions, with each $W_j$ integral of $\delta$-dimension $k + 1$
-and rational functions $f_j \in R(W_j)^*$.
-Moreover, assume that
+and rational functions $g_j \in R(W_j)^*$. Moreover, assume that
 the collection $\{i_j(W_j)\}_{j \in J}$ is locally finite on $Y$.
 Then we have to show that
 $$
-f^*(\sum i_{j, *}\text{div}(f_j))
+f^*(\sum i_{j, *}\text{div}(g_j)) = \sum f^*i_{j, *}\text{div}(g_j)
 $$
-is rationally equivalent to zero on $X$.
+is rationally equivalent to zero on $X$. The sum on the right
+makes sense as $\{W_j\}$ is locally finite in $X$ by
+Lemma \ref{lemma-inverse-image-locally-finite}.
 
 \medskip\noindent
 Consider the fibre products
 $$
-i'_j :
-W'_j = W_j \times_Y X
-\longrightarrow
-X.
+i'_j : W'_j = W_j \times_Y X \longrightarrow X.
 $$
-For each $j$, consider the collection $\{W'_{j, l}\}_{l \in L_j}$
-of irreducible components $W'_{j, l} \subset W'_j$ having $\delta$-dimension
-$k + 1$. We may write
+and denote $f_j : W'_j \to W_j$ the first projection.
+By Lemma \ref{lemma-flat-pullback-proper-pushforward}
+we can write the sum above as
 $$
-[W'_j]_{k + 1} = \sum\nolimits_{l \in L_j} n_{j, l}[W'_{j, l}]_{k + 1}
+\sum i'_{j, *}(f_j^*\text{div}(g_j))
 $$
-for some $n_{j, l} > 0$.
-By Lemma \ref{lemma-flat-inverse-image-dimension}
-we see that $W'_{j, l} \to W_j$ is
-dominant and hence we can let $f_{j, l} \in R(W'_{j, l})^*$ denote the
-image of $f_j$ under the map of fields $R(W_j) \to R(W'_{j, l})$.
-We claim that
-\begin{enumerate}
-\item the collection $\{W'_{j, l}\}_{j \in J, l \in L_j}$ is
-locally finite on $X$, and
-\item with obvious notation
-$f^*(\sum i_{j, *}\text{div}(f_j))
-=
-\sum i'_{j, l, *} \text{div}(f_{j, l}^{n_{j, l}})$.
-\end{enumerate}
-Clearly this claim implies the lemma.
-
-\medskip\noindent
-To show (1), note that $\{W'_j\}$ is a locally finite collection
-of closed subschemes of $X$ by Lemma \ref{lemma-inverse-image-locally-finite}.
-Hence if $U \subset X$ is quasi-compact, then $U$ meets only finitely
-many $W'_j$. By Divisors, Lemma \ref{divisors-lemma-components-locally-finite}
-the collection of
-irreducible components of each $W_j$ is locally finite as well. Hence
-we see only finitely many $W'_{j, l}$ meet $U$ as desired.
-
-\medskip\noindent
-Let $Z \subset X$ be an integral closed subscheme of $\delta$-dimension
-$k + r$. We have to show that the coefficient $n$ of $[Z]$ in
-$f^*(\sum i_{j, *}\text{div}(f_j))$ is equal to the coefficient
-$m$ of $[Z]$ in $\sum i'_{j, l, *} \text{div}(f_{j, l}^{n_{j, l}})$.
-Let $Z'$ be the closure of $f(Z)$ which is an integral closed
-subscheme of $Y$. By Lemma \ref{lemma-flat-inverse-image-dimension}
-we have $\dim_\delta(Z') \geq k$.
-If $\dim_\delta(Z') > k$, then the coefficients $n$ and $m$ are
-both zero, since the generic point of $Z$ will not be contained
-in any $W'_j$ or $W'_{j, l}$. Hence we may assume that $\dim_\delta(Z') = k$.
-
-\medskip\noindent
-We are going to translate the equality of $n$ and $m$ into algebra.
-Namely, let $\xi' \in Z'$ and $\xi \in Z$ be the generic points.
-Set $A = \mathcal{O}_{Y, \xi'}$ and $B = \mathcal{O}_{X, \xi}$.
-Note that $A$, $B$ are Noetherian, $A \to B$ is flat, local,
-and that $\mathfrak m_AB$ is an ideal of definition of the local ring $B$.
-There are finitely many $j$ such that $W_j$ passes through
-$\xi'$, and these correspond to prime ideals
-$$
-\mathfrak p_1, \ldots, \mathfrak p_T \subset A
-$$
-with the property that $\dim(A/\mathfrak p_t) = 1$ for each
-$t = 1, \ldots, T$. The rational functions $f_j$ correspond
-to elements $f_t \in \kappa(\mathfrak p_t)^*$.
-Say $\mathfrak p_t$ corresponds to $W_j$.
-By construction, the closed subschemes $W'_{j, l}$ which meet
-$\xi$ correspond $1 - 1$ with minimal primes
-$$
-\mathfrak p_tB
-\subset
-\mathfrak q_{t, 1}, \ldots, \mathfrak q_{t, S_t}
-\subset
-B
-$$
-over $\mathfrak p_tB$.
-The integers $n_{j, l}$ correspond to the integers
-$$
-n_{t, s} = \text{length}_{B_{\mathfrak q_{t, s}}}
-((B/\mathfrak p_tB)_{B_{\mathfrak q_{t, s}}})
-$$
-The rational functions $f_{j, l}$ correspond to the images
-$f_{t, s} \in \kappa(\mathfrak q_{t, s})^*$ of the elements
-$f_t \in \kappa(\mathfrak p_t)^*$. Putting everything together
-we see that
-$$
-n = \sum \text{ord}_{A/\mathfrak p_t}(f_t)\text{length}_B(B/\mathfrak m_AB)
-$$
-and that
-$$
-m = \sum \text{ord}_{B/\mathfrak q_{t, s}}(f_{t, s})
-\text{length}_{B_{\mathfrak q_{t, s}}}
-((B/\mathfrak p_tB)_{B_{\mathfrak q_{t, s}}})
-$$
-Note that it suffices to prove the equality for each
-$t \in \{1, \ldots, T\}$ separately. Writing $f_t = x/y$
-for some nonzero $\overline{x}, \overline{y} \in A/\mathfrak p_t$
-coming from $x, y\in A$ we see that it suffices
-to prove
-$$
-\text{length}_{A/\mathfrak p_t}(A/(\mathfrak p_t, x))
-\text{length}_B(B/\mathfrak m_AB)
-=
-\text{length}_B(B/(x, \mathfrak p_t)B)
-$$
-(equality uses Algebra, Lemma \ref{algebra-lemma-pullback-module})
-equals
-$$
-\sum\nolimits_{s = 1, \ldots, S_t}
-\text{ord}_{B/\mathfrak q_{t, s}}(B/(x, \mathfrak q_{t, s}))
-\text{length}_{B_{\mathfrak q_{t, s}}}
-((B/\mathfrak p_tB)_{B_{\mathfrak q_{t, s}}})
-$$
-and similarly for $y$. Note that as $x \not \in \mathfrak p_t$ we
-see that $x$ is a nonzerodivisor on $A/\mathfrak p_t$. As $A \to B$
-is flat it follows that $x$ is a nonzerodivisor on the module
-$M = B/\mathfrak p_tB$. Hence the equality above follows from
-Lemma \ref{lemma-additivity-divisors-restricted}.
+By Lemma \ref{lemma-prepare-flat-pullback-rational-equivalence}
+we see that each $f_j^*\text{div}(g_j)$ is rationally equivalent
+to zero on $W'_j$. Hence each $i'_{j, *}(f_j^*\text{div}(g_j))$
+is rationally equivalent to zero. Then the same is true for
+the displayed sum by the discussion in
+Remark \ref{remark-infinite-sums-rational-equivalences}.
 \end{proof}
 
 \begin{lemma}
@@ -3479,6 +3509,77 @@ $W \subset X$. Hence $c_1(\mathcal{O}_X) \cap [W] = 0$ as desired.
 \end{proof}
 
 \noindent
+Recall that $Z(s) \subset X$ denotes the zero scheme of a global section
+$s$ of an invertible sheaf on a scheme $X$, see
+Divisors, Definition \ref{divisors-definition-zero-scheme-s}.
+
+\begin{lemma}
+\label{lemma-prepare-geometric-cap}
+Let $(S, \delta)$ be as in Situation \ref{situation-setup}.
+Let $Y$ be locally of finite type over $S$.
+Let $\mathcal{L}$ be an invertible $\mathcal{O}_Y$-module.
+Let $s \in \Gamma(Y, \mathcal{L})$.
+Assume
+\begin{enumerate}
+\item $\dim_\delta(Y) \leq k + 1$,
+\item $\dim_\delta(Z(s)) \leq k$, and
+\item for every generic point $\xi$ of an irreducible component of
+$Z(s)$ of $\delta$-dimension $k$ the multiplication by $s$
+induces an injection $\mathcal{O}_{Y, \xi} \to \mathcal{L}_\xi$.
+\end{enumerate}
+Write $[Y]_{k + 1} = \sum n_i[Y_i]$ where $Y_i \subset Y$ are the
+irreducible components of $Y$ of $\delta$-dimension $k + 1$.
+Set $s_i = s|_{Y_i} \in \Gamma(Y_i, \mathcal{L}|_{Y_i})$. Then
+\begin{equation}
+\label{equation-equal-as-cycles}
+[Z(s)]_k =  \sum n_i[Z(s_i)]_k
+\end{equation}
+as $k$-cycles on $Y$.
+\end{lemma}
+
+\begin{proof}
+Let $Z \subset Y$ be an integral closed subscheme of
+$\delta$-dimension $k$. Let $\xi \in Z$ be its generic point.
+We want to compare the coefficient $n$ of $[Z]$ in the expression
+$\sum n_i[Z(s_i)]_k$ with the coefficient $m$ of $[Z]$ in the
+expression $[Z(s)]_k$. Choose a generator $s_\xi \in \mathcal{L}_\xi$.
+Write $A = \mathcal{O}_{Y, \xi}$, $L = \mathcal{L}_\xi$.
+Then $L = As_\xi$. Write $s = f s_\xi$ for some (unique) $f \in A$.
+Hypothesis (3) means that $f : A \to A$ is injective.
+Since $\dim_\delta(Y) \leq k + 1$ and $\dim_\delta(Z) = k$
+we have $\dim(A) = 0$ or $1$. We have
+$$
+m = \text{length}_A(A/(f))
+$$
+which is finite in either case.
+
+\medskip\noindent
+If $\dim(A) = 0$, then $f : A \to A$ being injective
+implies that $f \in A^*$. Hence in this case $m$ is zero.
+Moreover, the condition $\dim(A) = 0$ means that $\xi$
+does not lie on any irreducible component of $\delta$-dimension
+$k + 1$, i.e., $n = 0$ as well.
+
+\medskip\noindent
+Now, let $\dim(A) = 1$.
+Since $A$ is a Noetherian local ring it has finitely
+many minimal primes $\mathfrak q_1, \ldots, \mathfrak q_t$.
+These correspond 1-1 with the $Y_i$ passing through $\xi'$.
+Moreover $n_i = \text{length}_{A_{\mathfrak q_i}}(A_{\mathfrak q_i})$.
+Also, the multiplicity of $[Z]$ in $[Z(s_i)]_k$ is
+$\text{length}_A(A/(f, \mathfrak q_i))$.
+Hence the equation to prove in this case is
+$$
+\text{length}_A(A/(f))
+=
+\sum \text{length}_{A_{\mathfrak q_i}}(A_{\mathfrak q_i})
+\text{length}_A(A/(f, \mathfrak q_i))
+$$
+which follows from
+Lemma \ref{lemma-additivity-divisors-restricted}.
+\end{proof}
+
+\noindent
 The following lemma is a useful result in order to compute the intersection
 product of the $c_1$ of an invertible sheaf and the cycle associated
 to a closed subscheme.
@@ -3491,20 +3592,21 @@ Divisors, Definition \ref{divisors-definition-zero-scheme-s}.
 Let $(S, \delta)$ be as in Situation \ref{situation-setup}.
 Let $X$ be locally of finite type over $S$.
 Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
-Let $Z \subset X$ be a closed subscheme.
-Assume $\dim_\delta(Z) \leq k + 1$.
-Let $s \in \Gamma(Z, \mathcal{L}|_Z)$.
+Let $Y \subset X$ be a closed subscheme.
+Let $s \in \Gamma(Y, \mathcal{L}|_Y)$.
 Assume
 \begin{enumerate}
+\item $\dim_\delta(Y) \leq k + 1$,
 \item $\dim_\delta(Z(s)) \leq k$, and
 \item for every generic point $\xi$ of an irreducible component of
-$Z(s)$ of dimension $k$ the multiplication by $s$
-induces an injection $\mathcal{O}_{Z, \xi} \to (\mathcal{L}|_Z)_\xi$.
+$Z(s)$ of $\delta$-dimension $k$ the multiplication by $s$
+induces an injection
+$\mathcal{O}_{Y, \xi} \to (\mathcal{L}|_Y)_\xi$\footnote{For example,
+this holds if $s$ is a regular section of $\mathcal{L}|_Y$.}.
 \end{enumerate}
-This holds for example if $s$ is a regular section of $\mathcal{L}|_Z$.
 Then
 $$
-[Z(s)]_k = c_1(\mathcal{L}) \cap [Z]_{k + 1}
+c_1(\mathcal{L}) \cap [Y]_{k + 1} = [Z(s)]_k
 $$
 in $A_k(X)$.
 \end{lemma}
@@ -3512,68 +3614,19 @@ in $A_k(X)$.
 \begin{proof}
 Write
 $$
-[Z]_{k + 1} = \sum n_i[W_i]
+[Y]_{k + 1} = \sum n_i[Y_i]
 $$
-where $W_i \subset Z$ are the irreducible components of
-$Z$ of $\delta$-dimension $k + 1$ and $n_i > 0$.
+where $Y_i \subset Y$ are the irreducible components of
+$Y$ of $\delta$-dimension $k + 1$ and $n_i > 0$.
 By assumption the restriction
-$s_i = s|_{W_i} \in \Gamma(W_i, \mathcal{L}|_{W_i})$ is not
+$s_i = s|_{Y_i} \in \Gamma(Y_i, \mathcal{L}|_{Y_i})$ is not
 zero, and hence is a regular section. By Lemma \ref{lemma-compute-c1}
-we see that $[Z(s_i)]_k$ represents $c_1(\mathcal{L}|_{W_i})$.
+we see that $[Z(s_i)]_k$ represents $c_1(\mathcal{L}|_{Y_i})$.
 Hence by definition
 $$
-c_1(\mathcal{L}) \cap [Z]_{k + 1} = \sum n_i[Z(s_i)]_k
+c_1(\mathcal{L}) \cap [Y]_{k + 1} = \sum n_i[Z(s_i)]_k
 $$
-In fact, the proof below will show that we have
-\begin{equation}
-\label{equation-equal-as-cycles}
-[Z(s)]_k =  \sum n_i[Z(s_i)]_k
-\end{equation}
-as $k$-cycles on $X$.
-
-\medskip\noindent
-Let $Z' \subset X$ be an integral closed subscheme of
-$\delta$-dimension $k$. Let $\xi' \in Z'$ be its generic point.
-We want to compare the coefficient $n$ of $[Z']$ in the expression
-$\sum n_i[Z(s_i)]_k$ with the coefficient $m$ of $[Z']$ in the
-expression $[Z(s)]_k$. Choose a generator $s_{\xi'} \in \mathcal{L}_\xi$.
-Let $\mathcal{I} \subset \mathcal{O}_X$ be the ideal sheaf of $Z$.
-Write $A = \mathcal{O}_{X, \xi'}$, $L = \mathcal{L}_{\xi'}$
-and $I = \mathcal{I}_{\xi'}$. Then $L = As_{\xi'}$ and
-$L/IL = (A/I)s_{\xi'} = (\mathcal{L}|_Z)_{\xi'}$.
-Write $s = f s_{\xi'}$ for some (unique) $f \in A/I$.
-Hypothesis (2) means that $f : A/I \to A/I$ is injective.
-Since $\dim_\delta(Z) \leq k + 1$ and $\dim_\delta(Z') = k$
-we have $\dim(A/I) = 0$ or $1$. We have
-$$
-m = \text{length}_A(A/(f, I))
-$$
-which is finite in either case.
-
-\medskip\noindent
-If $\dim(A/I) = 0$, then $f : A/I \to A/I$ being injective
-implies that $f \in (A/I)^*$. Hence in this case $m$ is zero.
-Moreover, the condition $\dim(A/I) = 0$ means that $\xi'$
-does not lie on any irreducible component of $\delta$-dimension
-$k + 1$, i.e., $n = 0$ as well.
-
-\medskip\noindent
-Now, let $\dim(A/I) = 1$.
-Since $A$ is a Noetherian local ring there are finitely
-many minimal primes $\mathfrak q_1, \ldots, \mathfrak q_t \supset I$
-over $I$. These correspond 1-1 with $W_i$ passing through $\xi'$.
-Moreover $n_i = \text{length}_{A_{\mathfrak q_i}}((A/I)_{\mathfrak q_i})$.
-Also, the multiplicity of $[Z']$ in $[Z(s_i)]_k$ is
-$\text{length}_A(A/(f, \mathfrak q_i))$.
-Hence the equation to prove in this case is
-$$
-\text{length}_A(A/(f, I))
-=
-\sum \text{length}_{A_{\mathfrak q_i}}((A/I)_{\mathfrak q_i})
-\text{length}_A(A/(f, \mathfrak q_i))
-$$
-which follows from
-Lemma \ref{lemma-additivity-divisors-restricted}.
+Thus the result follows from Lemma \ref{lemma-prepare-geometric-cap}.
 \end{proof}
 
 
@@ -3585,6 +3638,55 @@ Lemma \ref{lemma-additivity-divisors-restricted}.
 \noindent
 In this section we prove that the operation $c_1(\mathcal{L}) \cap -$
 commutes with flat pullback and proper pushforward.
+
+\begin{lemma}
+\label{lemma-prepare-flat-pullback-cap-c1}
+Let $(S, \delta)$ be as in Situation \ref{situation-setup}.
+Let $X$, $Y$ be locally of finite type over $S$.
+Let $f : X \to Y$ be a flat morphism of relative dimension $r$.
+Let $\mathcal{L}$ be an invertible sheaf on $Y$.
+Assume $Y$ is integral and $n = \dim_\delta(Y)$.
+Let $s$ be a nonzero meromorphic section of $\mathcal{L}$.
+Then we have
+$$
+f^*\text{div}_\mathcal{L}(s) = \sum n_i\text{div}_{f^*\mathcal{L}|_{X_i}}(s_i)
+$$
+in $Z_{n + r - 1}(X)$. Here the sum is over the irreducible
+components $X_i \subset X$ of $\delta$-dimension $n + r$,
+the section $s_i = f|_{X_i}^*(s)$ is the pullback of $s$, and
+$n_i = m_{X_i, X}$ is the multiplicity of $X_i$ in $X$.
+\end{lemma}
+
+\begin{proof}
+To prove this equality of cycles, we may work locally on $Y$.
+Hence we may assume $Y$ is affine and $s = p/q$ for some nonzero
+sections $p \in \Gamma(Y, \mathcal{L})$ and $q \in \Gamma(Y, \mathcal{O})$.
+If we can show both
+$$
+f^*\text{div}_\mathcal{L}(p) =
+\sum n_i\text{div}_{f^*\mathcal{L}|_{X_i}}(p_i)
+\quad\text{and}\quad
+f^*\text{div}_\mathcal{O}(q) =
+\sum n_i\text{div}_{\mathcal{O}_{X_i}}(q_i)
+$$
+(with obvious notations) then we win by the
+additivity, see Divisors, Lemma \ref{divisors-lemma-c1-additive}.
+Thus we may assume that $s \in \Gamma(Y, \mathcal{L})$.
+In this case we may apply the equality
+(\ref{equation-equal-as-cycles}) to see that
+$$
+[Z(f^*(s))]_{k + r - 1} =
+\sum n_i\text{div}_{f^*\mathcal{L}|_{X_i}}(s_i)
+$$
+where $f^*(s) \in f^*\mathcal{L}$ denotes the pullback of $s$ to $X$.
+On the other hand we have
+$$
+f^*\text{div}_\mathcal{L}(s) = f^*[Z(s)]_{k - 1}
+= [f^{-1}(Z(s))]_{k + r - 1},
+$$
+by Lemmas \ref{lemma-compute-c1} and \ref{lemma-pullback-coherent}.
+Since $Z(f^*(s)) = f^{-1}(Z(s))$ we win.
+\end{proof}
 
 \begin{lemma}
 \label{lemma-flat-pullback-cap-c1}
@@ -3601,76 +3703,46 @@ in $A_{k + r - 1}(X)$.
 \end{lemma}
 
 \begin{proof}
-Write $\alpha = \sum n_i[W_i]$. We claim it suffices to show that
-$f^*(c_1(\mathcal{L}) \cap [W_i]) = c_1(f^*\mathcal{L}) \cap f^*[W_i]$
-for each $i$. Proof of this claim is omitted.
-(Remarks: it is clear in the quasi-compact case.
-Something similar happened in the proof of
-Lemma \ref{lemma-flat-pullback-rational-equivalence}, and one
-can copy the method used there here. Another possibility
-is to check the cycles and rational equivalences used
-for all $W_i$ combined at each step form a locally finite collection).
+Write $\alpha = \sum n_i[W_i]$. We will show that
+$$
+f^*(c_1(\mathcal{L}) \cap [W_i]) = c_1(f^*\mathcal{L}) \cap f^*[W_i]
+$$
+in $A_{k + r - 1}(X)$ by producing a rational equivalence
+on the closed subscheme $f^{-1}(W_i)$ of $X$.
+By the discussion in
+Remark \ref{remark-infinite-sums-rational-equivalences}
+this will prove the equality of the lemma is true.
 
 \medskip\noindent
 Let $W \subset Y$ be an integral closed subscheme of $\delta$-dimension $k$.
-We have to show that
-$f^*(c_1(\mathcal{L}) \cap [W]) = c_1(f^*\mathcal{L}) \cap f^*[W]$.
-Consider the following fibre product diagram
+Consider the closed subscheme $W' = f^{-1}(W) = W \times_Y X$
+so that we have the fibre product diagram
 $$
 \xymatrix{
-W' = W \times_Y X \ar[r] \ar[d] & X \ar[d] \\
+W' \ar[r] \ar[d]_h & X \ar[d]^f \\
 W \ar[r] & Y
 }
 $$
-and let $W'_i \subset W'$ be the irreducible components of
-$\delta$-dimension $k + r$. Write
-$[W']_{k + r} = \sum n_i[W'_i]$ with $n_i > 0$ as per definition.
-So $f^*[W] = \sum n_i[W'_i]$. Choose a nonzero meromorphic section
-$s$ of $\mathcal{L}|_W$. Since each $W'_i \to W$ is dominant we
+We have to show that
+$f^*(c_1(\mathcal{L}) \cap [W]) = c_1(f^*\mathcal{L}) \cap f^*[W]$.
+Choose a nonzero meromorphic section $s$ of $\mathcal{L}|_W$.
+Let $W'_i \subset W'$ be the irreducible components of
+$\delta$-dimension $k + r$. Write $[W']_{k + r} = \sum n_i[W'_i]$
+with $n_i$ the multiplicity of $W'_i$ in $W'$ as per definition.
+So $f^*[W] = \sum n_i[W'_i]$ in $Z_{k + r}(X)$.
+Since each $W'_i \to W$ is dominant we
 see that $s_i = s|_{W'_i}$ is a nonzero meromorphic section for
-each $i$. We claim that we have the following equality of
-cycles
+each $i$. By Lemma \ref{lemma-prepare-flat-pullback-cap-c1}
+we have the following equality of cycles
 $$
-\sum n_i\text{div}_{\mathcal{L}|_{W_i}}(s_i)
-=
-f^*\text{div}_{\mathcal{L}|_W}(s)
+h^*\text{div}_{\mathcal{L}|_W}(s) =
+\sum n_i\text{div}_{f^*\mathcal{L}|_{W'_i}}(s_i)
 $$
-in $Z_{k + r - 1}(X)$.
-
-\medskip\noindent
-Having formulated the problem as an equality of cycles
-we may work locally on $Y$. Hence we may assume
-$Y$ and also $W$ affine, and $s = p/q$ for some
-nonzero sections $p \in \Gamma(W, \mathcal{L})$
-and $q \in \Gamma(W, \mathcal{O})$. If we can show both
-$$
-\sum n_i\text{div}_{\mathcal{L}|_{W_i}}(p_i)
-=
-f^*\text{div}_{\mathcal{L}|_W}(p),
-\quad\text{and}\quad
-\sum n_i\text{div}_{\mathcal{O}|_{W_i}}(q_i)
-=
-f^*\text{div}_{\mathcal{O}|_W}(q)
-$$
-(with obvious notations) then we win by the
-additivity, see Divisors, Lemma \ref{divisors-lemma-c1-additive}.
-Thus we may assume that $s \in \Gamma(W, \mathcal{L}|_W)$.
-In this case we may apply the equality
-(\ref{equation-equal-as-cycles}) obtained in the proof of
-Lemma \ref{lemma-geometric-cap} to see that
-$$
-\sum n_i\text{div}_{\mathcal{L}|_{W_i}}(s_i)
-=
-[Z(s')]_{k + r - 1}
-$$
-where $s' \in f^*\mathcal{L}|_{W'}$ denotes the pullback
-of $s$ to $W'$. On the other hand we have
-$$
-f^*\text{div}_{\mathcal{L}|_W}(s) = f^*[Z(s)]_{k - 1}
-= [f^{-1}(Z(s))]_{k + r - 1},
-$$
-by Lemmas \ref{lemma-compute-c1} and \ref{lemma-pullback-coherent}.
-Since $Z(s') = f^{-1}(Z(s))$ we win.
+in $Z_{k + r - 1}(W')$. This finishes the proof since
+the left hand side is a cycle on $W'$ which pushes to
+$f^*(c_1(\mathcal{L}) \cap [W])$ in $A_{k + r - 1}(X)$
+and the right hand side is a cycle on $W'$ which pushes to
+$c_1(f^*\mathcal{L}) \cap f^*[W]$ in $A_{k + r - 1}(X)$.
 \end{proof}
 
 \begin{lemma}
@@ -4763,30 +4835,31 @@ A {\it bivariant class $c$ of degree $p$ for $f$} is given by a rule
 which assigns to every locally of finite type morphism $Y' \to Y$
 and every $k$ a map
 $$
-c \cap - : A_k(X') \longrightarrow A_{k - p}(Y')
+c \cap - : A_k(Y') \longrightarrow A_{k - p}(X')
 $$
-where $Y' = X' \times_X Y$, satisfying the following conditions
+where $X' = Y' \times_Y X$, satisfying the following conditions
 \begin{enumerate}
 \item if $Y'' \to Y'$ is a proper, then
 $c \cap (Y'' \to Y')_*\alpha'' = (X'' \to X')_*(c \cap \alpha'')$
 for all $\alpha''$ on $Y''$,
 \item if $Y'' \to Y'$ is flat locally of finite type of
 fixed relative dimension, then
-$c \cap (X'' \to X')^*\alpha' = (Y'' \to Y')^*(c \cap \alpha')$
+$c \cap (Y'' \to Y')^*\alpha' = (X'' \to X')^*(c \cap \alpha')$
 for all $\alpha'$ on $Y'$, and
-\item if $(\mathcal{L}', s', i' : D' \to X')$ is as in
+\item if $(\mathcal{L}', s', i' : D' \to Y')$ is as in
 Definition \ref{definition-gysin-homomorphism}
-with pullback $(\mathcal{N}', t', j' : E' \to Y')$ to $Y'$,
+with pullback $(\mathcal{N}', t', j' : E' \to X')$ to $X'$,
 then we have $c \cap (i')^*\alpha' = (j')^*(c \cap \alpha')$
-for all $\alpha'$ on $X'$.
+for all $\alpha'$ on $Y'$.
 \end{enumerate}
 The collection of all bivariant classes of degree $p$ for $f$ is
 denoted $A^p(X \to Y)$.
 \end{definition}
 
 \noindent
-Let $(S, \delta)$ be as in Situation \ref{situation-setup}. Let $f : X \to Y$
-be a morphism of schemes locally of finite type over $S$. Let
+Let $(S, \delta)$ be as in Situation \ref{situation-setup}. Let $X \to Y$
+and $Y \to Z$
+be morphisms of schemes locally of finite type over $S$. Let
 $p \in \mathbf{Z}$. It is clear that $A^p(X \to Y)$ is an abelian group.
 Moreover, it is clear that we have a bilinear composition
 $$
@@ -4806,7 +4879,7 @@ $p$ component is $A^p(X \to X)$.
 \end{definition}
 
 \noindent
-Warning: It is not clear that a priori that the $\mathbf{Z}$-algebra structure
+Warning: It is not clear that the $\mathbf{Z}$-algebra structure
 on $A^*(X)$ is commutative, but we will see that chern classes live
 in its center.
 
@@ -4877,6 +4950,24 @@ This follows from Lemmas \ref{lemma-gysin-factors},
 \ref{lemma-gysin-flat-pullback}, and
 \ref{lemma-gysin-commutes-gysin}.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-push-proper-bivariant}
+Let $(S, \delta)$ be as in Situation \ref{situation-setup}.
+Let $f : X \to Y$ and $g : Y \to Z$ be morphisms of
+schemes locally of finite tyoe over $S$.
+Let $c \in A^p(X \to Z)$ and assume $f$ is proper.
+Then the rule that to $X' \to X$ assignes
+$\alpha \longmapsto f_*(c \cap \alpha)$
+is a bivariant class of degree $p$.
+\end{lemma}
+
+\begin{proof}
+This follows from Lemmas \ref{lemma-compose-pushforward},
+\ref{lemma-flat-pullback-proper-pushforward}, and
+\ref{lemma-closed-in-X-gysin}.
+\end{proof}
+
 
 \noindent
 Here is a criterion to see that an operation

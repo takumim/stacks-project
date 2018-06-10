@@ -561,7 +561,7 @@ Spaces, Lemma \ref{spaces-lemma-space-presentation}.
 Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
 Consider the map
 $$
-\{\Spec(k) \to X \text{ monomorphism}\}
+\{\Spec(k) \to X \text{ monomorphism where }k\text{ is a field}\}
 \longrightarrow
 |X|
 $$
@@ -1656,7 +1656,7 @@ Decent Spaces, Theorem
 \label{proposition-locally-quasi-separated-open-dense-scheme}
 Let $S$ be a scheme. Let $X$ be an algebraic space over $S$. If $X$ is
 Zariski locally quasi-separated (for example if $X$ is quasi-separated), then
-there exists a dense open subspace of $X$ which is a scheme.
+there exists a dense open subspace $X'$ of $X$ which is a scheme.
 More precisely, every point $x \in |X|$ of codimension $0$ on $X$
 is contained in $X'$.
 \end{proposition}
@@ -3793,9 +3793,9 @@ Then there is a canonical map
 $f^\sharp : f_{small}^{-1}\mathcal{O}_Y \to \mathcal{O}_X$ such that
 $$
 (f_{small}, f^\sharp) :
-(X_\etale, \mathcal{O}_X)
+(\Sh(X_\etale), \mathcal{O}_X)
 \longrightarrow
-(Y_\etale, \mathcal{O}_Y)
+(\Sh(Y_\etale), \mathcal{O}_Y)
 $$
 is a morphism of ringed topoi. Furthermore,
 \begin{enumerate}

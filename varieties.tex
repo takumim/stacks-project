@@ -130,7 +130,7 @@ Hilbert Nullstellensatz
 we can find a maximal ideal $\mathfrak m \subset A$ contained in
 $D(a_1c_1)$ and $A/\mathfrak m = k$ as $k$ is algebraically closed.
 Denote $\overline{a}_i, \overline{c}_j$ the residue classes of
-$a_i, c_j$ in $A/\mathfrak m = k$. Then equation above becomes
+$a_i, c_j$ in $A/\mathfrak m = k$. The equation above becomes
 $$
 (\sum\nolimits_{i = 1, \ldots, n} \overline{a}_i b_i)
 (\sum\nolimits_{j = 1, \ldots, m} \overline{c}_j d_j) = 0
@@ -2893,10 +2893,10 @@ Let $f : X \to Y$ be a morphism of schemes over a base scheme $S$.
 Let $x \in X$ be a point. Set $y = f(x)$. If $\kappa(y) = \kappa(x)$,
 then $f$ induces a natural linear map
 $$
-\text{d}f : T_{X/S, x} \longrightarrow T_{Y/S, y}.
+\text{d}f : T_{X/S, x} \longrightarrow T_{Y/S, y}
 $$
 which is dual to the linear map
-$\Omega_{Y/S, y} \otimes \kappa(y) \to \Omega_{X/S, \kappa(x)}$
+$\Omega_{Y/S, y} \otimes \kappa(y) \to \Omega_{X/S, x}$
 via the identifications of Lemma \ref{lemma-tangent-space-cotangent-space}.
 \end{lemma}
 
@@ -3786,6 +3786,9 @@ is the closure of the image of $X'$. This proves (3).
 
 \begin{lemma}
 \label{lemma-dimension-product-locally-algebraic}
+\begin{slogan}
+The dimension of the product is the sum of the dimensions.
+\end{slogan}
 Let $k$ be a field. Let $X$, $Y$ be locally algebraic $k$-schemes.
 \begin{enumerate}
 \item For $z \in X \times Y$ lying over $(x, y)$ we have
@@ -5891,8 +5894,10 @@ $$
 is independent of $r$. Since for $r$ large enough we have
 $E_r^{p, q} = E_\infty^{p, q}$ and since convergence means there
 is a filtration on $H^n(Y, \mathcal{G})$ whose graded pieces are
-$E_\infty^{p, q}$ with $p + 1 = n$ (this is the meaning of convergence
+$E_\infty^{p, q}$ with $p + q = n$ (this is the meaning of convergence
 of the spectral sequence), we conclude.
+Compare also with the more general
+Homology, Lemma \ref{homology-lemma-biregular-ss-relation-in-K0}.
 \end{proof}
 
 
