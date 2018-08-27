@@ -772,8 +772,11 @@ follow from this as unramified and \'etale ring map are quasi-finite
 \ref{algebra-lemma-unramified-quasi-finite} and
 \ref{algebra-lemma-etale-quasi-finite}).
 If $B = \colim B_i$ is a filtered colimit of $A$-algebras, then
-$\Spec(B) = \colim \Spec(B_i)$, hence if each $\Spec(B_i)$
-is profinite, so is $\Spec(B)$. This proves (9).
+$\Spec(B) = \lim \Spec(B_i)$ in the category of topological spaces by
+Limits, Lemma \ref{limits-lemma-inverse-limit-top}.
+Hence if each $\Spec(B_i)$ is profinite, so is $\Spec(B)$ by
+Topology, Lemma \ref{topology-lemma-directed-inverse-limit-profinite}.
+This proves (9).
 \end{proof}
 
 \begin{lemma}
@@ -1597,6 +1600,230 @@ $B \to D'$ is a solution to the problem posed in the proposition.
 
 
 
+\section{The V topology and the pro-h topology}
+\label{section-V-versus-pro-h}
+
+\noindent
+The V topology was introduced in
+Topologies, Section \ref{topologies-section-V}.
+The h topology was introduced in
+More on Flatness, Section \ref{flat-section-h}.
+A kind of intermediate topology, namely the ph topology,
+was introduced in Topologies, Section \ref{topologies-section-ph}.
+
+\medskip\noindent
+Given a topology $\tau$ on a suitable category $\mathcal{C}$
+of schemes, we can introduce a ``pro-$\tau$ topology''
+on $\mathcal{C}$ as follows. Recall that for $X$ in $\mathcal{C}$
+we use $h_X$ to denote the representable presheaf associated to $X$.
+Let us temporarily say a morphism $X \to Y$ of $\mathcal{C}$
+is a $\tau$-cover\footnote{This should not be confused with
+the notion of a covering. For example if $\tau = \etale$,
+any morphism $X \to Y$ which has a section is a $\tau$-covering. But our
+definition of \'etale coverings $\{V_i \to Y\}_{i \in I}$
+forces each $V_i \to Y$ to be \'etale.}
+if the $\tau$-sheafification of $h_X \to h_Y$
+is surjective. Then we can define the pro-$\tau$ topology
+as the coarsest topology such that
+\begin{enumerate}
+\item the pro-$\tau$ topology is finer than the $\tau$ topology, and
+\item $X \to Y$ is a pro-$\tau$-cover if
+$Y$ is affine and $X = \lim X_\lambda$ is a directed
+limit of affine schemes $X_\lambda$ over $Y$ such that
+$h_{X_\lambda} \to h_Y$ is a $\tau$-cover for all $\lambda$.
+\end{enumerate}
+We use this pedantic formulation because we do not want to
+specify a choice of pro-$\tau$ coverings: for different $\tau$
+different choices of collections of coverings are suitable.
+For example, in Section \ref{section-proetale} we will see that
+in order to define the pro-\'etale topology looking at families
+of weakly \'etale morphisms with some finiteness property works well.
+More generally, the proposed construction given in this paragraph is
+meant mainly to motivate the results in this section and we will never
+implicitly define a pro-$\tau$ topology using this method.
+
+\medskip\noindent
+The following lemma tells us that the
+pro-V topology is equal to the V topology.
+
+\begin{lemma}
+\label{lemma-pro-V-V}
+Let $Y$ be an affine scheme. Let $X = \lim X_i$ be a directed limit
+of affine schemes over $Y$. The following are equivalent
+\begin{enumerate}
+\item $\{X \to Y\}$ is a standard V covering
+(Topologies, Definition \ref{topologies-definition-standard-V-covering}), and
+\item $\{X_i \to Y\}$ is a standard V covering for all $i$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+A singleton $\{X \to Y\}$ is a standard V covering if and only if
+given a morphism $g : \Spec(V) \to Y$ there is an extension of
+valuation rings $V \subset W$ and a commutative diagram
+$$
+\xymatrix{
+\Spec(W) \ar[r] \ar[d] & X \ar[d] \\
+\Spec(V) \ar[r]^g & Y
+}
+$$
+Thus (1) $\Rightarrow$ (2) is immediate from the definition.
+Conversely, assume (2) and let $g : \Spec(V) \to Y$ as above
+be given. Write $\Spec(V) \times_Y X_i = \Spec(A_i)$.
+Since $\{X_i \to Y\}$ is a standard V covering, we may choose
+a valuation ring $W_i$ and a ring map $A_i \to W_i$ such that
+the composition $V \to A_i \to W_i$ is an extension of valuation
+rings. In particular, the quotient $A'_i$ of $A_i$ by its
+$V$-torsion is a faitfhully flat $V$-algebra. Flatness by
+More on Algebra, Lemma
+\ref{more-algebra-lemma-valuation-ring-torsion-free-flat} and
+surjectivity on spectra because $A_i \to W_i$ factors through $A'_i$.
+Thus
+$$
+A = \colim A'_i
+$$
+is a faithfully flat $V$-algebra
+(Algebra, Lemma \ref{algebra-lemma-colimit-faithfully-flat}).
+Since $\{\Spec(A) \to \Spec(V)\}$ is a standard fpqc cover, it
+is a standard V cover
+(Topologies, Lemma \ref{topologies-lemma-standard-fpqc-standard-V})
+and hence we can choose $\Spec(W) \to \Spec(A)$ such that
+$V \to W$ is an extension of valuation rings. Since we can compose
+with the morphism $\Spec(A) \to X = \Spec(\colim A_i)$
+the proof is complete.
+\end{proof}
+
+\noindent
+The following lemma tells us that the pro-h topology is equal to the
+pro-ph topology is equal to the V topology.
+
+\begin{lemma}
+\label{lemma-pro-h-V}
+Let $X \to Y$ be a morphism of affine schemes. The following are equivalent
+\begin{enumerate}
+\item $\{X \to Y\}$ is a standard V covering
+(Topologies, Definition \ref{topologies-definition-standard-V-covering}),
+\item $X = \lim X_i$ is a directed limit of affine schemes over $Y$
+such that $\{X_i \to Y\}$ is a ph covering for each $i$, and
+\item $X = \lim X_i$ is a directed limit of affine schemes over $Y$
+such that $\{X_i \to Y\}$ is an h covering for each $i$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Proof of (2) $\Rightarrow$ (1). Recall that a V covering given by a
+single arrow between affines is a standard V covering, see
+Topologies, Definition \ref{topologies-definition-V-covering} and
+Lemma \ref{topologies-lemma-refine-standard-V}.
+Recall that any ph covering is a V covering, see
+Topologies, Lemma
+\ref{topologies-lemma-zariski-etale-smooth-syntomic-fppf-fpqc-ph-V}.
+Hence if $X = \lim X_i$ as in (2), then $\{X_i \to Y\}$
+is a standard V covering for each $i$. Thus by
+Lemma \ref{lemma-pro-V-V} we see that (1) is true.
+
+\medskip\noindent
+Proof of (3) $\Rightarrow$ (2). This is clear because an h covering
+is always a ph covering, see
+More on Flatness, Definition \ref{flat-definition-h-covering}.
+
+\medskip\noindent
+Proof of (1) $\Rightarrow$ (3). This is the interesting direction, but
+the interesting content in this proof is hidden in More on Flatness, Lemma
+\ref{flat-lemma-equivalence-h-v-locally-finite-presentation}.
+Write $X = \Spec(A)$ and $Y = \Spec(R)$. We can write
+$A = \colim A_i$ with $A_i$ of finite presentation over $R$, see
+Algebra, Lemma \ref{algebra-lemma-ring-colimit-fp}.
+Set $X_i = \Spec(A_i)$. Then $\{X_i \to Y\}$ is a standard V covering
+for all $i$ by (1) and
+Topologies, Lemma \ref{topologies-lemma-refine-standard-V}.
+Hence $\{X_i \to Y\}$ is an h covering by
+More on Flatness, Definition \ref{flat-definition-h-covering}.
+This finishes the proof.
+\end{proof}
+
+\noindent
+The following lemma tells us, roughly speaking, that an h sheaf
+which is limit preserving satisfies the sheaf condition for V coverings.
+Please also compare with Remark \ref{remark-h-limit-preserving}.
+
+\begin{lemma}
+\label{lemma-h-limit-preserving}
+Let $S$ be a scheme. Let $F$ be a contravariant functor defined
+on the category of all schemes over $S$. If
+\begin{enumerate}
+\item $F$ satisfies the sheaf property for the h topology, and
+\item $F$ is limit preserving
+(Limits, Remark \ref{limits-remark-limit-preserving}),
+\end{enumerate}
+then $F$ satisfies the sheaf property for the V topology.
+\end{lemma}
+
+\begin{proof}
+We will prove this by verifying (1) and (2') of
+Topologies, Lemma \ref{topologies-lemma-sheaf-property-V}.
+The sheaf property for Zariski coverings follows from
+the fact that $F$ has the sheaf property for all h coverings.
+Finally, suppose that $X \to Y$ is a morphism of affine schemes
+over $S$ such that $\{X \to Y\}$ is a V covering.
+By Lemma \ref{lemma-pro-h-V} we can write $X = \lim X_i$
+as a directed limit of affine schemes
+over $Y$ such that $\{X_i \to Y\}$ is an h covering for each $i$.
+We obtain
+\begin{align*}
+&
+\text{Equalizer}(
+\xymatrix{
+F(X) \ar@<1ex>[r] \ar@<-1ex>[r] &
+F(X \times_Y X)
+}
+)
+\\
+& =
+\text{Equalizer}(
+\xymatrix{
+\colim F(X_i) \ar@<1ex>[r] \ar@<-1ex>[r] &
+\colim F(X_i \times_Y X_i)
+}
+)
+\\
+& =
+\colim
+\text{Equalizer}(
+\xymatrix{
+F(X_i) \ar@<1ex>[r] \ar@<-1ex>[r] &
+F(X_i \times_Y X_i)
+}
+)
+\\
+& =
+\colim F(Y) = F(Y)
+\end{align*}
+which is what we wanted to show.
+The first equality because $F$ is limit preserving and $X = \lim X_i$ and
+$X \times_Y X = \lim X_i \times_Y X_i$.
+The second equality because filtered colimits are exact.
+The third equality because $F$ satisfies the sheaf property
+for h coverings.
+\end{proof}
+
+\begin{remark}
+\label{remark-h-limit-preserving}
+Let $S$ be a scheme contained in a big site $\Sch_h$. Let $F$ be a sheaf
+of sets on $(\Sch/S)_h$ such that $F(T) = \colim F(T_i)$ whenever
+$T = \lim T_i$ is a directed limit of affine schemes in $(\Sch/S)_h$.
+In this situation $F$ extends uniquely to a contravariant functor $F'$
+on the category of all schemes over $S$ such that (a) $F'$ satisfies the
+sheaf property for the h topology and (b) $F'$ is limit preserving.
+See More on Flatness, Lemma \ref{flat-lemma-extend-sheaf-h}.
+In this situation Lemma \ref{lemma-h-limit-preserving}
+tells us that $F'$ satisfies
+the sheaf property for the V topology.
+\end{remark}
+
+
+
+
 
 
 
@@ -1858,8 +2085,11 @@ More on Morphisms, Section \ref{more-morphisms-section-weakly-etale}.
 The reason is that, on the one hand, it is somewhat awkward to define
 the notion of a pro-\'etale morphism of schemes, and on the other,
 Proposition \ref{proposition-weakly-etale}
-assures us that we obtain the same sheaves with the
-definition that follows.
+assures us that we obtain the same sheaves\footnote{To be precise
+the pro-\'etale topology we obtain using our choice of coverings
+is the same as the one gotten from the general procedure explained
+in Section \ref{section-V-versus-pro-h} starting with $\tau = \etale$.}
+with the definition that follows.
 
 \begin{definition}
 \label{definition-fpqc-covering}
