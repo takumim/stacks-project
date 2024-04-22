@@ -73,7 +73,7 @@ finite injective dimension, and is such that the map
 $$
 A \longrightarrow R\Hom_A(\omega_A^\bullet, \omega_A^\bullet)
 $$
-is a quasi-isomorphism. After esthablishing some elementary properties
+is a quasi-isomorphism. After establishing some elementary properties
 of dualizing complexes, we show a dualizing complex gives rise to a
 dimension function. Next, we prove Grothendieck's local duality theorem.
 After briefly discussing dualizing modules and Cohen-Macaulay rings,
@@ -296,13 +296,13 @@ is injective.
 
 \begin{proof}
 Let $E_i$ be a family of injective modules parametrized by a set $I$.
-Set $E = \bigcup E_i$. To show that $E$ is injective we use
+Set $E = \bigoplus E_i$. To show that $E$ is injective we use
 Injectives, Lemma \ref{injectives-lemma-criterion-baer}.
 Thus let $\varphi : I \to E$ be a module map from an ideal of $R$
 into $E$. As $I$ is a finite $R$-module (because $R$ is Noetherian)
 we can find finitely many elements $i_1, \ldots, i_r \in I$
-such that $\varphi$ maps into $\bigcup_{j = 1, \ldots, r} E_{i_j}$.
-Then we can extend $\varphi$ into $\bigcup_{j = 1, \ldots, r} E_{i_j}$
+such that $\varphi$ maps into $\bigoplus_{j = 1, \ldots, r} E_{i_j}$.
+Then we can extend $\varphi$ into $\bigoplus_{j = 1, \ldots, r} E_{i_j}$
 using the injectivity of the modules $E_{i_j}$.
 \end{proof}
 
@@ -349,14 +349,16 @@ to prove (1).
 Suppose that $E \subset E' \subset I$ and that $E'$ is an essential
 extension of $E$. We will show that $E' = E$. If not, then we can
 find $x \in E'$ and $x \not \in E$.
-Let $J = \{ a \in R \mid ax \in E\}$. Since $R$ is Noetherian, we may
-choose $x$ so that $J$ is maximal among ideals of this form. Again since
-$R$ is Noetherian, we may write $J = (g_1, \ldots, g_t)$ for some
+Let $J = \{ a \in R \mid ax \in E\}$. Since $R$ is Noetherian,
+we may write $J = (g_1, \ldots, g_t)$ for some
 $g_i \in R$. By definition $E$ is the set of elements of $I$ annihilated
 by powers of $f$, so we may choose integers $n_i$ so that $f^{n_i}g_ix = 0$.
-Set $n = \mathrm{max}\{ n_i \}$.  Then $x' = f^n x$ is an element of $E'$
-not in $E$ and is annihilated by $J$. Then by maximality of $J$ we have
-$J = \{ a \in R \mid ax' \in E \} = \text{Ann}(x')$, so $Rx' \cap E  = 0$.
+Set $n = \mathrm{max}\{ n_i \}$. Then $x' = f^n x$ is an element of $E'$
+not in $E$ and is annihilated by $J$. Set $J' = \{ a \in R \mid ax' \in E \}$
+so $J \subset J'$. Conversely, we have $a \in J'$ if and only if $ax' \in E$
+if and only if $f^m a x' = 0$ for some $m \geq 0$. But then
+$f^m a x' = f^{m + n} a x$ implies $ax \in E$, i.e., $a \in J$.
+Hence $J = J'$. Thus $J = J' = \text{Ann}(x')$, so $Rx' \cap E  = 0$.
 Hence $E'$ is not an essential extension of $E$, a contradiction.
 
 \medskip\noindent
@@ -389,7 +391,7 @@ $\Hom_A(A[x], E[x]) = \prod_{n \geq 0} E[x]$ as an abelian group and
 the map sends $(e_n)$ to $(e_{n + 1} - xe_n)$ which is surjective.
 As an $A$-module we have $E[x] \cong \bigoplus_{n \geq 0} E$
 which is injective by Lemma \ref{lemma-sum-injective-modules}.
-Hence the $A[x]$-module $\Hom_A(A[x], I[x])$ is injective by
+Hence the $A[x]$-module $\Hom_A(A[x], E[x])$ is injective by
 Lemma \ref{lemma-hom-injective} and the proof is complete.
 \end{proof}
 
@@ -572,7 +574,7 @@ Part (2) follows from part (1) and the definition of injective hulls.
 
 \medskip\noindent
 Proof of (3). Set $A = \text{End}_R(E, E)$ and
-$I = \{\varphi \in A \mid \Ker(f) \not = 0\}$.
+$I = \{\varphi \in A \mid \Ker(\varphi) \not = 0\}$.
 The statement means that $I$ is a two sided ideal and
 that any $\varphi \in A$, $\varphi \not \in I$ is invertible.
 Suppose $\varphi$ and $\psi$ are not injective.
@@ -651,7 +653,7 @@ the residue field at a prime.
 \begin{proof}
 The second statement is Lemma \ref{lemma-indecomposable-injective-noetherian}.
 For the first statement, let $I$ be an injective $R$-module.
-We will use transfinite induction to construct $I_\alpha \subset I$
+We will use transfinite recursion to construct $I_\alpha \subset I$
 for ordinals $\alpha$ which are direct sums of indecomposable injective
 $R$-modules $E_{\beta + 1}$ for $\beta < \alpha$.
 For $\alpha = 0$ we let $I_0 = 0$. Suppose given an ordinal $\alpha$
@@ -704,7 +706,7 @@ In particular, the injective hull $E$ of $\kappa$ is a finite $R$-module.
 Because $E$ is an essential extension of $\kappa$ we have
 $\kappa = E[\mathfrak m]$ where $E[\mathfrak m]$ is the
 $\mathfrak m$-torsion in $E$ (notation as in More on Algebra, Section
-\ref{more-algebra-section-formal-glueing}).
+\ref{more-algebra-section-torsion}).
 Hence $\Hom_R(\kappa, E) \cong \kappa$ and the equality of lengths
 holds for $M = \kappa$. We prove the displayed equality of the lemma
 by induction on the length of $M$. If $M$ is nonzero there exists a surjection
@@ -847,7 +849,8 @@ of $R$ is the injective hull of the residue field of $S$.
 \end{lemma}
 
 \begin{proof}
-Set $\kappa = R/\mathfrak m_R = S/\mathfrak m_S$.
+Note that $\mathfrak m_RS = \mathfrak m_S$ as the quotient by the former
+is a field. Set $\kappa = R/\mathfrak m_R = S/\mathfrak m_S$.
 Let $E_R$ be the injective hull of $\kappa$ over $R$.
 Let $E_S$ be the injective hull of $\kappa$ over $S$.
 Observe that $E_S$ is an injective $R$-module by
@@ -890,7 +893,7 @@ If $E \supset M_1 \supset M_2 \supset \ldots$ is a sequence of submodules, then
 $$
 \Hom_R(E, E) \to \Hom_R(M_1, E) \to \Hom_R(M_2, E) \to \ldots
 $$
-is sequence of surjections. By Lemma \ref{lemma-endos} each of these is a
+is a sequence of surjections. By Lemma \ref{lemma-endos} each of these is a
 module over the completion $R^\wedge = \Hom_R(E, E)$.
 Since $R^\wedge$ is Noetherian
 (Algebra, Lemma \ref{algebra-lemma-completion-Noetherian-Noetherian})
@@ -1099,16 +1102,16 @@ as modules for all $q \in \mathbf{Z}$.
 \end{lemma}
 
 \begin{proof}
-Let $J^\bullet$ be a K-injective complex representing $K$.
-Then
+Let $J^\bullet$ be a K-injective complex representing $K$. Then
 $$
 R\Gamma_I(K) = J^\bullet[I^\infty] = \colim J^\bullet[I^n] =
 \colim \Hom_A(A/I^n, J^\bullet)
 $$
-The first equality is the definition.
+where the first equality is the definition of $R\Gamma_I(K)$.
 By Derived Categories, Lemma \ref{derived-lemma-colim-hocolim}
-we obtain the second equality. The third equality is clear
-because $H^q(\Hom_A(A/I^n, J^\bullet)) = \Ext^q_A(A/I^n, K)$
+we obtain the first displayed equality in the statement of the lemma.
+The second displayed equality in the statement of the lemma then
+follows because $H^q(\Hom_A(A/I^n, J^\bullet)) = \Ext^q_A(A/I^n, K)$
 and because filtered colimits are exact in the category of abelian
 groups.
 \end{proof}
@@ -1435,7 +1438,7 @@ and $R\Gamma_Y \circ R\Gamma_Z = R\Gamma_{Y \cap Z}$ as functors
 $D(A) \to D_{(I + J)^\infty\text{-torsion}}(A)$. For $K \in D^+(A)$
 there is a spectral sequence
 $$
-E_2^{p, q} = H^p_Y(H^p_Z(K)) \Rightarrow H^{p + q}_{Y \cap Z}(K)
+E_2^{p, q} = H^p_Y(H^q_Z(K)) \Rightarrow H^{p + q}_{Y \cap Z}(K)
 $$
 as in Derived Categories, Lemma
 \ref{derived-lemma-grothendieck-spectral-sequence}.
@@ -1459,7 +1462,7 @@ Alternatively one can prove the formula using
 Lemma \ref{lemma-local-cohomology-adjoint}
 and the fact that the tensor product of
 extended {\v C}ech complexes on $f_1, \ldots, f_r$ and
-$g_1, \ldots, g_m$ is the extended {\v C} complex on
+$g_1, \ldots, g_m$ is the extended {\v C}ech complex on
 $f_1, \ldots, f_n. g_1, \ldots, g_m$.
 The final assertion follows from this and the cited lemma.
 \end{proof}
@@ -1641,13 +1644,20 @@ Thus we see that the map $R\Gamma_I(K) \to K$ is an isomorphism.
 
 \begin{lemma}
 \label{lemma-compute-local-cohomology-noetherian}
-If $A$ is a Noetherian ring and $I = (f_1, \ldots, f_r)$ an ideal.
-There are canonical isomorphisms
+Let $A$ be a Noetherian ring and let $I = (f_1, \ldots, f_r)$ be an ideal
+of $A$. Set $Z = V(I) \subset \Spec(A)$. There are canonical isomorphisms
 $$
 R\Gamma_I(A) \to
 (A \to \prod\nolimits_{i_0} A_{f_{i_0}} \to
 \prod\nolimits_{i_0 < i_1} A_{f_{i_0}f_{i_1}} \to
 \ldots \to A_{f_1\ldots f_r}) \to R\Gamma_Z(A)
+$$
+in $D(A)$. If $M$ is an $A$-module, then we have similarly
+$$
+R\Gamma_I(M) \cong
+(M \to \prod\nolimits_{i_0} M_{f_{i_0}} \to
+\prod\nolimits_{i_0 < i_1} M_{f_{i_0}f_{i_1}} \to
+\ldots \to M_{f_1\ldots f_r}) \cong R\Gamma_Z(M)
 $$
 in $D(A)$.
 \end{lemma}
@@ -1938,6 +1948,9 @@ A more general statement can be found in
 
 \begin{lemma}
 \label{lemma-complete-and-local}
+\begin{slogan}
+Results of this nature are sometimes referred to as Greenlees-May duality.
+\end{slogan}
 Let $A$ be a ring and let $I$ be a finitely generated ideal.
 Let $R\Gamma_Z$ be as in Lemma \ref{lemma-local-cohomology-adjoint}.
 Let ${\ }^\wedge$ denote derived completion as in
@@ -2001,6 +2014,9 @@ concerning admissible subcategories of a triangulated category.
 
 \begin{proposition}
 \label{proposition-torsion-complete}
+\begin{reference}
+This is a special case of \cite[Theorem 1.1]{Porta-Liran-Yekutieli}.
+\end{reference}
 Let $A$ be a ring and let $I \subset A$ be a finitely generated ideal.
 The functors $R\Gamma_Z$ and ${\ }^\wedge$
 define quasi-inverse equivalences of categories
@@ -2197,7 +2213,7 @@ $D(B) \to D(A)$.
 
 \begin{proof}
 This is a consequence of the fact that restriction and $\Hom_A(B, -)$ are
-adjoint functors by Algebra, Lemma \ref{algebra-lemma-adjoint-tensor-restrict}.
+adjoint functors by Algebra, Lemma \ref{algebra-lemma-adjoint-hom-restrict}.
 See Derived Categories, Lemma \ref{derived-lemma-derived-adjoint-functors}.
 \end{proof}
 
@@ -2552,6 +2568,33 @@ idea to prove some of the following lemmas yourself without reading
 the proofs.
 
 \begin{lemma}
+\label{lemma-finite-ext-into-bounded-injective}
+Let $A$ be a Noetherian ring. Let $K, L \in D_{\textit{Coh}}(A)$
+and assume $L$ has finite injective dimension. Then
+$R\Hom_A(K, L)$ is in $D_{\textit{Coh}}(A)$.
+\end{lemma}
+
+\begin{proof}
+Pick an integer $n$ and consider the distinguished triangle
+$$
+\tau_{\leq n}K \to K \to \tau_{\geq n + 1}K \to \tau_{\leq n}K[1]
+$$
+see Derived Categories, Remark
+\ref{derived-remark-truncation-distinguished-triangle}.
+Since $L$ has finite injective dimension we see
+that $R\Hom_A(\tau_{\geq n + 1}K, L)$ has vanishing
+cohomology in degrees $\geq c - n$ for some constant $c$.
+Hence, given $i$, we see that
+$\Ext^i_A(K, L) \to \Ext^i_A(\tau_{\leq n}K, L)$
+is an isomorphism for some $n \gg - i$. By
+Derived Categories of Schemes, Lemma \ref{perfect-lemma-coherent-internal-hom}
+applied to $\tau_{\leq n}K$ and $L$
+we see conclude that $\Ext^i_A(K, L)$ is
+a finite $A$-module for all $i$. Hence $R\Hom_A(K, L)$
+is indeed an object of $D_{\textit{Coh}}(A)$.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-dualizing}
 Let $A$ be a Noetherian ring. If $\omega_A^\bullet$ is a dualizing
 complex, then the functor
@@ -2560,32 +2603,15 @@ D : K \longmapsto R\Hom_A(K, \omega_A^\bullet)
 $$
 is an anti-equivalence $D_{\textit{Coh}}(A) \to D_{\textit{Coh}}(A)$
 which exchanges $D^+_{\textit{Coh}}(A)$ and $D^-_{\textit{Coh}}(A)$
-and induces an equivalence $D^b_{\textit{Coh}}(A) \to D^b_{\textit{Coh}}(A)$.
+and induces an anti-equivalence
+$D^b_{\textit{Coh}}(A) \to D^b_{\textit{Coh}}(A)$.
 Moreover $D \circ D$ is isomorphic to the identity functor.
 \end{lemma}
 
 \begin{proof}
-Let $K$ be an object of $D_{\textit{Coh}}(A)$. Pick an integer $n$ and
-consider the distinguished triangle
-$$
-\tau_{\leq n}K \to K \to \tau_{\geq n + 1}K \to \tau_{\leq n}K[1]
-$$
-see Derived Categories, Remark
-\ref{derived-remark-truncation-distinguished-triangle}.
-Since $\omega_A^\bullet$ has finite injective dimension we see
-that $R\Hom_A(\tau_{\geq n + 1}K, \omega_A^\bullet)$ has vanishing
-cohomology in degrees $\geq n - c$ for some constant $c$.
-On the other hand, we obtain a spectral sequence
-$$
-\Ext_A^p(H^{-q}(\tau_{\leq n}K), \omega_A^\bullet)
-\Rightarrow
-\Ext_A^{p + q}(\tau_{\leq n}K, \omega_A^\bullet) =
-H^{p + q}(R\Hom_A(\tau_{\leq n}K, \omega_A^\bullet))
-$$
-which shows that these cohomology modules are finite. Since for
-$n > p + q + c$ this is equal to $H^{p + q}(R\Hom_A(K, \omega_A^\bullet))$
-we see that $R\Hom_A(K, \omega_A^\bullet)$ is indeed an object
-of $D_{\textit{Coh}}(A)$.
+Let $K$ be an object of $D_{\textit{Coh}}(A)$. From
+Lemma \ref{lemma-finite-ext-into-bounded-injective}
+we see $R\Hom_A(K, \omega_A^\bullet)$ is an object of $D_{\textit{Coh}}(A)$.
 By More on Algebra, Lemma
 \ref{more-algebra-lemma-internal-hom-evaluate-isomorphism-technical}
 and the assumptions on the dualizing complex
@@ -2598,51 +2624,16 @@ $$
 Thus our functor has a quasi-inverse and the proof is complete.
 \end{proof}
 
-\begin{lemma}
-\label{lemma-detect-cohomology}
-Let $A$ be a Noetherian ring. Let $K \in D^b_{\textit{Coh}}(A)$.
-Let $\mathfrak m$ be a maximal ideal of $A$.
-If $H^i(K)/\mathfrak m H^i(K) \not = 0$, then there exists a finite
-$A$-module $E$ annihilated by a power of $\mathfrak m$
-and a map $K \to E[-i]$ which is nonzero on $H^i(K)$.
-\end{lemma}
-
-\begin{proof}
-Let $I$ be the injective hull of the residue field of $\mathfrak m$.
-If $H^i(K)/\mathfrak m H^i(K) \not = 0$, then there exists a nonzero
-map $H^i(K) \to I$. Since $I$ is injective, we can lift this to a
-nonzero map $K \to I[-i]$. Recall that $I = \bigcup I[\mathfrak m^n]$,
-see Lemma \ref{lemma-torsion-submodule-sum-injective-hulls}
-and that each of the modules $E = I[\mathfrak m^n]$ is of the
-desired type. Thus it suffices to prove that
-$$
-\Hom_{D(A)}(K, I) = \colim \Hom_{D(A)}(K, I[\mathfrak m^n])
-$$
-This would be immediate if $K$ where a compact object
-(or a perfect object) of $D(A)$. This is not the case, but
-$K$ is a pseudo-coherent object which is enough here. Namely,
-we can represent $K$ by a bounded above complex of finite
-free $R$-modules $K^\bullet$. In this case the $\Hom$ groups
-above are computed by using $\Hom_{K(A)}(K^\bullet, -)$.
-As each $K^n$ is finite free the limit statement holds and the
-proof is complete.
-\end{proof}
-
 \noindent
-Let $R$ be a ring. We will say that an object $L$ of $D(R)$ is
-{\it invertible} if there is an open covering $\Spec(R) = \bigcup D(f_i)$
-such that $L \otimes_R R_{f_i} \cong R_{f_i}[-n_i]$ for some integers $n_i$.
-In this case, the function
-$$
-\mathfrak p \mapsto n_\mathfrak p,\quad
-\text{where }n_\mathfrak p\text{ is the unique integer such that }
-H^{n_\mathfrak p}(L \otimes \kappa(\mathfrak p)) \not = 0
-$$
-is locally constant on $\Spec(R)$. In particular, it follows that
-$L = \bigoplus H^n(L)[-n]$ which gives a well defined complex of
-$R$-modules (with zero differentials) representing $L$. Since each
-$H^n(L)$ is finite projective and nonzero for only a finite number of
-$n$ we also see that $L$ is a perfect object of $D(R)$.
+Let $R$ be a ring. Recall that an object $L$ of $D(R)$ is
+{\it invertible} if it is an invertible object for the
+symmetric monoidal structure on $D(R)$ given by derived
+tensor product. In
+More on Algebra, Lemma \ref{more-algebra-lemma-invertible-derived}
+we have seen this means $L$ is perfect, $L = \bigoplus H^n(L)[-n]$,
+this is a finite sum, each $H^n(L)$ is finite projective,
+and there is an open covering $\Spec(R) = \bigcup D(f_i)$ such that
+$L \otimes_R R_{f_i} \cong R_{f_i}[-n_i]$ for some integers $n_i$.
 
 \begin{lemma}
 \label{lemma-equivalence-comes-from-invertible}
@@ -2659,7 +2650,7 @@ cohomology groups of $F(\kappa)$ are annihilated by $\mathfrak m$.
 We also see that
 $$
 \Ext^i_A(\kappa, \kappa) = \text{Ext}^i_A(F(\kappa), F(\kappa))
-= \Hom_{D(A)}(F(\kappa), F(\kappa)[-i])
+= \Hom_{D(A)}(F(\kappa), F(\kappa)[i])
 $$
 is zero for $i < 0$. Say $H^a(F(\kappa)) \not = 0$ and
 $H^b(F(\kappa)) \not = 0$ with $a$ minimal and $b$ maximal
@@ -2690,7 +2681,8 @@ lemma this implies that $H^j(F(A))_\mathfrak m$ is zero for $j > a$ and
 generated by $1$ element for $j = a$. On the other hand, if
 $H^j(F(A))_\mathfrak m$ is not zero for some $j < a$, then
 there is a map $F(A) \to E[-a + i]$ for some $i < 0$ and some
-$E$ (Lemma \ref{lemma-detect-cohomology}) which is a contradiction.
+$E$ (More on Algebra, Lemma \ref{more-algebra-lemma-detect-cohomology})
+which is a contradiction.
 Thus we see that $F(A)_\mathfrak m = M[-a]$
 for some $A_\mathfrak m$-module $M$ generated by $1$ element.
 However, since
@@ -3072,7 +3064,7 @@ $$
 \medskip\noindent
 If $M$ has depth $0$ and $d > 0$ we let $N = M[\mathfrak m^\infty]$ and set
 $M' = M/N$ (compare with Lemma \ref{lemma-divide-by-torsion}).
-Then $M'$ has depth $>0$ and $\dim(\text{Supp}(M')) = d$.
+Then $M'$ has depth $> 0$ and $\dim(\text{Supp}(M')) = d$.
 Thus we know the result for $M'$ and since
 $R\Hom_A(N, \omega_A^\bullet) = \Hom_A(N, E)$
 (Lemma \ref{lemma-dualizing-finite-length})
@@ -3099,7 +3091,7 @@ be a finite $A$-module. The following are equivalent
 \begin{enumerate}
 \item $M$ is Cohen-Macaulay,
 \item $\Ext^i_A(M, \omega_A^\bullet)$ is nonzero for a single $i$,
-\item $\Ext^i_A(M, \omega_A^\bullet)$ is zero for
+\item $\Ext^{-i}_A(M, \omega_A^\bullet)$ is zero for
 $i \not = \dim(\text{Supp}(M))$.
 \end{enumerate}
 Denote $CM_d$ the category of finite Cohen-Macaulay $A$-modules
@@ -3230,7 +3222,7 @@ we see that the remaining module has to be nonzero.
 
 \noindent
 Our results in the local setting have the following consequence:
-a Noetherian ring with has a dualizing complex is a
+a Noetherian ring which has a dualizing complex is a
 universally catenary ring of finite dimension.
 
 \begin{lemma}
@@ -3320,7 +3312,7 @@ $$
 is nonzero only for $e = -\dim(A_\mathfrak q) = -1$.
 We conclude
 $$
--\delta((0)) = -1 - \delta(\mathfrak p)
+-\delta((0)) = -1 - \delta(\mathfrak q)
 $$
 as desired.
 \end{proof}
@@ -3801,6 +3793,11 @@ only if $A[0]$ is a dualizing complex.
 \end{lemma}
 
 \begin{proof}
+For invertible objects of $D(A)$, see
+More on Algebra, Lemma \ref{more-algebra-lemma-invertible-derived}
+and the discussion in Section \ref{section-dualizing}.
+
+\medskip\noindent
 By Lemma \ref{lemma-dualizing-localize} for every
 $\mathfrak p$ the complex $(\omega_A^\bullet)_\mathfrak p$ is a
 dualizing complex over $A_\mathfrak p$. By definition and uniqueness
@@ -3924,8 +3921,8 @@ The following are equivalent
 \begin{proof}
 Below we will use without further mention that a local Gorenstein ring
 has finite injective dimension as well as Lemma \ref{lemma-gorenstein-ext}.
-By More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}
+By More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}
 we have
 $$
 \Ext^i_A(\kappa_A, A) \otimes_A B =
@@ -4036,7 +4033,7 @@ as desired.
 \label{lemma-flat-iso-mod-I}
 Let $A \to B$ be a flat map of Noetherian rings. Let
 $I \subset A$ be an ideal such that $A/I = B/IB$ and
-such that $IB$ is contained in the radical of $B$.
+such that $IB$ is contained in the Jacobson radical of $B$.
 Let $\omega_A^\bullet$ be a dualizing complex.
 Then $\omega_A^\bullet \otimes_A B$ is a dualizing
 complex for $B$.
@@ -4169,7 +4166,7 @@ Cohen-Macaulay. This is not particularly helpful for the proof, but
 psychologically may be useful.
 
 \medskip\noindent
-Part (A). Let $k \subset K$ be a finitely generated field extension.
+Part (A). Let $K/k$ be a finitely generated field extension.
 Let $R$ be a Gorenstein $k$-algebra.
 We can find a global complete intersection
 $A = k[x_1, \ldots, x_n]/(f_1, \ldots, f_c)$
@@ -4244,7 +4241,7 @@ See Divided Power Algebra, Definition \ref{dpa-definition-lci}.
 \end{lemma}
 
 \begin{proof}
-Part (A). Let $k \subset K$ be a finitely generated field extension.
+Part (A). Let $K/k$ be a finitely generated field extension.
 Let $R$ be a $k$-algebra which is a local complete intersection.
 We can find a global complete intersection
 $A = k[x_1, \ldots, x_n]/(f_1, \ldots, f_c)$
@@ -4263,7 +4260,7 @@ local rings are complete intersections.
 Part (C). Let $A \to B \to C$ be flat maps of Noetherian rings.
 Assume the fibres of $A \to B$ are local complete intersections
 and $B \to C$ is regular. We have to show the fibres of $A \to C$
-are Gorenstein. Clearly, we may assume $A = k$ is a field.
+are local complete intersections. Clearly, we may assume $A = k$ is a field.
 Then we may assume that $B \to C$ is a regular local homomorphism
 of Noetherian local rings. Then $B$ is a complete intersection and
 $C/\mathfrak m_B C$ is regular, in particular a complete intersection
@@ -4792,40 +4789,40 @@ Follows from Lemmas \ref{lemma-flat-bc}, \ref{lemma-bc-flat}, and
 
 \begin{lemma}
 \label{lemma-relative-dualizing-algebraic}
-Let $\varphi : R \to A$ be a flat finite type map of Noetherian rings.
-Then
+Let $\varphi : R \to A$ be a finite type map of Noetherian rings.
 \begin{enumerate}
-\item $\omega_{A/R}^\bullet$ is in $D^b_{\textit{Coh}}(A)$
-and $R$-perfect (More on Algebra,
-Definition \ref{more-algebra-definition-relatively-perfect}),
+\item If $\varphi$ is perfect, then
+\begin{enumerate}
+\item $\omega_{A/R}^\bullet$ is in $D^b_{\textit{Coh}}(A)$,
+\item $\omega_{A/R}^\bullet$ has finite tor dimension over $R$, and
 \item $A \to R\Hom_A(\omega_{A/R}^\bullet, \omega_{A/R}^\bullet)$
-is an isomorphism, and
+is an isomorphism.
+\end{enumerate}
+\item If $\varphi$ is flat, then (1)(a), (1)(b), and (1)(c) hold and
+\begin{enumerate}
+\item $\omega_{A/R}^\bullet$ is $R$-perfect
+(More on Algebra,
+Definition \ref{more-algebra-definition-relatively-perfect}), and
 \item for every map $R \to k$ to a field the base change
 $\omega_{A/R}^\bullet \otimes_A^\mathbf{L} (A \otimes_R k)$
 is a dualizing complex for $A \otimes_R k$.
 \end{enumerate}
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-Choose $R \to P \to A$ as in the definition of $\varphi^!$.
-Recall that $R \to A$ is a perfect ring map
-(More on Algebra, Lemma
-\ref{more-algebra-lemma-flat-finite-presentation-perfect}) and
-hence $A$ is perfect as a $P$-modue
+Assume $R \to A$ is perfect. Choose $R \to P \to A$ as in the definition
+of $\varphi^!$. Then $A$ is perfect as a $P$-modue
 (More on Algebra, Lemma \ref{more-algebra-lemma-perfect-ring-map}).
 This shows that $\omega_{A/R}^\bullet$ is in $D^b_{\textit{Coh}}(A)$
-by Lemma \ref{lemma-shriek-boundedness}.
-To show $\omega_{A/R}^\bullet$ is $R$-perfect it suffices to
-show it has finite tor dimension as a complex of $R$-modules.
-This is true because
+by Lemma \ref{lemma-shriek-boundedness}. This proves (1)(a).
+To show $\omega_{A/R}^\bullet$ has finite tor dimension
+as a complex of $R$-modules, observe that
 $\omega_{A/R}^\bullet = \varphi^!(R) = R\Hom(A, P)[n]$
 maps to $R\Hom_P(A, P)[n]$ in $D(P)$, which is perfect in $D(P)$
 (More on Algebra, Lemma \ref{more-algebra-lemma-dual-perfect-complex}),
 hence has finite tor dimension in $D(R)$
-as $R \to P$ is flat. This proves (1).
-
-\medskip\noindent
-Proof of (2). The object
+as $R \to P$ is flat. This proves (1)(b). The object
 $R\Hom_A(\omega_{A/R}^\bullet, \omega_{A/R}^\bullet)$
 of $D(A)$ maps in $D(P)$ to
 \begin{align*}
@@ -4837,16 +4834,24 @@ R\Hom_P(R\Hom_P(A, P), P)
 \end{align*}
 This is equal to $A$ by the already used
 More on Algebra, Lemma \ref{more-algebra-lemma-dual-perfect-complex}.
+This proves (1)(c).
 
 \medskip\noindent
-Proof of (3). By Lemma \ref{lemma-base-change-relative-algebraic}
+Assume $\varphi$ is flat. Then $R \to A$ is a perfect ring map
+(More on Algebra, Lemma
+\ref{more-algebra-lemma-flat-finite-presentation-perfect})
+and we see that (1)(a), (1)(b), and (1)(c) hold.
+Of course, then $\omega_{A/R}^\bullet$ is $R$-perfect by
+(1)(a) and (1)(b) and the definitions.
+Let $R \to k$ be as in (2)(b).
+By Lemma \ref{lemma-base-change-relative-algebraic}
 there is an isomorphism
 $$
 \omega_{A/R}^\bullet \otimes_A^\mathbf{L} (A \otimes_R k) \cong
 \omega^\bullet_{A \otimes_R k/k}
 $$
 and the right hand side is a dualizing complex by
-Lemma \ref{lemma-shriek-dualizing-algebraic}.
+Lemma \ref{lemma-shriek-dualizing-algebraic}. This finishes the proof.
 \end{proof}
 
 \begin{lemma}
@@ -4889,7 +4894,8 @@ Section \ref{section-relative-dualizing-complex-algebraic}
 shows that it suffices to show the lemma in case
 $A = R/I$ where $I \subset R$ is a Koszul-regular ideal.
 Checking $\omega_{A/R}^\bullet$ is invertible in $D(A)$
-is local on $\Spec(A)$ by definition.
+is local on $\Spec(A)$ by More on Algebra, Lemma
+\ref{more-algebra-lemma-invertible-derived}.
 Moreover, formation of $\omega_{A/R}^\bullet$ commutes with
 localization on $R$ by Lemma \ref{lemma-flat-bc}.
 Combining
@@ -4918,7 +4924,8 @@ The following are equivalent
 \begin{enumerate}
 \item the fibres $A \otimes_R \kappa(\mathfrak p)$ are Gorenstein
 for all primes $\mathfrak p \subset R$, and
-\item $\omega_{A/R}^\bullet$ is an invertible object of $D(A)$.
+\item $\omega_{A/R}^\bullet$ is an invertible object of $D(A)$, see
+More on Algebra, Lemma \ref{more-algebra-lemma-invertible-derived}.
 \end{enumerate}
 \end{lemma}
 
@@ -5019,8 +5026,8 @@ where $\mathfrak r \subset P$ is the prime corresponding to $\mathfrak q$
 and $I$ is the kernel of $P \to A$.
 We may rewrite this as
 $\Ext_{P_\mathfrak r}^i(P_\mathfrak r/IP_\mathfrak r, P_\mathfrak r)$
-by More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}.
+by More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}.
 Thus we have to show
 $$
 \text{depth}_{IP_\mathfrak r}(P_\mathfrak r) \geq n - d
@@ -5097,7 +5104,7 @@ $\text{trdeg}_{\kappa(R \cap \mathfrak q)} \kappa(\mathfrak q) \leq r$.
 \end{enumerate}
 Then
 $$
-H^i(\omega_{A/R}^\bullet)_\mathfrak p = 0 \Rightarrow - r \leq i
+H^i(\omega_{A/R}^\bullet)_\mathfrak p \not = 0 \Rightarrow - r \leq i
 $$
 and $H^{-r}(\omega_{A/R}^\bullet)_\mathfrak p$ is $(S_2)$
 as an $A_\mathfrak p$-module.

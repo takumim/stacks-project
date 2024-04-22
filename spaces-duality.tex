@@ -164,8 +164,8 @@ Hence we see that
 \text{Ext}^n_A(K, I) \otimes_A B
 \end{align*}
 The penultimate equality because $H^{-n}(K)$ is a finite $A$-module, see
-More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}.
+More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}.
 Therefore the cohomology sheaves of the left and right hand
 side of the equality in the lemma are the same.
 \end{proof}
@@ -223,9 +223,13 @@ statements of Dualizing Complexes, Lemma \ref{dualizing-lemma-dualizing}.
 \end{proof}
 
 \noindent
-Let $(\mathcal{C}, \mathcal{O})$ be a ringed site.
-We will say that an object $L$ of $D(\mathcal{O})$ is {\it invertible}
-if for every object $U$ of $\mathcal{C}$
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Recall
+that an object $L$ of $D(\mathcal{O})$ is {\it invertible}
+if it is an invertible object for the symmetric monoidal
+structure on $D(\mathcal{O}_X)$ given by derived tensor product. In
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-invertible-derived}
+we we have seen this means $L$ is perfect and if $(\mathcal{C}, \mathcal{O})$
+is a locally ringed site, then for every object $U$ of $\mathcal{C}$
 there is a covering $\{U_i \to U\}$ of $U$ in $\mathcal{C}$
 such that $L|_{U_i} \cong \mathcal{O}_{U_i}[-n_i]$
 for some integers $n_i$.
@@ -238,7 +242,6 @@ such that $L|_{X_n}$ is an invertible module sitting in degree $n$.
 In particular, it follows that $L = \bigoplus H^n(L)[-n]$
 which gives a well defined complex of $\mathcal{O}_X$-modules
 (with zero differentials) representing $L$.
-Moreover, we see that $L$ is a perfect object of $D(\mathcal{O}_X)$.
 
 \begin{lemma}
 \label{lemma-dualizing-unique-spaces}
@@ -401,18 +404,35 @@ Let $f : X \to Y$ be a morphism of quasi-compact and quasi-separated
 algebraic spaces over $S$.
 Let $a$ be the right adjoint to
 $Rf_* : D_\QCoh(\mathcal{O}_X) \to D_\QCoh(\mathcal{O}_Y)$.
-Then (\ref{equation-sheafy-trace})
+Let $L \in D_\QCoh(\mathcal{O}_X)$ and
+$K \in D_\QCoh(\mathcal{O}_Y)$.
+Then the map (\ref{equation-sheafy-trace})
 $$
 Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K))
 \longrightarrow
 R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)
 $$
-is an isomorphism for all $L \in D_\QCoh(\mathcal{O}_X)$ and
-$K \in D_\QCoh(\mathcal{O}_Y)$.
+becomes an isomorphism after applying the functor
+$DQ_Y : D(\mathcal{O}_Y) \to D_\QCoh(\mathcal{O}_Y)$
+discussed in Derived Categories of Spaces, Section
+\ref{spaces-perfect-section-better-coherator}.
 \end{lemma}
 
 \begin{proof}
-Let $M \in D_\QCoh(\mathcal{O}_Y)$. Then we have the following
+The statement makes sense as $DQ_Y$ exists by
+Derived Categories of Spaces, Lemma
+\ref{spaces-perfect-lemma-better-coherator}.
+Since $DQ_Y$ is the right adjoint to the inclusion
+functor $D_\QCoh(\mathcal{O}_Y) \to D(\mathcal{O}_Y)$
+to prove the lemma we have to show that for any
+$M \in D_\QCoh(\mathcal{O}_Y)$
+the map (\ref{equation-sheafy-trace}) induces an bijection
+$$
+\Hom_Y(M, Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)))
+\longrightarrow
+\Hom_Y(M, R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K))
+$$
+To see this we use the following string of equalities
 \begin{align*}
 \Hom_Y(M, Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)))
 & =
@@ -435,8 +455,56 @@ The fourth equality by Derived Categories of Spaces, Lemma
 \ref{spaces-perfect-lemma-cohomology-base-change} (this is the important step).
 The fifth by Cohomology on Sites, Lemma
 \ref{sites-cohomology-lemma-internal-hom}.
-Thus the result holds by the Yoneda lemma.
 \end{proof}
+
+\begin{example}
+\label{example-iso-on-RSheafHom}
+The statement of Lemma \ref{lemma-iso-on-RSheafHom} is not true without
+applying the ``coherator'' $DQ_Y$. See
+Duality for Schemes, Example \ref{duality-example-iso-on-RSheafHom}.
+\end{example}
+
+\begin{remark}
+\label{remark-iso-on-RSheafHom}
+In the situation of Lemma \ref{lemma-iso-on-RSheafHom} we have
+$$
+DQ_Y(Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K))) =
+Rf_* DQ_X(R\SheafHom_{\mathcal{O}_X}(L, a(K)))
+$$
+by Derived Categories of Spaces, Lemma
+\ref{spaces-perfect-lemma-pushforward-better-coherator}.
+Thus if $R\SheafHom_{\mathcal{O}_X}(L, a(K)) \in D_\QCoh(\mathcal{O}_X)$,
+then we can ``erase'' the $DQ_Y$ on the left hand side of the arrow.
+On the other hand, if we know that
+$R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K) \in D_\QCoh(\mathcal{O}_Y)$,
+then we can ``erase'' the $DQ_Y$ from the right hand side of the arrow.
+If both are true then we see that (\ref{equation-sheafy-trace})
+is an isomorphism. Combining this with
+Derived Categories of Spaces, Lemma
+\ref{spaces-perfect-lemma-quasi-coherence-internal-hom}
+we see that $Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)) \to
+R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)$ is an isomorphism if
+\begin{enumerate}
+\item $L$ and $Rf_*L$ are perfect, or
+\item $K$ is bounded below and $L$ and $Rf_*L$ are pseudo-coherent.
+\end{enumerate}
+For (2) we use that $a(K)$ is bounded below if $K$
+is bounded below, see Lemma \ref{lemma-twisted-inverse-image-bounded-below}.
+\end{remark}
+
+\begin{example}
+\label{example-iso-on-RSheafHom-noetherian}
+Let $S$ be a scheme.
+Let $f : X \to Y$ be a proper morphism of Noetherian algebraic spaces
+over $S$, $L \in D^-_{\textit{Coh}}(X)$ and $K \in D^+_{\QCoh}(\mathcal{O}_Y)$.
+Then the map $Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)) \to
+R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)$ is an isomorphism.
+Namely, the complexes $L$ and $Rf_*L$ are pseudo-coherent by
+Derived Categories of Spaces, Lemmas
+\ref{spaces-perfect-lemma-identify-pseudo-coherent-noetherian} and
+\ref{spaces-perfect-lemma-direct-image-coherent}
+and the discussion in Remark \ref{remark-iso-on-RSheafHom} applies.
+\end{example}
 
 \begin{lemma}
 \label{lemma-iso-global-hom}
@@ -461,6 +529,13 @@ $$
 R\Hom_Y(Rf_*L, K) = R\Gamma(Y, R\SheafHom_{\mathcal{O}_X}(Rf_*L, a(K)))
 $$
 Thus the lemma is a consequence of Lemma \ref{lemma-iso-on-RSheafHom}.
+Namely, a map $E \to E'$ in $D(\mathcal{O}_Y)$ which induces
+an isomorphism $DQ_Y(E) \to DQ_Y(E')$ induces a quasi-isomorphism
+$R\Gamma(Y, E) \to R\Gamma(Y, E')$. Indeed we have
+$H^i(Y, E) = \Ext^i_Y(\mathcal{O}_Y, E) = \Hom(\mathcal{O}_Y[-i], E) =
+\Hom(\mathcal{O}_Y[-i], DQ_Y(E))$ because $\mathcal{O}_Y[-i]$
+is in $D_\QCoh(\mathcal{O}_Y)$ and $DQ_Y$ is the right adjoint
+to the inclusion functor $D_\QCoh(\mathcal{O}_Y) \to D(\mathcal{O}_Y)$.
 \end{proof}
 
 
@@ -1144,13 +1219,12 @@ is given by
 $$
 \varphi \longmapsto \text{Tr}_{f, K} \circ Rf_*\varphi
 $$
-The isomorphism
+The canonical map (\ref{equation-sheafy-trace})
 $$
 Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K))
 \longrightarrow
 R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)
 $$
-of Lemma \ref{lemma-iso-on-RSheafHom}
 comes about by composition with $\text{Tr}_{f, K}$.
 Every trace map we are going to consider in this section will be a
 special case of this trace map. Before we discuss some special cases
@@ -1554,53 +1628,27 @@ is an isomorphism.
 \end{lemma}
 
 \begin{proof}
-We will repeatedly use that
-$Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)) =
-R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)$, see
-Lemma \ref{lemma-iso-on-RSheafHom}.
-Let $E$ be a perfect object of $D(\mathcal{O}_X)$
-with dual $E^\vee$, see Cohomology on Sites, Lemma
-\ref{sites-cohomology-lemma-dual-perfect-complex}.
-Then
-$$
-Rf_*(E \otimes_{\mathcal{O}_X}^\mathbf{L} a(\mathcal{O}_Y)) =
-Rf_*R\SheafHom_{\mathcal{O}_X}(E^\vee, a(\mathcal{O}_Y)) =
-R\SheafHom_{\mathcal{O}_Y}(Rf_*E^\vee, \mathcal{O}_Y)
-$$
-By Derived Categories of Spaces, Lemma
-\ref{spaces-perfect-lemma-flat-proper-perfect-direct-image-general}
-the complex $Rf_*E^\vee$ is perfect.
-Hence the dual $R\SheafHom_{\mathcal{O}_Y}(Rf_*E^\vee, \mathcal{O}_Y)$
-is perfect as well. We conclude that $a(\mathcal{O}_Y)$
-is pseudo-coherent by
+For a perfect object $E$ of $D(\mathcal{O}_X)$ we have
+\begin{align*}
+Rf_*(E \otimes_{\mathcal{O}_X}^\mathbf{L} \omega_{X/Y}^\bullet)
+& =
+Rf_*R\SheafHom_{\mathcal{O}_X}(E^\vee, \omega_{X/Y}^\bullet) \\
+& =
+R\SheafHom_{\mathcal{O}_Y}(Rf_*E^\vee, \mathcal{O}_Y) \\
+& =
+(Rf_*E^\vee)^\vee
+\end{align*}
+For the first equality, see
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-dual-perfect-complex}.
+For the second equality, see Lemma \ref{lemma-iso-on-RSheafHom},
+Remark \ref{remark-iso-on-RSheafHom}, and 
 Derived Categories of Spaces, Lemma
-\ref{spaces-perfect-lemma-perfect-enough} amd
-More on Morphisms of Spaces, Lemma
-\ref{spaces-more-morphisms-lemma-characterize-pseudo-coherent}.
-
-\medskip\noindent
-Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_Y$-module. By
-Lemma \ref{lemma-compare-with-pullback-flat-proper} we have
-$$
-a(\mathcal{F}) =
-Lf^*\mathcal{F} \otimes_{\mathcal{O}_X}^\mathbf{L} a(\mathcal{O}_Y) =
-f^{-1}\mathcal{F} \otimes_{f^{-1}\mathcal{O}_Y}^\mathbf{L} a(\mathcal{O}_Y)
-$$
-Second equality by Cohomology on Sites, Lemma
-\ref{sites-cohomology-lemma-variant-derived-pullback}.
-By Lemma \ref{lemma-twisted-inverse-image-bounded-below}
-there exists an integer $N$ such that
-$H^i(a(\mathcal{F})) = 0$ for $i \leq -N$.
-Looking at stalks we conclude that $a(\mathcal{O}_Y)$ has finite
-tor dimension (details omitted; hint: for $y \in Y$ any
-$\mathcal{O}_{Y, y}$-module occurs as $\mathcal{F}_y$
-for some quasi-coherent module on the affine scheme $Y$).
-
-\medskip\noindent
-Combining the results of the previous two paragraphs we find that
-$a(\mathcal{O}_Y)$ is $Y$-perfect, see
-More on Morphisms of Spaces, Definition
-\ref{spaces-more-morphisms-definition-relatively-perfect}.
+\ref{spaces-perfect-lemma-flat-proper-perfect-direct-image-general}.
+The third equality is the definition of the dual. In particular
+these references also show that the outcome is a perfect object
+of $D(\mathcal{O}_Y)$. We conclude that $\omega_{X/Y}^\bullet$
+is $Y$-perfect by More on Morphisms of Spaces, Lemma
+\ref{spaces-more-morphisms-lemma-characterize-relatively-perfect}.
 This proves (1).
 
 \medskip\noindent
@@ -1659,7 +1707,10 @@ The second equality is the definition of $a$.
 The third equality comes from the construction of the dual perfect
 complex $E^\vee$, see Cohomology on Sites, Lemma
 \ref{sites-cohomology-lemma-dual-perfect-complex}.
-The fourth equality is given in the first line of the proof.
+The fourth equality follows from the equality
+$Rf_*R\SheafHom_{\mathcal{O}_X}(E^\vee, \omega_{X/Y}^\bullet) =
+R\SheafHom_{\mathcal{O}_Y}(Rf_*E^\vee, \mathcal{O}_Y)$
+shown in the first paragraph of the proof.
 The fifth equality holds by double duality for perfect complexes
 (Cohomology on Sites, Lemma
 \ref{sites-cohomology-lemma-dual-perfect-complex})
@@ -1758,9 +1809,9 @@ $(L(g')^*\omega_{X/Y}^\bullet, Lg^*\tau) \cong
 as follows: it says that for any $M' \in D_\QCoh(\mathcal{O}_{X'})$
 the map
 $$
-\Hom_X(M', L(g')^*\omega_{X/Y}^\bullet)
+\Hom_{X'}(M', L(g')^*\omega_{X/Y}^\bullet)
 \longrightarrow
-\Hom_Y(Rf'_*M', \mathcal{O}_{Y'}),\quad
+\Hom_{Y'}(Rf'_*M', \mathcal{O}_{Y'}),\quad
 \varphi' \longmapsto Lg^*\tau \circ Rf'_*\varphi'
 $$
 is an isomorphism. This follows from the definition of $a'$

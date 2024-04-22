@@ -41,6 +41,16 @@ will be an $R$-module $A$ endowed with an $R$-bilinear map $A \times A \to A$
 In other words, these are unital associative $R$-algebras
 such that the structure map $R \to A$ maps into the center of $A$.
 
+\medskip\noindent
+{\bf Sign rules.} In this chapter we will work with graded algebras
+and graded modules often equipped with differentials. The sign rules on
+underlying complexes will always be (compatible with) those introduced in
+More on Algebra, Section \ref{more-algebra-section-sign-rules}.
+This will occasionally cause the multiplicative structure to be
+twisted in unexpected ways especially when considering left modules
+or the relationship between left and right modules.
+
+
 
 
 
@@ -81,39 +91,21 @@ $\mathbf{Z}$-grading and an $R$-linear operator $\text{d}$ whose square
 is zero and which satisfies the Leibniz rule as explained above. In this case
 we often say ``Let $(A, \text{d})$ be a differential graded algebra''.
 
+\medskip\noindent
+The Leibniz rule relating differentials and multiplication on a differential
+graded $R$-algebra $A$ exactly means that the multiplication map defines
+a map of cochain complexes
+$$
+\text{Tot}(A^\bullet \otimes_R A^\bullet) \to A^\bullet
+$$
+Here $A^\bullet$ denote the underlying cochain complex of $A$.
+
 \begin{definition}
 \label{definition-homomorphism-dga}
 A {\it homomorphism of differential graded algebras}
 $f : (A, \text{d}) \to (B, \text{d})$ is an algebra map $f : A \to B$
 compatible with the gradings and $\text{d}$.
 \end{definition}
-
-\begin{definition}
-\label{definition-opposite-dga}
-Let $R$ be a ring. Let $(A, \text{d})$ be a differential graded algebra
-over $R$. The {\it opposite differential graded algebra} is the differential
-graded algebra $(A^{opp}, \text{d})$ over $R$ where $A^{opp} = A$
-as an $R$-module, $\text{d} = \text{d}$, and multiplication is
-given by
-$$
-a \cdot_{opp} b = (-1)^{\deg(a)\deg(b)} b a
-$$
-for homogeneous elements $a, b \in A$.
-\end{definition}
-
-\noindent
-This makes sense because
-\begin{align*}
-\text{d}(a \cdot_{opp} b)
-& =
-(-1)^{\deg(a)\deg(b)} \text{d}(b a) \\
-& =
-(-1)^{\deg(a)\deg(b)} \text{d}(b) a +
-(-1)^{\deg(a)\deg(b) + \deg(b)}b\text{d}(a) \\
-& =
-(-1)^{\deg(a)}a \cdot_{opp} \text{d}(b) + \text{d}(a) \cdot_{opp} b
-\end{align*}
-as desired.
 
 \begin{definition}
 \label{definition-cdga}
@@ -170,7 +162,8 @@ Definition \ref{definition-tensor-product}.
 \label{section-modules}
 
 \noindent
-Just the definitions.
+Our default in this chapter is right modules;
+we discuss left modules in Section \ref{section-left-modules}.
 
 \begin{definition}
 \label{definition-dgm}
@@ -197,18 +190,14 @@ and $r$ maps to a degree $0$ element of $A$, hence
 $\text{d}(mr) = \text{d}(m)r$.
 
 \medskip\noindent
-We can define {\it left differential graded $A$-modules} in exactly the same
-manner. If $M$ is a left $A$-module, then we can think of $M$ as a
-right $A^{opp}$-module with multiplication $\cdot_{opp}$ defined by
-the rule
+The Leibniz rule relating differentials and multiplication on a differential
+graded $R$-module $M$ over a differential graded $R$-algebra $A$
+exactly means that the multiplication map defines a map of cochain complexes
 $$
-m \cdot_{opp} a = (-1)^{\deg(a)\deg(m)} a m
+\text{Tot}(M^\bullet \otimes_R A^\bullet) \to M^\bullet
 $$
-for $a$ and $m$ homogeneous. The category of left differential graded
-$A$-modules is equivalent to the category of right differential
-graded $A^{opp}$-modules. We prefer to work with right modules
-(essentially because of what happens in Example \ref{example-dgm-dg-cat}), but
-the reader is free to switch to left modules if (s)he so desires.
+Here $A^\bullet$ and $M^\bullet$ denote the underlying cochain complexes
+of $A$ and $M$.
 
 \begin{lemma}
 \label{lemma-dgm-abelian}
@@ -260,13 +249,18 @@ And so on and so forth.
 \begin{definition}
 \label{definition-shift}
 Let $(A, \text{d})$ be a differential graded algebra.
-Let $M$ be a differential graded module.
-For any $k \in \mathbf{Z}$ we define the {\it $k$-shifted module}
-$M[k]$ as follows
+Let $M$ be a differential graded module whose underlying complex
+of $R$-modules is $M^\bullet$. For any $k \in \mathbf{Z}$
+we define the {\it $k$-shifted module} $M[k]$ as follows
 \begin{enumerate}
-\item as $A$-module $M[k] = M$,
-\item $M[k]^n = M^{n + k}$,
-\item $\text{d}_{M[k]} = (-1)^k\text{d}_M$.
+\item the underlying complex of $R$-modules of $M[k]$ is $M^\bullet[k]$,
+i.e., we have $M[k]^n = M^{n + k}$ and
+$\text{d}_{M[k]} = (-1)^k\text{d}_M$ and
+\item as $A$-module the multiplication
+$$
+(M[k])^n \times A^m \longrightarrow (M[k])^{n + m}
+$$
+is equal to the given multiplication $M^{n + k} \times A^m \to M^{n + k + m}$.
 \end{enumerate}
 For a morphism $f : M \to N$ of differential graded $A$-modules
 we let $f[k] : M[k] \to N[k]$ be the map equal to $f$ on underlying
@@ -275,6 +269,35 @@ $[k] : \text{Mod}_{(A, \text{d})} \to \text{Mod}_{(A, \text{d})}$.
 \end{definition}
 
 \noindent
+Let us check that with this choice the Leibniz rule is satisfied.
+Let $x \in M[k]^n = M^{n + k}$ and $a \in A^m$ and denoting
+$\cdot_{M[k]}$ the product in $M[k]$ then we see
+\begin{align*}
+\text{d}_{M[k]}(x \cdot_{M[k]} a)
+& =
+(-1)^k \text{d}_M(xa) \\
+& =
+(-1)^k \text{d}_M(x) a + (-1)^{k + n + k} x \text{d}(a) \\
+& =
+\text{d}_{M[k]}(x) a + (-1)^n x \text{d}(a) \\
+& =
+\text{d}_{M[k]}(x) \cdot_{M[k]} a + (-1)^n x \cdot_{M[k]} \text{d}(a)
+\end{align*}
+This is what we want as $x$ has degree $n$ as a homogeneous element of $M[k]$.
+We also observe that with these choices we may think of
+the multiplication map as the map of complexes
+$$
+\text{Tot}(M^\bullet[k] \otimes _R A^\bullet) \to
+\text{Tot}(M^\bullet \otimes _R A^\bullet)[k] \to
+M^\bullet[k]
+$$
+where the first arrow is
+More on Algebra, Section \ref{more-algebra-section-sign-rules}
+(\ref{more-algebra-item-shift-tensor}) which in this
+case does not involve a sign. (In fact, we could have deduced
+that the Liebniz rule holds from this observation.)
+
+\medskip\noindent
 The remarks in Homology, Section \ref{homology-section-homotopy-shift} apply.
 In particular, we will identify the cohomology groups of all shifts
 $M[k]$ without the intervention of signs.
@@ -1133,20 +1156,660 @@ Lemma \ref{lemma-two-split-injections}.
 
 
 
+\section{Left modules}
+\label{section-left-modules}
+
+\noindent
+Everything we have said sofar has an analogue in the setting
+of left differential graded modules, except that one has to
+take care with some sign rules.
+
+\medskip\noindent
+Let $(A, \text{d})$ be a differential graded $R$-algebra.
+Exactly analogous to right modules, we define a
+{\it left differential graded $A$-module} $M$ as a left
+$A$-module $M$ which has a grading $M = \bigoplus M^n$
+and a differential $\text{d}$, such that $A^n M^m \subset M^{n + m}$,
+such that $\text{d}(M^n) \subset M^{n + 1}$, and such that
+$$
+\text{d}(am) = \text{d}(a) m + (-1)^{\deg(a)}a \text{d}(m)
+$$
+for homogeneous elements $a \in A$ and $m \in M$. As before this
+Leibniz rule exactly signifies that the multiplication defines
+a map of complexes
+$$
+\text{Tot}(A^\bullet \otimes_R M^\bullet) \to M^\bullet
+$$
+Here $A^\bullet$ and $M^\bullet$ denote the complexes of $R$-modules
+underlying $A$ and $M$.
+
+\begin{definition}
+\label{definition-opposite-dga}
+Let $R$ be a ring. Let $(A, \text{d})$ be a differential graded algebra
+over $R$. The {\it opposite differential graded algebra} is the differential
+graded algebra $(A^{opp}, \text{d})$ over $R$ where $A^{opp} = A$
+as a graded $R$-module, $\text{d} = \text{d}$, and multiplication is
+given by
+$$
+a \cdot_{opp} b = (-1)^{\deg(a)\deg(b)} b a
+$$
+for homogeneous elements $a, b \in A$.
+\end{definition}
+
+\noindent
+This makes sense because
+\begin{align*}
+\text{d}(a \cdot_{opp} b)
+& =
+(-1)^{\deg(a)\deg(b)} \text{d}(b a) \\
+& =
+(-1)^{\deg(a)\deg(b)} \text{d}(b) a +
+(-1)^{\deg(a)\deg(b) + \deg(b)}b\text{d}(a) \\
+& =
+(-1)^{\deg(a)}a \cdot_{opp} \text{d}(b) + \text{d}(a) \cdot_{opp} b
+\end{align*}
+as desired. In terms of underlying complexes of $R$-modules
+this means that the diagram
+$$
+\xymatrix{
+\text{Tot}(A^\bullet \otimes_R A^\bullet)
+\ar[rrr]_-{\text{multiplication of }A^{opp}}
+\ar[d]_{\text{commutativity constraint}} & & &
+A^\bullet \ar[d]^{\text{id}} \\
+\text{Tot}(A^\bullet \otimes_R A^\bullet)
+\ar[rrr]^-{\text{multiplication of }A} & & &
+A^\bullet
+}
+$$
+commutes. Here the commutativity constraint on the symmetric monoidal
+category of complexes of $R$-modules is given in
+More on Algebra, Section \ref{more-algebra-section-sign-rules}.
+
+\medskip\noindent
+Let $(A, \text{d})$ be a differential graded algebra over $R$.
+Let $M$ be a left differential graded $A$-module. We will denote
+$M^{opp}$ the module $M$ viewed as a right $A^{opp}$-module with
+multiplication $\cdot_{opp}$ defined by the rule
+$$
+m \cdot_{opp} a = (-1)^{\deg(a)\deg(m)} a m
+$$
+for $a$ and $m$ homogeneous. This is compatible with differentials
+because we could have used the diagram
+$$
+\xymatrix{
+\text{Tot}(M^\bullet \otimes_R A^\bullet)
+\ar[rrr]_-{\text{multiplication on }M^{opp}}
+\ar[d]_{\text{commutativity constraint}} & & &
+M^\bullet \ar[d]^{\text{id}} \\
+\text{Tot}(A^\bullet \otimes_R M^\bullet)
+\ar[rrr]^-{\text{multiplication on }M} & & &
+M^\bullet
+}
+$$
+to define the multiplication $\cdot_{opp}$ on $M^{opp}$.
+To see that it is an associative multiplication we compute for
+homogeneous elements $a, b \in A$ and $m \in M$ that
+\begin{align*}
+m \cdot_{opp} (a \cdot_{opp} b)
+& =
+(-1)^{\deg(a)\deg(b)} m \cdot_{opp} (ba) \\
+& =
+(-1)^{\deg(a)\deg(b) + \deg(ab)\deg(m)} bam \\
+& =
+(-1)^{\deg(a)\deg(b) + \deg(ab)\deg(m) + \deg(b)\deg(am)}
+(am) \cdot_{opp} b \\
+& =
+(-1)^{\deg(a)\deg(b) + \deg(ab)\deg(m) + \deg(b)\deg(am) + \deg(a)\deg(m)}
+(m \cdot_{opp} a) \cdot_{opp} b \\
+& =
+(m \cdot_{opp} a) \cdot_{opp} b
+\end{align*}
+Of course, we could have been shown this using the compatibility between
+the associativity and commutativity constraint on the symmetric monoidal
+category of complexes of $R$-modules as well.
+
+\begin{lemma}
+\label{lemma-left-right}
+Let $(A, \text{d})$ be a differential graded $R$-algebra.
+The functor $M \mapsto M^{opp}$ from the category of
+left differential graded $A$-modules to the category of right
+differential graded $A^{opp}$-modules is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+\noindent
+Mext, we come to shifts. Let $(A, \text{d})$ be a differential graded algebra.
+Let $M$ be a left differential graded $A$-module whose underlying complex
+of $R$-modules is denoted $M^\bullet$.
+For any $k \in \mathbf{Z}$ we define the {\it $k$-shifted module}
+$M[k]$ as follows
+\begin{enumerate}
+\item the underlying complex of $R$-modules of $M[k]$ is $M^\bullet[k]$
+\item as $A$-module the multiplication
+$$
+A^n \times (M[k])^m \longrightarrow (M[k])^{n + m}
+$$
+is equal to $(-1)^{nk}$ times the given multiplication
+$A^n \times M^{m + k} \to M^{n + m + k}$.
+\end{enumerate}
+Let us check that with this choice the Leibniz rule is satisfied.
+Let $a \in A^n$ and $x \in M[k]^m = M^{m + k}$ and denoting
+$\cdot_{M[k]}$ the product in $M[k]$ then we see
+\begin{align*}
+\text{d}_{M[k]}(a \cdot_{M[k]} x)
+& =
+(-1)^{k + nk} \text{d}_M(ax) \\
+& =
+(-1)^{k + nk} \text{d}(a) x + (-1)^{k + nk + n} a \text{d}_M(x) \\
+& =
+\text{d}(a) \cdot_{M[k]} x + (-1)^{nk + n} a \text{d}_{M[k]}(x) \\
+& =
+\text{d}(a) \cdot_{M[k]} x + (-1)^n a \cdot_{M[k]} \text{d}_{M[k]}(x)
+\end{align*}
+This is what we want as $a$ has degree $n$ as a homogeneous element of $A$.
+We also observe that with these choices we may think of
+the multiplication map as the map of complexes
+$$
+\text{Tot}(A^\bullet \otimes_R M^\bullet[k]) \to
+\text{Tot}(A^\bullet \otimes_R M^\bullet)[k] \to
+M^\bullet[k]
+$$
+where the first arrow is
+More on Algebra, Section \ref{more-algebra-section-sign-rules}
+(\ref{more-algebra-item-shift-tensor}) which in this
+case involves exactly the sign we chose above. (In fact, we could have deduced
+that the Liebniz rule holds from this observation.)
+
+\medskip\noindent
+With the rule above we have canonical identifications
+$$
+(M[k])^{opp} = M^{opp}[k]
+$$
+of right differential graded $A^{opp}$-modules
+defined without the intervention of signs, in other words, the equivalence
+of Lemma \ref{lemma-left-right} is compatible with shift functors.
+
+\medskip\noindent
+Our choice above necessitates the following definition.
+
+\begin{definition}
+\label{definition-shift-graded-module}
+Let $R$ be a ring. Let $A$ be a $\mathbf{Z}$-graded $R$-algebra.
+\begin{enumerate}
+\item Given a right graded $A$-module $M$ we define the
+{\it $k$th shifted $A$-module} $M[k]$ as the same as
+a right $A$-module but with grading $(M[k])^n = M^{n + k}$.
+\item Given a left graded $A$-module $M$ we define the
+{\it $k$th shifted $A$-module} $M[k]$ as the module
+with grading $(M[k])^n = M^{n + k}$ and multiplication
+$A^n \times (M[k])^m \to (M[k])^{n + m}$
+equal to $(-1)^{nk}$ times the given multiplication
+$A^n \times M^{m + k} \to M^{n + m + k}$.
+\end{enumerate}
+\end{definition}
+
+\noindent
+Let $(A, \text{d})$ be a differential graded algebra. Let
+$f, g : M \to N$ be homomorphisms of left differential graded $A$-modules.
+A {\it homotopy between $f$ and $g$} is a graded $A$-module map
+$h : M \to N[-1]$ (observe the shift!) such that
+$$
+f(x) - g(x) = \text{d}_N(h(x)) + h(\text{d}_M(x))
+$$
+for all $x \in M$. If a homotopy exists, then we say $f$ and $g$ are
+{\it homotopic}. Thus $h$ is compatible with the $A$-module structure
+(with the shifted one on $N$) and the grading (with shifted grading on $N$)
+but not with the differential. If $f = g$ and $h$ is a homotopy, then
+$h$ defines a morphism $h : M \to N[-1]$ of left differential
+graded $A$-modules.
+
+\medskip\noindent
+With the rule above we find that $f, g : M \to N$ are homotopic if
+and only if the induced morphisms
+$f^{opp}, g^{opp} : M^{opp} \to N^{opp}$
+are homotopic as right differential graded $A^{opp}$-module homomorphisms
+(with the same homotopy).
+
+\medskip\noindent
+The homotopy category, cones, admissible short exact sequences,
+distinguished triangles are all defined in exactly the same manner
+as for right differential graded modules (and everything agrees
+on underlying complexes of $R$-modules with the constructions for
+complexes of $R$-modules). In this manner we obtain the analogue of
+Proposition \ref{proposition-homotopy-category-triangulated}
+for left modules as well, or we can deduce it by working
+with right modules over the opposite algebra.
+
+
+
+\section{Tensor product}
+\label{section-tensor-product}
+
+\noindent
+Let $R$ be a ring. Let $A$ be an $R$-algebra (see
+Section \ref{section-conventions}). Given a right $A$-module $M$
+and a left $A$-module $N$ there is a {\it tensor product}
+$$
+M \otimes_A N
+$$
+This tensor product is a module over $R$. As an $R$-module $M \otimes_A N$
+is generated by symbols $x \otimes y$ with $x \in M$ and $y \in N$ subject
+to the relations
+$$
+\begin{matrix}
+(x_1 + x_2) \otimes y - x_1 \otimes y - x_2 \otimes y, \\
+x \otimes (y_1 + y_2) - x \otimes y_1 - x \otimes y_2, \\
+xa \otimes y - x \otimes ay
+\end{matrix}
+$$
+for $a \in A$, $x, x_1, x_2 \in M$ and $y, y_1, y_2 \in N$.
+We list some properties of the tensor product
+
+\medskip\noindent
+In each variable the tensor product is right exact, in fact commutes
+with direct sums and arbitrary colimits.
+
+\medskip\noindent
+The tensor product $M \otimes_A N$ is the receptacle of the universal
+$A$-bilinear map $M \times N \to M \otimes_A N$, $(x, y) \mapsto x \otimes y$.
+In a formula
+$$
+\text{Bilinear}_A(M \times N, Q) = \Hom_R(M \otimes_A N, Q)
+$$
+for any $R$-module $Q$.
+
+\medskip\noindent
+If $A$ is a $\mathbf{Z}$-graded algebra and $M$, $N$ are graded
+$A$-modules then $M \otimes_A N$ is a graded $R$-module.
+Then $n$th graded piece $(M \otimes_A N)^n$ of $M \otimes_A N$
+is equal to
+$$
+\Coker\left(
+\bigoplus\nolimits_{r + t + s = n}
+M^r \otimes_R A^t \otimes_R N^s \to
+\bigoplus\nolimits_{p + q = n} M^p \otimes_R N^q
+\right)
+$$
+where the map sends $x \otimes a \otimes y$ to
+$x \otimes ay - xa \otimes y$ for
+$x \in M^r$, $y \in N^s$, and $a \in A^t$ with $r + s + t = n$.
+In this case the map $M \times N \to M \otimes_A N$ is $A$-bilinear
+and compatible with gradings and universal in the sense that
+$$
+\text{GradedBilinear}_A(M \times N, Q) =
+\Hom_{\text{graded }R\text{-modules}}(M \otimes_A N, Q)
+$$
+for any graded $R$-module $Q$ with an obvious notion of graded
+bilinar map.
+
+\medskip\noindent
+If $(A, \text{d})$ is a differential graded algebra and
+$M$ and $N$ are left and right differential graded $A$-modules, then
+$M \otimes_A N$ is a differential graded $R$-module with differential
+$$
+\text{d}(x \otimes y) =
+\text{d}(x) \otimes y + (-1)^{\deg(x)}x \otimes \text{d}(y)
+$$
+for $x \in M$ and $y \in N$ homogeneous. In this case the map
+$M \times N \to M \otimes_A N$ is $A$-bilinear, compatible with gradings,
+and compatible with differentials and universal in the sense that
+$$
+\text{DifferentialGradedBilinear}_A(M \times N, Q) =
+\Hom_{\text{Comp}(R)}(M \otimes_A N, Q)
+$$
+for any differential graded $R$-module $Q$ with an obvious notion of
+differential graded bilinar map.
+
+
+
+
+
+
+\section{Hom complexes and differential graded modules}
+\label{section-hom-complexes}
+
+\noindent
+We urge the reader to skip this section.
+
+\medskip\noindent
+Let $R$ be a ring and let $M^\bullet$ be a complex of $R$-modules.
+Consider the complex of $R$-modules
+$$
+E^\bullet = \Hom^\bullet(M^\bullet, M^\bullet)
+$$
+introduced in
+More on Algebra, Section \ref{more-algebra-section-hom-complexes}.
+By More on Algebra, Lemma \ref{more-algebra-lemma-composition}
+there is a canonical composition law
+$$
+\text{Tot}(E^\bullet \otimes_R E^\bullet) \to E^\bullet
+$$
+which is a map of complexes. Thus we see that $E^\bullet$ with this
+multiplication is a differential graded $R$-algebra which we will
+denote $(E, \text{d})$. Moreover, viewing $M^\bullet$ as
+$\Hom^\bullet(R, M^\bullet)$ we see that composition defines a multiplication
+$$
+\text{Tot}(E^\bullet \otimes_R M^\bullet) \to M^\bullet
+$$
+which turns $M^\bullet$ into a {\bf left} differential graded $E$-module
+which we will denote $M$.
+
+\begin{lemma}
+\label{lemma-left-module-structure}
+In the situation above, let $A$ be a differential graded $R$-algebra.
+To give a left $A$-module structure on $M$ is the same thing as
+giving a homomorphism $A \to E$ of differential graded $R$-algebras.
+\end{lemma}
+
+\begin{proof}
+Proof omitted. Observe that no signs intervene in this correspondence.
+\end{proof}
+
+\noindent
+We continue with the discussion above and we assume given another
+complex $N^\bullet$ of $R$-modules. Consider the complex
+of $R$-modules $\Hom^\bullet(M^\bullet, N^\bullet)$ introduced in
+More on Algebra, Section \ref{more-algebra-section-hom-complexes}.
+As above we see that composition
+$$
+\text{Tot}(\Hom^\bullet(M^\bullet, N^\bullet) \otimes_R E^\bullet)
+\to \Hom^\bullet(M^\bullet, N^\bullet)
+$$
+defines a multiplication which turns $\Hom^\bullet(M^\bullet, N^\bullet)$
+into a {\bf right} differential graded $E$-module. Using
+Lemma \ref{lemma-left-module-structure} we
+conclude that given a left differential graded $A$-module $M$ and
+a complex of $R$-modules $N^\bullet$ there is a canonical
+right differential graded $A$-module whose underlying complex
+of $R$-modules is $\Hom^\bullet(M^\bullet, N^\bullet)$ and
+where multiplication
+$$
+\Hom^n(M^\bullet, N^\bullet) \times A^m \longrightarrow
+\Hom^{n + m}(M^\bullet, N^\bullet)
+$$
+sends $f = (f_{p, q})_{p + q = n}$ with $f_{p, q} \in \Hom(M^{-q}, N^p)$
+and $a \in A^m$ to the element $f \cdot a = (f_{p, q} \circ a)$ where
+$f_{p, q} \circ a$ is the map
+$$
+M^{-q - m} \xrightarrow{a} M^{-q} \xrightarrow{f_{p, q}} N^p, \quad
+x \longmapsto f_{p, q}(ax)
+$$
+without the intervention of signs. Let us use the notation
+$\Hom(M, N^\bullet)$ to denote this right differential graded $A$-module.
+
+\begin{lemma}
+\label{lemma-characterize-hom}
+Let $R$ be a ring. Let $(A, \text{d})$ be a differential graded $R$-algebra.
+Let $M'$ be a right differential graded $A$-module and let
+$M$ be a left differential graded $A$-module.
+Let $N^\bullet$ be a complex of $R$-modules. Then we have
+$$
+\Hom_{\text{Mod}_{(A, d)}}(M', \Hom(M, N^\bullet)) =
+\Hom_{\text{Comp}(R)}(M' \otimes_A M, N^\bullet)
+$$
+where $M \otimes_A M$ is viewed as a complex of $R$-modules
+as in Section \ref{section-tensor-product}.
+\end{lemma}
+
+\begin{proof}
+Let us show that both sides correspond to graded $A$-bilinear maps
+$$
+M' \times M \longrightarrow N^\bullet
+$$
+compatible with differentials. We have seen this is true for the right
+hand side in Section \ref{section-tensor-product}. Given an element
+$g$ of the left hand side, the equality of
+More on Algebra, Lemma \ref{more-algebra-lemma-compose}
+determines a map of complexes of $R$-modules
+$g' : \text{Tot}(M' \otimes_R M) \to N^\bullet$.
+In other words, we obtain a graded $R$-bilinear
+map $g'' : M' \times M \to N^\bullet$ compatible with differentials.
+The $A$-linearity of $g$ translates immediately
+into $A$-bilinarity of $g''$.
+\end{proof}
+
+\noindent
+Let $R$, $M^\bullet$, $E^\bullet$, $E$, and $M$ be as above.
+However, now suppose given a differential graded $R$-algebra $A$
+and a {\bf right} differential graded $A$-module structure on $M$.
+Then we can consider the map
+$$
+\text{Tot}(A^\bullet \otimes_R M^\bullet)
+\xrightarrow{\psi}
+\text{Tot}(A^\bullet \otimes_R M^\bullet)
+\to
+M^\bullet
+$$
+where the first arrow is the commutativity constraint on the
+differential graded category of complexes of $R$-modules.
+This corresponds to a map
+$$
+\tau : A^\bullet \longrightarrow E^\bullet
+$$
+of complexes of $R$-modules. Recall that
+$E^n = \prod_{p + q = n} \Hom_R(M^{-q}, M^p)$
+and write $\tau(a) = (\tau_{p, q}(a))_{p + q = n}$ for $a \in A^n$.
+Then we see
+$$
+\tau_{p, q}(a) : M^{-q} \longrightarrow M^p,\quad
+x \longmapsto (-1)^{\deg(a)\deg(x)}x a = (-1)^{-nq}xa
+$$
+This is not compatible with the product on $A$ as the readed should
+expect from the discussion in Section \ref{section-left-modules}.
+Namely, we have
+$$
+\tau(a a') = (-1)^{\deg(a)\deg(a')}\tau(a') \tau(a)
+$$
+We conclude the following lemma is true
+
+\begin{lemma}
+\label{lemma-right-module-structure}
+In the situation above, let $A$ be a differential graded $R$-algebra.
+To give a right $A$-module structure on $M$ is the same thing as
+giving a homomorphism $\tau : A \to E^{opp}$
+of differential graded $R$-algebras.
+\end{lemma}
+
+\begin{proof}
+See discussion above and note that the construction of $\tau$
+from the multiplication map $M^n \times A^m \to M^{n + m}$
+uses signs.
+\end{proof}
+
+\noindent
+Let $R$, $M^\bullet$, $E^\bullet$, $E$, $A$ and $M$ be as above
+and let a right differential graded $A$-module structure on $M$
+be given as in the lemma. In this case there is a canonical left
+differential graded $A$-module whose underlying complex of $R$-modules is
+$\Hom^\bullet(M^\bullet, N^\bullet)$. Namely, for multiplication
+we can use
+\begin{align*}
+\text{Tot}(A^\bullet \otimes_R \Hom^\bullet(M^\bullet, N^\bullet))
+& \xrightarrow{\psi}
+\text{Tot}(\Hom^\bullet(M^\bullet, N^\bullet) \otimes_R A^\bullet) \\
+& \xrightarrow{\tau}
+\text{Tot}(\Hom^\bullet(M^\bullet, N^\bullet) \otimes_R
+\Hom^\bullet(M^\bullet, M^\bullet)) \\
+& \to
+\text{Tot}(\Hom^\bullet(M^\bullet, N^\bullet)
+\end{align*}
+The first arrow uses the commutativity constraint on the category
+of complexes of $R$-modules, the second arrow is described above, and
+the third arrow is the composition law for the Hom complex.
+Each map is a map of complexes, hence the result is a map of complexes.
+In fact, this construction turns $\Hom^\bullet(M^\bullet, N^\bullet)$
+into a left differential graded $A$-module (associativity of the multiplication
+can be shown using the symmetric monoidal structure or by a direct calculation
+using the formulae below). Let us explicate the multiplication
+$$
+A^n \times \Hom^m(M^\bullet, N^\bullet) \longrightarrow
+\Hom^{n + m}(M^\bullet, N^\bullet)
+$$
+It sends $a \in A^n$ and
+$f = (f_{p, q})_{p + q = m}$ with $f_{p, q} \in \Hom(M^{-q}, N^p)$
+to the element $a \cdot f$ with constituents
+$$
+(-1)^{nm}f_{p, q} \circ \tau_{-q, q + n}(a) =
+(-1)^{nm - n(q + n)}f_{p, q} \circ a =
+(-1)^{np + n} f_{p, q} \circ a
+$$
+in $\Hom_R(M^{-q - n}, N^p)$ where $f_{p, q} \circ a$ is the map
+$$
+M^{-q - n} \xrightarrow{a} M^{-q} \xrightarrow{f_{p, q}} N^p,\quad
+x \longmapsto f_{p, q}(xa)
+$$
+Here a sign of $(-1)^{np + n}$ does intervene.  Let us use the notation
+$\Hom(M, N^\bullet)$ to denote this left differential graded $A$-module.
+
+\begin{lemma}
+\label{lemma-characterize-hom-other-side}
+Let $R$ be a ring. Let $(A, \text{d})$ be a differential graded $R$-algebra.
+Let $M$ be a right differential graded $A$-module and let
+$M'$ be a left differential graded $A$-module.
+Let $N^\bullet$ be a complex of $R$-modules. Then we have
+$$
+\Hom_{\text{left diff graded }A\text{-modules}}(M', \Hom(M, N^\bullet)) =
+\Hom_{\text{Comp}(R)}(M \otimes_A M', N^\bullet)
+$$
+where $M \otimes_A M'$ is viewed as a complex of $R$-modules
+as in Section \ref{section-tensor-product}.
+\end{lemma}
+
+\begin{proof}
+Let us show that both sides correspond to graded $A$-bilinear maps
+$$
+M \times M' \longrightarrow N^\bullet
+$$
+compatible with differentials. We have seen this is true for the right
+hand side in Section \ref{section-tensor-product}. Given an element
+$g$ of the left hand side, the equality of
+More on Algebra, Lemma \ref{more-algebra-lemma-compose}
+determines a map of complexes
+$g' : \text{Tot}(M' \otimes_R M) \to N^\bullet$.
+We precompose with the commutativity constraint to get
+$$
+\text{Tot}(M \otimes_R M') \xrightarrow{\psi}
+\text{Tot}(M' \otimes_R M) \xrightarrow{g'}
+N^\bullet
+$$
+which corresponds to a graded $R$-bilinear
+map $g'' : M \times M' \to N^\bullet$ compatible with differentials.
+The $A$-linearity of $g$ translates immediately into $A$-bilinarity of $g''$.
+Namely, say $x \in M^e$ and $x' \in (M')^{e'}$ and $a \in A^n$. Then
+on the one hand we have
+\begin{align*}
+g''(x, ax')
+& =
+(-1)^{e(n + e')} g'(ax' \otimes x) \\
+& =
+(-1)^{e(n + e')} g(ax')(x) \\
+& =
+(-1)^{e(n + e')} (a \cdot g(x'))(x) \\
+& =
+(-1)^{e(n + e') + n(n + e + e') + n} g(x')(xa)
+\end{align*}
+and on the other hand we have
+$$
+g''(xa, x') = (-1)^{(e + n)e'} g'(x' \otimes xa) =
+(-1)^{(e + n)e'} g(x')(xa) 
+$$
+which is the same thing by a trivial mod $2$ calculation of the exponents.
+\end{proof}
+
+\begin{remark}
+\label{remark-evaluation-map-left}
+Let $R$ be a ring. Let $A$ be a differential graded $R$-algebra.
+Let $M$ be a left differential graded $A$-module. Let
+$N^\bullet$ be a complex of $R$-modules. The constructions above
+produce a right differential graded $A$-module $\Hom(M, N^\bullet)$
+and then a leftt differential graded $A$-module
+$\Hom(\Hom(M, N^\bullet), N^\bullet)$. We claim there is an
+evaluation map
+$$
+ev : M \longrightarrow \Hom(\Hom(M, N^\bullet), N^\bullet)
+$$
+in the category of left differential graded $A$-modules. To define it, by
+Lemma \ref{lemma-characterize-hom} it suffices to construct an
+$A$-bilinear pairing
+$$
+\Hom(M, N^\bullet) \times M \longrightarrow N^\bullet
+$$
+compatible with grading and differentials. For this we take
+$$
+(f, x) \longmapsto f(x)
+$$
+We leave it to the reader to verify this is compatible with grading,
+differentials, and $A$-bilinear. The map $ev$ on underlying complexes
+of $R$-modules is More on Algebra, Item (\ref{more-algebra-item-evaluation}).
+\end{remark}
+
+\begin{remark}
+\label{remark-evaluation-map-right}
+Let $R$ be a ring. Let $A$ be a differential graded $R$-algebra.
+Let $M$ be a right differential graded $A$-module. Let
+$N^\bullet$ be a complex of $R$-modules. The constructions above
+produce a left differential graded $A$-module $\Hom(M, N^\bullet)$
+and then a right differential graded $A$-module
+$\Hom(\Hom(M, N^\bullet), N^\bullet)$. We claim there is an evaluation map
+$$
+ev : M \longrightarrow \Hom(\Hom(M, N^\bullet), N^\bullet)
+$$
+in the category of right differential graded $A$-modules. To define it, by
+Lemma \ref{lemma-characterize-hom} it suffices to construct an
+$A$-bilinear pairing
+$$
+M \times \Hom(M, N^\bullet) \longrightarrow N^\bullet
+$$
+compatible with grading and differentials. For this we take
+$$
+(x, f) \longmapsto (-1)^{\deg(x)\deg(f)}f(x)
+$$
+We leave it to the reader to verify this is compatible with grading,
+differentials, and $A$-bilinear. The map $ev$ on underlying complexes
+of $R$-modules is More on Algebra, Item (\ref{more-algebra-item-evaluation}).
+\end{remark}
+
+\begin{remark}
+\label{remark-shift-dual}
+Let $R$ be a ring. Let $A$ be a differential graded $R$-algebra.
+Let $M^\bullet$ and $N^\bullet$ be complexes of $R$-modules.
+Let $k \in \mathbf{Z}$ and consider the isomorphism
+$$
+\Hom^\bullet(M^\bullet, N^\bullet)[-k]
+\longrightarrow
+\Hom^\bullet(M^\bullet[k], N^\bullet)
+$$
+of complexes of $R$-modules defined in
+More on Algebra, Item (\ref{more-algebra-item-shift-hom}).
+If $M^\bullet$ has the structure of a left, resp.\ right
+differential graded $A$-module, then this is a map of
+right, resp.\ left differential graded $A$-modules (with the
+module structures as defined in this section).
+We omit the verification; we warn the reader that the
+$A$-module structure on the shift of a left graded $A$-module
+is defined using a sign, see
+Definition \ref{definition-shift-graded-module}.
+\end{remark}
+
+
+
+
 
 
 \section{Projective modules over algebras}
 \label{section-projectives-over-algebras}
 
 \noindent
-In this section we discuss projective modules over algebras
-and over graded algebras. Thus it is the analogue of
-Algebra, Section \ref{algebra-section-projective}
-in the setting of this chapter.
+In this section we discuss projective modules over algebras analogous to
+Algebra, Section \ref{algebra-section-projective}.
+This section should probably be moved somewhere else.
 
 \medskip\noindent
-{\bf Algebras and modules.} Let $R$ be a ring and let $A$ be an
-$R$-algebra, see Section \ref{section-conventions} for our conventions.
+Let $R$ be a ring and let $A$ be an $R$-algebra, see
+Section \ref{section-conventions} for our conventions.
 It is clear that $A$ is a projective right $A$-module since
 $\Hom_A(A, M) = M$ for any right $A$-module $M$ (and thus $\Hom_A(A, -)$
 is exact). Conversely, let $P$ be a projective right $A$-module. Then
@@ -1158,11 +1821,30 @@ to a direct summand of a free module, exactly as in the commutative case
 (Algebra, Lemma \ref{algebra-lemma-characterize-projective}).
 
 \medskip\noindent
-{\bf Graded algebras and modules.}
-Let $R$ be a ring. Let $A$ be a graded algebra over $R$.
+We conclude
+\begin{enumerate}
+\item the category of $A$-modules has enough projectives,
+\item $A$ is a projective $A$-module,
+\item every $A$-module is a quotient of a direct sum of copies of $A$,
+\item every projective $A$-module is a direct summand of a direct
+sum of copies of $A$.
+\end{enumerate}
+
+
+
+\section{Projective modules over graded algebras}
+\label{section-projectives-over-graded-algebras}
+
+\noindent
+In this section we discuss projective graded modules over graded algebras
+analogous to Algebra, Section \ref{algebra-section-projective}.
+
+\medskip\noindent
+Let $R$ be a ring. Let $A$ be a $\mathbf{Z}$-graded algebra over $R$.
+Section \ref{section-conventions} for our conventions.
 Let $\text{Mod}_A$ denote the category of graded right $A$-modules.
 For an integer $k$ let $A[k]$ denote the shift of $A$.
-For an graded right $A$-module we have
+For a graded right $A$-module we have
 $$
 \Hom_{\text{Mod}_A}(A[k], M) = M^{-k}
 $$
@@ -1178,12 +1860,30 @@ Thus we conclude that a projective object of $\text{Mod}_A$ is
 a direct summand of a direct sum of the shifts $A[k]$.
 
 \medskip\noindent
+We conclude
+\begin{enumerate}
+\item the category of graded $A$-modules has enough projectives,
+\item $A[k]$ is a projective $A$-module for every $k \in \mathbf{Z}$,
+\item every graded $A$-module is a quotient of a direct sum of
+copies of the modules $A[k]$ for varying $k$,
+\item every projective $A$-module is a direct summand of a direct
+sum of copies of the modules $A[k]$ for varying $k$.
+\end{enumerate}
+
+
+
+
+\section{Projective modules and differential graded algebras}
+\label{section-projective-over-differential-graded}
+
+\noindent
 If $(A, \text{d})$ is a differential graded algebra and $P$ is
 an object of $\text{Mod}_{(A, \text{d})}$ then we say
 {\it $P$ is projective as a graded $A$-module} or sometimes
-{\it $P$ is graded projective} to mean
-that $P$ is a projective object of the abelian category $\text{Mod}_A$
-of graded $A$-modules.
+{\it $P$ is graded projective} to mean that $P$
+is a projective object of the abelian category $\text{Mod}_A$
+of graded $A$-modules as in
+Section \ref{section-projectives-over-graded-algebras}.
 
 \begin{lemma}
 \label{lemma-target-graded-projective}
@@ -1212,7 +1912,7 @@ for any differential graded $A$-module $M$.
 \end{lemma}
 
 \begin{proof}
-This is clear from the discussion above.
+Immediate from the definitions.
 \end{proof}
 
 
@@ -1226,12 +1926,12 @@ This is clear from the discussion above.
 
 \noindent
 In this section we discuss injective modules over algebras
-and over graded algebras. Thus it is the analogue of
-More on Algebra, Section \ref{more-algebra-section-injectives-modules}
-in the setting of this chapter.
+analogous to
+More on Algebra, Section \ref{more-algebra-section-injectives-modules}.
+This section should probably be moved somewhere else.
 
 \medskip\noindent
-{\bf Algebras and modules.} Let $R$ be a ring and let $A$ be an
+Let $R$ be a ring and let $A$ be an
 $R$-algebra, see Section \ref{section-conventions} for our conventions.
 For a right $A$-module $M$ we set
 $$
@@ -1280,22 +1980,67 @@ We conclude
 \item every $A$-module injects into a product of copies of $A^\vee$.
 \end{enumerate}
 
+
+
+
+
+\section{Injective modules over graded algebras}
+\label{section-modules-noncommutative-graded}
+
 \noindent
-{\bf Graded algebras and modules.}
-Let $R$ be a ring. Let $A$ be a graded algebra over $R$.
-If $M$ is a graded $A$-module we set
+In this section we discuss injective graded modules over graded algebras
+analogous to
+More on Algebra, Section \ref{more-algebra-section-injectives-modules}.
+
+\medskip\noindent
+Let $R$ be a ring. Let $A$ be a $\mathbf{Z}$-graded algebra over $R$.
+Section \ref{section-conventions} for our conventions.
+If $M$ is a graded $R$-module we set
 $$
 M^\vee =
 \bigoplus\nolimits_{n \in \mathbf{Z}}
 \Hom_\mathbf{Z}(M^{-n}, \mathbf{Q}/\mathbf{Z}) =
 \bigoplus\nolimits_{n \in \mathbf{Z}} (M^{-n})^\vee
 $$
-as a graded $R$-module with the $A$-module structure defined as above
-(for homogeneous elements). This again switches left and right modules.
-On the category of graded $A$-modules the functor $M \mapsto M^\vee$
-is exact (check on graded pieces). Moreover, the evaluation map
-$M \to (M^\vee)^\vee$ is injective as before (because we can check
-this on the graded pieces).
+as a graded $R$-module (no signs in the actions of $R$ on the
+homogeneous parts). If $M$ has the structure of a left graded
+$A$-module, then we define a right graded $A$-module structure
+on $M^\vee$ by letting $a \in A^m$ act by
+$$
+(M^{-n})^\vee \to (M^{-n - m})^\vee, \quad
+f \mapsto f \circ a
+$$
+as in Section \ref{section-hom-complexes}.
+If $M$ has the structure of a right graded
+$A$-module, then we define a left graded $A$-module structure
+on $M^\vee$ by letting $a \in A^n$ act by
+$$
+(M^{-m})^\vee \to (M^{-m - n})^\vee, \quad
+f \mapsto (-1)^{nm}f \circ a
+$$
+as in Section \ref{section-hom-complexes} (the sign is forced on
+us because we want to use the same formula for the case
+when working with differential graded modules --- if you only
+care about graded modules, then you can omit the sign here).
+On the category of (left or right) graded $A$-modules the
+functor $M \mapsto M^\vee$ is exact (check on graded pieces).
+Moreover, there is an injective evaluation map
+$$
+ev : M \longrightarrow (M^\vee)^\vee, \quad
+ev^n = (-1)^n \text{ the evaluation map }M^n \to ((M^n)^\vee)^\vee
+$$
+of graded $R$-modules, see
+More on Algebra, Item (\ref{more-algebra-item-evaluation}).
+This evaluation map is a left, resp.\ right $A$-module homomorphism
+if $M$ is a left, resp.\ right $A$-module, see
+Remarks \ref{remark-evaluation-map-left} and \ref{remark-evaluation-map-right}.
+Finally, given $k \in \mathbf{Z}$ there is a canonical isomorphism
+$$
+M^\vee[-k] \longrightarrow (M[k])^\vee
+$$
+of graded $R$-modules which uses a sign and which, if
+$M$ is a left, resp.\ right $A$-module, is an isomorphism
+of right, resp.\ left $A$-modules. See Remark \ref{remark-shift-dual}.
 
 \medskip\noindent
 We claim that $A^\vee$ is an injective object of the category
@@ -1303,32 +2048,22 @@ $\text{Mod}_A$ of graded right $A$-modules. Namely, given a graded
 right $A$-module $N$ we have
 $$
 \Hom_{\text{Mod}_A}(N, A^\vee) =
-\Hom_{\text{Mod}_A}(
-N, \bigoplus \Hom_\mathbf{Z}(A^{-n}, \mathbf{Q}/\mathbf{Z})) = (N^0)^\vee
+\Hom_{\text{Comp}(\mathbf{Z})}(N \otimes_A A, \mathbf{Q}/\mathbf{Z})) =
+(N^0)^\vee
 $$
-and we conclude because the functor $N \mapsto (N^0)^\vee = (N^\vee)^0$
-is exact. To see that the second equality holds we use the equalities
-$$
-\Hom_\mathbf{Z}(N^n, \Hom_\mathbf{Z}(A^{-n}, \mathbf{Q}/\mathbf{Z})) =
-\Hom_\mathbf{Z}(N^n \otimes_\mathbf{Z} A^{-n}, \mathbf{Q}/\mathbf{Z})
-$$
-of Algebra, Lemma \ref{algebra-lemma-hom-from-tensor-product}.
-Thus an element of $\Hom_{\text{Mod}_A}(N, A^\vee)$ corresponds
-to a family of $\mathbf{Z}$-bilinear maps
-$\psi_n : N^n \times A^{-n} \to \mathbf{Q}/\mathbf{Z}$ such that
-$\psi_n(x, a) = \psi_0(xa, 1)$ for all $x \in N^n$ and $a \in A^{-n}$.
-Moreover, $\psi_0(x, a) = \psi_0(xa, 1)$ for all $x \in N^0$, $a \in A^0$.
-It follows that the maps $\psi_n$ are determined by $\psi_0$ and that
-$\psi_0(x, a) = \varphi(xa)$ for a unique element $\varphi \in (N^0)^\vee$.
+by Lemma \ref{lemma-characterize-hom}
+(applied to the case where all the differentials are zero).
+We conclude because the functor $N \mapsto (N^0)^\vee = (N^\vee)^0$
+is exact.
 
 \medskip\noindent
 Finally, for every graded right $A$-module $M$ we can choose a surjection
-(of graded left $A$-modules)
+of graded left $A$-modules
 $$
 \bigoplus\nolimits_{i \in I} A[k_i] \to M^\vee
 $$
 where $A[k_i]$ denotes the shift of $A$ by $k_i \in \mathbf{Z}$.
-(We do this by choosing homogeneous generators for $M^\vee$.)
+We do this by choosing homogeneous generators for $M^\vee$.
 In this way we get an injection
 $$
 M \to (M^\vee)^\vee \to \prod A[k_i]^\vee = \prod A^\vee[-k_i]
@@ -1345,9 +2080,19 @@ We conclude that
 \item every $A$-module injects into a product in the category of graded
 modules of copies of shifts $A^\vee[k]$.
 \end{enumerate}
+
+
+
+
+
+\section{Injective modules and differential graded algebras}
+\label{section-modules-noncommutative-differential-graded}
+
+\noindent
 If $(A, \text{d})$ is a differential graded algebra and $I$ is
 an object of $\text{Mod}_{(A, \text{d})}$ then we say
-{\it $I$ is injective as a graded $A$-module} to mean
+{\it $I$ is injective as a graded $A$-module} or sometimes
+{\it $I$ is graded injective} to mean
 that $I$ is a injective object of the abelian category $\text{Mod}_A$
 of graded $A$-modules.
 
@@ -1355,8 +2100,8 @@ of graded $A$-modules.
 \label{lemma-source-graded-injective}
 Let $(A, \text{d})$ be a differential graded algebra.
 Let $I \to M$ be an injective homomorphism of differential graded
-$A$-modules. If $I$ is an injective object of the category
-of graded $A$-modules, then $I \to M$ is an admissible monomorphism.
+$A$-modules. If $I$ is graded injective, then
+$I \to M$ is an admissible monomorphism.
 \end{lemma}
 
 \begin{proof}
@@ -1365,107 +2110,39 @@ This is immediate from the definitions.
 
 \noindent
 Let $(A, \text{d})$ be a differential graded algebra. If $M$ is a
-{\bf left} differential graded $A$-module, then we will endow $M^\vee$
-(with its graded module structure as above) with a right differential
-graded module structure by setting
+left, resp.\ right differential graded $A$-module, then
 $$
-\text{d}_{M^\vee}(f) = - (-1)^n f \circ \text{d}_M^{-n - 1}
-\quad\text{in }(M^\vee)^{n + 1}
+M^\vee = \Hom^\bullet(M^\bullet, \mathbf{Q}/\mathbf{Z})
 $$
-for $f \in (M^\vee)^n = \Hom_\mathbf{Z}(M^{-n}, \mathbf{Q}/\mathbf{Z})$
-and $\text{d}_M^{-n - 1} : M^{-n - 1} \to M^{-n}$ the differential
-of $M$\footnote{The sign rule is analogous to the one in
-Example \ref{example-dgm-dg-cat}, although there we are working with
-right modules and the same sign rule taken there does not work for
-left modules. Sigh!}.
-We will show by a computation that this works.
-Namely, if $a \in A^m$, $x \in M^{-n - m - 1}$ and $f \in (M^\vee)^n$,
-then we have
-\begin{align*}
-\text{d}_{M^\vee}(f a)(x) & =
-- (-1)^{n + m} (f a)(\text{d}_M(x)) \\
-& =
-- (-1)^{n + m} f(a\text{d}_M(x)) \\
-& =
--(-1)^n f(\text{d}_M(ax) - \text{d}(a)x) \\
-& =
--(-1)^n[-(-1)^n \text{d}_{M^\vee}(f)(ax) - (f\text{d}(a))(x)] \\
-& =
-(\text{d}_{M^\vee}(f)a)(x) + (-1)^n (f\text{d}(a))(x)
-\end{align*}
-the third equality because
-$\text{d}_M(ax) = \text{d}(a)x + (-1)^m a\text{d}_M(x)$.
-In other words we have
-$\text{d}_{M^\vee}(fa) = \text{d}_{M^\vee}(f)a + (-1)^n f \text{d}(a)$
-as desired.
-
-\medskip\noindent
-If $M$ is a {\bf right} differential graded module, then the sign rule above
-does not work. The problem seems to be that in defining the left $A$-module
-structure on $M^\vee$ our conventions for graded modules above defines $af$
-to be the element of $(M^\vee)^{n + m}$ such that $(af)(x) = f(xa)$ for
-$f \in (M^\vee)^n$, $a \in A^m$ and $x \in M^{-n - m}$ which in some sense
-is the ``wrong'' thing to do if $m$ is odd. Anyway, instead of changing
-the sign rule for the module structure, we fix the problem by using
+with $A$-module structure constructed in
+Section \ref{section-modules-noncommutative-graded} is a
+right, resp.\ left differential graded $A$-module by the
+discussion in Section \ref{section-hom-complexes}.
+By Remarks
+\ref{remark-evaluation-map-left} and \ref{remark-evaluation-map-right}
+there evaluation map of Section \ref{section-modules-noncommutative-graded}
 $$
-\text{d}_{M^\vee}(f) = (-1)^n f \circ \text{d}_M^{-n - 1}
+M \longrightarrow (M^\vee)^\vee
 $$
-when $M$ is a right differential graded $A$-module. The computation for
-$a \in A^m$, $x \in M^{-n - m - 1}$ and $f \in (M^\vee)^n$ then becomes
-\begin{align*}
-\text{d}_{M^\vee}(a f)(x) & =
-(-1)^{n + m} (f a)(\text{d}_M(x)) \\
-& =
-(-1)^{n + m} f(\text{d}_M(x)a) \\
-& =
-(-1)^{n + m} f(\text{d}_M(ax) - (-1)^{m + n + 1} x\text{d}(a)) \\
-& =
-(-1)^m \text{d}_{M^\vee}(f)(ax) + f(x\text{d}(a)) \\
-& =
-(-1)^m (a\text{d}_{M^\vee}(f))(x) + (\text{d}(a)f)(x)
-\end{align*}
-the third equality because
-$\text{d}_M(xa) = \text{d}_M(x)a + (-1)^{n + m + 1} x\text{d}(a)$.
-In other words, we have
-$\text{d}_{M^\vee}(af) = \text{d}(a) f + (-1)^ma\text{d}_{M^\vee}(f)$
-as desired.
-
-\medskip\noindent
-We leave it to the reader to show that with the conventions above
-there is a natural evaluation map $M \to (M^\vee)^\vee$ in the
-category of differential graded modules if $M$ is either a differential
-graded left module or a differential graded right module. This works
-because the sign choices above cancel out and the differentials of
-$((M^\vee)^\vee$ are the natural maps
-$((M^n)^\vee)^\vee \to ((M^{n + 1})^\vee)^\vee$.
+is a homomorphism of left, resp.\ right differential graded $A$-modules
 
 \begin{lemma}
 \label{lemma-map-into-dual}
 Let $(A, \text{d})$ be a differential graded algebra. If
 $M$ is a left differential graded $A$-module and $N$ is a
 right differential graded $A$-module, then
-$$
+\begin{align*}
 \Hom_{\text{Mod}_{(A, \text{d})}}(N, M^\vee)
-$$
-is isomorphic to the set of sequences $(\psi_n)$ of $\mathbf{Z}$-bilinear
-pairings
-$$
-\psi_n : N^n \times M^{-n} \longrightarrow \mathbf{Q}/\mathbf{Z}
-$$
-such that $\psi_{n + m}(y, ax) = \psi_{n + m}(ya, x)$ for all
-$y \in N^n$, $x \in M^{-m}$, and $a \in A^{m - n}$ and such that
-$\psi_{n + 1}(\text{d}(y), x) + (-1)^n \psi_n(y, \text{d}(x)) = 0$
-for all $y \in N^n$ and $x \in M^{-n - 1}$.
+& =
+\Hom_{\text{Comp}(\mathbf{Z})}(N \otimes_A M, \mathbf{Q}/\mathbf{Z}) \\
+& =
+\text{DifferentialGradedBilinear}_A(N \times M, \mathbf{Q}/\mathbf{Z})
+\end{align*}
 \end{lemma}
 
 \begin{proof}
-If $f \in \Hom_{\text{Mod}_{(A, \text{d})}}(N, M^\vee)$, then we
-map this to the sequence of pairings defined by
-$\psi_n(y, x) = f(y)(x)$. It is a computation (omitted) to see
-that these pairings satisfy the conditions as in the lemma.
-For the converse, use
-Algebra, Lemma \ref{algebra-lemma-hom-from-tensor-product} to turn a sequence
-of pairings into a map $f : N \to M^\vee$.
+The first equality is Lemma \ref{lemma-characterize-hom}
+and the second equality was shown in Section \ref{section-tensor-product}.
 \end{proof}
 
 \begin{lemma}
@@ -1479,7 +2156,7 @@ and
 $$
 \Hom_{K(\text{Mod}_{(A, \text{d})})}(M, A^\vee[k]) = H^k(M^\vee)
 $$
-for any differential graded $A$-module $M$.
+as functors in the differential graded $A$-module $M$.
 \end{lemma}
 
 \begin{proof}
@@ -1693,7 +2370,8 @@ by differential graded submodules such that
 \item $I = \lim I/F_pI$,
 \item the maps $I/F_{i + 1}I \to I/F_iI$ are admissible epimorphisms,
 \item the quotients $F_iI/F_{i + 1}I$ are isomorphic as differential
-graded $A$-modules to products of $A^\vee[k]$.
+graded $A$-modules to products of the modules $A^\vee[k]$ constructed
+in Section \ref{section-modules-noncommutative-differential-graded}.
 \end{enumerate}
 In fact, condition (2) is a consequence of condition (3), see
 Lemma \ref{lemma-source-graded-injective}. The reader can verify that as
@@ -1773,64 +2451,28 @@ of shifts of $A^\vee$.
 \end{lemma}
 
 \begin{proof}
+We will use the functors $N \mapsto N^\vee$ (from left to right
+differential graded modules and from right to left differential
+graded modules) constructed in
+Section \ref{section-modules-noncommutative-differential-graded}
+and all of their properties.
 For every $k \in \mathbf{Z}$ let $Q_k$ be the free left $A$-module with
 generators $x, y$ in degrees $k$ and $k + 1$. Define the structure of a
 left differential graded $A$-module on $Q_k$ by setting $\text{d}(x) = y$
-and $\text{d}(y) = 0$. Let $I_k = Q_{-k}^\vee$ be the ``dual'' right
-differential graded $A$-module, see
-Section \ref{section-modules-noncommutative}.
-The next paragraph shows that we can embed $M$ into a product
-of copies of $I_k$ (for varying $k$). The dual statement (that any
-differential graded module is a quotient of a direct sum of $P_k$'s)
-is easy to prove (see proof of Lemma \ref{lemma-good-quotient})
-and using double duals there should be a noncomputational
-way to deduce what we want. Thus we suggest skipping the next paragraph.
-
-\medskip\noindent
-Given a $\mathbf{Z}$-linear map $\lambda : M^k \to \mathbf{Q}/\mathbf{Z}$
-we construct pairings
+and $\text{d}(y) = 0$. Arguing exactly as in the proof of
+Lemma \ref{lemma-good-quotient} we find a surjection
 $$
-\psi_n : M^n \times Q_k^{-n} \longrightarrow \mathbf{Q}/\mathbf{Z}
+\bigoplus\nolimits_{i \in I} Q_{k_i} \longrightarrow M^\vee
 $$
-by setting
+of left differential graded $A$-modules. Then we can consider the injection
 $$
-\psi_n(m, ax + by) = \lambda(ma + (-1)^{k + 1}\text{d}(mb))
+M \to (M^\vee)^\vee \to (\bigoplus\nolimits_{i \in I} Q_{k_i})^\vee =
+\prod\nolimits_{i \in I} I_{k_i}
 $$
-for $m \in M^n$, $a \in A^{-n - k}$, and $b \in A^{-n - k - 1}$. We compute
-\begin{align*}
-\psi_{n + 1}(\text{d}(m), ax + by)
-& =
-\lambda\left(\text{d}(m)a + (-1)^{k + 1}\text{d}(\text{d}(m)b)\right) \\
-& =
-\lambda\left(\text{d}(m)a + (-1)^{k + n}\text{d}(m)\text{d}(b)\right)
-\end{align*}
-and because
-$\text{d}(ax + by) = \text{d}(a)x + (-1)^{-n - k}ay + \text{d}(b)y$ we have
-\begin{align*}
-\psi_n(m, \text{d}(ax + by))
-& =
-\lambda\left(
-m\text{d}(a) + (-1)^{k + 1}\text{d}(m((-1)^{-n - k}a + \text{d}(b)))
-\right) \\
-& =
-\lambda\left(
-m\text{d}(a) + (-1)^{-n + 1}\text{d}(ma) + (-1)^{k + 1}\text{d}(m)\text{d}(b)))
-\right)
-\end{align*}
-and we see that
-$$
-\psi_{n + 1}(\text{d}(m), ax + by) + (-1)^n\psi_n(m, \text{d}(ax + by)) = 0
-$$
-Thus these pairings define a homomorphism
-$f_\lambda : M \to I_k$ by Lemma \ref{lemma-map-into-dual}
-such that the composition
-$$
-M^k \xrightarrow{f^k_\lambda} I_k^k = (Q_k^k)^\vee
-\xrightarrow{\text{evaluation at }x} \mathbf{Q}/\mathbf{Z}
-$$
-is the given map $\lambda$. It is clear that we can find an embedding
-into a product of copies of $I_k$'s by using a map of the form
-$\prod f_\lambda$ for a suitable choice of the maps $\lambda$.
+where $I_k = Q_{-k}^\vee$ is the ``dual'' right differential graded $A$-module.
+Further, the short exact sequence $0 \to A[-k - 1] \to Q_k \to A[-k] \to 0$
+produces a short exact sequence
+$0 \to A^\vee[k] \to I_k \to A^\vee[k + 1] \to 0$.
 
 \medskip\noindent
 The result of the previous paragraph produces $M \to I$
@@ -1866,22 +2508,21 @@ This gives a ``resolution''
 $$
 0 \to M \to I_0 \xrightarrow{f_0} I_1 \xrightarrow{f_1} I_1 \to \ldots
 $$
-Then we set
+Denote $I$ the differential graded $A$-module with graded parts
 $$
-I = \prod\nolimits_{i \geq 0} I_i
+I^n = \prod\nolimits_{i \geq 0} I^{n - i}_i
 $$
-where we take the product in the category of graded $A$-modules
 and differential defined by
 $$
-\text{d}_I(x) = f_a(x) + (-1)^a \text{d}_{I_a}(x)
+\text{d}_I(x) = f_i(x) + (-1)^i \text{d}_{I_i}(x)
 $$
-for $x \in I_a^b$. With these conventions $I$ is indeed a differential
+for $x \in I_i^{n - i}$. With these conventions $I$ is indeed a differential
 graded $A$-module. Recalling that each $I_i$ has a two step filtration
 $0 \to I_i' \to I_i \to I_i'' \to 0$ we set
 $$
-F_{2i}P = \prod\nolimits_{j \geq i} I_j
+F_{2i}I^n = \prod\nolimits_{j \geq i} I^{n - j}_j
 \subset
-\prod\nolimits_{i \geq 0} I_i = I
+\prod\nolimits_{i \geq 0} I^{n - i}_i = I^n
 $$
 and we add a factor $I'_{i + 1}$ to $F_{2i}I$ to get $F_{2i + 1}I$.
 These are differential graded submodules and the successive quotients
@@ -2091,6 +2732,24 @@ whence the existence of direct sums in $D(A, \text{d})$ as given in
 part (3) of the lemma.
 \end{proof}
 
+\begin{remark}
+\label{remark-P-resolution}
+Let $R$ be a ring. Let $(A, \text{d})$ be a differential graded $R$-algebra.
+Using P-resolutions we can sometimes reduce statements about general
+objects of $D(A, \text{d})$ to statements about $A[k]$. Namely, let
+$T$ be a property of objects of $D(A, \text{d})$ and assume that
+\begin{enumerate}
+\item if $K_i$, $i \in I$ is a family of objects of $D(A, \text{d})$
+and $T(K_i)$ holds for all $i \in I$, then $T(\bigoplus K_i)$,
+\item if $K \to L \to M \to K[1]$ is a distinguished triangle of
+$D(A, \text{d})$ and $T$ holds for two, then $T$
+holds for the third object, and
+\item $T(A[k])$ holds for all $k \in \mathbf{Z}$.
+\end{enumerate}
+Then $T$ holds for all objects of $D(A, \text{d})$. This is clear from
+Lemmas \ref{lemma-property-P-sequence} and \ref{lemma-resolve}.
+\end{remark}
+
 
 
 
@@ -2227,9 +2886,9 @@ additive.
 \begin{definition}
 \label{definition-functor-linear-categories}
 Let $R$ be a ring. A {\it functor of $R$-linear categories}, or an
-{\it $R$-linear} is a functor $F : \mathcal{A} \to \mathcal{B}$
+{\it $R$-linear functor} is a functor $F : \mathcal{A} \to \mathcal{B}$
 where for all objects $x, y$ of $\mathcal{A}$ the map
-$F : \Hom_\mathcal{A}(x, y) \to \Hom_\mathcal{A}(F(x), F(y))$
+$F : \Hom_\mathcal{A}(x, y) \to \Hom_\mathcal{B}(F(x), F(y))$
 is a homomorphism of $R$-modules.
 \end{definition}
 
@@ -2314,7 +2973,7 @@ In this example, we will construct a graded category
 $\text{Gr}^{gr}(\mathcal{B})$ over $R = \mathbf{Z}$
 whose associated category $\text{Gr}^{gr}(\mathcal{B})^0$
 recovers $\text{Gr}(\mathcal{B})$.
-As objects of $\text{Comp}^{gr}(\mathcal{B})$
+As objects of $\text{Gr}^{gr}(\mathcal{B})$
 we take graded objects of $\mathcal{B}$. Then, given graded objects
 $A = (A^i)$ and $B = (B^i)$ of $\mathcal{B}$ we set
 $$
@@ -2322,14 +2981,7 @@ $$
 \bigoplus\nolimits_{n \in \mathbf{Z}} \Hom^n(A, B)
 $$
 where the graded piece of degree $n$ is the abelian group of homogeneous
-maps of degree $n$ from $A$ to $B$
-defined by the rule
-$$
-\Hom^n(A, B) = \Hom_{\text{Gr}(\mathcal{A})}(A, B[n]) =
-\Hom_{\text{Gr}(\mathcal{A})}(A[-n], B)
-$$
-see Homology, Equation (\ref{homology-equation-hom-into-shift}).
-Explicitly we have
+maps of degree $n$ from $A$ to $B$. Explicitly we have
 $$
 \Hom^n(A, B) = \prod\nolimits_{p + q = n} \Hom_\mathcal{B}(A^{-q}, B^p)
 $$
@@ -2527,10 +3179,9 @@ of degree $0$ and closed, i.e., $\text{d}(i) = 0$, etc.
 
 \begin{lemma}
 \label{lemma-functorial}
-Let $R$ be a ring. A functor
-$F : \mathcal{A} \to \mathcal{B}$
-of differential graded categories over $R$
-induces functors $\text{Comp}(\mathcal{A}) \to \text{Comp}(\mathcal{B})$
+Let $R$ be a ring. A functor $F : \mathcal{A} \to \mathcal{B}$
+of differential graded categories over $R$ induces functors
+$\text{Comp}(\mathcal{A}) \to \text{Comp}(\mathcal{B})$
 and $K(\mathcal{A}) \to K(\mathcal{B})$.
 \end{lemma}
 
@@ -2552,23 +3203,25 @@ of $\mathcal{B}$ (i.e., forget about the differential).
 Using this abuse of notation, we set
 $$
 \Hom_{\text{Comp}^{dg}(\mathcal{B})}(A^\bullet, B^\bullet) =
-\Hom_{\text{Gr}^{gr}(\mathcal{B})}(A^\bullet, B^\bullet)
+\Hom_{\text{Gr}^{gr}(\mathcal{B})}(A^\bullet, B^\bullet) =
+\bigoplus\nolimits_{n \in \mathbf{Z}} \Hom^n(A, B)
 $$
-as a graded $\mathbf{Z}$-module where the right hand side is defined
+as a graded $\mathbf{Z}$-module with notation and definitions as
 in Example \ref{example-graded-category-graded-objects}.
 In other words, the $n$th graded piece is
 the abelian group of homogeneous morphism of degree $n$ of graded objects
 $$
 \Hom^n(A^\bullet, B^\bullet) =
-\Hom_{\text{Gr}(\mathcal{B})}(A^\bullet, B^\bullet[n]) =
 \prod\nolimits_{p + q = n} \Hom_\mathcal{B}(A^{-q}, B^p)
 $$
-(observe reversal of indices and observe we have a direct product
-and not a direct sum). For an element
+Observe reversal of indices and observe we have a direct product
+and not a direct sum. For an element
 $f \in \Hom^n(A^\bullet, B^\bullet)$ of degree $n$ we set
 $$
 \text{d}(f) = \text{d}_B \circ f - (-1)^n f \circ \text{d}_A
 $$
+The sign is exactly as in
+More on Algebra, Section \ref{more-algebra-section-sign-rules}.
 To make sense of this we think of $\text{d}_B$ and $\text{d}_A$
 as maps of graded objects of $\mathcal{B}$ homogeneous of degree $1$
 and we use composition in the category $\text{Gr}^{gr}(\mathcal{B})$
@@ -2577,28 +3230,11 @@ $f_{p, q} : A^{-q} \to B^p$ we have
 \begin{equation}
 \label{equation-differential-hom-complex}
 \text{d}(f_{p, q}) =
-\text{d}_B \circ f_{p, q} + (-1)^{p + q + 1} f_{p, q} \circ \text{d}_A 
+\text{d}_B \circ f_{p, q} - (-1)^{p + q} f_{p, q} \circ \text{d}_A 
 \end{equation}
 Note that the first term of this expression is in
 $\Hom_\mathcal{B}(A^{-q}, B^{p + 1})$ and the second term is in
-$\Hom_\mathcal{B}(A^{-q - 1}, B^p)$.
-In other words, given $p + q = n + 1$ we have
-$$
-\text{d}(f)_{p, q} =
-\text{d}_B \circ f_{p - 1, q} - (-1)^n f_{p, q - 1} \circ \text{d}_A
-$$
-with obvious notation. The reader checks\footnote{What may be useful
-here is to think of the double complex $H^{\bullet, \bullet}$ with terms
-$H^{p, q} = \Hom_\mathcal{B}(A^{-q}, B^p)$ and differentials
-$d_1$ of degree $(1, 0)$ given by $\text{d}_B$ and $d_2$ of degree
-$(0, 1)$ given by the contragredient of $d_A$. Up to sign and up to
-replacing the direct sum by a direct product, the differential graded
-$\mathbf{Z}$-module
-$\Hom_{\text{Comp}^{dg}(\mathcal{B})}(A^\bullet, B^\bullet)$
-is the total complex associated to $H^{\bullet, \bullet}$, see
-Homology, Definition \ref{homology-definition-associated-simple-complex}.
-To get the sign correct, change $d_2^{p, q} : H^{p, q} \to H^{p, q + 1}$ by
-$(-1)^{q + 1}$ (after this change we still have a double complex).} that
+$\Hom_\mathcal{B}(A^{-q - 1}, B^p)$. The reader checks that
 \begin{enumerate}
 \item $\text{d}$ has square zero,
 \item an element $f$ in $\Hom^n(A^\bullet, B^\bullet)$
@@ -2629,8 +3265,15 @@ $$
 by composition $(g, f) \mapsto g \circ f$ in the graded category
 $\text{Gr}^{gr}(\mathcal{B})$, see
 Example \ref{example-graded-category-graded-objects}.
-This defines a map of differential graded modules as in
-Definition \ref{definition-dga-category}
+This defines a map of differential graded modules
+$$
+\Hom_{\text{Comp}^{dg}(\mathcal{B})}(B^\bullet, C^\bullet)
+\otimes_R
+\Hom_{\text{Comp}^{dg}(\mathcal{B})}(A^\bullet, B^\bullet)
+\longrightarrow
+\Hom_{\text{Comp}^{dg}(\mathcal{B})}(A^\bullet, C^\bullet)
+$$
+as required in Definition \ref{definition-dga-category}
 because
 \begin{align*}
 \text{d}(g \circ f) & =
@@ -2684,7 +3327,7 @@ $$
 To make sense of this we think of $\text{d}_M$ and $\text{d}_L$
 as graded $R$-module maps and we use composition of graded
 $R$-module maps. It is clear that $\text{d}(f)$ is homogeneous of
-degree $n + 1$ as a graded $R$-module map, and it is linear
+degree $n + 1$ as a graded $R$-module map, and it is $A$-linear
 because
 \begin{align*}
 \text{d}(f)(xa)
@@ -2725,7 +3368,13 @@ $$
 \Hom^m(L, M) \times \Hom^n(K, L) \longrightarrow \Hom^{n + m}(K, M)
 $$
 by composition of homogeneous right $A$-module maps $(g, f) \mapsto g \circ f$.
-This defines a map of differential graded modules as in
+This defines a map of differential graded modules
+$$
+\Hom_{\text{Mod}^{dg}_{(A, \text{d})}}(L, M) \otimes_R
+\Hom_{\text{Mod}^{dg}_{(A, \text{d})}}(K, L) \longrightarrow
+\Hom_{\text{Mod}^{dg}_{(A, \text{d})}}(K, M)
+$$
+as required in
 Definition \ref{definition-dga-category}
 because
 \begin{align*}
@@ -2988,6 +3637,8 @@ graded $A$-modules. Then $K(\mathcal{A})$ is a triangulated category.
 sheaf of differential graded $\mathcal{O}$-algebras. Let
 $\mathcal{A}$ be the differential graded category of differential
 graded $A$-modules. Then $K(\mathcal{A})$ is a triangulated category.
+See Differential Graded Sheaves, Proposition
+\ref{sdga-proposition-homotopy-category-triangulated}.
 \item Two examples with a different flavor may be found in Examples, Section
 \ref{examples-section-nongraded-differential-graded}.
 \end{enumerate}
@@ -3089,7 +3740,7 @@ such that $\pi s=1_y$ and $s\pi$ is homotopic to $1_{\tilde{y}}$.
 \end{lemma}
 
 \begin{proof}
-By axiom (B), we may let $\tilde{y}$ be the differential graded direct
+By axiom (A), we may let $\tilde{y}$ be the differential graded direct
 sum of $y$ and $C(1_x)$, i.e., there exists a diagram
 $$
 \xymatrix@C=3pc{
@@ -3839,6 +4490,501 @@ Derived Categories, Lemma \ref{derived-lemma-easier-axiom-four},
 we conclude that $K(\mathcal{A})$ is a triangulated category.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-functor-between-ABC}
+Let $R$ be a ring. Let $F : \mathcal{A} \to \mathcal{B}$ be a functor
+between differential graded categories over $R$ satisfying axioms
+(A), (B), and (C) such that $F(x[1]) = F(x)[1]$.
+Then $F$ induces an exact functor
+$K(\mathcal{A}) \to K(\mathcal{B})$ of triangulated categories.
+\end{lemma}
+
+\begin{proof}
+Namely, if $x \to y \to z$ is an admissible short exact sequence
+in $\text{Comp}(\mathcal{A})$, then $F(x) \to F(y) \to F(z)$
+is an admissible short exact sequence in $\text{Comp}(\mathcal{B})$.
+Moreover, the ``boundary'' morphism $\delta = \pi\text{d}(s) : z \to x[1]$
+constructed in Lemma \ref{lemma-get-triangle} produces the morphism
+$F(\delta) : F(z) \to F(x[1]) = F(x)[1]$ which is equal to the boundary
+map $F(\pi) \text{d}(F(s))$ for the admissible short exact sequence
+$F(x) \to F(y) \to F(z)$.
+\end{proof}
+
+
+
+
+
+\section{Bimodules}
+\label{section-bimodules}
+
+\noindent
+We continue the discussion started in Section \ref{section-tensor-product}.
+
+\begin{definition}
+\label{definition-bimodule}
+Bimodules. Let $R$ be a ring.
+\begin{enumerate}
+\item Let $A$ and $B$ be $R$-algebras. An {\it $(A, B)$-bimodule}
+is an $R$-module $M$ equippend with $R$-bilinear maps
+$$
+A \times M \to M, (a, x) \mapsto ax
+\quad\text{and}\quad
+M \times B \to M, (x, b) \mapsto xb
+$$
+such that the following hold
+\begin{enumerate}
+\item $a'(ax) = (a'a)x$ and $(xb)b' = x(bb')$,
+\item $a(xb) = (ax)b$, and
+\item $1 x = x = x 1$.
+\end{enumerate}
+\item Let $A$ and $B$ be $\mathbf{Z}$-graded $R$-algebras. A
+{\it graded $(A, B)$-bimodule} is an $(A, B)$-bimodule $M$ which
+has a grading $M = \bigoplus M^n$ such that
+$A^n M^m \subset M^{n + m}$ and $M^n B^m \subset M^{n + m}$.
+\item Let $A$ and $B$ be differential graded $R$-algebras. A
+{\it differential graded $(A, B)$-bimodule} is a graded $(A, B)$-bimodule
+which comes equipped with a differential
+$\text{d} : M \to M$ homogeneous of degree $1$
+such that $\text{d}(ax) = \text{d}(a)x + (-1)^{\deg(a)}a\text{d}(x)$ and
+$\text{d}(xb) = \text{d}(x)b + (-1)^{\deg(x)}x\text{d}(b)$
+for homogeneous elements $a \in A$, $x \in M$, $b \in B$.
+\end{enumerate}
+\end{definition}
+
+\noindent
+Observe that a differential graded $(A, B)$-bimodule
+$M$ is the same thing as a right differential graded
+$B$-module which is also a left differential graded
+$A$-module such that the grading and differentials agree
+and such that the $A$-module structure commutes with
+the $B$-module structure. Here is a precise statement.
+
+\begin{lemma}
+\label{lemma-what-makes-a-bimodule-dg}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
+differential graded algebras over $R$. Let $M$ be a right differential
+graded $B$-module. There is a $1$-to-$1$ correspondence
+between $(A, B)$-bimodule structures on $M$ compatible with the given
+differential graded $B$-module structure and homomorphisms
+$$
+A
+\longrightarrow
+\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(M, M)
+$$
+of differential graded $R$-algebras.
+\end{lemma}
+
+\begin{proof}
+Let $\mu : A \times M \to M$ define a left differential graded $A$-module
+structure on the underlying complex of $R$-modules $M^\bullet$ of $M$.
+By Lemma \ref{lemma-left-module-structure} the structure $\mu$ corresponds
+to a map $\gamma : A \to \Hom^\bullet(M^\bullet, M^\bullet)$
+of differential graded $R$-algebras. The assertion of the lemma is simply
+that $\mu$ commutes with the $B$-action, if and only if $\gamma$ ends
+up inside
+$$
+\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(M, M) \subset
+\Hom^\bullet(M^\bullet, M^\bullet)
+$$
+We omit the detailed calculation.
+\end{proof}
+
+\noindent
+Let $M$ be a differential graded $(A, B)$-bimodule. Recall from
+Section \ref{section-left-modules} that the left differential graded
+$A$-module structure corresponds to a right differential graded
+$A^{opp}$-module structure. Since the $A$ and $B$ module structures
+commute this gives $M$ the structure of a differential graded
+$A^{opp} \otimes_R B$-module:
+$$
+x \cdot (a \otimes b) = (-1)^{\deg(a)\deg(x)} axb
+$$
+Conversely, if we have a differential graded $A^{opp} \otimes_R B$-module
+$M$, then we can use the formula above to get a differential graded
+$(A, B)$-bimodule.
+
+\begin{lemma}
+\label{lemma-bimodule-over-tensor}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$
+be differential graded algebras over $R$. The construction above
+defines an equivalence of categories
+$$
+\begin{matrix}
+\text{differential graded}\\
+(A, B)\text{-bimodules}
+\end{matrix}
+\longleftrightarrow
+\begin{matrix}
+\text{right differential graded }\\
+A^{opp} \otimes_R B\text{-modules}
+\end{matrix}
+$$
+\end{lemma}
+
+\begin{proof}
+Immediate from discussion the above.
+\end{proof}
+
+\noindent
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
+differential graded $R$-algebras.
+Let $P$ be a differential graded $(A, B)$-bimodule. We say $P$
+{\it has property (P)} if it there exists a filtration
+$$
+0 = F_{-1}P \subset F_0P \subset F_1P \subset \ldots \subset P
+$$
+by differential graded $(A, B)$-bimodules such that
+\begin{enumerate}
+\item $P = \bigcup F_pP$,
+\item the inclusions $F_iP \to F_{i + 1}P$ are split as graded
+$(A, B)$-bimodule maps,
+\item the quotients $F_{i + 1}P/F_iP$ are isomorphic as differential
+graded $(A, B)$-bimodules to a direct sum of $(A \otimes_R B)[k]$.
+\end{enumerate}
+
+\begin{lemma}
+\label{lemma-bimodule-resolve}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
+differential graded $R$-algebras. Let $M$ be a differential graded
+$(A, B)$-bimodule. There exists a homomorphism $P \to M$
+of differential graded $(A, B)$-bimodules which is a quasi-isomorphism
+such that $P$ has property (P) as defined above.
+\end{lemma}
+
+\begin{proof}
+Immediate from Lemmas \ref{lemma-bimodule-over-tensor} and
+\ref{lemma-resolve}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-bimodule-property-P-sequence}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
+differential graded $R$-algebras. Let $P$ be a
+differential graded $(A, B)$-bimodule having property (P)
+with corresponding filtration $F_\bullet$, then we obtain a
+short exact sequence
+$$
+0 \to
+\bigoplus\nolimits F_iP \to
+\bigoplus\nolimits F_iP \to P \to 0
+$$
+of differential graded $(A, B)$-bimodules which is split as a sequence
+of graded $(A, B)$-bimodules.
+\end{lemma}
+
+\begin{proof}
+Immediate from Lemmas \ref{lemma-bimodule-over-tensor} and
+\ref{lemma-property-P-sequence}.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Bimodules and tensor product}
+\label{section-bimodules-tensor}
+
+\noindent
+Let $R$ be a ring. Let $A$ and $B$ be $R$-algebras. Let $M$ be a right
+$A$-module. Let $N$ be a $(A, B)$-bimodule. Then
+$M \otimes_A N$ is a right $B$-module.
+
+\medskip\noindent
+If in the situation of the previous paragraph
+$A$ and $B$ are $\mathbf{Z}$-graded algebras,
+$M$ is a graded $A$-module, and $N$ is a graded $(A, B)$-bimodule,
+then $M \otimes_A N$ is a right graded $B$-module. The construction
+is functorial in $M$ and defines a functor
+$$
+- \otimes_A N :
+\text{Mod}^{gr}_A
+\longrightarrow
+\text{Mod}^{gr}_B
+$$
+of graded categories as in Example \ref{example-gm-gr-cat}. Namely, if
+$M$ and $M'$ are graded $A$-modules and $f : M \to M'$ is an $A$-module
+homomorphism homogeneous of degree $n$, then
+$f \otimes \text{id}_N : M \otimes_A N \to M' \otimes_A N$
+is a $B$-module homomorphism homogeneous of degree $n$.
+
+\medskip\noindent
+If in the situation of the previous paragraph
+$(A, \text{d})$ and $(B, \text{d})$ are differential graded algebras,
+$M$ is a differential graded $A$-module, and $N$ is a differential
+graded $(A, B)$-bimodule, then $M \otimes_A N$ is a right
+differential graded $B$-module.
+
+\begin{lemma}
+\label{lemma-tensor}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$
+be differential graded algebras over $R$. Let $N$ be a
+differential graded $(A, B)$-bimodule. Then
+$M \mapsto M \otimes_A N$ defines a functor
+$$
+- \otimes_A N :
+\text{Mod}^{dg}_{(A, \text{d})}
+\longrightarrow
+\text{Mod}^{dg}_{(B, \text{d})}
+$$
+of differential graded categories. This functor induces functors
+$$
+\text{Mod}_{(A, \text{d})} \to \text{Mod}_{(B, \text{d})}
+\quad\text{and}\quad
+K(\text{Mod}_{(A, \text{d})}) \to K(\text{Mod}_{(B, \text{d})})
+$$
+by an application of Lemma \ref{lemma-functorial}.
+\end{lemma}
+
+\begin{proof}
+Above we have seen how the construction defines a functor of underlying
+graded categories. Thus it suffices to show that the construction is
+compatible with differentials. Let $M$ and $M'$ be differential
+graded $A$-modules and let $f : M \to M'$ be an $A$-module homomorphism
+which is homogeneous of degree $n$. Then we have
+$$
+\text{d}(f) = \text{d}_{M'} \circ f - (-1)^n f \circ \text{d}_M
+$$
+On the other hand, we have
+$$
+\text{d}(f \otimes \text{id}_N) =
+\text{d}_{M' \otimes_A N} \circ
+(f \otimes \text{id}_N)
+- (-1)^n
+(f \otimes \text{id}_N) \circ \text{d}_{M \otimes_A N}
+$$
+Applying this to an element $x \otimes y$ with $x \in M$ and
+$y \in N$ homogeneous we get
+\begin{align*}
+\text{d}(f \otimes \text{id}_N)(x \otimes y)
+= &
+\text{d}_{M'}(f(x)) \otimes y + (-1)^{n + \deg(x)}f(x) \otimes \text{d}_N(y) \\
+& - (-1)^n f(\text{d}_M(x)) \otimes y
+- (-1)^{n + \deg(x)}f(x) \otimes \text{d}_N(y) \\
+= &
+\text{d}(f) (x \otimes y)
+\end{align*}
+Thus we see that $\text{d}(f) \otimes \text{id}_N =
+\text{d}(f \otimes \text{id}_N)$ and the proof is complete.
+\end{proof}
+
+\begin{remark}
+\label{remark-shift-tensor-no-sign}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$
+be differential graded algebras over $R$. Let $N$ be a
+differential graded $(A, B)$-bimodule. Let $M$ be a right differential
+graded $A$-module. Then for every $k \in \mathbf{Z}$ there
+is an isomorphism
+$$
+(M \otimes_A N)[k] \longrightarrow
+M[k] \otimes_A N
+$$
+of right differential graded $B$-modules defined without the intervention
+of signs, see More on Algebra, Section \ref{more-algebra-section-sign-rules}.
+\end{remark}
+
+\noindent
+If we have a ring $R$ and $R$-algebras $A$, $B$, and $C$,
+a right $A$-module $M$, an $(A, B)$-bimodule $N$, and a
+$(B, C)$-bimodule $N'$, then
+$N \otimes_B N'$ is a $(A, C)$-bimodule and we have
+$$
+(M \otimes_A N) \otimes_B N' = M \otimes_A (N \otimes_B N')
+$$
+This equality continuous to hold in the graded and in the differential
+graded case. See More on Algebra, Section \ref{more-algebra-section-sign-rules}
+for sign rules.
+
+
+
+
+
+
+\section{Bimodules and internal hom}
+\label{section-bimodules-hom}
+
+\noindent
+Let $R$ be a ring. If $A$ is an $R$-algebra (see our conventions
+in Section \ref{section-conventions}) and $M$, $M'$ are right
+$A$-modules, then we define
+$$
+\Hom_A(M, M') = \{f : M \to M' \mid f \text{ is }A\text{-linear}\}
+$$
+as usual.
+
+\medskip\noindent
+Let $R$-be a ring. Let $A$ and $B$ be $R$-algebras. Let
+$N$ be an $(A, B)$-bimodule. Let $N'$ be a right $B$-module.
+In this situation we will think of
+$$
+\Hom_B(N, N')
+$$
+as a right $A$-module using precomposition.
+
+\medskip\noindent
+Let $R$-be a ring. Let $A$ and $B$ be $\mathbf{Z}$-graded $R$-algebras. Let
+$N$ be a graded $(A, B)$-bimodule. Let $N'$ be a right graded $B$-module.
+In this situation we will think of the graded $R$-module
+$$
+\Hom_{\text{Mod}^{gr}_B}(N, N')
+$$
+defined in Example \ref{example-gm-gr-cat} as a right graded $A$-module
+using precomposition. The construction is functorial in $N'$ and defines
+a functor
+$$
+\Hom_{\text{Mod}^{gr}_B}(N, -) :
+\text{Mod}^{gr}_B
+\longrightarrow
+\text{Mod}^{gr}_A
+$$
+of graded categories as in Example \ref{example-gm-gr-cat}. Namely, if
+$N_1$ and $N_2$ are graded $B$-modules and $f : N_1 \to N_2$ is a $B$-module
+homomorphism homogeneous of degree $n$, then the induced map
+$\Hom_{\text{Mod}^{gr}_B}(N, N_1) \to \Hom_{\text{Mod}^{gr}_B}(N, N_2)$
+is an $A$-module homomorphism homogeneous of degree $n$.
+
+\medskip\noindent
+Let $R$ be a ring. Let $A$ and $B$ be differential $\mathbf{Z}$-graded
+$R$-algebras. Let $N$ be a differential graded $(A, B)$-bimodule.
+Let $N'$ be a right differential graded $B$-module. In this situation
+we will think of the differential graded $R$-module
+$$
+\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N, N')
+$$
+defined in Example \ref{example-dgm-dg-cat} as a right differential
+graded $A$-module using precomposition as in the graded case. This
+is compatible with differentials because multiplication is the
+composition
+$$
+\Hom_{\text{Mod}^{dg}_B}(N, N') \otimes_R A \to
+\Hom_{\text{Mod}^{dg}_B}(N, N') \otimes_R
+\Hom_{\text{Mod}^{dg}_B}(N, N) \to
+\Hom_{\text{Mod}^{dg}_B}(N, N')
+$$
+The first arrow uses the map
+of Lemma \ref{lemma-what-makes-a-bimodule-dg} and the second
+arrow is the composition in the differential graded category
+$\text{Mod}^{dg}_{(B, \text{d})}$.
+
+\begin{lemma}
+\label{lemma-hom}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$
+be differential graded algebras over $R$. Let $N$ be a
+differential graded $(A, B)$-bimodule. The construction above
+defines a functor
+$$
+\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N, -) :
+\text{Mod}^{dg}_{(B, \text{d})}
+\longrightarrow
+\text{Mod}^{dg}_{(A, \text{d})}
+$$
+of differential graded categories. This functor induces functors
+$$
+\text{Mod}_{(B, \text{d})} \to \text{Mod}_{(A, \text{d})}
+\quad\text{and}\quad
+K(\text{Mod}_{(B, \text{d})}) \to K(\text{Mod}_{(A, \text{d})})
+$$
+by an application of Lemma \ref{lemma-functorial}.
+\end{lemma}
+
+\begin{proof}
+Above we have seen how the construction defines a functor of underlying
+graded categories. Thus it suffices to show that the construction is
+compatible with differentials. Let $N_1$ and $N_2$ be differential
+graded $B$-modules. Write
+$$
+H_{12} = \Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N_1, N_2),\quad
+H_1 = \Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N, N_1),\quad
+H_2 = \Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N, N_2)
+$$
+Consider the composition
+$$
+c : H_{12} \otimes_R H_1 \longrightarrow H_2
+$$
+in the differential graded category $\text{Mod}^{dg}_{(B, \text{d})}$.
+Let $f : N_1 \to N_2$ be a $B$-module homomorphism which is homogeneous
+of degree $n$, in other words, $f \in H_{12}^n$.
+The functor in the lemma sends $f$ to $c_f : H_1 \to H_2$, $g \mapsto c(f, g)$.
+Simlarly for $\text{d}(f)$. On the other hand, the differential on
+$$
+\Hom_{\text{Mod}^{dg}_{(A, \text{d})}}(H_1, H_2)
+$$
+sends $c_f$ to $\text{d}_{H_2} \circ c_f - (-1)^n c_f \circ \text{d}_{H_1}$.
+As $c$ is a morphism of complexes of $R$-modules we have
+$\text{d} c(f, g) = c(\text{d}f, g) + (-1)^n c(f, \text{d}g)$.
+Hence we see that
+\begin{align*}
+(\text{d}c_f)(g)
+& =
+\text{d}c(f,g) - (-1)^n c(f, \text{d}g) \\
+& =
+c(\text{d}f, g) + (-1)^n c(f, \text{d}g)  - (-1)^n c(f, \text{d}g) \\
+& =
+c(\text{d}f, g) = c_{\text{d}f}(g)
+\end{align*}
+and the proof is complete.
+\end{proof}
+
+\begin{remark}
+\label{remark-shift-hom-no-sign}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$
+be differential graded algebras over $R$. Let $N$ be a
+differential graded $(A, B)$-bimodule. Let $N'$ be a right differential
+graded $B$-module. Then for every $k \in \mathbf{Z}$ there
+is an isomorphism
+$$
+\Hom_{\text{Mod}^{gr}_B}(N, N')[k]
+\longrightarrow
+\Hom_{\text{Mod}^{gr}_B}(N, N'[k])
+$$
+of right differential graded $A$-modules defined without the intervention
+of signs, see More on Algebra, Section \ref{more-algebra-section-sign-rules}.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-tensor-hom-adjunction}
+Let $R$ be a ring. Let $A$ and $B$ be $R$-algebras.
+Let $M$ be a right $A$-module, $N$ an $(A, B)$-bimodule, and
+$N'$ a right $B$-module. Then we have a canonical isomorphism
+$$
+\Hom_B(M \otimes_A N, N') = \Hom_A(M, \Hom_B(N, N'))
+$$
+of $R$-modules.
+If $A$, $B$, $M$, $N$, $N'$ are compatibly graded, then we have a
+canonical isomorphism
+$$
+\Hom_{\text{Mod}_B^{gr}}(M \otimes_A N, N') =
+\Hom_{\text{Mod}_A^{gr}}(M, \Hom_{\text{Mod}_B^{gr}}(N, N'))
+$$
+of graded $R$-modules
+If $A$, $B$, $M$, $N$, $N'$ are compatibly differential graded, then
+we have a canonical isomorphism
+$$
+\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(M \otimes_A N, N') =
+\Hom_{\text{Mod}^{dg}_{(A, \text{d})}}(M,
+\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N, N'))
+$$
+of complexes of $R$-modules.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hint: in the ungraded case interpret both sides as $A$-bilinear maps
+$\psi : M \times N \to N'$ which are $B$-linear on the right.
+In the (differential) graded case, use the isomorphism of
+More on Algebra, Lemma \ref{more-algebra-lemma-compose}
+and check it is compatible with the module structures.
+Alternatively, use the isomorphism of Lemma \ref{lemma-characterize-hom}
+and show that it is compatible with the $B$-module structures.
+\end{proof}
 
 
 
@@ -3850,101 +4996,47 @@ we conclude that $K(\mathcal{A})$ is a triangulated category.
 \label{section-restriction}
 
 \noindent
-Let $R$ be a ring. Let $(B, \text{d})$ be a differential graded algebra
-over $R$. Denote $\mathcal{B} = \text{Mod}^{dg}_{(B, \text{d})}$
-the differential graded category of differential graded $B$-modules, see
-Example \ref{example-dgm-dg-cat}. Let $N$ be a differential graded $B$-module.
-Then the endomorphisms of $N$ in $\mathcal{B}$
-$$
-\Hom_\mathcal{B}(N, N)
-$$
-is differential graded algebra over $R$. Now let $N'$ be a second differential
-graded $B$-module. Then
-$$
-\Hom_\mathcal{B}(N, N')
-$$
-becomes a right differential graded $\Hom_\mathcal{B}(N, N)$-module by the
-composition
-$$
-\Hom_\mathcal{B}(N, N') \times \Hom_\mathcal{B}(N, N)
-\longrightarrow
-\Hom_\mathcal{B}(N, N')
-$$
-We need one more piece of data, in order to be able to formulate the
-results in the correct generality. Namely, let $(A, \text{d})$ be a
-differential graded $R$-algebra and let $A \to \Hom_\mathcal{B}(N, N)$
-be a homomorphism of differential graded $R$-algebras\footnote{A very
-interesting case is when $A = \Hom_\mathcal{B}(N, N)$.}. Using this
-homomorphism we obtain a functor
-\begin{equation}
-\label{equation-restriction}
-\text{Mod}_{(B, \text{d})}
-\longrightarrow
-\text{Mod}_{(A, \text{d})},\quad
-N' \longmapsto \Hom_\mathcal{B}(N, N')
-\end{equation}
-where $A$ acts on $\Hom_\mathcal{B}(N, N')$ via the given homomorphism
-and the action of $\Hom_\mathcal{B}(N, N)$ given above.
+This section is analogous to
+More on Algebra, Section \ref{more-algebra-section-RHom}.
 
 \medskip\noindent
-Alternatively, we can think about the structure above as follows.
-There is a left differential graded $\Hom_\mathcal{B}(N, N)$-module
-structure on $N$ given by
-$$
-\Hom_\mathcal{B}(N, N) \times N \longrightarrow N,\quad
-(f, x) \longmapsto f(x)
-$$
-This multiplication is $R$-bilinear, compatible with differentials,
-i.e., defines a the structure of a left differential graded
-$\Hom_\mathcal{B}(N, N)$-module structure on $N$. Further this
-action commutes with the $B$-module structure. Using
-$A \to \Hom_\mathcal{B}(N, N)$ we find that $N$ is a $(A, B)$-bimodule
-(this means: the induced $R$-module structures are the same and
-the $A$ and $B$ actions commute) and $N$ has a grading and differential
-such that $N$ is both a left differential graded $A$-module and
-a right differential graded $B$-module. More succinctly this may
-be stated by saying that $N$ is a differential graded module
-over $A^{opp} \otimes_R B$. For a differential graded $B$-module $N'$
-the right $A$-module structure on $\Hom_\mathcal{B}(N, N')$ is given by
-$$
-\Hom_\mathcal{B}(N, N') \times A \longrightarrow \Hom_\mathcal{B}(N, N'),\quad
-(f, a) \longmapsto f \circ a_N
-$$
-where $a_N : N \to N$ is (left) multiplication by $a$ and $\circ$ is
-composition in $\mathcal{B}$ as in Example \ref{example-dgm-dg-cat}
-(no signs).
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$
+be differential graded algebras over $R$. Let $N$ be a
+differential graded $(A, B)$-bimodule. Consider the functor
+\begin{equation}
+\label{equation-restriction}
+\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N, -) :
+\text{Mod}_{(B, \text{d})}
+\longrightarrow
+\text{Mod}_{(A, \text{d})}
+\end{equation}
+of Section \ref{section-bimodules-hom}.
 
 \begin{lemma}
 \label{lemma-restriction-homotopy}
 The functor (\ref{equation-restriction}) defines an exact functor
-of triangulated categories
-$K(\text{Mod}_{(B, \text{d})}) \to K(\text{Mod}_{(A, \text{d})})$.
+$K(\text{Mod}_{(B, \text{d})}) \to K(\text{Mod}_{(A, \text{d})})$
+of triangulated categories.
 \end{lemma}
 
 \begin{proof}
-Combining
-Lemmas \ref{lemma-homomorphism-induces-dga-functor},
-\ref{lemma-construction}, and
-\ref{lemma-functorial}
-we obtain the functor of the statement.
-We have to show that (\ref{equation-restriction}) transforms distinguished
-triangles into distinguished triangles. To see this
-suppose that $0 \to N_1 \to N_2 \to N_3 \to 0$ is an admissible short
-exact sequence of differential graded $B$-modules. Let $s : N_3 \to N_2$
-be a graded $B$-module homomorphism which is left inverse to $N_2 \to N_3$.
-Then $s$ defines a graded $A$-module homomorphism
-$\Hom_\mathcal{B}(N, N_3) \to \Hom_\mathcal{B}(N, N_2)$
-which is left inverse to
-$\Hom_\mathcal{B}(N, N_2) \to \Hom_\mathcal{B}(N, N_3)$.
-This finishes the proof.
+Via Lemma \ref{lemma-hom} and
+Remark \ref{remark-shift-hom-no-sign}
+this follows from the general principle of
+Lemma \ref{lemma-functor-between-ABC}.
 \end{proof}
 
 \noindent
-At this point we can consider the diagram
+Recall that we have an exact functor
+of triangulated categories
+$$
+\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N, -) :
+K(\text{Mod}_{(B, \text{d})}) \to K(\text{Mod}_{(A, \text{d})})
+$$
+see Lemma \ref{lemma-restriction-homotopy}. Consider the diagram
 $$
 \xymatrix{
-K(\text{Mod}_{(B, \text{d})}) \ar[d] \ar[rr]_{\Hom_\mathcal{B}(N, -)}
-\ar[rrd]_F & &
+K(\text{Mod}_{(B, \text{d})}) \ar[d] \ar[rr]_{\text{see above}} \ar[rrd]_F & &
 K(\text{Mod}_{(A, \text{d})}) \ar[d] \\
 D(B, \text{d}) \ar@{..>}[rr] & &
 D(A, \text{d})
@@ -3952,7 +5044,7 @@ D(A, \text{d})
 $$
 We would like to construct a dotted arrow as the
 {\it right derived functor} of the composition $F$.
-({\it Warning}: the diagram will not commute.)
+({\it Warning}: in most interesting cases the diagram will not commute.)
 Namely, in the general setting of
 Derived Categories, Section \ref{derived-section-derived-functors}
 we want to compute the
@@ -3980,7 +5072,7 @@ by Lemma \ref{lemma-hom-derived}.
 \label{lemma-functoriality-derived-restriction}
 Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
 differential graded $R$-algebras. Let $f : N \to N'$ be a
-homomorphism of differential graded $A^{opp} \otimes_R B$-modules.
+homomorphism of differential graded $(A, B)$-bimodules.
 Then $f$ induces a morphism of functors
 $$
 - \circ f : R\Hom(N', -) \longrightarrow R\Hom(N, -)
@@ -4044,9 +5136,7 @@ is an exact functor.
 \begin{lemma}
 \label{lemma-derived-restriction-exts}
 Let $(A, \text{d})$ and $(B, \text{d})$ be differential graded algebras
-over a ring $R$.
-Let $N$ be an $(A, B)$-bimodule which comes with a grading and a differential
-such that $N$ is a differential graded module for both $A$ and $B$.
+over a ring $R$. Let $N$ be a differential graded $(A, B)$-bimodule.
 Then for every $n \in \mathbf{Z}$ there are isomorphisms
 $$
 H^n(R\Hom(N, M)) = \Ext^n_{D(B, \text{d})}(N, M)
@@ -4075,7 +5165,7 @@ identifications.
 \label{lemma-compute-derived-restriction}
 Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
 differential graded $R$-algebras. Let $N$ be a differential
-graded $A^{opp} \otimes_R B$-module. If
+graded $(A, B)$-bimodule. If
 $\Hom_{D(B, \text{d})}(N, N') = \Hom_{K(\text{Mod}_{(B, \text{d})})}(N, N')$
 for all $N' \in K(B, \text{d})$, for example if $N$
 has property (P) as a differential graded $B$-module, then
@@ -4176,139 +5266,6 @@ for all $n \in \mathbf{Z}$.
 
 
 
-\section{Tensor product}
-\label{section-tensor-product}
-
-\noindent
-This section should be moved somewhere else. Let $R$ be a ring.
-Let $A$ be an $R$-algebra (see Section \ref{section-conventions}).
-Given a right $A$-module $M$ and a left $A$-module $N$ there is
-a {\it tensor product}
-$$
-M \otimes_A N
-$$
-This tensor product is a module over $R$. As an $R$-module $M \otimes_A N$
-is generated by symbols $x \otimes y$ with $x \in M$ and $y \in N$ subject
-to the relations
-$$
-\begin{matrix}
-(x_1 + x_2) \otimes y - x_1 \otimes y - x_2 \otimes y, \\
-x \otimes (y_1 + y_2) - x \otimes y_1 - x \otimes y_2, \\
-xa \otimes y - x \otimes ay
-\end{matrix}
-$$
-for $a \in R$, $x, x_1, x_2 \in M$
-and $y, y_1, y_2 \in N$. Thus $M \otimes_A N$ is the receptacle
-of the universal $A$-bilinear map $M \times N \to M \otimes_A N$,
-$(x, y) \mapsto x \otimes y$.
-
-\medskip\noindent
-We list some properties of the tensor product
-\begin{enumerate}
-\item In each variable the tensor product is right exact, in fact commutes
-with direct sums and arbitrary colimits.
-\item If $A$, $M$, $N$ are graded and the module structures are compatible
-with gradings then $M \otimes_A N$ is graded as well.
-Then $n$th graded piece $(M \otimes_A N)^n$ of $M \otimes_A N$
-is the quotient of $\bigoplus_{p + q = n} M^p \otimes_{A^0} N^q$
-by the submodule generated by $x \otimes ay - xa \otimes y$ where
-$x \in M^p$, $y \in N^q$, and $a \in A^{n - p - q}$.
-\item If $(A, \text{d})$ is a differential graded algebra, and
-$M$ and $N$ are (left and right) differential graded $A$-modules, then
-$M \otimes_A N$ is a differential graded $R$-module with differential
-$$
-\text{d}(x \otimes y) = \text{d}(x) \otimes y + (-1)^ix \otimes \text{d}(y)
-$$
-for $x \in M^i$ and $y \in N$.
-\item If we have a second $R$-algebra $B$ and $N$ is a $(A, B)$-bimodule
-(this means: the induced $R$-module structures are the same and
-the $A$ and $B$ actions commute) then $M \otimes_A N$ is a right $B$-module.
-\item If $A$ and $B$ are graded algebras,
-$M$ is a graded $A$-module, and $N$ is an $(A, B)$-bimodule
-which comes with a grading such that it is both
-a left graded $A$-module and a right graded
-$B$-module, then $M \otimes_A N$ is a graded $B$-module.
-\item If $(A, \text{d})$ and $(B, \text{d})$ are differential graded algebras,
-$M$ is a differential graded $A$-module, and $N$ is an $(A, B)$-bimodule
-which comes with a grading and a differential such that it is both
-a left differential graded $A$-module and a right differential graded
-$B$-module, then $M \otimes_A N$ is a differential graded $B$-module.
-\item If we have $R$-algebras $A$, $B$, and $C$, a right $A$-module $M$,
-an $(A, B)$-bimodule $N$, and a $(B, C)$-bimodule $N'$, then
-$N \otimes_B N'$ is a $(A, C)$-bimodule and we
-have $(M \otimes_A N) \otimes_B N' = M \otimes_A (N \otimes_B N')$.
-This equality continuous to hold in the graded and in the differential
-graded case (compare with
-Homology, Remark \ref{homology-remark-triple-complex} for the sign rules).
-\end{enumerate}
-In (6), the condition may be more hevalleysuccinctly stated by saying
-that $N$ is a differential graded module over $A^{opp} \otimes_R B$.
-We state the following as a lemma.
-
-\begin{lemma}
-\label{lemma-tensor}
-Let $(A, \text{d})$ and $(B, \text{d})$ be differential graded algebras,
-and let $N$ be an $(A, B)$-bimodule which comes with a grading and a
-differential such that it is both a left differential graded $A$-module
-and a right differential graded $B$-module. Then
-$M \mapsto M \otimes_A N$ defines a functor
-$$
-- \otimes_A N :
-\text{Mod}^{dg}_{(A, \text{d})}
-\longrightarrow
-\text{Mod}^{dg}_{(B, \text{d})}
-$$
-of differential graded categories. This functor induces functors
-$$
-\text{Mod}_{(A, \text{d})} \to \text{Mod}_{(B, \text{d})}
-\quad\text{and}\quad
-K(\text{Mod}_{(A, \text{d})}) \to K(\text{Mod}_{(B, \text{d})})
-$$
-by an application of Lemma \ref{lemma-functorial}.
-\end{lemma}
-
-\begin{proof}
-This follows from the discussion above.
-\end{proof}
-
-\noindent
-If $A$ is an algebra and $M$, $M'$ are right $A$-modules, then we
-define
-$$
-\Hom_A(M, M') = \{f : M \to M'\mid f \text{ is }A\text{-linear}\}
-$$
-as usual. If $A$ is graded and $M$ and $M'$ are graded $A$-modules,
-then we recall (Example \ref{example-gm-gr-cat}) that
-$$
-\Hom_{\text{Mod}_A^{gr}}(M, M') =
-\bigoplus\nolimits_{n \in \mathbf{Z}} \Hom^n(M, M')
-$$
-where $\Hom^n(M, M')$ is the collection of all $A$-module maps
-$M \to M'$ which are homogeneous of degree $n$.
-
-\begin{lemma}
-\label{lemma-tensor-hom-adjunction}
-Let $A$ and $B$ be algebras. Let $M$ be a right $A$-module, $N$ an
-$(A, B)$-bimodule, and $N'$ a right $B$-module. Then we have
-$$
-\Hom_B(M \otimes_A N, N') = \Hom_A(M, \Hom_B(N, N'))
-$$
-If $A$, $B$, $M$, $N$, $N'$ are compatibly graded, then we have
-$$
-\Hom_{\text{Mod}_B^{gr}}(M \otimes_A N, N') =
-\Hom_{\text{Mod}_A^{gr}}(M, \Hom_{\text{Mod}_B^{gr}}(N, N'))
-$$
-for the graded versions.
-\end{lemma}
-
-\begin{proof}
-This follows by interpreting both sides as $A$-bilinear maps
-$\psi : M \times N \to N'$ which are $B$-linear on the right.
-\end{proof}
-
-
-
-
 
 \section{Derived tensor product}
 \label{section-base-change}
@@ -4319,11 +5276,8 @@ This section is analogous to More on Algebra, Section
 
 \medskip\noindent
 Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
-differential graded algebras over $R$. Let $N$ be a $(A, B)$-bimodule
-equipped with a grading and differential such that $N$ is a left
-differential graded $A$-module and a right differential graded $B$-module.
-In other words, $N$ is a differential graded $A^{opp} \otimes_R B$-module.
-Consider the functor
+differential graded algebras over $R$. Let $N$ be a
+differential graded $(A, B)$-bimodule. Consider the functor
 \begin{equation}
 \label{equation-bc}
 \text{Mod}_{(A, \text{d})}
@@ -4331,7 +5285,7 @@ Consider the functor
 \text{Mod}_{(B, \text{d})},\quad
 M \longmapsto M \otimes_A N
 \end{equation}
-defined in Section \ref{section-tensor-product}.
+defined in Section \ref{section-bimodules-tensor}.
 
 \begin{lemma}
 \label{lemma-bc-homotopy}
@@ -4341,15 +5295,10 @@ $K(\text{Mod}_{(A, \text{d})}) \to K(\text{Mod}_{(B, \text{d})})$.
 \end{lemma}
 
 \begin{proof}
-The functor was constructed in Lemma \ref{lemma-tensor}.
-We have to show that $- \otimes_A N$ transforms distinguished triangles
-into distinguished triangles.
-Suppose that $0 \to K \to L \to M \to 0$ is an admissible short
-exact sequence of differential graded $A$-modules. Let $s : M \to L$ be
-a graded $A$-module homomorphism which is left inverse to $L \to M$.
-Then $s$ defines a graded $B$-module homomorphism
-$M \otimes_A N \to L \otimes_A N$ which is left inverse to
-$L \otimes_A N \to M \otimes_A N$.
+Via Lemma \ref{lemma-tensor} and
+Remark \ref{remark-shift-tensor-no-sign}
+this follows from the general principle of
+Lemma \ref{lemma-functor-between-ABC}.
 \end{proof}
 
 \noindent
@@ -4393,7 +5342,7 @@ by Lemma \ref{lemma-hom-derived}.
 \label{lemma-functoriality-bc}
 Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
 differential graded $R$-algebras. Let $f : N \to N'$ be a
-homomorphism of differential graded $A^{opp} \otimes_R B$-modules.
+homomorphism of differential graded $(A, B)$-bimodules.
 Then $f$ induces a morphism of functors
 $$
 1\otimes f :
@@ -4441,58 +5390,57 @@ as $f : N \to N'$ is a quasi-isomorphism.
 \end{proof}
 
 \begin{lemma}
-\label{lemma-tensor-hom-adjoint}
-Let $R$ be a ring.
-Let $(A, \text{d})$ and $(B, \text{d})$ be differential graded $R$-algebras.
-Let $N$ be an $(A, B)$-bimodule which comes with a grading and a differential
-such that it is a differential graded module for both $A$ and $B$.
-Then the functors
-$$
-- \otimes_A^\mathbf{L} N : D(A, \text{d}) \longrightarrow D(B, \text{d})
-$$
-of Lemma \ref{lemma-derived-bc} and
-$$
-R\Hom(N, -) : D(B, \text{d}) \longrightarrow D(A, \text{d})
-$$
-of Lemma \ref{lemma-derived-restriction} are adjoint.
+\label{lemma-compute-bc}
+Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be
+differential graded $R$-algebras. Let $N$ be a differential graded
+$(A, B)$-bimodule which has property (P) as a left differential graded
+$A$-module. Then $M \otimes_A^\mathbf{L} N$ is computed by
+$M \otimes_A N$ for all differential graded $A$-modules $M$.
 \end{lemma}
 
 \begin{proof}
-The statement means that we have
+Let $f : M \to M'$ be a homomorphism of differential graded $A$-modules
+which is a quasi-isomorphism. We claim that $f \otimes \text{id} :
+M \otimes_A N \to M' \otimes_A N$ is a quasi-isomorphism. If this
+is true, then by the construction of the derived tensor product
+in the proof of Lemma \ref{lemma-derived-bc} we obtain the desired result.
+The construction of the map $f \otimes \text{id}$ only depends
+on the left differential graded $A$-module structure on $N$.
+Moreover, we have $M \otimes_A N = N \otimes_{A^{opp}} M =
+N \otimes_{A^{opp}}^\mathbf{L} M$ because $N$ has property (P) as
+a differential graded $A^{opp}$-module. Hence the claim follows
+from Lemma \ref{lemma-functoriality-bc}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-tensor-hom-adjoint}
+Let $R$ be a ring.
+Let $(A, \text{d})$ and $(B, \text{d})$ be differential graded $R$-algebras.
+Let $N$ be a differential graded $(A, B)$-bimodule.
+Then the functor
 $$
-\Hom_{D(A, \text{d})}(M, R\Hom(N, N')) =
-\Hom_{D(B, \text{d})}(M \otimes^\mathbf{L}_A N, N')
+- \otimes_A^\mathbf{L} N : D(A, \text{d}) \longrightarrow D(B, \text{d})
 $$
-bifunctorially in $M$ and $N'$. To see this we may assume that $M$
-is a differential graded $A$-module with property (P) and that $N'$
-is a differential graded $B$-module with property (I). The computation
-of the derived functors given in the lemmas referenced in the statement
-combined with Lemma \ref{lemma-hom-derived} translates the above into
+of Lemma \ref{lemma-derived-bc} is a left adjoint to the functor
 $$
-\Hom_{K(\text{Mod}_{(A, \text{d})})}(M, \Hom_\mathcal{B}(N, N')) =
-\Hom_{K(\text{Mod}_{(B, \text{d})})}(M \otimes_A N, N')
+R\Hom(N, -) : D(B, \text{d}) \longrightarrow D(A, \text{d})
 $$
-where $\mathcal{B} = \text{Mod}^{dg}_{(B, \text{d})}$. Thus it is certainly
-sufficient to show that
-$$
-\Hom_\mathcal{A}(M, \Hom_\mathcal{B}(N, N')) =
-\Hom_\mathcal{B}(M \otimes_A N, N')
-$$
-as differential graded $\mathbf{Z}$-modules where
-$\mathcal{A} = \text{Mod}^{dg}_{(A, \text{d})}$.
-This follows from the fact that the isomorphism
-(Lemma \ref{lemma-tensor-hom-adjunction})
-$$
-\Hom_A(M, \Hom_B(N, N')) = \Hom_B(M \otimes_A N, N')
-$$
-of internal homs of graded modules respects the differentials.
+of Lemma \ref{lemma-derived-restriction}.
+\end{lemma}
+
+\begin{proof}
+This follows from Derived Categories, Lemma
+\ref{derived-lemma-pre-derived-adjoint-functors-general}
+and the fact that $- \otimes_A N$ and
+$\Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(N, -)$ are adjoint by
+Lemma \ref{lemma-tensor-hom-adjunction}.
 \end{proof}
 
 \begin{example}
 \label{example-map-hom-tensor}
 Let $R$ be a ring. Let $(A, \text{d}) \to (B, \text{d})$ be a
 homomorphism of differential graded $R$-algebras. Then we can
-view $B$ as a $(A, B)$-bimodule and we get a functor
+view $B$ as a differential graded $(A, B)$-bimodule and we get a functor
 $$
 - \otimes_A B : D(A, \text{d}) \longrightarrow D(B, \text{d})
 $$
@@ -4514,7 +5462,7 @@ $$
 bifunctorially in $M$ and $N$ exactly as in the case of commutative rings.
 Finally, observe that restriction is a tensor functor as well,
 since $N_A = N \otimes_B {}_BB_A = N \otimes_B^\mathbf{L} {}_BB_A$
-where ${}_BB_A$ is $B$ viewed as an $(B, A)$-bimodule.
+where ${}_BB_A$ is $B$ viewed as a differential graded $(B, A)$-bimodule.
 \end{example}
 
 \begin{lemma}
@@ -4530,64 +5478,26 @@ Then the functor $-\otimes_A^\mathbf{L} N$ is fully faithful.
 \end{lemma}
 
 \begin{proof}
-Because our functor has a left adjoint given by
-$R\Hom(N, -)$ by Lemma \ref{lemma-tensor-hom-adjoint}
+Our functor has a left adjoint given by
+$R\Hom(N, -)$ by Lemma \ref{lemma-tensor-hom-adjoint}.
+By Categories, Lemma \ref{categories-lemma-adjoint-fully-faithful}
 it suffices to show that for a differential graded $A$-module $M$
 the map
 $$
-H^0(M) \longrightarrow
-\Hom_{D(B, \text{d})}(N, M \otimes_A^\mathbf{L} N)
+M \longrightarrow R\Hom(N, M \otimes_A^\mathbf{L} N)
 $$
-is an isomorphism. We may assume that $M = P$ is a differential graded
-$A$-module which has property (P). Since $N$ defines a
-compact object, we reduce using
-Lemma \ref{lemma-property-P-sequence}
-to the case where $P$ has a finite filtration whose graded pieces
-are direct sums of $A[k]$. Again using compactness we reduce
-to the case $P = A[k]$. Assumption (2) on $N$ is that
-the result holds for these.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-P-not-preserved-base-change}
-Let $(A, \text{d})$ and $(B, \text{d})$ be differential graded algebras.
-Let $N$ be a differential graded $A^{opp} \otimes_R B$-module with property
-(P). Let $M$ be a differential graded $A$-module with property (P).
-Then $Q = M \otimes_A N$ is a differential graded $B$-module which represents
-$M \otimes_A^\mathbf{L} N$ in $D(B)$ and which has a filtration
+is an isomorphism in $D(A, \text{d})$. For this it suffices to show that
 $$
-0 = F_{-1}Q \subset F_0Q \subset F_1Q \subset \ldots \subset Q
+H^n(M) \longrightarrow
+\text{Ext}^n_{D(B, \text{d})}(N, M \otimes_A^\mathbf{L} N)
 $$
-by differential graded submodules such that $Q = \bigcup F_pQ$,
-the inclusions $F_iQ \to F_{i + 1}Q$ are admissible monomorphisms,
-the quotients $F_{i + 1}Q/F_iQ$ are isomorphic as differential
-graded $B$-modules to a direct sum of $(A \otimes_R B)[k]$.
-\end{lemma}
-
-\begin{proof}
-Choose filtrations $F_\bullet$ on $M$ and $N$. Then consider the filtration
-on $Q = M \otimes_A N$ given by
-$$
-F_n(Q) = \sum\nolimits_{i + j = n}
-F_i(M) \otimes_A F_j(N)
-$$
-This is clearly a differential graded $B$-submodule. We see that
-$$
-F_n(Q)/F_{n - 1}(Q) =
-\bigoplus\nolimits_{i + j = n}
-F_i(M)/F_{i - 1}(M) \otimes_A F_j(N)/F_{j - 1}(N)
-$$
-for example because the filtration of $M$ is split in the category
-of graded $A$-modules. Since by assumption the quotients on the right
-hand side are isomorphic to direct sums of shifts of $A$ and
-$A^{opp} \otimes_R B$ and since
-$A \otimes_A (A^{opp} \otimes_R B) = A \otimes_R B$,
-we conclude that the left hand side is a direct sum of shifts
-of $A \otimes_R B$ as a differential graded $B$-module.
-(Warning: $Q$ does not have a structure of $(A, B)$-bimodule.)
-This proves the first statement of the lemma.
-The second statement is immediate from
-the definition of the functor in Lemma \ref{lemma-derived-bc}.
+is an isomorphism, see Lemma \ref{lemma-derived-restriction-exts}.
+Since $N$ is a compact object the right hand side commutes
+with direct sums. Thus by Remark \ref{remark-P-resolution}
+it suffices to prove this map is an isomorphism for $M = A[k]$.
+Since $(A[k] \otimes_A^\mathbf{L} N) = N[k]$ by
+Remark \ref{remark-shift-tensor-no-sign},
+assumption (2) on $N$ is that the result holds for these.
 \end{proof}
 
 \begin{lemma}
@@ -4598,7 +5508,7 @@ $A' = A \otimes_R R'$. If $A$ is K-flat as a complex of $R$-modules,
 then
 \begin{enumerate}
 \item $- \otimes_A^\mathbf{L} A' : D(A, \text{d}) \to D(A', \text{d})$
-is equal the right derived functor of
+is equal to the right derived functor of
 $$
 K(A, \text{d}) \longrightarrow K(A', \text{d}),\quad
 M \longmapsto M \otimes_R R'
@@ -4656,17 +5566,15 @@ More on Algebra, Lemma \ref{more-algebra-lemma-colimit-K-flat}).
 \label{lemma-RHom-is-tensor}
 Let $R$ be a ring.
 Let $(A, \text{d})$ and $(B, \text{d})$ be differential graded $R$-algebras.
-Let $T$ be an $(A, B)$-bimodule which comes with a grading and a differential
-such that it is a differential graded module for both $A$ and $B$.
+Let $T$ be a differential graded $(A, B)$-bimodule.
 Assume
 \begin{enumerate}
 \item $T$ defines a compact object of $D(B, \text{d})$, and
 \item $S = \Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(T, B)$
 represents $R\Hom(T, B)$ in $D(A, \text{d})$.
 \end{enumerate}
-Then $S$ has a structure of a $(B, A)$-bimodule which comes with a grading
-and a differential such that it is a differential graded module for both
-$A$ and $B$ and there is an isomorphism
+Then $S$ has a structure of a differential graded $(B, A)$-bimodule
+and there is an isomorphism
 $$
 N \otimes_B^\mathbf{L} S \longrightarrow R\Hom(T, N)
 $$
@@ -4722,8 +5630,8 @@ We encourage the reader to skip this section.
 \medskip\noindent
 Let $R$ be a ring. Let $(A, \text{d})$, $(B, \text{d})$, and
 $(C, \text{d})$ be differential graded $R$-algebras.
-Let $N$ be a differential graded $A^{opp} \otimes_R B$-module.
-Let $N'$ be a differential graded $B^{opp} \otimes_R C$-module.
+Let $N$ be a differential graded $(A, B)$-bimodule.
+Let $N'$ be a differential graded $(B, C)$-module.
 We denote $N_B$ the bimodule $N$ viewed as a differential graded
 $B$-module (forgetting about the $A$-structure). There is a canonical map
 \begin{equation}
@@ -4742,8 +5650,8 @@ plain tensor product (as it is a left derived functor).
 \label{lemma-compose-tensor-functors-general}
 Let $R$ be a ring. Let $(A, \text{d})$, $(B, \text{d})$, and
 $(C, \text{d})$ be differential graded $R$-algebras.
-Let $N$ be a differential graded $A^{opp} \otimes_R B$-module.
-Let $N'$ be a differential graded $B^{opp} \otimes_R C$-module.
+Let $N$ be a differential graded $(A, B)$-bimodule.
+Let $N'$ be a differential graded $(B, C)$-module.
 Assume (\ref{equation-plain-versus-derived}) is an isomorphism.
 Then the composition
 $$
@@ -4758,52 +5666,50 @@ $N'' = N \otimes_B N'$ viewed as $(A, C)$-bimodule.
 \end{lemma}
 
 \begin{proof}
-Let $M$ be a differential graded $A$-module with property (P).
+Let us define a transformation of functors
+$$
+(- \otimes_A^\mathbf{L} N) \otimes_B^\mathbf{L} N'
+\longrightarrow
+- \otimes_A^\mathbf{L} N''
+$$
+To do this, let
+$M$ be a differential graded $A$-module with property (P).
 According to the construction of the functor $- \otimes_A^\mathbf{L} N''$
 of the proof of Lemma \ref{lemma-derived-bc} the plain tensor
-product $M \otimes_A N''$ represents $M \otimes_A^\mathbf{L} N''$.
-Then we write
+product $M \otimes_A N''$ represents $M \otimes_A^\mathbf{L} N''$
+in $D(C, \text{d})$. Then we write
 $$
 M \otimes_A N'' =
 M \otimes_A (N \otimes_B N') =
 (M \otimes_A N) \otimes_B N'
 $$
-The module $Q = M \otimes_A N$ represents $M \otimes_A^\mathbf{L} N$.
-Hence it suffices to show that
+The module $M \otimes_A N$ represents $M \otimes_A^\mathbf{L} N$
+in $D(B, \text{d})$. Choose a quasi-isomorphism $Q \to M \otimes_A N$
+where $Q$ is a differential graded $B$-module with property (P). Then
+$Q \otimes_B N'$ represents
+$(M \otimes_A^\mathbf{L} N) \otimes_B^\mathbf{L} N'$ in
+$D(C, \text{d})$.
+Thus we can define our map via
 $$
-Q \otimes_B^\mathbf{L} N' \longrightarrow Q \otimes_B N'
+(M \otimes_A^\mathbf{L} N) \otimes_B^\mathbf{L} N' =
+Q \otimes_B N' \to
+M \otimes_A N \otimes_B N' =
+M \otimes_A^\mathbf{L} N''
 $$
-is a quasi-isomorphism. The filtration $F_\bullet$ on $M$ induces a
-filtration $F_\bullet$ on $Q$ whose transition maps are admissible
-monomorphisms and whose graded quotients are direct sums of shifts of $N_B$.
-Exactly as in the proof of Lemma \ref{lemma-property-P-sequence}
-this implies there is an admissible short exact sequence
-$$
-0 \to
-\bigoplus\nolimits F_iQ \to
-\bigoplus\nolimits F_iQ \to Q \to 0
-$$
-of differential graded $B$-modules. Using the fact that
-$- \otimes_B^\mathbf{L} N'$ is an exact functor and commutes
-with direct sums and using that $- \otimes_B N'$ transforms
-admissible exact sequences into admissible exact sequences
-and commutes with direct sums we reduce to proving
-that
-$$
-F_pQ \otimes_B^\mathbf{L} N' \longrightarrow F_pQ \otimes_B N'
-$$
-is a quasi-isomorphism for all $p$. Repeating the argument
-with the admissible short exact sequences
-$$
-0 \to F_pQ \to F_{p + 1}Q \to F_{p + 1}Q/F_pQ \to 0
-$$
-we reduce to showing the same statement for $F_{p + 1}Q/F_pQ$.
-Using the structure of these modules (see above) we reduce to
-showing that
-$$
-N_B \otimes_B^\mathbf{L} N' \longrightarrow N_B \otimes_B N'
-$$
-is a quasi-isomorphism, which is what we assumed.
+The construction of this map is functorial in $M$ and compatible
+with distinguished triangles and direct sums; we omit the details.
+Consider the property $T$ of objects $M$ of $D(A, \text{d})$ 
+expressing that this map is an isomorphism. Then
+\begin{enumerate}
+\item if $T$ holds for $M_i$ then $T$ holds for $\bigoplus M_i$,
+\item if $T$ holds for $2$-out-of-$3$ in a distinguished
+triangle, then it holds for the third, and
+\item $T$ holds for $A[k]$ because here we obtain a shift
+of the map (\ref{equation-plain-versus-derived}) which we
+have assumed is an isomorphism.
+\end{enumerate}
+Thus by Remark \ref{remark-P-resolution} property $T$
+always holds and the proof is complete.
 \end{proof}
 
 \noindent
@@ -4812,15 +5718,16 @@ $(C, \text{d})$ be differential graded $R$-algebras.
 We temporarily denote $(A \otimes_R B)_B$ the differential
 graded algebra $A \otimes_R B$ viewed as a (right) differential
 graded $B$-module, and ${}_B(B \otimes_R C)_C$ the differential
-graded algebra $B \otimes_R C$ viewed as a $(B, C)$-bimodule.
-Then there is a canonical map
+graded algebra $B \otimes_R C$ viewed as a differential graded
+$(B, C)$-bimodule. Then there is a canonical map
 \begin{equation}
 \label{equation-plain-versus-derived-algebras}
 (A \otimes_R B)_B \otimes_B^\mathbf{L} {}_B(B \otimes_R C)_C
 \longrightarrow
 (A \otimes_R B \otimes_R C)_C
 \end{equation}
-where $(A \otimes_R B \otimes_R C)_C$ denotes the differential
+in $D(C, \text{d})$ where $(A \otimes_R B \otimes_R C)_C$
+denotes the differential
 graded $R$-algebra $A \otimes_R B \otimes_R C$ viewed as a
 (right) differential graded $C$-module. Namely, this map
 comes from the identification
@@ -4836,8 +5743,8 @@ plain tensor product (as it is a left derived functor).
 Let $R$ be a ring. Let $(A, \text{d})$, $(B, \text{d})$, and
 $(C, \text{d})$ be differential graded $R$-algebras. Assume
 that (\ref{equation-plain-versus-derived-algebras}) is an isomorphism.
-Let $N$ be a differential graded $A^{opp} \otimes_R B$-module.
-Let $N'$ be a differential graded $B^{opp} \otimes_R C$-module.
+Let $N$ be a differential graded $(A, B)$-bimodule.
+Let $N'$ be a differential graded $(B, C)$-bimodule.
 Then the composition
 $$
 \xymatrix{
@@ -4847,32 +5754,43 @@ D(C, \text{d})
 }
 $$
 is isomorphic to $- \otimes_A^\mathbf{L} N''$ for a differential graded
-$A^{opp} \otimes_R C$-module $N''$ described in the proof.
+$(A, C)$-bimodule $N''$ described in the proof.
 \end{lemma}
 
 \begin{proof}
 By Lemma \ref{lemma-functoriality-bc} we may replace $N$ and $N'$ by
 quasi-isomorphic bimodules. Thus we may assume $N$, resp.\ $N'$
 has property (P) as differential graded
-$A^{opp} \otimes_R B$, resp.\ $B^{opp} \otimes_R C$-module, see
-Lemma \ref{lemma-resolve}. We claim the lemma holds
+$(A, B)$-bimodule, resp.\ $(B, C)$-bimodule, see
+Lemma \ref{lemma-bimodule-resolve}. We claim the lemma holds
 with the $(A, C)$-bimodule $N'' = N \otimes_B N'$.
 To prove this, it suffices to show that
 $$
 N_B \otimes_B^\mathbf{L} N' \longrightarrow (N \otimes_B N')_C
 $$
-is an isomorphism, see Lemma \ref{lemma-compose-tensor-functors-general}.
+is an isomorphism in $D(C, \text{d})$, see
+Lemma \ref{lemma-compose-tensor-functors-general}.
 
 \medskip\noindent
-By Lemma \ref{lemma-property-P-sequence}
-there is an admissible short exact sequence
+Let $F_\bullet$ be the filtration on $N$ as in property (P) for bimodules.
+By Lemma \ref{lemma-bimodule-property-P-sequence}
+there is a short exact sequence
 $$
 0 \to
 \bigoplus\nolimits F_iN \to
 \bigoplus\nolimits F_iN \to N \to 0
 $$
-of differential graded $A^{opp} \otimes_R B$-modules. Using the fact that
-$- \otimes_B^\mathbf{L} N'$ is an exact functor and commutes
+of differential graded $(A, B)$-bimodules which is split as a sequence
+of graded $(A, B)$-bimodules. A fortiori this is an admissible short exact
+sequence of differential graded $B$-modules and this produces a distinguished
+triangle
+$$
+\bigoplus\nolimits F_iN_B \to
+\bigoplus\nolimits F_iN_B \to N_B \to
+\bigoplus\nolimits F_iN_B[1]
+$$
+in $D(B, \text{d})$. Using that $- \otimes_B^\mathbf{L} N'$
+is an exact functor of triangulated categories and commutes
 with direct sums and using that $- \otimes_B N'$ transforms
 admissible exact sequences into admissible exact sequences
 and commutes with direct sums we reduce to proving
@@ -4881,10 +5799,11 @@ $$
 (F_pN)_B \otimes_B^\mathbf{L} N' \longrightarrow (F_pN)_B \otimes_B N'
 $$
 is a quasi-isomorphism for all $p$. Repeating the argument
-with the admissible short exact sequences
+with the short exact sequences of $(A, B)$-bimodules
 $$
 0 \to F_pN \to F_{p + 1}N \to F_{p + 1}N/F_pN \to 0
 $$
+which are split as graded $(A, B)$-bimodules
 we reduce to showing the same statement for $F_{p + 1}N/F_pN$.
 Since these modules are direct sums of shifts of $(A \otimes_R B)_B$
 we reduce to showing that
@@ -4893,20 +5812,23 @@ $$
 \longrightarrow
 (A \otimes_R B)_B \otimes_B N'
 $$
-is a quasi-isomorphism. Now we choose a quasi-isomorphism
-$P \to (A \otimes_R B)_B$ of differential graded $B$-modules
-where $P$ has property (P). Then we have to show that
+is a quasi-isomorphism.
+
+\medskip\noindent
+Choose a filtration $F_\bullet$ on $N'$ as in property (P) for bimodules.
+Choose a quasi-isomorphism $P \to (A \otimes_R B)_B$
+of differential graded $B$-modules where $P$ has property (P).
+We have to show that
 $P \otimes_B N' \to (A \otimes_R B)_B \otimes_B N'$ is
-a quasi-isomorphism because
-$P \otimes_B N'$ represents
-$(A \otimes_R B)_B \otimes_B^\mathbf{L} N'$
+a quasi-isomorphism because $P \otimes_B N'$ represents
+$(A \otimes_R B)_B \otimes_B^\mathbf{L} N'$ in $D(C, \text{d})$
 by the construction in Lemma \ref{lemma-derived-bc}.
 As $N' = \colim F_pN'$ we find
 that it suffices to show that
-$P \otimes_B F_pN' \to (A \otimes_R B)_B \otimes_B F_pN'$.
-Using the admissible short exact sequences
+$P \otimes_B F_pN' \to (A \otimes_R B)_B \otimes_B F_pN'$
+is a quasi-isomorphism. Using the short exact sequences
 $0 \to F_pN' \to F_{p + 1}N' \to F_{p + 1}N'/F_pN' \to 0$
-we reduce to showing
+which are split as graded $(B, C)$-bimodules we reduce to showing
 $P \otimes_B F_{p + 1}N'/F_pN' \to
 (A \otimes_R B)_B \otimes_B F_{p + 1}N'/F_pN'$
 is a quasi-isomorphism for all $p$.
@@ -4917,11 +5839,11 @@ $$
 P \otimes_B {}_B(B \otimes_R C)_C \to
 (A \otimes_R B)_B \otimes_B {}_B(B \otimes_R C)_C
 $$
-is an isomorphism. Since $P \to (A \otimes_R B)_B$
+is a quasi-isomorphism. Since $P \to (A \otimes_R B)_B$
 is a resolution by a module satisfying property (P)
 this map of differential graded $C$-modules
 represents the morphism (\ref{equation-plain-versus-derived-algebras})
-and the proof is complete.
+in $D(C, \text{d})$ and the proof is complete.
 \end{proof}
 
 \begin{lemma}
@@ -4994,7 +5916,8 @@ Let $M$ be a differential graded $E$-module. For every object $U$ of
 $\mathcal{C}$ the complex $K^\bullet(U)$ is a left differential
 graded $E$-module as well as a right $\mathcal{O}(U)$-module.
 The actions commute, so we have a bimodule.
-Thus, by the constructions in Section \ref{section-tensor-product}
+Thus, by the constructions in
+Sections \ref{section-tensor-product} and \ref{section-bimodules}
 we can form the tensor product
 $$
 M \otimes_E K^\bullet(U)
@@ -5016,7 +5939,7 @@ It is therefore clear that we obtain a functor as stated in the lemma.
 \label{lemma-tensor-with-complex-homotopy}
 The functor of Lemma \ref{lemma-tensor-with-complex} defines an exact functor
 of triangulated categories
-$K(\text{Mod}_{(E \text{d})}) \to K(\mathcal{O})$.
+$K(\text{Mod}_{(E, \text{d})}) \to K(\mathcal{O})$.
 \end{lemma}
 
 \begin{proof}
@@ -5137,18 +6060,19 @@ we obtain the desired map of the lemma.
 \label{lemma-tensor-with-complex-hom-adjoint}
 Let $(\mathcal{C}, \mathcal{O})$ be a ringed site.
 Let $K^\bullet$ be a complex of $\mathcal{O}$-modules.
-Then the functors
+Then the functor
 $$
 - \otimes_E^\mathbf{L} K^\bullet :
 D(E, \text{d})
 \longrightarrow
 D(\mathcal{O})
 $$
-of Lemma \ref{lemma-tensor-with-complex-derived} and
+of Lemma \ref{lemma-tensor-with-complex-derived} is a left adjoint
+of the functor
 $$
 R\Hom(K^\bullet, -) : D(\mathcal{O}) \longrightarrow D(E, \text{d})
 $$
-of Lemma \ref{lemma-existence-of-derived} are adjoint.
+of Lemma \ref{lemma-existence-of-derived}.
 \end{lemma}
 
 \begin{proof}
@@ -5284,7 +6208,7 @@ differential graded $A$-module which is finite graded projective,
 then we can ask: Does $P$ give a compact object of $D(A, \text{d})$?
 Presumably, this is not true in general, but we do not know a
 counter example. However, if $P$ is also an object of the category
-$\mathcal{D}$ of Remark \ref{remark-source-graded-projective}),
+$\mathcal{D}$ of Remark \ref{remark-source-graded-projective},
 then this is the case (this follows from the fact that direct sums
 in $D(A, \text{d})$ are given by direct sums of modules; details omitted).
 \end{remark}
@@ -5611,9 +6535,8 @@ following generalization for free.
 \begin{lemma}
 \label{lemma-tilting-equivalence}
 Let $R$ be a ring. Let $(A, \text{d})$ and $(B, \text{d})$ be 
-differential graded algebras over $R$. Let $N$ be an $(A, B)$-bimodule
-which comes with a grading and a differential such that it is a
-differential graded module for both $A$ and $B$. Assume that
+differential graded algebras over $R$. Let $N$ be a
+differential graded $(A, B)$-bimodule. Assume that
 \begin{enumerate}
 \item $N$ defines a compact object of $D(B, \text{d})$,
 \item if $N' \in D(B, \text{d})$ and
@@ -5689,7 +6612,7 @@ from the fact that $F$ is an equivalence.
 Let $P$ be an object as in (2). Represent $P$ by a
 differential graded module with property (P). Set
 $$
-(E, \text{d}) = \Hom_{\text{Mod}^{dg}_B}(P, P)
+(E, \text{d}) = \Hom_{\text{Mod}^{dg}_{(B, \text{d})}}(P, P)
 $$
 Then $H^0(E) = A$ and $H^k(E) = 0$ for $k \not = 0$ by
 Lemma \ref{lemma-hom-derived} and assumption (2)(c).
@@ -5807,7 +6730,7 @@ by Lemma \ref{lemma-qis-equivalence}.
 Note that the quasi-inverse $D(A, \text{d}) \to D(E', \text{d})$
 of the left vertical arrow is given
 by $M \mapsto M \otimes_A^\mathbf{L} A$ where $A$ is viewed as a
-$A^{opp} \otimes_R E'$-module, see Example \ref{example-map-hom-tensor}.
+$(A, E')$-bimodule, see Example \ref{example-map-hom-tensor}.
 On the other hand the functor $D(E', \text{d}) \to D(B, \text{d})$ is given by
 $M \mapsto M \otimes_{E'}^\mathbf{L} N$ where $N$ is as above.
 We conclude by Lemma \ref{lemma-compose-tensor-functors}.
@@ -5886,23 +6809,26 @@ that there is an equivalence of the form
 $$
 - \otimes_A \Omega : D(A, \text{d}) \longrightarrow D(B, \text{d})
 $$
-for some differential graded $A^{opp}\otimes_R B$-module
+for some differential graded $(A, B)$-bimodule
 $\Omega$ (this happens in the situation of
 Proposition \ref{proposition-rickard} and is often true
 if the equivalence comes from a geometric construction).
 If also the quasi-inverse of our functor is given as
 $$
-- \otimes_A^\mathbf{L} \Omega' : D(B, \text{d}) \longrightarrow D(A, \text{d})
+- \otimes_B^\mathbf{L} \Omega' : D(B, \text{d}) \longrightarrow D(A, \text{d})
 $$
-for a differential graded $B^{opp}\otimes_R A$-module $\Omega'$
-(and as before such a module $\Omega'$ often exists in practice)
-then we can consider the functor
+for a differential graded $(B, A)$-bimodule $\Omega'$
+(and as before such a module $\Omega'$ often exists in practice).
+In this case we can consider the functor
 $$
 D(A^{opp} \otimes_R A, \text{d})
 \longrightarrow
 D(B^{opp} \otimes_R B, \text{d}),\quad
 M \longmapsto \Omega' \otimes^\mathbf{L}_A M \otimes_A^\mathbf{L} \Omega
 $$
+on derived categories of bimodules (use
+Lemma \ref{lemma-bimodule-over-tensor} to turn bimodules into
+right modules).
 Observe that this functor sends the $(A, A)$-bimodule $A$ to
 the $(B, B)$-bimodule $B$. Under suitable conditions
 (e.g., flatness of $A$, $B$, $\Omega$ over $R$, etc)
@@ -6069,8 +6995,8 @@ Lemma \ref{lemma-compose-tensor-functors-general-algebra}.
 Let $R$ be a ring. Let $(A, \text{d})$, $(B, \text{d})$, and
 $(C, \text{d})$ be differential graded $R$-algebras. Assume
 $A \otimes_R C$ represents $A \otimes^\mathbf{L}_R C$ in $D(R)$.
-Let $N$ be a differential graded $A^{opp} \otimes_R B$-module.
-Let $N'$ be a differential graded $B^{opp} \otimes_R C$-module.
+Let $N$ be a differential graded $(A, B)$-bimodule.
+Let $N'$ be a differential graded $(B, C)$-bimodule.
 Then the composition
 $$
 \xymatrix{
@@ -6080,7 +7006,7 @@ D(C, \text{d})
 }
 $$
 is isomorphic to $- \otimes_A^\mathbf{L} N''$ for some differential graded
-$A^{opp} \otimes_R C$-module $N''$.
+$(A, C)$-bimodule $N''$.
 \end{lemma}
 
 \begin{proof}

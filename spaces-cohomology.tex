@@ -304,7 +304,7 @@ spaces over $S$. Let $\overline{y}$ be a geometric point of $Y$ with
 lifts $\overline{x}_1, \ldots, \overline{x}_n$ in $X$. Then
 $$
 (f_*\mathcal{F})_{\overline{y}} =
-\bigoplus\nolimits_{i = 1, \ldots, n}
+\prod\nolimits_{i = 1, \ldots, n}
 \mathcal{F}_{\overline{x}_i}
 $$
 for any sheaf $\mathcal{F}$ on $X_\etale$.
@@ -405,9 +405,10 @@ $M \in D(\mathcal{A})$.
 Since $f_*$ is exact (Lemma \ref{lemma-finite-higher-direct-image-zero})
 the functor $Rf_*$ is computed by applying $f_*$ to any representative complex.
 Choose a complex $\mathcal{K}^\bullet$ of $\mathcal{B}$-modules
-representing $K$ which is K-flat and such that $f^*\mathcal{K}^\bullet$
-is K-flat, see Cohomology on Sites, Lemma
-\ref{sites-cohomology-lemma-pullback-K-flat}.
+representing $K$ which is K-flat with flat terms, see
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-K-flat-resolution}.
+Then $f^*\mathcal{K}^\bullet$ is K-flat with flat terms, see
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-pullback-K-flat}.
 Choose any complex $\mathcal{M}^\bullet$ of $\mathcal{A}$-modules
 representing $M$. Then
 we have to show
@@ -491,18 +492,22 @@ $$
 \end{lemma}
 
 \begin{proof}
-Recall that $R^pf_*\mathcal{F}$ is the sheaf on $Y_{spaces, \etale}$
-associated to $V \mapsto H^p(V \times_Y X, \mathcal{F})$, see
-Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-higher-direct-images}
-and Properties of Spaces, Lemma
+We will use that the morphism of topoi $f_{small} : X_{small} \to Y_{small}$
+comes from the morphism of sites
+$f_{spaces, \etale} : X_{spaces, \etale} \to Y_{spaces, \etale}$
+corresponding to the continuous functor $V \longmapsto X \times_Y V$,
+see Properties of Spaces, Lemma
 \ref{spaces-properties-lemma-functoriality-etale-site}.
-Recall that the colimit is the sheaf associated to the presheaf colimit.
+We will apply Cohomology on Sites, Lemma
+\ref{sites-cohomology-lemma-higher-direct-image-colimit}
+to this morphism of sites. Since every object of $Y_{spaces, \etale}$
+has a covering by affine objects, it suffices to show that
+for $V$ affine and \'etale over $Y$ we have
+$H^p(X \times_Y V, \mathcal{F}) = \colim H^p(X \times_Y V, \mathcal{F}_i)$.
+Since $V$ is affine, the algebraic space $X \times_Y V$ is
+quasi-compact and quasi-separated.
 Hence we can apply Lemma \ref{lemma-colimits}
-to $H^p(V \times_Y X, -)$ where $V$ is affine to conclude (because
-when $V$ is affine, then $V \times_Y X$ is quasi-compact and quasi-separated).
-Strictly speaking this also uses Properties of Spaces,
-Lemma \ref{spaces-properties-lemma-alternative} to see that there exist
-enough affine objects.
+to conclude.
 \end{proof}
 
 \noindent
@@ -514,35 +519,59 @@ as expected in quasi-compact and quasi-separated algebraic spaces.
 Let $S$ be a scheme. Let $X$ be a quasi-compact and quasi-separated
 algebraic space over $S$. Let $I$ be a directed set and
 let $(\mathcal{F}_i, \varphi_{ii'})$ be a system over $I$
-of quasi-coherent $\mathcal{O}_X$-modules. Let $\mathcal{G}$ be an
+of $\mathcal{O}_X$-modules. Let $\mathcal{G}$ be an
 $\mathcal{O}_X$-module of finite presentation. Then we have
 $$
 \colim_i \Hom_X(\mathcal{G}, \mathcal{F}_i)
 =
 \Hom_X(\mathcal{G}, \colim_i \mathcal{F}_i).
 $$
+In particular, $\Hom_X(\mathcal{G}, -)$ commutes with filtered
+colimits in $\QCoh(\mathcal{O}_X)$.
 \end{lemma}
 
 \begin{proof}
-Choose an affine scheme $U$ and a surjective \'etale morphism
-$U \to X$. Set $R = U \times_X U$. Note that $R$ is a quasi-compact
-(as $X$ is quasi-separated and $U$ quasi-compact) and separated (as
-$U$ is separated) scheme. Hence we have
-$$
-\colim_i \Hom_U(\mathcal{G}|_U, \mathcal{F}_i|_U)
-=
-\Hom_U(\mathcal{G}|_U, \colim_i \mathcal{F}_i|_U).
-$$
-by Modules, Lemma \ref{modules-lemma-finite-presentation-quasi-compact-colimit}
-(and the material on restriction to
-schemes \'etale over $X$, see
-Properties of Spaces, Sections \ref{spaces-properties-section-quasi-coherent}
-and \ref{spaces-properties-section-properties-modules}). Similarly for $R$.
-Since $\QCoh(\mathcal{O}_X) = \QCoh(U, R, s, t, c)$ (see
-Properties of Spaces, Proposition
-\ref{spaces-properties-proposition-quasi-coherent})
-the result follows formally.
+The displayed equality is a special case of Modules on Sites, Lemma
+\ref{sites-modules-lemma-finite-presentation-quasi-compact-colimit}.
+In order to apply it, we need to check the hypotheses of
+Sites, Lemma \ref{sites-lemma-directed-colimits-global-sections} part (4)
+for the site $X_\etale$.
+In order to do this, we will check hypotheses
+(2)(a), (2)(b), (2)(c) of
+Sites, Remark \ref{sites-remark-stronger-conditions}.
+Namely, let $\mathcal{B} \subset \Ob(X_\etale)$ be the set of affine objects.
+Then
+\begin{enumerate}
+\item Since $X$ is quasi-compact, there exists a $U \in \mathcal{B}$
+such that $U \to X$ is surjective
+(Properties of Spaces, Lemma
+\ref{spaces-properties-lemma-quasi-compact-affine-cover}),
+hence $h_U^\# \to *$ is surjective.
+\item For $U \in \mathcal{B}$ every \'etale covering $\{U_i \to U\}_{i \in I}$
+of $U$ can be refined by a finite \'etale covering
+$\{U_j \to U\}_{j = 1, \ldots, m}$ with $U_j \in \mathcal{B}$
+(Topologies, Lemma \ref{topologies-lemma-etale-affine}).
+\item For $U, U' \in \Ob(X_\etale)$ we have
+$h_U^\# \times h_{U'}^\# = h_{U \times_X U'}^\#$.
+If $U, U' \in \mathcal{B}$, then $U \times_X U'$ is quasi-compact
+because $X$ is quasi-separated, see Morphisms of Spaces, Lemma
+\ref{spaces-morphisms-lemma-quasi-compact-quasi-separated-permanence}
+for example. Hence we can find a surjective \'etale morphism
+$U'' \to U \times_X U'$ with $U'' \in \mathcal{B}$
+(Properties of Spaces, Lemma
+\ref{spaces-properties-lemma-quasi-compact-affine-cover}).
+In other words, we have morphisms $U'' \to U$ and $U'' \to U'$
+such that the map $h_{U''}^\# \to h_U^\# \times h_{u'}^\#$ is
+surjective.
+\end{enumerate}
+For the final statement, observe that the inclusion functor
+$\QCoh(\mathcal{O}_X) \to \textit{Mod}(\mathcal{O}_X)$
+commutes with colimits and that finitely presented modules
+are quasi-coherent. See
+Properties of Spaces, Lemma
+\ref{spaces-properties-lemma-properties-quasi-coherent}.
 \end{proof}
+
 
 
 
@@ -757,17 +786,16 @@ $K^\bullet \to \underline{\mathbf{Z}}[0]$, see
 (\ref{equation-quasi-isomorphism}).
 Choose an injective resolution $\mathcal{F} \to \mathcal{I}^\bullet$
 in $\textit{Ab}(X_\etale)$. Consider the double complex
-$A^{\bullet, \bullet}$ with terms
-$$
-A^{p, q} = \Hom(K^p, \mathcal{I}^q)
-$$
-where the differential $d_1^{p, q} : A^{p, q} \to A^{p + 1, q}$
+$\Hom(K^\bullet, \mathcal{I}^\bullet)$ with terms
+$\Hom(K^p, \mathcal{I}^q)$. The differential
+$d_1^{p, q} : A^{p, q} \to A^{p + 1, q}$
 is the one coming from the differential $K^{p + 1} \to K^p$
 and the differential $d_2^{p, q} : A^{p, q} \to A^{p, q + 1}$ is the
 one coming from the differential
 $\mathcal{I}^q \to \mathcal{I}^{q + 1}$.
-Denote $sA^\bullet$ the total complex associated to
-the double complex $A^{\bullet, \bullet}$.
+Denote $\text{Tot}(\Hom(K^\bullet, \mathcal{I}^\bullet))$
+the associated total complex, see
+Homology, Section \ref{homology-section-double-complexes}.
 We will use the two spectral
 sequences $({}'E_r, {}'d_r)$ and $({}''E_r, {}''d_r)$
 associated to this double complex, see
@@ -777,7 +805,7 @@ Homology, Section \ref{homology-section-double-complex}.
 Because $K^\bullet$ is a resolution of $\underline{\mathbf{Z}}$
 we see that the complexes
 $$
-A^{\bullet, q} :
+\Hom(K^\bullet, \mathcal{I}^q) :
 \Hom(K^0, \mathcal{I}^q) \to
 \Hom(K^1, \mathcal{I}^q) \to
 \Hom(K^2, \mathcal{I}^q) \to \ldots
@@ -785,18 +813,20 @@ $$
 are acyclic in positive degrees and have $H^0$ equal to
 $\Gamma(X, \mathcal{I}^q)$. Hence by
 Homology, Lemma \ref{homology-lemma-double-complex-gives-resolution}
-and its proof the spectral sequence $({}''E_r, {}''d_r)$ degenerates,
-and the natural map
+the natural map
 $$
-\mathcal{I}^\bullet(X) \longrightarrow sA^\bullet
+\mathcal{I}^\bullet(X) \longrightarrow
+\text{Tot}(\Hom(K^\bullet, \mathcal{I}^\bullet))
 $$
 is a quasi-isomorphism of complexes of abelian groups. In particular
-we conclude that $H^n(sA^\bullet) = H^n(X, \mathcal{F})$.
+we conclude that
+$H^n(\text{Tot}(\Hom(K^\bullet, \mathcal{I}^\bullet))) = H^n(X, \mathcal{F})$.
 
 \medskip\noindent
 The map $\check{\mathcal{C}}^\bullet_{alt}(f, \mathcal{F}) \to
 R\Gamma(X, \mathcal{F})$ of the lemma is the composition of
-$\check{\mathcal{C}}^\bullet_{alt}(f, \mathcal{F}) \to SA^\bullet$
+$\check{\mathcal{C}}^\bullet_{alt}(f, \mathcal{F}) \to
+\text{Tot}(\Hom(K^\bullet, \mathcal{I}^\bullet))$
 with the inverse of the displayed quasi-isomorphism.
 
 \medskip\noindent
@@ -1290,7 +1320,7 @@ Cohomology of Schemes, Lemma \ref{coherent-lemma-relative-affine-vanishing}.
 Let $S$ be a scheme. Let $f : X \to Y$ be an affine
 morphism of algebraic spaces over $S$.
 Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_X$-module.
-Then $H^i(X, \mathcal{F}) = H^i(S, f_*\mathcal{F})$ for all $i \geq 0$.
+Then $H^i(X, \mathcal{F}) = H^i(Y, f_*\mathcal{F})$ for all $i \geq 0$.
 \end{lemma}
 
 \begin{proof}
@@ -1308,8 +1338,9 @@ Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-apply-Leray}.
 \label{section-cohomology-support}
 
 \noindent
-This section is the analogue of Cohomology, Section
-\ref{cohomology-section-cohomology-support}
+This section is the analogue of Cohomology, Sections
+\ref{cohomology-section-cohomology-support} and
+\ref{cohomology-section-cohomology-support-bis}
 and \'Etale Cohomology, Section
 \ref{etale-cohomology-section-cohomology-support}
 for abelian sheaves on algebraic spaces.
@@ -1793,8 +1824,22 @@ Modules on Sites, Definition \ref{sites-modules-definition-site-local}.
 \end{definition}
 
 \noindent
-Of course this definition is a bit hard to work with. We usually use
-the characterization given in the lemma below.
+This definition is compatible with the already existing notion of a
+coherent module on a locally Noetherian scheme; see assertion (5) of
+Properties of Spaces, Section
+\ref{spaces-properties-section-properties-modules} (or more directly
+Descent, Lemma \ref{descent-lemma-equivalence-quasi-coherent-properties}).
+Thus from now on, if $X$ is a locally Noetherian scheme over $S$,
+we will not distinguish between a coherent module on $X$ viewed
+as a scheme or a coherent module on $X$ viewed as an algebraic space;
+this is compatible with the corresponding identifications of categories
+of quasi-coherent modules discussed in
+Properties of Spaces, Section \ref{spaces-properties-section-quasi-coherent}.
+
+\medskip\noindent
+Having said the above, the following lemma gives an understandable
+characterization of coherent modules on locally Noetherian algebraic
+spaces.
 
 \begin{lemma}
 \label{lemma-coherent-Noetherian}
@@ -2075,7 +2120,7 @@ have
 $$
 \mathcal{I}^{n - c}(\mathcal{I}^c\mathcal{F} \cap \mathcal{G})
 =
-\mathcal{I}^n\mathcal{F}
+\mathcal{I}^n\mathcal{F} \cap \mathcal{G}
 $$
 \end{lemma}
 
@@ -2375,7 +2420,7 @@ such that
 \item for every nonzero quasi-coherent sheaf of ideals
 $\mathcal{I} \subset \mathcal{O}_Z$ there exists a quasi-coherent
 subsheaf $\mathcal{G}' \subset \mathcal{I}\mathcal{G}$ such that
-$\text{Supp}(\mathcal{G}/\mathcal{G}')$ is proper closed in $Z$
+$\text{Supp}(\mathcal{G}/\mathcal{G}')$ is proper closed in $|Z|$
 and such that $\mathcal{P}$ holds for $i_*\mathcal{G}'$.
 \end{enumerate}
 \end{enumerate}
@@ -2816,9 +2861,9 @@ is a field and we have to show that $|X|$ has at most one point.
 \medskip\noindent
 Let's think of $X$ as an algebraic space over $\Spec(k)$ and let's
 use the notation $X(K)$ to denote $K$-valued points of $X$
-for any extension $k \subset K$, see
+for any extension $K/k$, see
 Morphisms of Spaces, Section \ref{spaces-morphisms-section-points-fields}.
-If $k \subset K$ is an algebraically closed field extension
+If $K/k$ is an algebraically closed field extension
 of large transcendence degree, then we see that $X(K) \to |X|$
 is surjective, see Morphisms of Spaces, Lemma
 \ref{spaces-morphisms-lemma-large-enough}. Hence, after replacing $k$
@@ -3054,6 +3099,72 @@ This section is the analogue of
 Cohomology of Schemes, Section \ref{coherent-section-finite-affine}.
 
 \begin{lemma}
+\label{lemma-finite-morphism-Noetherian}
+Let $S$ be a scheme. Let $f : Y \to X$ be a morphism of algebraic spaces
+over $S$. Assume $f$ is finite, surjective and $X$ locally Noetherian.
+Let $i : Z \to X$ be a closed immersion. Denote $i' : Z' \to Y$
+the inverse image of $Z$
+(Morphisms of Spaces, Section \ref{spaces-morphisms-section-closed-immersions})
+and $f' : Z' \to Z$
+the induced morphism. Then $\mathcal{G} = f'_*\mathcal{O}_{Z'}$
+is a coherent $\mathcal{O}_Z$-module whose support is $Z$.
+\end{lemma}
+
+\begin{proof}
+Observe that $f'$ is the base change of $f$ and hence is finite
+and surjective by Morphisms of Spaces, Lemmas
+\ref{spaces-morphisms-lemma-base-change-surjective} and
+\ref{spaces-morphisms-lemma-base-change-integral}.
+Note that $Y$, $Z$, and $Z'$ are locally Noetherian by
+Morphisms of Spaces, Lemma
+\ref{spaces-morphisms-lemma-locally-finite-type-locally-noetherian}
+(and the fact that closed immersions and finite morphisms
+are of finite type). By Lemma \ref{lemma-finite-pushforward-coherent}
+we see that $\mathcal{G}$ is a coherent $\mathcal{O}_Z$-module.
+The support of $\mathcal{G}$ is closed in $|Z|$, see
+Morphisms of Spaces, Lemma
+\ref{spaces-morphisms-lemma-support-finite-type}.
+Hence if the support of $\mathcal{G}$ is not equal to $|Z|$,
+then after replacing $X$ by an open subspace we may assume
+$\mathcal{G} = 0$ but $Z \not = \emptyset$.
+This would mean that $f'_*\mathcal{O}_{Z'} = 0$. In particular the section
+$1 \in \Gamma(Z', \mathcal{O}_{Z'}) = \Gamma(Z, f'_*\mathcal{O}_{Z'})$
+would be zero which would imply $Z' = \emptyset$ is the empty
+algebraic space. This is impossible as $Z' \to Z$ is surjective.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-affine-morphism-projection-ideal}
+Let $S$ be a scheme. Let $f : Y \to X$ be a morphism of algebraic spaces
+over $S$. Let $\mathcal{F}$ be a quasi-coherent sheaf on $Y$.
+Let $\mathcal{I}$ be a quasi-coherent sheaf of ideals on $X$.
+If $f$ is affine then
+$\mathcal{I}f_*\mathcal{F} = f_*(f^{-1}\mathcal{I}\mathcal{F})$
+(with notation as explained in the proof).
+\end{lemma}
+
+\begin{proof}
+The notation means the following. Since $f^{-1}$ is an exact functor
+we see that $f^{-1}\mathcal{I}$ is a sheaf
+of ideals of $f^{-1}\mathcal{O}_X$. Via the map
+$f^\sharp : f^{-1}\mathcal{O}_X \to \mathcal{O}_Y$
+on $Y_\etale$ this acts on $\mathcal{F}$.
+Then $f^{-1}\mathcal{I}\mathcal{F}$ is the subsheaf
+generated by sums of local sections of the form $as$ where $a$
+is a local section of $f^{-1}\mathcal{I}$ and $s$ is a local section
+of $\mathcal{F}$. It is a quasi-coherent $\mathcal{O}_Y$-submodule
+of $\mathcal{F}$ because it is also the image of a natural map
+$f^*\mathcal{I} \otimes_{\mathcal{O}_Y} \mathcal{F} \to \mathcal{F}$.
+
+\medskip\noindent
+Having said this the proof is straightforward. Namely, the question is
+\'etale local on $X$ and hence we may assume $X$ is an affine scheme.
+In this case the result is a consequence of the corresponding result
+for schemes, see Cohomology of Schemes, Lemma
+\ref{coherent-lemma-affine-morphism-projection-ideal}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-image-affine-finite-morphism-affine-Noetherian}
 Let $S$ be a scheme. Let $f : Y \to X$ be a morphism of algebraic
 spaces over $S$. Assume
@@ -3086,37 +3197,37 @@ Thus we have to verify (1), (2) and (3) of that lemma for $\mathcal{P}$.
 Property (1) follows from the long exact cohomology sequence associated
 to a short exact sequence of sheaves. Property (2) follows since
 $H^1(X, -)$ is an additive functor. To see (3) let $i : Z \to X$ be
-a reduced closed subspace with $|Z|$ irreducible. Let $W = Z \times_X Y$
-and denote $i' : W \to Y$ the corresponding closed immersion.
-Denote $f' : W \to Z$ the other projection which is a finite
-morphism of algebraic spaces. Since $W$ is a closed subscheme of $Y$, it
-is affine. We claim that
-$\mathcal{G} = f_*i'_*\mathcal{O}_W = i_*f'_*\mathcal{O}_W$
-satisfies properties (3)(a) and (3)(b) of
+a reduced closed subspace with $|Z|$ irreducible. Let $i' : Z' \to Y$
+and $f' : Z' \to Z$ be as in Lemma \ref{lemma-finite-morphism-Noetherian}
+and set $\mathcal{G} = f'_*\mathcal{O}_{Z'}$. We claim that
+$\mathcal{G}$ satisfies properties (3)(a) and (3)(b) of
 Lemma \ref{lemma-property-higher-rank-cohomological}
-which will finish the proof. Property (3)(a) is clear as $W \to Z$ is
-surjective (because $f$ is surjective). To see (3)(b) let
+which will finish the proof. Property (3)(a) we have seen in
+Lemma \ref{lemma-finite-morphism-Noetherian}. To see (3)(b) let
 $\mathcal{I}$ be a nonzero quasi-coherent sheaf of ideals on $Z$.
-We simply take $\mathcal{G}' = \mathcal{I} \mathcal{G}$.
-Namely, we have
-$$
-\mathcal{I} \mathcal{G} = f'_*(\mathcal{I}')
-$$
-where $\mathcal{I}' = \Im((f')^*\mathcal{I} \to \mathcal{O}_W)$.
-This is true because $f'$ is a (representable) affine morphism of
-algebraic spaces and hence the result can be checked on an \'etale
-covering of $Z$ by a scheme in which case the result is
-Cohomology of Schemes, Lemma
-\ref{coherent-lemma-affine-morphism-projection-ideal}.
-Finally, $f'$ is affine, hence $R^1f'_*\mathcal{I}' = 0$ by
+Denote $\mathcal{I}' \subset \mathcal{O}_{Z'}$ the quasi-coherent
+ideal $(f')^{-1}\mathcal{I} \mathcal{O}_{Z'}$, i.e., the
+image of $(f')^*\mathcal{I} \to \mathcal{O}_{Z'}$.
+By Lemma \ref{lemma-affine-morphism-projection-ideal} we have
+$f_*\mathcal{I}' = \mathcal{I} \mathcal{G}$.
+We claim the common value
+$\mathcal{G}' = \mathcal{I} \mathcal{G} = f'_*\mathcal{I}'$
+satisfies the condition expressed in (3)(b).
+First, it is clear that the support of $\mathcal{G}/\mathcal{G}'$
+is contained in the support of $\mathcal{O}_Z/\mathcal{I}$
+which is a proper subspace of $|Z|$ as $\mathcal{I}$ is a
+nonzero ideal sheaf on the reduced and irreducible algebraic space $Z$.
+The morphism $f'$ is affine, hence $R^1f'_*\mathcal{I}' = 0$ by
 Lemma \ref{lemma-affine-vanishing-higher-direct-images}.
-As $W$ is affine we have $H^1(W, \mathcal{I}') = 0$ hence the Leray
+As $Z'$ is affine (as a closed subscheme of an affine scheme)
+we have $H^1(Z', \mathcal{I}') = 0$. Hence the Leray
 spectral sequence (in the form
 Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-apply-Leray})
 implies that $H^1(Z, f'_*\mathcal{I}') = 0$.
 Since $i : Z \to X$ is affine we conclude that
 $R^1i_*f'_*\mathcal{I}' = 0$ hence $H^1(X, i_*f'_*\mathcal{I}') = 0$
-by Leray again and we win.
+by Leray again. In other words, we have $H^1(X, i_*\mathcal{G}') = 0$
+as desired.
 \end{proof}
 
 
@@ -3289,17 +3400,31 @@ Then $f$ is separated.
 \end{lemma}
 
 \begin{proof}
-To prove $f$ is separated, we may work \'etale locally on $Y$
-(Morphisms of Spaces, Lemma \ref{spaces-morphisms-lemma-separated-local}).
-Choose an affine scheme $U$ and an \'etale morphism $U \to X \times_Y X$.
-Set $V = X \times_{\Delta, X \times_Y X} U$ which is quasi-compact because
-$f$ is quasi-separated. Consider a commutative diagram
+We have to show that the diagonal $\Delta : X \to X \times_Y X$ is a closed
+immersion. We already know $\Delta$ is representable, separated,
+a monomorphism, and locally of finite type, see Morphisms of Spaces, Lemma
+\ref{spaces-morphisms-lemma-properties-diagonal}.
+Choose an affine scheme $U$ and an \'etale morphism
+$U \to X \times_Y X$. Set $V = X \times_{\Delta, X \times_Y X} U$.
+It suffices to show that $V \to U$ is a closed immersion
+(Morphisms of Spaces, Lemma
+\ref{spaces-morphisms-lemma-closed-immersion-local}).
+Since $X \times_Y X$ is locally of finite type over $Y$ we see that
+$U$ is Noetherian (use Morphisms of Spaces, Lemmas
+\ref{spaces-morphisms-lemma-composition-finite-type},
+\ref{spaces-morphisms-lemma-base-change-finite-type}, and
+\ref{spaces-morphisms-lemma-locally-finite-type-locally-noetherian}).
+Note that $V$ is a scheme as $\Delta$ is representable.
+Also, $V$ is quasi-compact because $f$ is quasi-separated.
+Hence $V \to U$ is of finite type. Consider a commutative diagram
 $$
 \xymatrix{
 \Spec(K) \ar[r] \ar[d] & V \ar[d] \\
 \Spec(A) \ar[r] \ar@{-->}[ru] & U
 }
 $$
+of morphisms of schemes
+where $A$ is a discrete valuation ring with fraction field $K$.
 We can interpret the composition $\Spec(A) \to U \to X \times_Y X$
 as a pair of morphisms $a, b : \Spec(A) \to X$ agreeing as morphisms
 into $Y$ and equal when restricted to $\Spec(K)$. Hence our assumption
@@ -3528,7 +3653,7 @@ with $Z$ reduced and $|Z|$ irreducible. Set $g = f \circ i : Z \to \Spec(A)$.
 Let $\mathcal{G}$ be a coherent module on $Z$ whose scheme theoretic support
 is equal to $Z$ such that $R^pg_*\mathcal{G}$ is coherent for all $p$.
 Then $\mathcal{F} = i_*\mathcal{G}$ is a coherent module on
-$X$ whose support scheme theoretic support is $Z$ such that
+$X$ whose scheme theoretic support is $Z$ such that
 $R^pf_*\mathcal{F} = R^pg_*\mathcal{G}$. To see this use
 the Leray spectral sequence
 (Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-relative-Leray})
@@ -3568,7 +3693,7 @@ i^*\mathcal{O}_{\mathbf{P}^n_A}(1) =
 (i')^*\mathcal{O}_{\mathbf{P}^n_Z}(1)
 $$
 We may apply Lemma \ref{lemma-kill-by-twisting}
-to $\mathcal{L}$ and $\pi$ as well as $\mathcal{L}$ and $g'$. 
+to $\mathcal{L}$ and $\pi$ as well as $\mathcal{L}$ and $g'$.
 Hence for all $d \gg 0$ we have
 $R^p\pi_*\mathcal{L}^{\otimes d} = 0$ for all $p > 0$ and
 $R^p(g')_*\mathcal{L}^{\otimes d} = 0$ for all $p > 0$.
@@ -3585,7 +3710,7 @@ and by choice of $d$ the only nonzero terms in $E_2^{p, q}$ are
 those with $q = 0$ and the only nonzero terms of
 $R^{p + q}(g')_*\mathcal{L}^{\otimes d}$ are those with $p = q = 0$.
 This implies that $R^pg_*\mathcal{G} = 0$ for $p > 0$ and
-that $g_*\mathcal{G} = (g')_*\mathcal{L}^{\otimes n}$.
+that $g_*\mathcal{G} = (g')_*\mathcal{L}^{\otimes d}$.
 Applying
 Cohomology of Schemes, Lemma
 \ref{coherent-lemma-locally-projective-pushforward}
@@ -3715,6 +3840,144 @@ Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-apply-Leray}.
 Thus the lemma follows from
 Lemma \ref{lemma-proper-over-affine-cohomology-finite}.
 \end{proof}
+
+
+
+
+
+
+
+
+
+\section{Ample invertible sheaves and cohomology}
+\label{section-ample-cohomology}
+
+\noindent
+Here is a criterion for ampleness on proper algebraic spaces over affine bases
+in terms of vanishing of cohomology after twisting.
+
+\begin{lemma}
+\label{lemma-vanshing-gives-ample}
+Let $R$ be a Noetherian ring. Let $X$ be a proper algebraic space
+over $R$. Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
+The following are equivalent
+\begin{enumerate}
+\item $X$ is a scheme and $\mathcal{L}$ is ample on $X$,
+\item for every coherent $\mathcal{O}_X$-module $\mathcal{F}$ there exists
+an $n_0 \geq 0$ such that
+$H^p(X, \mathcal{F} \otimes \mathcal{L}^{\otimes n}) = 0$ for all $n \geq n_0$
+and $p > 0$, and
+\item for every coherent $\mathcal{O}_X$-module $\mathcal{F}$ there exists
+an $n \geq 1$ such that
+$H^1(X, \mathcal{F} \otimes \mathcal{L}^{\otimes n}) = 0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The implication (1) $\Rightarrow$ (2) follows from
+Cohomology of Schemes, Lemma \ref{coherent-lemma-vanshing-gives-ample}.
+The implication (2) $\Rightarrow$ (3) is trivial.
+The implication (3) $\Rightarrow$ (1) is
+Lemma \ref{lemma-Noetherian-h1-zero-invertible}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-surjective-finite-morphism-ample}
+Let $R$ be a Noetherian ring. Let $f : Y \to X$ be a morphism of
+algebraic spaces proper over $R$. Let $\mathcal{L}$ be an
+invertible $\mathcal{O}_X$-module. Assume $f$ is finite and surjective.
+The following are equivalent
+\begin{enumerate}
+\item $X$ is a scheme and $\mathcal{L}$ is ample, and
+\item $Y$ is a scheme and $f^*\mathcal{L}$ is ample.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Assume (1). Then $Y$ is a scheme as a finite morphism is representable
+(by schemes), see Morphisms of Spaces, Lemma
+\ref{spaces-morphisms-lemma-integral-local}. Hence (2)
+follows from Cohomology of Schemes, Lemma
+\ref{coherent-lemma-surjective-finite-morphism-ample}.
+
+\medskip\noindent
+Assume (2). Let $P$ be the following property on
+coherent $\mathcal{O}_X$-modules $\mathcal{F}$: there exists an $n_0$
+such that $H^p(X, \mathcal{F} \otimes \mathcal{L}^{\otimes n}) = 0$
+for all $n \geq n_0$ and $p > 0$. We will prove that $P$ holds
+for any coherent $\mathcal{O}_X$-module $\mathcal{F}$, which implies
+$\mathcal{L}$ is ample by Lemma \ref{lemma-vanshing-gives-ample}.
+We are going to apply Lemma \ref{lemma-property-higher-rank-cohomological}.
+Thus we have to verify (1), (2) and (3) of that lemma for $P$.
+Property (1) follows from the long exact cohomology sequence associated
+to a short exact sequence of sheaves and the fact that tensoring with
+an invertible sheaf is an exact functor. Property (2) follows since
+$H^p(X, -)$ is an additive functor.
+
+\medskip\noindent
+To see (3) let $i : Z \to X$ be a reduced closed subspace with $|Z|$
+irreducible. Let $i' : Z' \to Y$ and $f' : Z' \to Z$ be as in
+Lemma \ref{lemma-finite-morphism-Noetherian} and set
+$\mathcal{G} = f'_*\mathcal{O}_{Z'}$. We claim that
+$\mathcal{G}$ satisfies properties (3)(a) and (3)(b) of
+Lemma \ref{lemma-property-higher-rank-cohomological}
+which will finish the proof. Property (3)(a) we have seen in
+Lemma \ref{lemma-finite-morphism-Noetherian}. To see (3)(b) let
+$\mathcal{I}$ be a nonzero quasi-coherent sheaf of ideals on $Z$.
+Denote $\mathcal{I}' \subset \mathcal{O}_{Z'}$ the quasi-coherent
+ideal $(f')^{-1}\mathcal{I} \mathcal{O}_{Z'}$, i.e., the
+image of $(f')^*\mathcal{I} \to \mathcal{O}_{Z'}$.
+By Lemma \ref{lemma-affine-morphism-projection-ideal} we have
+$f_*\mathcal{I}' = \mathcal{I} \mathcal{G}$. We claim the common value
+$\mathcal{G}' = \mathcal{I} \mathcal{G} = f'_*\mathcal{I}'$
+satisfies the condition expressed in (3)(b).
+First, it is clear that the support of $\mathcal{G}/\mathcal{G}'$
+is contained in the support of $\mathcal{O}_Z/\mathcal{I}$
+which is a proper subspace of $|Z|$ as $\mathcal{I}$ is a
+nonzero ideal sheaf on the reduced and irreducible algebraic space $Z$.
+Recall that $f'_*$, $i_*$, and $i'_*$ transform coherent modules into
+coherent modules, see Lemmas \ref{lemma-finite-pushforward-coherent} and
+\ref{lemma-i-star-equivalence}.
+As $Y$ is a scheme and $\mathcal{L}$ is ample
+we see from Lemma \ref{lemma-vanshing-gives-ample}
+that there exists an $n_0$ such that
+$$
+H^p(Y, i'_*\mathcal{I}' \otimes_{\mathcal{O}_Y} f^*\mathcal{L}^{\otimes n}) = 0
+$$
+for $n \geq n_0$ and $p > 0$. Now we get
+\begin{align*}
+H^p(X, i_*\mathcal{G}' \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes n})
+& =
+H^p(Z, \mathcal{G'} \otimes_{\mathcal{O}_Z} i^*\mathcal{L}^{\otimes n}) \\
+& =
+H^p(Z,
+f'_*\mathcal{I}' \otimes_{\mathcal{O}_Z} i^*\mathcal{L}^{\otimes n})) \\
+& =
+H^p(Z, f'_*(\mathcal{I}' \otimes_{\mathcal{O}_{Z'}}
+(f')^*i^*\mathcal{L}^{\otimes n})) \\
+& =
+H^p(Z, f'_*(\mathcal{I}' \otimes_{\mathcal{O}_{Z'}}
+(i')^*f^*\mathcal{L}^{\otimes n})) \\
+& =
+H^p(Z',
+\mathcal{I}' \otimes_{\mathcal{O}_{Z'}} (i')^*f^*\mathcal{L}^{\otimes n})) \\
+& =
+H^p(Y, i'_*\mathcal{I}' \otimes_{\mathcal{O}_Y} f^*\mathcal{L}^{\otimes n}) = 0
+\end{align*}
+Here we have used the projection formula and the Leray spectral sequence
+(see Cohomology on Sites, Sections
+\ref{sites-cohomology-section-projection-formula} and
+\ref{sites-cohomology-section-leray})
+and Lemma \ref{lemma-finite-higher-direct-image-zero}.
+This verifies property (3)(b) of
+Lemma \ref{lemma-property-higher-rank-cohomological} as desired.
+\end{proof}
+
+
+
+
+
+
 
 
 
@@ -3990,7 +4253,7 @@ and we see that completion on the left hand side is not necessary.
 \begin{lemma}
 \label{lemma-formal-functions-stalk}
 Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of algebraic spaces
-over $S$ and let $\mathcal{F}$ be a quasi-coherent sheaf on $Y$. Assume
+over $S$ and let $\mathcal{F}$ be a quasi-coherent sheaf on $X$. Assume
 \begin{enumerate}
 \item $Y$ locally Noetherian,
 \item $f$ proper, and

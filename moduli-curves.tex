@@ -137,7 +137,7 @@ Groupoids in Spaces, Lemma
 (Actually, it is much easier in this case to go back to before
 we introduced our abuse of language and direct construct
 the functor $\Sch/T \to \Curvesstack$ which ``is'' the
-morphsim $T \to \Curvesstack$.)
+morphism $T \to \Curvesstack$.)
 
 \medskip\noindent
 We omit the verification that the constructions given above
@@ -533,7 +533,7 @@ This immediately implies (1). Part (2) is a special case of (1).
 
 \medskip\noindent
 Given two properties $P$ and $Q$ of morphisms of algebraic spaces,
-supposing we already have esthablished $\Curvesstack^Q$ is
+supposing we already have established $\Curvesstack^Q$ is
 an open substack of $\Curvesstack$, then we can use exactly
 the same method to prove openness of
 $\Curvesstack^{Q, P} \subset \Curvesstack^Q$.
@@ -1620,33 +1620,13 @@ To finish the proof we have to show that
 
 \medskip\noindent
 A smooth scheme over a field is geometrically normal
-(Varieties, Lemma \ref{varieties-lemma-smooth-geometrically-normal}).
-A locally Noetherian normal scheme is a disjoint union of
-its irreducible components
-(Properties, Lemma \ref{properties-lemma-normal-Noetherian}).
-Thus (2)(c) implies (2)(d).
-
-\medskip\noindent
-Being smooth is preserved under base change
-(Morphisms, Lemma \ref{morphisms-lemma-base-change-smooth}).
-Thus (2)(d) implies (2)(e).
-
-\medskip\noindent
-Being smooth is fpqc local on the target
+(Varieties, Lemma \ref{varieties-lemma-smooth-geometrically-normal}),
+smoothness is preserved under base change
+(Morphisms, Lemma \ref{morphisms-lemma-base-change-smooth}), and
+being smooth is fpqc local on the target
 (Descent, Lemma \ref{descent-lemma-descending-property-smooth}).
-Hence (2)(e) implies (2)(c).
-
-\medskip\noindent
-Lemma \ref{lemma-geomredcon-in-h0-1} shows that the equivalent conditions
-(2)(c), (d), (e) imply (2)(b).
-Conversely, if (2)(b) holds, then
-$\overline{k} = H^0(X_{\overline{k}}, \mathcal{O}_{X_{\overline{k}}})$
-by flat base change (Cohomology of Schemes, Lemma
-\ref{coherent-lemma-flat-base-change-cohomology})
-and hence $X_{\overline{k}}$ is connected
-(Varieties, Lemma
-\ref{varieties-lemma-proper-geometrically-reduced-global-sections}).
-Thus (2)(c) holds.
+Keeping this in mind, the equivalence of (2)(b), (2)(c), 2(d), and (2)(e)
+follows from Varieties, Lemma \ref{varieties-lemma-geometrically-normal-stein}.
 \end{proof}
 
 \begin{definition}
@@ -1865,8 +1845,8 @@ with $U = \Spec(A)$ affine the complex
 $\omega_{X_U/U}^\bullet = L(g')^*\omega_{X/S}^\bullet$
 represents the functor
 $$
-D_\QCoh(\mathcal{O}_{X_U}) \longrightarrow D(A),\quad
-K \longmapsto R\Hom_T(Rf_*K, \mathcal{O}_T)
+D_\QCoh(\mathcal{O}_{X_U}) \longrightarrow \text{Mod}_A,\quad
+K \longmapsto \Hom_U(Rf_*K, \mathcal{O}_U)
 $$
 More precisely, let $(\omega_{X/S}^\bullet, \tau)$
 be the relative dualizing complex of the family as defined in
@@ -2251,13 +2231,13 @@ By duality this means that
 $$
 Rf_*\omega_{X/S} = (\mathcal{O}_S \xrightarrow{0} \mathcal{O}_S)
 $$
-sitting in degrees $0$ and $1$, see
-Duality for Spaces, Lemma
-\ref{spaces-duality-lemma-iso-on-RSheafHom}\footnote{Use that
+sitting in degrees $0$ and $1$\footnote{Use that
 $Rf_*\omega_{X/S}^\bullet =
 Rf_*R\SheafHom_{\mathcal{O}_X}(\mathcal{O}_X. \omega_{X/S}^\bullet) =
 R\SheafHom_{\mathcal{O}_S}(Rf_*\mathcal{O}_X, \mathcal{O}_S)$
-by the lemma and then that $\omega_{X/S}^\bullet = \omega_{X/S}[1]$ by
+by Duality for Spaces, Lemma \ref{spaces-duality-lemma-iso-on-RSheafHom} and
+Remark \ref{spaces-duality-remark-iso-on-RSheafHom}
+and then that $\omega_{X/S}^\bullet = \omega_{X/S}[1]$ by
 our definitions in Section \ref{section-relative-dualizing}.}.
 In particular we obtain an isomorphism $\mathcal{O}_S \to f_*\omega_{X/S}$
 which is compatible with base change since
@@ -2928,7 +2908,7 @@ Base changing $h''$ to $\Lambda$ the proof is complete.
 
 \begin{lemma}
 \label{lemma-contract-prestable-to-stable}
-Let $f : X \to S$ be a prestable family of curves of genus $g \geq 1$.
+Let $f : X \to S$ be a prestable family of curves of genus $g \geq 2$.
 There is a factorization $X \to Y \to S$ of $f$ where $g : Y \to S$
 is a stable family of curves and $c : X \to Y$ has the following
 properties
@@ -3219,7 +3199,7 @@ $U = \Spec(L)$, and $U_i = S_i \setminus \{\mathfrak m_i\}$.
 Observe that $U \cong U_i$ for $i = 1, \ldots, n$.
 Set $X = C_L$ viewed as a scheme over the open subscheme $U$ of $S$.
 By our choice of $L$ and $A$ and Lemma \ref{lemma-stable-reduction}
-we have a stable families of curves $X_i \to S_i$ and isomorphisms
+we have stable families of curves $X_i \to S_i$ and isomorphisms
 $X \times_U U_i \cong X_i \times_{S_i} U_i$.
 By Limits of Spaces, Lemma
 \ref{spaces-limits-lemma-glueing-near-multiple-closed-points}

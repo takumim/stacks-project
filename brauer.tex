@@ -97,15 +97,21 @@ bicommutant of $M$.
 \end{lemma}
 
 \begin{proof}
-Let $A' = \text{End}_A(M)$, and let $A'' = \text{End}_{A'}(M)$
-(the bicommutant of $M$). Let $R : A \to A''$ be the natural homomorphism
-$R(a)(m) = ma$. Then $R$ is injective, since $R(1) = \text{id}_M$
+Let $A' = \text{End}_A(M)$, so $M$ is a left $A'$-module.
+Set $A'' = \text{End}_{A'}(M)$ (the bicommutant of $M$).
+We view $M$ as a right $A''$-module\footnote{This
+means that given $a'' \in A''$ and $m \in M$ we have a product
+$m a'' \in M$. In particular, the multiplication in $A''$
+is the opposite of what you'd get if you wrote elements of $A''$
+as endomorphisms acting on the left.}.
+Let $R : A \to A''$ be the natural homomorphism such that
+$mR(a) = ma$. Then $R$ is injective, since $R(1) = \text{id}_M$
 and $A$ contains no nontrivial two-sided ideal. We claim that $R(M)$
 is a right ideal in $A''$. Namely, $R(m)a'' = R(ma'')$ for $a'' \in A''$
 and $m$ in $M$, because {\it left} multiplication of $M$ by any element $n$
 of $M$ represents an element of $A'$, and so
-$(nm)a'' = n(ma'')$, that is, $(R(m)a'') (n) = R(ma'') (n)$ for all
-$n$ in $M$. Finally, the product ideal $AM$ is a two-sided ideal, and so
+$(nm)a'' = n(ma'')$ for all $n$ in $M$.
+Finally, the product ideal $AM$ is a two-sided ideal, and so
 $A = AM$. Thus $R(A) = R(A)R(M)$, so that $R(A)$ is a right ideal in $A''$.
 But $R(A)$ contains the identity element of $A''$, and so $R(A) = A''$.
 \end{proof}
@@ -215,10 +221,10 @@ $$
 W/(V' \otimes_k K)  \subset  (V/V') \otimes_k K.
 $$
 If $\overline{v} \in V/V'$ is a nonzero vector such that
-$\overline{v} \otimes 1$ is contained in $W/V' \otimes_k K$,
+$\overline{v} \otimes 1$ is contained in $W/(V' \otimes_k K)$,
 then we see that $v \otimes 1 \in W$ where $v \in V$ lifts $\overline{v}$.
 This contradicts our construction of $V'$. Hence we may replace
-$V$ by $V/V'$ and $W$ by $W/V' \otimes_k K$ and it suffices to prove
+$V$ by $V/V'$ and $W$ by $W/(V' \otimes_k K)$ and it suffices to prove
 that $W \cap (V \otimes 1)$ is nonzero if $W$ is nonzero.
 
 \medskip\noindent
@@ -341,7 +347,7 @@ Combine Lemmas \ref{lemma-centralizer} and \ref{lemma-tensor-simple}.
 \begin{lemma}
 \label{lemma-base-change}
 Let $A$ be a finite central simple algebra over $k$.
-Let $k \subset k'$ be a field extension. Then $A' = A \otimes_k k'$ is
+Let $k'/k$ be a field extension. Then $A' = A \otimes_k k'$ is
 a finite central simple algebra over $k'$.
 \end{lemma}
 
@@ -503,7 +509,7 @@ that $x$ is a solution to our problem.
 
 \begin{lemma}
 \label{lemma-automorphism-inner}
-Let $A$ be a finite simple $k$-algebra. Any automorphism of $A$ is
+Let $A$ be a finite central simple $k$-algebra. Any automorphism of $A$ is
 inner. In particular, any automorphism of $\text{Mat}(n \times n, k)$
 is inner.
 \end{lemma}
@@ -619,7 +625,7 @@ Special case of Lemma \ref{lemma-self-centralizing-subfield}.
 \begin{definition}
 \label{definition-splitting}
 Let $A$ be a finite central simple $k$-algebra.
-We say a field extension $k \subset k'$ {\it splits} $A$, or
+We say a field extension $k'/k$ {\it splits} $A$, or
 $k'$ is a {\it splitting field} for $A$ if $A \otimes_k k'$ is
 a matrix algebra over $k'$.
 \end{definition}
@@ -631,7 +637,7 @@ under the map $\text{Br}(k) \to \text{Br}(k')$.
 \begin{theorem}
 \label{theorem-splitting}
 Let $A$ be a finite central simple $k$-algebra.
-Let $k \subset k'$ be a finite field extension.
+Let $k'/k$ be a finite field extension.
 The following are equivalent
 \begin{enumerate}
 \item $k'$ splits $A$, and
@@ -746,14 +752,15 @@ with $a_1 = 1$. So
 $$
 (\sum x_i a_i)^q = \sum f_i(x_1, \ldots, x_n)a_i.
 $$
-Since multiplication on $A$ is $k$-bilinear we see that each $f_i$
+Since multiplication on $K$ is $k$-bilinear we see that each $f_i$
 is a polynomial in $x_1, \ldots, x_n$ (details omitted).
 The choice of $q$ above and the fact that $k$ is infinite shows that
 $f_i$ is identically zero for $i \geq 2$. Hence we see that it remains
 zero on extending $k$ to its algebraic closure $\overline{k}$. But the
-algebra $A \otimes_k \overline{k}$ is a matrix algebra, which implies
-there are some elements whose $q$th power is not central (e.g., $e_{11}$).
-This is the desired contradiction.
+algebra $K \otimes_k \overline{k}$ is a matrix algebra (for example by
+Lemmas \ref{lemma-base-change} and \ref{lemma-brauer-algebraically-closed}),
+which implies there are some elements whose $q$th power is not central
+(e.g., $e_{11}$). This is the desired contradiction.
 \end{proof}
 
 \noindent
@@ -771,7 +778,7 @@ and $A$ has no nontrivial two-sided ideal,
 $A \otimes_k \bar k \cong \text{Mat}(d \times d, \bar k)$,
 \item there exists $d \geq 1$ such that
 $A \otimes_k k^{sep} \cong \text{Mat}(d \times d, k^{sep})$,
-\item there exist $d \geq 1$ and a finite Galois extension $k \subset k'$
+\item there exist $d \geq 1$ and a finite Galois extension $k'/k$
 such that
 $A \otimes_k k' \cong \text{Mat}(d \times d, k')$,
 \item there exist $n \geq 1$ and a finite central skew field $K$

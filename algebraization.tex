@@ -48,14 +48,18 @@ of quasi-coherent $\mathcal{O}_X$-modules such that
 $\mathcal{F}_n = \mathcal{F}_{n + 1}/\mathcal{I}^n\mathcal{F}_{n + 1}$.
 An important special case is where $X$ is a scheme over a Noetherian
 ring $A$ and $\mathcal{I} = I \mathcal{O}_X$ for some ideal $I \subset A$.
-In Section \ref{section-ML-degree-zero}
-we prove some elementary results on such systems of coherent modules.
-In Section \ref{section-formal-functions-principal} we discuss
-additional results when $I = (f)$ is a principal. In Section
-\ref{section-formal-sections-cd-one} we work in the slightly
-more general setting where $\text{cd}(A, I) = 1$. One of the themes
-of this chapter will be to show that results proven in the case $I = (f)$
-also hold true when we only assume $\text{cd}(A, I) = 1$.
+In Cohomology, Sections \ref{cohomology-section-inverse-systems},
+\ref{cohomology-section-inverse-systems-bis}, and
+\ref{cohomology-section-inverse-systems-tri} we have some general
+results. In this chapter, Sections \ref{section-ML-degree-zero} and
+\ref{section-formal-functions-principal} contain results specific
+to schemes and quasi-coherent modules. In
+Section \ref{section-formal-sections-cd-one} we prove
+that the limit topology on $\lim H^p(X, \mathcal{F}_n)$ is $I$-adic
+in case $\text{cd}(A, I) = 1$. One of the themes
+of this chapter will be to show that results proven in the
+principal ideal case $I = (f)$
+also hold when we only assume $\text{cd}(A, I) = 1$.
 
 \medskip\noindent
 In Section \ref{section-derived-completion} we discuss derived completion
@@ -143,197 +147,8 @@ for the strongest results of this type obtained in this chapter.
 \label{section-ML-degree-zero}
 
 \noindent
-Let $A$ be a ring and $I \subset A$ an ideal. Let $X$ be a scheme
-over $\Spec(A)$. In this section we prove some general facts on inverse
-systems of $\mathcal{O}_X$-modules $\{\mathcal{F}_n\}$ such that
-$\mathcal{F}_n = \mathcal{F}_{n + 1} / I^n \mathcal{F}_{n + 1}$.
-In particular, we prove two lemmas on the behaviour of the inverse system
-$\{H^0(X, \mathcal{F}_n)\}$.
-These results have generalizations to higher cohomology groups
-which we will add here if we need them.
-
-\begin{lemma}
-\label{lemma-ML-general}
-Let $I$ be an ideal of a ring $A$. Let $X$ be a scheme over $\Spec(A)$. Let
-$$
-\ldots \to \mathcal{F}_3 \to \mathcal{F}_2 \to \mathcal{F}_1
-$$
-be an inverse system of $\mathcal{O}_X$-modules
-such that $\mathcal{F}_n = \mathcal{F}_{n + 1}/I^n\mathcal{F}_{n + 1}$.
-Assume
-$$
-\bigoplus\nolimits_{n \geq 0} H^1(X, I^n\mathcal{F}_{n + 1})
-$$
-satisfies the ascending chain condition as a graded
-$\bigoplus_{n \geq 0} I^n/I^{n + 1}$-module.
-Then the inverse system $M_n = \Gamma(X, \mathcal{F}_n)$ satisfies the
-Mittag-Leffler condition.
-\end{lemma}
-
-\begin{proof}
-Set $H^1_n = H^1(X, I^n\mathcal{F}_{n + 1})$ and let
-$\delta_n : M_n \to H^1_n$ be the boundary map on cohomology. Then
-$\bigoplus \Im(\delta_n) \subset \bigoplus H^1_n$ is a graded submodule.
-Namely, if $s \in M_n$ and $f \in I^m$, then we have a commutative diagram
-$$
-\xymatrix{
-0 \ar[r] &
-I^n\mathcal{F}_{n + 1} \ar[d]_f \ar[r] &
-\mathcal{F}_{n + 1} \ar[d]_f \ar[r] &
-\mathcal{F}_n \ar[d]_f \ar[r] & 0 \\
-0 \ar[r] &
-I^{n + m}\mathcal{F}_{n + m + 1} \ar[r] &
-\mathcal{F}_{n + m + 1} \ar[r] &
-\mathcal{F}_{n + m} \ar[r] & 0
-}
-$$
-The middle vertical map is given by lifting a local section of
-$\mathcal{F}_{n + 1}$ to a section of $\mathcal{F}_{n + m + 1}$
-and then multiplying by $f$; similarly for the other vertical arrows.
-We conclude that $\delta_{n + m}(fs) = f \delta_n(s)$.
-By assumption we can find $s_j \in M_{n_j}$, $j = 1, \ldots, N$
-such that $\delta_{n_j}(s_j)$
-generate $\bigoplus \Im(\delta_n)$ as a graded module. Let $n > c = \max(n_j)$.
-Let $s \in M_n$. Then we can find $f_j \in I^{n - n_j}$ such that
-$\delta_n(s) = \sum f_j \delta_{n_j}(s_j)$. We conclude that
-$\delta(s - \sum f_j s_j) = 0$, i.e., we can find $s' \in M_{n + 1}$
-mapping to $s - \sum f_js_j$ in $M_n$. It follows that
-$$
-\Im(M_{n + 1} \to M_{n - c}) = \Im(M_n \to M_{n - c})
-$$
-This proves the lemma.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-ML-general-better}
-Let $I$ be an ideal of a ring $A$. Let $X$ be a scheme over $\Spec(A)$. Let
-$$
-\ldots \to \mathcal{F}_3 \to \mathcal{F}_2 \to \mathcal{F}_1
-$$
-be an inverse system of $\mathcal{O}_X$-modules
-such that $\mathcal{F}_n = \mathcal{F}_{n + 1}/I^n\mathcal{F}_{n + 1}$.
-Given $n$ define
-$$
-H^1_n =
-\bigcap\nolimits_{m \geq n}
-\Im\left(
-H^1(X, I^n\mathcal{F}_{m + 1}) \to H^1(X, I^n\mathcal{F}_{n + 1})
-\right)
-$$
-If $\bigoplus H^1_n$ satisfies the ascending chain condition as a graded
-$\bigoplus_{n \geq 0} I^n/I^{n + 1}$-module, then the inverse system
-$M_n = \Gamma(X, \mathcal{F}_n)$ satisfies the Mittag-Leffler condition.
-\end{lemma}
-
-\begin{proof}
-The proof is exactly the same as the proof of Lemma \ref{lemma-ML-general}.
-In fact, the result will follow from the arguments given there
-as soon as we show that
-$\bigoplus H^1_n$ is a graded $\bigoplus_{n \geq 0} I^n/I^{n + 1}$-submodule
-of $\bigoplus H^1(X, I^n\mathcal{F}_{n + 1})$
-and that the boundary maps $\delta_n$ have image contained in $H^1_n$.
-
-\medskip\noindent
-Suppose that $\xi \in H^1_n$ and $f \in I^k$.
-Choose $m \gg n + k$. Choose
-$\xi' \in H^1(X, I^n\mathcal{F}_{m + 1})$ lifting
-$\xi$. We consider the diagram
-$$
-\xymatrix{
-0 \ar[r] &
-I^n\mathcal{F}_{m + 1} \ar[d]_f \ar[r] &
-\mathcal{F}_{m + 1} \ar[d]_f \ar[r] &
-\mathcal{F}_n \ar[d]_f \ar[r] & 0 \\
-0 \ar[r] &
-I^{n + k}\mathcal{F}_{m + 1} \ar[r] &
-\mathcal{F}_{m + 1} \ar[r] &
-\mathcal{F}_{n + k} \ar[r] & 0
-}
-$$
-constructed as in the proof of Lemma \ref{lemma-ML-general}.
-We get an induced map on cohomology and we see that
-$f \xi' \in H^1(X, I^{n + k}\mathcal{F}_{m + 1})$
-maps to $f \xi$. Since this is true for all $m \gg n + k$
-we see that $f\xi$ is in $H^1_{n + k}$ as desired.
-
-\medskip\noindent
-To see the boundary maps $\delta_n$ have image contained in $H^1_n$
-we consider the diagrams
-$$
-\xymatrix{
-0 \ar[r] &
-I^n\mathcal{F}_{m + 1} \ar[d] \ar[r] &
-\mathcal{F}_{m + 1} \ar[d] \ar[r] &
-\mathcal{F}_n \ar[d] \ar[r] & 0 \\
-0 \ar[r] &
-I^n\mathcal{F}_{n + 1} \ar[r] &
-\mathcal{F}_{n + 1} \ar[r] &
-\mathcal{F}_n \ar[r] & 0
-}
-$$
-for $m \geq n$. Looking at the induced maps on cohomology we conclude.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-topology-I-adic-general}
-Let $I$ be a finitely generated ideal of a ring $A$.
-Let $X$ be a scheme over $\Spec(A)$. Let
-$$
-\ldots \to \mathcal{F}_3 \to \mathcal{F}_2 \to \mathcal{F}_1
-$$
-be an inverse system of $\mathcal{O}_X$-modules such that
-$\mathcal{F}_n = \mathcal{F}_{n + 1}/I^n\mathcal{F}_{n + 1}$. Assume
-$$
-\bigoplus\nolimits_{n \geq 0} H^0(X, I^n\mathcal{F}_{n + 1})
-$$
-satisfies the ascending chain condition as a graded
-$\bigoplus_{n \geq 0} I^n/I^{n + 1}$-module.
-Then the limit topology on $M = \lim \Gamma(X, \mathcal{F}_n)$
-is the $I$-adic topology.
-\end{lemma}
-
-\begin{proof}
-Set $F^n = \Ker(M \to H^0(X, \mathcal{F}_n))$ for $n \geq 1$ and $F^0 = M$.
-Observe that $I F^n \subset F^{n + 1}$. In particular $I^n M \subset F^n$
-and we are trying to show that given $n$
-there exists an $m \geq n$ such that $F^m \subset I^nM$.
-We have an injective map of graded modules
-$$
-\bigoplus\nolimits_{n \geq 0} F^n/F^{n + 1}
-\longrightarrow
-\bigoplus\nolimits_{n \geq 0} H^0(X, I^n\mathcal{F}_{n + 1})
-$$
-By assumption the left hand side is generated by finitely many
-homogeneous elements. Hence we can find $r$ and
-$c_1, \ldots, c_r \geq 0$ and $a_i \in F^{c_i}$ whose
-images in $\bigoplus F^n/F^{n + 1}$ generate.
-Set $c = \max(c_i)$.
-
-\medskip\noindent
-For $n \geq c$ we claim that $I F^n = F^{n + 1}$.
-Namely, suppose $a \in F^{n + 1}$. The image of
-$a$ in $F^{n + 1}/F^{n + 2}$ is a linear combination
-of our $a_i$. Therefore $a  - \sum f_i a_i \in F^{n + 2}$
-for some $f_i \in I^{n + 1 - c_i}$. Since
-$I^{n + 1 - c_i} = I \cdot I^{n - c_i}$ as $n \geq c_i$ we can write
-$f_i = \sum g_{i, j} h_{i, j}$ with $g_{i, j} \in I$
-and $h_{i, j}a_i \in F^n$. Thus we see that
-$F^{n + 1} = F^{n + 2} + IF^n$.
-A simple induction argument gives $F^{n + 1} = F^{n + e} + IF^n$
-for all $e > 0$. It follows that $IF^n$ is dense in $F^{n + 1}$.
-Choose generators $k_1, \ldots, k_r$ of $I$ and consider
-the continuous map
-$$
-u : (F^n)^{\oplus r} \longrightarrow F^{n + 1},\quad
-(x_1, \ldots, x_r) \mapsto \sum k_i x_i
-$$
-(in the limit topology).
-By the above the image of $(F^m)^{\oplus r}$ under $u$ is dense in
-$F^{m + 1}$ for all $m \geq n$. By the open mapping lemma
-(More on Algebra, Lemma \ref{more-algebra-lemma-open-mapping}) we find
-that $u$ is open. Hence $u$ is surjective. Hence $IF^n = F^{n + 1}$
-for $n \geq c$. This concludes the proof.
-\end{proof}
+We suggest looking at
+Cohomology, Section \ref{cohomology-section-inverse-systems} first.
 
 \begin{lemma}
 \label{lemma-properties-system}
@@ -396,24 +211,18 @@ and the fact that $M$ is complete.
 \label{section-formal-functions-principal}
 
 \noindent
-In this section we ask if completion and taking cohomology commute
-for sheaves of modules on schemes over an affine base $A$ when completion
-is with respect to a principal ideal in $A$. Of course, we have already
-discussed the theorem on formal functions in
-Cohomology of Schemes, Section \ref{coherent-section-theorem-formal-functions}.
-Moreover, we will see in Section \ref{section-formal-functions}
-that derived completion commutes with derived cohomology in great generality.
-In this section we just collect a few simple special cases of this material
-that will help us with future developments.
+We suggest looking at
+Cohomology, Sections
+\ref{cohomology-section-inverse-systems-bis} and
+\ref{cohomology-section-inverse-systems-tri} first.
 
 \begin{lemma}
 \label{lemma-equivalent-f-good}
-Let $(X, \mathcal{O}_X)$ be a ringed space.
-Let $f \in \Gamma(X, \mathcal{O}_X)$. Let
+Let $X$ be a scheme. Let $f \in \Gamma(X, \mathcal{O}_X)$. Let
 $$
 \ldots \to \mathcal{F}_3 \to \mathcal{F}_2 \to \mathcal{F}_1
 $$
-be inverse system of $\mathcal{O}_X$-modules.
+be an inverse system of quasi-coherent $\mathcal{O}_X$-modules.
 The following are equivalent
 \begin{enumerate}
 \item for all $n \geq 1$ the map
@@ -428,170 +237,29 @@ to give a short exact sequence
 $0 \to \mathcal{F}_1 \to \mathcal{F}_{n + 1} \to \mathcal{F}_n \to 0$
 \item there exists an $\mathcal{O}_X$-module $\mathcal{G}$
 which is $f$-divisible such that $\mathcal{F}_n = \mathcal{G}[f^n]$.
-\end{enumerate}
-If $X$ is a scheme and $\mathcal{F}_n$ is quasi-coherent, then these
-are also equivalent to
-\begin{enumerate}
-\item[(4)] there exists an $\mathcal{O}_X$-module $\mathcal{F}$
-which is $f$-torsion free such that
-$\mathcal{F}_n = \mathcal{F}/f^n\mathcal{F}$.
+\item there exists an $\mathcal{O}_X$-module $\mathcal{F}$ which is
+$f$-torsion free such that $\mathcal{F}_n = \mathcal{F}/f^n\mathcal{F}$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-We omit the proof of the equivalence of (1) and (2).
-The condition that $\mathcal{G}$ is $f$-divisible means that
-$f : \mathcal{G} \to \mathcal{G}$ is surjective.
-Thus given $\mathcal{F}_n$ as in (1) we set
-$\mathcal{G} = \colim \mathcal{F}_n$ where the maps
-$\mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to \ldots$
-are as in (1). This produces an $f$-divisible $\mathcal{O}_X$-module
-with $\mathcal{F}_n = \mathcal{G}[f^n]$ as can be seen by
-checking on stalks.
-The condition that $\mathcal{F}$ is $f$-torsion free means that
-$f : \mathcal{F} \to \mathcal{F}$ is injective.
-If $X$ is a scheme and $\mathcal{F}_n$ is quasi-coherent,
-then we set $\mathcal{F} = \lim \mathcal{F}_n$. Namely, for an
-affine open $U \subset X$ the transition maps
-$\mathcal{F}_{n + 1}(U) \to \mathcal{F}_n(U)$ are surjective
-by vanishing of higher cohomology. This produces an $f$-torsion free
-$\mathcal{O}_X$-module with
-$\mathcal{F}_n = \mathcal{F}/f^n\mathcal{F}$
-(Lemma \ref{lemma-properties-system}).
-\end{proof}
-
-\begin{lemma}
-\label{lemma-topology-I-adic-f}
-Suppose $X$, $f$, $(\mathcal{F}_n)$ is as in
-Lemma \ref{lemma-equivalent-f-good}. Then the limit topology on
-$H^p = \lim H^p(X, \mathcal{F}_n)$ is the $f$-adic topology.
-\end{lemma}
-
-\begin{proof}
-Namely, it is clear that $f^t H^p$ maps to zero in $H^p(X, \mathcal{F}_t)$.
-On the other hand, let $c \geq 1$. If $\xi = (\xi_n) \in H^p$ is small in the
-limit topology, then $\xi_c = 0$, and hence $\xi_n$
-maps to zero in $H^p(X, \mathcal{F}_c)$ for $n \geq c$.
-Consider the inverse system of short exact sequences
-$$
-0 \to \mathcal{F}_{n - c} \xrightarrow{f^c} \mathcal{F}_n \to
-\mathcal{F}_c \to 0
-$$
-and the corresponding inverse system of long exact cohomology sequences
-$$
-H^{p - 1}(X, \mathcal{F}_c) \to
-H^p(X, \mathcal{F}_{n - c}) \to
-H^p(X, \mathcal{F}_n) \to
-H^p(X, \mathcal{F}_c)
-$$
-Since the term $H^{p - 1}(X, \mathcal{F}_c)$ is independent of
-$n$ we can choose a compatible sequence of elements
-$\xi'_n \in H^1(X, \mathcal{F}_{n - c})$
-lifting $\xi_n$. Setting $\xi' = (\xi'_n)$ we see that
-$\xi = f^{c + 1} \xi'$. This even shows that
-$f^c H^p = \Ker(H^p \to H^p(X, \mathcal{F}_c))$ on the nose.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-limit-finite}
-Let $A$ be a Noetherian ring complete with respect to a principal ideal $(f)$.
-Let $X$ be a scheme over $\Spec(A)$. Let
-$$
-\ldots \to \mathcal{F}_3 \to \mathcal{F}_2 \to \mathcal{F}_1
-$$
-be an inverse system of $\mathcal{O}_X$-modules. Assume
-\begin{enumerate}
-\item $\Gamma(X, \mathcal{F}_1)$ is a finite $A$-module,
-\item the equivalent conditions of Lemma \ref{lemma-equivalent-f-good} hold.
-\end{enumerate}
-Then
-$$
-M = \lim \Gamma(X, \mathcal{F}_n)
-$$
-is a finite $A$-module, $f$ is a nonzerodivisor on $M$, and
-$M/fM$ is the image of $M$ in $\Gamma(X, \mathcal{F}_1)$.
-\end{lemma}
-
-\begin{proof}
-By Lemma \ref{lemma-topology-I-adic-f} and its proof we have
-$M/fM \subset H^0(X, \mathcal{F}_1)$. From (1) and the Noetherian
-property of $A$ we get that $M/fM$ is a finite $A$-module.
-Observe that $\bigcap f^nM = 0$ as $f^nM$ maps to zero in
-$H^0(X, \mathcal{F}_n)$. By
-Algebra, Lemma \ref{algebra-lemma-finite-over-complete-ring}
-we conclude that $M$ is finite over $A$.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-ML}
-Let $A$ be a ring. Let $f \in A$. Let $X$ be a scheme over $\Spec(A)$. Let
-$$
-\ldots \to \mathcal{F}_3 \to \mathcal{F}_2 \to \mathcal{F}_1
-$$
-be an inverse system of $\mathcal{O}_X$-modules. Assume
-\begin{enumerate}
-\item either $H^1(X, \mathcal{F}_1)$ is an $A$-module of finite length
-or $A$ is Noetherian and $H^1(X, \mathcal{F}_1)$ is a finite $A$-module,
-\item the equivalent conditions of Lemma \ref{lemma-equivalent-f-good} hold.
-\end{enumerate}
-Then the inverse system $M_n = \Gamma(X, \mathcal{F}_n)$ satisfies the
-Mittag-Leffler condition.
-\end{lemma}
-
-\begin{proof}
-Set $I = (f)$. We will use the criterion of Lemma \ref{lemma-ML-general}.
-Observe that $f^n : \mathcal{F}_0 \to I^n\mathcal{F}_{n + 1}$
-is an isomorphism for all $n \geq 0$.
-Thus it suffices to show that
-$$
-\bigoplus\nolimits_{n \geq 1} H^1(X, \mathcal{F}_1) \cdot f^{n + 1}
-$$
-is a graded $S = \bigoplus_{n \geq 0} A/(f) \cdot f^n$-module satisfying the
-ascending chain condition. If $A$ is not Noetherian, then
-$H^1(X, \mathcal{F}_1)$ has finite length and the result holds.
-If $A$ is Noetherian, then $S$ is a Noetherian ring and the result
-holds as the module is finite over $S$ by the assumed finiteness
-of $H^1(X, \mathcal{F}_1)$. Some details omitted.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-ML-better}
-Let $A$ be a ring. Let $f \in A$. Let $X$ be a scheme over $\Spec(A)$. Let
-$$
-\ldots \to \mathcal{F}_3 \to \mathcal{F}_2 \to \mathcal{F}_1
-$$
-be an inverse system of $\mathcal{O}_X$-modules. Assume
-\begin{enumerate}
-\item either there is an $m \geq 1$ such that the image of
-$H^1(X, \mathcal{F}_m) \to H^1(X, \mathcal{F}_1)$
-is an $A$-module of finite length or $A$ is Noetherian
-and the intersection of the images of
-$H^1(X, \mathcal{F}_m) \to H^1(X, \mathcal{F}_1)$
-is a finite $A$-module,
-\item the equivalent conditions of Lemma \ref{lemma-equivalent-f-good} hold.
-\end{enumerate}
-Then the inverse system $M_n = \Gamma(X, \mathcal{F}_n)$ satisfies the
-Mittag-Leffler condition.
-\end{lemma}
-
-\begin{proof}
-Set $I = (f)$. We will use the criterion of Lemma \ref{lemma-ML-general-better}
-involving the modules $H^1_n$. For $m \geq n$ we have
-$I^n\mathcal{F}_{m + 1} = \mathcal{F}_{m + 1 - n}$. Thus we see that
-$$
-H^1_n = \bigcap\nolimits_{m \geq 1} \Im\left(
-H^1(X, \mathcal{F}_m) \to H^1(X, \mathcal{F}_1)
-\right)
-$$
-is independent of $n$ and
-$\bigoplus H^1_n = \bigoplus H^1_1 \cdot f^{n + 1}$.
-Thus we conclude exactly as in the proof of Lemma \ref{lemma-ML}.
+The equivalence of (1), (2), (3) and the implication (4) $\Rightarrow$ (1)
+are proven in Cohomology, Lemma \ref{cohomology-lemma-equivalent-f-good}.
+Assume (1) holds. Set
+$\mathcal{F} = \lim \mathcal{F}_n$. By Lemma \ref{lemma-properties-system}
+part (4) we have $\mathcal{F}_n = \mathcal{F}/f^n\mathcal{F}$.
+Let $U \subset X$ be open and
+$s = (s_n) \in \mathcal{F}(U) = \lim \mathcal{F}_n(U)$.
+Choose $n \geq 1$. If $fs = 0$, then $s_{n + 1}$ is in the kernel of
+$\mathcal{F}_{n + 1} \to \mathcal{F}_n$ by condition (1).
+Hence $s_n = 0$. Since $n$ was arbitrary, we see $s = 0$.
+Thus $\mathcal{F}$ is $f$-torsion free.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-formal-functions-principal}
 \begin{reference}
-\cite[Lemma 1.6]{Bhatt-local}
+Slightly improved version of \cite[Lemma 1.6]{Bhatt-local}
 \end{reference}
 Let $A$ be a ring and $f \in A$. Let $X$ be a scheme over $A$.
 Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_X$-module.
@@ -602,84 +270,43 @@ R\Gamma(X, \lim \mathcal{F}/f^n\mathcal{F}) =
 R\Gamma(X, \mathcal{F})^\wedge
 $$
 where the right hand side indicates the derived completion
-with respect to the ideal $(f) \subset A$. Let $H^p$ be the
-$p$th cohomology group of this complex. Then there are short
-exact sequences
+with respect to the ideal $(f) \subset A$. Consequently, for
+$p \in \mathbf{Z}$ we obtain a commutative diagram
 $$
-0 \to R^1\lim H^{p - 1}(X, \mathcal{F}/f^n\mathcal{F})
-\to H^p \to \lim H^p(X, \mathcal{F}/f^n\mathcal{F}) \to 0
+\xymatrix{
+& 0 & 0 \\
+0 \ar[r] &
+\widehat{H^p(X, \mathcal{F})} \ar[r] \ar[u] &
+\lim H^p(X, \mathcal{F}/f^n\mathcal{F}) \ar[r] \ar[u] &
+T_f(H^{p + 1}(X, \mathcal{F})) \ar[r] &
+0 \\
+0 \ar[r] &
+H^0(H^p(X, \mathcal{F})^\wedge) \ar[r] \ar[u] &
+H^p(X, \lim \mathcal{F}/f^n\mathcal{F}) \ar[r] \ar[u] &
+T_f(H^{p + 1}(X, \mathcal{F})) \ar[r] \ar@{=}[u] &
+0 \\
+&
+R^1\lim H^p(X, \mathcal{F})[f^n] \ar[u] \ar[r]^\cong &
+R^1\lim H^{p - 1}(X, \mathcal{F}/f^n\mathcal{F}) \ar[u] \\
+& 0 \ar[u] & 0 \ar[u]
+}
 $$
-and
-$$
-0 \to H^0(H^p(X, \mathcal{F})^\wedge) \to H^p \to
-T_f(H^{p + 1}(X, \mathcal{F})) \to 0
-$$
-where $T_f(-)$ denote the $f$-adic Tate module as in
+with exact rows and columns where
+$\widehat{H^p(X, \mathcal{F})} =
+\lim H^p(X, \mathcal{F})/f^n H^p(X, \mathcal{F})$
+is the usual $f$-adic completion
+and $T_f(-)$ denotes the $f$-adic Tate module as in
 More on Algebra, Example
 \ref{more-algebra-example-spectral-sequence-principal}.
 \end{lemma}
 
 \begin{proof}
-We start with the canonical identifications
-\begin{align*}
-R\Gamma(X, \mathcal{F})^\wedge
-& =
-R\lim R\Gamma(X, \mathcal{F}) \otimes_A^\mathbf{L} (A \xrightarrow{f^n} A) \\
-& =
-R\lim R\Gamma(X, \mathcal{F} \xrightarrow{f^n} \mathcal{F}) \\
-& =
-R\Gamma(X, R\lim (\mathcal{F} \xrightarrow{f^n} \mathcal{F}))
-\end{align*}
-The first equality holds by
-More on Algebra, Lemma \ref{more-algebra-lemma-derived-completion-koszul}.
-The second by the projection formula, see 
-Cohomology, Lemma \ref{cohomology-lemma-projection-formula-perfect}.
-The third by Cohomology, Lemma
-\ref{cohomology-lemma-Rf-commutes-with-Rlim}.
-Note that by
-Derived Categories of Schemes, Lemma \ref{perfect-lemma-Rlim-quasi-coherent}
-we have
+By Lemma \ref{lemma-properties-system} we have
 $\lim \mathcal{F}/f^n\mathcal{F} = R\lim \mathcal{F}/f^n \mathcal{F}$.
-Thus to finish the proof of the first statement of the lemma it suffices to
-show that the pro-objects $(f^n : \mathcal{F} \to \mathcal{F})$
-and $(\mathcal{F}/f^n \mathcal{F})$ are isomorphic. There is clearly
-a map from the first inverse system to the second. Suppose that
-$\mathcal{F}[f^c] = \mathcal{F}[f^{c + 1}] = \mathcal{F}[f^{c + 2}] = \ldots$.
-Then we can define an arrow of inverse systems in $D(\mathcal{O}_X)$
-in the other direction by the diagrams
-$$
-\xymatrix{
-\mathcal{F}/\mathcal{F}[f^c] \ar[r]_-{f^{n + c}} \ar[d]_{f^c} &
-\mathcal{F} \ar[d]^1 \\
-\mathcal{F} \ar[r]^{f^n} & \mathcal{F}
-}
-$$
-Since the top horizontal arrow is injective the complex
-in the top row is quasi-isomorphic to $\mathcal{F}/f^{n + c}\mathcal{F}$.
-Some details omitted.
-
-\medskip\noindent
-Since $R\Gamma(X, -)$ commutes with derived limits
-(Injectives, Lemma \ref{injectives-lemma-RF-commutes-with-Rlim})
-we see that
-$$
-R\Gamma(X, \lim \mathcal{F}/f^n\mathcal{F}) =
-R\Gamma(X, R\lim \mathcal{F}/f^n\mathcal{F}) =
-R\lim R\Gamma(X, \mathcal{F}/f^n\mathcal{F})
-$$
-(for first equality see first paragraph of proof).
-By More on Algebra, Remark \ref{more-algebra-remark-compare-derived-limit}
-we obtain exact sequences
-$$
-0 \to
-R^1\lim H^{p - 1}(X, \mathcal{F}/f^n\mathcal{F}) \to
-H^p(X, \lim \mathcal{F}/I^n\mathcal{F}) \to
-\lim H^p(X, \mathcal{F}/I^n\mathcal{F}) \to 0
-$$
-of $A$-modules. The second set of short exact sequences follow immediately
-from the discussion in More on Algebra, Example
-\ref{more-algebra-example-spectral-sequence-principal}.
+Everything else follows from Cohomology, Example
+\ref{cohomology-example-formal-functions-principal}.
 \end{proof}
+
 
 
 
@@ -692,9 +319,11 @@ from the discussion in More on Algebra, Example
 \label{section-formal-sections-cd-one}
 
 \noindent
-In this section we generalize some of the results of
-Section \ref{section-formal-functions-principal}
-to the case of an ideal $I \subset A$ of cohomological dimension $1$.
+In this section we prove Lemma \ref{lemma-topology-I-adic}
+which (in the setting of Noetherian schemes and coherent modules)
+is the analogue of Cohomology, Lemma \ref{cohomology-lemma-topology-I-adic-f}
+in case the ideal $I$ is not assumed principal but
+has the property that $\text{cd}(A, I) = 1$.
 
 \begin{lemma}
 \label{lemma-cd-one}
@@ -985,39 +614,46 @@ satisfies the descending chain condition for $i > 0$.
 \end{lemma}
 
 \begin{proof}
-Proof of (1). Let $A^\wedge$ be the completion of $A$. Since
-$H^i_\mathfrak m(M)$ is $\mathfrak m$-power torsion, we see that
-$H^i_\mathfrak m(M) = H^i_\mathfrak m(M) \otimes_A A^\wedge$. Moreover,
-we have $H^i_\mathfrak m(M) \otimes_A A^\wedge =
-H^i_{\mathfrak mA^\wedge}(M \otimes_A A^\wedge)$ by
-Dualizing Complexes, Lemma \ref{dualizing-lemma-torsion-change-rings}.
-Thus
-$$
-H^i_\mathfrak m(M) = H^i_{\mathfrak mA^\wedge}(M \otimes_A A^\wedge)
-$$
-and $A$-submodules of the left hand side are the same thing as
-$A^\wedge$-submodules of the right hand side. Thus we reduce
-to the case discussed in the next paragraph.
+We will prove part (1) by induction on the dimension of the support of $M$.
+The statement holds if $M = 0$, thus we may and do assume $M$ is not zero.
 
 \medskip\noindent
-Assume $A$ is complete. Then $A$ has a normalized dualizing complex
-$\omega_A^\bullet$ (Dualizing Complexes, Lemma
-\ref{dualizing-lemma-ubiquity-dualizing}).
-By the local duality theorem (Dualizing Complexes, Lemma
-\ref{dualizing-lemma-special-case-local-duality}) we find an isomorphism
+Base case of the induction.
+If $\dim(\text{Supp}(M)) = 0$, then the support
+of $M$ is $\{\mathfrak m\}$ and we see that $H^0_\mathfrak m(M) = M$
+and $H^i_\mathfrak m(M) = 0$ for $i > 0$ as is clear from the
+construction of local cohomology, see
+Dualizing Complexes, Section \ref{dualizing-section-local-cohomology}.
+Since $M$ has finite length (Algebra, Lemma \ref{algebra-lemma-length-finite})
+it has the descending chain condition.
+
+\medskip\noindent
+Induction step. Assume $\dim(\text{Supp}(M)) > 0$.
+By the base case the finite module $H^0_\mathfrak m(M) \subset M$
+has the descending chain condition.
+By Dualizing Complexes, Lemma \ref{dualizing-lemma-divide-by-torsion}
+we may replace $M$ by $M/H^0_\mathfrak m(M)$.
+Then $H^0_\mathfrak m(M) = 0$, i.e., $M$ has depth $\geq 1$, see
+Dualizing Complexes, Lemma \ref{dualizing-lemma-depth}.
+Choose $x \in \mathfrak m$ such that $x : M \to M$ is injective.
+By Algebra, Lemma \ref{algebra-lemma-one-equation-module} we have
+$\dim(\text{Supp}(M/xM)) = \dim(\text{Supp}(M)) - 1$ and the
+induction hypothesis applies. Pick an index $i$ and consider the
+exact sequence
 $$
-\Hom_A(H^i_\mathfrak m(M), E) =
-\text{Ext}^{-i}_A(M, \omega_A^\bullet)^\wedge
+H^{i - 1}_\mathfrak m(M/xM) \to H^i_\mathfrak m(M) \xrightarrow{x}
+H^i_\mathfrak m(M)
 $$
-where $E$ is an injective hull of the residue field of $A$. The module
-$\text{Ext}^{-i}_A(M, \omega_A^\bullet)$
-on the right hand side is a finite $A$-module by
-Dualizing Complexes, Lemma \ref{dualizing-lemma-dualizing}.
-Since $A$ is complete, the completion isn't necessary.
-Thus $H^i_\mathfrak m(M)$ has the descending chain condition
-by Matlis duality, see 
-Dualizing Complexes, Proposition \ref{dualizing-proposition-matlis}
-and its addendum Remark \ref{dualizing-remark-matlis}.
+coming from the short exact sequence $0 \to M \xrightarrow{x} M \to M/xM \to 0$.
+It follows that the $x$-torsion $H^i_\mathfrak m(M)[x]$
+is a quotient of a module with the descending chain condition, and
+hence has the descending chain condition itself. Hence the
+$\mathfrak m$-torsion submodule $H^i_\mathfrak m(M)[\mathfrak m]$ has
+the descending chain condition (and hence is finite dimensional
+over $A/\mathfrak m$). Thus we conclude that the $\mathfrak m$-power
+torsion module $H^i_\mathfrak m(M)$ has the descending chain
+condition by Dualizing Complexes, Lemma
+\ref{dualizing-lemma-describe-categories}.
 
 \medskip\noindent
 Part (2) follows from (1) via Local Cohomology,
@@ -1215,7 +851,7 @@ $$
 \to \mathcal{O}_f \to 0
 $$
 where the first map sends a local section $(x_0, x_1, \ldots)$ to
-$(fx_0 - x_1, fx_1 - x_2, \ldots)$ and the second map sends
+$(x_0, x_1 - fx_0, x_2 - fx_1, \ldots)$ and the second map sends
 $(x_0, x_1, \ldots)$ to $x_0 + x_1/f + x_2/f^2 + \ldots$.
 Applying $\SheafHom_\mathcal{O}(-, \mathcal{I}^\bullet)$
 where $\mathcal{I}^\bullet$ is a K-injective complex of $\mathcal{O}$-modules
@@ -1750,8 +1386,8 @@ Lemma \ref{lemma-derived-complete-internal-hom}.
 Let $\mathcal{C}$ be a site.
 Assume $\varphi : \mathcal{O} \to \mathcal{O}'$ is a flat homomorphism
 of sheaves of rings. Let $f_1, \ldots, f_r$ be global sections
-of $\mathcal{O}$ such that
-$\mathcal{O}/(f_1, \ldots, f_r) \cong \mathcal{O}'/(f_1, \ldots, f_r)$.
+of $\mathcal{O}$ such that $\mathcal{O}/(f_1, \ldots, f_r) \cong
+\mathcal{O}'/(f_1, \ldots, f_r)\mathcal{O}'$.
 Then the map of extended alternating {\v C}ech complexes
 $$
 \xymatrix{
@@ -1781,16 +1417,10 @@ it suffices to show that $H^i \to H^i \otimes_\mathcal{O} \mathcal{O}'$
 is an isomorphism where $H^i$ is the $i$th cohomology sheaf
 $H^i = H^i(K_n)$. These sheaves are annihilated by $f_1^n, \ldots, f_r^n$, see
 More on Algebra, Lemma \ref{more-algebra-lemma-homotopy-koszul}.
-Thus it suffices to show that
-$\mathcal{O}/(f_1^n, \ldots, f_r^n) \to \mathcal{O}'/(f_1^n, \ldots, f_r^n)$
-is an isomorphism. Equivalently, we will show that
-$\mathcal{O}/(f_1, \ldots, f_r)^n \to \mathcal{O}'/(f_1, \ldots, f_r)^n$
-is an isomorphism for all $n$. This holds for $n = 1$ by assumption.
-It follows for all $n$ by induction using
-Modules on Sites, Lemma \ref{sites-modules-lemma-flat-over-thickening}
-applied to the ring map
-$\mathcal{O}/(f_1, \ldots, f_r)^{n + 1} \to \mathcal{O}/(f_1, \ldots, f_r)^n$
-and the module $\mathcal{O}'/(f_1, \ldots, f_r)^{n + 1}$.
+Hence these sheaves are annihilated by $(f_1, \ldots, f_r)^m$
+for some $m \gg 0$. Thus $H^i \to H^i \otimes_\mathcal{O} \mathcal{O}'$
+is an isomorphism by Modules on Sites, Lemma
+\ref{sites-modules-lemma-neighbourhood-isomorphism}.
 \end{proof}
 
 \begin{lemma}
@@ -1954,8 +1584,8 @@ H^*(\mathcal{C}, \mathcal{F}^\wedge)$
 Apply Lemma \ref{lemma-pushforward-commutes-with-derived-completion}
 to the morphism of ringed topoi $(\mathcal{C}, \mathcal{O}) \to (pt, A)$
 and take cohomology to get the first statement. The second spectral sequence
-is just the Leray spectral sequence for this morphism, see
-Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-Leray}.
+is the second spectral sequence of
+Derived Categories, Lemma \ref{derived-lemma-two-ss-complex-functor}.
 The first spectral sequence is the spectral sequence of
 More on Algebra, Example
 \ref{more-algebra-example-derived-completion-spectral-sequence}
@@ -2504,7 +2134,7 @@ for all $\mathfrak q \in V(\mathfrak p) \cap V(J) \cap V(I)$,
 $V(\mathfrak p) \cap V(J) \cap V(I) \not = \emptyset$, and
 $\text{depth}(M_\mathfrak p) < s$, then one
 of the following holds\footnote{Our method
-forces this additonal condition. We will return to this
+forces this additional condition. We will return to this
 (insert future reference).}:
 \begin{enumerate}
 \item $\dim(\text{Supp}(M_\mathfrak p)) < s + 2$\footnote{For example
@@ -2557,7 +2187,7 @@ are implied by our current hypotheses on $M$.
 The only thing to verify is hypothesis (3).
 Thus let $\mathfrak p \not \in V(I)$, $\mathfrak p \in T$.
 Then $V(\mathfrak p) \cap V(I)$ is nonempty as $I$ is
-contained in the radical of $A$
+contained in the Jacobson radical of $A$
 (Algebra, Lemma \ref{algebra-lemma-radical-completion}).
 Since $\mathfrak p \in T$ we have
 $V(\mathfrak p) \cap V(I) = V(\mathfrak p) \cap V(J) \cap V(I)$.
@@ -2573,7 +2203,7 @@ by Local Cohomology, Lemma \ref{local-cohomology-lemma-cd-bound-dim-local}.
 \medskip\noindent
 Observe that the lemma holds for $s < 0$. This is not a trivial case because
 it is not a priori clear that $H^i(R\Gamma_J(M)^\wedge)$
-is zero for $i < 0$. However, this vanishing was esthablished in
+is zero for $i < 0$. However, this vanishing was established in
 Dualizing Complexes, Lemma \ref{dualizing-lemma-completion-local}.
 We will prove the lemma by induction for $s \geq 0$.
 
@@ -2613,7 +2243,7 @@ Thus we may assume $\text{Ass}(M) \cap (V(I) \cup T) = \emptyset$.
 \medskip\noindent
 Let $\mathfrak p \in \text{Ass}(M)$ be such that
 $V(\mathfrak p) \cap V(J) \cap V(I) = \emptyset$.
-Since $I$ is contained in the radical of $A$ this implies
+Since $I$ is contained in the Jacobson radical of $A$ this implies
 that $V(\mathfrak p) \cap V(J') = \emptyset$ for any
 $J' \subset J$ with $V(J') \cap V(I) = V(J) \cap V(I)$.
 Thus setting $N = H^0_\mathfrak p(M)$ we see that
@@ -2921,7 +2551,7 @@ which explains the equality sign in the statement of the lemma.
 \medskip\noindent
 Observe that the lemma holds for $s < 0$. This is not a trivial case because
 it is not a priori clear that $H^s(R\Gamma_\mathfrak m(M)^\wedge)$
-is zero for negative $s$. However, this vanishing was esthablished
+is zero for negative $s$. However, this vanishing was established
 in Lemma \ref{lemma-local-cohomology-derived-completion}.
 We will prove the lemma by induction for $s \geq 0$.
 
@@ -3008,7 +2638,7 @@ then we conclude that the lemma is true.
 \noindent
 In this section we bootstrap the material in
 Sections \ref{section-algebraization-sections-general} and
-\ref{section-algebraization-sections}
+\ref{section-algebraization-punctured}
 to give a stronger result the following situation.
 
 \begin{situation}
@@ -3110,7 +2740,8 @@ and $T' \subset V(I')$ is the inverse image of $T$.
 Let $I \subset \mathfrak a \subset A$ be an ideal such that
 $V(\mathfrak a) \subset T$. Then
 \begin{enumerate}
-\item[(A)] if $I$ is contained in the radical of $A$, then all hypotheses of
+\item[(A)] if $I$ is contained in the Jacobson radical of $A$,
+then all hypotheses of
 Lemmas \ref{lemma-kill-colimit-weak-general} and
 \ref{lemma-kill-colimit-support-general} are satisfied
 for $A, I, \mathfrak a, M$,
@@ -3212,7 +2843,7 @@ Condition (2): This is empty.
 \medskip\noindent
 Condition (3): Let $\mathfrak p \subset A$ with
 $V(\mathfrak p) \cap V(I) \subset V(\mathfrak a)$.
-Since $I$ is contained in the radical of $A$ we see
+Since $I$ is contained in the Jacobson radical of $A$ we see
 that $V(\mathfrak p) \cap V(I) \not = \emptyset$.
 Let $\mathfrak q \in V(\mathfrak p) \cap V(I)$ be a generic point.
 Since $\text{cd}(A_\mathfrak q, I_\mathfrak q) \leq d$
@@ -3241,7 +2872,7 @@ Lemma \ref{lemma-helper-bootstrap}.
 \medskip\noindent
 Condition (6): Let $\mathfrak p \not \in V(I)$ with
 $V(\mathfrak p) \cap V(I) \subset V(\mathfrak a)$.
-Since $I$ is contained in the radical of $A$ we see
+Since $I$ is contained in the Jacobson radical of $A$ we see
 that $V(\mathfrak p) \cap V(I) \not = \emptyset$.
 Choose $\mathfrak q \in V(\mathfrak p) \cap V(I) \subset V(\mathfrak a)$.
 It is clear there does not exist a prime
@@ -3327,7 +2958,7 @@ $$
 H^i_{\mathfrak m'}(M') \longrightarrow
 \lim H^i_{\mathfrak m'}(M'/(I')^nM'))
 $$
-for $i \leq s$. Combined with the already esthablished comparison
+for $i \leq s$. Combined with the already established comparison
 with local cohomology over $A$ we conclude the lemma is true.
 \end{proof}
 
@@ -4039,7 +3670,98 @@ This section gives a nonexhaustive list of
 applications to $H^0$. The next section contains
 applications to higher cohomology.
 
+\begin{lemma}
+\label{lemma-ses-H0}
+Let $I \subset \mathfrak a$ be ideals of a Noetherian ring $A$.
+Let $0 \to \mathcal{F}' \to \mathcal{F} \to \mathcal{F}'' \to 0$
+be a short exact sequence of coherent modules on
+$U = \Spec(A) \setminus V(\mathfrak a)$. Let $\mathcal{V}$
+be the set of open subschemes $V \subset U$ containing
+$U \cap V(I)$ ordered by reverse inclusion.
+Consider the commutative diagram
+$$
+\xymatrix{
+\colim_\mathcal{V} H^0(V, \mathcal{F}') \ar[d] \ar[r] &
+\colim_\mathcal{V} H^0(V, \mathcal{F}) \ar[d] \ar[r] &
+\colim_\mathcal{V} H^0(V, \mathcal{F}'') \ar[d] \\
+\lim H^0(U, \mathcal{F}'/I^n\mathcal{F}') \ar[r] &
+\lim H^0(U, \mathcal{F}'/I^n\mathcal{F}) \ar[r] &
+\lim H^0(U, \mathcal{F}'/I^n\mathcal{F}'')
+}
+$$
+If the left and right downarrows are isomorphisms so is the middle.
+If the middle and left downarrows are isomorphisms, so is the left.
+\end{lemma}
+
+\begin{proof}
+The sequences in the diagram are exact in the middle and the first
+arrow is injective. Thus the final statement follows from an easy
+diagram chase. For the rest of the proof we assume the left and
+right downward arrows are isomorphisms. A diagram chase shows
+that the middle downward arrow is injective. All that remains
+is to show that it is surjective.
+
 \medskip\noindent
+We may choose finite $A$-modules $M$ and $M'$ such that $\mathcal{F}$
+and $\mathcal{F}'$ are the restriction
+of $\widetilde{M}$ and $\widetilde{M}'$ to $U$, see Local Cohomology, Lemma
+\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
+After replacing $M'$ by $\mathfrak a^n M'$ for some $n \geq 0$
+we may assume that $\mathcal{F}' \to \mathcal{F}$
+corresponds to a module map $M' \to M$, see
+Cohomology of Schemes, Lemma \ref{coherent-lemma-homs-over-open}.
+After replacing $M'$ by the image of $M' \to M$
+and seting $M'' = M/M'$ we see that our short exact sequence
+corresponds to the restriction of the short exact sequence of
+coherent modules associated to the short exact sequence
+$0 \to M' \to M \to M'' \to 0$ of $A$-modules.
+
+\medskip\noindent
+Let $\hat s \in \lim H^0(U, \mathcal{F}/I^n\mathcal{F})$
+with image $\hat s'' \in \lim H^0(U, \mathcal{F}''/I^n\mathcal{F}'')$.
+By assumption we find $V \in \mathcal{V}$
+and a section $s'' \in \mathcal{F}''(V)$ mapping to $\hat s''$.
+Let $J \subset A$ be an ideal such that $V(J) = \Spec(A) \setminus V$.
+By Cohomology of Schemes, Lemma \ref{coherent-lemma-homs-over-open}
+after replacing $J$ by a power, we may assume
+there is an $A$-linear map $\varphi : J \to M''$
+corresponding to $s''$. We fix this choice of $J$; in the rest
+of the proof we will replace $V$ by a smaller $V$ in $\mathcal{V}$,
+i.e, we will have $V \cap V(J) = \emptyset$.
+
+\medskip\noindent
+Choose a presentation $A^{\oplus m} \to A^{\oplus n} \to J \to 0$.
+Denote $g_1, \ldots, g_n \in J$ the images of the basis vectors
+of $A^{\oplus n}$, so that $J = (g_1, \ldots, g_n)$. Let
+$A^{\oplus m} \to A^{\oplus n}$ be given by the matric $(a_{ji})$
+so that $\sum a_{ji} g_i = 0$, $j = 1, \ldots, m$.
+Since $M \to M''$ is surjective, for each $i$ we can choose $m_i \in M$
+mapping to $\varphi(g_i) \in M''$. Then the element $g_i \hat s - m_i$
+of $\lim H^0(U, \mathcal{F}/I^n\mathcal{F})$ lies in
+the submodule $\lim H^0(U, \mathcal{F}'/I^n\mathcal{F}')$.
+By assumption after shrinking $V$ we may assume there are
+$s'_i \in \mathcal{F}'(V)$, $i = 1, \ldots, n$
+with $s'_i$ mapping to $g_i \hat s - m_i$.
+Set $s_i = s'_i + m_i$ in $\mathcal{F}(V)$.
+Note that $\sum a_{ji} s_i$ maps to $\sum a_{ji}g_i\hat s = 0$
+by the map
+$$
+\colim_\mathcal{V} \mathcal{F}(V')
+\longrightarrow
+\lim H^0(U, \mathcal{F}/I^n\mathcal{F})
+$$
+Since this map is injective (see above), we may after shrinking $V$ assume
+that $\sum a_{ji}s_i = 0$ in $\mathcal{F}(V)$ for all $j = 1, \ldots, m$.
+Then it follows that we obtain an $A$-module map $J \to \mathcal{F}(V)$
+sending $g_i$ to $s_i$. By the universal property of $\widetilde{J}$
+this $A$-module map corresponds to an $\mathcal{O}_V$-module map
+$\widetilde{J}|_V \to \mathcal{F}$. However, since $V(J) \cap V = \emptyset$
+we have $\widetilde{J}|_V = \mathcal{O}_V$. Thus we have produced
+a section $s \in \mathcal{F}(V)$. We omit the computation that
+shows that $s$ maps to $\hat s$ by the map displayed above.
+\end{proof}
+
+\noindent
 The following lemma will be superceded by
 Proposition \ref{proposition-application-H0}.
 
@@ -4052,7 +3774,7 @@ Assume
 \begin{enumerate}
 \item $A$ is $I$-adically complete and has a dualizing complex,
 \item if $x \in \text{Ass}(\mathcal{F})$, $x \not \in V(I)$,
-$\overline{\{x\}} \cap V(I) \not \subset V(\mathfrak a)$
+$\overline{\{x\}} \cap V(I) \not \subset V(\mathfrak a)$,
 and $z \in \overline{\{x\}} \cap V(\mathfrak a)$, then
 $\dim(\mathcal{O}_{\overline{\{x\}}, z}) > \text{cd}(A, I) + 1$,
 \item one of the following holds:
@@ -4167,7 +3889,7 @@ Assume
 \begin{enumerate}
 \item $A$ is $I$-adically complete and has a dualizing complex,
 \item if $x \in \text{Ass}(\mathcal{F})$, $x \not \in V(I)$,
-$\overline{\{x\}} \cap V(I) \not \subset V(\mathfrak a)$
+$\overline{\{x\}} \cap V(I) \not \subset V(\mathfrak a)$,
 and $z \in \overline{\{x\}} \cap V(\mathfrak a)$, then
 $\dim(\mathcal{O}_{\overline{\{x\}}, z}) > \text{cd}(A, I) + 1$.
 \end{enumerate}
@@ -4231,6 +3953,10 @@ and $M'' = M/M'$. Let $\mathcal{F}'$ and $\mathcal{F}''$ be the
 coherent $\mathcal{O}_U$-modules corresponding to $M'$ and $M''$.
 Dualizing Complexes, Lemma \ref{dualizing-lemma-divide-by-torsion}
 implies that $M''$ has only one associated prime, namely $\mathfrak p_n$.
+Hence $\mathcal{F}''$ has only one associated point and
+we see that condition (3)(a) of Lemma \ref{lemma-application-H0-pre} holds;
+thus the map $\colim H^0(V, \mathcal{F}'')
+\to \lim H^0(U, \mathcal{F}''/I^n\mathcal{F}'')$ is an isomorphism.
 On the other hand, since
 $\mathfrak p_n \not \in V(\mathfrak p_1 \ldots \mathfrak p_{n - 1} I)$
 we see that $\mathfrak p_n$ is not an associated prime of $M'$.
@@ -4239,42 +3965,10 @@ that since $\mathcal{F}' \subset \mathcal{F}$
 the condition $\text{depth}(\mathcal{F}'_x) \geq 1$ at points $x$ with
 $\overline{\{x\}} \cap V(I) \subset V(\mathfrak a)$ holds, see
 Algebra, Lemma \ref{algebra-lemma-depth-in-ses}.
-
-\medskip\noindent
-Let $\hat s$ be an element of $\lim H^0(U, \mathcal{F}/I^n\mathcal{F})$.
-Let $\hat s''$ be the image in $\lim H^0(U, \mathcal{F}''/I^n\mathcal{F}'')$.
-Since $\mathcal{F}''$ has only one associated point, namely the point
-corresponding to $\mathfrak p_n$, we see that
-Lemma \ref{lemma-application-H0-pre} applies and we find an open
-$U \cap V(I) \subset V \subset U$
-and a section $s'' \in \mathcal{F}''(V)$ mapping to $\hat s''$.
-Let $J \subset A$ be an ideal such that $V(J) = \Spec(A) \setminus V$.
-By Cohomology of Schemes, Lemma \ref{coherent-lemma-homs-over-open}
-after replacing $J$ by a power, we may assume
-there is an $A$-linear map $\varphi : J \to M''$
-corresponding to $s''$. Since $M \to M''$ is surjective, for
-each $g \in J$ we can choose $m_g \in M$ mapping to
-$\varphi(g) \in M''$. Then $\hat s'_g = g \hat s - m_g$
-is in $\lim H^0(U, \mathcal{F}'/I^n\mathcal{F}')$.
-By induction hypothesis there is a $V' \geq V$
-section $s'_g \in \mathcal{F}'(V')$
-mapping to $\hat s'_g$. All in all we conclude that
-$g \hat s$ is in the image of
-$\mathcal{F}(V') \to \lim H^0(U, \mathcal{F}/I^n\mathcal{F})$
-for some $V' \subset V$ possibly depending on $g$.
-However, since $J$ is finitely generated we can find a single
-$V' \in \mathcal{V}$ which works for each of the generators
-and it follows that $V'$ works for all $g$.
-
-\medskip\noindent
-Combining the previous paragraph with the injectivity
-shown in the second paragraph we find there exists
-a $V' \geq V$ and an $A$-module map $\psi : J \to \mathcal{F}(V')$
-such that $\psi(g)$ maps to $g\hat s$. This determines a
-map $\widetilde{J} \to (V' \to \Spec(A))_*\mathcal{F}|_{V'}$
-whose restriction to $V'$ provides an element
-$s \in \mathcal{F}(V')$ mapping to $\hat s$.
-This finishes the proof.
+Thus the map
+$\colim H^0(V, \mathcal{F}')
+\to \lim H^0(U, \mathcal{F}'/I^n\mathcal{F}')$ is an isomorphism too.
+We conclude by Lemma \ref{lemma-ses-H0}.
 \end{proof}
 
 \begin{lemma}
@@ -4286,6 +3980,7 @@ Assume
 \begin{enumerate}
 \item $A$ is $I$-adically complete and has a dualizing complex,
 \item if $x \in \text{Ass}(\mathcal{F})$, $x \not \in V(I)$,
+$\overline{\{x\}} \cap V(I) \not \subset V(\mathfrak a)$, and
 $z \in V(\mathfrak a) \cap \overline{\{x\}}$, then
 $\dim(\mathcal{O}_{\overline{\{x\}}, z}) > \text{cd}(A, I) + 1$,
 \item for $x \in U$ with $\overline{\{x\}} \cap V(I) \subset V(\mathfrak a)$
@@ -4311,28 +4006,6 @@ Divisors, Lemma \ref{divisors-lemma-depth-2-hartog}
 and the proof is complete.
 \end{proof}
 
-\begin{example}
-\label{example-H0}
-Let $A$ be a Noetherian domain which has a dualizing complex
-and which is complete with respect to a nonzero $f \in A$.
-Let $f \in \mathfrak a \subset A$ be an ideal.
-Assume every irreducible component of $Z = V(\mathfrak a)$
-has codimension $> 2$ in $X = \Spec(A)$. Equivalently, assume every
-irreducible component of $Z$ has codimension $> 1$ in $Y = V(f)$.
-Then with
-$U = X \setminus Z$ every element of
-$$
-\lim_n \Gamma(U, \mathcal{O}_U/f^n \mathcal{O}_U)
-$$
-is the restriction of a section of $\mathcal{O}_U$ defined on an
-open neighbourhood of
-$$
-V(f) \setminus Z = V(f) \cap U = Y \setminus Z = U \cap Y
-$$
-In particular we see that $Y \setminus Z$ is connected. See
-Lemma \ref{lemma-connected} below.
-\end{example}
-
 \begin{lemma}
 \label{lemma-alternative-colim-H0}
 Let $A$ be a Noetherian ring. Let $f \in \mathfrak a \subset A$
@@ -4340,7 +4013,7 @@ be an element of an ideal of $A$. Let $M$ be a finite $A$-module.
 Assume
 \begin{enumerate}
 \item $A$ is $f$-adically complete,
-\item $f$ is a nonzerodivisor,
+\item $f$ is a nonzerodivisor on $M$,
 \item $H^1_\mathfrak a(M/fM)$ is a finite $A$-module.
 \end{enumerate}
 Then with $U = \Spec(A) \setminus V(\mathfrak a)$ the map
@@ -4359,28 +4032,112 @@ The finiteness of $H^1_\mathfrak a(M/fM)$ implies that
 $H^0(U, \mathcal{F}/f\mathcal{F})$ is finite, see
 Local Cohomology, Lemma
 \ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
-By Lemma \ref{lemma-limit-finite} (which applies as $f$ is a
-nonzerodivisor on $\mathcal{F}$)
+By Cohomology, Lemma \ref{cohomology-lemma-limit-finite}
+(which applies as $f$ is a nonzerodivisor on $\mathcal{F}$)
 we see that $N = \lim H^0(U, \mathcal{F}/f^n\mathcal{F})$
 is a finite $A$-module, is $f$-torsion free, and
 $N/fN \subset H^0(U, \mathcal{F}/f\mathcal{F})$.
-On the other hand, we have $M \to N$ and the map
+On the other hand, we have a map $M \to N$ and a compatible map
 $$
 M/fM \longrightarrow H^0(U, \mathcal{F}/f\mathcal{F})
 $$
-is an isomorphism upon localization at any prime $\mathfrak q$ in
-$U_0 = V(f) \setminus \{\mathfrak m\}$ (details omitted). Thus
-$M_\mathfrak q \to N_\mathfrak q$ induces an isomorphism
+For $g \in \mathfrak a$ we see that $(M/fM)_g$ maps isomorphically
+to $H^0(U \cap D(f), \mathcal{F}/f\mathcal{F})$ since
+$\mathcal{F}/f\mathcal{F}$ is the restriction of $\widetilde{M/fM}$ to $U$.
+We conclude that $M_g \to N_g$ induces an isomorphism
 $$
-M_\mathfrak q/fM_\mathfrak q =
-(M/fM)_\mathfrak q \to (N/fN)_\mathfrak q =
-N_\mathfrak q/fN_\mathfrak q
+M_g/fM_g = (M/fM)_g \to (N/fN)_g = N_g/fN_g
 $$
 Since $f$ is a nonzerodivisor on both $N$ and $M$ we conclude
-that $M_\mathfrak q \to N_\mathfrak q$ is an isomorphism (use
-Nakayama to see surjectivity). We conclude that $M$ and $N$
+that $M_g \to N_g$ induces an isomorphism on $f$-adic completions
+which in turn implies $M_g \to N_g$ is an isomorphism in an open
+neightbourhood of $V(f) \cap D(g)$.
+Since $g \in \mathfrak a$ was arbitrary, we conclude that $M$ and $N$
 determine isomorphic coherent modules over an open $V$
 as in the statement of the lemma. This finishes the proof.
+\end{proof}
+
+\begin{proposition}
+\label{proposition-alternative-colim-H0}
+Let $A$ be a Noetherian ring. Let $f \in \mathfrak a \subset A$
+be an element of an ideal of $A$. Let $\mathcal{F}$ be a coherent
+module on $U = \Spec(A) \setminus V(\mathfrak a)$. Assume
+\begin{enumerate}
+\item $A$ is $f$-adically complete and has a dualizing complex,
+\item if $x \in \text{Ass}(\mathcal{F})$, $x \not \in V(f)$,
+$\overline{\{x\}} \cap V(f) \not \subset V(\mathfrak a)$,
+and $z \in \overline{\{x\}} \cap V(\mathfrak a)$, then
+$\dim(\mathcal{O}_{\overline{\{x\}}, z}) > 2$.
+\end{enumerate}
+Then the map
+$$
+\colim_V \Gamma(V, \mathcal{F})
+\longrightarrow
+\lim \Gamma(U, \mathcal{F}/f^n\mathcal{F})
+$$
+is an isomorphism where the colimit is over opens $V \subset U$
+containing $U \cap V(f)$.
+\end{proposition}
+
+\begin{proof}[First proof]
+Recall that $A$ is universally catenary and with Gorenstein
+formal fibres, see Dualizing Complexes, Lemmas
+\ref{dualizing-lemma-dualizing-gorenstein-formal-fibres} and
+\ref{dualizing-lemma-universally-catenary}. Thus we may consider the map
+$\mathcal{F} \to \mathcal{F}'$ constructed in
+Local Cohomology, Lemma \ref{local-cohomology-lemma-make-S2-along-Z}
+for the closed subset $V(f) \cap U$ of $U$.
+Observe that
+\begin{enumerate}
+\item The kernel and cokernel of $\mathcal{F} \to \mathcal{F}'$
+are supported on $V(f) \cap U$.
+\item The module $\mathcal{F}'$ is $f$-torsion free as its stalks have
+depth $\geq 1$ for all points of $V(f) \cap U$, i.e., $\mathcal{F}'$
+has no associated points in $V(f) \cap U$.
+\item If $y \in V(f) \cap U$ is an associated point of
+$\mathcal{F}'/f\mathcal{F}'$, then
+$\text{depth}(\mathcal{F}'_y) = 1$
+and hence (by the construction of $\mathcal{F}'$)
+there is an immediate specialization $x \leadsto y$
+with $x \not \in V(f)$ an associated point of $\mathcal{F}$.
+It follows that $y$ cannot have
+an immediate specialization in $\Spec(A)$
+to a point $z \in V(\mathfrak a)$ by our assumption (2).
+\item It follows from (3) that $H^0(U, \mathcal{F}'/f\mathcal{F}')$
+is a finite $A$-module, see
+Local Cohomology, Lemma \ref{local-cohomology-lemma-finiteness-Rjstar}.
+\end{enumerate}
+These observations will allow us to finish the proof.
+
+\medskip\noindent
+First, we claim the lemma holds for $\mathcal{F}'$.
+Namely, choose a finite $A$-module $M'$ such that $\mathcal{F}'$
+is the restriction
+to $U$ of the coherent module associated to $M'$, see Local Cohomology,
+Lemma \ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
+Since $\mathcal{F}'$ is $f$-torsion free, we may assume $M'$
+is $f$-torsion free as well. Observation (4) above shows that
+$H^1_\mathfrak a(M')$ is a finite $A$-module, see Local Cohomology,
+Lemma \ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
+Thus the claim by Lemma \ref{lemma-alternative-colim-H0}.
+
+\medskip\noindent
+Second, we observe that the lemma holds trivially for any coherent
+$\mathcal{O}_U$-module supported on $V(f) \cap U$.
+Let $\mathcal{K}$, resp.\ $\mathcal{G}$, resp.\ $\mathcal{Q}$
+be the kernel, resp.\ image, resp.\ cokernel of the map
+$\mathcal{F} \to \mathcal{F}'$.
+The short exact sequence
+$0 \to \mathcal{G} \to \mathcal{F}' \to \mathcal{Q} \to 0$
+and Lemma \ref{lemma-ses-H0} show that the result holds for
+$\mathcal{G}$. Then we do this again with the short exact sequence
+$0 \to \mathcal{K} \to \mathcal{F} \to \mathcal{G} \to 0$
+to finish the proof.
+\end{proof}
+
+\begin{proof}[Second proof]
+The proposition is a special case of
+Proposition \ref{proposition-application-H0}.
 \end{proof}
 
 \begin{lemma}
@@ -4403,10 +4160,8 @@ is an isomorphism.
 \end{lemma}
 
 \begin{proof}
-We may apply
-Lemma \ref{lemma-formal-functions-principal}
-to $U$ and $\mathcal{F} = \widetilde{M}|_U$
-because $\mathcal{F}$ is a Noetherian object in
+We may apply Lemma \ref{lemma-formal-functions-principal} to $U$ and
+$\mathcal{F} = \widetilde{M}|_U$ because $\mathcal{F}$ is a Noetherian object in
 the category of coherent $\mathcal{O}_U$-modules.
 Since $H^1(U, \mathcal{F}) = H^2_\mathfrak a(M)$
 (Local Cohomology, Lemma
@@ -4414,26 +4169,18 @@ Since $H^1(U, \mathcal{F}) = H^2_\mathfrak a(M)$
 is annihilated by a power of $f$, we see that
 its $f$-adic Tate module is zero.
 Hence the lemma shows $\lim H^0(U, \mathcal{F}/f^n \mathcal{F})$
-is the $0$th cohomology group of the
-derived $f$-adic completion of $H^0(U, \mathcal{F})$.
-Consider the exact sequence
+is equal to the usual $f$-adic completion of $H^0(U, \mathcal{F})$.
+Consider the short exact sequence
 $$
-0 \to H^0_\mathfrak a(M) \to M \to
-\Gamma(U, \mathcal{F}) \to H^1_\mathfrak a(M) \to 0
+0 \to M/H^0_\mathfrak a(M) \to H^0(U, \mathcal{F}) \to H^1_\mathfrak a(M) \to 0
 $$
 of Local Cohomology, Lemma
 \ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
-Since $H^1_\mathfrak a(M)$ is annihilated by a power of $f$
-it is derived complete with respect to $(f)$.
-Since $M$ and $H^0_\mathfrak a(M)$ are finite $A$-modules
-they are complete
-(Algebra, Lemma \ref{algebra-lemma-completion-tensor})
-hence derived complete
-(More on Algebra,
-Proposition \ref{more-algebra-proposition-derived-complete-modules}).
-By More on Algebra, Lemma \ref{more-algebra-lemma-serre-subcategory}
-we conclude that $\Gamma(U, \mathcal{F})$ is derived complete
-as desired.
+Since $M/H^0_\mathfrak a(M)$ is a finite $A$-module, it is
+complete, see Algebra, Lemma \ref{algebra-lemma-completion-tensor}.
+Since $H^1_\mathfrak a(M)$ is killed by a power of $f$, we conclude
+from Algebra, Lemma \ref{algebra-lemma-completion-differ-by-torsion}
+that $H^0(U, \mathcal{F})$ is complete as well. This finishes the proof.
 \end{proof}
 
 
@@ -4581,23 +4328,25 @@ is an isomorphism for $i < s$.
 \end{lemma}
 
 \begin{proof}
-The proof is the same as the proof of Lemma \ref{lemma-alternative-H0}.
+By induction on $s$. If $s = 0$, the assertion is empty. If $s = 1$, then
+the result is Lemma \ref{lemma-alternative-H0}. Assume $s > 1$. By induction
+it suffices to prove the result for $i = s - 1 \geq 1$.
 We may apply Lemma \ref{lemma-formal-functions-principal}
 to $U$ and $\mathcal{F} = \widetilde{M}|_U$
 because $\mathcal{F}$ is a Noetherian object in
 the category of coherent $\mathcal{O}_U$-modules.
-Since $H^i(U, \mathcal{F}) = H^{i + 1}_\mathfrak a(M)$
-(Local Cohomology, Lemma
-\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local})
-is annihilated by a power of $f$ for $i \leq s$, we see that
-its $f$-adic Tate module is zero.
-Hence the lemma shows $\lim H^{i - 1}(U, \mathcal{F}/f^n \mathcal{F})$
-is the $0$th cohomology group of the
-derived $f$-adic completion of $H^{i - 1}(U, \mathcal{F})$.
-However, if $s \geq i > 1$, then this equal to the $f$-power torsion
-module $H^i_\mathfrak a(M)$ and hence equal to its own
-(derived) completion. For $i = 0$, we refer to
-Lemma \ref{lemma-alternative-H0}.
+Observe that $H^j(U, \mathcal{F}) = H^{j + 1}_\mathfrak a(M)$ for all $j$ by
+Local Cohomology, Lemma
+\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
+Thus for $j = s = (s - 1) + 1$ this is
+annihilated by a power of $f$ by assumption.
+Thus it follows from
+Lemma \ref{lemma-formal-functions-principal} that
+$\lim H^{s - 1}(U, \mathcal{F}/f^n\mathcal{F})$
+is the usual $f$-adic completion of $H^{s - 1}(U, \mathcal{F})$.
+Then again using that this module is killed by a power of
+$f$ we see that the completion is simply equal to $H^{s - 1}(U, \mathcal{F})$
+as desired.
 \end{proof}
 
 
@@ -4724,6 +4473,35 @@ in $U = \Spec(A) \setminus V(\mathfrak a)$. Thus $T$ is either empty
 or connected, since if not, then the right hand side would have a
 nontrivial idempotent and we've assumed the left hand side does not.
 Some details omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-H0}
+Let $A$ be a Noetherian domain which has a dualizing complex
+and which is complete with respect to a nonzero $f \in A$.
+Let $f \in \mathfrak a \subset A$ be an ideal.
+Assume every irreducible component of $Z = V(\mathfrak a)$
+has codimension $> 2$ in $X = \Spec(A)$, i.e., assume every
+irreducible component of $Z$ has codimension $> 1$ in $Y = V(f)$.
+Then $Y \setminus Z$ is connected.
+\end{lemma}
+
+\begin{proof}
+This is a special case of Lemma \ref{lemma-connected} (whose proof
+relies on Proposition \ref{proposition-application-H0}). Below we
+prove it using the easier Proposition \ref{proposition-alternative-colim-H0}.
+
+\medskip\noindent
+Set $U = X \setminus Z$. By Proposition \ref{proposition-alternative-colim-H0}
+we have an isomorphism
+$$
+\colim \Gamma(V, \mathcal{O}_V) \to
+\lim_n \Gamma(U, \mathcal{O}_U/f^n \mathcal{O}_U)
+$$
+where the colimit is over open $V \subset U$ containing $U \cap Y$.
+Hence if $U \cap Y$ is disconnected, then for some $V$ there exists
+a nontrivial idempotent in $\Gamma(V, \mathcal{O}_V)$. This is impossible
+as $V$ is an integral scheme as $X$ is the spectrum of a domain.
 \end{proof}
 
 
@@ -4972,12 +4750,13 @@ Let $I \subset \mathfrak a$ be ideals of a Noetherian ring $A$.
 Let $U = \Spec(A) \setminus V(\mathfrak a)$. Assume
 \begin{enumerate}
 \item $A$ is $I$-adically complete and has a dualizing complex,
-\item for any associated prime $\mathfrak p \subset A$,
-$I \not \subset \mathfrak p$ and
+\item for any associated prime $\mathfrak p \subset A$ with
+$\mathfrak p \not \in V(I)$ and
+$V(\mathfrak p) \cap V(I) \not \subset V(\mathfrak a)$ and
 $\mathfrak q \in V(\mathfrak p) \cap V(\mathfrak a)$ we have
-$\dim((A/\mathfrak p)_\mathfrak q) > \text{cd}(A, I) + 1$.
-\item for $\mathfrak p \subset A$, $I \not \subset \mathfrak p$ with
-with $V(\mathfrak p) \cap V(I) \subset V(\mathfrak a)$
+$\dim((A/\mathfrak p)_\mathfrak q) > \text{cd}(A, I) + 1$,
+\item for $\mathfrak p \subset A$ with $\mathfrak p \not \in V(I)$
+and $V(\mathfrak p) \cap V(I) \subset V(\mathfrak a)$
 we have $\text{depth}(A_\mathfrak p) \geq 2$.
 \end{enumerate}
 Then the completion functor
@@ -5001,48 +4780,6 @@ $$
 $$
 This follows immediately from
 Lemma \ref{lemma-application-H0}.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-fully-faithful-simple-one}
-Let $A$ be a Noetherian ring. Let $f \in \mathfrak a$ be an element of
-an ideal of $A$. Let $U = \Spec(A) \setminus V(\mathfrak a)$. Assume
-\begin{enumerate}
-\item $A$ has a dualizing complex and is complete with respect to $f$,
-\item $A_f$ is $(S_2)$ and for every minimal prime $\mathfrak p \subset A$,
-$f \not \in \mathfrak p$ and
-$\mathfrak q \in V(\mathfrak p) \cap V(\mathfrak a)$ we have
-$\dim((A/\mathfrak p)_\mathfrak q) \geq 3$.
-\end{enumerate}
-Then the completion functor
-$$
-\textit{Coh}(\mathcal{O}_U)
-\longrightarrow
-\textit{Coh}(U, I\mathcal{O}_U),
-\quad
-\mathcal{F} \longmapsto \mathcal{F}^\wedge
-$$
-is fully faithful on the full subcategory of finite locally free objects.
-\end{lemma}
-
-\begin{proof}
-We will show that Lemma \ref{lemma-fully-faithful} applies.
-Assumption (1) of Lemma \ref{lemma-fully-faithful} holds.
-Observe that $\text{cd}(A, (f)) \leq 1$, see
-Local Cohomology, Lemma \ref{local-cohomology-lemma-bound-cd}.
-Since $A_f$ is $(S_2)$ we see that every associated prime
-$\mathfrak p \subset A$, $f \not \in \mathfrak p$ is a minimal prime.
-Thus we get assumption (2) of Lemma \ref{lemma-fully-faithful}.
-If $\mathfrak p \subset A$, $f \not \in \mathfrak p$ satisfies
-$V(\mathfrak p) \cap V(I) \subset V(\mathfrak a)$ and if
-$\mathfrak q \in V(\mathfrak p) \cap V(f)$ is a generic point,
-then $\dim((A/\mathfrak p)_\mathfrak q) = 1$.
-Then we obtain $\dim(A_\mathfrak p) \geq 2$ by looking at the minimal primes
-$\mathfrak p_0 \subset \mathfrak p$ and using that
-$\dim((A/\mathfrak p_0)_\mathfrak q) \geq 3$ by assumption. Thus
-$\text{depth}(A_\mathfrak p) \geq 2$ by the $(S_2)$ assumption.
-This verifies assumption (3) of Lemma \ref{lemma-fully-faithful}
-and the proof is complete.
 \end{proof}
 
 \begin{lemma}
@@ -5100,7 +4837,7 @@ is fully faithful on the full subcategory of finite locally free objects.
 \end{lemma}
 
 \begin{proof}
-This follows from Lemma \ref{lemma-fully-faithful-alternative} and
+Follows from Lemma \ref{lemma-fully-faithful-alternative} and
 Local Cohomology, Proposition \ref{local-cohomology-proposition-annihilator}.
 \end{proof}
 
@@ -5160,7 +4897,7 @@ $$
 \quad
 \mathcal{F} \longmapsto \mathcal{F}^\wedge
 $$
-is fully faithful.
+is fully faithful on the full subcategory of finite locally free objects.
 \end{lemma}
 
 \begin{proof}
@@ -5200,7 +4937,7 @@ $\dim(\mathcal{O}_{\overline{\{x\}}, z}) > \text{cd}(A, I) + 1$.
 We may choose coherent $\mathcal{O}_U$-modules
 $\mathcal{F}'$ and $\mathcal{G}'$ whose restriction to $V$
 is $\mathcal{F}$ and $\mathcal{G}$, see
-Properties, Lemma \ref{properties-lemma-extend-finite-presentation}.
+Properties, Lemma \ref{properties-lemma-lift-finite-presentation}.
 We may modify our choice of $\mathcal{F}'$ to ensure that
 $\text{Ass}(\mathcal{F}') \subset V$, see for example
 Local Cohomology, Lemma \ref{local-cohomology-lemma-get-depth-1-along-Z}.
@@ -5354,7 +5091,7 @@ Having said this the equivalence of (2), (3), (4), and (5)
 holds because the functors
 $\textit{Coh}(\mathcal{O}_X) \to \textit{Coh}(\mathcal{O}_U) \to
 \textit{Coh}(\mathcal{O}_V)$ are essentially surjective.
-See Properties, Lemma \ref{properties-lemma-extend-finite-presentation}.
+See Properties, Lemma \ref{properties-lemma-lift-finite-presentation}.
 
 \medskip\noindent
 It is always the case that (5) implies (6). Assume $A$ is $I$-adically complete.
@@ -5650,7 +5387,8 @@ Lemma \ref{lemma-when-done}.
 Since $\mathcal{F}_n$ is locally free over $\mathcal{O}_U/f^n\mathcal{O}_U$
 we see that we have short exact sequences
 $0 \to \mathcal{F}_n \to \mathcal{F}_{n + 1} \to \mathcal{F}_1 \to 0$
-for all $n$. Thus condition (b) holds by Lemma \ref{lemma-topology-I-adic-f}.
+for all $n$. Thus condition (b) holds by
+Cohomology, Lemma \ref{cohomology-lemma-topology-I-adic-f}.
 
 \medskip\noindent
 As $f$ is a nonzerodivisor we obtain short exact sequences
@@ -5674,7 +5412,8 @@ In this way we see hypothesis (c) is satisfied.
 
 \medskip\noindent
 Finally, as $H^1(U, \mathcal{F}_1)$ is a finite $A$-module
-we can apply Lemma \ref{lemma-ML} to see hypothesis (a) holds.
+we can apply Cohomology, Lemma \ref{cohomology-lemma-ML}
+to see hypothesis (a) holds.
 \end{proof}
 
 \begin{remark}
@@ -5686,10 +5425,10 @@ the condition that
 $H^1_\mathfrak a(A/fA)$ and $H^2_\mathfrak a(A/fA)$
 are finite $A$-modules, is equivalent with
 $$
-\text{depth}((A/f)_\mathfrak q) + \dim((A/\mathfrak q)_\mathfrak p) > 2
+\text{depth}((A/f)_\mathfrak p) + \dim((A/\mathfrak p)_\mathfrak q) > 2
 $$
-for all $\mathfrak q \in V(f) \setminus V(\mathfrak a)$
-and $\mathfrak p \in V(\mathfrak q) \cap V(\mathfrak a)$
+for all $\mathfrak p \in V(f) \setminus V(\mathfrak a)$
+and $\mathfrak q \in V(\mathfrak p) \cap V(\mathfrak a)$
 by Local Cohomology, Theorem \ref{local-cohomology-theorem-finiteness}.
 
 \medskip\noindent
@@ -6505,7 +6244,8 @@ Lemma \ref{lemma-when-done}.
 Since $\mathcal{F}_n$ is locally free over $\mathcal{O}_U/f^n\mathcal{O}_U$
 we see that we have short exact sequences
 $0 \to \mathcal{F}_n \to \mathcal{F}_{n + 1} \to \mathcal{F}_1 \to 0$
-for all $n$. Thus condition (b) holds by Lemma \ref{lemma-topology-I-adic-f}.
+for all $n$. Thus condition (b) holds by
+Cohomology, Lemma \ref{cohomology-lemma-topology-I-adic-f}.
 
 \medskip\noindent
 By induction on $n$ and the short exact sequences
@@ -6525,7 +6265,7 @@ $$
 H^1(U, \mathcal{F}_n) \longrightarrow H^1(U, \mathcal{F}_1)
 $$
 has finite length as an $A$-module. Namely, this will imply hypothesis (a)
-by Lemma \ref{lemma-ML-better}. The image is independent
+by Cohomology, Lemma \ref{cohomology-lemma-ML-better}. The image is independent
 of $n$ for $n$ large enough by Lemma \ref{lemma-ML-local}.
 Let $\omega_A^\bullet$ be a normalized dualizing complex for $A$.
 By the local duality theorem and Matlis duality
@@ -6792,8 +6532,8 @@ in the rest of the proof.
 
 \medskip\noindent
 We will check hypotheses (a), (b), and (c) of
-Lemma \ref{lemma-when-done}.
-Hypothesis (b) holds by Lemma \ref{lemma-topology-I-adic-f}.
+Lemma \ref{lemma-when-done}. Hypothesis (b) holds by
+Cohomology, Lemma \ref{cohomology-lemma-topology-I-adic-f}.
 
 \medskip\noindent
 Pick a inverse system of modules $\{M_n\}$ as in
@@ -6880,9 +6620,9 @@ $$
 is a finite graded $A[T]$-module where $T$ acts via multiplication by $f$.
 Namely, it is a graded submodule of $K[T]$ and $K$ is finite over $A$.
 Arguing as in the proof of
-Lemma \ref{lemma-ML-general}\footnote{Choose homogeneous generators
-of the form $\delta_{n_j}(p_j)$ for the displayed module.
-Then if $k = \max(n_j)$ we find that for $n \geq k$
+Cohomology, Lemma \ref{cohomology-lemma-ML-general}\footnote{Choose
+homogeneous generators of the form $\delta_{n_j}(p_j)$ for the displayed
+module. Then if $k = \max(n_j)$ we find that for $n \geq k$
 and any $p \in P_n$ we can find $a_j \in A$ such that
 $p - \sum a_j f^{n - n_j} p_j$ is in the kernel of $\delta_n$
 and hence in the image of $P_{n'}$ for all $n' \geq n$.
@@ -7472,7 +7212,7 @@ Observe that $\{M_n\}$ is an inverse system and that
 $f_j : \mathcal{F}_n \to \mathcal{F}_{n + 1}$ on global
 sections maps $M_n$ into $M_{n + 1}$.
 By exactly the same argument as in the proof of
-Lemma \ref{lemma-ML-general}
+Cohomology, Lemma \ref{cohomology-lemma-ML-general}
 we find that $\{M_n\}$ is ML. Namely, because the Rees algebra
 is Noetherian we can choose a finite number of homogeneous generators
 of the form $\delta_{n_j}(z_j)$ with $z_j \in M_{n_j}$ for the graded submodule
@@ -7990,11 +7730,13 @@ $$
 \bigoplus\nolimits_{n \geq 0} H^1(U, I^n\mathcal{F}_{n + 1})
 $$
 is a finite graded $R = \bigoplus I^n/I^{n +1}$-module.
-By Lemma \ref{lemma-ML-general} we conclude that condition (a) of
+By Cohomology, Lemma \ref{cohomology-lemma-ML-general}
+we conclude that condition (a) of
 Lemma \ref{lemma-when-done} is satisfied. Finally, condition (b) of
 Lemma \ref{lemma-when-done} is satisfied because
 $\bigoplus H^0(U, I^n\mathcal{F}_{n + 1})$ is a finite graded $R$-module
-and we can apply Lemma \ref{lemma-topology-I-adic-general}.
+and we can apply
+Cohomology, Lemma \ref{cohomology-lemma-topology-I-adic-general}.
 \end{proof}
 
 \begin{remark}
@@ -8124,7 +7866,7 @@ $V(\mathfrak p) \cap V(f) \not = \{\mathfrak m\}$, then
 $\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 3$.
 \end{enumerate}
 \end{enumerate}
-Then the completion functor
+Then with $U_0 = U \cap V(f)$ the completion functor
 $$
 \colim_{U_0 \subset U' \subset U\text{ open}}
 \textit{Coh}(\mathcal{O}_{U'})
@@ -8156,12 +7898,13 @@ $U'$ of $U_0$. This finishes the proof.
 \label{lemma-equivalence}
 In Situation \ref{situation-algebraize} assume
 \begin{enumerate}
+\item $I = (f)$ is principal,
 \item $A$ is $f$-adically complete,
 \item $f$ is a nonzerodivisor,
-\item $H^1_\mathfrak m(A/fA)$ and $H^2_\mathfrak m(A/fA)$
+\item $H^1_\mathfrak a(A/fA)$ and $H^2_\mathfrak a(A/fA)$
 are finite $A$-modules.
 \end{enumerate}
-Then the completion functor
+Then with $U_0 = U \cap V(f)$ the completion functor
 $$
 \colim_{U_0 \subset U' \subset U\text{ open}}
 \textit{Coh}(\mathcal{O}_{U'})
@@ -8177,6 +7920,1053 @@ Lemma \ref{lemma-fully-faithful-general-alternative}.
 Essential surjectivity follows from
 Lemma \ref{lemma-algebraization-principal-variant}.
 \end{proof}
+
+
+
+
+
+
+
+
+\section{Coherent triples}
+\label{section-coherent-triples}
+
+\noindent
+Let $(A, \mathfrak m)$ be a Noetherian local ring.
+Let $f \in \mathfrak m$ be a nonzerodivisor. Set
+$X = \Spec(A)$, $X_0 = \Spec(A/fA)$, $U = X \setminus V(\mathfrak m)$, and
+$U_0 = U \cap X_0$.
+We say $(\mathcal{F}, \mathcal{F}_0, \alpha)$ is a {\it coherent triple}
+if we have
+\begin{enumerate}
+\item $\mathcal{F}$ is a coherent $\mathcal{O}_U$-module such that
+$f : \mathcal{F} \to \mathcal{F}$ is injective,
+\item $\mathcal{F}_0$ is a coherent $\mathcal{O}_{X_0}$-module,
+\item $\alpha : \mathcal{F}/f\mathcal{F} \to \mathcal{F}_0|_{U_0}$
+is an isomorphism.
+\end{enumerate}
+There is an obvious notion of a {\it morphism of coherent triples}
+which turns the collection of all coherent triples into a category.
+
+\medskip\noindent
+The category of coherent triples is additive but not abelian.
+However, it is clear what a short exact sequence of coherent
+triples is.
+
+\medskip\noindent
+Given two coherent triples $(\mathcal{F}, \mathcal{F}_0, \alpha)$
+and $(\mathcal{G}, \mathcal{G}_0, \beta)$ it may not be the case that
+$(\mathcal{F} \otimes_{\mathcal{O}_U} \mathcal{G},
+\mathcal{F}_0  \otimes_{\mathcal{O}_{X_0}} \mathcal{G}_0,
+\alpha \otimes \beta)$ is a coherent triple\footnote{Namely, it
+isn't necessarily the case that $f$
+is injective on $\mathcal{F} \otimes_{\mathcal{O}_U} \mathcal{G}$.}.
+However, if the stalks $\mathcal{G}_x$ are
+free for all $x \in U_0$, then this does hold.
+
+\medskip\noindent
+We will say the coherent triple $(\mathcal{G}, \mathcal{G}_0, \beta)$
+is {\it locally free}, resp.\ {\it invertible}
+if $\mathcal{G}$ and $\mathcal{G}_0$
+are locally free, resp.\ invertible modules. In this case tensoring
+with $(\mathcal{G}, \mathcal{G}_0, \beta)$ makes sense (see above)
+and turns short exact sequences of coherent triples into short exact
+sequences of coherent triples.
+
+\begin{lemma}
+\label{lemma-prepare-chi-triple}
+For any coherent triple $(\mathcal{F}, \mathcal{F}_0, \alpha)$
+there exists a coherent $\mathcal{O}_X$-module $\mathcal{F}'$
+such that $f : \mathcal{F}' \to \mathcal{F}'$ is injective,
+an isomorphism $\alpha' : \mathcal{F}'|_U \to \mathcal{F}$, and a map
+$\alpha'_0 : \mathcal{F}'/f\mathcal{F}' \to \mathcal{F}_0$
+such that $\alpha \circ (\alpha' \bmod f) = \alpha'_0|_{U_0}$.
+\end{lemma}
+
+\begin{proof}
+Choose a finite $A$-module $M$ such that $\mathcal{F}$ is the restriction
+to $U$ of the coherent $\mathcal{O}_X$-module associated to $M$, see
+Local Cohomology, Lemma
+\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
+Since $\mathcal{F}$ is $f$-torsion free, we may replace $M$ by
+its quotient by $f$-power torsion.
+On the other hand, let $M_0 = \Gamma(X_0, \mathcal{F}_0)$
+so that $\mathcal{F}_0$ is the coherent $\mathcal{O}_{X_0}$-module
+associated to the finite $A/fA$-module $M_0$.
+By Cohomology of Schemes, Lemma \ref{coherent-lemma-homs-over-open}
+there exists an $n$ such that the
+isomorphism $\alpha_0$ corresponds to an $A/fA$-module homomorphism
+$\mathfrak m^n M/fM \to M_0$ (whose kernel and cokernel
+are annihilated by a power of $\mathfrak m$, but we don't need this).
+Thus if we take $M' = \mathfrak m^n M$ and we let
+$\mathcal{F}'$ be the coherent $\mathcal{O}_X$-module
+associated to $M'$, then the lemma is clear.
+\end{proof}
+
+\noindent
+Let $(\mathcal{F}, \mathcal{F}_0, \alpha)$ be a coherent triple.
+Choose $\mathcal{F}', \alpha', \alpha'_0$ as in
+Lemma \ref{lemma-prepare-chi-triple}. Set
+\begin{equation}
+\label{equation-chi-triple}
+\chi(\mathcal{F}, \mathcal{F}_0, \alpha) =
+\text{length}_A(\Coker(\alpha'_0)) - 
+\text{length}_A(\Ker(\alpha'_0))
+\end{equation}
+The expression on the right makes sense as $\alpha'_0$ is an isomorphism
+over $U_0$ and hence its kernel and coherent are coherent modules supported
+on $\{\mathfrak m\}$ which therefore have finite length
+(Algebra, Lemma \ref{algebra-lemma-support-point}).
+
+\begin{lemma}
+\label{lemma-well-defined-chi-triple}
+The quantity $\chi(\mathcal{F}, \mathcal{F}_0, \alpha)$ in
+(\ref{equation-chi-triple}) does not depend on the choice of
+$\mathcal{F}', \alpha', \alpha'_0$ as in Lemma \ref{lemma-prepare-chi-triple}.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{F}', \alpha', \alpha'_0$ and
+$\mathcal{F}'', \alpha'', \alpha''_0$ be two such choices.
+For $n > 0$ set $\mathcal{F}'_n = \mathfrak m^n \mathcal{F}'$.
+By Cohomology of Schemes, Lemma \ref{coherent-lemma-homs-over-open}
+for some $n$
+there exists an $\mathcal{O}_X$-module map $\mathcal{F}'_n \to \mathcal{F}''$
+agreeing with the identification
+$\mathcal{F}''|_U = \mathcal{F}'|_U$ determined by $\alpha'$ and $\alpha''$.
+Then the diagram
+$$
+\xymatrix{
+\mathcal{F}'_n/f\mathcal{F}'_n \ar[r] \ar[d] &
+\mathcal{F}'/f\mathcal{F}' \ar[d]^{\alpha_0'} \\
+\mathcal{F}''/f\mathcal{F}'' \ar[r]^{\alpha_0''} &
+\mathcal{F}_0
+}
+$$
+is commutative after restricting to $U_0$. Hence by
+Cohomology of Schemes, Lemma \ref{coherent-lemma-homs-over-open}
+it is commutative after restricting to
+$\mathfrak m^l(\mathcal{F}'_n/f\mathcal{F}'_n)$ for some $l > 0$. Since
+$\mathcal{F}'_{n + l}/f\mathcal{F}'_{n + l} \to \mathcal{F}'_n/f\mathcal{F}'_n$
+factors through $\mathfrak m^l(\mathcal{F}'_n/f\mathcal{F}'_n)$
+we see that after replacing $n$ by $n + l$ the diagram
+is commutative. In other words, we have found a third choice
+$\mathcal{F}''', \alpha''', \alpha'''_0$
+such that there are maps $\mathcal{F}''' \to \mathcal{F}''$
+and $\mathcal{F}''' \to \mathcal{F}'$ over $X$
+compatible with the maps over $U$ and $X_0$. This reduces us to
+the case discussed in the next paragraph.
+
+\medskip\noindent
+Assume we have a map $\mathcal{F}'' \to \mathcal{F}'$ over $X$ compatible with
+$\alpha', \alpha''$ over $U$ and with $\alpha'_0, \alpha''_0$ over $X_0$.
+Observe that $\mathcal{F}'' \to \mathcal{F}'$ is injective as it is an
+isomorphism over $U$ and since $f : \mathcal{F}'' \to \mathcal{F}''$
+is injective. Clearly $\mathcal{F}'/\mathcal{F}''$ is supported on
+$\{\mathfrak m\}$ hence has finite length. We have the maps
+of coherent $\mathcal{O}_{X_0}$-modules
+$$
+\mathcal{F}''/f\mathcal{F}'' \to
+\mathcal{F}'/f\mathcal{F}' \xrightarrow{\alpha'_0}
+\mathcal{F}_0
+$$
+whose composition is $\alpha''_0$ and which are isomorphisms over $U_0$.
+Elementary homological algebra gives a $6$-term exact sequence
+$$
+\begin{matrix}
+0 \to
+\Ker(\mathcal{F}''/f\mathcal{F}'' \to \mathcal{F}'/f\mathcal{F}') \to
+\Ker(\alpha''_0) \to
+\Ker(\alpha'_0) \to \\
+\Coker(\mathcal{F}''/f\mathcal{F}'' \to \mathcal{F}'/f\mathcal{F}') \to
+\Coker(\alpha''_0) \to
+\Coker(\alpha'_0) \to 0
+\end{matrix}
+$$
+By additivity of lengths (Algebra, Lemma \ref{algebra-lemma-length-additive})
+we find that it suffices to show that
+$$
+\text{length}_A(
+\Coker(\mathcal{F}''/f\mathcal{F}'' \to \mathcal{F}'/f\mathcal{F}')) -
+\text{length}_A(
+\Ker(\mathcal{F}''/f\mathcal{F}'' \to \mathcal{F}'/f\mathcal{F}')) = 0
+$$
+This follows from applying the snake lemma to
+the diagram
+$$
+\xymatrix{
+0 \ar[r] &
+\mathcal{F}'' \ar[r]_f \ar[d] &
+\mathcal{F}'' \ar[r] \ar[d] &
+\mathcal{F}''/f\mathcal{F}'' \ar[r] \ar[d] &
+0 \\
+0 \ar[r] &
+\mathcal{F}' \ar[r]^f &
+\mathcal{F}' \ar[r] &
+\mathcal{F}'/f\mathcal{F}' \ar[r] &
+0
+}
+$$
+and the fact that $\mathcal{F}'/\mathcal{F}''$ has finite length.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-ses-chi-triple}
+We have
+$\chi(\mathcal{G}, \mathcal{G}_0, \beta) =
+\chi(\mathcal{F}, \mathcal{F}_0, \alpha) +
+\chi(\mathcal{H}, \mathcal{H}_0, \gamma)$ if
+$$
+0 \to
+(\mathcal{F}, \mathcal{F}_0, \alpha) \to
+(\mathcal{G}, \mathcal{G}_0, \beta) \to
+(\mathcal{H}, \mathcal{H}_0, \gamma)
+\to 0
+$$
+is a short exact sequence of coherent triples.
+\end{lemma}
+
+\begin{proof}
+Choose $\mathcal{G}', \beta', \beta'_0$ as in
+Lemma \ref{lemma-prepare-chi-triple}
+for the triple $(\mathcal{G}, \mathcal{G}_0, \beta)$.
+Denote $j : U \to X$ the inclusion morphism.
+Let $\mathcal{F}' \subset \mathcal{G}'$
+be the kernel of the composition
+$$
+\mathcal{G}' \xrightarrow{\beta'} j_*\mathcal{G} \to j_*\mathcal{H}
+$$
+Observe that $\mathcal{H}' = \mathcal{G}'/\mathcal{F}'$
+is a coherent subsheaf of $j_*\mathcal{H}$ and hence
+$f : \mathcal{H}' \to \mathcal{H}'$ is injective.
+Hence by the snake lemma we obtain a short exact sequence
+$$
+0 \to \mathcal{F}'/f\mathcal{F}' \to
+\mathcal{G}'/f\mathcal{G}' \to
+\mathcal{H}'/f\mathcal{H}' \to 0
+$$
+We have isomorphisms
+$\alpha' : \mathcal{F}'|_U \to \mathcal{F}$,
+$\beta' : \mathcal{G}'|_U \to \mathcal{G}$, and
+$\gamma' : \mathcal{H}'|_U \to \mathcal{H}$ by construction.
+To finish the proof we'll need to construct maps
+$\alpha'_0 : \mathcal{F}'/f\mathcal{F}' \to \mathcal{F}_0$ and
+$\gamma'_0 : \mathcal{H}'/f\mathcal{H}' \to \mathcal{H}_0$ as in
+Lemma \ref{lemma-prepare-chi-triple} and fitting into
+a commutative diagram
+$$
+\xymatrix{
+0 \ar[r] &
+\mathcal{F}'/f\mathcal{F}' \ar[r] \ar@{..>}[d]^{\alpha'_0} &
+\mathcal{G}'/f\mathcal{G}' \ar[r] \ar[d]^{\beta'_0} &
+\mathcal{H}'/f\mathcal{H}' \ar[r] \ar@{..>}[d]^{\gamma'_0} &
+0 \\
+0 \ar[r] &
+\mathcal{F}_0 \ar[r] &
+\mathcal{G}_0 \ar[r] &
+\mathcal{H}_0 \ar[r] &
+0
+}
+$$
+However, this may not be possible with our initial choice of $\mathcal{G}'$.
+From the displayed diagram we see the obstruction is
+exactly the composition
+$$
+\delta :
+\mathcal{F}'/f\mathcal{F}' \to
+\mathcal{G}'/f\mathcal{G}' \xrightarrow{\beta'_0}
+\mathcal{G}_0 \to
+\mathcal{H}_0
+$$
+Note that the restriction of $\delta$ to $U_0$ is zero by our choice of
+$\mathcal{F}'$ and $\mathcal{H}'$. Hence by
+Cohomology of Schemes, Lemma \ref{coherent-lemma-homs-over-open}
+there exists an $k > 0$ such that
+$\delta$ vanishes on $\mathfrak m^k \cdot (\mathcal{F}'/f\mathcal{F}')$.
+For $n > k$ set $\mathcal{G}'_n = \mathfrak m^n \mathcal{G}'$,
+$\mathcal{F}'_n = \mathcal{G}'_n \cap \mathcal{F}'$, and
+$\mathcal{H}'_n = \mathcal{G}'_n/\mathcal{F}'_n$.
+Observe that $\beta'_0$ can be composed with
+$\mathcal{G}'_n/f\mathcal{G}'_n \to \mathcal{G}'/f\mathcal{G}'$
+to give a map
+$\beta'_{n, 0} : \mathcal{G}'_n/f\mathcal{G}'_n \to \mathcal{G}_0$
+as in Lemma \ref{lemma-prepare-chi-triple}.
+By Artin-Rees (Algebra, Lemma \ref{algebra-lemma-Artin-Rees})
+we may choose $n$ such that
+$\mathcal{F}'_n \subset \mathfrak m^k \mathcal{F}'$.
+As above the maps
+$f : \mathcal{F}'_n \to \mathcal{F}'_n$,
+$f : \mathcal{G}'_n \to \mathcal{G}'_n$, and
+$f : \mathcal{H}'_n \to \mathcal{H}'_n$ are injective
+and as above using the snake lemma we obtain a short exact
+sequence
+$$
+0 \to \mathcal{F}'_n/f\mathcal{F}'_n \to
+\mathcal{G}'_n/f\mathcal{G}'_n \to
+\mathcal{H}'_n/f\mathcal{H}'_n \to 0
+$$
+As above we have isomorphisms
+$\alpha'_n : \mathcal{F}'_n|_U \to \mathcal{F}$,
+$\beta'_n : \mathcal{G}'_n|_U \to \mathcal{G}$, and
+$\gamma'_n : \mathcal{H}'_n|_U \to \mathcal{H}$.
+We consider the obstruction
+$$
+\delta_n :
+\mathcal{F}'_n/f\mathcal{F}'_n \to
+\mathcal{G}'_n/f\mathcal{G}'_n
+\xrightarrow{\beta'_{n, 0}}
+\mathcal{G}_0 \to
+\mathcal{H}_0
+$$
+as before. However, the commutative diagram
+$$
+\xymatrix{
+\mathcal{F}'_n/f\mathcal{F}'_n \ar[r] \ar[d] &
+\mathcal{G}'_n/f\mathcal{G}'_n \ar[r]_{\beta'_{n, 0}} \ar[d] &
+\mathcal{G}_0 \ar[r] \ar[d] &
+\mathcal{H}_0 \ar[d] \\
+\mathcal{F}'/f\mathcal{F}' \ar[r] &
+\mathcal{G}'/f\mathcal{G}' \ar[r]^{\beta'_0} &
+\mathcal{G}_0 \ar[r] &
+\mathcal{H}_0
+}
+$$
+our choice of $n$ and our observation about $\delta$
+show that $\delta_n = 0$.
+This produces the desired maps
+$\alpha'_{n, 0} : \mathcal{F}'_n/f\mathcal{F}'_n \to \mathcal{F}_0$, and
+$\gamma'_{n, 0} : \mathcal{H}'_n/f\mathcal{H}'_n \to \mathcal{H}_0$.
+OK, so we may use
+$\mathcal{F}'_n, \alpha'_n, \alpha'_{n, 0}$,
+$\mathcal{G}'_n, \beta'_n, \beta'_{n, 0}$, and
+$\mathcal{H}'_n, \gamma'_n, \gamma'_{n, 0}$
+to compute
+$\chi(\mathcal{F}, \mathcal{F}_0, \alpha)$,
+$\chi(\mathcal{G}, \mathcal{G}_0, \beta)$, and
+$\chi(\mathcal{H}, \mathcal{H}_0, \gamma)$.
+Now finally the lemma follows from
+an application of the snake lemma to
+$$
+\xymatrix{
+0 \ar[r] &
+\mathcal{F}'_n/f\mathcal{F}'_n \ar[r] \ar[d] &
+\mathcal{G}'_n/f\mathcal{G}'_n \ar[r] \ar[d] &
+\mathcal{H}'_n/f\mathcal{H}'_n \ar[r] \ar[d] &
+0 \\
+0 \ar[r] &
+\mathcal{F}_0 \ar[r] &
+\mathcal{G}_0 \ar[r] &
+\mathcal{H}_0 \ar[r] &
+0
+}
+$$
+and additivity of lengths (Algebra, Lemma \ref{algebra-lemma-length-additive}).
+\end{proof}
+
+\begin{proposition}
+\label{proposition-hilbert-triple}
+Let $(\mathcal{F}, \mathcal{F}_0, \alpha)$ be a coherent triple.
+Let $(\mathcal{L}, \mathcal{L}_0, \lambda)$ be an invertible coherent
+triple. Then the function
+$$
+\mathbf{Z} \longrightarrow \mathbf{Z},\quad
+n \longmapsto
+\chi((\mathcal{F}, \mathcal{F}_0, \alpha) \otimes
+(\mathcal{L}, \mathcal{L}_0, \lambda)^{\otimes n})
+$$
+is a polynomial of degree $\leq \dim(\text{Supp}(\mathcal{F}))$.
+\end{proposition}
+
+\noindent
+More precisely, if $\mathcal{F} = 0$, then the function is constant.
+If $\mathcal{F}$ has finite support in $U$, then the function is constant.
+If the support of $\mathcal{F}$ in $U$ has dimension $1$, i.e., the
+closure of the support of $\mathcal{F}$ in $X$ has dimension $2$, then
+the function is linear, etc.
+
+\begin{proof}
+We will prove this by induction on the dimension of the support of
+$\mathcal{F}$.
+
+\medskip\noindent
+The base case is when $\mathcal{F} = 0$. Then either
+$\mathcal{F}_0$ is zero or its support is $\{\mathfrak m\}$.
+In this case we have
+$$
+(\mathcal{F}, \mathcal{F}_0, \alpha) \otimes
+(\mathcal{L}, \mathcal{L}_0, \lambda)^{\otimes n} =
+(0, \mathcal{F}_0 \otimes \mathcal{L}_0^{\otimes n}, 0) \cong
+(0, \mathcal{F}_0, 0)
+$$
+Thus the function of the lemma is constant with value equal
+to the length of $\mathcal{F}_0$.
+
+\medskip\noindent
+Induction step. Assume the support of $\mathcal{F}$ is nonempty.
+Let $\mathcal{G}_0 \subset \mathcal{F}_0$ denote the submodule
+of sections supported on $\{\mathfrak m\}$. Then we get a short
+exact sequence
+$$
+0 \to (0, \mathcal{G}_0, 0) \to
+(\mathcal{F}, \mathcal{F}_0, \alpha) \to
+(\mathcal{F}, \mathcal{F}_0/\mathcal{G}_0, \alpha) \to 0
+$$
+This sequence remains exact if we tensor by the invertible
+coherent triple $(\mathcal{L}, \mathcal{L}_0, \lambda)$, see
+discussion above. Thus by additivity of $\chi$
+(Lemma \ref{lemma-ses-chi-triple})
+and the base case explained above, it suffices to prove
+the induction step for
+$(\mathcal{F}, \mathcal{F}_0/\mathcal{G}_0, \alpha)$.
+In this way we see that we may assume $\mathfrak m$ is not
+an associated point of $\mathcal{F}_0$.
+
+\medskip\noindent
+Let $T = \text{Ass}(\mathcal{F}) \cup \text{Ass}(\mathcal{F}/f\mathcal{F})$.
+Since $U$ is quasi-affine, we can find $s \in \Gamma(U, \mathcal{L})$
+which does not vanish at any $u \in T$, see
+Properties, Lemma
+\ref{properties-lemma-quasi-affine-invertible-nonvanishing-section}.
+After multiplying $s$ by a suitable element of $\mathfrak m$
+we may assume $\lambda(s \bmod f) = s_0|_{U_0}$ for some
+$s_0 \in \Gamma(X_0, \mathcal{L}_0)$; details omitted.
+We obtain a morphism
+$$
+(s, s_0) :
+(\mathcal{O}_U, \mathcal{O}_{X_0}, 1)
+\longrightarrow
+(\mathcal{L}, \mathcal{L}_0, \lambda)
+$$
+in the category of coherent triples. Let
+$\mathcal{G} = \Coker(s : \mathcal{F} \to \mathcal{F} \otimes \mathcal{L})$
+and
+$\mathcal{G}_0 = \Coker(s_0 : \mathcal{F}_0 \to
+\mathcal{F}_0 \otimes \mathcal{L}_0)$. Observe that $s_0 : \mathcal{F}_0 \to
+\mathcal{F}_0 \otimes \mathcal{L}_0$ is injective as it is injective
+on $U_0$ by our choice of $s$ and as $\mathfrak m$ isn't an
+associated point of $\mathcal{F}_0$. It follows that
+there exists an
+isomorphism $\beta : \mathcal{G}/f\mathcal{G} \to \mathcal{G}_0|_{U_0}$
+such that we obtain a short exact sequence
+$$
+0 \to
+(\mathcal{F}, \mathcal{F}_0, \alpha) \to
+(\mathcal{F}, \mathcal{F}_0, \alpha) \otimes
+(\mathcal{L}, \mathcal{L}_0, \lambda) \to
+(\mathcal{G}, \mathcal{G}_0, \beta) \to 0
+$$
+By induction on the dimension of the support we know the proposition
+holds for the coherent triple $(\mathcal{G}, \mathcal{G}_0, \beta)$.
+Using the additivity of Lemma \ref{lemma-ses-chi-triple}
+we see that
+$$
+n \longmapsto 
+\chi((\mathcal{F}, \mathcal{F}_0, \alpha) \otimes
+(\mathcal{L}, \mathcal{L}_0, \lambda)^{\otimes n + 1})
+-
+\chi((\mathcal{F}, \mathcal{F}_0, \alpha) \otimes
+(\mathcal{L}, \mathcal{L}_0, \lambda)^{\otimes n})
+$$
+is a polynomial. We conclude by a variant of
+Algebra, Lemma \ref{algebra-lemma-numerical-polynomial}
+for functions defined for all integers (details omitted).
+\end{proof}
+
+\begin{lemma}
+\label{lemma-nonnegative-chi-triple}
+Assume $\text{depth}(A) \geq 3$ or equivalently
+$\text{depth}(A/fA) \geq 2$. Let $(\mathcal{L}, \mathcal{L}_0, \lambda)$
+be an invertible coherent triple. Then
+$$
+\chi(\mathcal{L}, \mathcal{L}_0, \lambda) =
+\text{length}_A \Coker(\Gamma(U, \mathcal{L}) \to \Gamma(U_0, \mathcal{L}_0))
+$$
+and in particular this is $\geq 0$. Moreover, 
+$\chi(\mathcal{L}, \mathcal{L}_0, \lambda) = 0$ if and only if
+$\mathcal{L} \cong \mathcal{O}_U$.
+\end{lemma}
+
+\begin{proof}
+The equivalence of the depth conditions follows from
+Algebra, Lemma \ref{algebra-lemma-depth-drops-by-one}.
+By the depth condition we see that
+$\Gamma(U, \mathcal{O}_U) = A$ and
+$\Gamma(U_0, \mathcal{O}_{U_0}) = A/fA$, see
+Dualizing Complexes, Lemma \ref{dualizing-lemma-depth} and
+Local Cohomology, Lemma
+\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
+Using Local Cohomology, Lemma
+\ref{local-cohomology-lemma-finiteness-for-finite-locally-free}
+we find that $M = \Gamma(U, \mathcal{L})$ is a finite $A$-module.
+This in turn implies $\text{depth}(M) \geq 2$ for example by
+part (4) of Local Cohomology, Lemma
+\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}
+or by Divisors, Lemma \ref{divisors-lemma-depth-pushforward}.
+Also, we have $\mathcal{L}_0 \cong \mathcal{O}_{X_0}$
+as $X_0$ is a local scheme. Hence we also see that
+$M_0 = \Gamma(X_0, \mathcal{L}_0) = \Gamma(U_0, \mathcal{L}_0|_{U_0})$
+and that this module is isomorphic to $A/fA$.
+
+\medskip\noindent
+By the above $\mathcal{F}' = \widetilde{M}$ is a coherent
+$\mathcal{O}_X$-module whose restriction to $U$ is isomorphic to $\mathcal{L}$.
+The isomorphism $\lambda : \mathcal{L}/f\mathcal{L} \to \mathcal{L}_0|_{U_0}$
+determines a map $M/fM \to M_0$ on global sections
+which is an isomorphism over $U_0$.
+Since $\text{depth}(M) \geq 2$ we see
+that $H^0_\mathfrak m(M/fM) = 0$ and it follows that
+$M/fM \to M_0$ is injective. Thus by definition
+$$
+\chi(\mathcal{L}, \mathcal{L}_0, \lambda) =
+\text{length}_A \Coker(M/fM \to M_0)
+$$
+which gives the first statement of the lemma.
+
+\medskip\noindent
+Finally, if this length is $0$, then $M \to M_0$ is surjective.
+Hence we can find $s \in M = \Gamma(U, \mathcal{L})$
+mapping to a trivializing section of $\mathcal{L}_0$.
+Consider the finite $A$-modules $K$, $Q$ defined by the exact
+sequence
+$$
+0 \to K \to A \xrightarrow{s} M \to Q \to 0
+$$
+The supports of $K$ and $Q$ do not meet $U_0$ because $s$
+is nonzero at points of $U_0$. Using
+Algebra, Lemma \ref{algebra-lemma-depth-in-ses}
+we see that $\text{depth}(K) \geq 2$ (observe that
+$As \subset M$ has $\text{depth} \geq 1$ as a submodule of $M$).
+Thus the support of $K$ if nonempty has dimension $\geq 2$ by
+Algebra, Lemma \ref{algebra-lemma-bound-depth}.
+This contradicts $\text{Supp}(M) \cap V(f) \subset \{\mathfrak m\}$
+unless $K = 0$. When $K = 0$ we find that
+$\text{depth}(Q) \geq 2$ and we conclude
+$Q = 0$ as before. Hence $A \cong M$ and
+$\mathcal{L}$ is trivial.
+\end{proof}
+
+
+
+
+
+
+
+\section{Invertible modules on punctured spectra, I}
+\label{section-local-lefschetz-for-pic}
+
+\noindent
+In this section we prove some local Lefschetz theorems for the Picard group.
+Some of the ideas are taken from
+\cite{Kollar-pic}, \cite{Bhatt-local}, and \cite{Kollar-map-pic}.
+
+\begin{lemma}
+\label{lemma-injective-torsion-in-pic}
+Let $(A, \mathfrak m)$ be a Noetherian local ring. Let $f \in \mathfrak m$
+be a nonzerodivisor and assume that $\text{depth}(A/fA) \geq 2$, or equivalently
+$\text{depth}(A) \geq 3$. Let $U$, resp.\ $U_0$ be the punctured
+spectrum of $A$, resp.\ $A/fA$. The map
+$$
+\Pic(U) \to \Pic(U_0)
+$$
+is injective on torsion.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{L}$ be an invertible $\mathcal{O}_U$-module.
+Observe that $\mathcal{L}$ maps to $0$ in $\Pic(U_0)$
+if and only if we can extend $\mathcal{L}$ to an invertible
+coherent triple $(\mathcal{L}, \mathcal{L}_0, \lambda)$
+as in Section \ref{section-coherent-triples}.
+By Proposition \ref{proposition-hilbert-triple}
+the function
+$$
+n \longmapsto \chi((\mathcal{L}, \mathcal{L}_0, \lambda)^{\otimes n})
+$$
+is a polynomial. By Lemma \ref{lemma-nonnegative-chi-triple}
+the value of this polynomial is zero if and only if
+$\mathcal{L}^{\otimes n}$ is trivial.
+Thus if $\mathcal{L}$ is torsion, then this
+polynomial has infinitely many zeros, hence is
+identically zero, hence $\mathcal{L}$ is trivial.
+\end{proof}
+
+\begin{proposition}[Koll\'ar]
+\label{proposition-injective-pic}
+\begin{reference}
+\cite[Theorem 1.9]{Kollar-map-pic}
+\end{reference}
+Let $(A, \mathfrak m)$ be a Noetherian local ring. Let $f \in \mathfrak m$.
+Assume
+\begin{enumerate}
+\item $A$ has a dualizing complex,
+\item $f$ is a nonzerodivisor,
+\item $\text{depth}(A/fA) \geq 2$, or equivalently $\text{depth}(A) \geq 3$,
+\item if $f \in \mathfrak p \subset A$ is a prime ideal with
+$\dim(A/\mathfrak p) = 2$, then $\text{depth}(A_\mathfrak p) \geq 2$.
+\end{enumerate}
+Let $U$, resp.\ $U_0$ be the punctured spectrum of $A$, resp.\ $A/fA$. The map
+$$
+\Pic(U) \to \Pic(U_0)
+$$
+is injective. Finally, if (1), (2), (3), $A$ is $(S_2)$, and
+$\dim(A) \geq 4$, then (4) holds.
+\end{proposition}
+
+\begin{proof}
+Let $\mathcal{L}$ be an invertible $\mathcal{O}_U$-module.
+Observe that $\mathcal{L}$ maps to $0$ in $\Pic(U_0)$
+if and only if we can extend $\mathcal{L}$ to an invertible
+coherent triple $(\mathcal{L}, \mathcal{L}_0, \lambda)$
+as in Section \ref{section-coherent-triples}.
+By Proposition \ref{proposition-hilbert-triple}
+the function
+$$
+n \longmapsto \chi((\mathcal{L}, \mathcal{L}_0, \lambda)^{\otimes n})
+$$
+is a polynomial $P$. By Lemma \ref{lemma-nonnegative-chi-triple}
+we have
+$P(n) \geq 0$ for all $n \in \mathbf{Z}$ with equality if and only if
+$\mathcal{L}^{\otimes n}$ is trivial. In particular $P(0) = 0$
+and $P$ is either identically zero and we win or $P$ has even degree $\geq 2$.
+
+\medskip\noindent
+Set $M = \Gamma(U, \mathcal{L})$ and
+$M_0 = \Gamma(X_0, \mathcal{L}_0) = \Gamma(U_0, \mathcal{L}_0)$.
+Then $M$ is a finite $A$-module of depth $\geq 2$
+and $M_0 \cong A/fA$, see proof of Lemma \ref{lemma-nonnegative-chi-triple}.
+Note that $H^2_\mathfrak m(M)$ is finite $A$-module by
+Local Cohomology, Lemma
+\ref{local-cohomology-lemma-local-finiteness-for-finite-locally-free}
+and the fact that $H^i_\mathfrak m(A) = 0$ for $i = 0, 1, 2$
+since $\text{depth}(A) \geq 3$.
+Consider the short exact sequence
+$$
+0 \to M/fM \to M_0 \to Q \to 0
+$$
+Lemma \ref{lemma-nonnegative-chi-triple} tells us $Q$ has finite length
+equal to $\chi(\mathcal{L}, \mathcal{L}_0, \lambda)$.
+We obtain $Q = H^1_\mathfrak m(M/fM)$ and
+$H^i_\mathfrak m(M/fM) = H^i_\mathfrak m(M_0) \cong H^i_\mathfrak m(A/fA)$
+for $i > 1$ from the long exact sequence of local cohomology
+associated to the displayed short exact sequence. Consider the long
+exact sequence of local cohomology associated to the sequence
+$0 \to M \to M \to M/fM \to 0$. It starts with
+$$
+0 \to Q \to H^2_\mathfrak m(M) \to H^2_\mathfrak m(M) \to
+H^2_\mathfrak m(A/fA)
+$$
+Using additivity of lengths we see that
+$\chi(\mathcal{L}, \mathcal{L}_0, \lambda)$
+is equal to the length of the image of
+$H^2_\mathfrak m(M) \to H^2_\mathfrak m(A/fA)$.
+
+\medskip\noindent
+Let prove the lemma in a special case to elucidate the rest of the proof.
+Namely, assume for a moment that $H^2_\mathfrak m(A/fA)$ is
+a finite length module. Then
+we would have $P(1) \leq \text{length}_A H^2_\mathfrak m(A/fA)$.
+The exact same argument applied to $\mathcal{L}^{\otimes n}$ shows that
+$P(n) \leq \text{length}_A H^2_\mathfrak m(A/fA)$ for all $n$.
+Thus $P$ cannot have positive degree and we win.
+In the rest of the proof we will modify this argument to give
+a linear upper bound for $P(n)$ which suffices.
+
+\medskip\noindent
+Let us study the map
+$H^2_\mathfrak m(M) \to H^2_\mathfrak m(M_0) \cong H^2_\mathfrak m(A/fA)$.
+Choose a normalized dualizing complex $\omega_A^\bullet$ for $A$.
+By local duality
+(Dualizing Complexes, Lemma \ref{dualizing-lemma-special-case-local-duality})
+this map is Matlis dual to the map
+$$
+\text{Ext}^{-2}_A(M, \omega_A^\bullet)
+\longleftarrow
+\text{Ext}^{-2}_A(M_0, \omega_A^\bullet)
+$$
+whose image therefore has the same (finite) length.
+The support (if nonempty) of the finite $A$-module
+$\text{Ext}^{-2}_A(M_0, \omega_A^\bullet)$ consists of
+$\mathfrak m$ and a finite number of primes
+$\mathfrak p_1, \ldots, \mathfrak p_r$ containing $f$ with
+$\dim(A/\mathfrak p_i) = 1$. Namely, by
+Local Cohomology, Lemma \ref{local-cohomology-lemma-sitting-in-degrees}
+the support is contained in the set of primes $\mathfrak p \subset A$ with
+$\text{depth}_{A_\mathfrak p}(M_{0, \mathfrak p}) + \dim(A/\mathfrak p) \leq 2$.
+Thus it suffices to show there is no prime $\mathfrak p$ containing $f$ with
+$\dim(A/\mathfrak p) = 2$ and
+$\text{depth}_{A_\mathfrak p}(M_{0, \mathfrak p}) = 0$.
+However, because $M_{0, \mathfrak p} \cong (A/fA)_\mathfrak p$
+this would give $\text{depth}(A_\mathfrak p) = 1$ which contradicts
+assumption (4).
+Choose a section $t \in \Gamma(U, \mathcal{L}^{\otimes -1})$
+which does not vanish in the points $\mathfrak p_1, \ldots, \mathfrak p_r$, see
+Properties, Lemma
+\ref{properties-lemma-quasi-affine-invertible-nonvanishing-section}.
+Multiplication by $t$ on global sections determines a map $t : M \to A$
+which defines an isomorphism $M_{\mathfrak p_i} \to A_{\mathfrak p_i}$ for
+$i = 1, \ldots, r$. Denote $t_0 = t|_{U_0}$ the corresponding section
+of $\Gamma(U_0, \mathcal{L}_0^{\otimes -1})$ which similarly determines
+a map $t_0 : M_0 \to A/fA$ compatible with $t$.
+We conclude that there is a commutative diagram
+$$
+\xymatrix{
+\text{Ext}^{-2}_A(M, \omega_A^\bullet) &
+\text{Ext}^{-2}_A(M_0, \omega_A^\bullet) \ar[l] \\
+\text{Ext}^{-2}_A(A, \omega_A^\bullet) \ar[u]^t &
+\text{Ext}^{-2}_A(A/fA, \omega_A^\bullet) \ar[l] \ar[u]_{t_0}
+}
+$$
+It follows that the length of the image of the top horizontal
+map is at most the length of $\text{Ext}^{-2}_A(A/fA, \omega_A^\bullet)$
+plus the length of the cokernel of $t_0$.
+
+\medskip\noindent
+However, if we replace $\mathcal{L}$ by $\mathcal{L}^n$ for $n > 1$,
+then we can use
+$$
+t^n :
+M_n = \Gamma(U, \mathcal{L}^{\otimes n})
+\longrightarrow
+\Gamma(U, \mathcal{O}_U) = A
+$$
+instead of $t$. This replaces $t_0$ by its $n$th power.
+Thus the length of the image of the map
+$\text{Ext}^{-2}_A(M_n, \omega_A^\bullet) \leftarrow
+\text{Ext}^{-2}_A(M_{n, 0}, \omega_A^\bullet)$
+is at most the length of $\text{Ext}^{-2}_A(A/fA, \omega_A^\bullet)$
+plus the length of the cokernel of
+$$
+t_0^n : 
+\text{Ext}^{-2}_A(A/fA, \omega_A^\bullet)
+\longrightarrow
+\text{Ext}^{-2}_A(M_{n, 0}, \omega_A^\bullet)
+$$
+Via the isomorphism $M_0 \cong A/fA$ the map $t_0$ becomes
+$g : A/fA \to A/fA$ for some $g \in A/fA$ and via the corresponding
+isomorphisms $M_{n, 0} \cong A/fA$ the map $t_0^n$ becomes
+$g^n : A/fA \to A/fA$. Thus the length of the cokernel above
+is the length of the quotient of
+$\text{Ext}^{-2}_A(A/fA, \omega_A^\bullet)$ by $g^n$.
+Since $\text{Ext}^{-2}_A(A/fA, \omega_A^\bullet)$ is a finite $A$-module
+with support $T$ of dimension $1$ and since $V(g) \cap T$
+consists of the closed point by our choice of $t$
+this length grows linearly in $n$ by
+Algebra, Lemma \ref{algebra-lemma-support-dimension-d}.
+
+\medskip\noindent
+To finish the proof we prove the final assertion. Assume
+$f \in \mathfrak m \subset A$ satisfies
+(1), (2), (3), $A$ is $(S_2)$, and $\dim(A) \geq 4$.
+Condition (1) implies $A$ is catenary, see
+Dualizing Complexes, Lemma \ref{dualizing-lemma-universally-catenary}.
+Then $\Spec(A)$ is equidimensional by Local Cohomology, Lemma
+\ref{local-cohomology-lemma-catenary-S2-equidimensional}.
+Thus $\dim(A_\mathfrak p) + \dim(A/\mathfrak p) \geq 4$
+for every prime $\mathfrak p$ of $A$. Then
+$\text{depth}(A_\mathfrak p) \geq \min(2, \dim(A_\mathfrak p))
+\geq \min(2, 4 - \dim(A/\mathfrak p))$ and hence (4) holds.
+\end{proof}
+
+\begin{remark}
+\label{remark-compare-SGA2}
+In SGA2 we find the following result. Let $(A, \mathfrak m)$ be a
+Noetherian local ring. Let $f \in \mathfrak m$. Assume $A$
+is a quotient of a regular ring, the element
+$f$ is a nonzerodivisor, and
+\begin{enumerate}
+\item[(a)] if $\mathfrak p \subset A$ is a prime ideal with
+$\dim(A/\mathfrak p) = 1$, then $\text{depth}(A_\mathfrak p) \geq 2$, and
+\item[(b)] $\text{depth}(A/fA) \geq 3$, or equivalently
+$\text{depth}(A) \geq 4$.
+\end{enumerate}
+Let $U$, resp.\ $U_0$ be the punctured spectrum of $A$, resp.\ $A/fA$. Then
+the map
+$$
+\Pic(U) \to \Pic(U_0)
+$$
+is injective. This is \cite[Exposee XI, Lemma 3.16]{SGA2}\footnote{Condition
+(a) follows from condition (b), see
+Algebra, Lemma \ref{algebra-lemma-depth-localization}.}. This result
+from SGA2 follows from Proposition \ref{proposition-injective-pic}
+because
+\begin{enumerate}
+\item a quotient of a regular ring has a dualizing complex (see
+Dualizing Complexes, Lemma \ref{dualizing-lemma-regular-gorenstein} and
+Proposition \ref{dualizing-proposition-dualizing-essentially-finite-type}), and
+\item if $\text{depth}(A) \geq 4$ then $\text{depth}(A_\mathfrak p) \geq 2$
+for all primes $\mathfrak p$ with $\dim(A/\mathfrak p) = 2$, see
+Algebra, Lemma \ref{algebra-lemma-depth-localization}.
+\end{enumerate}
+\end{remark}
+
+
+
+
+
+
+\section{Invertible modules on punctured spectra, II}
+\label{section-local-lefschetz-for-pic-surjective}
+
+\noindent
+Next we turn to surjectivity in local Lefschetz for the Picard group.
+First to extend an invertible module on $U_0$ to an open neighbourhood
+we have the following simple criterion.
+
+\begin{lemma}
+\label{lemma-surjective-Pic-first}
+Let $(A, \mathfrak m)$ be a Noetherian local ring and $f \in \mathfrak m$.
+Assume
+\begin{enumerate}
+\item $A$ is $f$-adically complete,
+\item $f$ is a nonzerodivisor,
+\item $H^1_\mathfrak m(A/fA)$ and $H^2_\mathfrak m(A/fA)$
+are finite $A$-modules, and
+\item $H^3_\mathfrak m(A/fA) = 0$\footnote{Observe that (3) and (4) hold
+if $\text{depth}(A/fA) \geq 4$, or equivalently $\text{depth}(A) \geq 5$.}.
+\end{enumerate}
+Let $U$, resp.\ $U_0$ be the punctured spectrum of $A$, resp.\ $A/fA$.
+Then
+$$
+\colim_{U_0 \subset U' \subset U\text{ open}} \Pic(U')
+\longrightarrow
+\Pic(U_0)
+$$
+is surjective.
+\end{lemma}
+
+\begin{proof}
+Let $U_0 \subset U_n \subset U$ be the $n$th infinitesimal neighbourhood
+of $U_0$. Observe that the ideal sheaf of $U_n$ in $U_{n + 1}$ is
+isomorphic to $\mathcal{O}_{U_0}$ as $U_0 \subset U$ is the principal
+closed subscheme cut out by the nonzerodivisor $f$. Hence we have
+an exact sequence of abelian groups
+$$
+\Pic(U_{n + 1}) \to \Pic(U_n) \to
+H^2(U_0, \mathcal{O}_{U_0}) = H^3_\mathfrak m(A/fA) = 0
+$$
+see More on Morphisms, Lemma
+\ref{more-morphisms-lemma-picard-group-first-order-thickening}.
+Thus every invertible $\mathcal{O}_{U_0}$-module is the restriction
+of an invertible coherent formal module, i.e., an invertible object of
+$\textit{Coh}(U, f\mathcal{O}_U)$. We conclude by applying
+Lemma \ref{lemma-equivalence}.
+\end{proof}
+
+\begin{remark}
+\label{remark-surjective-Pic-second}
+Let $(A, \mathfrak m)$ be a Noetherian local ring and $f \in \mathfrak m$.
+The conclusion of Lemma \ref{lemma-surjective-Pic-first} holds if we assume
+\begin{enumerate}
+\item $A$ has a dualizing complex,
+\item $A$ is $f$-adically complete,
+\item $f$ is a nonzerodivisor,
+\item one of the following is true
+\begin{enumerate}
+\item $A_f$ is $(S_2)$ and for $\mathfrak p \subset A$,
+$f \not \in \mathfrak p$ minimal we have $\dim(A/\mathfrak p) \geq 4$, or
+\item if $\mathfrak p \not \in V(f)$ and
+$V(\mathfrak p) \cap V(f) \not = \{\mathfrak m\}$, then
+$\text{depth}(A_\mathfrak p) + \dim(A/\mathfrak p) > 3$.
+\end{enumerate}
+\item $H^3_{\mathfrak m}(A/fA) = 0$.
+\end{enumerate}
+The proof is exactly the same as the proof of
+Lemma \ref{lemma-surjective-Pic-first}
+using Lemma \ref{lemma-equivalence-better} instead of
+Lemma \ref{lemma-equivalence}.
+Two points need to be made here: (a)
+it seems hard to find examples where one knows
+$H^3_{\mathfrak m}(A/fA) = 0$ without assuming
+$\text{depth}(A/fA) \geq 4$, and
+(b) the proof of Lemma \ref{lemma-equivalence-better} is a
+good deal harder than the proof of Lemma \ref{lemma-equivalence}.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-surjective-Pic-first-better}
+Let $(A, \mathfrak m)$ be a Noetherian local ring and $f \in \mathfrak m$.
+Assume
+\begin{enumerate}
+\item the conditions of Lemma \ref{lemma-surjective-Pic-first} hold, and
+\item for every maximal ideal $\mathfrak p \subset A_f$
+the punctured spectrum of $(A_f)_\mathfrak p$ has trivial Picard group.
+\end{enumerate}
+Let $U$, resp.\ $U_0$ be the punctured spectrum of $A$, resp.\ $A/fA$.
+Then
+$$
+\Pic(U) \longrightarrow \Pic(U_0)
+$$
+is surjective.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{L}_0 \in \Pic(U_0)$. By
+Lemma \ref{lemma-surjective-Pic-first}
+there exists an open $U_0 \subset U' \subset U$
+and $\mathcal{L}' \in \Pic(U')$ whose restriction
+to $U_0$ is $\mathcal{L}_0$.
+Since $U' \supset U_0$ we see that $U \setminus U'$
+consists of points corresponding to prime ideals
+$\mathfrak p_1, \ldots, \mathfrak p_n$ as in (2).
+By assumption we can find invertible modules
+$\mathcal{L}'_i$ on $\Spec(A_{\mathfrak p_i})$ agreeing with
+$\mathcal{L}'$ over the punctured spectrum
+$U' \times_U \Spec(A_{\mathfrak p_i})$ since
+trivial invertible modules always extend.
+By Limits, Lemma \ref{limits-lemma-glueing-near-closed-point-modules}
+applied $n$ times we see that $\mathcal{L}'$ extends to an
+invertible module on $U$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-local-pic-to-completion}
+Let $(A, \mathfrak m)$ be a Noetherian local ring of depth $\geq 2$.
+Let $A^\wedge$ be its completion. Let $U$, resp.\ $U^\wedge$
+be the punctured spectrum of $A$, resp.\ $A^\wedge$. Then
+$\Pic(U) \to \Pic(U^\wedge)$ is injective.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{L}$ be an invertible $\mathcal{O}_U$-module
+with pullback $\mathcal{L}^\wedge$ on $U^\wedge$.
+We have $H^0(U, \mathcal{O}_U) = A$ by our assumption on depth and
+Dualizing Complexes, Lemma \ref{dualizing-lemma-depth} and
+Local Cohomology, Lemma
+\ref{local-cohomology-lemma-finiteness-pushforwards-and-H1-local}.
+Thus $\mathcal{L}$ is trivial if and only if
+$M = H^0(U, \mathcal{L})$ is isomorphic to $A$ as an $A$-module.
+(Details omitted.) Since $A \to A^\wedge$ is flat
+we have $M \otimes_A A^\wedge = \Gamma(U^\wedge, \mathcal{L}^\wedge)$
+by flat base change, see
+Cohomology of Schemes, Lemma \ref{coherent-lemma-flat-base-change-cohomology}.
+Finally, it is easy to see that $M \cong A$ if and only if
+$M \otimes_A A^\wedge \cong A^\wedge$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-trivial-local-pic-regular}
+Let $(A, \mathfrak m)$ be a regular local ring. Then the Picard
+group of the punctured spectrum of $A$ is trivial.
+\end{lemma}
+
+\begin{proof}
+Combine Divisors, Lemma \ref{divisors-lemma-extend-invertible-module}
+with More on Algebra, Lemma \ref{more-algebra-lemma-regular-local-UFD}.
+\end{proof}
+
+\noindent
+Now we can bootstrap the earlier results to prove that
+Picard groups are trivial for punctured spectra
+of complete intersections of dimension $\geq 4$.
+Recall that a Noetherian local ring is called a complete
+intersection if its completion is the quotient of a
+regular local ring by the ideal generated by a regular sequence.
+See the discussion in Divided Power Algebra, Section \ref{dpa-section-lci}.
+
+\begin{proposition}[Grothendieck]
+\label{proposition-trivial-local-pic-complete-intersection}
+Let $(A, \mathfrak m)$ be a Noetherian local ring. If $A$ is a
+complete intersection of dimension $\geq 4$, then the Picard
+group of the punctured spectrum of $A$ is trivial.
+\end{proposition}
+
+\begin{proof}
+By Lemma \ref{lemma-local-pic-to-completion} we may assume that $A$ is
+a complete local ring. By assumption we can write
+$A = B/(f_1, \ldots, f_r)$ where $B$ is a complete regular local
+ring and $f_1, \ldots, f_r$ is a regular sequence.
+We will finish the proof by induction on $r$.
+The base case is $r = 0$ which follows from
+Lemma \ref{lemma-trivial-local-pic-regular}.
+
+\medskip\noindent
+Assume that $A = B/(f_1, \ldots, f_r)$ and that the proposition
+holds for $r - 1$. Set $A' = B/(f_1, \ldots, f_{r - 1})$ and apply
+Lemma \ref{lemma-surjective-Pic-first-better} to $f_r \in A'$.
+This is permissible:
+\begin{enumerate}
+\item condition (1) of Lemma \ref{lemma-surjective-Pic-first} holds
+because our local rings are complete,
+\item condition (2) of Lemma \ref{lemma-surjective-Pic-first} holds
+holds as $f_1, \ldots, f_r$ is a regular sequence,
+\item condition (3) and (4) of Lemma \ref{lemma-surjective-Pic-first} hold
+as $A = A'/f_r A'$ is Cohen-Macaulay of dimension $\dim(A) \geq 4$,
+\item condition (2) of Lemma \ref{lemma-surjective-Pic-first-better}
+holds by induction hypothesis as
+$\dim((A'_{f_r})_\mathfrak p) \geq 4$ for a maximal
+prime $\mathfrak p$ of $A'_{f_r}$ and as
+$(A'_{f_r})_\mathfrak p = B_\mathfrak q/(f_1, \ldots, f_{r - 1})$
+for some prime ideal $\mathfrak q \subset B$ and $B_\mathfrak q$ is regular.
+\end{enumerate}
+This finishes the proof.
+\end{proof}
+
+\begin{example}
+\label{example-grothendieck-sharp}
+The dimension bound in
+Proposition \ref{proposition-trivial-local-pic-complete-intersection}
+is sharp. For example the Picard group of the punctured spectrum of
+$A = k[[x, y, z, w]]/(xy - zw)$ is nontrivial. Namely, the
+ideal $I = (x, z)$ cuts out an effective Cartier divisor $D$ on the punctured
+spectrum $U$ of $A$ as it is easy to see that $I_x, I_y, I_z, I_w$
+are invertible ideals in $A_x, A_y, A_z, A_w$. But on the other hand,
+$A/I$ has depth $\geq 1$ (in fact $2$), hence $I$ has depth $\geq 2$
+(in fact $3$), hence
+$I = \Gamma(U, \mathcal{O}_U(-D))$. Thus if $\mathcal{O}_U(-D)$
+were trivial, then we'd have $I \cong \Gamma(U, \mathcal{O}_U) = A$
+which isn't true as $I$ isn't generated by $1$ element.
+\end{example}
+
+\begin{example}
+\label{example-grothendieck-sharp-bis}
+Proposition \ref{proposition-trivial-local-pic-complete-intersection}
+cannot be extended to quotients
+$$
+A = B/(f_1, \ldots, f_r)
+$$
+where $B$ is regular and $\dim(B) - r \geq 4$. In other words, the condition
+that $f_1, \ldots, f_r$ be a regular sequence is (in general) needed
+for vanishing of the Picard group of the punctured spectrum of $A$.
+Namely, let $k$ be a field and set
+$$
+A = k[[a, b, x, y, z, u, v, w]]/(a^3, b^3, xa^2 + yab + zb^2, w^2)
+$$
+Observe that $A = A_0[w]/(w^2)$ with
+$A_0 = k[[a, b, x, y, z, u, v]]/(a^3, b^3, xa^2 + yab + zb^2)$.
+We will show below that $A_0$ has depth $2$.
+Denote $U$ the punctured spectrum of $A$ and $U_0$ the punctured
+spectrum of $A_0$. Observe there is a short exact sequence
+$0 \to A_0 \to A \to A_0 \to 0$ where the first arrow is
+given by multiplication by $w$.
+By More on Morphisms, Lemma
+\ref{more-morphisms-lemma-picard-group-first-order-thickening}
+we find that there is an exact sequence
+$$
+H^0(U, \mathcal{O}_U^*) \to
+H^0(U_0, \mathcal{O}_{U_0}^*) \to
+H^1(U_0, \mathcal{O}_{U_0}) \to
+\Pic(U)
+$$
+Since the depth of $A_0$ and hence $A$ is $2$ we see that
+$H^0(U_0, \mathcal{O}_{U_0}) = A_0$ and $H^0(U, \mathcal{O}_U) = A$
+and that $H^1(U_0, \mathcal{O}_{U_0})$ is nonzero, see
+Dualizing Complexes, Lemma \ref{dualizing-lemma-depth} and
+Local Cohomology, Lemma \ref{local-cohomology-lemma-local-cohomology}.
+Thus the last arrow displayed above is nonzero and we conclude
+that $\Pic(U)$ is nonzero.
+
+\medskip\noindent
+To show that $A_0$ has depth $2$ it suffices to show that
+$A_1 = k[[a, b, x, y, z]]/(a^3, b^3, xa^2 + yab + zb^2)$
+has depth $0$. This is true because $a^2b^2$ maps to
+a nonzero element of $A_1$ which is annihilated
+by each of the variables $a, b, x, y, z$. For example
+$ya^2b^2 = (yab)(ab) = - (xa^2 + zb^2)(ab) = -xa^3b - yab^3 = 0$ in $A_1$.
+The other cases are similar.
+\end{example}
+
+
+
 
 
 

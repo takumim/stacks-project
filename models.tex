@@ -33,7 +33,7 @@ lecture notes \cite{Gieseker}\footnote{Gieseker's lecture notes
 are written over an algebraically closed field, but the same method
 works over $\mathbf{Z}$.}. This is quite an amazing
 feat: it seems somewhat counter intuitive that one can
-prove such a result without ever truly studying families curves over
+prove such a result without ever truly studying families of curves over
 a positive dimensional base.
 
 \medskip\noindent
@@ -331,7 +331,7 @@ with entries $a_{ij}m_im_j$. Thus we may assume $m = (1, \ldots, 1)$.
 
 \medskip\noindent
 Assume $m = (1, \ldots, 1)$. Set $V = \{1, \ldots, n\}$ and
-$E = \{(i, j) \mid i < j\text{ and }a_{ij}> 0\}$. For
+$E = \{(i, j) \mid i < j\text{ and }a_{ij} > 0\}$. For
 $e = (i, j) \in E$ set $a_e = a_{ij}$. Define maps
 $s, t : E \to V$ by setting $s(i, j) = i$ and $t(i, j) = j$.
 Set
@@ -4143,7 +4143,7 @@ Similarly for normal models, reduced models, and add more here.
 Let $R \subset R'$ be an extension of discrete valuation rings
 (More on Algebra, Definition
 \ref{more-algebra-definition-extension-discrete-valuation-rings}).
-This induces an extension $K \subset K'$ of fraction fields.
+This induces an extension $K'/K$ of fraction fields.
 Given an algebraic scheme $V$ over $K$, denote $V'$ the
 base change $V \times_{\Spec(K)} \Spec(K')$. Then there is
 a functor
@@ -5758,7 +5758,7 @@ Lemma \ref{lemma-regular-model-pic}
 we obtain the exactness of
 $0 \to \Pic(X)[h] \to \Pic(C)[h]$
 because $h$ is prime to $d$.
-Using the map Lemma \ref{lemma-characterize-trivial}
+Using the map of Lemma \ref{lemma-canonical-map-of-pic}
 we get a map $\Pic(C)[h] \to \Pic(T)[h]$
 which annihilates elements of $\Pic(X)[h]$.
 Conversely, if $\xi \in \Pic(C)[h]$
@@ -5870,7 +5870,7 @@ $X'$ is regular.
 
 \medskip\noindent
 By symmetry the case of the algebra $A[\frac{\mathfrak m}{y}]$ is
-the same as the case of $A[\frac{\mathfrak m}{y}]$.
+the same as the case of $A[\frac{\mathfrak m}{x}]$.
 
 \medskip\noindent
 Thus we see that $X' \to S$ is at-worst-nodal of relative dimension $1$
@@ -5902,8 +5902,8 @@ U \ar[r] \ar[d] \ar[l] &
 }
 $$
 where $R \subset R'$ is an \'etale extension of discrete valuation rings,
-the morphism $U \to X$ is \'etale, there is a
-point $x' \in U$ mapping to $x$, and
+the morphism $U \to X$ is \'etale, the morphism $U \to \Spec(A)$ is \'etale,
+there is a point $x' \in U$ mapping to $x$, and
 $$
 A = R'[u, v]/(uv)
 \quad\text{or}\quad
@@ -6598,7 +6598,7 @@ H^1(X_{\overline{k}}, \mathcal{O}_{X_{\overline{k}}}) = g$.
 Also, by Varieties, Lemma \ref{varieties-lemma-change-fields-pic}
 and the above we still have
 $$
-\dim_{\mathbf{F}_\ell}(\Pic(X_{\overline{k}})
+\dim_{\mathbf{F}_\ell}(\Pic(X_{\overline{k}})[\ell])
 \geq 2g - g_{top} =
 \dim_{\overline{k}} H^1(X_{\overline{k}}, \mathcal{O}_{X_{\overline{k}}})
 + g_{geom}(X_{\overline{k}})
@@ -6628,7 +6628,7 @@ This finishes the proof.
 \noindent
 In this section we finish the proof of the theorem.
 For $g \geq 2$ let $768g < \ell' < \ell$
-be the first two primes $> 728g$ and set
+be the first two primes $> 768g$ and set
 \begin{equation}
 \label{equation-bound}
 B_g = (2g - 2)(\ell^{2g})!
@@ -6645,7 +6645,7 @@ Let $R$ be a discrete valuation ring with fraction field $K$. Let $C$ be a
 smooth projective curve over $K$ with $H^0(C, \mathcal{O}_C) = K$.
 Then there exists an extension of discrete valuation rings
 $R \subset R'$ which induces a finite separable extension of
-fraction fields $K \subset K'$ such that $C_{K'}$ has semistable reduction.
+fraction fields $K'/K$ such that $C_{K'}$ has semistable reduction.
 More precisely, we have the following
 \begin{enumerate}
 \item If the genus of $C$ is zero, then there exists a degree $2$

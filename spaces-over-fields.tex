@@ -392,7 +392,7 @@ be locally of finite type. Assume $f$ is dominant
 The following are equivalent:
 \begin{enumerate}
 \item the transcendence degree of $x/y$ is $0$,
-\item the extension $\kappa(x) \supset \kappa(y)$ (see proof) is finite,
+\item the extension $\kappa(x)/\kappa(y)$ (see proof) is finite,
 \item there exist nonempty affine opens $U \subset X$ and $V \subset Y$
 such that $f(U) \subset V$ and $f|_U : U \to V$ is finite,
 \item $f$ is quasi-finite at $x$, and
@@ -455,7 +455,7 @@ Assume any of the equivalent conditions (1) -- (5) of
 Lemma \ref{lemma-finite-degree}. Let $x \in |X|$ and $y \in |Y|$
 be the generic points. Then the positive integer
 $$
-\text{deg}(X/Y) = [\kappa(x) : \kappa(y)]
+\deg(X/Y) = [\kappa(x) : \kappa(y)]
 $$
 is called the {\it degree of $X$ over $Y$}.
 \end{definition}
@@ -1260,7 +1260,7 @@ are automatically representable, for example
 separated, locally quasi-finite morphisms (Morphisms of Spaces, Lemma
 \ref{spaces-morphisms-lemma-locally-quasi-finite-separated-representable}),
 and flat monomorphisms (More on Morphisms of Spaces, Lemma
-\ref{spaces-more-morphisms-lemma-flat-case})
+\ref{spaces-more-morphisms-lemma-flat-case}).
 In Section \ref{section-schematic-and-field-extension}
 we will study what happens with the schematic
 locus under extension of base field.
@@ -1268,16 +1268,20 @@ locus under extension of base field.
 \begin{lemma}
 \label{lemma-locally-finite-type-dim-zero}
 Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
-In each of the following cases $X$ is a scheme:
+Assume $X$ satisfies at least one of the following conditions
 \begin{enumerate}
-\item $X$ is quasi-compact and quasi-separated and $\dim(X) = 0$,
+\item $X$ is quasi-separated and $\dim(X) = 0$,
 \item $X$ is locally of finite type over a field $k$ and $\dim(X) = 0$,
-\item $X$ is Noetherian and $\dim(X) = 0$, and
+\item $X$ is Noetherian and $\dim(X) = 0$, or
 \item add more here.
 \end{enumerate}
+Then $X$ is a separated scheme and any quasi-compact open of $X$ is affine.
 \end{lemma}
 
 \begin{proof}
+If we prove that any quasi-compact open of $X$ is affine, then
+$X$ is a separated scheme. Thus we may assume $X$ is quasi-compact
+and we aim to show that $X$ is affine.
 Cases (2) and (3) follow immediately from case (1) but we will give a separate
 proofs of (2) and (3) as these proofs use significantly less theory.
 
@@ -1304,8 +1308,8 @@ Groupoids, Proposition \ref{groupoids-proposition-finite-flat-equivalence}
 shows that $X = U/R$ is an affine scheme.
 
 \medskip\noindent
-Proof of (2) -- almost identical to the proof of (4).
-Let $U$ be an affine scheme and let $U \to X$ be an \'etale morphism.
+Proof of (2) -- almost identical to the proof of (3).
+Let $U$ be an affine scheme and let $U \to X$ be a surjective \'etale morphism.
 Set $R = U \times_X U$. The two projection morphisms
 $s, t : R \to U$ are \'etale morphisms of schemes. By
 Properties of Spaces, Definition \ref{spaces-properties-definition-dimension}
@@ -1335,20 +1339,38 @@ are finite, see
 Morphisms, Lemma \ref{morphisms-lemma-finite-permanence}.
 Thus
 Groupoids, Proposition \ref{groupoids-proposition-finite-flat-equivalence}
-shows that the open subspace $U/R$ of $X$ is an affine scheme. Since the
-schematic locus of $X$ is an open subspace (see
-Properties of Spaces, Lemma \ref{spaces-properties-lemma-subscheme}),
-and since $U \to X$ was an arbitrary \'etale morphism from an affine scheme
-we conclude that $X$ is a scheme.
+shows that $X = U/R$ is an affine scheme.
 
 \medskip\noindent
-Proof of (1). By Cohomology of Spaces, Lemma
+Cohomological proof of (1). By Cohomology of Spaces, Lemma
 \ref{spaces-cohomology-lemma-vanishing-above-dimension}
 we have vanishing of higher cohomology groups for all
 quasi-coherent sheaves $\mathcal{F}$ on $X$. Hence $X$
 is affine (in particular a scheme) by
 Cohomology of Spaces, Proposition
 \ref{spaces-cohomology-proposition-vanishing-affine}.
+
+\medskip\noindent
+Geometric proof of (1). Choose a stratification
+$$
+\emptyset = U_{n + 1} \subset
+U_n \subset U_{n - 1} \subset \ldots \subset U_1 = X
+$$
+and \'etale morphisms $f_p : V_p \to U_p$ as in
+Decent Spaces, Lemma
+\ref{decent-spaces-lemma-filter-quasi-compact-quasi-separated}
+(we will use all their properties below).
+Then $\dim(V_p) = 0$ by our definition of dimension of algebraic
+spaces. Thus Properties, Lemma \ref{properties-lemma-dimension-zero}
+applies to each $V_p$. Then $f_p^{-1}(U_{p + 1}) \subset V_p$
+is quasi-compact open and hence is affine as well as closed.
+It follows that $|T_p| \subset |U_p|$ (see locus citatus)
+is open as well as closed. Hence $X$ is a disjoint union
+of open and closed subspaces whose reduced structures are schemes.
+It follows that $X$ is a scheme
+(Limits of Spaces, Lemma \ref{spaces-limits-lemma-reduction-scheme}).
+Then the proof is finished by the case of schemes that we
+already referenced above.
 \end{proof}
 
 \noindent
@@ -1555,7 +1577,7 @@ In this section we address this issue.
 \begin{lemma}
 \label{lemma-scheme-after-purely-inseparable-base-change}
 Let $k$ be a field. Let $X$ be an algebraic space over $k$.
-If there exists a purely inseparable field extension $k \subset k'$
+If there exists a purely inseparable field extension $k'/k$
 such that $X_{k'}$ is a scheme, then $X$ is a scheme.
 \end{lemma}
 
@@ -1571,10 +1593,10 @@ Limits of Spaces, Lemma
 Let $k$ be a field with algebraic closure $\overline{k}$.
 Let $X$ be a quasi-separated algebraic space over $k$.
 \begin{enumerate}
-\item If there exists a field extension $k \subset K$ such that
+\item If there exists a field extension $K/k$ such that
 $X_K$ is a scheme, then $X_{\overline{k}}$ is a scheme.
 \item If $X$ is quasi-compact and there exists a field extension
-$k \subset K$ such that $X_K$ is a scheme, then $X_{k'}$
+$K/k$ such that $X_K$ is a scheme, then $X_{k'}$
 is a scheme for some finite separable extension $k'$ of $k$.
 \end{enumerate}
 \end{lemma}
@@ -1583,7 +1605,7 @@ is a scheme for some finite separable extension $k'$ of $k$.
 Since every algebraic space is the union of its quasi-compact open
 subspaces, we see that the first part of the lemma follows from
 the second part (some details omitted). Thus we assume $X$ is quasi-compact
-and we assume given an extension $k \subset K$ with $K_K$ representable.
+and we assume given an extension $K/k$ with $X_K$ representable.
 Write $K = \bigcup A$ as the colimit of finitely generated $k$-subalgebras
 $A$. By Limits of Spaces, Lemma \ref{spaces-limits-lemma-limit-is-scheme}
 we see that $X_A$ is a scheme for some $A$. Choose a maximal ideal
@@ -1591,7 +1613,7 @@ $\mathfrak m \subset A$. By the Hilbert Nullstellensatz
 (Algebra, Theorem \ref{algebra-theorem-nullstellensatz})
 the residue field $k' = A/\mathfrak m$ is a finite extension of $k$.
 Thus we see that $X_{k'}$ is a scheme. If $k' \supset k$ is not
-separable, let $k' \supset k'' \supset k$ be the subextension
+separable, let $k'/k''/k$ be the subextension
 found in Fields, Lemma \ref{fields-lemma-separable-first}.
 Since $k'/k''$ is purely inseparable, by
 Lemma \ref{lemma-scheme-after-purely-inseparable-base-change}
@@ -1601,7 +1623,7 @@ the proof is complete.
 
 \begin{lemma}
 \label{lemma-base-change-by-Galois}
-Let $k \subset k'$ be a finite Galois extension with Galois group $G$.
+Let $k'/k$ be a finite Galois extension with Galois group $G$.
 Let $X$ be an algebraic space over $k$. Then $G$ acts freely on the
 algebraic space $X_{k'}$ and $X = X_{k'}/G$ in the sense of
 Properties of Spaces, Lemma \ref{spaces-properties-lemma-quotient}.
@@ -1639,7 +1661,7 @@ Decent Spaces, Lemma \ref{decent-spaces-lemma-when-quotient-scheme-at-point}.
 \label{lemma-scheme-after-purely-transcendental-base-change}
 Let $k$ be a field. Let $X$ be a quasi-separated
 algebraic space over $k$. If there exists a purely transcendental
-field extension $k \subset K$ such that $X_K$ is a scheme, then
+field extension $K/k$ such that $X_K$ is a scheme, then
 $X$ is a scheme.
 \end{lemma}
 
@@ -1681,7 +1703,7 @@ Then $\Spec(\kappa) \to \Spec(k)$ is of finite type, hence $\kappa$
 is a finite extension of $k$ (by the Hilbert Nullstellensatz, see
 Algebra, Theorem \ref{algebra-theorem-nullstellensatz};
 some details omitted). Say $[\kappa : k] = d$. Choose an integer
-$n \gg 0$ prime to $d$ and let $k \subset k'$ be the extension
+$n \gg 0$ prime to $d$ and let $k'/k$ be the extension
 of degree $n$. Then $k'/k$ is Galois with $G = \text{Aut}(k'/k)$
 cyclic of order $n$. If $n$ is large enough there will be $k$-algebra
 homomorphism $A \to k'$ by the same reason as above.
@@ -1701,7 +1723,7 @@ we see that $x$ is in the schematic locus of $X$ as desired.
 
 \begin{remark}
 \label{remark-when-does-the-argument-work}
-Let $k$ be finite field. Let $K \supset k$ be a geometrically
+Let $k$ be a finite field. Let $K/k$ be a geometrically
 irreducible field extension. Then $K$ is the limit of geometrically
 irreducible finite type $k$-algebras $A$. Given $A$ the estimates
 of Lang and Weil \cite{LW}, show that for $n \gg 0$ there exists
@@ -1721,13 +1743,13 @@ be an algebraic space over $k$ such that
 \item $X$ is decent and locally of finite type over $k$,
 \item $X_{\overline{k}}$ is a scheme, and
 \item any finite set of $\overline{k}$-rational points of $X_{\overline{k}}$
-are contained in an affine.
+is contained in an affine.
 \end{enumerate}
 Then $X$ is a scheme.
 \end{lemma}
 
 \begin{proof}
-If $k \subset K$ is an extension, then the base change $X_K$ is
+If $K/k$ is an extension, then the base change $X_K$ is
 decent (Decent Spaces, Lemma
 \ref{decent-spaces-lemma-representable-named-properties})
 and locally of finite type
@@ -2047,7 +2069,7 @@ Part (2) follows immediately from part (1).
 \noindent
 If $X$ is a connected algebraic space over a field, then it can happen that
 $X$ becomes disconnected after extending the ground field. This does not
-happen for geometrically connected schemes.
+happen for geometrically connected algebraic spaces.
 
 \begin{definition}
 \label{definition-geometrically-connected}
@@ -2063,7 +2085,7 @@ geometrically connected algebraic spaces are nonempty.
 \begin{lemma}
 \label{lemma-geometrically-connected-check-after-extension}
 Let $X$ be an algebraic space over the field $k$.
-Let $k \subset k'$ be a field extension.
+Let $k'/k$ be a field extension.
 Then $X$ is geometrically connected over $k$ if and only if
 $X_{k'}$ is geometrically connected over $k'$.
 \end{lemma}
@@ -2071,8 +2093,8 @@ $X_{k'}$ is geometrically connected over $k'$.
 \begin{proof}
 If $X$ is geometrically connected over $k$, then it is clear that
 $X_{k'}$ is geometrically connected over $k'$. For the converse, note
-that for any field extension $k \subset k''$ there exists a common
-field extension $k' \subset k'''$ and $k'' \subset k'''$. As the
+that for any field extension $k''/k$ there exists a common
+field extension $k'''/k'$ and $k'''/k'$. As the
 morphism $X_{k'''} \to X_{k''}$ is surjective (as a base change of
 a surjective morphism between spectra of fields) we see that the
 connectedness of $X_{k'''}$ implies the connectedness of $X_{k''}$.
@@ -2092,11 +2114,11 @@ induces a bijection between connected components.
 \end{lemma}
 
 \begin{proof}
-Let $y \in |Y|$ be represented by a morphism $\Spec(K) \to Y$ be a morphism
+Let $y \in |Y|$ be represented by a morphism $\Spec(K) \to Y$
 where $K$ is a field. The fibre of $|X \times_k Y| \to |Y|$ over $y$
-is the image of $|Y_K| \to |X \times_k Y|$ by
+is the image of $|X_K| \to |X \times_k Y|$ by
 Properties of Spaces, Lemma \ref{spaces-properties-lemma-points-cartesian}.
-Thus these fibres are connected by our assumption that $Y$ is
+Thus these fibres are connected by our assumption that $X$ is
 geometrically connected. By
 Morphisms of Spaces, Lemma
 \ref{spaces-morphisms-lemma-space-over-field-universally-open}
@@ -2108,7 +2130,7 @@ to conclude.
 
 \begin{lemma}
 \label{lemma-separably-closed-field-connected-components}
-Let $k \subset k'$ be an extension of fields. Let $X$ be an algebraic space
+Let $k'/k$ be an extension of fields. Let $X$ be an algebraic space
 over $k$. Assume $k$ separably algebraically closed. Then the morphism
 $X_{k'} \to X$ induces a bijection of connected components. In particular,
 $X$ is geometrically connected over $k$ if and only if $X$ is connected.
@@ -2134,8 +2156,8 @@ $X_{\overline{k}}$ is connected.
 \end{lemma}
 
 \begin{proof}
-Assume $X_{\overline{k}}$ is connected. Let $k \subset k'$ be a field
-extension. There exists a field extension $\overline{k} \subset \overline{k}'$
+Assume $X_{\overline{k}}$ is connected. Let $k'/k$ be a field
+extension. There exists a field extension $\overline{k}'/\overline{k}$
 such that $k'$ embeds into $\overline{k}'$ as an extension of $k$.
 By Lemma \ref{lemma-separably-closed-field-connected-components}
 we see that $X_{\overline{k}'}$ is connected.
@@ -2144,7 +2166,7 @@ that $X_{k'}$ is connected as desired.
 \end{proof}
 
 \noindent
-Let $k$ be a field. Let $k \subset \overline{k}$ be a (possibly infinite)
+Let $k$ be a field. Let $\overline{k}/k$ be a (possibly infinite)
 Galois extension. For example $\overline{k}$ could be the
 separable algebraic closure of $k$.
 For any $\sigma \in \text{Gal}(\overline{k}/k)$ we get a corresponding
@@ -2182,7 +2204,7 @@ Let $\overline{k}$ be a (possibly infinite) Galois extension of $k$.
 Let $V \subset X_{\overline{k}}$ be a quasi-compact open.
 Then
 \begin{enumerate}
-\item there exists a finite subextension $k \subset k' \subset \overline{k}$
+\item there exists a finite subextension $\overline{k}/k'/k$
 and a quasi-compact open $V' \subset X_{k'}$ such that
 $V = (V')_{\overline{k}}$,
 \item there exists an open subgroup $H \subset \text{Gal}(\overline{k}/k)$
@@ -2203,7 +2225,7 @@ to $W \subset U_{\overline{k}}$ to obtain the lemma.
 
 \begin{lemma}
 \label{lemma-closed-fixed-by-Galois}
-Let $k$ be a field. Let $k \subset \overline{k}$ be a (possibly infinite)
+Let $k$ be a field. Let $\overline{k}/k$ be a (possibly infinite)
 Galois extension. Let $X$ be an algebraic space over $k$. Let
 $\overline{T} \subset |X_{\overline{k}}|$ have the following properties
 \begin{enumerate}
@@ -2237,8 +2259,8 @@ Let $k$ be a field. Let $X$ be an algebraic space over $k$.
 The following are equivalent
 \begin{enumerate}
 \item $X$ is geometrically connected,
-\item for every finite separable field extension $k \subset k'$
-the scheme $X_{k'}$ is connected.
+\item for every finite separable field extension $k'/k$
+the algebraic space $X_{k'}$ is connected.
 \end{enumerate}
 \end{lemma}
 
@@ -2285,7 +2307,7 @@ We will use this without further mention in the following.
 Pick $W_0 \subset X$ quasi-compact open subspace such that both
 $W_{0, \overline{k}} \cap \overline{U}$ and
 $W_{0, \overline{k}} \cap \overline{V}$ are nonempty.
-Choose a finite subextension $k \subset k' \subset \overline{k}$
+Choose a finite subextension $\overline{k}/k'/k$
 and a decomposition $W_{0, k'} = U_0' \amalg V_0'$ into open and closed
 subsets such that
 $W_{0, \overline{k}} \cap \overline{U} = (U'_0)_{\overline{k}}$ and
@@ -3230,7 +3252,7 @@ The equality follows from Lemma \ref{lemma-euler-characteristic-morphism}
 and the projection formula
 (Cohomology, Lemma \ref{cohomology-lemma-projection-formula}).
 If $f(Z)$ has dimension $< d$, then the right hand side
-is a polynomial of total degree $<d$ by
+is a polynomial of total degree $< d$ by
 Lemma \ref{lemma-numerical-polynomial-from-euler}
 and the result is true. Assume $\dim(f(Z)) = d$. Then
 by dimension theory (Lemma \ref{lemma-alteration-dimension})

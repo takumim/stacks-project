@@ -720,7 +720,7 @@ Morphisms of Spaces, Lemma
 \label{lemma-restrict-groupoid-on-field}
 In
 Situation \ref{situation-groupoid-on-field}.
-Let $k \subset k'$ be a field extension, $U' = \Spec(k')$
+Let $k'/k$ be a field extension, $U' = \Spec(k')$
 and let $(U', R', s', t', c')$ be the restriction of
 $(U, R, s, t, c)$ via $U' \to U$. In the defining diagram
 $$
@@ -762,7 +762,7 @@ In
 Situation \ref{situation-groupoid-on-field}.
 For any point $r \in |R|$ there exist
 \begin{enumerate}
-\item a field extension $k \subset k'$ with $k'$ algebraically closed,
+\item a field extension $k'/k$ with $k'$ algebraically closed,
 \item a point $r' : \Spec(k') \to R'$ where
 $(U', R', s', t', c')$ is the restriction of $(U, R, s, t, c)$
 via $\Spec(k') \to \Spec(k)$
@@ -918,7 +918,7 @@ Hence we see that $\text{trdeg}(r/_{\!\! s}k) = \text{trdeg}(r/_{\!\! t}k)$,
 i.e., (2) holds.
 
 \medskip\noindent
-Let $k \subset k'$ be a field extension. Note that the restriction $R'$
+Let $k'/k$ be a field extension. Note that the restriction $R'$
 of $R$ to $\Spec(k')$ (see
 Lemma \ref{lemma-restrict-groupoid-on-field})
 is obtained from $R$ by two base changes by morphisms of fields. Thus
@@ -1307,9 +1307,9 @@ Z \subset T \times_Y X\text{ is an open subspace} \\
 \end{matrix}
 \end{equation}
 Suppose $h : T' \to T$ is a morphism of algebraic spaces over $S$
-and $(a, Z)$ is a pair over $T$. Set
+and $(a, Z)$ is a pair as in (\ref{equation-finite-conditions}) over $T$. Set
 $a' = a \circ h$ and $Z' = (h \times \text{id}_X)^{-1}(Z) = T' \times_T Z$.
-Then the pair $(a', Z')$ satisfies (1), (2) over $T'$.
+Then $(a', Z')$ is a pair as in (\ref{equation-finite-conditions}) over $T'$.
 This follows as finite morphisms are preserved under base change, see
 Morphisms of Spaces, Lemma \ref{spaces-morphisms-lemma-base-change-integral}.
 Thus we obtain a functor
@@ -1491,7 +1491,7 @@ by the rules
 The reason this works is that $Z_1 \cap Z_2$ is both open and closed
 inside $Z_1$ and $Z_2$ (which also implies that $Z_1 \cup Z_2$ is
 the disjoint union of the other three pieces).
-Thus we can think of $(X/Y)_{fin}$ as an $\mathbf{F}_2$-algebras
+Thus we can think of $(X/Y)_{fin}$ as an $\mathbf{F}_2$-algebra
 (without unit) over $Y$ with multiplication given by
 $ss' = \star_2(s, s')$, and addition given by
 $$
@@ -1776,7 +1776,7 @@ More on Morphisms, Lemma
 \ref{more-morphisms-lemma-etale-splits-off-quasi-finite-part-technical-variant})
 each $V_{i, j}$ has a unique point $v_{i, j}$ lying over $u$
 with purely inseparable residue field extension
-$\kappa(u) \subset \kappa(v_{i, j})$. Hence each
+$\kappa(v_{i, j})/\kappa(u)$. Hence each
 scheme $\Spec(k) \times_U V_{i, j}$ has exactly one
 point. Thus we see that
 $$

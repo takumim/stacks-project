@@ -358,7 +358,7 @@ Here is the notion of a free abelian sheaf on a sheaf of sets.
 Let $\mathcal{C}$ be a site. Let $\mathcal{G}$ be a presheaf of sets.
 The {\it free abelian sheaf} $\mathbf{Z}_\mathcal{G}^\#$
 on $\mathcal{G}$ is the abelian sheaf $\mathbf{Z}_\mathcal{G}^\#$
-which is the sheafification of the abelian presheaf on $\mathcal{G}$.
+which is the sheafification of the free abelian presheaf on $\mathcal{G}$.
 In the special case $\mathcal{G} = h_X$ of a representable presheaf
 associated to an object $X$ of $\mathcal{C}$
 we use the notation $\mathbf{Z}_X^\#$.
@@ -486,7 +486,7 @@ Ringed topoi.
 $(\Sh(\mathcal{C}), \mathcal{O})$
 where $\mathcal{C}$ is a site and $\mathcal{O}$ is a sheaf of rings
 on $\mathcal{C}$. The sheaf $\mathcal{O}$ is called the
-{\it structure sheaf} of the ringed site.
+{\it structure sheaf} of the ringed topos.
 \item Let $(\Sh(\mathcal{C}), \mathcal{O})$,
 $(\Sh(\mathcal{C}'), \mathcal{O}')$ be ringed topoi.
 A {\it morphism of ringed topoi}
@@ -814,12 +814,12 @@ in case $\mathcal{O}$ is not a sheaf of rings.
 \begin{lemma}
 \label{lemma-sheafification-presheaf-modules}
 Let $\mathcal{C}$ be a site.
-Let $\mathcal{O}$ be a presheaf of rings on $\mathcal{C}$
-Let $\mathcal{F}$ be a presheaf $\mathcal{O}$-modules.
+Let $\mathcal{O}$ be a presheaf of rings on $\mathcal{C}$.
+Let $\mathcal{F}$ be a presheaf of $\mathcal{O}$-modules.
 Let $\mathcal{O}^\#$ be the sheafification of $\mathcal{O}$ as a presheaf
 of rings, see Sites, Section \ref{sites-section-sheaves-algebraic-structures}.
 Let $\mathcal{F}^\#$ be the sheafification of $\mathcal{F}$
-as a presheaf of abelian groups. There exists a map of
+as a presheaf of abelian groups. There exists a unique map of
 sheaves of sets
 $$
 \mathcal{O}^\# \times \mathcal{F}^\#
@@ -1704,12 +1704,20 @@ Assume that
 \item[(b)] $u$ is continuous, and
 \item[(c)] $u$ is fully faithful.
 \end{enumerate}
-For $g$ and $g_!$ as above the canonical map
-$\mathcal{F} \to g^{-1}g_!\mathcal{F}$ is an isomorphism
+For $g_!, g^{-1}, g_*$ as above the canonical maps
+$\mathcal{F} \to g^{-1}g_!\mathcal{F}$ and
+$g^{-1}g_*\mathcal{F} \to \mathcal{F}$
+are isomorphisms
 for all abelian sheaves $\mathcal{F}$ on $\mathcal{C}$.
 \end{lemma}
 
 \begin{proof}
+The map $g^{-1}g_*\mathcal{F} \to \mathcal{F}$ is an isomorphism
+by Sites, Lemma \ref{sites-lemma-back-and-forth} and the fact that
+pullback and pushforward of abelian sheaves agrees with
+pullback and pushforward on the underlying sheaves of sets.
+
+\medskip\noindent
 Pick $U \in \Ob(\mathcal{C})$. We will show that
 $g^{-1}g_!\mathcal{F}(U) = \mathcal{F}(U)$. First, note that
 $g^{-1}g_!\mathcal{F}(U) = g_!\mathcal{F}(u(U))$. Hence it suffices
@@ -2134,6 +2142,20 @@ $\alpha \mapsto \alpha'$ and $\beta \mapsto \beta'$ are mutually inverse.
 We omit the verifications.
 \end{proof}
 
+\noindent
+Note that we have in the situation of
+Definition \ref{definition-localize-ringed-site} we have
+\begin{equation}
+\label{equation-map-lower-shriek-OU-into-module}
+\Hom_\mathcal{O}(j_{U!}\mathcal{O}_U, \mathcal{F}) =
+\Hom_{\mathcal{O}_U}(\mathcal{O}_U, j_U^*\mathcal{F}) =
+\mathcal{F}(U)
+\end{equation}
+for every $\mathcal{O}$-module $\mathcal{F}$. Namely, the first equality
+holds by the adjointness of $j_{U!}$ and $j_U^*$ and the second because
+$\Hom_{\mathcal{O}_U}(\mathcal{O}_U, j_U^*\mathcal{F}) =
+j_U^*\mathcal{F}(U/U) = \mathcal{F}|_U(U/U) = \mathcal{F}(U)$.
+
 \begin{lemma}
 \label{lemma-extension-by-zero-exact}
 Let $(\mathcal{C}, \mathcal{O})$ be a ringed site.
@@ -2311,6 +2333,22 @@ $$
 $$
 commutes.
 \end{remark}
+
+\begin{lemma}
+\label{lemma-restrict-back}
+Let $\mathcal{C}$ be a site. Let $U \in \Ob(\mathcal{C})$.
+Assume that every $X$ in $\mathcal{C}$ has at most
+one morphism to $U$. Let $\mathcal{F}$ be an abelian sheaf on $\mathcal{C}/U$.
+The canonical maps $\mathcal{F} \to j_U^{-1}j_{U!}\mathcal{F}$
+and $j_U^{-1}j_{U*}\mathcal{F} \to \mathcal{F}$ are
+isomorphisms.
+\end{lemma}
+
+\begin{proof}
+This is a special case of Lemma \ref{lemma-back-and-forth}
+because the assumption on $U$ is equivalent to the fully faithfulness
+of the localization functor $\mathcal{C}/U \to \mathcal{C}$.
+\end{proof}
 
 
 
@@ -3267,6 +3305,109 @@ Omitted. Hint: See Modules, Lemma
 \ref{modules-lemma-kernel-surjection-finite-free-onto-finite-presentation}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-chaotic-quasi-coherent}
+Let $\mathcal{C}$ be a category viewed as a site with the chaotic
+topology, see Sites, Example \ref{sites-example-indiscrete}. Let $\mathcal{O}$
+be a sheaf of rings on $\mathcal{C}$ and let $\mathcal{F}$ be a sheaf
+of $\mathcal{O}$-modules. Then $\mathcal{F}$ is quasi-coherent if
+and only if for all $U \to V$ in $\mathcal{C}$ the canonical map
+$$
+\mathcal{F}(V) \otimes_{\mathcal{O}(V)} \mathcal{O}(U)
+\longrightarrow
+\mathcal{F}(U)
+$$
+is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+Assume $\mathcal{F}$ is quasi-coherent and let $U \to V$ be a morphism
+of $\mathcal{C}$. Since every covering of $V$ is given by an isomorphism
+we conclude from Definition \ref{definition-site-local}
+that there exists a presentation
+$$
+\bigoplus\nolimits_{j \in J} \mathcal{O}_V \longrightarrow
+\bigoplus\nolimits_{i \in I} \mathcal{O}_V \longrightarrow
+\mathcal{F}|_{\mathcal{C}/V} \longrightarrow 0
+$$
+Since the topology on $\mathcal{C}$ is chaotic, taking sections over
+any object of $\mathcal{C}$ is exact. We conclude that we obtain
+a presentation
+$$
+\bigoplus\nolimits_{j \in J} \mathcal{O}(V) \longrightarrow
+\bigoplus\nolimits_{i \in I} \mathcal{O}(V) \longrightarrow
+\mathcal{F}(V) \longrightarrow 0
+$$
+of $\mathcal{F}(V)$ as an $\mathcal{O}(V)$-module and similarly for
+$\mathcal{F}(U)$. This easily shows that the displayed map in the statement
+of the lemma is an isomorphism.
+
+\medskip\noindent
+Assume the displayed map in the statement of the lemma is an isomorphism
+for every morphism $U \to V$ in $\mathcal{C}$. Fix $V$ and choose a
+presentation
+$$
+\bigoplus\nolimits_{j \in J} \mathcal{O}(V) \longrightarrow
+\bigoplus\nolimits_{i \in I} \mathcal{O}(V) \longrightarrow
+\mathcal{F}(V) \longrightarrow 0
+$$
+of $\mathcal{F}(V)$ as an $\mathcal{O}(V)$-module. Then the assumption
+on $\mathcal{F}$ exactly means that the corresponding sequence
+$$
+\bigoplus\nolimits_{j \in J} \mathcal{O}_V \longrightarrow
+\bigoplus\nolimits_{i \in I} \mathcal{O}_V \longrightarrow
+\mathcal{F}|_{\mathcal{C}/V} \longrightarrow 0
+$$
+is exact and we conclude that $\mathcal{F}$ is quasi-coherent.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-chaotic-flat-quasi-coherent}
+Let $\mathcal{C}$ be a category viewed as a site with the chaotic
+topology, see Sites, Example \ref{sites-example-indiscrete}.
+Let $\mathcal{O}$ be a sheaf of rings on $\mathcal{C}$.
+Assume for all $U \to V$ in $\mathcal{C}$ the restriction map
+$\mathcal{O}(V) \to \mathcal{O}(U)$ is a flat ring map.
+Then the category of quasi-coherent $\mathcal{O}$-modules is
+a weak Serre subcategory of $\textit{Mod}(\mathcal{O})$.
+\end{lemma}
+
+\begin{proof}
+We will check the definition of a weak Serre subcategory, see
+Homology, Definition \ref{homology-definition-serre-subcategory}.
+To do this we will use the characterization of quasi-coherent modules given in
+Lemma \ref{lemma-chaotic-quasi-coherent}.
+Consider an exact sequence
+$$
+\mathcal{F}_0 \to \mathcal{F}_1 \to
+\mathcal{F}_2 \to \mathcal{F}_3 \to
+\mathcal{F}_4
+$$
+in $\textit{Mod}(\mathcal{O})$ with $\mathcal{F}_0$, $\mathcal{F}_1$,
+$\mathcal{F}_3$, and $\mathcal{F}_4$ quasi-coherent. Let $U \to V$
+be a morphism of $\mathcal{C}$ and consider the commutative diagram
+$$
+\xymatrix{
+\mathcal{F}_0(V) \otimes_{\mathcal{O}(V)} \mathcal{O}(U) \ar[r] \ar[d] &
+\mathcal{F}_1(V) \otimes_{\mathcal{O}(V)} \mathcal{O}(U) \ar[r] \ar[d] &
+\mathcal{F}_2(V) \otimes_{\mathcal{O}(V)} \mathcal{O}(U) \ar[r] \ar[d] &
+\mathcal{F}_3(V) \otimes_{\mathcal{O}(V)} \mathcal{O}(U) \ar[r] \ar[d] &
+\mathcal{F}_4(V) \otimes_{\mathcal{O}(V)} \mathcal{O}(U) \ar[d] \\
+\mathcal{F}_0(U) \ar[r] &
+\mathcal{F}_1(U) \ar[r] &
+\mathcal{F}_2(U) \ar[r] &
+\mathcal{F}_3(U) \ar[r] &
+\mathcal{F}_4(U)
+}
+$$
+By assumption the vertical arrows with indices $0$, $1$, $3$, $4$
+are isomorphisms. Since the topology on $\mathcal{C}$ is chaotic
+taking sections over an object of $\mathcal{C}$ is exact and hence
+the lower row is exact. Since $\mathcal{O}(V) \to \mathcal{O}(U)$
+is flat also the upper row is exact. Thus we conclude that the middle
+arrow is an isomorphism by the $5$ lemma
+(Homology, Lemma \ref{homology-lemma-five-lemma}).
+\end{proof}
 
 
 
@@ -3447,7 +3588,22 @@ $$
 and similarly for sheaves.
 These follow from their algebraic counterparts and sheafification.
 
-\medskip\noindent
+\begin{lemma}
+\label{lemma-sheafification-tensor}
+Let $\mathcal{C}$ be a site. Let $\mathcal{O}$ be a presheaf of rings.
+Let $\mathcal{F}$, $\mathcal{G}$ be presheaves of $\mathcal{O}$-modules.
+Then
+$\mathcal{F}^\# \otimes_{\mathcal{O}^\#} \mathcal{G}^\#$
+is equal to
+$(\mathcal{F} \otimes_{p, \mathcal{O}} \mathcal{G})^\#$.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hint: use the characterization of tensor product in terms
+of bilinear maps below and use the universal property of sheafification.
+\end{proof}
+
+\noindent
 Let $\mathcal{C}$ be a site, let $\mathcal{O}$ be a sheaf of rings and let
 $\mathcal{F}$, $\mathcal{G}$, $\mathcal{H}$ be sheaves of
 $\mathcal{O}$-modules. In this case we define
@@ -3613,6 +3769,45 @@ commutes with restriction to $U$ for $U \in \Ob(\mathcal{C})$.
 Immediate from the definition.
 \end{proof}
 
+\begin{remark}
+\label{remark-pullback-internal-hom}
+Let $f : (\mathcal{C}, \mathcal{O}_\mathcal{C}) \to
+(\mathcal{D}, \mathcal{O}_\mathcal{D})$ be a morphism
+of ringed sites. Let
+$\mathcal{F}, \mathcal{G}$ be sheaves of $\mathcal{O}_\mathcal{D}$-modules.
+There is a canonical map
+$$
+f^*\SheafHom_{\mathcal{O}_\mathcal{D}}(\mathcal{F}, \mathcal{G})
+\longrightarrow
+\SheafHom_{\mathcal{O}_\mathcal{C}}(f^*\mathcal{F}, f^*\mathcal{G})
+$$
+Namely, this map is adjoint to the map
+$$
+\SheafHom_{\mathcal{O}_\mathcal{D}}(\mathcal{F}, \mathcal{G})
+\longrightarrow
+f_*\SheafHom_{\mathcal{O}_\mathcal{C}}(f^*\mathcal{F}, f^*\mathcal{G})
+$$
+defined as follows. Say $f$ is given by the continuous functor
+$u : \mathcal{D} \to \mathcal{C}$. For sections over $V \in \Ob(\mathcal{D})$
+we use the map
+\begin{align*}
+\Gamma(V, \SheafHom_{\mathcal{O}_\mathcal{D}}(\mathcal{F}, \mathcal{G}))
+& =
+\Hom_{\mathcal{O}_V}(\mathcal{F}|_V, \mathcal{G}|_V) \\
+& \longrightarrow
+\Hom_{\mathcal{O}_{u(V)}}(f^*\mathcal{F}|_{u(V)}, \mathcal{G}|_{u(V)}) \\
+& =
+\Gamma(u(V), \SheafHom_{\mathcal{O}_\mathcal{C}}(f^*\mathcal{F},
+f^*\mathcal{G})) \\
+& =
+\Gamma(V, f_*\SheafHom_{\mathcal{O}_\mathcal{C}}(f^*\mathcal{F},
+f^*\mathcal{G}))
+\end{align*}
+where for the arrow we use pullback by the morphism
+$(\mathcal{C}/u(V), \mathcal{O}_{u(V)}) \to
+(\mathcal{D}/V, \mathcal{O}_V)$ induced by $f$.
+\end{remark}
+
 \noindent
 In the situation of Lemma \ref{lemma-internal-hom}
 the ``evaluation'' morphism
@@ -3703,6 +3898,37 @@ as the colimit $\colim_i \mathcal{F}_i$ is the sheafification of
 the colimit $\colim^{PSh}_i \mathcal{F}_i$ in
 $\textit{PMod}(\mathcal{O})$. Hence (4) follows from (2)
 (by the remark on limits above again).
+\end{proof}
+
+\begin{lemma}
+\label{lemma-internal-hom-exact}
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site.
+Let $\mathcal{F}$, $\mathcal{G}$ be $\mathcal{O}$-modules.
+\begin{enumerate}
+\item If $\mathcal{F}_2 \to \mathcal{F}_1 \to \mathcal{F} \to 0$
+is an exact sequence of $\mathcal{O}$-modules, then
+$$
+0 \to
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}) \to
+\SheafHom_\mathcal{O}(\mathcal{F}_1, \mathcal{G}) \to
+\SheafHom_\mathcal{O}(\mathcal{F}_2, \mathcal{G})
+$$
+is exact.
+\item If $0 \to \mathcal{G} \to \mathcal{G}_1 \to \mathcal{G}_2$
+is an exact sequence of $\mathcal{O}$-modules, then
+$$
+0 \to
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}) \to
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}_1) \to
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}_2)
+$$
+is exact.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Follows from Lemma \ref{lemma-internal-hom-commute-limits} and
+Homology, Lemma \ref{homology-lemma-exact-functor}.
 \end{proof}
 
 \begin{lemma}
@@ -3849,6 +4075,141 @@ The fifth by Lemma \ref{lemma-internal-hom-adjoint-tensor}.
 The lemma follows from this and the Yoneda lemma.
 \end{proof}
 
+\begin{remark}
+\label{remark-j-shriek-tensor}
+Let $\mathcal{C}$ be a site. Let $\mathcal{F}$ be a sheaf of
+sets on $\mathcal{C}$ and consider the localization morphism
+$j : \Sh(\mathcal{C})/\mathcal{F} \to \Sh(\mathcal{C})$.
+See Sites, Definition \ref{sites-definition-localize-topos}.
+We claim that (a) $j_!\mathbf{Z} = \mathbf{Z}_\mathcal{F}^\#$
+and (b) $j_!(j^{-1}\mathcal{H}) = j_!\mathbf{Z} \otimes_\mathbf{Z} \mathcal{H}$
+for any abelian sheaf $\mathcal{H}$ on $\mathcal{C}$.
+Let $\mathcal{G}$ be an abelian on $\mathcal{C}$.
+Part (a) follows from the Yoneda lemma because
+$$
+\Hom(j_!\mathbf{Z}, \mathcal{G}) =
+\Hom(\mathbf{Z}, j^{-1}\mathcal{G}) =
+\Hom(\mathbf{Z}_\mathcal{F}^\#, \mathcal{G})
+$$
+where the second equality holds because both sides of
+the equality evaluate to the set of maps from $\mathcal{F} \to \mathcal{G}$
+viewed as an abelian group. For (b) we use the Yoneda lemma and
+\begin{align*}
+\Hom(j_!(j^{-1}\mathcal{H}), \mathcal{G})
+& =
+\Hom(j^{-1}\mathcal{H}, j^{-1}\mathcal{G}) \\
+& =
+\Hom(\mathbf{Z}, \SheafHom(j^{-1}\mathcal{H}, j^{-1}\mathcal{G})) \\
+& =
+\Hom(\mathbf{Z}, j^{-1}\SheafHom(\mathcal{H}, \mathcal{G})) \\
+& =
+\Hom(j_!\mathbf{Z}, \SheafHom(\mathcal{H}, \mathcal{G})) \\
+& =
+\Hom(j_!\mathbf{Z} \otimes_\mathbf{Z} \mathcal{H}, \mathcal{G})
+\end{align*}
+Here we use adjunction, the fact that taking $\SheafHom$ commutes
+with localization, and Lemma \ref{lemma-internal-hom-adjoint-tensor}.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-hom-finite-presentation-colimit}
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site.
+Let $\mathcal{F}$ be an $\mathcal{O}$-module of finite presentation. Let
+$\mathcal{G} = \colim_{\lambda \in \Lambda} \mathcal{G}_\lambda$
+be a filtered colimit of $\mathcal{O}$-modules. Then the canonical map
+$$
+\colim_\lambda \SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}_\lambda)
+\longrightarrow
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G})
+$$
+is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+It suffices to show the arrow is an isomorphism after restriction to $U$
+for all $U$ in $\mathcal{C}$. Both taking colimits of sheaves of
+modules and taking internal hom commute with restriction to $U$.
+See for example Lemmas \ref{lemma-exactness-pushforward-pullback} and
+\ref{lemma-internal-hom-restriction}. Fix $U$. Given a covering
+$\{U_i \to U\}_{i \in I}$, then it suffices to prove the restriction
+to each $U_i$ is an isomorphism. Hence we may assume
+$\mathcal{F}$ has a global presentation
+$$
+\bigoplus\nolimits_{j = 1, \ldots, m}
+\mathcal{O}
+\longrightarrow
+\bigoplus\nolimits_{i = 1, \ldots, n}
+\mathcal{O}
+\to
+\mathcal{F}
+\to
+0
+$$
+The functor $\SheafHom_\mathcal{O}(-, -)$ commutes with finite direct sums
+in either variable and $\SheafHom_\mathcal{O}(\mathcal{O}, -)$
+is the identity functor. By this and by Lemma \ref{lemma-internal-hom-exact}
+we obtain an exact sequence
+$$
+0 \to
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}) \to
+\bigoplus\nolimits_{i = 1, \ldots, n} \mathcal{G} \to
+\bigoplus\nolimits_{j = 1, \ldots, m} \mathcal{G}
+$$
+Since filtered colimits are exact in $\textit{Mod}(\mathcal{O})$
+by Lemma \ref{lemma-limits-colimits}
+also the top row in the following commutative diagram is exact
+$$
+\xymatrix{
+0 \ar[r] &
+\colim_\lambda \SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}_\lambda)
+\ar[r] \ar[d] &
+\colim_\lambda \bigoplus\nolimits_{i = 1, \ldots, n} \mathcal{G}_\lambda
+\ar[r] \ar[d] &
+\colim_\lambda \bigoplus\nolimits_{j = 1, \ldots, m} \mathcal{G}_\lambda
+\ar[d] \\
+0 \ar[r] &
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}) \ar[r] &
+\bigoplus\nolimits_{i = 1, \ldots, n} \mathcal{G} \ar[r] &
+\bigoplus\nolimits_{j = 1, \ldots, m} \mathcal{G}
+}
+$$
+Since the right two vertical arrows are isomorphisms we conclude.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-finite-presentation-quasi-compact-colimit}
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site.
+Let $\mathcal{G} = \colim_{\lambda \in \Lambda} \mathcal{G}_\lambda$
+be a filtered colimit of $\mathcal{O}$-modules.
+Let $\mathcal{F}$ be an $\mathcal{O}$-module of finite presentation.
+Then we have
+$$
+\colim_\lambda \Hom_\mathcal{O}(\mathcal{F}, \mathcal{G}_\lambda)
+=
+\Hom_\mathcal{O}(\mathcal{F}, \mathcal{G}).
+$$
+if the hypotheses of
+Sites, Lemma \ref{sites-lemma-directed-colimits-global-sections} part (4)
+are satisfied for the site $\mathcal{C}$; please see
+Sites, Remark \ref{sites-remark-stronger-conditions}.
+\end{lemma}
+
+\begin{proof}
+Set $\mathcal{H} =
+\SheafHom_\mathcal{O}(\mathcal{F}, \colim \mathcal{G}_\lambda)$
+and $\mathcal{H}_\lambda =
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}_\lambda)$.
+Recall that
+$$
+\Hom_\mathcal{O}(\mathcal{F}, \mathcal{G}) = \Gamma(\mathcal{C}, \mathcal{H})
+\quad\text{and}\quad
+\Hom_\mathcal{O}(\mathcal{F}, \mathcal{G}_\lambda) =
+\Gamma(\mathcal{C}, \mathcal{H}_\lambda)
+$$
+by construction. By Lemma \ref{lemma-hom-finite-presentation-colimit} we have
+$\mathcal{H} = \colim \mathcal{H}_\lambda$. Thus the lemma follows from
+Sites, Lemma \ref{sites-lemma-directed-colimits-global-sections}.
+\end{proof}
 
 
 
@@ -3916,7 +4277,7 @@ This is immediate from the definitions.
 
 \begin{lemma}
 \label{lemma-flatness-sheafification}
-Let $\mathcal{C}$ be a category.
+Let $\mathcal{C}$ be a site.
 Let $\mathcal{O}$ be a presheaf of rings.
 Let $\mathcal{F}$ be a presheaf of $\mathcal{O}$-modules.
 If $\mathcal{F}$ is a flat $\mathcal{O}$-module, then
@@ -3925,6 +4286,42 @@ $\mathcal{F}^\#$ is a flat $\mathcal{O}^\#$-module.
 
 \begin{proof}
 Omitted. (Hint: Sheafification is exact.)
+\end{proof}
+
+\begin{lemma}
+\label{lemma-flatness-sheafification-refined}
+Let $\mathcal{C}$ be a site. Let $\mathcal{O}$ be a presheaf of rings.
+Let $\mathcal{F}$ be a presheaf of $\mathcal{O}$-modules. Assume
+that every object $U$ of $\mathcal{C}$ has a covering $\{U_i \to U\}_{i \in I}$
+such that $\mathcal{F}(U_i)$ is a flat $\mathcal{O}(U_i)$-module.
+Then $\mathcal{F}^\#$ is a flat $\mathcal{O}^\#$-module.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{G} \subset \mathcal{G}'$ be an inclusion of
+$\mathcal{O}^\#$-modules. We have to show that
+$$
+\mathcal{G} \otimes_{\mathcal{O}^\#} \mathcal{F}^\#
+\longrightarrow
+\mathcal{G}' \otimes_{\mathcal{O}^\#} \mathcal{F}^\#
+$$
+is injective. By Lemma \ref{lemma-sheafification-tensor}
+the source of this arrow is the sheafification of
+the presheaf $\mathcal{G} \otimes_{p, \mathcal{O}} \mathcal{F}$
+and similarly for the target. If $U$ is an object of $\mathcal{C}$ such that
+$\mathcal{F}(U)$ is a flat $\mathcal{O}(U)$-module, then
+$$
+(\mathcal{G} \otimes_{p, \mathcal{O}} \mathcal{F})(U) =
+\mathcal{G}(U) \otimes_{\mathcal{O}(U)} \mathcal{F}(U)
+\longrightarrow
+\mathcal{G}'(U) \otimes_{\mathcal{O}(U)} \mathcal{F}(U) =
+(\mathcal{G}' \otimes_{p, \mathcal{O}} \mathcal{F})(U)
+$$
+is injective. Hence we reduce to showing: given a map of presheaves
+$f : \mathcal{H} \to \mathcal{H}'$ on $\mathcal{C}$ such that
+every $U$ in $\mathcal{C}$ has a covering $\{U_i \to U\}_{i \in I}$
+with $\mathcal{H}(U_i) \to \mathcal{H}'(U_i)$ injective, then
+$f^\#$ is injective. This we leave to the reader as an exercise.
 \end{proof}
 
 \begin{lemma}
@@ -4179,6 +4576,23 @@ is flat.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-tensor-flats}
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. If $\mathcal{G}$ and
+$\mathcal{F}$ are flat $\mathcal{O}$-modules, then
+$\mathcal{G} \otimes_\mathcal{O} \mathcal{F}$ is a flat $\mathcal{O}$-module.
+\end{lemma}
+
+\begin{proof}
+This is true because
+$$
+(\mathcal{G} \otimes_\mathcal{O} \mathcal{F}) \otimes_\mathcal{O} \mathcal{H}
+=
+\mathcal{G} \otimes_\mathcal{O} (\mathcal{F} \otimes_\mathcal{O} \mathcal{H})
+$$
+and a composition of exact functors is exact.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-flat-change-of-rings}
 Let $\mathcal{O}_1 \to \mathcal{O}_2$ be a map of sheaves
 of rings on a site $\mathcal{C}$. If $\mathcal{G}$ is a
@@ -4354,36 +4768,6 @@ $s$ is zero as desired.
 \end{proof}
 
 \begin{lemma}
-\label{lemma-flat-locally-finite-presentation}
-Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $\mathcal{F}$
-be locally of finite presentation and flat. Then given an object
-$U$ of $\mathcal{C}$ there exists a covering $\{U_i \to U\}$ such that
-$\mathcal{F}|_{U_i}$ is a direct summand of a finite free
-$\mathcal{O}_{U_i}$-module.
-\end{lemma}
-
-\begin{proof}
-Choose an object $U$ of $\mathcal{C}$.
-After replacing $U$ by the members of a covering, we may
-assume there exists a presentation
-$$
-\mathcal{O}_U^{\oplus r} \to
-\mathcal{O}_U^{\oplus n} \to \mathcal{F} \to 0
-$$
-By Lemma \ref{lemma-flat-eq} we may assume, after replacing $U$
-by the members of a covering, assume there exists a factorization
-$$
-\mathcal{O}_U^{\oplus n} \to
-\mathcal{O}_U^{\oplus n_1} \to \mathcal{F}
-$$
-such that the composition
-$\mathcal{O}_U^{\oplus r} \to \mathcal{O}_U^{\oplus n}
-\to \mathcal{O}_U^{\oplus n_r}$ is zero.
-This means that the surjection $\mathcal{O}_U^{\oplus n_r} \to \mathcal{F}$
-has a section and we win.
-\end{proof}
-
-\begin{lemma}
 \label{lemma-flat-over-thickening}
 Let $\mathcal{C}$ be a site. Let $\mathcal{O}' \to \mathcal{O}$
 be a surjection of sheaves of rings whose kernel $\mathcal{I}$ is
@@ -4437,6 +4821,200 @@ over $\mathcal{O}$. The same is true for the left vertical arrow.
 Hence the middle vertical arrow is injective and $\mathcal{F}'$ is flat.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-neighbourhood-isomorphism}
+Let $\mathcal{C}$ be a site. Let $\mathcal{O} \to \mathcal{O}'$
+be a flat homomorphism of sheaves of rings. Let
+$\mathcal{I} \subset \mathcal{O}$
+be a sheaf of ideals such that the induced map
+$\mathcal{O}/\mathcal{I} \to \mathcal{O}'/\mathcal{I}\mathcal{O}'$
+is an isomorphism. For any $\mathcal{O}$-module $\mathcal{F}$
+annihilated by $\mathcal{I}^n$ for some $n \geq 0$ the map
+$\text{id} \otimes 1 :
+\mathcal{F} \to \mathcal{F} \otimes_\mathcal{O} \mathcal{O}'$
+is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hint: See More on Algebra, Lemma
+\ref{more-algebra-lemma-neighbourhood-isomorphism}.
+\end{proof}
+
+
+
+
+
+\section{Duals}
+\label{section-duals}
+
+\noindent
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. The category of
+$\mathcal{O}$-modules endowed with the tensor product
+constructed in Section \ref{section-tensor-product}
+is a symmetric monoidal category. For an $\mathcal{O}$-module
+$\mathcal{F}$ the following are equivalent
+\begin{enumerate}
+\item $\mathcal{F}$ has a left dual in the monoidal category
+of $\mathcal{O}$-modules,
+\item for every object $U$ of $\mathcal{C}$ there exists a covering
+$\{U_i \to U\}$ such that $\mathcal{F}|_{U_i}$ is a direct summand
+of a finite free $\mathcal{O}|_{U_i}$-module, and
+\item $\mathcal{F}$ is of finite presentation and flat as an
+$\mathcal{O}$-module.
+\end{enumerate}
+This is proved in Example \ref{example-dual} and
+Lemmas \ref{lemma-left-dual-module} and
+\ref{lemma-flat-locally-finite-presentation} of this section.
+
+\begin{example}
+\label{example-dual}
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $\mathcal{F}$
+be an $\mathcal{O}$-module such that for every object $U$ of $\mathcal{C}$
+there exists a covering $\{U_i \to U\}$ such that $\mathcal{F}|_{U_i}$
+is a direct summand of a finite free $\mathcal{O}|_{U_i}$-module.
+Then the map
+$$
+\mathcal{F} \otimes_\mathcal{O}
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{O})
+\longrightarrow
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{F})
+$$
+is an isomorphism. Namely, this is a local question, it is true
+if $\mathcal{F}$ is finite free, and it holds for any summand
+of a module for which it is true (details omitted). Denote
+$$
+\eta :
+\mathcal{O}
+\longrightarrow
+\mathcal{F} \otimes_\mathcal{O}
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{O})
+$$
+the map sending $1$ to the section corresponding to
+$\text{id}_\mathcal{F}$ under the isomorphism above.
+Denote
+$$
+\epsilon : 
+\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{O})
+\otimes_\mathcal{O} \mathcal{F}
+\longrightarrow
+\mathcal{O}
+$$
+the evaluation map. Then we see that
+$\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{O}), \eta, \epsilon$
+is a left dual for $\mathcal{F}$ as in
+Categories, Definition \ref{categories-definition-dual}.
+We omit the verification that
+$(1 \otimes \epsilon) \circ (\eta \otimes 1) = \text{id}_\mathcal{F}$
+and
+$(\epsilon \otimes 1) \circ (1 \otimes \eta) =
+\text{id}_{\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{O})}$.
+\end{example}
+
+\begin{lemma}
+\label{lemma-left-dual-module}
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $\mathcal{F}$ be a
+$\mathcal{O}$-module. Let $\mathcal{G}, \eta, \epsilon$
+be a left dual of $\mathcal{F}$ in the monoidal category of
+$\mathcal{O}$-modules, see
+Categories, Definition \ref{categories-definition-dual}. Then
+\begin{enumerate}
+\item for every object $U$ of $\mathcal{C}$
+there exists a covering $\{U_i \to U\}$ such that $\mathcal{F}|_{U_i}$
+is a direct summand of a finite free $\mathcal{O}|_{U_i}$-module,
+\item the map
+$e : \SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{O}) \to \mathcal{G}$
+sending a local section $\lambda$ to $(\lambda \otimes 1)(\eta)$
+is an isomorphism,
+\item we have $\epsilon(f, g) = e^{-1}(g)(f)$ for local sections
+$f$ and $g$ of $\mathcal{F}$ and $\mathcal{G}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The assumptions mean that
+$$
+\mathcal{F} \xrightarrow{\eta \otimes 1}
+\mathcal{F} \otimes_\mathcal{O} \mathcal{G}
+\otimes_\mathcal{O} \mathcal{F}
+\xrightarrow{1 \otimes \epsilon} \mathcal{F}
+\quad\text{and}\quad
+\mathcal{G} \xrightarrow{1 \otimes \eta}
+\mathcal{G} \otimes_\mathcal{O} \mathcal{F}
+\otimes_\mathcal{O} \mathcal{G}
+\xrightarrow{\epsilon \otimes 1} \mathcal{G}
+$$
+are the identity map. Let $U$ be an object of $\mathcal{C}$.
+After replacing $U$ by the members of a covering of $U$,
+we can find a finite number of sections $f_1, \ldots, f_n$
+and $g_1, \ldots, g_n$ of
+$\mathcal{F}$ and $\mathcal{G}$ over $U$ such that
+$\eta(1) = \sum f_i g_i$. Denote
+$$
+\mathcal{O}_U^{\oplus n} \to \mathcal{F}|_U
+$$
+the map sending the $i$th basis vector to $f_i$. Then we
+can factor the map $\eta|_U$ over a map
+$\tilde \eta : \mathcal{O}_U \to
+\mathcal{O}_U^{\oplus n} \otimes_{\mathcal{O}_U} \mathcal{G}|_U$.
+We obtain a commutative diagram
+$$
+\xymatrix{
+\mathcal{F}|_U
+\ar[rr]_-{\eta \otimes 1} \ar[rrd]_-{\tilde \eta \otimes 1} & &
+\mathcal{F}|_U \otimes \mathcal{G}|_U \otimes \mathcal{F}|_U
+\ar[r]_-{1 \otimes \epsilon} &
+\mathcal{F}|_U \\
+& &
+\mathcal{O}_U^{\oplus n} \otimes \mathcal{G}|_U \otimes \mathcal{F}|_U
+\ar[u] \ar[r]^-{1 \otimes \epsilon} &
+\mathcal{O}_U^{\oplus n} \ar[u]
+}
+$$
+This shows that the identity on $\mathcal{F}|_U$
+factors through a finite free $\mathcal{O}_U$-module.
+This proves (1). Part (2) follows from
+Categories, Lemma \ref{categories-lemma-left-dual} and its proof.
+Part (3) follows from the first equality of the proof.
+You can also deduce (2) and (3) from the uniqueness of left duals
+(Categories, Remark \ref{categories-remark-left-dual-adjoint})
+and the construction of the left dual in
+Example \ref{example-dual}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-flat-locally-finite-presentation}
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let $\mathcal{F}$
+be locally of finite presentation and flat. Then given an object
+$U$ of $\mathcal{C}$ there exists a covering $\{U_i \to U\}$ such that
+$\mathcal{F}|_{U_i}$ is a direct summand of a finite free
+$\mathcal{O}_{U_i}$-module.
+\end{lemma}
+
+\begin{proof}
+Choose an object $U$ of $\mathcal{C}$.
+After replacing $U$ by the members of a covering, we may
+assume there exists a presentation
+$$
+\mathcal{O}_U^{\oplus r} \to
+\mathcal{O}_U^{\oplus n} \to \mathcal{F}|_U \to 0
+$$
+By Lemma \ref{lemma-flat-eq} we may, after replacing $U$
+by the members of a covering, assume there exists a factorization
+$$
+\mathcal{O}_U^{\oplus n} \to
+\mathcal{O}_U^{\oplus n_1} \to \mathcal{F}|_U
+$$
+such that the composition
+$\mathcal{O}_U^{\oplus r} \to \mathcal{O}_U^{\oplus n}
+\to \mathcal{O}_U^{\oplus n_r}$ is zero.
+This means that the surjection $\mathcal{O}_U^{\oplus n_r} \to \mathcal{F}|_U$
+has a section and we win.
+\end{proof}
+
+
+
+
+
 
 
 
@@ -4467,11 +5045,59 @@ is exact.
 \end{lemma}
 
 \begin{proof}
-This holds because for any $\mathcal{O}$-module $\mathcal{F}$ the functor
+For any $\mathcal{O}$-module $\mathcal{F}$ the functor
 $\Hom_\mathcal{O}(-, \mathcal{F})$ turns our sequence into the exact sequence
 $0 \to \mathcal{F}(U) \to \prod \mathcal{F}(U_i) \to
-\prod \mathcal{F}(U_i \times_U U_j)$. Then the lemma follows from
+\prod \mathcal{F}(U_i \times_U U_j)$, see
+(\ref{equation-map-lower-shriek-OU-into-module}). The lemma follows from
+this and
 Homology, Lemma \ref{homology-lemma-check-exactness}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-silly-quasi-compact}
+Let $(\mathcal{C}, \mathcal{O})$ be a ringed site. Let
+$\mathcal{U} = \{U_i \to U\}_{i \in I}$ be covering of $\mathcal{C}$.
+If $U$ is quasi-compact, then there exist a finite subset
+$I' \subset I$ such that the sequence
+$$
+\bigoplus\nolimits_{i, i' \in I'}
+j_{U_i \times_U U_{i'}!}\mathcal{O}_{U_i \times_U U_{i'}} \to
+\bigoplus\nolimits_{i \in I'}
+j_{U_i!}\mathcal{O}_{U_i} \to
+j_!\mathcal{O}_U \to 0
+$$
+is exact.
+\end{lemma}
+
+\begin{proof}
+This lemma is immediate from Lemma \ref{lemma-covering-gives-surjection}
+if $U$ satisfies condition (3) of
+Sites, Lemma \ref{sites-lemma-conclude-quasi-compact}.
+We urge the reader to skip the proof in the general case.
+By definition there exists a covering
+$\mathcal{V} = \{V_j \to U\}_{j \in J}$ and a morphism
+$\mathcal{V} \to \mathcal{U}$ of families of maps with fixed target
+given by $\text{id} : U \to U$, $\alpha : J \to I$, and
+$f_j : V_j \to U_{\alpha(j)}$
+(see Sites, Definition \ref{sites-definition-morphism-coverings})
+such that the image $I' \subset I$ of $\alpha$ is finite.
+By Homology, Lemma \ref{homology-lemma-check-exactness}
+it suffices to show that for any sheaf of $\mathcal{O}$-modules $\mathcal{F}$
+the functor $\Hom_\mathcal{O}(-, \mathcal{F})$ turns the sequence
+of the lemma into an exact sequence. By
+(\ref{equation-map-lower-shriek-OU-into-module})
+we obtain the usual sequence
+$$
+0 \to
+\mathcal{F}(U) \to
+\prod\nolimits_{i \in I'} \mathcal{F}(U_i) \to
+\prod\nolimits_{i, i' \in I'} \mathcal{F}(U_i \times_U U_{i'})
+$$
+This is an exact sequence by
+Sites, Lemma \ref{sites-lemma-compare-sheaf-condition}
+applied to the family of maps $\{U_i \to U\}_{i \in I'}$
+which is refined by the covering $\mathcal{V}$.
 \end{proof}
 
 \begin{lemma}
@@ -4527,6 +5153,7 @@ $\Hom_\mathcal{O}(j_!\mathcal{O}_U, -)$ commutes with direct sums.
 \begin{proof}
 This is true because
 $\Hom_\mathcal{O}(j_!\mathcal{O}_U, \mathcal{F}) = \mathcal{F}(U)$
+by (\ref{equation-map-lower-shriek-OU-into-module})
 and because the functor $\mathcal{F} \mapsto \mathcal{F}(U)$
 commutes with direct sums by
 Lemma \ref{lemma-sections-over-quasi-compact}.
@@ -4547,12 +5174,11 @@ of objects. We consider the following conditions
 Every object of $\mathcal{C}$ has a covering by elements of $\mathcal{B}$.
 \item
 \label{item-enough-qc}
-Every $U \in \mathcal{B}$ is quasi-compact in the sense that
-every covering of $U$ can be refined by a finite covering with
-objects from $\mathcal{B}$.
+Every $U \in \mathcal{B}$ is quasi-compact
+(Sites, Section \ref{sites-section-quasi-compact}).
 \item
 \label{item-enough-qc-qs}
-For a finite covering $\{U_i \to U\}$ with $U_i, U \in \mathcal{B}$
+For a covering $\{U_i \to U\}$ with $U_i, U \in \mathcal{B}$
 the fibre products $U_i \times_U U_j$ are quasi-compact.
 \end{enumerate}
 \end{situation}
@@ -4571,7 +5197,10 @@ with $U_i$ in $\mathcal{B}$.
 \end{lemma}
 
 \begin{proof}
-Follows immediately from Lemmas \ref{lemma-module-quotient-flat} and
+Part (1) follows from Sites, Lemmas
+\ref{sites-lemma-sheaf-coequalizer-representable} and
+\ref{sites-lemma-covering-surjective-after-sheafification}.
+Part (2) follows from Lemmas \ref{lemma-module-quotient-flat} and
 \ref{lemma-covering-gives-surjection}.
 \end{proof}
 
@@ -4608,8 +5237,8 @@ with $U_i$ and $V_j$ in $\mathcal{B}$.
 
 \begin{proof}
 Proof of (1). By Lemma \ref{lemma-module-quotient-direct-sum}
-every sheaf of sets $\mathcal{F}$ is the target of a surjection whose source
-is a coprod $\mathcal{F}_0$
+every sheaf of sets $\mathcal{F}$ is the target of a surjection
+whose source is a coprod $\mathcal{F}_0$
 of sheaves the form $h_{U}^\#$ with $U \in \mathcal{B}$.
 Applying this to $\mathcal{F}_0 \times_\mathcal{F} \mathcal{F}_0$
 we find that $\mathcal{F}$ is a coequalizer of a pair of maps
@@ -4624,7 +5253,9 @@ for some index sets $I$, $J$ and $V_j$ and $U_i$ in $\mathcal{B}$.
 For every finite subset $J' \subset J$ there is a finite subset
 $I' \subset I$ such that the coproduct over $j \in J'$ maps into
 the coprod over $i \in I'$ via both maps, see
-Lemma \ref{lemma-quasi-compact-hom-from}.
+Sites, Lemma \ref{sites-lemma-directed-colimits-sections}.
+(Details omitted; hint: an infinite coproduct is the filtered colimit
+of the finite sub-coproducts.)
 Thus our sheaf is the colimit of the cokernels of these maps
 between finite coproducts.
 
@@ -4667,73 +5298,96 @@ as in (\ref{equation-towards-constructible}). It suffices to show
 that the cokernel of a map $\varphi : j_{W!}\mathcal{O}_W \to \mathcal{F}$
 with $W \in \mathcal{B}$ is another module of the same type.
 The map $\varphi$ corresponds to $s \in \mathcal{F}(W)$.
-By (\ref{item-enough-qc}) we can find a finite covering
-$\{W_k \to W\}$ with $W_k \in \mathcal{B}$ such that $s|_{W_k}$
-comes from a section $\sum s_{ki}$ of $\bigoplus j_{U_i!}\mathcal{O}_{U_i})$.
-This determines maps
-$j_{W_k!}\mathcal{O}_{W_k} \to \bigoplus j_{U_i!}\mathcal{O}_{U_i}$.
-Since $\bigoplus j_{W_k!}\mathcal{O}_{W_k} \to j_{W!}\mathcal{O}_W$
-is surjective (Lemma \ref{lemma-covering-gives-surjection})
-we see that $\Coker(\varphi)$ is equal to
+Since $\bigoplus j_{U_i!}\mathcal{O}_{U_i} \to \mathcal{F}$ is
+surjective, by (\ref{item-enough}) we may choose a covering
+$\{W_k \to W\}_{k \in K}$ with $W_k \in \mathcal{B}$
+such that $s|_{W_k}$ is the image of some section
+$s_k$ of $\bigoplus j_{U_i!}\mathcal{O}_{U_i})$.
+By (\ref{item-enough-qc}) the object $W$ is quasi-compact.
+By Lemma \ref{lemma-silly-quasi-compact}
+there is a finite subset $K' \subset K$ such that
+$\bigoplus_{k \in K'} j_{W_k!}\mathcal{O}_{W_k} \to j_{W!}\mathcal{O}_W$
+is surjective. We conclude that $\Coker(\varphi)$ is equal to
 $$
 \Coker\left(
-\bigoplus j_{W_k!}\mathcal{O}_{W_k} \oplus
+\bigoplus\nolimits_{k \in K'} j_{W_k!}\mathcal{O}_{W_k} \oplus
 \bigoplus j_{V_j!}\mathcal{O}_{V_j}
 \longrightarrow
 \bigoplus j_{U_i!}\mathcal{O}_{U_i}
 \right)
 $$
-as desired.
+where the map $\bigoplus_{k \in K'} j_{W_k!}\mathcal{O}_{W_k}
+\to \bigoplus j_{U_i!}\mathcal{O}_{U_i}$ corresponds to
+$\sum_{k \in K'} s_k$. This finishes the proof.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-change-presentation-towards-constructibles}
 In Situation \ref{situation-quasi-compact-objects} assume
 (\ref{item-enough}), (\ref{item-enough-qc}), and (\ref{item-enough-qc-qs})
-hold. Let $\mathcal{O}$ be a sheaf of rings.
-Then given a map
+hold. Let $\mathcal{O}$ be a sheaf of rings. Assume given a map
 $$
 \bigoplus\nolimits_{j = 1, \ldots, m} j_{V_j!}\mathcal{O}_{V_j}
 \longrightarrow
 \bigoplus\nolimits_{i = 1, \ldots, n} j_{U_i!}\mathcal{O}_{U_i}
 $$
-with $U_i$ and $V_j$ in $\mathcal{B}$, and finite coverings
-$\{U_{ik} \to U_i\}$ by $U_{ik} \in \mathcal{B}$, there
-exist a finite set of $W_l \in \mathcal{B}$ and
-a commutative diagram
+with $U_i$ and $V_j$ in $\mathcal{B}$, and coverings
+$\{U_{ik} \to U_i\}_{k \in K_i}$ with $U_{ik} \in \mathcal{B}$.
+Then there exist finite subsets $K'_i \subset K_i$ and
+a finite set $L$ of $W_l \in \mathcal{B}$ and a commutative diagram
 $$
 \xymatrix{
-\bigoplus j_{W_l!}\mathcal{O}_{W_l} \ar[d] \ar[r] &
-\bigoplus j_{U_i!}\mathcal{O}_{U_{ik}} \ar[d] \\
-\bigoplus j_{V_j!}\mathcal{O}_{V_j} \ar[r] &
-\bigoplus j_{U_i!}\mathcal{O}_{U_i}
+\bigoplus_{l \in L} j_{W_l!}\mathcal{O}_{W_l} \ar[d] \ar[r] &
+\bigoplus_{i = 1, \ldots, n} \bigoplus_{k \in K'_i}
+j_{U_{ik}!}\mathcal{O}_{U_{ik}} \ar[d] \\
+\bigoplus_{j = 1, \ldots, m} j_{V_j!}\mathcal{O}_{V_j} \ar[r] &
+\bigoplus_{i = 1, \ldots, n} j_{U_i!}\mathcal{O}_{U_i}
 }
 $$
 inducing an isomorphism on cokernels of the horizontal maps.
 \end{lemma}
 
 \begin{proof}
-Since
-$\bigoplus j_{U_{ik}!}\mathcal{O}_{U_{ik}} \to
-\bigoplus j_{U_i!}\mathcal{O}_{U_i}$ is surjective
-(Lemma \ref{lemma-covering-gives-surjection}), we can find
-finite coverings $\{V_{jm} \to V_j\}$ with $V_{jm} \in \mathcal{B}$
-such that we can find a commutative diagram
+Since $U_i$ is quasi-compact, we may choose finite subsets $K'_i \subset K_i$
+as in Lemma \ref{lemma-silly-quasi-compact}.
+Then since
+$\bigoplus_{i = 1, \ldots, n}
+\bigoplus_{k \in K'_i} j_{U_{ik}!}\mathcal{O}_{U_{ik}} \to
+\bigoplus_{i = 1, \ldots, n} j_{U_i!}\mathcal{O}_{U_i}$ is surjective,
+we can find coverings $\{V_{jm} \to V_j\}_{m \in M_j}$ with
+$V_{jm} \in \mathcal{B}$ such that we can find a commutative diagram
 $$
 \xymatrix{
-\bigoplus j_{V_{jm}!}\mathcal{O}_{V_{jm}} \ar[d] \ar[r] &
-\bigoplus j_{U_i!}\mathcal{O}_{U_{ik}} \ar[d] \\
-\bigoplus j_{V_j!}\mathcal{O}_{V_j} \ar[r] &
-\bigoplus j_{U_i!}\mathcal{O}_{U_i}
+\bigoplus_{j = 1, \ldots, m} \bigoplus_{m \in M_j}
+j_{V_{jm}!}\mathcal{O}_{V_{jm}} \ar[d] \ar[r] &
+\bigoplus_{i = 1, \ldots n} \bigoplus_{k \in K'_i}
+j_{U_{ik}!}\mathcal{O}_{U_{ik}} \ar[d] \\
+\bigoplus_{j = 1, \ldots, m} j_{V_j!}\mathcal{O}_{V_j} \ar[r] &
+\bigoplus_{i = 1, \ldots, n} j_{U_i!}\mathcal{O}_{U_i}
 }
 $$
-Adding
+Since $V_j$ is quasi-compact, we can choose finite subsets
+$M'_j \subset M_j$ as in Lemma \ref{lemma-silly-quasi-compact}.
+Set
 $$
-\bigoplus
-j_{U_{ik} \times_{U_i} U_{ik'}!}\mathcal{O}_{U_{ik} \times_{U_i} U_{ik'}}
+L = \left(\coprod\nolimits_{i = 1, \ldots, n} K'_i \times K'_i \right)
+\coprod
+\left(\coprod\nolimits_{j = 1, \ldots, m} M'_j\right)
 $$
-to the upper left corner finishes the proof by
-Lemma \ref{lemma-covering-gives-surjection}.
+and for $l = (k, k') \in K'_i \times K'_i \subset L$ set
+$W_l = U_{ik} \times_{U_i} U_{ik'}$ and for
+$l = m \in M'_j \subset L$ set $W_l = V_{jm}$.
+Since we have the exact sequences of Lemma \ref{lemma-silly-quasi-compact}
+for the families $\{U_{ik} \to U_i\}_{k \in K'_i}$
+we conclude that we get a diagram as in the statement of the lemma
+(details omitted), except that it is not yet clear that $W_l \in \mathcal{B}$.
+However, since $W_l$ is quasi-compact for all $l \in L$
+we do another application of Lemma \ref{lemma-silly-quasi-compact}
+and find finite families of maps $\{W_{lt} \to W_l\}_{t \in T_l}$
+with $W_{lt} \in \mathcal{B}$ such that
+$\bigoplus j_{W_{lt}!}\mathcal{O}_{W_{lt}} \to j_{W_l!}\mathcal{O}_{W_l}$
+is surjective. Then we replace $L$ by $\coprod_{l \in L} T_l$
+and everything is clear.
 \end{proof}
 
 \begin{lemma}
@@ -4757,20 +5411,24 @@ $$
 $$
 In this proof the direct sums are always finite, and
 we write $A_U = j_{U!}\mathcal{O}_U$ for $U \in \mathcal{B}$.
+Since $\mathcal{F}_2 \to \mathcal{F}_3$ is surjective, we can
+choose coverings $\{W_{ik} \to W_i\}$ with $W_{ik} \in \mathcal{B}$
+such that $A_{W_{ik}} \to \mathcal{F}_3$ lifts to a map
+$A_{W_{ik}} \to \mathcal{F}_2$.
 By Lemma \ref{lemma-change-presentation-towards-constructibles}
-we may replace $W_i$ by finite coverings $\{W_{ik} \to W_i\}$
-with $W_{ik} \in \mathcal{B}$. Thus we may assume the map
+we may replace our collection $\{W_i\}$ by a finite subcollection
+of the collection $\{W_{ik}\}$ and assume the map
 $\bigoplus A_{W_i} \to \mathcal{F}_3$ lifts to a map into $\mathcal{F}_2$.
 Consider the kernel
 $$
 \mathcal{K}_2 = \Ker(\bigoplus A_{U_i} \oplus \bigoplus A_{W_i}
 \longrightarrow \mathcal{F}_2)
 $$
-By the snake lemma this kernel surjections onto
+By the snake lemma this kernel surjects onto
 $\mathcal{K}_3 = \Ker(\bigoplus A_{W_i} \to \mathcal{F}_3)$.
-Thus after replacing each $T_j$ by a finite covering with
+Thus, arguing as above, after replacing each $T_j$ by a finite family of
 elements of $\mathcal{B}$ (permissible by
-Lemma \ref{lemma-covering-gives-surjection})
+Lemma \ref{lemma-silly-quasi-compact})
 we may assume there is a map
 $\bigoplus A_{T_j} \to \mathcal{K}_2$ lifting the given map
 $\bigoplus A_{T_j} \to \mathcal{K}_3$.
@@ -4916,6 +5574,77 @@ This is compatible with the notion as defined for morphisms of ringed spaces,
 see Modules, Definition \ref{modules-definition-flat-module}
 and the discussion following.
 
+\begin{lemma}
+\label{lemma-pullback-internal-hom}
+Let $f : (\mathcal{C}, \mathcal{O}_\mathcal{C}) \to
+(\mathcal{D}, \mathcal{O}_\mathcal{D})$ be a morphism
+of ringed sites. Let $\mathcal{F}$, $\mathcal{G}$ be
+$\mathcal{O}_\mathcal{D}$-modules.
+If $\mathcal{F}$ is finitely presented and $f$ is flat,
+then the canonical map
+$$
+f^*\SheafHom_{\mathcal{O}_\mathcal{D}}(\mathcal{F}, \mathcal{G})
+\longrightarrow
+\SheafHom_{\mathcal{O}_\mathcal{C}}(f^*\mathcal{F}, f^*\mathcal{G})
+$$
+of Remark \ref{remark-pullback-internal-hom} is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+Say $f$ is given by the continuous functor $u : \mathcal{D} \to \mathcal{C}$.
+We have to show that the restriction of the map to $\mathcal{C}/U$
+for any $U \in \Ob(\mathcal{C})$ is an isomorphism.
+We may replace $U$ by the members of a covering of $U$.
+Hence by Sites, Lemma \ref{sites-lemma-morphism-of-sites-covering}
+we may assume there exists a morphism $U \to u(V)$ for some
+$V \in \Ob(\mathcal{C})$. Of course, then we may replace $U$ by $u(V)$.
+Then since $u$ is continuous, we may replace $V$ by a covering
+and assume there is a presentation
+$\mathcal{O}_V^{\oplus m} \to \mathcal{O}_V^{\oplus n} \to
+\mathcal{F}|_V \to 0$
+over $\mathcal{D}/V$. Since formation of $\SheafHom$
+commutes with localization (Lemma \ref{lemma-internal-hom-restriction})
+we may replace $f$ by the morphism
+$(\mathcal{C}/u(V), \mathcal{O}_{u(V)}) \to
+(\mathcal{D}/V, \mathcal{O}_V)$ induced by $f$.
+Hence we reduce to the case where $\mathcal{F}$ has a global
+presentation
+$\mathcal{O}_\mathcal{D}^{\oplus m} \to \mathcal{O}_\mathcal{D}^{\oplus n} \to
+\mathcal{F} \to 0$.
+Since $f$ is flat and $f^*\mathcal{O}_\mathcal{D} = \mathcal{O}_\mathcal{C}$
+we obtain a corresponding presentation
+$\mathcal{O}_\mathcal{C}^{\oplus m} \to \mathcal{O}_\mathcal{C}^{\oplus n} \to
+f^*\mathcal{F} \to 0$, see
+Lemma \ref{lemma-flat-pullback-exact}.
+Using that $\SheafHom$ commutes with finite direct sums in the
+first variable, using that both
+$\SheafHom_{\mathcal{O}_\mathcal{C}}(\mathcal{O}_\mathcal{C}, -)$ and
+$\SheafHom_{\mathcal{O}_\mathcal{D}}(\mathcal{O}_\mathcal{D}, -)$
+are the identity functor, and using the
+functoriality of the construction of
+Remark \ref{remark-pullback-internal-hom}
+we obtain a commutative diagram
+$$
+\xymatrix{
+0 \ar[r] &
+f^*\SheafHom_{\mathcal{O}_\mathcal{D}}(\mathcal{F}, \mathcal{G})
+\ar[d] \ar[r] &
+f^*\mathcal{G}^{\oplus n} \ar[d] \ar[r] &
+f^*\mathcal{G}^{\oplus n} \ar[d] \\
+0 \ar[r] &
+\SheafHom_{\mathcal{O}_\mathcal{C}}(f^*\mathcal{F}, f^*\mathcal{G})
+\ar[r] &
+f^*\mathcal{G}^{\oplus n} \ar[r] &
+f^*\mathcal{G}^{\oplus n}
+}
+$$
+where the right two vertical arrows are isomorphisms.
+By Lemma \ref{lemma-internal-hom-exact} the rows are exact.
+We conclude by the 5 lemma.
+\end{proof}
+
+
+
 
 
 
@@ -4967,9 +5696,15 @@ be an $\mathcal{O}$-module. The following are equivalent:
 such that
 $\mathcal{L} \otimes_\mathcal{O} \mathcal{N} \cong \mathcal{O}$.
 \end{enumerate}
-In this case $\mathcal{L}$ is flat and of finite presentation
-and the module $\mathcal{N}$ in (2) is isomorphic to
+In this case we have
+\begin{enumerate}
+\item[(a)] $\mathcal{L}$ is a flat $\mathcal{O}$-module of finite presentation,
+\item[(b)] for every object $U$ of $\mathcal{C}$ there exists a
+covering $\{U_i \to U\}$ such that $\mathcal{L}|_{U_i}$
+is a direct summand of a finite free module, and
+\item[(c)] the module $\mathcal{N}$ in (2) is isomorphic to
 $\SheafHom_\mathcal{O}(\mathcal{L}, \mathcal{O})$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -5212,7 +5947,7 @@ This is proved in exactly the same way as the analogous statement in algebra.
 During this proof, for any sheaf of sets $\mathcal{F}$ on $\mathcal{C}$,
 let us denote $\mathcal{O}_2[\mathcal{F}]$ the sheafification of the
 presheaf $U \mapsto \mathcal{O}_2(U)[\mathcal{F}(U)]$ where this denotes
-the free $\mathcal{O}_1(U)$-module on the set $\mathcal{F}(U)$.
+the free $\mathcal{O}_2(U)$-module on the set $\mathcal{F}(U)$.
 For $s \in \mathcal{F}(U)$ we denote $[s]$ the corresponding section
 of $\mathcal{O}_2[\mathcal{F}]$ over $U$. If $\mathcal{F}$ is a sheaf of
 $\mathcal{O}_2$-modules, then there is a canonical map
@@ -5752,7 +6487,7 @@ We omit the details.
 \begin{lemma}
 \label{lemma-sequence-of-principal-parts}
 Let $\mathcal{C}$ be a site. Let $\mathcal{O}_1 \to \mathcal{O}_2$
-be a homomorphism of presheaves of rings. Let $\mathcal{F}$ be a presheaf
+be a homomorphism of sheaves of rings. Let $\mathcal{F}$ be a sheaf
 of $\mathcal{O}_2$-modules. There is a
 canonical short exact sequence
 $$
@@ -6022,8 +6757,8 @@ $Y = (\Sh(\mathcal{C}'), \mathcal{O}')$ be ringed topoi.
 Let $(f, f^\sharp) : X \to Y$ be a morphism of ringed topoi.
 The {\it naive cotangent complex} $\NL_f = \NL_{X/Y}$
 of the given morphism of ringed topoi is
-$\NL_{\mathcal{O}_X/f^{-1}\mathcal{O}_Y}$.
-We sometimes write $\NL_{X/Y} = \NL_{\mathcal{O}_X/\mathcal{O}_Y}$.
+$\NL_{\mathcal{O}/f^{-1}\mathcal{O}'}$.
+We sometimes write $\NL_{X/Y} = \NL_{\mathcal{O}/\mathcal{O}'}$.
 \end{definition}
 
 
@@ -6079,7 +6814,7 @@ $\mathcal{F} \mapsto \mathcal{F}_p$ is a left adjoint,
 and by
 Sites, Lemma \ref{sites-lemma-point-pushforward-sheaf}
 we see the same thing for
-$\textit{Sh}(\mathcal{C}) \to \textit{Sets}$,
+$\Sh(\mathcal{C}) \to \textit{Sets}$,
 $\mathcal{F} \mapsto \mathcal{F}_p$.
 Hence the stalk functor commutes with arbitrary colimits (see
 Categories, Lemma \ref{categories-lemma-adjoint-exact}).
@@ -6617,6 +7352,30 @@ is given by $p^{-1}$) and
 Lemma \ref{lemma-check-exactness-stalks}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-pullback-ses}
+Let
+$f : (\Sh(\mathcal{C}'), \mathcal{O}') \to (\Sh(\mathcal{C}'), \mathcal{O})$
+be a morphism of ringed topoi. Let
+$0 \to \mathcal{F} \to \mathcal{G} \to \mathcal{H} \to 0$
+be a short exact sequence of $\mathcal{O}$-modules with $\mathcal{H}$
+a flat $\mathcal{O}$-module. Then the sequence
+$0 \to f^*\mathcal{F} \to f^*\mathcal{G} \to f^*\mathcal{H} \to 0$
+is exact as well.
+\end{lemma}
+
+\begin{proof}
+Since $f^{-1}$ is exact we have the short exact sequence
+$0 \to f^{-1}\mathcal{F} \to f^{-1}\mathcal{G} \to f^{-1}\mathcal{H} \to 0$
+of $f^{-1}\mathcal{O}$-modules. By
+Lemma \ref{lemma-pullback-flat}
+the $f^{-1}\mathcal{O}$-module $f^{-1}\mathcal{H}$ is flat. By
+Lemma \ref{lemma-flat-tor-zero} this implies that tensoring the sequence
+over $f^{-1}\mathcal{O}$ with $\mathcal{O}'$ the sequence
+remains exact. Since
+$f^*\mathcal{F} = f^{-1}\mathcal{F} \otimes_{f^{-1}\mathcal{O}} \mathcal{O}'$
+and similarly for $\mathcal{G}$ and $\mathcal{H}$ we conclude.
+\end{proof}
 
 
 
@@ -7312,6 +8071,97 @@ Hence we see that $g_! = g^{Ab}_!$ if the canonical map
 is an isomorphism for all objects $U$ of $\mathcal{C}$.
 \end{remark}
 
+\noindent
+The following two results are of a slightly different nature.
+
+\begin{lemma}
+\label{lemma-special-square-cocontinuous}
+Assume given a commutative diagram
+$$
+\xymatrix{
+(\Sh(\mathcal{C}'), \mathcal{O}_{\mathcal{C}'})
+\ar[r]_{(g', (g')^\sharp)} \ar[d]_{(f', (f')^\sharp)} &
+(\Sh(\mathcal{C}), \mathcal{O}_\mathcal{C}) \ar[d]^{(f, f^\sharp)} \\
+(\Sh(\mathcal{D}'), \mathcal{O}_{\mathcal{D}'}) \ar[r]^{(g, g^\sharp)} &
+(\Sh(\mathcal{D}), \mathcal{O}_\mathcal{D})
+}
+$$
+of ringed topoi. Assume
+\begin{enumerate}
+\item $f$, $f'$, $g$, and $g'$ correspond to cocontinuous functors
+$u$, $u'$, $v$, and $v'$ as in
+Sites, Lemma \ref{sites-lemma-cocontinuous-morphism-topoi},
+\item $v \circ u' = u \circ v'$,
+\item $v$ and $v'$ are continuous as well as cocontinuous,
+\item for any object $V'$ of $\mathcal{D}'$ the functor
+${}^{u'}_{V'}\mathcal{I} \to {}^{\ \ \ u}_{v(V')}\mathcal{I}$
+given by $v$ is cofinal, and
+\item $g^{-1}\mathcal{O}_{\mathcal{D}} = \mathcal{O}_{\mathcal{D}'}$
+and $(g')^{-1}\mathcal{O}_{\mathcal{C}} = \mathcal{O}_{\mathcal{C}'}$.
+\end{enumerate}
+Then we have $f'_* \circ (g')^* = g^* \circ f_*$ and
+$g'_! \circ (f')^{-1} = f^{-1} \circ g_!$ on modules.
+\end{lemma}
+
+\begin{proof}
+We have $(g')^*\mathcal{F} = (g')^{-1}\mathcal{F}$ and
+$g^*\mathcal{G} = g^{-1}\mathcal{G}$ because of condition (5).
+Thus the first equality follows immediately from the corresponding
+equality in Sites, Lemma \ref{sites-lemma-special-square-cocontinuous}.
+Since the left adjoint functors $g_!$ and $g'_!$ to $g^*$ and $(g')^*$
+exist by Lemma \ref{lemma-lower-shriek-modules}
+we see that the second equality follows by
+uniqueness of adjoint functors.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-special-square-continuous}
+Consider a commutative diagram
+$$
+\xymatrix{
+(\Sh(\mathcal{C}'), \mathcal{O}_{\mathcal{C}'})
+\ar[r]_{(g', (g')^\sharp)} \ar[d]_{(f', (f')^\sharp)} &
+(\Sh(\mathcal{C}), \mathcal{O}_\mathcal{C}) \ar[d]^{(f, f^\sharp)} \\
+(\Sh(\mathcal{D}'), \mathcal{O}_{\mathcal{D}'}) \ar[r]^{(g, g^\sharp)} &
+(\Sh(\mathcal{D}), \mathcal{O}_\mathcal{D})
+}
+$$
+of ringed topoi and suppose we have functors
+$$
+\xymatrix{
+\mathcal{C}' \ar[r]_{v'} &
+\mathcal{C} \\
+\mathcal{D}' \ar[r]^v \ar[u]^{u'} &
+\mathcal{D} \ar[u]_u
+}
+$$
+such that (with notation as in
+Sites, Sections \ref{sites-section-morphism-sites} and
+\ref{sites-section-cocontinuous-morphism-topoi}) we have
+\begin{enumerate}
+\item $u$ and $u'$ are continuous and give rise to the morphisms
+$f$ and $f'$,
+\item $v$ and $v'$ are cocontinuous giving rise to the morphisms $g$ and $g'$,
+\item $u \circ v = v' \circ u'$,
+\item $v$ and $v'$ are continuous as well as cocontinuous, and
+\item $g^{-1}\mathcal{O}_{\mathcal{D}} = \mathcal{O}_{\mathcal{D}'}$
+and $(g')^{-1}\mathcal{O}_{\mathcal{C}} = \mathcal{O}_{\mathcal{C}'}$.
+\end{enumerate}
+Then $f'_* \circ (g')^* = g^* \circ f_*$ and
+$g'_! \circ (f')^{-1} = f^{-1} \circ g_!$ on modules.
+\end{lemma}
+
+\begin{proof}
+We have $(g')^*\mathcal{F} = (g')^{-1}\mathcal{F}$ and
+$g^*\mathcal{G} = g^{-1}\mathcal{G}$ because of condition (5).
+Thus the first equality follows immediately from the corresponding
+equality in Sites, Lemma \ref{sites-lemma-special-square-continuous}.
+Since the left adjoint functors $g_!$ and $g'_!$ to $g^*$ and $(g')^*$
+exist by Lemma \ref{lemma-lower-shriek-modules}
+we see that the second equality follows by
+uniqueness of adjoint functors.
+\end{proof}
+
 
 
 
@@ -7449,18 +8299,28 @@ I \underline{\Lambda}^\wedge \subset
 $$
 it suffices to show that
 $I \underline{\Lambda}^\wedge(U) = \underline{I}^\wedge(U)$
-for all $U$. Choose generators $I = (f_1, \ldots, f_r)$. This gives a
-short exact sequence $0 \to K \to \Lambda^{\oplus r} \to I \to 0$.
+for all $U$. Choose generators $I = (f_1, \ldots, f_r)$.
+For every $n$ we obtain a short exact sequence
+$$
+0 \to K_n/(I^n)^{\oplus r} \to (\Lambda/I^n)^{\oplus r}
+\xrightarrow{(f_1, \ldots, f_r)}
+I/I^{n + 1} \to 0
+$$
+where $K_n =
+\{(x_1, \ldots, x_r) \in \Lambda^{\oplus r} \mid \sum x_i f_i \in I^{n + 1}\}$.
 We obtain short exact sequences
 $$
-0 \to \underline{(K \cap I^n)/I^nK}(U) \to
+0 \to \underline{K_n/(I^n)^{\oplus r}}(U) \to
 \underline{(\Lambda/I^n)^{\oplus r}}(U) \to
-\underline{I/I^n}(U) \to 0
+\underline{I/I^{n + 1}}(U) \to 0
 $$
-By Artin-Rees (Algebra, Lemma \ref{algebra-lemma-Artin-Rees})
-the system of modules on the left hand side has ML. (It is
-zero as a pro-object.) Thus we see that
-$(\underline{\Lambda}^\wedge)^{\oplus r}(U) \to \underline{I}^\wedge(U)$
+A calculation shows $K_n = K + (I^n)^{\oplus r}$, hence
+the transition maps
+$K_{n + 1}/(I^{n + 1})^{\oplus r} \to K_n/(I^n)^{\oplus r}$ are surjective.
+Hence the system of modules on the left hand side has surjective transition
+maps and a fortiori has ML. Thus we see that
+$(f_1, \ldots, f_r) :
+(\underline{\Lambda}^\wedge)^{\oplus r}(U) \to \underline{I}^\wedge(U)$
 is surjective by
 Homology, Lemma \ref{homology-lemma-Mittag-Leffler}
 which is what we wanted to show.
@@ -7503,9 +8363,10 @@ Let $x \in M$. We can find a covering $\{U_i \to U\}_{i \in I}$
 and $f_{i, j} \in \underline{\Lambda}(U_i)$ such that
 $x|_{U_i} = \sum f_{i, j} x_j|_{U_i}$. After refining the covering
 we may assume $f_{i, j} \in \Lambda$. Since $U$ is not
-sheaf theoretically empty we see that $I \not = \emptyset$.
-Thus we can pick $i \in I$ and we see that $x = \sum f_{i, j}x_j$
-in $M$ as desired.
+sheaf theoretically empty, there is at least one $i \in I$
+such that $U_i$ is not sheaf theoretically empty.
+Then the map $M \to \underline{M}(U_i)$ is injective (details omitted).
+We conclude that $x = \sum f_{i, j}x_j$ in $M$ as desired.
 
 \medskip\noindent
 Proof of (2). Assume $\underline{M}$ is a $\underline{\Lambda}$-module
@@ -7831,6 +8692,52 @@ Omitted.
 
 
 
+
+
+
+\section{Sheaves of pointed sets}
+\label{section-pointed}
+
+\noindent
+In this section we collect some facts about sheaves of pointed sets
+which we've previously mentioned only for abelian sheaves.
+
+\medskip\noindent
+A pointed set is a pair $(S, 0)$ where $S$ is a set and $0 \in S$
+is an element of $S$. A morphism $(S, 0) \to (S', 0')$ of pointed sets
+is simply a map of sets $S \to S'$ sending $0$ to $0'$. We'll abuse
+notation and say ``let $S$ be a pointed set'' to mean $S$ is endowed
+with a marked element $0 \in S$. A sheaf of pointed sets is
+the same thing as a sheaf of sets $\mathcal{F}$ endowed with a
+``marking'' $0 : * \to \mathcal{F}$ where $*$ is the final sheaf
+(Sites, Example \ref{sites-example-singleton-sheaf}).
+
+\medskip\noindent
+Given a morphism of sites or of topoi, there are pushforward
+and pullback functors on the categories of sheaves of pointed sets, see
+Sites, Section \ref{sites-section-sheaves-algebraic-structures}.
+These are constructed by taking the pushforward, resp.\ pullback
+of the underlying sheaf of sets and suitably marking it (using
+that the pullback of the final sheaf is the final sheaf).
+
+\medskip\noindent
+Let $u : \mathcal{C} \to \mathcal{D}$ be a continuous and cocontinuous
+functor between sites. Let $g : \Sh(\mathcal{C}) \to \Sh(\mathcal{D})$
+be the morphism of topoi associated with $u$, see
+Sites, Lemma \ref{sites-lemma-cocontinuous-morphism-topoi}.
+Then $g^{-1}$ on sheaves of pointed sets has an left adjoint $g_!$
+as well. The construction of this functor is entirely analogous to
+the construction of $g_!$ on abelian sheaves in
+Section \ref{section-exactness-lower-shriek}.
+
+\medskip\noindent
+Similarly, if $j : \mathcal{C}/U \to \mathcal{C}$ is as in
+Section \ref{section-localize} then there is a left adjoint $j_!$
+to the functor $j^{-1}$ on sheaves of pointed sets 
+
+\medskip\noindent
+If we ever need these facts and constructions we will precisely
+state and prove here the corresponding lemmas.
 
 
 

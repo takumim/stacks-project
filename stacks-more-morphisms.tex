@@ -66,7 +66,7 @@ $(f, f') : (\mathcal{X} \subset \mathcal{X}') \to
 {\it morphisms of thickenings over $\mathcal{Z}$}.
 This means that the algebraic stacks
 $\mathcal{X}'$ and $\mathcal{Y}'$
-are algebraic stack endowed with a structure
+are endowed with a structure
 morphism to $\mathcal{Z}$ and that $f'$ fits into a suitable
 $2$-commutative diagram of algebraic stacks.
 \end{enumerate}
@@ -619,7 +619,7 @@ $f'$ is by
 Lemma \ref{lemma-thicken-property-morphisms}.
 The last thing to check to see if $f$ or $f'$ is locally quasi-finite
 (Morphisms of Stacks, Definition
-\ref{stacks-morphisms-definition-quasi-finite})
+\ref{stacks-morphisms-definition-locally-quasi-finite})
 is a condition on underlying topological spaces
 which holds for $f$ if and only if it holds for $f'$ by
 the discussion in the first paragraph of the proof.
@@ -672,7 +672,7 @@ $$
 (see Properties of Spaces, Definition
 \ref{spaces-properties-definition-spaces-etale-site} for notation)
 as follows. An object of $\mathcal{C}$ will be a system
-$(U, U', a, i, y', \alpha)$
+$(U, U', a, i, x', \alpha)$
 which forms a commutative diagram
 \begin{equation}
 \label{equation-object}
@@ -1292,16 +1292,25 @@ W \ar[d] \ar[r] & W' \ar[d] \\
 \mathcal{X} \ar[r] & \mathcal{X}'
 }
 $$
-with $W' \to \mathcal{X}'$ smooth.
+with $W' \to \mathcal{X}'$ smooth and $W'$ affine.
 \end{proposition}
 
 \begin{proof}
 Consider the category $p : \mathcal{C} \to W_{spaces, \etale}$
 introduced in Remark \ref{remark-gerbe-of-lifts}.
 The proposition states that there exists an object of $\mathcal{C}$
-lying over $W$. By Lemma \ref{lemma-gerbe-of-lifts}
-$\mathcal{C}$ is a gerbe over $W_{spaces, \etale}$.
-This means we can \'etale locally find a solution and
+lying over $W$. Namely, if we have such an object
+$(W, W', a, i, y', \alpha)$ then $W = \mathcal{X} \times_{\mathcal{X}'} W'$.
+Hence $W \to W'$ is a thickening of algebraic spaces so
+$W'$ is affine by
+More on Morphisms of Spaces, Lemma
+\ref{spaces-more-morphisms-lemma-thickening-scheme}
+and More on Morphisms, Lemma
+\ref{more-morphisms-lemma-thickening-affine-scheme}.
+
+\medskip\noindent
+Lemma \ref{lemma-gerbe-of-lifts} tells us $\mathcal{C}$ is a gerbe over
+$W_{spaces, \etale}$. This means we can \'etale locally find a solution and
 these local solutions are \'etale locally isomorphic;
 this part does not require the assumption that the thickening is first order.
 By Lemma \ref{lemma-gerbe-of-lifts-first-order}
@@ -1373,8 +1382,8 @@ Moreover, $\Omega_{G_B/B}$ is the pullback of $\Omega_{G/A}$ by
 More on Morphisms of Spaces, Lemma
 \ref{spaces-more-morphisms-lemma-base-change-differentials}.
 Therefore $e_B^*\Omega_{G_B/B} = e^*\Omega_{G/A} \otimes_A B$.
-we conclude by More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}.
+we conclude by More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}.
 \end{proof}
 
 \begin{lemma}
@@ -1562,8 +1571,8 @@ More on Morphisms of Spaces, Lemma
 \ref{spaces-more-morphisms-lemma-finite-presentation-differentials}.
 Hence $x^*\Omega_{X/S}$ is a finitely presented $A$-module.
 Clearly, we have $y^*\Omega_{X/S} = x^*\Omega_{X/S} \otimes_A B$.
-we conclude by More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}.
+we conclude by More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}.
 \end{proof}
 
 \begin{lemma}
@@ -1703,6 +1712,10 @@ $2$-arrow $\theta : x'_1 \to x'_2$ such that
 $\alpha_1 = \alpha_2 \circ (\theta \star \text{id}_i)$ and
 $\beta_2 = (\text{id}_f \star \theta) \circ \beta_1$.
 
+\medskip\noindent
+The category of dotted arrows just described is a special case of 
+Categories, Definition \ref{categories-definition-dotted-arrows}.
+
 \begin{lemma}
 \label{lemma-reformulate-formal-smoothness}
 A morphism $f : \mathcal{X} \to \mathcal{Y}$ of algebraic stacks is
@@ -1713,6 +1726,48 @@ the category of dotted arrows is nonempty.
 
 \begin{proof}
 Translation between different languages omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-base-change-formal-smoothness}
+The base change of a formally smooth morphism of algebraic stacks
+by any morphism of algebraic stacks is formally smooth.
+\end{lemma}
+
+\begin{proof}
+Follows from
+Categories, Lemma \ref{categories-lemma-cat-dotted-arrows-base-change}
+and the definition.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-composition-formal-smoothness}
+The composition of formally smooth morphisms of algebraic stacks
+is formally smooth.
+\end{lemma}
+
+\begin{proof}
+Follows from
+Categories, Lemma \ref{categories-lemma-cat-dotted-arrows-composition}
+and the definition.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-formal-smoothness-representable}
+Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks
+which is representable by algebraic spaces. Then the following are equivalent
+\begin{enumerate}
+\item $f$ is formally smooth,
+\item for every scheme $T$ and morphism $T \to \mathcal{Y}$
+the morphism $\mathcal{X} \times_\mathcal{Y} T \to T$
+is formally smooth as a morphism of algebraic spaces.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Follows from
+Categories, Lemma \ref{categories-lemma-cat-dotted-arrows-base-change}
+and the definition.
 \end{proof}
 
 \begin{lemma}
@@ -1732,7 +1787,7 @@ $W' \to T'$ with $W'$ affine such that
 $x|_{T \times_{W'} T'}$ lifts to $W'$.
 (We urge the reader to find their own proof of this fact
 using the analogous result for algebraic spaces already
-esthablished.) We choose a
+established.) We choose a
 scheme $U'$ and a surjective smooth morphism $U' \to \mathcal{X}'$.
 Observe that $U' \to T'$ is smooth and that the projection
 $T \times_{\mathcal{X}'} U' \to T$ is surjective smooth.
@@ -2458,14 +2513,26 @@ contains Noetherian valuative criteria
 discussing Noetherian valuative criteria
 \begin{enumerate}
 \item Limits of Spaces, Lemma
-\ref{spaces-limits-lemma-refined-valuative-criterion-proper}
+\ref{spaces-limits-lemma-Noetherian-dvr-valuative-separation}
+(for separatedness using discrete valuation rings and generic points)
+\item Limits of Spaces, Lemma
+\ref{spaces-limits-lemma-Noetherian-dvr-valuative-proper}
+(for properness using discrete valuation rings and generic points)
+\item Limits of Spaces, Lemma
+\ref{spaces-limits-lemma-check-universally-closed-Noetherian}
+(for universal closedness using discrete valuation rings).
+\end{enumerate}
+\item Limits of Spaces, Section
+\ref{spaces-limits-section-refined-valuative-criteria}
+discussing refined Noetherian valuative criteria
+\begin{enumerate}
+\item Limits of Spaces, Lemmas
+\ref{spaces-limits-lemma-refined-valuative-criterion-proper} and
+\ref{spaces-limits-lemma-refined-valuative-criterion-universally-closed}
 (refined for properness using discrete valuation rings),
 \item Limits of Spaces, Lemma
 \ref{spaces-limits-lemma-refined-valuative-criterion-separated}
 (refined for separatedness using discrete valuation rings),
-\item Limits of Spaces, Lemma
-\ref{spaces-limits-lemma-refined-valuative-criterion-universally-closed}
-(refined for universal closedness using discrete valuation rings).
 \end{enumerate}
 \end{enumerate}
 For schemes we have the following valuative criteria
@@ -2488,17 +2555,70 @@ discussing Noetherian valuative criteria
 \item Limits, Lemma \ref{limits-lemma-Noetherian-dvr-valuative-proper}
 (for properness using discrete valuation rings and generic points)
 \item Limits, Lemma \ref{limits-lemma-check-universally-closed-Noetherian}
-(for universal closedness using discrete valuation rings),
-\item Limits, Lemma \ref{limits-lemma-refined-valuative-criterion-proper}
+(for universal closedness using discrete valuation rings).
+\end{enumerate}
+\item Limits, Section \ref{limits-section-refined-valuative-criteria}
+discussing refined Noetherian valuative criteria
+\begin{enumerate}
+\item Limits, Lemmas
+\ref{limits-lemma-refined-valuative-criterion-proper} and
+\ref{limits-lemma-refined-valuative-criterion-universally-closed}
 (refined for properness using discrete valuation rings),
 \item Limits, Lemma \ref{limits-lemma-refined-valuative-criterion-separated}
 (refined for separatedness using discrete valuation rings),
-\item Limits, Lemma
-\ref{limits-lemma-refined-valuative-criterion-universally-closed}
-(refined for universal closedness using discrete valuation rings).
 \end{enumerate}
+\item Limits, Section \ref{limits-section-nagata-valuative}
+discussing valuative criteria over a Noetherian base where
+one can get discrete valuation rings essentially of finite type
+over the base.
 \end{enumerate}
 This ends our list of previous results.
+
+\medskip\noindent
+Many of the results in this section can (and perhaps should)
+be proved by appealing to the following lemma, although we have not
+always done so.
+
+\begin{lemma}
+\label{lemma-reach-point-closure-Noetherian}
+Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks.
+Assume $f$ finite type and $\mathcal{Y}$ locally Noetherian.
+Let $y \in |\mathcal{Y}|$ be a point in the closure of the image of $|f|$.
+Then there exists a commutative diagram
+$$
+\xymatrix{
+\Spec(K) \ar[r] \ar[d] & \mathcal{X} \ar[d]^f \\
+\Spec(A) \ar[r] & \mathcal{Y}
+}
+$$
+of algebraic stacks where $A$ is a discrete valuation ring and $K$
+is its field of fractions mapping the closed point of $\Spec(A)$ to $y$.
+\end{lemma}
+
+\begin{proof}
+Choose an affine scheme $V$, a point $v \in V$ and a smooth morphism
+$V \to \mathcal{Y}$ mapping $v$ to $y$. The map $|V| \to |\mathcal{Y}|$
+is open and by
+Properties of Stacks, Lemma \ref{stacks-properties-lemma-points-cartesian}
+the image of $|\mathcal{X} \times_\mathcal{Y} V| \to |V|$
+is the inverse image of the image of $|f|$.
+We conclude that the point $v$ is in the closure of the
+image of $|\mathcal{X} \times_\mathcal{Y} V| \to |V|$.
+If we prove the lemma for
+$\mathcal{X} \times_\mathcal{Y} V \to V$ and the point $v$, then
+the lemma follows for $f$ and $y$.
+In this way we reduce to the situation described in the
+next paragraph.
+
+\medskip\noindent
+Assume we have $f : \mathcal{X} \to Y$ and $y \in |Y|$ as in the lemma where
+$Y$ is a Noetherian affine scheme. Since $f$ is quasi-compact, we conclude that
+$\mathcal{X}$ is quasi-compact. Hence we can choose an affine scheme $W$ and
+a surjective smooth morphism $W \to \mathcal{X}$. Then the image of
+$|f|$ is the same as the image of $|W| \to |Y|$. In this way we reduce
+to the case of schemes which is
+Limits, Lemma \ref{limits-lemma-reach-point-closure-Noetherian}.
+\end{proof}
 
 \begin{lemma}
 \label{lemma-check-separated-dvr}
@@ -2748,6 +2868,87 @@ are either empty or have one isomorphism class.
 Thus $\Delta$ is separated.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-valuative-criterion-universally-closed}
+Let $f : \mathcal{X} \to \mathcal{Y}$ be a morphism of algebraic stacks.
+Assume that $\mathcal{Y}$ is locally Noetherian and that $f$ is of finite type.
+If given any $2$-commutative diagram
+$$
+\xymatrix{
+\Spec(K) \ar[r]_-x \ar[d]_j & \mathcal{X} \ar[d]^f \\
+\Spec(A) \ar[r]^-y & \mathcal{Y}
+}
+$$
+where $A$ is a discrete valuation ring with field of fractions $K$
+and $\gamma : y \circ j \to f \circ x$ there exist an extension $K'/K$
+of fields, a valuation ring $A' \subset K'$ dominating $A$ such that
+the category of dotted arrows for the induced diagram
+$$
+\xymatrix{
+\Spec(K') \ar[r]_-{x'} \ar[d]_{j'} & \mathcal{X} \ar[d]^f \\
+\Spec(A') \ar[r]^-{y'} \ar@{..>}[ru] & \mathcal{Y}
+}
+$$
+with induced $2$-arrow $\gamma' : y' \circ j' \to f \circ x'$
+is nonempty (Morphisms of Stacks, Definition
+\ref{stacks-morphisms-definition-fill-in-diagram}), then $f$ is
+universally closed.
+\end{lemma}
+
+\begin{proof}
+Let $V \to \mathcal{Y}$ be a smooth morphism where $V$ is an affine scheme.
+The category of dotted arrows behaves well with respect to base change
+(Morphisms of Stacks, Lemma
+\ref{stacks-morphisms-lemma-cat-dotted-arrows-base-change}).
+Hence the assumption on existence of dotted arrows (after extension)
+is inherited by the morphism $\mathcal{X} \times_\mathcal{Y} V \to V$.
+Therefore the assumptions of the lemma are satisfied for the morphism
+$\mathcal{X} \times_\mathcal{Y} V \to V$.
+Hence we may assume $\mathcal{Y}$ is an affine scheme.
+
+\medskip\noindent
+Assume $\mathcal{Y} = Y$ is a Noetherian affine scheme.
+(From now on we no longer have to worry about the
+$2$-arrows $\gamma$ and $\gamma'$, see Morphisms of Stacks, Lemma
+\ref{stacks-morphisms-lemma-cat-dotted-arrows-independent}.)
+To prove that $f$ is universally closed it suffices to show that
+$|\mathcal{X} \times \mathbf{A}^n| \to |Y \times \mathbf{A}^n|$ is closed
+for all $n$ by Limits of Stacks, Lemma
+\ref{stacks-limits-lemma-test-universally-closed}. Since the assumption
+in the lemma is inherited by the product morphism
+$\mathcal{X} \times \mathbf{A}^n \to Y \times \mathbf{A}^n$ (details omitted)
+we reduce to proving that $|\mathcal{X}| \to |Y|$ is closed.
+
+\medskip\noindent
+Assume $Y$ is a Noetherian affine scheme.
+Let $T \subset |\mathcal{X}|$ be a closed subset. We have to show that
+the image of $T$ in $|Y|$ is closed. We may replace $\mathcal{X}$
+by the reduced induced closed subspace structure on $T$; we
+omit the verification that property on the existence of
+dotted arrows is preserved by this replacement.
+Thus we reduce to proving that the image
+of $|\mathcal{X}| \to |Y|$ is closed.
+
+\medskip\noindent
+Let $y \in |Y|$ be a point in the closure of the image of
+$|\mathcal{X}| \to |Y|$. By Lemma \ref{lemma-reach-point-closure-Noetherian}
+we may choose a commutative diagram
+$$
+\xymatrix{
+\Spec(K) \ar[r] \ar[d] & \mathcal{X} \ar[d]^f \\
+\Spec(A) \ar[r] & Y
+}
+$$
+where $A$ is a discrete valuation ring and $K$ is its field of fractions
+mapping the closed point of $\Spec(A)$ to $y$. It follows immediately
+from the assumption in the lemma that $y$ is in the image of
+$|\mathcal{X}| \to |Y|$ and the proof is complete.
+\end{proof}
+
+
+
+
+
 
 
 
@@ -2834,7 +3035,7 @@ Similarly for moduli spaces in a full subcategory.
 \end{lemma}
 
 \begin{proof}
-It is immediate from the $1$-to-$1$ correspondence esthablished in
+It is immediate from the $1$-to-$1$ correspondence established in
 Lemma \ref{lemma-quotient-compare} that $f$ is a categorical moduli space
 if and only if $\phi$ is a categorical quotient
 (Quotients of Groupoids, Definition
@@ -3807,7 +4008,7 @@ as in Lemma \ref{lemma-etale-local-finite-inertia}.
 Then by Lemma \ref{lemma-etale-separated-over-keel-mori}
 we reduce to the case $\mathcal{X} = \mathcal{X}_i$.
 In other words, we may assume $\mathcal{X}$ is well-nigh affine.
-In this case we have $Y = \Spec(D)$, we have
+In this case we have $Y = \Spec(A_0)$, we have
 $\mathcal{X} = [U/R]$ with $U = \Spec(A)$ and
 $M = \Spec(C)$ where $C \subset A$ is the set of $R$-invariant
 functions on $U$. See
@@ -3885,6 +4086,659 @@ as these are topological properties and $\mathcal{X} \to Y$
 has these properties and $\mathcal{X} \to M$ is a universal
 homeomorphism.
 \end{proof}
+
+
+
+
+
+\section{Stacks and fpqc coverings}
+\label{section-fpqc}
+
+\noindent
+Certain algebraic stacks satisfy fpqc descent.
+The analogue of this section for algebraic spaces
+is Properties of Spaces, Section \ref{spaces-properties-section-fpqc}.
+
+
+\begin{proposition}
+\label{proposition-stack-fpqc}
+\begin{reference}
+Proposition 3.3.6 of ``Intro to Algebraic Stacks'' by
+Anatoly Preygel.
+\end{reference}
+Let $\mathcal{X}$ be an algebraic stack with quasi-affine\footnote{It suffices
+to assume ind-quasi-affine.} diagonal. Then
+$\mathcal{X}$ satisfies descent for fpqc coverings.
+\end{proposition}
+
+\begin{proof}
+Our conventions are that $\mathcal{X}$ is a stack
+in groupoids $p : \mathcal{X} \to (\Sch/S)_{fppf}$
+over the category of schemes over a base scheme $S$ endowed
+with the fppf topology. The statement means the following:
+given an fpqc covering $\mathcal{U} = \{U_i \to U\}_{i \in I}$
+of schemes over $S$ the functor
+$$
+\mathcal{X}_U \longrightarrow DD(\mathcal{U})
+$$
+is an equivalence. Here on the left we have the category
+of objects of $\mathcal{X}$ over $U$ and on the right we have
+the category of descent data in $\mathcal{X}$ relative to $\mathcal{U}$.
+See discussion in Stacks, Section \ref{stacks-section-descent-data}.
+
+\medskip\noindent
+Fully faithfulness. Suppose we have two objects $x, y$ of $\mathcal{X}$
+over $U$. Then $I = \mathit{Isom}(x, y)$ is an algebraic space over $U$.
+Hence a collection of sections of $I$ over $U_i$ whose restrictions
+to $U_i \times_U U_j$ agree, come from a unique section over $U$ by
+the analogue of the proposition for algebraic spaces, see
+Properties of Spaces, Proposition
+\ref{spaces-properties-proposition-sheaf-fpqc}.
+Thus our functor is fully faithful.
+
+\medskip\noindent
+Essential surjectivity. Here we are given objects
+$x_i$ over $U_i$ and isomorphisms
+$\varphi_{ij} : \text{pr}_0^*x_i \to \text{pr}_1^*x_j$
+over $U_i \times_U U_j$ satisfying the cocyle condition
+over $U_i \times_U U_j \times_U U_k$.
+
+\medskip\noindent
+Let $W$ be an affine scheme and let $W \to \mathcal{X}$
+be a morphism. For each $i$ we can form
+$$
+W_i = U_i \times_{x_i, \mathcal{X}} W
+$$
+The projection $W_i \to U_i$ is quasi-affine as the
+diagonal of $\mathcal{X}$ is quasi-affine. For each pair
+$i, j \in I$ the isomorphism $\varphi_{ij}$ induces
+an isomorphism
+$$
+W_i \times_U U_j =
+(U_i \times_U U_j) \times_{x_i \circ \text{pr}_0, \mathcal{X}} W
+\to
+(U_i \times_U U_j) \times_{x_j \circ \text{pr}_1, \mathcal{X}} W =
+U_i \times_U W_j
+$$
+Moreover, these isomorphisms satisfy the cocycle condition over
+$U_i \times_U U_j \times_U U_k$. In other words, these isomorphisms
+define a descent datum on the schemes $W_i/U_i$ relative to $\mathcal{U}$.
+By Descent, Lemma \ref{descent-lemma-quasi-affine}
+we see that this descent datum is effective\footnote{Or use
+More on Groupoids, Lemma \ref{more-groupoids-lemma-ind-quasi-affine}
+in the case of ind-quasi-affine diagonal.}.
+We conclude that there exists a quasi-affine morphism
+$W' \to U$ and a commutative diagram
+$$
+\xymatrix{
+W' \ar[d] &
+W_i \ar[l] \ar[d] \ar[r] &
+W \ar[d] \\
+U &
+U_i \ar[l] \ar[r]^{x_i} &
+\mathcal{X}
+}
+$$
+whose squares are cartesian. Since $\{W_i \to W'\}_{i \in I}$
+is the base change of $\mathcal{U}$ by $W' \to U$ we conclude
+that it is an fpqc covering. Since $W$ satisfies the sheaf
+condition for fpqc coverings, we obtain a unique morphism
+$W' \to W$ such that $W_i \to W' \to W$ is the given morphism
+$W_i \to W$. In other words, we have the commutative diagrams
+$$
+\xymatrix{
+W_i \ar[d] \ar[r] &
+W' \ar[d] \ar[r] &
+W \ar[d] \\
+U_i \ar[r] \ar@/_1pc/[rr]_{x_i} &
+U &
+\mathcal{X}
+}
+$$
+compatible with the isomorphisms $\varphi_{ij}$ and whose
+square and rectangle are cartesian.
+
+\medskip\noindent
+Choose a collection of affine schemes $W_\alpha$, $\alpha \in A$
+and smooth morphisms $W_\alpha \to \mathcal{X}$ such that
+$\coprod W_\alpha \to \mathcal{X}$ is surjective.
+By the procedure of the preceding paragraph we produce
+a diagram
+$$
+\xymatrix{
+W_{\alpha, i} \ar[d] \ar[r] &
+W_\alpha' \ar[d] \ar[r] &
+W_\alpha \ar[d] \\
+U_i \ar[r] \ar@/_1pc/[rr]_{x_i} &
+U &
+\mathcal{X}
+}
+$$
+for each $\alpha$. Then the morphisms $W_\alpha' \to U$ are
+smooth and jointly surjective.
+
+\medskip\noindent
+Denote $x_\alpha$ the object of $\mathcal{X}$ over $W_\alpha'$
+corresponding to $W_\alpha' \to W_\alpha \to \mathcal{X}$.
+Since $\mathcal{X}$ is an fppf stack and since
+$\{W_\alpha' \to U\}$ is an fppf covering, it suffices
+to show that there are isomorphisms
+$\text{pr}_0^*x_\alpha \to \text{pr}_1^*x_\beta$
+over $W_\alpha' \times_U W'_\beta$ satisfying the
+cocycle condition. However, after pulling back to
+$W_{\alpha, i}$ we do have such isomorphisms over
+$W_{\alpha, i} \times_{U_i} W_{\beta, i} =
+U_i \times_U (W_\alpha' \times_U W'_\beta)$
+since the pullback of $x_\alpha$ to $W_{\alpha, i}$
+is isomorphic to the pullback of $x_i$ to $W_{\alpha, i}$.
+Since $\{U_i \times_U (W_\alpha' \times_U W'_\beta) \to
+W_\alpha' \times_U W'_\beta\}_{i \in I}$
+is an fpqc covering and by the aforementioned compatibility
+of the diagrams above with $\varphi_{ij}$ these
+isomorphisms descend to $W_\alpha' \times_U W'_\beta$
+and the proof is complete.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Tensor functors}
+\label{section-tensor-functors}
+
+\noindent
+Let $f : \mathcal{Y} \to \mathcal{X}$ be a morphism of Noetherian
+algebraic stacks. The pullback functor
+$$
+f^* :
+\textit{Coh}(\mathcal{O}_\mathcal{X})
+\longrightarrow
+\textit{Coh}(\mathcal{O}_\mathcal{Y})
+$$
+is a right exact tensor functor: it is additive, right exact,
+and commutes with tensor products of coherent modules. We can
+ask to what extent any right exact tensor functor
+$F : \textit{Coh}(\mathcal{O}_\mathcal{X}) \to
+\textit{Coh}(\mathcal{O}_\mathcal{Y})$ comes from a
+morphism $f : \mathcal{Y} \to \mathcal{X}$.
+The reader may consult
+\cite{Hall-Rydh-coherent} for a very general result
+of this nature.
+The aim of this section is to give a short proof of
+Theorem \ref{theorem-main} as an introduction to these ideas.
+
+\medskip\noindent
+We begin with some lemmas.
+
+\begin{lemma}
+\label{lemma-extend}
+Let $\mathcal{X}$ and $\mathcal{Y}$ be Noetherian algebraic stacks.
+Any right exact tensor functor $F : \textit{Coh}(\mathcal{O}_\mathcal{X}) \to
+\textit{Coh}(\mathcal{O}_\mathcal{Y})$ extends uniquely to a
+right exact tensor functor
+$F : \QCoh(\mathcal{O}_\mathcal{X}) \to \QCoh(\mathcal{O}_\mathcal{Y})$
+commuting with all colimits.
+\end{lemma}
+
+\begin{proof}
+The existence and uniqueness of the extension is a general fact, see
+Categories, Lemma \ref{categories-lemma-extend-functor-by-colim}.
+To see that the lemma applies observe that coherent modules on
+locally Noetherian algebraic stacks are by definition modules
+of finite presentation, see
+Cohomology of Stacks, Definition \ref{stacks-cohomology-definition-coherent}.
+Hence a coherent module on $\mathcal{X}$ is a
+categorically compact object of $\QCoh(\mathcal{O}_\mathcal{X})$ by
+Cohomology of Stacks, Lemma
+\ref{stacks-cohomology-lemma-finite-presentation-quasi-compact-colimit}.
+Finally, every quasi-coherent module is a filtered colimit of
+its coherent submodules by Cohomology of Stacks, Lemma
+\ref{stacks-cohomology-lemma-directed-colimit-coherent}.
+
+\medskip\noindent
+Since $F$ is additive, also the extension of $F$ is additive (details omitted).
+Since $F$ is a tensor functor and since colimits of modules
+commute with taking tensor products, also the extension of $F$
+is a tensor functor (details omitted).
+
+\medskip\noindent
+In this paragraph we show the extension commutes with arbitrary
+direct sums. If $\mathcal{F} = \bigoplus_{j \in J} \mathcal{H}_j$
+with $\mathcal{H}_j$ quasi-coherent, then
+$\mathcal{F} = \colim_{J' \subset J\text{ finite}}
+\bigoplus_{j \in J'} \mathcal{H}_j$.
+Denoting the extension of $F$ also by $F$ we obtain
+\begin{align*}
+F(\mathcal{F})
+& =
+\colim_{J' \subset J\text{ finite}}
+F(\bigoplus\nolimits_{j \in J'} \mathcal{H}_j) \\
+& =
+\colim_{J' \subset J\text{ finite}}
+\bigoplus\nolimits_{j \in J'} F(\mathcal{H}_j) \\
+& =
+\bigoplus\nolimits_{j \in J} F(\mathcal{H}_j)
+\end{align*}
+Thus $F$ commutes with arbitrary direct sums.
+
+\medskip\noindent
+In this paragraph we show that the extension is right exact.
+Suppose $0 \to \mathcal{F} \to \mathcal{F}' \to \mathcal{F}'' \to 0$
+is a short exact sequence of quasi-coherent $\mathcal{O}_\mathcal{X}$-modules.
+Then we write $\mathcal{F}' = \bigcup \mathcal{F}'_i$ as the
+union of its coherent submodules (see reference given above).
+Denote $\mathcal{F}''_i \subset \mathcal{F}''$ the image of $\mathcal{F}'_i$
+and denote $\mathcal{F}_i = \mathcal{F} \cap \mathcal{F}'_i =
+\Ker(\mathcal{F}'_i \to \mathcal{F}''_i)$. Then it is clear that
+$\mathcal{F} = \bigcup \mathcal{F}_i$ and
+$\mathcal{F}'' = \bigcup \mathcal{F}''_i$
+and that we have short exact sequences
+$$
+0 \to \mathcal{F}_i \to \mathcal{F}_i' \to \mathcal{F}_i'' \to 0
+$$
+Since the extension commutes with filtered colimits we have
+$F(\mathcal{F}) = \colim_{i \in I} F(\mathcal{F}_i)$,
+$F(\mathcal{F}') = \colim_{i \in I} F(\mathcal{F}'_i)$, and
+$F(\mathcal{F}'') = \colim_{i \in I} F(\mathcal{F}''_i)$.
+Since filtered colimits of sheaves of modules is exact we
+conclude that the extension of $F$ is right exact.
+
+\medskip\noindent
+The proof is finished as a right exact functor which commutes with all
+coproducts commutes with all colimits, see
+Categories, Lemma \ref{categories-lemma-colimits-coproducts-coequalizers}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-affine}
+Let $\mathcal{X}$ be an algebraic stack with affine diagonal.
+Let $B$ be a ring. Let $F : \QCoh(\mathcal{O}_\mathcal{X}) \to \text{Mod}_B$
+be a right exact tensor functor which commutes with direct sums.
+Let $g : U \to \mathcal{X}$ be a morphism with $U = \Spec(A)$ affine. Then
+\begin{enumerate}
+\item $C = F(g_{\QCoh, *}\mathcal{O}_U)$ is a commutative $B$-algebra and
+\item there is a ring map $A \to C$
+\end{enumerate}
+such that $F \circ g_{\QCoh, *} : \text{Mod}_A \to \text{Mod}_B$
+sends $M$ to $M \otimes_A C$ seen as $B$-module.
+\end{lemma}
+
+\begin{proof}
+We note that $g$ is quasi-compact and quasi-separated, see
+Morphisms of Stacks, Lemma
+\ref{stacks-morphisms-lemma-quasi-compact-quasi-separated-permanence}.
+In Cohomology of Stacks, Proposition
+\ref{stacks-cohomology-proposition-direct-image-quasi-coherent}
+we have constructed the functor
+$g_{\QCoh, *} : \QCoh(\mathcal{O}_U) \to \QCoh(\mathcal{O}_\mathcal{X})$.
+By Cohomology of Stacks, Remarks
+\ref{stacks-cohomology-remark-direct-image-quasi-coherent-tensor} and
+\ref{stacks-cohomology-remark-QCoh-tensor}
+we obtain a multiplication
+$$
+\mu :
+g_{\QCoh, *}\mathcal{O}_U
+\otimes_{\mathcal{O}_\mathcal{X}}
+g_{\QCoh, *}\mathcal{O}_U
+\longrightarrow
+g_{\QCoh, *}\mathcal{O}_U
+$$
+which turns $g_{\QCoh, *}\mathcal{O}_U$ into a commutative
+$\mathcal{O}_\mathcal{X}$-algebra. Hence $C = F(g_{\QCoh, *}\mathcal{O}_U)$
+is a commutative algebra object in $\text{Mod}_B$, in other words, $C$ is a
+commutative $B$-algebra. Observe that we have a map
+$\kappa : A \to \text{End}_{\mathcal{O}_\mathcal{X}}(g_{\QCoh, *}\mathcal{O}_U)$
+such that for any $a \in A$ the diagram
+$$
+\xymatrix{
+g_{\QCoh, *}\mathcal{O}_U \otimes_{\mathcal{O}_\mathcal{X}}
+g_{\QCoh, *}\mathcal{O}_U
+\ar[d]_{\kappa(r) \otimes 1} \ar[rr]_-\mu & &
+g_{\QCoh, *}\mathcal{O}_U \ar[d]^{\kappa(r)} \\
+g_{\QCoh, *}\mathcal{O}_U \otimes_{\mathcal{O}_\mathcal{X}}
+g_{\QCoh, *}\mathcal{O}_U
+\ar[rr]^-\mu & &
+g_{\QCoh, *}\mathcal{O}_U
+}
+$$
+commutes. It follows that we get a map
+$\kappa' = F(\kappa) : A \to \text{End}_B(C)$
+such that $\kappa'(a)(c) c' = \kappa'(a)(cc')$ and of course this means that
+$a \mapsto \kappa'(a)(1)$ is a ring map $A \to C$.
+
+\medskip\noindent
+The morphism $g : U \to \mathcal{X}$ is affine, see
+Morphisms of Stacks, Lemma \ref{stacks-morphisms-lemma-affine-permanence}.
+Hence $g_{\QCoh, *}$ is exact and commutes with direct sums by
+Cohomology of Stacks, Lemma
+\ref{stacks-cohomology-lemma-quasi-coherent-pushforward-affine}.
+Thus $F \circ g_{\QCoh, *} : \text{Mod}_A \to \text{Mod}_B$
+is a right exact functor which commutes with direct sums
+and which sends $A$ to $C$.
+By Functors and Morphisms, Lemma \ref{functors-lemma-functor}
+we see that the functor $F \circ g_{\QCoh, *}$ sends an $A$-module
+$M$ to $M \otimes_A C$ viewed as a $B$-module.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-universally-injective}
+Notation as in Lemma \ref{lemma-affine}. Assume $\mathcal{X}$ is
+Noetherian and $g$ is surjective and flat.
+Then $B \to C$ is universally injective.
+\end{lemma}
+
+\begin{proof}
+Consider the natural map
+$1 : \mathcal{O}_\mathcal{X} \to g_{\QCoh, *}\mathcal{O}_U$
+in $\QCoh(\mathcal{O}_\mathcal{X})$. Pulling back to $U$ and
+using adjunction we find that the composition
+$$
+\mathcal{O}_U =
+g^*\mathcal{O}_\mathcal{X} \xrightarrow{g^*1}
+g^*g_{\QCoh, *}\mathcal{O}_U \to \mathcal{O}_U
+$$
+is the identity in $\QCoh(\mathcal{O}_U)$.
+Write $g_{\QCoh, *}\mathcal{O}_U = \colim \mathcal{F}_i$
+as a filtered colimit of coherent $\mathcal{O}_\mathcal{X}$-modules, see
+Cohomology of Stacks, Lemma
+\ref{stacks-cohomology-lemma-directed-colimit-coherent}.
+For $i$ large enough the map
+$1 : \mathcal{O}_\mathcal{X} \to g_{\QCoh, *}\mathcal{O}_U$
+factors through $\mathcal{F}_i$, see
+Cohomology of Stacks, Lemma
+\ref{stacks-cohomology-lemma-finite-presentation-quasi-compact-colimit}.
+Say $s : \mathcal{O}_\mathcal{X} \to \mathcal{F}_i$ is the
+factorization. Then
+$$
+\mathcal{O}_U \xrightarrow{g^*s} g^*\mathcal{F}_i \to
+g^*g_{\QCoh, *}\mathcal{O}_U \to \mathcal{O}_U
+$$
+is the identity. In other words, we see that $s$ becomes the
+inclusion of a direct summand upon pullback to $U$. Set
+$\mathcal{F}_i^\vee = hom(\mathcal{F}_i, \mathcal{O}_\mathcal{X})$
+with notation as in
+Cohomology of Stacks, Lemma
+\ref{stacks-cohomology-lemma-internal-hom-fp-into-qcoh}.
+In particular there is an evaluation map
+$ev : \mathcal{F}_i \otimes_{\mathcal{O}_\mathcal{X}} \mathcal{F}_i^\vee
+\to \mathcal{O}_\mathcal{X}$.
+Evaluation at $s$ defines a map
+$s^\vee : \mathcal{F}_i^\vee \to \mathcal{O}_\mathcal{X}$.
+Dual to the statement about $s$ we see that $g^*(s^\vee)$ is surjective, see
+see Cohomology of Stacks, Section
+\ref{stacks-cohomology-section-further-remarks}
+for compatibility of $hom$ and $\otimes$ with restriction to $U$.
+Since $g$ is surjective and flat, we conclude that $s^\vee$ is surjective
+(see locus citatus). Since $F$ is right exact, we conclude that
+$F(\mathcal{F}_i^\vee) \to F(\mathcal{O}_\mathcal{X}) = B$ is surjective.
+Choose $\lambda \in F(\mathcal{F}_i^\vee)$
+mapping to $1 \in B$. Denote $e = F(s)(1) \in F(\mathcal{F}_i)$
+the image of $1$ by the map
+$F(s) : B = F(\mathcal{O}_\mathcal{X}) \to F(\mathcal{F}_i)$.
+Then the map
+$$
+F(ev) :
+F(\mathcal{F}_i) \otimes_B F(\mathcal{F}_i^\vee) =
+F(\mathcal{F}_i \otimes_{\mathcal{O}_\mathcal{X}} \mathcal{F}_i^\vee)
+\longrightarrow
+F(\mathcal{O}_\mathcal{X}) = B
+$$
+sends $e \otimes \lambda$ to $1$ by construction. Hence the
+map $B \to F(\mathcal{F}_i)$, $b \mapsto be$
+is universally injective because we have the one-sided
+inverse $F(\mathcal{F}_i) \to B$, $\xi \mapsto F(ev)(\xi \otimes \lambda)$.
+Since this is true for all $i$ large enough we conclude.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-flat}
+Let $B \to C$ be a ring map. If
+\begin{enumerate}
+\item the coprojections $C \to C \otimes_B C$ are flat and
+\item $B \to C$ is universally injective,
+\end{enumerate}
+then $B \to C$ is faithfully flat.
+\end{lemma}
+
+\begin{proof}
+The map $\Spec(C) \to \Spec(B)$ is surjective as $B \to C$ is universally
+injective. Thus it suffices to show that $B \to C$ is flat
+which follows from
+Descent, Theorem \ref{descent-theorem-descend-module-properties}.
+\end{proof}
+
+\noindent
+The following very simple version of K\"unneth should become
+obsoleted when we write a section on K\"unneth theorems for
+cohomology of quasi-coherent modues on algebraic stacks.
+
+\begin{lemma}
+\label{lemma-easy-kunneth}
+Let $a : \mathcal{Y} \to \mathcal{X}$ and $b : \mathcal{Z} \to \mathcal{X}$
+be representable by schemes, quasi-compact, quasi-separated, and flat.
+Then $a_{\QCoh, *}\mathcal{O}_\mathcal{Y}
+\otimes_{\mathcal{O}_\mathcal{X}}
+b_{\QCoh, *}\mathcal{O}_\mathcal{Z} =
+f_{\QCoh, *}\mathcal{O}_{\mathcal{Y} \times_\mathcal{X} \mathcal{Z}}$
+where $f : \mathcal{Y} \times_\mathcal{X} \mathcal{Z} \to \mathcal{X}$
+is the obvious morphism.
+\end{lemma}
+
+\begin{proof}
+We abbreviate $\mathcal{P} = \mathcal{Y} \times_\mathcal{X} \mathcal{Z}$.
+Since $a \circ \text{pr}_1 = f$ and $b \circ \text{pr}_2 = f$
+we obtain maps $a_*\mathcal{O}_\mathcal{Y} \to f_*\mathcal{O}_\mathcal{P}$
+and $b_*\mathcal{O}_\mathcal{Z} \to f_*\mathcal{O}_\mathcal{P}$ (using
+relative pullback maps, see Sites, Section \ref{sites-section-pullback}).
+Hence we obtain a relative cup product
+$$
+\mu :
+a_*\mathcal{O}_\mathcal{Y}
+\otimes_{\mathcal{O}_\mathcal{X}}
+b_*\mathcal{O}_\mathcal{Z} \longrightarrow
+f_*\mathcal{O}_{\mathcal{Y} \times_\mathcal{X} \mathcal{Z}}
+$$
+Applying $Q$ and its compatibility with tensor products
+(Cohomology of Stacks, Remark \ref{stacks-cohomology-remark-QCoh-tensor})
+we obtain an arrow
+$Q(\mu) : a_{\QCoh, *}\mathcal{O}_\mathcal{Y}
+\otimes_{\mathcal{O}_\mathcal{X}}
+b_{\QCoh, *}\mathcal{O}_\mathcal{Z} \to
+f_{\QCoh, *}\mathcal{O}_{\mathcal{Y} \times_\mathcal{X} \mathcal{Z}}$
+in $\QCoh(\mathcal{O}_\mathcal{X})$.
+Next, choose a scheme $U$ and a surjective smooth morphism
+$U \to \mathcal{X}$. It suffices to prove the restriction of
+$Q(\mu)$ to $U_\etale$ is an isomorphism, see
+Cohomology of Stacks, Section \ref{stacks-cohomology-section-further-remarks}.
+In turn, by the material in the same section,
+it suffices to prove the restriction of $\mu$ to $U_\etale$
+is an isomorphism (this uses that the source and target of $\mu$
+are locally quasi-coherent modules with the base change property).
+Moreover, we may compute pushforwards in the \'etale topology, see
+Cohomology of Stacks, Proposition
+\ref{stacks-cohomology-proposition-loc-qcoh-flat-base-change}.
+Then finally, we see that
+$a_*\mathcal{O}_\mathcal{Y}|_{U_\etale} = (V \to U)_{small, *}\mathcal{O}_V$
+where $V = U \times_\mathcal{X} \mathcal{Y}$.
+Similarly for $b_*$ and $f_*$. Thus the result follows
+from the K\"unneth formula for flat, quasi-compact, quasi-separated
+morphisms of schemes, see Derived Categories of Schemes,
+Lemma \ref{perfect-lemma-kunneth}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-fully-faithful}
+Let $\mathcal{X}$ be an algebraic stack with affine diagonal.
+Let $B$ be a ring. Let $f_i : \Spec(B) \to \mathcal{X}$, $i = 1, 2$
+be two morphisms. Let $t : f_1^* \to f_2^*$ be an isomorphism
+of the tensor functors
+$f_i^* : \QCoh(\mathcal{O}_\mathcal{X}) \to \text{Mod}_B$.
+Then there is a $2$-arrow $f_1 \to f_2$ inducing $t$.
+\end{lemma}
+
+\begin{proof}
+Choose an affine scheme $U = \Spec(A)$ and a surjective smooth
+morphism $g : U \to \mathcal{X}$, see
+Properties of Stacks, Lemma \ref{stacks-properties-lemma-quasi-compact-stack}.
+Since the diagonal of $\mathcal{X}$ is affine, we see that
+$U_i = \Spec(B) \times_{f_i, \mathcal{X}, g} U$ is affine.
+Say $U_i = \Spec(C_i)$. Then $C_i$ is the $B$-algebra endowed
+with ring map $A \to C_i$ constructed in Lemma \ref{lemma-affine}
+using the functor $F = f_i^*$. Therefore $t$ induces an isomorphism
+$C_1 \to C_2$ of $B$-algebras, compatible with the ring maps
+$A \to C_1$ and $A \to C_2$. In other words, we have a commutative
+diagrams
+$$
+\xymatrix{
+U_i \ar[r] \ar[d] & U \ar[d]^g \\
+\Spec(B) \ar[r]^{f_i} & \mathcal{X}
+}
+\quad\quad
+\xymatrix{
+&
+U_2 \ar[ld] \ar[d]^{\cong} \ar[rd] \\
+\Spec(B) &
+U_1 \ar[l] \ar[r] &
+U
+}
+$$
+This already shows that the objects $f_1$ and $f_2$ of $\mathcal{X}$
+over $\Spec(B)$ become isomorphic after the smooth covering
+$\{U_1 \to \Spec(B)\}$. To show that this descends to an isomorphism
+of $f_1$ and $f_2$ over $\Spec(B)$, we have to show that our isomorphism
+(which comes from the commutative diagrams above) is compatible
+with the descent data over $U_1 \times_{\Spec(B)} U_1$. For this
+we observe that $U \times_\mathcal{X} U$ is affine too, that
+we have the morphism $g' : U \times_\mathcal{X} U \to \mathcal{X}$, and
+that
+$$
+U_i \times_{\Spec(B)} U_i =
+\Spec(B) \times_{f_i, \mathcal{X}, g'}
+(U \times_\mathcal{X} U)
+$$
+It follows that the isomorphism $C_1 \otimes_B C_1 \to C_2 \otimes_B C_2$
+coming from the isomorphism $C_1 \to C_2$ is compatible with the
+morphisms $U_i \times_{\Spec(B)} U_i \to U \times_\mathcal{X} U$.
+Some details omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-main}
+Let $\mathcal{X}$ be a Noetherian algebraic stack with affine diagonal.
+Let $B$ be a ring.
+Let $F : \QCoh(\mathcal{O}_\mathcal{X}) \to \text{Mod}_B$
+be a right exact tensor functor which commutes with direct sums.
+Then $F$ comes from a unique morphism $\Spec(B) \to \mathcal{X}$.
+\end{lemma}
+
+\begin{proof}
+Choose a surjective smooth morphism $g : U \to \mathcal{X}$ with $U = \Spec(A)$
+affine, see Properties of Stacks, Lemma
+\ref{stacks-properties-lemma-quasi-compact-stack}. Apply
+Lemma \ref{lemma-affine} to get the finite type
+commutative $B$-algebra $C = F(g_{\QCoh, *}\mathcal{O}_U)$
+and the ring map $A \to C$.
+By Lemma \ref{lemma-universally-injective}
+the ring map $B \to C$ is universally injective.
+Consider the algebra
+$$
+C \otimes_B C =
+F(g_{\QCoh, *}\mathcal{O}_U
+\otimes_{\mathcal{O}_\mathcal{X}}
+g_{\QCoh, *}\mathcal{O}_U)
+$$
+Since $g$ is flat, quasi-compact, and quasi-separated
+by Lemma \ref{lemma-easy-kunneth} we have the first equality in
+$$
+g_{\QCoh, *}\mathcal{O}_U
+\otimes_{\mathcal{O}_\mathcal{X}}
+g_{\QCoh, *}\mathcal{O}_U
+=
+f_{\QCoh, *}\mathcal{O}_{U \times_\mathcal{X} U} =
+g_{\QCoh, *}(\text{pr}_{2, *}\mathcal{O}_{U \times_\mathcal{X} U})
+$$
+where
+$f : U \times_\mathcal{X} U \to \mathcal{X}$ is the obvious morphism
+and $\text{pr}_2 : U \times_\mathcal{X} U \to U$ is the second
+projection. The second equality follows from
+Cohomology of Stacks, Lemma \ref{stacks-cohomology-lemma-relative-leray}
+and $f = g \circ \text{pr}_2$. Since the diagonal of $\mathcal{X}$
+is affine, we see that $U \times_\mathcal{X} U = \Spec(R)$ is affine.
+Let us use $\text{pr}_2 : A \to R$ to view $R$ as an $A$-algebra.
+All in all we obtain
+$$
+C \otimes_B C =
+F(g_{\QCoh, *}\mathcal{O}_U
+\otimes_{\mathcal{O}_\mathcal{X}}
+g_{\QCoh, *}\mathcal{O}_U) =
+F(g_{\QCoh, *}(\text{pr}_{2, *}\mathcal{O}_{U \times_\mathcal{X} U})) =
+R \otimes_A C
+$$
+where the final equality follows from the final statement of
+Lemma \ref{lemma-affine}. Since $A \to R$ is flat (because
+$\text{pr}_2$ is flat as a base change of $U \to \mathcal{X}$),
+we conclude that $C \otimes_B C$ is flat over $C$.
+By Lemma \ref{lemma-flat} we conclude that $B \to C$ is faithfully flat.
+
+\medskip\noindent
+We claim there is a solid commutative diagram
+$$
+\xymatrix{
+\Spec(C \otimes_B C) \ar@<1ex>[d] \ar@<-1ex>[d] \ar[r] &
+U \times_\mathcal{X} U \ar@<1ex>[d] \ar@<-1ex>[d] \\
+\Spec(C) \ar[d] \ar[r] &
+U \ar[d] \\
+\Spec(B) \ar@{..>}[r] &
+\mathcal{X}
+}
+$$
+The arrow $\Spec(C) \to U = \Spec(A)$ comes from the ring map
+$A \to C$ in the statement of Lemma \ref{lemma-affine}.
+The arrow $\Spec(C \otimes_B C) \to U \times_\mathcal{X} U$
+simlarly comes from the ring map $R \to C \otimes_B C$.
+To verify the top square commutes use Lemma \ref{lemma-fully-faithful};
+details omitted.
+We conclude we get the dotted arrow $\Spec(B) \to \mathcal{X}$
+by Proposition \ref{proposition-stack-fpqc}.
+
+\medskip\noindent
+The statement that $F$ is the functor corresponding to pullback
+by the dotted arrow is also clear from this and the corresponding
+statement in Lemma \ref{lemma-affine}. Details omitted.
+\end{proof}
+
+\noindent
+For a ring $B$ let us denote $\text{Mod}^{fg}_B$ the category of
+finitely generated $B$-modules (AKA finite $B$-modules).
+
+\begin{theorem}
+\label{theorem-main}
+Let $\mathcal{X}$ be a Noetherian algebraic stack with affine diagonal.
+Let $B$ be a Noetherian ring.
+Let $F : \text{Coh}(\mathcal{O}_\mathcal{X}) \to \text{Mod}^{fg}_B$
+be a right exact tensor functor.
+Then $F$ comes from a unique morphism $\Spec(B) \to \mathcal{X}$.
+\end{theorem}
+
+\begin{proof}
+By Lemma \ref{lemma-extend}
+we can extend $F$ uniquely to a right exact tensor functor
+$F : \QCoh(\mathcal{O}_\mathcal{X}) \to \text{Mod}_B$
+commuting with all direct susms. Then we can apply
+Lemma \ref{lemma-main}.
+\end{proof}
+
+
+
+
+
+
+
 
 
 

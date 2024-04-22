@@ -153,9 +153,14 @@ this step could be avoided.
 \label{section-trace}
 
 \noindent
-In this section $p$ will be a prime number. Let $R$ be an
-$\mathbf{F}_p$-algebra. Given an $a \in R$ set $S = R[x]/(x^p - a)$.
-Define an $R$-linear map
+Some of the results in this section can be deduced from the much more
+general discussion on traces on differential forms in
+de Rham Cohomology, Section \ref{derham-section-trace}.
+See Remark \ref{remark-compare-Garel} for a discussion.
+
+\medskip\noindent
+We fix a prime number $p$. Let $R$ be an $\mathbf{F}_p$-algebra.
+Given an $a \in R$ set $S = R[x]/(x^p - a)$. Define an $R$-linear map
 $$
 \text{Tr}_x : \Omega_{S/R} \longrightarrow \Omega_R
 $$
@@ -315,7 +320,7 @@ H_1(L_{S/R}) \xrightarrow{\delta} \Omega_{R/\Lambda} \otimes_R S \to
 $$
 (Algebra, Lemma \ref{algebra-lemma-exact-sequence-NL}).
 The module $\Omega_{S/R}$ is free over $S$ with basis $\text{d}x$
-and the module $H^1(L_{S/R})$ is free over $S$ with basis $x^p - a$
+and the module $H_1(L_{S/R})$ is free over $S$ with basis $x^p - a$
 which $\delta$ maps to $-\text{d}a \otimes 1$ in
 $\Omega_{R/\Lambda} \otimes_R S$. In particular, if we set
 $$
@@ -329,7 +334,7 @@ $$
 \wedge^t_R(M) \otimes_R \Omega_{S/R}
 $$
 Now, since the image of the map
-$\text{Tr} : \Omega_{S/R} \to \Omega_{R/\lambda}$
+$\text{Tr} : \Omega_{S/R} \to \Omega_{R/\Lambda}$
 of Lemma \ref{lemma-trace-well-defined} is contained in $R\text{d}a$ we
 see that wedging with an element in the image annihilates $\text{d}a$.
 Hence there is a canonical map
@@ -340,6 +345,30 @@ mapping
 $\overline{\eta}_1 \wedge \ldots \wedge \overline{\eta}_t \wedge \omega$
 to $\eta_1 \wedge \ldots \wedge \eta_t \wedge \text{Tr}(\omega)$.
 \end{proof}
+
+\begin{remark}
+\label{remark-compare-Garel}
+Let $\mathbf{F}_p \subset \Lambda \subset R \subset S$ and $\text{Tr}$
+be as in Lemma \ref{lemma-trace-higher}. By
+de Rham Cohomology, Proposition \ref{derham-proposition-Garel}
+there is a canonical map of complexes
+$$
+\Theta_{S/R} :
+\Omega_{S/\Lambda}^\bullet
+\longrightarrow
+\Omega_{R/\Lambda}^\bullet
+$$
+The computation in de Rham Cohomology, Example \ref{derham-example-Garel}
+shows that $\Theta_{S/R}(x^i \text{d}x) = \text{Tr}_x(x^i\text{d}x)$
+for all $i$. Since $\text{Trace}_{S/R} = \Theta^0_{S/R}$
+is identically zero and since
+$$
+\Theta_{S/R}(a \wedge b) = a \wedge \Theta_{S/R}(b)
+$$
+for $a \in \Omega^i_{R/\Lambda}$ and $b \in \Omega^j_{S/\Lambda}$
+it follows that $\text{Tr} = \Theta_{S/R}$. The advantage of using $\text{Tr}$
+is that it is a good deal more elementary to construct.
+\end{remark}
 
 \begin{lemma}
 \label{lemma-trace-extends}
@@ -368,7 +397,7 @@ Thus we reduce to the case discussed in the next paragraph.
 
 \medskip\noindent
 Assume $X = \Spec(A)$ and $Y = \Spec(B)$ with $A$ a discrete valuation
-ring and $B$ finite over $A$. Since the induced extension $K \subset L$
+ring and $B$ finite over $A$. Since the induced extension $L/K$
 of fraction fields is purely inseparable, we see that $B$ is local too.
 Hence $B$ is a discrete valuation ring too. Then either
 \begin{enumerate}
@@ -419,8 +448,8 @@ sometimes used with a different meaning.
 \begin{lemma}
 \label{lemma-blowup}
 Let $(A, \mathfrak m, \kappa)$ be a regular local ring of dimension $2$.
-Let $f : X \to S = \Spec(A)$ be the blowing up of $A$ in $\mathfrak m$.
-There is a closed immersion
+Let $f : X \to S = \Spec(A)$ be the blowing up of $A$ in $\mathfrak m$
+wotj exceptional divisor $E$. There is a closed immersion
 $$
 r : X \longrightarrow \mathbf{P}^1_S
 $$
@@ -495,9 +524,9 @@ Properties, Lemma \ref{properties-lemma-characterize-regular}.
 Let $x \in X$ be a closed point. Since $f$ is proper $x$ maps to
 $\mathfrak m$, i.e., $x$ is a point of the exceptional divisor $E$.
 Then $E$ is an effective Cartier divisor and $E \cong \mathbf{P}^1_\kappa$.
-Thus if $f \in \mathfrak m_x \subset \mathcal{O}_{X, x}$ is a local
+Thus if $g \in \mathfrak m_x \subset \mathcal{O}_{X, x}$ is a local
 equation for $E$, then
-$\mathcal{O}_{X, x}/(f) \cong \mathcal{O}_{\mathbf{P}^1_\kappa, x}$.
+$\mathcal{O}_{X, x}/(g) \cong \mathcal{O}_{\mathbf{P}^1_\kappa, x}$.
 Since $\mathbf{P}^1_\kappa$ is covered by two affine opens which are the
 spectrum of a polynomial ring over $\kappa$, we see that
 $\mathcal{O}_{\mathbf{P}^1_\kappa, x}$ is regular by
@@ -825,12 +854,13 @@ $$
 X_n \to X_{n - 1} \to \ldots \to X_1 \to X_0 = X
 $$
 where $X_{i + 1} \to X_i$ is the blowing up of $X_i$ at a closed
-point $x_i$ lying above a point of $T$ such that
+point lying above a point of $T$ such that
 $\mathcal{I}\mathcal{O}_{X_n}$ is an invertible ideal sheaf.
 \end{lemma}
 
 \begin{proof}
-Say $T = \{x_1, \ldots, x_r\}$. Set
+Say $T = \{x_1, \ldots, x_r\}$. Denote $I_i$ the stalk of $\mathcal{I}$ at
+$x_i$. Set
 $$
 n_i = \text{length}_{\mathcal{O}_{X, x_i}}(\mathcal{O}_{X, x_i}/I_i)
 $$
@@ -941,7 +971,7 @@ $$
 X_n \to X_{n - 1} \to \ldots \to X_1 \to X_0 = X
 $$
 and an $S$-morphism $f_n : X_n \to Y$ such that $X_{i + 1} \to X_i$
-blowing up of $X_i$ at a closed point not lying over $U$
+is the blowing up of $X_i$ at a closed point not lying over $U$
 and $f_n$ and $f$ agree.
 \end{lemma}
 
@@ -1437,7 +1467,7 @@ Hence $f$ is a global section of $\mathcal{I}$
 which generates $\mathcal{I}_{\xi_i}$ by construction.
 Thus the image $s_i$ of $f$ in $\Gamma(C_i, \mathcal{I}|_{C_i})$ is nonzero.
 However, our choice of $f$ guarantees that $s_i$ has a zero at $x_i$.
-Hence the degree of $\mathcal{I}|_{C_i}$ is $>0$ by
+Hence the degree of $\mathcal{I}|_{C_i}$ is $> 0$ by
 Varieties, Lemma \ref{varieties-lemma-check-invertible-sheaf-trivial}.
 \end{proof}
 
@@ -1632,7 +1662,7 @@ Rf_*R\SheafHom_{\mathcal{O}_X}(\omega_X^\bullet, \omega_X^\bullet) =
 Rf_*\mathcal{O}_X
 $$
 The first equality by
-Duality for Schemes, Lemma \ref{duality-lemma-iso-on-RSheafHom}
+Duality for Schemes, Example \ref{duality-example-iso-on-RSheafHom-noetherian}
 and the fact that $\omega_X^\bullet = f^!\omega_A^\bullet$
 by construction, and the second equality because $\omega_X^\bullet$
 is a dualizing complex for $X$ (which goes back to
@@ -1897,7 +1927,7 @@ is possible for $A$ then it is possible for $B$.
 \end{lemma}
 
 \begin{proof}
-Let $n$ be the degree of the fraction field extension $K \subset L$.
+Let $n$ be the degree of the fraction field extension $L/K$.
 Let $\text{Trace}_{L/K} : L \to K$ be the trace. Since the extension is finite
 separable the trace pairing $(h, g) \mapsto \text{Trace}_{L/K}(fg)$
 is a nondegenerate bilinear form on $L$ over $K$. See
@@ -2009,7 +2039,7 @@ By duality we have $Rf_*\omega_X = R\Hom_A(Rf_*\mathcal{O}_X, \omega_A)$
 normalized relative to $\omega_A[2]$,
 see Duality for Schemes, Lemma \ref{duality-lemma-duality-bootstrap}
 or more directly Section \ref{duality-section-duality} or even more directly
-Lemma \ref{duality-lemma-iso-on-RSheafHom}).
+Example \ref{duality-example-iso-on-RSheafHom-noetherian}).
 The distinguished triangle
 $$
 A \to Rf_*\mathcal{O}_X \to R^1f_*\mathcal{O}_X[-1] \to A[1]
@@ -2109,11 +2139,12 @@ closure of $A$. Then reduction to rational singularities is possible for $B$.
 \begin{proof}
 We have $A = k[[x, y]]$. Write $L = K[x]/(x^p - f)$ for some $f \in A$
 and denote $g \in B$ the congruence class of $x$, i.e., the element such
-that $g^p = f$. By
+that $g^p = f$. By Algebra, Lemma \ref{algebra-lemma-derivative-zero-pth-power}
+we see that $\text{d}f$ is nonzero in $\Omega_{K/\mathbf{F}_p}$. By
 More on Algebra, Lemma \ref{more-algebra-lemma-power-series-ring-subfields}
 there exists a subfield $k^p \subset k' \subset k$ with
-$p^e = [k : k'] < \infty$
-such that $f$ is not contained in the fraction field $K_0$ of
+$p^e = [k : k'] < \infty$ such that $\text{d}f$ is nonzero
+in $\Omega_{K/K_0}$ where $K_0$ is the fraction field of
 $A_0 = k'[[x^p, y^p]] \subset A$. Then
 $$
 \Omega_{A/A_0} =
@@ -2134,8 +2165,7 @@ $$
 Claim: the cokernel of $c$ is annihilated by a nonzero element of $B$.
 
 \medskip\noindent
-Since $\text{d}f$ is nonzero in $\Omega_{A/A_0}$
-(Algebra, Lemma \ref{algebra-lemma-derivative-zero-pth-power}) we can find
+Since $\text{d}f$ is nonzero in $\Omega_{A/A_0}$ we can find
 $\eta_1, \ldots, \eta_{e + 1} \in \Omega_{A/A_0}$ such that
 $\theta = \eta_1 \wedge \ldots \wedge \eta_{e + 1} \wedge \text{d}f$ is
 nonzero in $\omega_A = \Omega^{e + 2}_{A/A_0}$. To prove the claim we
@@ -2158,13 +2188,18 @@ by the explicit description of the trace map in Lemma \ref{lemma-trace-higher}.
 \medskip\noindent
 Let $Y \to \Spec(B)$ be a normal modification. Exactly as in the proof of
 Lemma \ref{lemma-go-up-separable} we can reduce to the case where $Y$
-is finite over a modification $X$ of $\Spec(A)$. Arguing as in the proof
-of Lemma \ref{lemma-regular-rational} we may even assume that $X = X_n$ where
+is finite over a modification $X$ of $\Spec(A)$. By
+Lemma \ref{lemma-dominate-by-blowing-up-in-points} we may
+even assume $X \to \Spec(A)$ is the result of a sequence of
+blowing ups in closed points. Picture:
 $$
-X_n \to X_{n - 1} \to \ldots \to X_1 \to X_0 = X
+\xymatrix{
+Y \ar[d]_\pi \ar[r]_-g & \Spec(B) \ar[d] \\
+X \ar[r]^-f & \Spec(A)
+}
 $$
-is a sequence of blowing ups in closed points. By
-Lemma \ref{lemma-trace-extends} we obtain the first arrow in
+We may apply Lemma \ref{lemma-trace-extends} to $\pi$ and
+we obtain the first arrow in
 $$
 \pi_*(\Omega^{e + 2}_{Y/A_0})
 \xrightarrow{\text{Tr}}
@@ -2173,8 +2208,9 @@ $$
 \omega_X
 $$
 and the second arrow is from
-Lemma \ref{lemma-compare-differentials-dualizing}.
-By duality this corresponds to a map
+Lemma \ref{lemma-compare-differentials-dualizing}
+(because $f$ is a sequence of blowups in closed points).
+By duality for the finite morphism $\pi$ this corresponds to a map
 $$
 c_Y : \Omega^{e + 2}_{Y/A_0} \longrightarrow \omega_Y
 $$
@@ -2451,13 +2487,8 @@ the generic point is invertible. Namely, $\omega_A \otimes_A K$
 is a dualizing module for the fraction field $K$ of $A$, hence has
 rank $1$. Thus there exists a blowup $b : Y \to \Spec(A)$ such that
 the strict transform of $\omega_A$ with respect to $b$ is an invertible
-$\mathcal{O}_Y$-module. This follows from the definition of strict
-transform in
-Divisors, Definition \ref{divisors-definition-strict-transform},
-the description of the strict transform of quasi-coherent modules in
-Properties, Lemma
-\ref{properties-lemma-sections-supported-on-closed-subset}, and
-More on Algebra, Lemma \ref{more-algebra-lemma-blowup-module}.
+$\mathcal{O}_Y$-module, see
+Divisors, Lemma \ref{divisors-lemma-blowup-fitting-ideal}.
 By Lemma \ref{lemma-dominate-by-normalized-blowing-up}
 we can choose a sequence of normalized blowups
 $$
@@ -3682,7 +3713,7 @@ Let $Y$ be a $2$-dimensional Noetherian integral scheme.
 We say $Y$ has a {\it resolution of singularities by normalized blowups}
 if there exists a sequence
 $$
-Y_n \to X_{n - 1} \to \ldots \to Y_1 \to Y_0 \to Y
+Y_n \to Y_{n - 1} \to \ldots \to Y_1 \to Y_0 \to Y
 $$
 where
 \begin{enumerate}
@@ -3825,7 +3856,7 @@ will have the required ``excellency'' properties required of them.
 Choose $A_0 \subset A$ with $A_0$ a regular complete local ring
 and $A_0 \to A$ finite, see Algebra, Lemma
 \ref{algebra-lemma-complete-local-Noetherian-domain-finite-over-regular}.
-This induces a finite extension of fraction fields $K_0 \subset K$.
+This induces a finite extension of fraction fields $K/K_0$.
 We will argue by induction on $[K : K_0]$. The base case is
 when the degree is $1$ in which case $A_0 = A$ and the result is true.
 
@@ -3921,9 +3952,9 @@ equivalent
 \item there exists an alteration $X \to Y$ with $X$ regular,
 \item there exists a resolution of singularities of $Y$,
 \item $Y$ has a resolution of singularities by normalized blowups,
-\item the normalization $Y^\nu \to Y$ is finite and $Y^\nu$ has
-finitely many singular points $y_1, \ldots, y_m$ such that the
-completion of $\mathcal{O}_{Y^\nu, y_i}$ is normal.
+\item the normalization $Y^\nu \to Y$ is finite, $Y^\nu$ has
+finitely many singular points $y_1, \ldots, y_m$, and for each
+$y_i$ the completion of $\mathcal{O}_{Y^\nu, y_i}$ is normal.
 \end{enumerate}
 \end{theorem}
 
@@ -4206,7 +4237,7 @@ $$
 X_n \to \ldots \to X_1 \to X
 $$
 of blowups in closed points such that the inverse image $Z_n$ of $Z$
-in $X_n$ is an effective Cartier divisor supported on a normal crossings
+in $X_n$ is an effective Cartier divisor supported on a strict normal crossings
 divisor.
 \end{lemma}
 
@@ -4714,9 +4745,10 @@ any point of $E$ is mapped to a point where the first $n + 1$ homogeneous
 coordinates are all zero, in particular into the complement of $W$.
 Moreover, it is clear that there is a factorization
 $$
-U = \varphi^{-1}(W) \xrightarrow{\varphi|_U} W \xrightarrow{pr} \mathbf{P}^n_S
+U = \varphi^{-1}(W) \xrightarrow{\varphi|_U}
+W \xrightarrow{\text{pr}} \mathbf{P}^n_S
 $$
-of $\psi|_U$ where $pr$ is the projection using the first
+of $\psi|_U$ where $\text{pr}$ is the projection using the first
 $n + 1$ coordinates and $\psi : X \to \mathbf{P}^n_S$ is the embedding chosen
 above. It follows that $\varphi|_U : U \to W$ is quasi-finite.
 
@@ -4752,7 +4784,7 @@ using standard results on ample invertible modules and
 (quasi-)projective morphisms.
 
 \medskip\noindent
-Proof of (2). Projectivity of $f$ means that $f$ is proper and there exists
+Proof of (1). Projectivity of $f$ means that $f$ is proper and there exists
 an $f$-ample invertible module $\mathcal{L}$, see
 Morphisms, Lemma \ref{morphisms-lemma-projective-is-quasi-projective-proper}
 and Definition \ref{morphisms-definition-quasi-projective}.
@@ -4781,20 +4813,20 @@ For affine opens of $S$ avoiding the image of $v$, we see that
 the same is true because it holds for $\mathcal{L}$.
 Thus $\mathcal{L}'$ is $(X' \to S)$-relatively ample by
 Morphisms, Lemma \ref{morphisms-lemma-characterize-relatively-ample}
-and (2) is proved.
+and (1) is proved.
 
 \medskip\noindent
-Proof of (3). We can write $X$ as an open subscheme of a scheme
+Proof of (2). We can write $X$ as an open subscheme of a scheme
 $\overline{X}$ projective over $S$ by Morphisms, Lemma
 \ref{morphisms-lemma-quasi-projective-open-projective}.
-By (2) there is a contraction $b : \overline{X} \to \overline{X}'$
+By (1) there is a contraction $b : \overline{X} \to \overline{X}'$
 and $\overline{X}'$ is projective over $S$. Then we let
 $X' \subset \overline{X}$ be the image of $X \to \overline{X}'$;
 this is an open as $b$ is an isomorphism away from $E$.
 Then $X \to X'$ is the desired contraction. Note that
 $X'$ is quasi-projective over $S$ as it has an
 $S$-relatively ample invertible module
-by the construction in the proof of part (2).
+by the construction in the proof of part (1).
 \end{proof}
 
 \begin{lemma}

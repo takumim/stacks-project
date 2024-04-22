@@ -36,10 +36,18 @@ considered are schemes locally of finite type over a fixed
 excellent Noetherian base.
 
 \medskip\noindent
-Our definition is slightly different. First of all we consider sheaves
-for the fppf topology. This is just a technical point and scarcely makes
-any difference. Second, we include the condition that the diagonal is
-representable.
+Our definition is slightly different from Artin's original definition.
+Namely, our algebraic spaces are sheaves for the fppf topology
+whose diagonal is representable and which have an \'etale ``cover''
+by a scheme. Working with the fppf topology instead of the \'etale
+topology is just a technical point and scarcely makes
+any difference; we will show in
+Bootstrap, Section \ref{bootstrap-section-spaces-etale}
+that we would have gotten the same category of algebraic spaces
+if we had worked with the \'etale topology. In that same chapter
+we will prove that the condition on the diagonal
+can in some sense be removed, see
+Bootstrap, Section \ref{bootstrap-section-bootstrap}.
 
 \medskip\noindent
 After defining algebraic spaces we make some foundational observations.
@@ -130,7 +138,8 @@ Here are some lemmas about this notion that work in great generality.
 
 \begin{lemma}
 \label{lemma-morphism-schemes-gives-representable-transformation}
-Let $S$, $X$, $Y$ be objects of $\Sch_{fppf}$.
+Let $S$ be a scheme contained in $\Sch_{fppf}$ and let
+$X$, $Y$ be objects of $(\Sch/S)_{fppf}$.
 Let $f : X \to Y$ be a morphism of schemes.
 Then
 $$
@@ -520,7 +529,7 @@ above, or we could mean a surjective map of presheaves, see
 Sites, Definition \ref{sites-definition-presheaves-injective-surjective},
 or, if both $F$ and $G$ are sheaves,
 we could mean a surjective map of sheaves, see
-Sites, Definition \ref{sites-definition-sheaves-injective-surjective},
+Sites, Definition \ref{sites-definition-sheaves-injective-surjective}.
 If not mentioned otherwise when discussing morphisms of algebraic spaces
 we will always mean the first. See
 Lemma \ref{lemma-surjective-flat-locally-finite-presentation}
@@ -972,6 +981,31 @@ In this section we really start abusing notation and not
 distinguish between schemes and the spaces they represent.
 
 \begin{lemma}
+\label{lemma-coproduct-sheaves-open-and-closed}
+Let $S \in \Ob(\Sch_{fppf})$. Let $F$ and $G$ be sheaves on
+$(\Sch/S)_{fppf}^{opp}$ and denote $F \amalg G$ the coproduct
+in the category of sheaves. The map $F \to F \amalg G$ is representable by
+open and closed immersions.
+\end{lemma}
+
+\begin{proof}
+Let $U$ be a scheme and let $\xi \in (F \amalg G)(U)$. Recall the
+coproduct in the category of sheaves is the sheafification of
+the coproduct presheaf (Sites, Lemma \ref{sites-lemma-colimit-sheaves}).
+Thus there exists an fppf covering $\{g_i : U_i \to U\}_{i \in I}$
+and a disjoint union decomposition $I = I' \amalg I''$ such that
+$U_i \to U \to F \amalg G$ factors through $F$, resp.\ $G$
+if and only if $i \in I'$, resp.\ $i \in I''$. Since $F$ and
+$G$ have empty intersection in $F \amalg G$ we conclude that
+$U_i \times_U U_j$ is empty if $i \in I'$ and $j \in I''$.
+Hence $U' = \bigcup_{i \in I'} g_i(U_i)$ and
+$U'' = \bigcup_{i \in I''} g_i(U_i)$ are disjoint open
+(Morphisms, Lemma \ref{morphisms-lemma-fppf-open}) subschemes of $U$
+with $U = U' \amalg U''$.
+We omit the verification that $U' = U \times_{F \amalg G} F$.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-representable-sheaf-coproduct-sheaves}
 Let $S \in \Ob(\Sch_{fppf})$.
 Let $U \in \Ob((\Sch/S)_{fppf})$.
@@ -982,18 +1016,11 @@ subscheme $U_i$ and $U \cong \coprod U_i$ as schemes.
 \end{lemma}
 
 \begin{proof}
-By assumption this means there exists an fppf covering
-$\{U_j \to U\}_{j \in J}$ such that each $U_j \to U$
-factors through $F_{i(j)}$ for some $i(j) \in I$.
-Denote $V_j = \Im(U_j \to U)$.
-This is an open of $U$ by
-Morphisms, Lemma \ref{morphisms-lemma-fppf-open}, and
-$\{U_j \to V_j\}$ is an fppf covering. Hence it follows that
-$V_j \to U$ factors through $F_{i(j)}$ since $F_{i(j)}$ is
-a subsheaf. It follows from $F_i \cap F_{i'} = \emptyset$, $i \not = i'$
-that $V_j \cap V_{j'} = \emptyset$
-unless $i(j) = i(j')$. Hence we can take
-$U_i = \bigcup_{j, \ i(j) = i} V_j$ and everything is clear.
+By Lemma \ref{lemma-coproduct-sheaves-open-and-closed}
+the map $F_i \to U$ is representable by open and closed immersions.
+Hence $F_i$ is representable by an open and closed subscheme $U_i$ of $U$.
+We have $U = \coprod U_i$ because we have $U \cong \coprod F_i$
+as sheaves and we can test the equality on points.
 \end{proof}
 
 \begin{lemma}
@@ -1007,17 +1034,18 @@ then each $F_i$ is an algebraic space over $S$.
 \end{lemma}
 
 \begin{proof}
-It follows directly from the representability of
-$F \to F \times F$ that each diagonal morphism
-$F_i \to F_i \times F_i$ is representable.
+The representability of $F \to F \times F$ implies that each diagonal morphism
+$F_i \to F_i \times F_i$ is representable (immediate from the definitions
+and the fact that $F \times_{(F \times F)} (F_i \times F_i) = F_i$).
 Choose a scheme $U$ in $(\Sch/S)_{fppf}$ and a surjective
-\'etale morphism $U \to \coprod F_i$ (this exist by hypothesis).
-By considering the inverse image of $F_i$ we get a decomposition
-of $U$ (as a sheaf) into a coproduct of sheaves.
-By Lemma \ref{lemma-representable-sheaf-coproduct-sheaves}
-we get correspondingly $U \cong \coprod U_i$.
-Then it follows easily that $U_i \to F_i$ is surjective
-and \'etale (from the corresponding property of $U \to F$).
+\'etale morphism $U \to F$ (this exist by hypothesis).
+The base change $U \times_F F_i \to F_i$ is surjective and \'etale
+by Lemma \ref{lemma-base-change-representable-transformations-property}.
+On the other hand, $U \times_F F_i$ is a scheme by
+Lemma \ref{lemma-coproduct-sheaves-open-and-closed}.
+Thus we have verified all the conditions in
+Definition \ref{definition-algebraic-space}
+and $F_i$ is an algebraic space.
 \end{proof}
 
 \noindent
@@ -1058,7 +1086,7 @@ Assume
 and subfunctors $F_i \subset F$ such that
 \begin{enumerate}
 \item each $F_i$ is an algebraic space,
-\item each $F_i \to F$ is a representable,
+\item each $F_i \to F$ is representable,
 \item each $F_i \to F$ is an open immersion (see
 Definition \ref{definition-relative-representable-property}),
 \item the map $\coprod F_i \to F$ is surjective as a map of sheaves, and
@@ -1093,13 +1121,13 @@ Lemma \ref{lemma-representable-diagonal}.
 Consider the subfunctors $G_i = G \times_F F_i$.
 Note that $G_i = V_i \times_{F_i} V'_i$, and hence is representable
 as $F_i$ is an algebraic space.
-By the above the $G_i$ form a Zariski covering of $F$.
+By the above the $G_i$ form a Zariski covering of $G$.
 Hence by Schemes, Lemma \ref{schemes-lemma-glue-functors}
 we see $G$ is representable.
 
 \medskip\noindent
 Choose a scheme $U \in \Ob((\Sch/S)_{fppf})$ and a surjective
-\'etale morphism $U \to \coprod F_i$ (this exist by hypothesis).
+\'etale morphism $U \to \coprod F_i$ (this exists by hypothesis).
 We may write $U = \coprod U_i$ with $U_i$ the inverse image of $F_i$,
 see Lemma \ref{lemma-representable-sheaf-coproduct-sheaves}.
 We claim that $U \to F$ is surjective and \'etale. Surjectivity follows
@@ -1161,7 +1189,7 @@ is a coequalizer diagram in $\Sh((\Sch/S)_{fppf})$.
 \begin{proof}
 Let $T/S$ be an object of $(\Sch/S)_{fppf}$.
 Then $R(T) = \{(a, b) \in U(T) \times U(T) \mid f \circ a = f \circ b\}$
-which is clearly defines an equivalence relation on $U(T)$.
+which defines an equivalence relation on $U(T)$.
 The morphisms $s, t : R \to U$ are \'etale because the morphism
 $U \to F$ is \'etale.
 
@@ -1294,7 +1322,7 @@ $U'/R' \to U/R$ is representable, and is an open immersion.
 
 \begin{proof}
 By Groupoids, Lemma \ref{groupoids-lemma-restrict-relation}
-the morphism $j' = (t', s') : R' \to U' \times_S U'$
+the morphism $j' = (s', t') : R' \to U' \times_S U'$
 defines an equivalence relation. Since $g$ is flat and locally of
 finite presentation we see that $g$ is universally open as well
 (Morphisms, Lemma \ref{morphisms-lemma-fppf-open}).
@@ -1559,7 +1587,7 @@ separated and locally quasi-finite (see second paragraph of the proof).
 By Descent, Lemma \ref{descent-lemma-descent-data-sheaves}
 we obtain a descent datum $(X, \varphi)$ relative
 to the fppf-covering $\{T' \to T\}$. Since
-$X \to T$ is separated and locally quasi-finite we see by
+$X \to T'$ is separated and locally quasi-finite we see by
 More on Morphisms, Lemma
 \ref{more-morphisms-lemma-separated-locally-quasi-finite-morphisms-fppf-descend}
 that this descent datum is effective.
@@ -1593,7 +1621,7 @@ By Lemma \ref{lemma-pullback-etale-equivalence-relation} $R'$ is an
 
 \medskip\noindent
 We apply the previous remark to $U' = \coprod U_i$, where
-$U = \bigcup U_i$ is an affine open covering of $S$. Hence we
+$U = \bigcup U_i$ is an affine open covering of $U$. Hence we
 may and do assume that $U = \coprod U_i$ where
 each $U_i$ is an affine scheme.
 
@@ -2180,7 +2208,7 @@ Properties of Spaces,
 Definition \ref{spaces-properties-definition-etale})
 \item the fibre $0_X$ of $X \to S$ over $0_S$ is isomorphic to
 $\Spec(k') = 0_U$,
-\item $X$ is not a scheme because if it where, then $\mathcal{O}_{X, 0_X}$
+\item $X$ is not a scheme because if it were, then $\mathcal{O}_{X, 0_X}$
 would be a local domain $(\mathcal{O}, \mathfrak m, \kappa)$ with
 fraction field $k(x)$, with $x \in \mathfrak m$ and residue field
 $\kappa = k'$ which is impossible,

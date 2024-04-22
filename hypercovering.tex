@@ -366,9 +366,10 @@ formulated as saying that the morphism of $K_0$ to
 the final object of $\text{SR}(\mathcal{C}, X)$
 is a covering.
 
-\begin{example}
+\begin{example}[{\v C}ech hypercoverings]
 \label{example-cech}
-Let $\{U_i \to X\}_{i \in I}$ be a covering of the site $\mathcal{C}$.
+Let $\mathcal{C}$ be a site with fibre products.
+Let $\{U_i \to X\}_{i \in I}$ be a covering of $\mathcal{C}$.
 Set $K_0 = \{U_i \to X\}_{i \in I}$.
 Then $K_0$ is a $0$-truncated simplicial object of
 $\text{SR}(\mathcal{C}, X)$. Hence we may form
@@ -386,6 +387,50 @@ K_n = \{
 U_{i_0} \times_X U_{i_1} \times_X \ldots \times_X U_{i_n} \to X
 \}_{(i_0, i_1, \ldots, i_n) \in I^{n + 1}}
 $$
+A hypercovering of $X$ of this form is called a
+{\it {\v C}ech hypercovering} of $X$.
+\end{example}
+
+\begin{example}[Hypercovering by a simplicial object of the site]
+\label{example-hypercovering-in-C}
+Let $\mathcal{C}$ be a site with fibre products. Let
+$X \in \Ob(\mathcal{C})$. Let $U$ be a simplicial object of $\mathcal{C}$.
+As usual we denote $U_n = U([n])$. Finally, assume given an augmentation
+$$
+a : U \to X
+$$
+In this situation we can consider the simplicial object $K$
+of $\text{SR}(\mathcal{C}, X)$ with terms $K_n = \{U_n \to X\}$.
+Then $K$ is a hypercovering of $X$ in the sense of
+Definition \ref{definition-hypercovering}
+if and only if the following three
+conditions\footnote{As $\mathcal{C}$ has fibre products, the
+category $\mathcal{C}/X$ has all finite limits.
+Hence the required coskeleta exist by
+Simplicial, Lemma \ref{simplicial-lemma-existence-cosk}.} hold:
+\begin{enumerate}
+\item $\{U_0 \to X\}$ is a covering of $\mathcal{C}$,
+\item $\{U_1 \to U_0 \times_X U_0\}$ is a covering of $\mathcal{C}$,
+\item $\{U_{n + 1} \to (\text{cosk}_n\text{sk}_n U)_{n + 1}\}$
+is a covering of $\mathcal{C}$ for $n \geq 1$.
+\end{enumerate}
+We omit the straightforward verification.
+\end{example}
+
+\begin{example}[{\v C}ech hypercovering associated to a cover]
+\label{example-cech-cover}
+Let $\mathcal{C}$ be a site with fibre products. Let $U \to X$ be a
+morphism of $\mathcal{C}$ such that $\{U \to X\}$ is a covering of
+$\mathcal{C}$\footnote{A morphism of $\mathcal{C}$ with this property
+is sometimes called a ``cover''.}. Consider the simplical object $K$ of
+$\text{SR}(\mathcal{C}, X)$ with terms
+$$
+K_n = \{U \times_X U \times_X \ldots \times_X U \to X\}
+\quad (n + 1 \text{ factors})
+$$
+Then $K$ is a hypercovering of $X$. This example is a special case of both
+Example \ref{example-cech} and of
+Example \ref{example-hypercovering-in-C}.
 \end{example}
 
 \begin{lemma}
@@ -581,7 +626,7 @@ $$
 By Simplicial, Lemma \ref{simplicial-lemma-cosk-minus-one-equivalence}
 the morphism $K(U) \to B$ is a trivial Kan fibration.
 Thus it is a homotopy equivalence
-(Simplicial, Lemma \ref{simplicial-lemma-cosk-minus-one-equivalence}).
+(Simplicial, Lemma \ref{simplicial-lemma-trivial-kan-homotopy}).
 Hence applying the functor ``free abelian group on'' to this
 we deduce that
 $$
@@ -945,14 +990,14 @@ double complex $A^{\bullet, \bullet}$ with terms
 $$
 A^{p, q} = \mathcal{I}^q(K_p)
 $$
-where the differential $d_1^{p, q} : A^{p, q} \to A^{p + 1, q}$
-is the one coming from the differential $\mathcal{I}^p \to \mathcal{I}^{p + 1}$
-and the differential $d_2^{p, q} : A^{p, q} \to A^{p, q + 1}$ is the
-one coming from the differential on the complex
-$s(\mathcal{I}^p(K))$ associated to the cosimplicial abelian group
-$\mathcal{I}^p(K)$ as explained above.
-As usual we denote $sA^\bullet$ the simple complex associated to
-the double complex $A^{\bullet, \bullet}$.
+where the differential $d_1^{p, q} : A^{p, q} \to A^{p + 1, q}$ is the one
+coming from the differential on the complex $s(\mathcal{I}^q(K))$
+associated to the cosimplicial abelian group $\mathcal{I}^p(K)$
+and the differential $d_2^{p, q} : A^{p, q} \to A^{p, q + 1}$ is the one
+coming from the differential $\mathcal{I}^q \to \mathcal{I}^{q + 1}$.
+Denote $\text{Tot}(A^{\bullet, \bullet})$ the total complex associated to
+the double complex $A^{\bullet, \bullet}$, see
+Homology, Section \ref{homology-section-double-complexes}.
 We will use the two spectral
 sequences $({}'E_r, {}'d_r)$ and $({}''E_r, {}''d_r)$
 associated to this double complex, see
@@ -960,40 +1005,40 @@ Homology, Section \ref{homology-section-double-complex}.
 
 \medskip\noindent
 By Lemma \ref{lemma-injective-trivial-cech}
-the complexes $s(\mathcal{I}^p(K))$ are acyclic in
-positive degrees and have $H^0$ equal to $\mathcal{I}^p(X)$.
+the complexes $s(\mathcal{I}^q(K))$ are acyclic in
+positive degrees and have $H^0$ equal to $\mathcal{I}^q(X)$.
 Hence by
 Homology, Lemma \ref{homology-lemma-double-complex-gives-resolution}
-and its proof the spectral sequence $({}'E_r, {}'d_r)$ degenerates,
-and the natural map
+the natural map
 $$
-\mathcal{I}^\bullet(X) \longrightarrow sA^\bullet
+\mathcal{I}^\bullet(X) \longrightarrow \text{Tot}(A^{\bullet, \bullet})
 $$
 is a quasi-isomorphism of complexes of abelian groups. In particular
-we conclude that $H^n(sA^\bullet) = H^n(X, \mathcal{F})$.
+we conclude that $H^n(\text{Tot}(A^{\bullet, \bullet})) = H^n(X, \mathcal{F})$.
 
 \medskip\noindent
 The map $s(\mathcal{F}(K)) \longrightarrow R\Gamma(X, \mathcal{F})$ of
-the lemma is the composition of the natural map
-$s(\mathcal{F}(K)) \to sA^\bullet$ followed by the inverse
+the lemma is the composition of the map
+$s(\mathcal{F}(K)) \to \text{Tot}(A^{\bullet, \bullet})$
+followed by the inverse
 of the displayed quasi-isomorphism above. This works because
 $\mathcal{I}^\bullet(X)$ is a representative of $R\Gamma(X, \mathcal{F})$.
 
 \medskip\noindent
-Consider the spectral sequence $({}''E_r, {}''d_r)_{r \geq 0}$. By
+Consider the spectral sequence $({}'E_r, {}'d_r)_{r \geq 0}$. By
 Homology, Lemma \ref{homology-lemma-ss-double-complex}
 we see that
 $$
-{}''E_2^{p, q} = H^p_{II}(H^q_I(A^{\bullet, \bullet}))
+{}'E_2^{p, q} = H^p_I(H^q_{II}(A^{\bullet, \bullet}))
 $$
 In other words, we first take cohomology with respect to
-$d_1$ which gives the groups
-${}''E_1^{p, q} = \underline{H}^p(\mathcal{F})(K_q)$.
+$d_2$ which gives the groups
+${}'E_1^{p, q} = \underline{H}^q(\mathcal{F})(K_p)$.
 Hence it is indeed the case (by the description of the differential
-${}''d_1$) that
-${}''E_2^{p, q} = \check{H}^p(K, \underline{H}^q(\mathcal{F}))$.
-And by the other spectral sequence above we see that this one
-converges to $H^n(X, \mathcal{F})$ as desired.
+${}'d_1$) that
+${}'E_2^{p, q} = \check{H}^p(K, \underline{H}^q(\mathcal{F}))$.
+By the above and Homology, Lemma \ref{homology-lemma-first-quadrant-ss}
+we see that this converges to $H^n(X, \mathcal{F})$ as desired.
 
 \medskip\noindent
 We omit the proof of the statements regarding the functoriality of
@@ -1069,7 +1114,7 @@ Cohomology on Sites, Section \ref{sites-cohomology-section-limp}.
 This is a left exact functor and its higher derived functors
 (briefly studied in
 Cohomology on Sites, Section \ref{sites-cohomology-section-limp})
-will be denoted $H^i(\mathcal{G}, \mathcal{F})$.
+are denoted $H^i(\mathcal{G}, \mathcal{F})$.
 We will show that given a hypercovering $K$ of $\mathcal{G}$,
 there is a {\v C}ech to cohomology spectral sequence converging to the
 cohomology $H^i(\mathcal{G}, \mathcal{F})$.
@@ -1915,28 +1960,28 @@ hypercoverings.
 
 \medskip\noindent
 Let us temporarily denote $\text{HC}(\mathcal{C}, X)$
-the category of hypercoverings of $X$. We have seen that
+the category whose objects are hypercoverings of $X$
+and whose morphisms are maps between hypercoverings of $X$
+up to homotopy. We have seen that
 this is a category and not a ``big'' category,
 see Lemma \ref{lemma-hypercoverings-set}.
-This will be the index category for our diagram, see
-Categories, Section \ref{categories-section-limits} for notation.
+The opposite to $\text{HC}(\mathcal{C}, X)$
+will be the index category for our diagram, see
+Categories, Section \ref{categories-section-limits} for terminology.
 Consider the diagram
 $$
 \check{H}^i(-, \mathcal{F}) :
-\text{HC}(\mathcal{C}, X)
+\text{HC}(\mathcal{C}, X)^{opp}
 \longrightarrow
 \textit{Ab}.
 $$
-By Lemma \ref{lemma-product-hypercoverings} and
-Lemma \ref{lemma-homotopy}, and the remark on homotopies above,
-this diagram is directed, see
+By Lemmas \ref{lemma-product-hypercoverings} and \ref{lemma-homotopy}
+and the remark on homotopies above, this diagram is directed, see
 Categories, Definition \ref{categories-definition-directed}.
 Thus the colimit
 $$
-\check{H}^i_{\text{HC}}(X, \mathcal{F})
-=
-\colim_{K \in \text{HC}(\mathcal{C}, X)}
-\check{H}^i(K, \mathcal{F})
+\check{H}^i_{\text{HC}}(X, \mathcal{F}) =
+\colim_{K \in \text{HC}(\mathcal{C}, X)} \check{H}^i(K, \mathcal{F})
 $$
 has a particularly simple description (see location cited).
 
@@ -2172,7 +2217,7 @@ bookkeeping to do.
 \medskip\noindent
 Let us call a family of morphisms $\{U_i \to U\}$ in $\mathcal{C}$
 with fixed target a {\it weak covering} if the sheafification of the
-map $\prod_{i \in I} h_{U_i} \to h_U$ becomes surjective.
+map $\coprod_{i \in I} h_{U_i} \to h_U$ becomes surjective.
 We construct a new site $\mathcal{C}'$ as follows
 \begin{enumerate}
 \item as a category set $\Ob(\mathcal{C}') = \Ob(\mathcal{C}) \amalg \{X\}$
@@ -2182,7 +2227,7 @@ of pairs exist in $\mathcal{C}$,
 \item coverings of $\mathcal{C}'$ are weak coverings of $\mathcal{C}$
 together with those $\{U_i \to X\}_{i \in I}$ such that either $U_i = X$
 for some $i$, or $U_i \not = X$ for all $i$ and the map
-$\prod h_{U_i} \to *$ of presheaves on $\mathcal{C}$ becomes
+$\coprod h_{U_i} \to *$ of presheaves on $\mathcal{C}$ becomes
 surjective after sheafification on $\mathcal{C}$,
 \item we apply Sets, Lemma \ref{sets-lemma-coverings-site}
 to restrict the coverings to obtain our site $\mathcal{C}'$.
@@ -2947,7 +2992,7 @@ $(\beta, g_k) : \{W_k\}_{k \in K} \to \{V_j\}_{j \in J}$
 in $\text{SR}(\mathcal{C})$ such that
 $U = \coprod U_i$, $V = \coprod V_j$, and $W = \coprod W_j$
 exist, then $U \times_V W =
-\coprod_{(i, j, k), \alpha(i) = j = \beta(k)} U_i \times_{V_i} W_k$,
+\coprod_{(i, j, k), \alpha(i) = j = \beta(k)} U_i \times_{V_j} W_k$,
 \item[(c)] if $(\alpha, f_i) : \{U_i\}_{i \in I} \to \{V_j\}_{j \in J}$
 is a covering in the sense of
 Definition \ref{definition-covering-SR}

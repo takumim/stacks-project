@@ -234,7 +234,7 @@ indicates the underlying set of the scheme $S$.
 \begin{proof}
 Pick $i \in I$. Take $U_i \subset S_i$ an affine open.
 Denote $U_{i'} = f_{i'i}^{-1}(U_i)$ and $U = f_i^{-1}(U_i)$.
-Here $f_{i'i} : S_{i'} \to S_i$ is the transtion morphism
+Here $f_{i'i} : S_{i'} \to S_i$ is the transition morphism
 and $f_i : S \to S_i$ is the projection.
 By Lemma \ref{lemma-directed-inverse-system-has-limit}
 we have $U = \lim_{i' \geq i} U_i$.
@@ -334,23 +334,29 @@ Let $S = \lim S_i$ be the limit of a directed inverse system
 of schemes with affine transition morphisms
 (Lemma \ref{lemma-directed-inverse-system-has-limit}).
 Let $s \in S$ with images $s_i \in S_i$.
-Then $\overline{\{s\}} = \lim_i \overline{\{s_i\}}$ as sets
-and as schemes if endowed with the reduced induced scheme structure.
+Then
+\begin{enumerate}
+\item $s = \lim s_i$ as schemes, i.e., $\kappa(s) = \colim \kappa(s_i)$,
+\item $\overline{\{s\}} = \lim \overline{\{s_i\}}$ as sets, and
+\item $\overline{\{s\}} = \lim \overline{\{s_i\}}$ as schemes
+where $\overline{\{s\}}$ and $\overline{\{s_i\}}$ are
+endowed with the reduced induced scheme structure.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
 Choose $0 \in I$ and an affine open covering
-$U_0 = \bigcup_{j \in J} U_{0, j}$.
+$S_0 = \bigcup_{j \in J} U_{0, j}$.
 For $i \geq 0$ let $U_{i, j} = f_{i, 0}^{-1}(U_{0, j})$
 and set $U_j = f_0^{-1}(U_{0, j})$.
-Here $f_{i'i} : S_{i'} \to S_i$ is the transtion morphism
+Here $f_{i'i} : S_{i'} \to S_i$ is the transition morphism
 and $f_i : S \to S_i$ is the projection.
 For $j \in J$ the following are equivalent:
-(a) $x \in U_j$, (b) $x_0 \in U_{0, j}$,
-(c) $x_i \in U_{i, j}$ for all $i \geq 0$.
+(a) $s \in U_j$, (b) $s_0 \in U_{0, j}$,
+(c) $s_i \in U_{i, j}$ for all $i \geq 0$.
 Let $J' \subset J$ be the set of indices for which (a), (b), (c) are true.
 Then $\overline{\{s\}} = \bigcup_{j \in J'} (\overline{\{s\}} \cap U_j)$
-and simiarly for $\overline{\{s_i\}}$ for $i \geq 0$.
+and similarly for $\overline{\{s_i\}}$ for $i \geq 0$.
 Note that $\overline{\{s\}} \cap U_j$ is the closure of the
 set $\{s\}$ in the topological space $U_j$. Similarly for
 $\overline{\{s_i\}} \cap U_{i, j}$ for $i \geq 0$.
@@ -371,6 +377,8 @@ This follows from Lemma \ref{lemma-inverse-limit-sets}
 because $A/\mathfrak p = \colim A_i/\mathfrak p_i$.
 This equality of rings also shows the final statement
 about reduced induced scheme structures holds true.
+The equality $\kappa(\mathfrak p) = \colim \kappa(\mathfrak p_i)$
+follows from the statement as well.
 \end{proof}
 
 \noindent
@@ -387,6 +395,11 @@ We also choose an element $0 \in I$.
 \end{situation}
 
 \noindent
+In this situation the morphism $S \to S_0$ is affine. It follows
+that $S$ is quasi-compact and quasi-separated\footnote{Follows
+from Morphisms, Lemma \ref{morphisms-lemma-affine-separated},
+Topology, Definition \ref{topology-definition-quasi-compact}, and
+Schemes, Lemma \ref{schemes-lemma-separated-permanence}.}.
 The type of result we are looking for is the following:
 If we have an object over $S$, then for some $i$ there is a
 similar object over $S_i$.
@@ -471,7 +484,8 @@ for the middle equality.
 \label{lemma-limit-closed-nonempty}
 In Situation \ref{situation-descent}.
 Suppose for each $i$ we are given a nonempty closed subset
-$Z_i \subset S_i$ with $f_{ii'}(Z_i) \subset Z_{i'}$.
+$Z_i \subset S_i$ with $f_{i'i}(Z_{i'}) \subset Z_i$ for all
+$i' \geq i$.
 Then there exists a point $s \in S$ with $f_i(s) \in Z_i$ for
 all $i$.
 \end{lemma}
@@ -483,9 +497,9 @@ Definition \ref{schemes-definition-reduced-induced-scheme}.
 A closed immersion is affine, and a composition of affine
 morphisms is affine (see
 Morphisms, Lemmas \ref{morphisms-lemma-closed-immersion-affine}
-and \ref{morphisms-lemma-composition-affine}), and hence $Z_i \to S_{i'}$ is
-affine when $i \geq i'$. We conclude that the morphism
-$f_{ii'} : Z_i \to Z_{i'}$ is affine by
+and \ref{morphisms-lemma-composition-affine}), and hence $Z_{i'} \to S_i$ is
+affine when $i' \geq i$. We conclude that the morphism
+$f_{i'i} : Z_{i'} \to Z_i$ is affine by
 Morphisms, Lemma \ref{morphisms-lemma-affine-permanence}.
 Each of the schemes $Z_i$ is quasi-compact as a closed
 subscheme of a quasi-compact scheme. Hence we may apply
@@ -517,7 +531,7 @@ Lemma \ref{lemma-limit-nonempty}.
 In Situation \ref{situation-descent}.
 Suppose we are given an $i$ and a locally constructible subset
 $E \subset S_i$ such that $f_i(S) \subset E$.
-Then $f_{ii'}(S_{i'}) \subset E$ for all sufficiently large $i'$.
+Then $f_{i'i}(S_{i'}) \subset E$ for all sufficiently large $i'$.
 \end{lemma}
 
 \begin{proof}
@@ -533,7 +547,7 @@ Algebra, Lemma \ref{algebra-lemma-constructible-is-image}.
 By
 Lemma \ref{lemma-limit-fibre-product-empty}
 we see that $T \times_{S_i} S_{i'}$ is empty for all sufficiently large
-$i'$, and hence $f_{ii'}(S_{i'}) \subset E$ for all sufficiently large $i'$.
+$i'$, and hence $f_{i'i}(S_{i'}) \subset E$ for all sufficiently large $i'$.
 \end{proof}
 
 \begin{lemma}
@@ -674,8 +688,8 @@ By Lemma \ref{lemma-limit-quasi-affine} we may assume that $S_0$ is
 quasi-affine for some $0 \in I$. Set $R_0 = \Gamma(S_0, \mathcal{O}_{S_0})$.
 Then $S_0$ is a quasi-compact open of $T_0 = \Spec(R_0)$. Denote
 $j_0 : S_0 \to T_0$ the corresponding quasi-compact open immersion.
-For $i \geq 0$ set $\mathcal{A}_i = f_{0i, *}\mathcal{O}_{S_i}$.
-Since $f_{0i}$ is affine we see that
+For $i \geq 0$ set $\mathcal{A}_i = f_{i0, *}\mathcal{O}_{S_i}$.
+Since $f_{i0}$ is affine we see that
 $S_i = \underline{\Spec}_{S_0}(\mathcal{A}_i)$.
 Set $T_i = \underline{\Spec}_{T_0}(j_{0, *}\mathcal{A}_i)$.
 Then $T_i \to T_0$ is affine, hence $T_i$ is affine. Thus
@@ -717,11 +731,11 @@ we see that $U_{i, j_1} \cap U_{i, j_2}$ is affine for large $i$
 by Lemma \ref{lemma-limit-affine}. To show that $S_i$ is separated
 for large $i$ it now suffices to show that
 $$
-\mathcal{O}_{S_i}(V_{i, j_1})
+\mathcal{O}_{S_i}(U_{i, j_1})
 \otimes_{\mathcal{O}_S(S)}
-\mathcal{O}_{S_i}(V_{i, j_2})
+\mathcal{O}_{S_i}(U_{i, j_2})
 \longrightarrow
-\mathcal{O}_{S_i}(V_{i, j_1} \cap V_{i, j_2})
+\mathcal{O}_{S_i}(U_{i, j_1} \cap U_{i, j_2})
 $$
 is surjective for large $i$
 (Schemes, Lemma \ref{schemes-lemma-characterize-separated}).
@@ -734,7 +748,7 @@ We have to show that
 $\mathcal{O}(U_i) \otimes \mathcal{O}(V_i) \to
 \mathcal{O}(U_i \cap V_i)$
 is surjective for $i$ large enough and we know that
-$\mathcal{O}(U_) \otimes \mathcal{O}(V) \to \mathcal{O}(U \cap V)$
+$\mathcal{O}(U) \otimes \mathcal{O}(V) \to \mathcal{O}(U \cap V)$
 is surjective. Note that
 $\mathcal{O}(U_0) \otimes \mathcal{O}(V_0) \to
 \mathcal{O}(U_0 \cap V_0)$
@@ -803,6 +817,11 @@ immersion for $i$ large enough.
 \item If $Y \to X$ is an immersion, $X_i$ quasi-separated, $Y \to S$ locally
 of finite type, and $Y$ quasi-compact, then $Y \to X_i$ is an
 immersion for $i$ large enough.
+\item If $Y \to X$ is an isomorphism, $X_i$ quasi-compact,
+$X_i \to S$ locally of finite type, the transition morphisms
+$X_{i'} \to X_i$ are closed immersions, and $Y \to S$ is locally
+of finite presentation, then $Y \to X_i$ is an isomorphism for $i$
+large enough.
 \end{enumerate}
 \end{lemma}
 
@@ -830,6 +849,14 @@ Lemma \ref{lemma-descend-opens}
 we may assume that $U = \lim U_i$ with $U_i \subset X_i$ quasi-compact
 open. By part (1) we see that $Y \to U_i$ is a closed immersion for some
 $i$. Thus (2) holds.
+
+\medskip\noindent
+Proof of (3). Working affine locally on $X_0$ for some $0 \in I$ as in
+the proof of (1) we reduce to the following algebra fact: If $A = \lim A_i$
+is a directed colimit of $R$-algebras with surjective transition
+maps and $A$ of finite presentation over $A_0$, then $A = A_i$ for
+some $i$. Namely, write $A = A_0/(f_1, \ldots, f_n)$. Pick $i$ such
+that $f_1, \ldots, f_n$ map to zero under the surjective map $A_0 \to A_i$.
 \end{proof}
 
 \begin{lemma}
@@ -960,6 +987,33 @@ of $x_j$ in $A_{i'}$ for $j = 1, \ldots, m$. Since $A_i \to A_{i'}$
 is surjective this implies that $R \to A_{i'}$ is surjective.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-eventually-immersion}
+Let $S$ be a scheme. Let $X = \lim X_i$ be a directed limit of schemes
+over $S$ with affine transition morphisms. Assume
+\begin{enumerate}
+\item $S$ quasi-separated,
+\item $X_i$ quasi-compact and quasi-separated,
+\item the transition morphisms $X_{i'} \to X_i$ are closed immersions,
+\item $X_i \to S$ locally of finite type, and
+\item $X \to S$ an immersion.
+\end{enumerate}
+Then $X_i \to S$ is an immersion for $i$ large enough.
+\end{lemma}
+
+\begin{proof}
+Choose an open subscheme $U \subset S$ such that $X \to S$ factors
+as a closed immersion $X \to U$ composed with the inclusion morphism
+$U \to S$. Since $X$ is quasi-compact, we may shrink $U$ and assume
+$U$ is quasi-compact. Denote $V_i \subset X_i$ the inverse image of $U$.
+Since $V_i$ pulls back to $X$ we see that $V_i = X_i$ for all $i$
+large enough by Lemma \ref{lemma-descend-opens}. Thus we may
+assume $X = \lim X_i$ in the category of schemes over $U$.
+Then we see that $X_i \to U$ is a closed immersion for $i$
+large enough by Lemma \ref{lemma-eventually-closed-immersion}.
+This proves the lemma.
+\end{proof}
+
 
 
 
@@ -1048,8 +1102,8 @@ such that
 \begin{enumerate}
 \item the transition morphisms $g_{jj'} : S_j \to S_{j'}$ are affine,
 \item each $S_j$ is of finite type over $\mathbf{Z}$,
-\item $g_{jj'}^{-1}(V_{j'}) = V_j$,
-\item $S = \lim S_j$ and $V = \lim V_j$, and
+\item $g_{jj'}^{-1}(V'_{j'}) = V'_j$,
+\item $S = \lim S_j$ and $V = \lim V'_j$, and
 \item the diagrams
 $$
 \vcenter{
@@ -1061,8 +1115,8 @@ V'_j \ar[r] & V_{\alpha(j)}
 \quad\text{and}\quad
 \vcenter{
 \xymatrix{
-V_j \ar[r] \ar[d] & V_{\alpha(j)} \ar[d] \\
-V_{j'} \ar[r] & V_{\alpha(j')}
+V'_j \ar[r] \ar[d] & V_{\alpha(j)} \ar[d] \\
+V'_{j'} \ar[r] & V_{\alpha(j')}
 }
 }
 $$
@@ -1093,10 +1147,11 @@ one affine open. Thus we may assume
 an inverse system over a directed set $I$, each $f_{ii'}$
 affine and each $V_i$ of finite type over $\mathbf{Z}$.
 \end{enumerate}
+Denote $f_i : V \to V_i$ the projections.
 Set $W = U \cap V$. As $S$ is quasi-separated, this is a quasi-compact open
 of $V$. By Lemma \ref{lemma-descend-opens}
 (and after shrinking $I$) we may assume that there exist
-opens $W_i \subset V_i$ such that $f_{ij}^{-1}(W_j) = W_i$
+opens $W_i \subset V_i$ such that $f_{ii'}^{-1}(W_{i'}) = W_i$
 and such that $f_i^{-1}(W_i) = W$. Since $W$ is a quasi-compact open
 of $U$ it is quasi-affine. Hence we may assume (after shrinking $I$ again)
 that $W_i$ is quasi-affine for all $i$, see
@@ -1152,7 +1207,7 @@ $R_i \to R_{i'}$. Then, by Lemma \ref{lemma-descend-opens} we can
 assume the corresponding opens $D(g_{l, i}) \subset \Spec(R_i)$
 are contained in $W_i$ for $l = 1, \ldots, m$ and cover $W_i$.
 We conclude that the morphism $W_i \to \Spec(R_i) \to \Spec(B_i)$
-is an open immersion, see Lemma \ref{lemma-diagram}
+is an open immersion, see Lemma \ref{lemma-diagram}.
 
 \medskip\noindent
 By Lemma \ref{lemma-quasi-affine-finite-type-over-Z}
@@ -1467,6 +1522,60 @@ there exists a point $t$ of $T$ which is mapped into $Z_{i'}$ for all
 $i' \geq i$. Such a point is not mapped into $U$. A contradiction.
 \end{proof}
 
+\noindent
+The following is an example application of
+Proposition \ref{proposition-characterize-locally-finite-presentation}.
+
+\begin{lemma}
+\label{lemma-morphism-glueing-near-closed-point}
+Let $S$ be a scheme. Let $X$ and $Y$ be schemes over $S$.
+Assume $Y$ is locally of finite presentation over $S$.
+Let $x \in X$ be a closed point such that
+$U = X \setminus \{x\} \to X$ is quasi-compact. With
+$V = \Spec(\mathcal{O}_{X, x}) \setminus \{x\}$ there is
+a bijection
+$$
+\left\{
+\begin{matrix}
+\text{morphisms }X \to Y\text{ over }S
+\end{matrix}
+\right\}
+\longrightarrow
+\left\{
+\begin{matrix}
+(a, b)\text{ where }
+a : U \to Y\text{ and }b : \Spec(\mathcal{O}_{X, x}) \to Y\\
+\text{ are morphisms over }S
+\text{ which agree over }V
+\end{matrix}
+\right\}
+$$
+\end{lemma}
+
+\begin{proof}
+Let $W \subset X$ be an open neighbourhood of $x$. By
+glueing of schemes, see
+Schemes, Section \ref{schemes-section-glueing-schemes}
+the result holds if we consider pairs of morphisms
+$a : U \to Y$ and $c : W \to Y$ which agree over $U \cap W$.
+We have $\mathcal{O}_{X, x} = \colim \mathcal{O}_W(W)$ where
+$W$ runs over the affine open neighbourhoods of $x$ in $X$.
+Hence $\Spec(\mathcal{O}_{X, x}) = \lim W$ where $W$
+runs over the affine open neighbourhoods of $s$.
+Thus by
+Proposition \ref{proposition-characterize-locally-finite-presentation}
+any morphism $b : \Spec(\mathcal{O}_{X, x}) \to Y$
+over $S$ comes from a morphism $c : W \to Y$ for some $W$ as above
+(and $c$ is unique up to further shrinking $W$).
+For every affine open $x \in W$ we see that $U \cap W$
+is quasi-compact as $U \to X$ is quasi-compact.
+Hence $V = \lim W \cap U = \lim W \setminus \{x\}$ is a limit of
+quasi-compact and quasi-separated schemes (see
+Lemma \ref{lemma-directed-inverse-system-has-limit}).
+Thus if $a$ and $b$ agree over $V$, then after shrinking $W$
+we see that $a$ and $c$ agree over $U \cap W$ (by the same
+proposition). The lemma follows.
+\end{proof}
 
 
 
@@ -1478,7 +1587,69 @@ $i' \geq i$. Such a point is not mapped into $U$. A contradiction.
 \label{section-relative-approximation}
 
 \noindent
-The title of this section refers to results of the following type.
+We discuss variants of Proposition \ref{proposition-approximate}
+over a base.
+
+\begin{lemma}
+\label{lemma-approximate-morphism}
+Let $f : X \to S$ be a morphism of quasi-compact and quasi-separated schemes.
+Then there exists a direct set $I$ and an inverse system $(f_i : X_i \to S_i)$
+of morphisms schemes over $I$, such that the transition morphisms
+$X_i \to X_{i'}$ and $S_i \to S_{i'}$ are affine, such that $X_i$
+and $S_i$ are of finite type over $\mathbf{Z}$, and such that
+$(X \to S) = \lim (X_i \to S_i)$.
+\end{lemma}
+
+\begin{proof}
+Write $X = \lim_{a \in A} X_a$ and $S = \lim_{b \in B} S_b$ as in
+Proposition \ref{proposition-approximate}, i.e., with $X_a$ and $S_b$
+of finite type over $\mathbf{Z}$ and with affine transition morphisms.
+
+\medskip\noindent
+Fix $b \in B$.
+By Proposition \ref{proposition-characterize-locally-finite-presentation}
+applied to $S_b$ and $X = \lim X_a$ over $\mathbf{Z}$
+we find there exists an $a \in A$ and a morphism
+$f_{a, b} : X_a \to S_b$ making the diagram
+$$
+\xymatrix{
+X \ar[d] \ar[r] & S \ar[d] \\
+X_a \ar[r] & S_b
+}
+$$
+commute. Let $I$ be the set of triples $(a, b, f_{a, b})$ we
+obtain in this manner.
+
+\medskip\noindent
+Let $(a, b, f_{a, b})$ and $(a', b', f_{a', b'})$ be in $I$.
+Let $b'' \leq \min(b, b')$. By
+Proposition \ref{proposition-characterize-locally-finite-presentation}
+again, there exists an $a'' \geq \max(a, a')$ such that
+the compositions $X_{a''} \to X_a \to S_b \to S_{b''}$ and
+$X_{a''} \to X_{a'} \to S_{b'} \to S_{b''}$ are equal.
+We endow $I$ with the preorder
+$$
+(a, b, f_{a, b}) \geq (a', b', f_{a', b'})
+\Leftrightarrow
+a \geq a',\ b \geq b',\text{ and }
+g_{b, b'} \circ f_{a, b} = f_{a', b'} \circ h_{a, a'}
+$$
+where $h_{a, a'} : X_a \to X_{a'}$ and $g_{b, b'} : S_b \to S_{b'}$
+are the transition morphisms. The remarks above show that $I$
+is directed and that the maps $I \to A$, $(a, b, f_{a, b}) \mapsto a$
+and $I \to B$, $(a, b, f_{a, b})$ are cofinal. If for $i = (a, b, f_{a, b})$
+we set $X_i = X_a$, $S_i = S_b$, and $f_i = f_{a, b}$, then we get
+an inverse system of morphisms over $I$ and we have
+$$
+\lim_{i \in I} X_i = \lim_{a \in A} X_a = X
+\quad\text{and}\quad
+\lim_{i \in I} S_i = \lim_{b \in B} S_b = S
+$$
+by Categories, Lemma \ref{categories-lemma-initial} (recall that
+limits over $I$ are really limits over the opposite category
+associated to $I$ and hence cofinal turns into initial).
+This finishes the proof.
+\end{proof}
 
 \begin{lemma}
 \label{lemma-relative-approximation}
@@ -1494,42 +1665,18 @@ over $S$.
 
 \begin{proof}
 Since $f(X)$ is quasi-compact we may replace $S$ by a quasi-compact
-open containing $f(X)$. Hence we may assume $S$ is quasi-compact as well.
-Write $X = \lim X_a$ and $S = \lim S_b$ as in
-Proposition \ref{proposition-approximate}, i.e., with $X_a$ and $S_b$
-of finite type over $\mathbf{Z}$ and with affine transition morphisms.
-By Proposition \ref{proposition-characterize-locally-finite-presentation}
-we find that for each $b$ there exists an $a$ and a morphism
-$f_{a, b} : X_a \to S_b$ making the diagram
+open containing $f(X)$. Hence we may assume $S$ is quasi-compact.
+By Lemma \ref{lemma-approximate-morphism} we can write
+$(X \to S) = \lim (X_i \to S_i)$ for some directed inverse system
+of morphisms of finite type schemes over $\mathbf{Z}$ with
+affine transition morphisms. Since limits commute with limits
+(Categories, Lemma \ref{categories-lemma-colimits-commute})
+we have $X = \lim X_i \times_{S_i} S$.
+Let $i \geq i'$ in $I$. The morphism
+$X_i \times_{S_i} S \to X_{i'} \times_{S_{i'}} S$
+is affine as the composition
 $$
-\xymatrix{
-X \ar[d] \ar[r] & S \ar[d] \\
-X_a \ar[r] & S_b
-}
-$$
-commute. Moreover the same proposition implies that, given a second
-triple $(a', b', f_{a', b'})$, there exists an $a'' \geq a'$ such that
-the compositions $X_{a''} \to X_a \to X_b$ and
-$X_{a''} \to X_{a'} \to X_{b'} \to X_b$ are equal.
-Consider the set of triples $(a, b, f_{a, b})$ endowed with the preorder
-$$
-(a, b, f_{a, b}) \geq (a', b', f_{a', b'})
-\Leftrightarrow
-a \geq a',\ b' \geq b,\text{ and }
-f_{a', b'} \circ h_{a, a'} = g_{b', b} \circ f_{a, b}
-$$
-where $h_{a, a'} : X_a \to X_{a'}$ and $g_{b', b} : S_{b'} \to S_b$
-are the transition morphisms. The remarks above show that this system
-is directed. It follows formally from the equalities
-$X = \lim X_a$ and $S = \lim S_b$ that
-$$
-X = \lim_{(a, b, f_{a, b})} X_a \times_{f_{a, b}, S_b} S.
-$$
-where the limit is over our directed system above. The transition morphisms
-$X_a \times_{S_b} S \to X_{a'} \times_{S_{b'}} S$ are affine as
-the composition
-$$
-X_a \times_{S_b} S \to X_a \times_{S_{b'}} S \to X_{a'} \times_{S_{b'}} S
+X_i \times_{S_i} S \to X_i \times_{S_{i'}} S \to X_{i'} \times_{S_{i'}} S
 $$
 where the first morphism is a closed immersion (by
 Schemes, Lemma \ref{schemes-lemma-fibre-product-after-map})
@@ -1537,11 +1684,11 @@ and the second is a base change of an affine morphism
 (Morphisms, Lemma \ref{morphisms-lemma-base-change-affine})
 and the composition of affine morphisms is affine
 (Morphisms, Lemma \ref{morphisms-lemma-composition-affine}).
-The morphisms $f_{a, b}$ are of finite presentation
+The morphisms $f_i$ are of finite presentation
 (Morphisms, Lemmas
 \ref{morphisms-lemma-noetherian-finite-type-finite-presentation} and
 \ref{morphisms-lemma-finite-presentation-permanence})
-and hence the base changes $X_a \times_{f_{a, b}, S_b} S \to S$
+and hence the base changes $X_i \times_{f_i, S_i} S \to S$
 are of finite presentation
 (Morphisms, Lemma \ref{morphisms-lemma-base-change-finite-presentation}).
 \end{proof}
@@ -1864,6 +2011,35 @@ for some $i' \geq i$ as desired.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-descend-immersion}
+Notation and assumptions as in Situation \ref{situation-descent-property}.
+If
+\begin{enumerate}
+\item $f$ is an immersion, and
+\item $f_0$ is locally of finite type,
+\end{enumerate}
+then $f_i$ is an immersion for some $i \geq 0$.
+\end{lemma}
+
+\begin{proof}
+There exists an open $V \subset Y$ such that the morphism
+$f$ factors as $X \to V \to Y$ and such that $X \to V$ is
+a closed immersion, see discussion in
+Schemes, Section \ref{schemes-section-immersions}.
+Since $X$ is quasi-compact, we may and do assume $V$ is a quasi-compact open
+of $Y$. By Lemma \ref{lemma-descend-opens} after increasing $0$
+we can find a quasi-compact open $V_0 \subset Y_0$ such that
+$V$ is the inverse image of $V_0$. Then the inverse image of
+$V_0$ in $X_0$ is a quasi-compact open whose inverse image in $X$ is $X$.
+Hence by the same lemma applied to $X = \lim X_i$ we may
+assume after increasing $0$ that we have the factorization
+$X_0 \to V_0 \to Y_0$. Then for large enough $i \geq 0$ the morphism
+$X_i \to V_i$ where $V_i = Y_i \times_{Y_0} V_0$ is a closed immersion by
+Lemma \ref{lemma-descend-closed-immersion-finite-presentation}
+and the proof is complete.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-descend-monomorphism}
 Notation and assumptions as in Situation \ref{situation-descent-property}.
 If
@@ -1942,7 +2118,7 @@ If $R \otimes_{R_0} A_0 \to R \otimes_{R_0} B_0$ is syntomic, then
 for some $i \geq 0$ the map
 $R_i \otimes_{R_0} A_0 \to R_i \otimes_{R_0} B_0$ is syntomic.
 This follows from Algebra,
-Lemma \ref{algebra-lemma-colimit-syntomic}.
+Lemma \ref{algebra-lemma-colimit-lci}.
 \end{proof}
 
 
@@ -2404,48 +2580,87 @@ of the categories modules of finite presentation over $S_i$.
 \end{lemma}
 
 \begin{proof}
-Omitted. Since we have written out completely the proof of
-Lemma \ref{lemma-descend-finite-presentation} above
-it seems wise to use this here and not completely write this
-proof out also. For example we can use:
+We sketch two proofs, but we omit the details.
+
+\medskip\noindent
+First proof. If $S$ and $S_i$ are affine schemes, then this lemma
+is equivalent to
+Algebra, Lemma \ref{algebra-lemma-colimit-category-fp-modules}.
+In the general case, use Zariski glueing to deduce it from the affine case.
+
+\medskip\noindent
+Second proof. We use
 \begin{enumerate}
-\item there is an equivalence of categories
-between quasi-coherent $\mathcal{O}_S$-modules and
-vector bundles over $S$, see
-Constructions, Section \ref{constructions-section-vector-bundle}.
+\item there is an equivalence of categories between quasi-coherent
+$\mathcal{O}_S$-modules and vector bundles over $S$, see
+Constructions, Section \ref{constructions-section-vector-bundle}, and
 \item a vector bundle $\mathbf{V}(\mathcal{F}) \to S$ is
 of finite presentation over $S$ if and only if $\mathcal{F}$
 is an $\mathcal{O}_S$-module of finite presentation.
 \end{enumerate}
-Then you can descend morphisms in terms of morphisms of the
-associated vectorbundles. Similarly for objects.
+Having said this, we can use Lemma \ref{lemma-descend-finite-presentation}
+to show that the category of vector bundles of finite
+presentation over $S$ is the colimit over $I$
+of the categories of vector bundles over $S_i$.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-descend-invertible-modules}
 Let $S = \lim S_i$ be the limit of a directed system of quasi-compact and
-quasi-separated schemes $S_i$ with affine transition morphisms. Then any
-invertible $\mathcal{O}_S$-module is the pullback of an invertible
-$\mathcal{O}_{S_i}$-module for some $i$.
+quasi-separated schemes $S_i$ with affine transition morphisms. Then
+\begin{enumerate}
+\item any finite locally free $\mathcal{O}_S$-module is the pullback
+of a finite locally free $\mathcal{O}_{S_i}$-module for some $i$,
+\item any invertible $\mathcal{O}_S$-module is the pullback of an invertible
+$\mathcal{O}_{S_i}$-module for some $i$, and
+\item any finite type quasi-coherent ideal $\mathcal{I} \subset \mathcal{O}_S$
+is of the form $\mathcal{I}_i \cdot \mathcal{O}_S$ for some $i$ and some
+finite type quasi-coherent ideal $\mathcal{I}_i \subset \mathcal{O}_{S_i}$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-Let $\mathcal{L}$ be an invertible $\mathcal{O}_S$-module. Since
-invertible modules are of finite presentation we can find an $i$
-and modules $\mathcal{L}_i$ and $\mathcal{N}_i$ of finite presentation
-over $S_i$ such that $f_i^*\mathcal{L}_i \cong \mathcal{L}$ and
-$f_i^*\mathcal{N}_i \cong \mathcal{L}^{\otimes -1}$, see
+Let $\mathcal{E}$ be a finite locally free $\mathcal{O}_S$-module. Since
+finite locally free modules are of finite presentation we can find an $i$
+and an $\mathcal{O}_{S_i}$-module $\mathcal{E}_i$ of finite presentation
+such that $f_i^*\mathcal{E}_i \cong \mathcal{E}$, see
 Lemma \ref{lemma-descend-modules-finite-presentation}.
-Since pullback commutes with tensor product we see that
-$f_i^*(\mathcal{L}_i \otimes_{\mathcal{O}_{S_i}} \mathcal{N}_i)$
-is isomorphic to $\mathcal{O}_S$. Since the tensor product of
-finitely presented modules is finitely presented, the same
-lemma implies that
-$f_{i'i}^*\mathcal{L}_i
-\otimes_{\mathcal{O}_{S_{i'}}} f_{i'i}^*\mathcal{N}_i$
-is isomorphic to $\mathcal{O}_{S_{i'}}$ for some $i' \geq i$.
-It follows that $f_{i'i}^*\mathcal{L}_i$ is invertible
-(Modules, Lemma \ref{modules-lemma-invertible}) and the proof is complete.
+After increasing $i$ we may assume $\mathcal{E}_i$ is a flat
+$\mathcal{O}_{S_i}$-module, see
+Algebra, Lemma \ref{algebra-lemma-flat-finite-presentation-limit-flat}.
+(Using this lemma is not necessary, but it is convenient.)
+Then $\mathcal{E}_i$ is finite locally free by
+Algebra, Lemma \ref{algebra-lemma-finite-projective}.
+
+\medskip\noindent
+If $\mathcal{L}$ is an invertible $\mathcal{O}_S$-module,
+then by the above we can find an $i$ and finite locally
+free $\mathcal{O}_{S_i}$-modules $\mathcal{L}_i$
+and $\mathcal{N}_i$ pulling back to $\mathcal{L}$ and
+$\mathcal{L}^{\otimes -1}$. After possible increasing
+$i$ we see that the map
+$\mathcal{L} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes -1}
+\to \mathcal{O}_X$ descends to a map
+$\mathcal{L}_i \otimes_{\mathcal{O}_{S_i}} \mathcal{N}_i \to
+\mathcal{O}_{S_i}$. And after increasing $i$ further, we
+may assume it is an isomorphism. It follows that
+$\mathcal{L}_i$ is an invertible module
+(Modules, Lemma \ref{modules-lemma-invertible}) and
+the proof of (2) is complete.
+
+\medskip\noindent
+Given $\mathcal{I}$ as in (3) we see that
+$\mathcal{O}_S \to \mathcal{O}_S/\mathcal{I}$
+is a map of finitely presented $\mathcal{O}_S$-modules.
+Hence by Lemma \ref{lemma-descend-modules-finite-presentation}
+this is the pullback of some
+map $\mathcal{O}_{S_i} \to \mathcal{F}_i$ of finitely
+presented $\mathcal{O}_{S_i}$-modules. After increasing $i$
+we may assume this map is surjective (details omitted; hint: use
+Algebra, Lemma \ref{algebra-lemma-module-map-property-in-colimit}
+on affine open cover). Then the kernel of $\mathcal{O}_{S_i} \to \mathcal{F}_i$
+is a finite type quasi-coherent ideal in $\mathcal{O}_{S_i}$
+whose pullback gives $\mathcal{I}$.
 \end{proof}
 
 \begin{lemma}
@@ -2503,6 +2718,96 @@ Algebra,
 Lemma \ref{algebra-lemma-flat-finite-presentation-limit-flat} part (3).
 \end{proof}
 
+\begin{lemma}
+\label{lemma-descend-finite-presentation-variant}
+For a scheme $T$ denote $\mathcal{C}_T$ the full subcategory of
+schemes $W$ over $T$ such that $W$ is quasi-compact and quasi-separated
+and such that the structure morphism $W \to T$ is
+locally of finite presentation.
+Let $S = \lim S_i$ be a directed limit of schemes with affine
+transition morphisms. Then there is an equivalence
+of categories
+$$
+\colim \mathcal{C}_{S_i} \longrightarrow \mathcal{C}_S
+$$
+given by the base change functors.
+\end{lemma}
+
+\noindent
+Warning: do not use this lemma if you do not understand the difference
+between this lemma and Lemma \ref{lemma-descend-finite-presentation}.
+
+\begin{proof}
+Fully faithfulness. Suppose we have $i \in I$ and objects
+$X_i$, $Y_i$ of $\mathcal{C}_{S_i}$. Denote
+$X = X_i \times_{S_i} S$ and $Y = Y_i \times_{S_i} S$.
+Suppose given a morphism $f : X \to Y$ over $S$.
+We can choose a finite affine open covering
+$Y_i = V_{i, 1} \cup \ldots \cup V_{i, m}$
+such that $V_{i, j} \to Y_i \to S_i$ maps into an affine
+open $W_{i, j}$ of $S_i$. Denote $Y = V_1 \cup \ldots \cup V_m$ the
+induced affine open covering of $Y$.
+Since $f : X \to Y$ is quasi-compact
+(Schemes, Lemma \ref{schemes-lemma-quasi-compact-permanence})
+after increasing $i$ we may assume that there is a
+finite open covering $X_i = U_{i, 1} \cup \ldots \cup U_{i, m}$
+by quasi-compact opens such that the inverse image of
+$U_{i, j}$ in $Y$ is $f^{-1}(V_j)$, see
+Lemma \ref{lemma-descend-opens}.
+By Lemma \ref{lemma-descend-finite-presentation}
+applied to $f|_{f^{-1}(V_j)}$ over $W_j$ we may assume, after
+increasing $i$, that there is a morphism
+$f_{i, j} : V_{i, j} \to U_{i, j}$ over $S$ whose base change
+to $S$ is $f|_{f^{-1}(V_j)}$.
+Increasing $i$ more we may assume $f_{i, j}$ and $f_{i, j'}$
+agree on the quasi-compact open $U_{i, j} \cap U_{i, j'}$.
+Then we can glue these morphisms to get the
+desired morphism $f_i : X_i \to Y_i$.
+This morphism is unique (up to increasing $i$)
+because this is true for the morphisms $f_{i, j}$.
+
+\medskip\noindent
+To show that the functor is essentially surjective we argue in
+exactly the same way. Namely, suppose that
+$X$ is an object of $\mathcal{C}_S$. Pick $i \in I$.
+We can choose a finite affine open covering
+$X = U_1 \cup \ldots \cup U_m$ such that $U_j \to X \to S \to S_i$
+factors through an affine open $W_{i, j} \subset S_i$.
+Set $W_j = W_{i, j} \times_{S_i} S$. This is an affine open of $S$.
+By Lemma \ref{lemma-descend-finite-presentation},
+after increasing $i$, we may assume there exist
+$U_{i, j} \to W_{i, j}$ of finite presentation
+whose base change to $W_j$ is $U_j$.
+After increasing $i$ we may assume there exist
+quasi-compact opens $U_{i, j, j'} \subset U_{i, j}$
+whose base changes to $S$ are equal to $U_j \cap U_{j'}$.
+Claim: after increasing $i$ we may assume the image of the morphism
+$U_{i, j, j'} \to U_{i, j} \to W_{i, j}$
+ends up in $W_{i, j} \cap W_{i, j'}$.
+Namely, because the complement of $W_{i, j} \cap W_{i, j'}$
+is closed in the affine scheme $W_{i, j}$ it is affine.
+Since $U_j \cap U_{j'} = \lim U_{i, j, j'}$ does map into
+$W_{i, j} \cap W_{i, j'}$
+we can apply Lemma \ref{lemma-limit-fibre-product-empty}
+to get the claim. Thus we can view both
+$$
+U_{i, j, j'} \quad\text{and}\quad U_{i, j', j}
+$$
+as schemes over $W_{i, j'}$ whose base changes to $W_{j'}$
+recover $U_j \cap U_{j'}$. Hence after increasing $i$, using
+Lemma \ref{lemma-descend-finite-presentation},
+we may assume there are isomorphisms
+$U_{i, j, j'} \to U_{i, j', j}$ over $W_{i, j'}$ and hence
+over $S_i$. Increasing $i$ further (details omitted)
+we may assume these isomorphisms
+satisfy the cocycle condition mentioned in
+Schemes, Section \ref{schemes-section-glueing-schemes}.
+Applying Schemes, Lemma \ref{schemes-lemma-glue}
+we obtain an object $X_i$ of $\mathcal{C}_{S_i}$ whose
+base change to $S$ is isomorphic to $X$; we omit some
+of the verifications.
+\end{proof}
+
 
 
 
@@ -2554,7 +2859,7 @@ that $X$ is affine.
 \medskip\noindent
 By Proposition \ref{proposition-approximate} we may write
 $S = \lim_{i \in I} S_i$ as
-a directed limits as schemes of finite type over $\mathbf{Z}$.
+a directed limits of schemes of finite type over $\mathbf{Z}$.
 By Lemma \ref{lemma-descend-finite-presentation} we can
 after shrinking $I$ assume there exist schemes $X_i \to S_i$
 of finite presentation such that $X_{i'} = X_i \times_S S_{i'}$
@@ -2572,18 +2877,26 @@ Lemma \ref{coherent-lemma-image-affine-finite-morphism-affine-Noetherian}.
 \begin{slogan}
 A scheme admitting a surjective integral map from an affine scheme is affine.
 \end{slogan}
-Let $f : X \to S$ be a morphism of schemes.
-Assume that $f$ is surjective and integral, and assume that $X$ is affine.
+Let $f : X \to S$ be a morphism of schemes. Assume $X$ is affine
+and that $f$ is surjective and universally closed\footnote{An integral
+morphism is universally closed, see
+Morphisms, Lemma \ref{morphisms-lemma-integral-universally-closed}.}.
 Then $S$ is affine.
 \end{proposition}
 
 \begin{proof}
-Since $f$ is surjective and $X$ is quasi-compact we see that $S$ is
-quasi-compact. Since $X$ is separated and $f$ is surjective and
-universally closed (Morphisms, Lemma
-\ref{morphisms-lemma-integral-universally-closed}), we see that $S$
-is separated (Morphisms, Lemma
-\ref{morphisms-lemma-image-universally-closed-separated}).
+By Morphisms, Lemma \ref{morphisms-lemma-image-universally-closed-separated}
+the scheme $S$ is separated. Then by
+Morphisms, Lemma \ref{morphisms-lemma-affine-permanence}
+we find that $f$ is affine. Whereupon by
+Morphisms, Lemma \ref{morphisms-lemma-integral-universally-closed}
+we see that $f$ is integral.
+
+\medskip\noindent
+By the preceding paragraph, we may assume $f : X \to S$
+is surjective and integral, $X$ is affine, and $S$ is separated.
+Since $f$ is surjective and $X$ is quasi-compact we also deduce that $S$ is
+quasi-compact.
 
 \medskip\noindent
 By Lemma \ref{lemma-integral-limit-finite-and-finite-presentation}
@@ -2639,7 +2952,7 @@ $\mathcal{L}$, see Lemma \ref{lemma-descend-modules-finite-presentation}.
 
 \medskip\noindent
 For each $i$ let $Z_i \subset X_i$ be the scheme theoretic image
-of the morphism $Z \to X$. If $\Spec(A_i) \subset X_i$ is an affine
+of the morphism $Z \to X_i$. If $\Spec(A_i) \subset X_i$ is an affine
 open subscheme with inverse image of $\Spec(A)$ in $X$ and if
 $Z \cap \Spec(A)$ is defined by the ideal $I \subset A$, then
 $Z_i \cap \Spec(A_i)$ is defined by the ideal $I_i \subset A_i$
@@ -2789,6 +3102,33 @@ $X_i$ over $S_i$, then the assertion holds for $X$. The case
 $X_i \to S_i$ is treated by
 Cohomology of Schemes, Lemma \ref{coherent-lemma-chow-Noetherian}.
 \end{proof}
+
+\begin{remark}
+\label{remark-chow-finite-type}
+In the situation of Chow's Lemma \ref{lemma-chow-finite-type}:
+\begin{enumerate}
+\item The morphism $\pi$ is actually H-projective (hence projective, see
+Morphisms, Lemma \ref{morphisms-lemma-H-projective})
+since the morphism $X' \to \mathbf{P}^n_S \times_S X = \mathbf{P}^n_X$
+is a closed immersion (use the fact that $\pi$ is proper, see
+Morphisms, Lemma \ref{morphisms-lemma-image-proper-scheme-closed}).
+\item We may assume that $X'$ is reduced as we can replace $X'$ by
+its reduction without changing the other assertions of the lemma.
+\item We may assume that $X' \to X$ is of finite presentation
+without changing the other assertions of the lemma. This can be deduced
+from the proof of Lemma \ref{lemma-chow-finite-type} but we can also prove
+this directly as follows. By (1) we have a closed immersion
+$X' \to \mathbf{P}^n_X$. By
+Lemma \ref{lemma-closed-is-limit-closed-and-finite-presentation} we can write
+$X' = \lim X'_i$ where $X'_i \to \mathbf{P}^n_X$ is a closed
+immersion of finite presentation. In particular $X'_i \to X$ is
+of finite presentation, proper, and surjective. For large enough
+$i$ the morphism $X'_i \to \mathbf{P}^n_S$ is an immersion by
+Lemma \ref{lemma-finite-type-eventually-closed}. Replacing
+$X'$ by $X'_i$ we get what we want.
+\end{enumerate}
+Of course in general we can't simultaneously achieve both (2) and (3).
+\end{remark}
 
 \noindent
 Here is a variant of Chow's lemma where we assume the scheme
@@ -3032,6 +3372,28 @@ gives the morphism $X_{k'} \to X_k$ (follows again from
 Lemma \ref{lemma-descend-finite-presentation}).
 These morphisms form the transition morphisms of the system. Some details
 omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-finite-type-eventually-proper}
+Let $S$ be a scheme. Let $X = \lim X_i$ be a directed limit of
+schemes over $S$ with affine transition morphisms. Let $Y \to X$
+be a morphism of schemes over $S$.
+If $Y \to X$ is proper, $X_i$ quasi-compact and quasi-separated, and
+$Y$ locally of finite type over $S$, then $Y \to X_i$ is proper
+for $i$ large enough.
+\end{lemma}
+
+\begin{proof}
+Choose a closed immersion $Y \to Y'$ with $Y'$ proper and of finite
+presentation over $X$, see
+Lemma \ref{lemma-proper-limit-of-proper-finite-presentation}.
+Then choose an $i$ and a proper morphism $Y'_i \to X_i$
+such that $Y' = X \times_{X_i} Y'_i$. This is possible by
+Lemmas \ref{lemma-descend-finite-presentation} and
+\ref{lemma-eventually-proper}. Then after replacing $i$
+by a larger index we have that $Y \to Y'_i$ is a closed
+immersion, see Lemma \ref{lemma-finite-type-eventually-closed}.
 \end{proof}
 
 \noindent
@@ -3699,11 +4061,24 @@ $\mathbf{A}^n \times X \to \mathbf{A}^n \times S$
 and we win.
 \end{proof}
 
+
+
+
+
+
+
+
+
+\section{Refined Noetherian valuative criteria}
+\label{section-refined-valuative-criteria}
+
 \noindent
-In the Noetherian case one usually does not have to consider all
-possible diagrams with discrete valuation rings when testing the
-valuative criteria. We have already seen this
-in Lemmas \ref{lemma-Noetherian-dvr-valuative-separation} and
+One usually does not have to consider all possible diagrams with
+valuation rings when checking valuative criteria. An example is
+given by Morphisms, Lemma
+\ref{morphisms-lemma-refined-valuative-criterion-universally-closed}.
+In the Noetherian setting, we have also seen this in
+Lemmas \ref{lemma-Noetherian-dvr-valuative-separation} and
 \ref{lemma-Noetherian-dvr-valuative-proper}. Here is another variant.
 
 \begin{lemma}
@@ -3850,6 +4225,273 @@ Combine Lemmas \ref{lemma-refined-valuative-criterion-separated} and
 
 
 
+\section{Valuative criteria over a Nagata base}
+\label{section-nagata-valuative}
+
+\noindent
+When working with schemes locally of finite type over a
+Nagata base we can reduce to discrete valuation rings
+which are essentially of finite type over the base.
+The following are just some example results one can get.
+
+\begin{lemma}
+\label{lemma-essentially-finite-type-criterion-universally-closed}
+Let $S$ be a Nagata scheme (and in particular locally Noetherian).
+Let $f : X \to Y$ be a quasi-compact morphism of schemes locally
+of finite type over $S$. The following are equivalent
+\begin{enumerate}
+\item $f$ is universally closed,
+\item for every $n$ the morphism
+$\mathbf{A}^n \times X \to \mathbf{A}^n \times Y$ is closed,
+\item for any commutative diagram
+$$
+\xymatrix{
+U \ar[r] \ar[d] & X \ar[d]^f \\
+C \ar[r] \ar@{..>}[ru] & Y
+}
+$$
+of schemes over $S$ such that
+\begin{enumerate}
+\item $C$ is a normal integral scheme of finite type over $S$,
+\item $U = C \setminus \{c\}$ for some closed point $c \in C$,
+\item $A = \mathcal{O}_{C, c}$ has dimension $1$\footnote{It follows
+that $A$ is a discrete valuation ring, see
+Algebra, Lemma \ref{algebra-lemma-characterize-dvr}.
+Moreover, $c$ maps to a finite type point $s \in S$ and
+$A$ is essentially of finite type over $\mathcal{O}_{S, s}$.}
+\end{enumerate}
+then in the commutative diagram
+$$
+\xymatrix{
+\Spec(K) \ar[r] \ar[d] & X \ar[d]^f \\
+\Spec(A) \ar[r] \ar@{-->}[ru] & Y
+}
+$$
+where $K = \text{Frac}(A)$ some dotted arrow exists\footnote{By
+Lemma \ref{lemma-morphism-glueing-near-closed-point} this is
+equivalent to asking for the existence of dotted arrow
+making the first commutative diagram commute.}
+making the diagram commute.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We have seen the equivalence of (1) and (2) and the
+fact that these imply (3) in
+Lemma \ref{lemma-check-universally-closed-Noetherian}.
+Thus it suffices to prove that (3) implies (2).
+Observe that if condition (3) holds for $f : X \to Y$,
+then condition (3) holds for
+$1 \times f : \mathbf{A}^n \times X \to \mathbf{A}^n \times Y$
+(see argument in the proof of
+Lemma \ref{lemma-check-universally-closed-Noetherian}).
+Hence it suffices to show that (3) implies that $f$ is closed.
+
+\medskip\noindent
+Reduction to the case where $Y$ and $S$ are affine; we suggest
+skipping this paragraph.
+Let $S' \subset S$ be an affine open and let $Y' \subset Y$ be an
+affine open mapping into $S'$. Set $X' = f^{-1}(Y')$. Then we
+claim that the restriction $f' : X' \to Y'$ of $f$ viewed as a morphism
+of schemes over $S'$ has property (3) also. We omit the details.
+Now if we can prove that $f'$ is closed for all choices of
+$S'$ and $Y'$, then it follows that $f$ is closed. This reduces
+us to the case discussed in the next paragraph.
+
+\medskip\noindent
+Assume $S$ and $Y$ affine. Let $Z \subset X$ be a closed subset.
+We may and do view $Z$ as a reduced closed subscheme of $X$.
+We have to show that $E = f(Z)$ is closed. Pick $y \in Y$ a closed point
+contained in the closure of $f(Z)$. It suffices to show $y \in E$.
+We assume $y \not \in E$ to get a contradiction.
+The image $s \in S$ of $y$ is a finite type point of $S$, see
+Morphisms, Lemma \ref{morphisms-lemma-finite-type-points-morphism}.
+Recall that $E$ is constructible
+(Morphisms, Lemma \ref{morphisms-lemma-chevalley}).
+Consider the intersection $\Spec(\mathcal{O}_{Y, y}) \cap E$.
+This is a constructible subset of the spectrum
+(Morphisms, Lemma \ref{morphisms-lemma-inverse-image-constructible})
+which doesn't contain the closed point.
+Since the punctured spectrum
+$\Spec(\mathcal{O}_{Y, y}) \setminus \{y\}$ is Jacobson
+(Morphisms, Lemma \ref{morphisms-lemma-ubiquity-Jacobson-schemes}), we find a
+closed point $t \in \Spec(\mathcal{O}_{Y, y}) \setminus \{y\}$
+with $t \in E$ (see Topology, Lemma \ref{topology-lemma-jacobson-inherited}).
+In other words, $t \in E$ is a point of $Y$ which
+has an immediate specialization $t \leadsto y$.
+As $t \in E$ the scheme theoretic fibre $Z_t$ is nonempty.
+Choose a closed point $x \in Z_t$. In particular we have
+$[\kappa(x) : \kappa(t)] < \infty$ by the Hilbert Nullstellensatz
+(Morphisms, Lemma
+\ref{morphisms-lemma-closed-point-fibre-locally-finite-type}).
+
+\medskip\noindent
+Denote $T = \overline{\{t\}} \subset Y$ the integral closed subscheme
+whose underlying topological space is as indicated
+(Schemes, Definition \ref{schemes-definition-reduced-induced-scheme}).
+Then $t \in T$ is the generic point.
+Denote $C \to T$ the normalization of $T$ in $\kappa(x)$, see
+Morphisms, Section \ref{morphisms-section-normalization-X-in-Y}
+(more precisely, $C \to T$ is the normalization of $T$ in $x$
+where we view $x = \Spec(\kappa(x)) \to T$ as a scheme over $T$).
+Since $S$ is a Nagata scheme, so is $T$
+(Morphisms, Lemma \ref{morphisms-lemma-finite-type-nagata}).
+Hence we see that $C \to T$ is finite
+(Morphisms, Lemma \ref{morphisms-lemma-nagata-normalization-finite-general}).
+As $t$ is in the image we see that $C \to T$ is surjective (because
+the image is closed and $T$ is the closure of $t$ in $Y$).
+Choose a point $c \in C$ mapping to $y \in T$.
+Since $y$ is a closed point of $T$ we see that $c$ is
+a closed point of $C$. Since $\dim(\mathcal{O}_{T, y}) = 1$
+we see that $\dim(\mathcal{O}_{C, c}) = 1$ (the dimension is
+at least $1$ as $c$ is not the generic point of $C$ and
+at most $1$ as $C \to T$ is finite).
+As the function field of $C$ is $\kappa(x)$ and as $x$
+is a point of $X$, we have a $Y$-rational map from $C$ to $X$
+(see for example Morphisms, Lemma
+\ref{morphisms-lemma-rational-map-finite-presentation}).
+Let $C \supset U \to X$ be a representative (in particular $U$ is nonempty).
+We may assume $c \not \in U$ (replace $U$ by $U \setminus \{c\}$).
+Since $c$ is a closed point of codimension $1$ in the integral scheme $C$
+we have $C = U \amalg \{c\} \amalg \Sigma$
+for some proper closed subset $\Sigma \subset C$.
+After replacing $C$ by $C \setminus \Sigma$
+we have constructed a commutative diagram as in part (3).
+By the 2nd footnote in the statement of the lemma,
+the existence of the dotted arrow produces an extension
+of the rational map to all of $C$ and we get the contradiction
+because the image of $c$ will be a point of $Z$ mapping to $y$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-essentially-finite-type-criterion-separation}
+Let $S$ be a Nagata scheme (and in particular locally Noetherian).
+Let $f : X \to Y$ be a morphism of schemes locally of finite type over $S$.
+The following are equivalent
+\begin{enumerate}
+\item $f$ separated,
+\item for any commutative diagram
+$$
+\xymatrix{
+U \ar[r] \ar[d] & X \ar[d]^f \\
+C \ar[r] \ar@{..>}[ru] & Y
+}
+$$
+of schemes over $S$ such that
+\begin{enumerate}
+\item $C$ is a normal integral scheme of finite type over $S$,
+\item $U = C \setminus \{c\}$ for some closed point $c \in C$,
+\item $A = \mathcal{O}_{C, c}$ has dimension $1$\footnote{It follows
+that $A$ is a discrete valuation ring, see
+Algebra, Lemma \ref{algebra-lemma-characterize-dvr}.
+Moreover, $c$ maps to a finite type point $s \in S$ and
+$A$ is essentially of finite type over $\mathcal{O}_{S, s}$.}
+\end{enumerate}
+then in the commutative diagram
+$$
+\xymatrix{
+\Spec(K) \ar[r] \ar[d] & X \ar[d]^f \\
+\Spec(A) \ar[r] \ar@{-->}[ru] & Y
+}
+$$
+where $K = \text{Frac}(A)$ there exists at most one dotted arrow\footnote{By
+Lemma \ref{lemma-morphism-glueing-near-closed-point} this is
+equivalent to asking there to be at most one dotted arrow
+making the first commutative diagram commute.}
+making the diagram commute.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-Noetherian-dvr-valuative-separation} we see that
+(1) implies (2). Assume (2). In order to show that $f$ is separated,
+we have to show that $\Delta : X \to X \times_Y X$ is closed. By
+Morphisms, Lemma \ref{morphisms-lemma-finite-type-Noetherian-quasi-separated}
+the morphism $\Delta$ is quasi-compact.
+By Lemma \ref{lemma-essentially-finite-type-criterion-universally-closed}
+it suffices to show: for any commutative diagram
+$$
+\xymatrix{
+U \ar[rr] \ar[d] & & X \ar[d]^\Delta \\
+C \ar[rr]^{(a_1, a_2)} \ar@{..>}[rru] & & X \times_Y X
+}
+$$
+of schemes over $S$ such that
+\begin{enumerate}
+\item $C$ is a normal integral scheme of finite type over $S$,
+\item $U = C \setminus \{c\}$ for some closed point $c \in C$,
+\item $A = \mathcal{O}_{C, c}$ has dimension $1$.
+\end{enumerate}
+then in the commutative diagram
+$$
+\xymatrix{
+\Spec(K) \ar[r] \ar[d] & X \ar[d]^\Delta \\
+\Spec(A) \ar[r] \ar@{-->}[ru] & X \times_Y X
+}
+$$
+where $K = \text{Frac}(A)$ there exists some dotted arrow
+making the diagram commute. By
+Lemma \ref{lemma-morphism-glueing-near-closed-point}
+the existence of the dotted arrow in the second diagram
+is equivalent to the existence of the dotted arrow
+in the first diagram. Moreover, the existence there
+is the same as asking $a_1 = a_2$. However $a_1|_U = a_2|_U$, so
+by the uniqueness assumption (2) we see that this is true
+and the proof is complete.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-essentially-finite-type-criterion-proper}
+Let $S$ be a Nagata scheme (and in particular locally Noetherian).
+Let $f : X \to Y$ be a quasi-compact morphism of schemes locally
+of finite type over $S$. The following are equivalent
+\begin{enumerate}
+\item $f$ proper,
+\item for any commutative diagram
+$$
+\xymatrix{
+U \ar[r] \ar[d] & X \ar[d]^f \\
+C \ar[r] \ar@{..>}[ru] & Y
+}
+$$
+of schemes over $S$ such that
+\begin{enumerate}
+\item $C$ is a normal integral scheme of finite type over $S$,
+\item $U = C \setminus \{c\}$ for some closed point $c \in C$,
+\item $A = \mathcal{O}_{C, c}$ has dimension $1$\footnote{It follows
+that $A$ is a discrete valuation ring, see
+Algebra, Lemma \ref{algebra-lemma-characterize-dvr}.
+Moreover, $c$ maps to a finite type point $s \in S$ and
+$A$ is essentially of finite type over $\mathcal{O}_{S, s}$.}
+\end{enumerate}
+then in the commutative diagram
+$$
+\xymatrix{
+\Spec(K) \ar[r] \ar[d] & X \ar[d]^f \\
+\Spec(A) \ar[r] \ar@{-->}[ru] & Y
+}
+$$
+where $K = \text{Frac}(A)$ there exists exactly one dotted arrow\footnote{By
+Lemma \ref{lemma-morphism-glueing-near-closed-point} this is
+equivalent to asking for the existence and uniqueness of the dotted arrow
+making the first commutative diagram commute.}
+making the diagram commute.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+This is formal from Lemmas
+\ref{lemma-essentially-finite-type-criterion-universally-closed} and
+\ref{lemma-essentially-finite-type-criterion-separation}
+and the definition of proper morphisms as being finite type, separated,
+and universally closed.
+\end{proof}
+
+
+
+
+
+
 \section{Limits and dimensions of fibres}
 \label{section-limits-dimension}
 
@@ -3926,6 +4568,51 @@ Follows immediately from Lemma \ref{lemma-limit-dimension}.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-eventually-relative-dimension}
+Assumptions and notation as in Situation \ref{situation-descent-property}.
+Let $d \geq 0$. If
+\begin{enumerate}
+\item $f$ has relative dimension $\leq d$
+(Morphisms, Definition \ref{morphisms-definition-relative-dimension-d}), and
+\item $f_0$ is locally of finite type,
+\end{enumerate}
+then there exists an $i$ such that $f_i$ has relative dimension $\leq d$.
+\end{lemma}
+
+\begin{proof}
+Follows immediately from Lemma \ref{lemma-limit-dimension}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-descend-dimension-d}
+Notation and assumptions as in Situation \ref{situation-descent-property}.
+If
+\begin{enumerate}
+\item $f$ has relative dimension $d$, and
+\item $f_0$ is locally of finite presentation,
+\end{enumerate}
+then there exists an $i \geq 0$ such that $f_i$
+has relative dimension $d$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-limit-dimension} we may assume all fibres
+of $f_0$ have dimension $\leq d$. By Morphisms, Lemma
+\ref{morphisms-lemma-openness-bounded-dimension-fibres-finite-presentation}
+the set $U_0 \subset X_0$ of points $x \in X_0$ such that
+the dimension of the fibre of $X_0 \to Y_0$ at $x$ is $\leq d - 1$
+is open and retrocompact in $X_0$. Hence the complement
+$E = X_0 \setminus U_0$ is constructible.
+Moreover the image of $X \to X_0$ is contained in $E$
+by Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-after-base-change}.
+Thus for $i \gg 0$ we have that the image
+of $X_i \to X_0$ is contained in $E$
+(Lemma \ref{lemma-limit-contained-in-constructible}). Then all fibres
+of $X_i \to Y_i$ have dimension $d$ by the aforementioned
+Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-after-base-change}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-approximate-given-relative-dimension}
 Let $S$ be a quasi-compact and quasi-separated scheme.
 Let $f : X \to S$ be a morphism of finite presentation.
@@ -3965,24 +4652,186 @@ Moreover, the fibres of $Z' \to S$ are base changes of the fibres
 of $Z_i \to S_i$ and hence have dimension $\leq d$.
 \end{proof}
 
+
+
+
+
+
+\section{Base change in top degree}
+\label{section-top-degree}
+
+\noindent
+For a proper morphism and a finite type quasi-coherent module
+the base change map is an isomorphism in top degree.
+
+\begin{lemma}
+\label{lemma-top-cohomology-functor}
+Let $f : X \to Y$ be a morphism of schemes. Let $d \geq 0$. Assume
+\begin{enumerate}
+\item $X$ and $Y$ are quasi-compact and quasi-separated, and
+\item $R^if_*\mathcal{F} = 0$ for $i > d$ and
+every quasi-coherent $\mathcal{O}_X$-module $\mathcal{F}$.
+\end{enumerate}
+Then we have
+\begin{enumerate}
+\item[(a)] for any base change diagram
+$$
+\xymatrix{
+X' \ar[d]_{f'} \ar[r]_{g'} & X \ar[d]^f \\
+Y' \ar[r]^g & Y
+}
+$$
+we have $R^if'_*\mathcal{F}' = 0$ for $i > d$ and any quasi-coherent
+$\mathcal{O}_{X'}$-module $\mathcal{F}'$,
+\item[(b)]
+$R^df'_*(\mathcal{F}' \otimes_{\mathcal{O}_{X'}} (f')^*\mathcal{G}') =
+R^df'_*\mathcal{F}' \otimes_{\mathcal{O}_{Y'}} \mathcal{G}'$
+for any quasi-coherent $\mathcal{O}_{Y'}$-module $\mathcal{G}'$,
+\item[(c)] formation of $R^df'_*\mathcal{F}'$ commutes with arbitrary
+further base change (see proof for explanation).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Before giving the proofs, we explain the meaning of (c). Suppose
+we have an additional cartesian square
+$$
+\xymatrix{
+X'' \ar[d]_{f''} \ar[r]_{h'} &
+X' \ar[d]_{f'} \ar[r]_{g'} &
+X \ar[d]^f \\
+Y'' \ar[r]^h &
+Y' \ar[r]^g &
+Y
+}
+$$
+tacked onto our given diagram. If (a) holds, then there is a canonical
+map $\gamma : h^*R^df'_*\mathcal{F}' \to R^df''_*(h')^*\mathcal{F}'$.
+Namely, $\gamma$ is the map on degree $d$ cohomology sheaves
+induced by the composition
+$$
+Lh^*Rf'_*\mathcal{F}' \longrightarrow
+Rf''_*L(h')^*\mathcal{F}' \longrightarrow Rf''_*(h')^*\mathcal{F}'
+$$
+Here the first arrow is the base change map
+(Cohomology, Remark \ref{cohomology-remark-base-change}) and
+the second arrow complex from the canonical map
+$L(g')^*\mathcal{F} \to (g')^*\mathcal{F}$.
+Similarly, since $Rf'_*\mathcal{F}$ has no nonzero cohomology sheaves in
+degrees $> d$ by (a) we have
+$H^d(Lh^*Rf_*\mathcal{F}') = h^*R^df_*\mathcal{F}$.
+The content of (c) is that $\gamma$ is an isomorphism.
+
+\medskip\noindent
+Having said this, we can check (a), (b), and (c) locally on $Y'$ and $Y''$.
+Suppose that $V \subset Y$ is a quasi-compact open subscheme. Then we
+claim (1) and (2) hold for $f|_{f^{-1}(V)} : f^{-1}(V) \to V$.
+Namely, (1) is immediate and (2) follows because any quasi-coherent
+module on $f^{-1}(V)$ is the restriction of a quasi-coherent module
+on $X$ (Properties, Lemma \ref{properties-lemma-extend-trivial}) and formation
+of higher direct images commutes with restriction to opens.
+Thus we may also work locally on $Y$. In other words, we may
+assume $Y''$, $Y'$, and $Y$ are affine schemes.
+
+\medskip\noindent
+Proof of (a) when $Y'$ and $Y$ are affine. In this case the morphisms
+$g$ and $g'$ are affine. Thus $g_* = Rg_*$ and $g'_* = Rg'_*$
+(Cohomology of Schemes, Lemma \ref{coherent-lemma-relative-affine-vanishing})
+and $g_*$ is identified with the restriction functor on modules
+(Schemes, Lemma \ref{schemes-lemma-widetilde-pullback}).
+Then
+$$
+g_*(R^if'_*\mathcal{F}') = H^i(Rg_*Rf'_*\mathcal{F}') =
+H^i(Rf_*Rg'_*\mathcal{F}') =
+H^i(Rf_*g'_*\mathcal{F}') =
+Rf^i_*g'_*\mathcal{F}'
+$$
+which is zero by assumption (2). Hence (a) by our description of $g_*$.
+
+\medskip\noindent
+Proof of (b) when $Y'$ is affine, say $Y' = \Spec(R')$.
+By part (a) we have $H^{d + 1}(X', \mathcal{F}') = 0$
+for any quasi-coherent $\mathcal{O}_{X'}$-module $\mathcal{F}'$, see
+Cohomology of Schemes, Lemma
+\ref{coherent-lemma-quasi-coherence-higher-direct-images-application}.
+Consider the functor $F$ on $R'$-modules defined by the rule
+$$
+F(M) = H^d(X', \mathcal{F}' \otimes_{\mathcal{O}_{X'}} (f')^*\widetilde{M})
+$$
+By Cohomology, Lemma \ref{cohomology-lemma-quasi-separated-cohomology-colimit}
+this functor commutes with direct sums (this is where we use that
+$X$ and hence $X'$ is quasi-compact and quasi-separated).
+On the other hand, if $M_1 \to M_2 \to M_3 \to 0$ is an exact sequence,
+then
+$$
+\mathcal{F}' \otimes_{\mathcal{O}_{X'}} (f')^*\widetilde{M}_1 \to
+\mathcal{F}' \otimes_{\mathcal{O}_{X'}} (f')^*\widetilde{M}_2 \to
+\mathcal{F}' \otimes_{\mathcal{O}_{X'}} (f')^*\widetilde{M}_3 \to 0
+$$
+is an exact sequence of quasi-coherent modules on $X'$
+and by the vanishing of higher cohomology given above we get an exact sequence
+$$
+F(M_1) \to F(M_2) \to F(M_3) \to 0
+$$
+In other words, $F$ is right exact. Any right exact $R'$-linear functor
+$F : \text{Mod}_{R'} \to \text{Mod}_{R'}$
+which commutes with direct sums is given by tensoring with an $R'$-module
+(omitted; left as exercise for the reader).
+Thus we obtain $F(M) = H^d(X', \mathcal{F}') \otimes_{R'} M$.
+Since $R^d(f')_*\mathcal{F}'$ and
+$R^d(f')_*(\mathcal{F}' \otimes_{\mathcal{O}_{X'}} (f')^*\widetilde{M})$
+are quasi-coherent (Cohomology of Schemes, Lemma
+\ref{coherent-lemma-quasi-coherence-higher-direct-images}),
+the fact that $F(M) = H^d(X', \mathcal{F}') \otimes_{R'} M$
+translates into the statement given in (b).
+
+\medskip\noindent
+Proof of (c) when $Y'' \to Y' \to Y$ are morphisms of affine schemes.
+Say $Y'' = \Spec(R'')$ and $Y' = \Spec(R')$.
+Then we see that $R^df''_*(h')^*\mathcal{F}'$
+is the quasi-coherent module on $Y'$ associated to the $R''$-module
+$H^d(X'', (h')^*\mathcal{F}')$. Now $h' : X'' \to X'$ is affine
+hence $H^d(X'', (h')^*\mathcal{F}') = H^d(X, h'_*(h')^*\mathcal{F}')$
+by the already used
+Cohomology of Schemes, Lemma \ref{coherent-lemma-relative-affine-cohomology}.
+We have
+$$
+h'_*(h')^*\mathcal{F}' =
+\mathcal{F}' \otimes_{\mathcal{O}_{X'}} (f')^*\widetilde{R''}
+$$
+as the reader sees by checking on an affine open covering. Thus
+$H^d(X'', (h')^*\mathcal{F}') = H^d(X', \mathcal{F}') \otimes_{R'} R''$
+by part (b) applied to $f'$ and the proof is complete.
+\end{proof}
+
 \begin{lemma}
 \label{lemma-higher-direct-images-zero-above-dimension-fibre}
 Let $f : X \to Y$ be a morphism of schemes. Let $y \in Y$.
 Assume $f$ is proper and $\dim(X_y) = d$.
-Then for any quasi-coherent $\mathcal{O}_X$-module $\mathcal{F}$
-we have $(R^pf_*\mathcal{F})_y = 0$ for all $p > d$.
+Then
+\begin{enumerate}
+\item for $\mathcal{F} \in \QCoh(\mathcal{O}_X)$
+we have $(R^if_*\mathcal{F})_y = 0$ for all $i > d$,
+\item there is an affine open neighbourhood $V \subset Y$
+of $y$ such that $f^{-1}(V) \to V$ and $d$ satisfy the
+assumptions and conclusions of Lemma \ref{lemma-top-cohomology-functor}.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
 By Morphisms, Lemma
 \ref{morphisms-lemma-openness-bounded-dimension-fibres}
-and the fact that $f$ is closed, we can find an open neighbourhood
-$V$ of $y$ such that the fibres over points of $V$ all have dimension $\leq d$.
-Since the question is local on $Y$ we may assume $Y$ is affine
-and all fibres of $f$ have dimension $\leq d$.
+and the fact that $f$ is closed, we can find an affine open neighbourhood
+$V$ of $y$ such that the fibres over points of $V$ all have dimension
+$\leq d$. Thus we may assume $X \to Y$ is a proper morphism all
+of whose fibres have dimension $\leq d$ with $Y$ affine.
+We will show that (2) holds, which will immediately imply (1)
+for all $y \in Y$.
+
+\medskip\noindent
 By Lemma \ref{lemma-proper-limit-of-proper-finite-presentation}
-we can write $X = \lim X_i$ as a cofiltered limit with $X_i \to Y$ proper and
-of finite presentation and such that both $X \to X_i$
+we can write $X = \lim X_i$ as a cofiltered limit with $X_i \to Y$ proper
+and of finite presentation and such that both $X \to X_i$
 and transition morphisms are closed immersions.
 For some $i$ we have that $X_i \to Y$ has fibres of dimension $\leq d$,
 see Lemma \ref{lemma-limit-dimension}.
@@ -4035,6 +4884,108 @@ all $y \in Y$ by Cohomology of Schemes, Lemma
 Thus $R^pf_*\mathcal{F} = 0$ and therefore
 $H^p(X, \mathcal{F}) = 0$ (see above) and we win.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-proper-top-cohomology-finite-type}
+Let $f : X \to Y$ be a morphism of schemes. Let $d \geq 0$. Let $\mathcal{F}$
+be an $\mathcal{O}_X$-module. Assume
+\begin{enumerate}
+\item $f$ is a proper morphism all of whose fibres have dimension $\leq d$,
+\item $\mathcal{F}$ is a quasi-coherent $\mathcal{O}_X$-module of finite type.
+\end{enumerate}
+Then $R^df_*\mathcal{F}$ is a quasi-coherent $\mathcal{O}_X$-module
+of finite type.
+\end{lemma}
+
+\begin{proof}
+The module $R^df_*\mathcal{F}$ is quasi-coherent by
+Cohomology of Schemes, Lemma
+\ref{coherent-lemma-quasi-coherence-higher-direct-images}.
+The question is local on $Y$ hence we may assume $Y$ is affine.
+Say $Y = \Spec(R)$. Then it suffices to prove that $H^d(X, \mathcal{F})$
+is a finite $R$-module.
+
+\medskip\noindent
+By Lemma \ref{lemma-proper-limit-of-proper-finite-presentation}
+we can write $X = \lim X_i$ as a cofiltered limit with $X_i \to Y$ proper
+and of finite presentation and such that both $X \to X_i$
+and transition morphisms are closed immersions.
+For some $i$ we have that $X_i \to Y$ has fibres of dimension $\leq d$,
+see Lemma \ref{lemma-limit-dimension}. We have
+$R^pf_*\mathcal{F} = R^pf_{i, *}(X \to X_i)_*\mathcal{F}$ by
+Cohomology of Schemes, Lemma \ref{coherent-lemma-relative-affine-vanishing}
+and Leray (Cohomology, Lemma \ref{cohomology-lemma-relative-Leray}).
+Thus we may replace $X$ by $X_i$ and
+reduce to the case discussed in the next paragraph.
+
+\medskip\noindent
+Assume $Y$ is affine and $f : X \to Y$ is proper and of finite presentation
+and all fibres have dimension $\leq d$.
+We can write $\mathcal{F}$ as a quotient of a finitely presented
+$\mathcal{O}_X$-module $\mathcal{F}'$, see
+Properties, Lemma
+\ref{properties-lemma-finite-directed-colimit-surjective-maps}.
+The map $H^d(X, \mathcal{F}') \to H^d(X, \mathcal{F})$ is
+surjective, as we have $H^{d + 1}(X, \Ker(\mathcal{F}' \to \mathcal{F})) = 0$
+by the vanishing of higher cohomology seen in
+Lemma \ref{lemma-higher-direct-images-zero-above-dimension-fibre}
+(or its proof). Thus we reduce to the case discussed in the next paragraph.
+
+\medskip\noindent
+Assume $Y = \Spec(R)$ is affine and $f : X \to Y$
+is proper and of finite presentation
+and all fibres have dimension $\leq d$ and $\mathcal{F}$ is an
+$\mathcal{O}_X$-module of finite presentation.
+Write $Y = \lim_{i \in I} Y_i$ as a cofiltered limit of affine schemes
+with $Y_i = \Spec(R_i)$ the spectrum of a Noetherian ring
+(for example a finite type $\mathbf{Z}$-algebra).
+We can choose an element $0 \in I$ and a finite type morphism
+$X_0 \to Y_0$ such that $X \cong Y \times_{Y_0} X_0$, see
+Lemma \ref{lemma-descend-finite-presentation}.
+After increasing $0$ we may assume $X_0 \to Y_0$ is proper
+(Lemma \ref{lemma-eventually-proper})
+and that the fibres of $X_0 \to Y_0$ have dimension $\leq d$
+(Lemma \ref{lemma-limit-dimension}).
+After increasing $0$ we can assume there is a coherent
+$\mathcal{O}_{X_0}$-module $\mathcal{F}_0$ which pulls
+back to $\mathcal{F}$, see
+Lemma \ref{lemma-descend-modules-finite-presentation}.
+By Lemma \ref{lemma-top-cohomology-functor}
+we have
+$$
+H^d(X, \mathcal{F}) = H^d(X_0, \mathcal{F}_0) \otimes_{R_0} R
+$$
+This finishes the proof because the cohomology module
+$H^d(X_0, \mathcal{F}_0)$ is finite by
+Cohomology of Schemes, Lemma
+\ref{coherent-lemma-proper-over-affine-cohomology-finite}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-proper-top-cohomology-finite-presentation}
+Let $f : X \to Y$ be a morphism of schemes. Let $d \geq 0$.
+Let $\mathcal{F}$ be an $\mathcal{O}_X$-module. Assume
+\begin{enumerate}
+\item $f$ is a proper morphism of finite presentation
+all of whose fibres have dimension $\leq d$,
+\item $\mathcal{F}$ is an $\mathcal{O}_X$-module of finite presentation.
+\end{enumerate}
+Then $R^df_*\mathcal{F}$ is an $\mathcal{O}_X$-module
+of finite presentation.
+\end{lemma}
+
+\begin{proof}
+The proof is exactly the same as the proof of
+Lemma \ref{lemma-proper-top-cohomology-finite-type}
+except that the third paragraph can be skipped.
+We omit the details.
+\end{proof}
+
+
+
+
+
+
 
 
 
@@ -4120,6 +5071,40 @@ of these results.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-glueing-near-closed-point-modules}
+Let $S$ be a scheme. Let $s \in S$ be a closed point such that
+$U = S \setminus \{s\} \to S$ is quasi-compact. With
+$V = \Spec(\mathcal{O}_{S, s}) \setminus \{s\}$ there is
+an equivalence of categories
+$$
+\left\{
+\mathcal{O}_S\text{-modules }\mathcal{F}\text{ of finite presentation}
+\right\}
+\longrightarrow
+\left\{
+(\mathcal{G}, \mathcal{H}, \alpha)
+\right\}
+$$
+where on the right hand side we consider triples
+consisting of a $\mathcal{O}_U$-module $\mathcal{G}$ of
+finite presentation, a $\mathcal{O}_{\Spec(\mathcal{O}_{S, s})}$-module
+$\mathcal{H}$ of finite presentation, and an isomorphism
+$\alpha : \mathcal{G}|_V \to \mathcal{H}|_V$ of
+$\mathcal{O}_V$-modules.
+\end{lemma}
+
+\begin{proof}
+You can either prove this by
+redoing the proof of Lemma \ref{lemma-glueing-near-closed-point}
+using Lemma \ref{lemma-descend-modules-finite-presentation}
+or you can deduce it from Lemma \ref{lemma-glueing-near-closed-point}
+using the equivalence between quasi-coherent modules and
+``vector bundles'' from
+Constructions, Section \ref{constructions-section-vector-bundle}.
+We omit the details.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-glueing-near-point}
 Let $S$ be a scheme. Let $U \subset S$ be a retrocompact open.
 Let $s \in S$ be a point in the complement of $U$. With
@@ -4194,6 +5179,43 @@ categories of schemes of finite presentation over
 $W \cap U$ where $W$ runs over the affine open neighbourhoods
 of $s$. The lemma follows formally from a combination
 of these results.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-glueing-near-point-properties}
+Notation and assumptions as in Lemma \ref{lemma-glueing-near-point}.
+Let $U \subset U' \subset X$ be an open containing $s$.
+\begin{enumerate}
+\item  Let $f' : X \to U'$ correspond to $f : X' \to U$ and
+$g : Y \to \Spec(\mathcal{O}_{S, s})$
+via the equivalence. If $f$ and $g$ are separated, proper, finite, \'etale,
+then after possibly shrinking $U'$ the morphism $f'$ has the same property.
+\item Let $a : X_1 \to X_2$
+be a morphism of schemes of finite presentation over $U'$
+with base change $a' : X'_1 \to X'_2$ over $U$ and
+$b : Y_1 \to Y_2$ over $\Spec(\mathcal{O}_{S, s})$.
+If $a'$ and $b$ are separated, proper, finite, \'etale,
+then after possibly shrinking $U'$ the morphism $a$ has the same property.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Proof of (1). Recall that $\Spec(\mathcal{O}_{S, s})$ is the limit of the
+affine open neighbourhoods of $s$ in $S$. Since $g$ has the property
+in question, then the restriction of $f'$ to one of these
+affine open neighbourhoods does too, see
+Lemmas \ref{lemma-descend-separated-finite-presentation},
+\ref{lemma-eventually-proper},
+\ref{lemma-descend-finite-finite-presentation}, and
+\ref{lemma-descend-etale}.
+Since $f'$ has the given property over $U$ as $f$ does,
+we conclude as one can check the property locally on the base.
+
+\medskip\noindent
+Proof of (2). If we write $\Spec(\mathcal{O}_{S, s}) = \lim W$
+where $W$ runs over the affine open neighbourhoods of $s$ in $S$,
+then we have $Y_i = \lim W \times_S X_i$. Thus we can use
+exactly the same arguments as in the proof of (1).
 \end{proof}
 
 \begin{lemma}
@@ -4276,7 +5298,7 @@ This is a special case of Lemma \ref{lemma-glueing-near-closed-point}.
 \label{lemma-modifications-properties}
 Notation and assumptions as in Lemma \ref{lemma-modifications}.
 Let $f : X \to S$ correspond to $g : Y \to \Spec(\mathcal{O}_{S, s})$
-via the equivalence. Then $f$ is separated, proper, finite,
+via the equivalence. Then $f$ is separated, proper, finite, \'etale
 and add more here if and only if $g$ is so.
 \end{lemma}
 
@@ -4288,10 +5310,13 @@ and
 Morphisms, Lemmas \ref{morphisms-lemma-base-change-proper} and
 \ref{morphisms-lemma-base-change-finite}.
 Hence if $f$ has the property, then so does $g$.
-Conversely, if $g$ does, then $f$ does in a neighbourhood of $s$ by
+The converse follows from Lemma \ref{lemma-glueing-near-point-properties}
+but we also give a direct proof here.
+Namely, if $g$ has to property, then $f$ does in a neighbourhood of $s$ by
 Lemmas \ref{lemma-descend-separated-finite-presentation},
-\ref{lemma-eventually-proper}, and
-\ref{lemma-descend-finite-finite-presentation}.
+\ref{lemma-eventually-proper},
+\ref{lemma-descend-finite-finite-presentation}, and
+\ref{lemma-descend-etale}.
 Since $f$ clearly has the given property over $S \setminus \{s\}$
 we conclude as one can check the property locally on the base.
 \end{proof}

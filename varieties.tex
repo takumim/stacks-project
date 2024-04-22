@@ -59,7 +59,7 @@ $X \to \Spec(k)$ is separated and of finite type.
 
 \noindent
 This definition has the following drawback. Suppose that
-$k \subset k'$ is an extension of fields. Suppose that $X$
+$k'/k$ is an extension of fields. Suppose that $X$
 is a variety over $k$. Then the base change
 $X_{k'} = X \times_{\Spec(k)} \Spec(k')$ is
 not necessarily a variety over $k'$. This phenomenon (in greater
@@ -334,7 +334,7 @@ Let $X$ be a scheme over $k$.
 \begin{enumerate}
 \item Let $x \in X$ be a point.
 We say $X$ is {\it geometrically reduced at $x$}
-if for any field extension $k \subset k'$
+if for any field extension $k'/k$
 and any point $x' \in X_{k'}$ lying over $x$
 the local ring $\mathcal{O}_{X_{k'}, x'}$ is reduced.
 \item We say $X$ is {\it geometrically reduced} over $k$
@@ -366,7 +366,7 @@ Algebra, Definition \ref{algebra-definition-geometrically-reduced}).
 
 \begin{proof}
 Assume (1). This in particular implies that $\mathcal{O}_{X, x}$
-is reduced. Let $k \subset k'$ be a finite purely inseparable field
+is reduced. Let $k'/k$ be a finite purely inseparable field
 extension. Consider the ring $\mathcal{O}_{X, x} \otimes_k k'$.
 By Algebra, Lemma \ref{algebra-lemma-p-ring-map}
 its spectrum is the same as the spectrum of $\mathcal{O}_{X, x}$.
@@ -379,7 +379,7 @@ Algebra, Lemma
 \ref{algebra-lemma-geometrically-reduced-finite-purely-inseparable-extension}.
 
 \medskip\noindent
-Assume (2). Let $k \subset k'$ be a field extension. Since
+Assume (2). Let $k'/k$ be a field extension. Since
 $\Spec(k') \to \Spec(k)$ is surjective, also
 $X_{k'} \to X$ is surjective
 (Morphisms, Lemma \ref{morphisms-lemma-base-change-surjective}).
@@ -415,9 +415,9 @@ Let $k$ be a field of characteristic $p > 0$. Let $X$ be a scheme over $k$.
 The following are equivalent
 \begin{enumerate}
 \item $X$ is geometrically reduced,
-\item $X_{k'}$ is reduced for every field extension $k \subset k'$,
+\item $X_{k'}$ is reduced for every field extension $k'/k$,
 \item $X_{k'}$ is reduced for every finite purely inseparable field extension
-$k \subset k'$,
+$k'/k$,
 \item $X_{k^{1/p}}$ is reduced,
 \item $X_{k^{perf}}$ is reduced,
 \item $X_{\bar k}$ is reduced,
@@ -428,20 +428,20 @@ Algebra, Definition \ref{algebra-definition-geometrically-reduced}).
 \end{lemma}
 
 \begin{proof}
-Assume (1). Then for every field extension $k \subset k'$ and
+Assume (1). Then for every field extension $k'/k$ and
 every point $x' \in X_{k'}$ the local ring of $X_{k'}$ at $x'$
 is reduced. In other words $X_{k'}$ is reduced. Hence (2).
 
 \medskip\noindent
 Assume (2). Let $U \subset X$ be an affine open. Then for
-every field extension $k \subset k'$ the scheme $X_{k'}$ is reduced, hence
+every field extension $k'/k$ the scheme $X_{k'}$ is reduced, hence
 $U_{k'} = \Spec(\mathcal{O}(U)\otimes_k k')$ is reduced,
 hence $\mathcal{O}(U)\otimes_k k'$ is reduced (see Properties,
 Section \ref{properties-section-integral}). In other words
 $\mathcal{O}(U)$ is geometrically reduced, so (7) holds.
 
 \medskip\noindent
-Assume (7). For any field extension $k \subset k'$ the base
+Assume (7). For any field extension $k'/k$ the base
 change $X_{k'}$ is gotten by gluing the spectra of the
 rings $\mathcal{O}_X(U) \otimes_k k'$ where $U$ is affine open
 in $X$ (see Schemes, Section \ref{schemes-section-fibre-products}).
@@ -471,7 +471,7 @@ $x' \in X_{k^{perf}}$ the unique point lying over $x$.
 \end{lemma}
 
 \begin{proof}
-Note that if $k \subset k'$ is purely inseparable, then
+Note that if $k'/k$ is purely inseparable, then
 $X_{k'} \to X$ induces a homeomorphism on underlying topological
 spaces, see Algebra, Lemma \ref{algebra-lemma-p-ring-map}.
 Whence the uniqueness of $x'$ lying over $x$ mentioned in the
@@ -499,9 +499,9 @@ $X_{k'}$ is geometrically reduced over $k'$.
 
 \begin{proof}
 It is clear that (1) implies (2). Assume (2).
-Let $k \subset k''$ be a finite purely inseparable field extension
+Let $k''/k$ be a finite purely inseparable field extension
 and let $x'' \in X_{k''}$ be a point lying over $x$ (actually it is
-unique). We can find a common field extension $k \subset k'''$
+unique). We can find a common field extension $k'''/k$
 (i.e.\ with both $k' \subset k'''$ and $k'' \subset k'''$) and a point
 $x''' \in X_{k'''}$ lying over both $x'$ and $x''$.
 Consider the map of local rings
@@ -602,7 +602,7 @@ in turn implies that $U$ is geometrically reduced.
 Let $k = \mathbf{F}_p(s, t)$, i.e., a purely transcendental extension
 of the prime field. Consider the variety
 $X = \Spec(k[x, y]/(1 + sx^p + ty^p))$.
-Let $k \subset k'$ be any extension such that
+Let $k'/k$ be any extension such that
 both $s$ and $t$ have a $p$th root in $k'$.
 Then the base change $X_{k'}$ is not reduced.
 Namely, the ring $k'[x, y]/(1 + s x^p + ty^p)$ contains the element
@@ -616,7 +616,7 @@ does not contain any nonzero element of degree $< p$).
 Let $k$ be a field.
 Let $X \to \Spec(k)$ be locally of finite type.
 Assume $X$ has finitely many irreducible components.
-Then there exists a finite purely inseparable extension $k \subset k'$
+Then there exists a finite purely inseparable extension $k'/k$
 such that $(X_{k'})_{red}$ is geometrically reduced over $k'$.
 \end{lemma}
 
@@ -626,7 +626,7 @@ Hence we may assume that $X$ is reduced and locally of finite type
 over $k$.
 Let $x_1, \ldots, x_n \in X$ be the generic points of the irreducible
 components of $X$.
-Note that for every purely inseparable algebraic extension $k \subset k'$
+Note that for every purely inseparable algebraic extension $k'/k$
 the morphism $(X_{k'})_{red} \to X$ is a homeomorphism, see
 Algebra, Lemma \ref{algebra-lemma-p-ring-map}. Hence the points
 $x'_1, \ldots, x'_n$ lying over $x_1, \ldots, x_n$ are the generic
@@ -634,11 +634,11 @@ points of the irreducible components of $(X_{k'})_{red}$.
 As $X$ is reduced the local rings $K_i = \mathcal{O}_{X, x_i}$ are fields, see
 Algebra, Lemma \ref{algebra-lemma-minimal-prime-reduced-ring}.
 As $X$ is locally of finite type over $k$ the field extensions
-$k \subset K_i$ are finitely generated field extensions.
+$K_i/k$ are finitely generated field extensions.
 Finally, the local rings $\mathcal{O}_{(X_{k'})_{red}, x'_i}$ are the
 fields $(K_i \otimes_k k')_{red}$. By
 Algebra, Lemma \ref{algebra-lemma-make-separable}
-we can find a finite purely inseparable extension $k \subset k'$
+we can find a finite purely inseparable extension $k'/k$
 such that $(K_i \otimes_k k')_{red}$ are separable field
 extensions of $k'$. In particular each $(K_i \otimes_k k')_{red}$
 is geometrically reduced over $k'$ by
@@ -688,7 +688,7 @@ example of a non-geometrically connected variety.
 \begin{lemma}
 \label{lemma-geometrically-connected-check-after-extension}
 Let $X$ be a scheme over the field $k$.
-Let $k \subset k'$ be a field extension.
+Let $k'/k$ be a field extension.
 Then $X$ is geometrically connected over $k$ if and only if
 $X_{k'}$ is geometrically connected over $k'$.
 \end{lemma}
@@ -696,8 +696,8 @@ $X_{k'}$ is geometrically connected over $k'$.
 \begin{proof}
 If $X$ is geometrically connected over $k$, then it is clear that
 $X_{k'}$ is geometrically connected over $k'$. For the converse, note
-that for any field extension $k \subset k''$ there exists a common
-field extension $k' \subset k'''$ and $k'' \subset k'''$. As the
+that for any field extension $k''/k$ there exists a common
+field extension $k'''/k'$ and $k'''/k''$. As the
 morphism $X_{k'''} \to X_{k''}$ is surjective (as a base change of
 a surjective morphism between spectra of fields) we see that the
 connectedness of $X_{k'''}$ implies the connectedness of $X_{k''}$.
@@ -746,7 +746,7 @@ Immediate from the definitions.
 
 \begin{lemma}
 \label{lemma-separably-closed-field-connected-components}
-Let $k \subset k'$ be an extension of fields.
+Let $k'/k$ be an extension of fields.
 Let $X$ be a scheme over $k$.
 Assume $k$ separably algebraically closed.
 Then the morphism $X_{k'} \to X$ induces a bijection of connected
@@ -776,8 +776,8 @@ $X_{\overline{k}}$ is connected.
 
 \begin{proof}
 Assume $X_{\overline{k}}$ is connected.
-Let $k \subset k'$ be a field extension.
-There exists a field extension $\overline{k} \subset \overline{k}'$
+Let $k'/k$ be a field extension.
+There exists a field extension $\overline{k}'/\overline{k}$
 such that $k'$ embeds into $\overline{k}'$ as an extension of $k$.
 By Lemma \ref{lemma-separably-closed-field-connected-components}
 we see that $X_{\overline{k}'}$ is connected.
@@ -819,7 +819,7 @@ maps to $f_{ij}$. Thus we see that $V = \pi^{-1}(V')$ as desired.
 \end{proof}
 
 \noindent
-Let $k$ be a field. Let $k \subset \overline{k}$ be a (possibly infinite)
+Let $k$ be a field. Let $\overline{k}/k$ be a (possibly infinite)
 Galois extension. For example $\overline{k}$ could be the
 separable algebraic closure of $k$.
 For any $\sigma \in \text{Gal}(\overline{k}/k)$ we get a corresponding
@@ -857,7 +857,7 @@ Let $\overline{k}$ be a (possibly infinite) Galois extension of $k$.
 Let $V \subset X_{\overline{k}}$ be a quasi-compact open.
 Then
 \begin{enumerate}
-\item there exists a finite subextension $k \subset k' \subset \overline{k}$
+\item there exists a finite subextension $\overline{k}/k'/k$
 and a quasi-compact open $V' \subset X_{k'}$ such that
 $V = (V')_{\overline{k}}$,
 \item there exists an open subgroup $H \subset \text{Gal}(\overline{k}/k)$
@@ -867,14 +867,14 @@ such that $\sigma(V) = V$ for all $\sigma \in H$.
 
 \begin{proof}
 By Lemma \ref{lemma-descend-open} there exists a finite subextension
-$k \subset k' \subset \overline{k}$ and an open $V' \subset X_{k'}$
+$k'/k \subset \overline{k}$ and an open $V' \subset X_{k'}$
 which pulls back to $V$. This proves (1). Since $\text{Gal}(\overline{k}/k')$
 is open in $\text{Gal}(\overline{k}/k)$ part (2) is clear as well.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-closed-fixed-by-Galois}
-Let $k$ be a field. Let $k \subset \overline{k}$ be a (possibly infinite)
+Let $k$ be a field. Let $\overline{k}/k$ be a (possibly infinite)
 Galois extension. Let $X$ be a scheme over $k$. Let
 $\overline{T} \subset X_{\overline{k}}$ have the following properties
 \begin{enumerate}
@@ -893,17 +893,18 @@ be the radical ideal corresponding to $\overline{T}$.
 Assumption (2) implies that $\sigma(\overline{I}) = \overline{I}$
 for all $\sigma \in \text{Gal}(\overline{k}/k)$.
 Pick $x \in \overline{I}$. There exists a finite Galois extension
-$k \subset k'$ contained in $\overline{k}$ such that $x \in A \otimes_k k'$.
+$k'/k$ contained in $\overline{k}$ such that $x \in A \otimes_k k'$.
 Set $G = \text{Gal}(k'/k)$. Set
 $$
 P(T) = \prod\nolimits_{\sigma \in G} (T - \sigma(x)) \in (A \otimes_k k')[T]
 $$
 It is clear that $P(T)$ is monic and is actually an element of
 $(A \otimes_k k')^G[T] = A[T]$ (by basic Galois theory).
-Moreover, if we write $P(T) = T^d + a_1T^{d - 1} + \ldots + a_0$
-the we see that $a_i \in I := A \cap \overline{I}$. By
-Algebra, Lemma \ref{algebra-lemma-polynomials-divide}
-we see that $x$ is contained in the radical of $I(A \otimes_k \overline{k})$.
+Moreover, if we write $P(T) = T^d + a_1T^{d - 1} + \ldots + a_d$
+the we see that $a_i \in I := A \cap \overline{I}$.
+Combining $P(x) = 0$ and $a_i \in I$ we find
+$x^d = - a_1 x^{d - 1} - \ldots  - a_d \in I(A \otimes_k \overline{k})$.
+Thus $x$ is contained in the radical of $I(A \otimes_k \overline{k})$.
 Hence $\overline{I}$ is the radical of $I(A \otimes_k \overline{k})$ and
 setting $T = V(I)$ is a solution.
 \end{proof}
@@ -915,7 +916,7 @@ Let $X$ be a scheme over $k$.
 The following are equivalent
 \begin{enumerate}
 \item $X$ is geometrically connected,
-\item for every finite separable field extension $k \subset k'$
+\item for every finite separable field extension $k'/k$
 the scheme $X_{k'}$ is connected.
 \end{enumerate}
 \end{lemma}
@@ -947,7 +948,7 @@ We will use this without further mention in the following.
 Pick $W_0 \subset X$ quasi-compact open such that both
 $W_{0, \overline{k}} \cap \overline{U}$ and
 $W_{0, \overline{k}} \cap \overline{V}$ are nonempty.
-Choose a finite subextension $k \subset k' \subset \overline{k}$
+Choose a finite subextension $\overline{k}/k'/k$
 and a decomposition $W_{0, k'} = U_0' \amalg V_0'$ into open and closed
 subsets such that
 $W_{0, \overline{k}} \cap \overline{U} = (U'_0)_{\overline{k}}$ and
@@ -994,7 +995,7 @@ and we see that $X_{k'}$ is disconnected as desired.
 
 \begin{lemma}
 \label{lemma-tricky}
-Let $k$ be a field. Let $k \subset \overline{k}$ be a (possibly infinite)
+Let $k$ be a field. Let $\overline{k}/k$ be a (possibly infinite)
 Galois extension. Let $f : T \to X$ be a morphism of schemes over $k$.
 Assume $T_{\overline{k}}$ connected and $X_{\overline{k}}$
 disconnected. Then $X$ is disconnected.
@@ -1011,7 +1012,7 @@ Say $T_{\overline{k}} \subset \overline{f}^{-1}(\overline{U})$.
 
 \medskip\noindent
 Fix a quasi-compact open $W \subset X$. There exists a
-finite Galois subextension $k \subset k' \subset \overline{k}$
+finite Galois subextension $\overline{k}/k'/k$
 such that $\overline{U} \cap W_{\overline{k}}$ and
 $\overline{V} \cap W_{\overline{k}}$ come from quasi-compact
 opens $U', V' \subset W_{k'}$. Then also $W_{k'} = U' \amalg V'$.
@@ -1065,8 +1066,8 @@ then $X$ is geometrically connected.
 \end{lemma}
 
 \begin{proof}
-Set $T = \Spec(\kappa(x))$. Let $k \subset \overline{k}$ be a
-separable algebraic closure of $k$. The assumption on $k \subset \kappa(x)$
+Set $T = \Spec(\kappa(x))$. Let $\overline{k}$ be a
+separable algebraic closure of $k$. The assumption on $\kappa(x)/k$
 implies that $T_{\overline{k}}$ is irreducible, see
 Algebra, Lemma \ref{algebra-lemma-field-extension-geometrically-irreducible}.
 Hence by
@@ -1078,7 +1079,7 @@ we conclude that $X$ is geometrically connected.
 
 \begin{lemma}
 \label{lemma-inverse-image-connected-component}
-Let $k \subset K$ be an extension of fields.
+Let $K/k$ be an extension of fields.
 Let $X$ be a scheme over $k$.
 For every connected component $T$ of $X$ the inverse image
 $T_K \subset X_K$ is a union of connected components of $X_K$.
@@ -1099,7 +1100,7 @@ Lemma \ref{lemma-image-connected-component} below.
 
 \begin{lemma}
 \label{lemma-image-connected-component-finite-extension}
-Let $k \subset K$ be a finite extension of fields and let $X$ be a scheme over 
+Let $K/k$ be a finite extension of fields and let $X$ be a scheme over 
 $k$. Denote by $p : X_K \to X$ the projection morphism. For every connected 
 component $T$ of $X_K$ the image $p(T)$ is a connected component of 
 $X$.
@@ -1125,14 +1126,14 @@ to conclude.
 \begin{reference}
 Email from Ofer Gabber dated June 4, 2016
 \end{reference}
-Let $k \subset K$ be an extension of fields. Let $X$ be a scheme over $k$.
+Let $K/k$ be an extension of fields. Let $X$ be a scheme over $k$.
 Denote $p : X_K \to X$ the projection morphism.
 Let $\overline{T} \subset X_K$ be a connected component.
 Then $p(\overline{T})$ is a connected component of $X$.
 \end{lemma}
 
 \begin{proof}
-When $k \subset K$ is finite this is
+When $K/k$ is finite this is
 Lemma \ref{lemma-image-connected-component-finite-extension}.
 In general the proof is more difficult.
 
@@ -1218,7 +1219,7 @@ with the following properties:
 is fixed by the action if and only if there exists a connected component
 $T \subset X$, which is geometrically connected over $k$,
 such that $T_{\overline{k}} = \overline{T}$.
-\item For any field extension $k \subset k'$ with separable
+\item For any field extension $k'/k$ with separable
 algebraic closure $\overline{k}'$ the diagram
 $$
 \xymatrix{
@@ -1281,7 +1282,7 @@ Since the connected components are open, cover $X_{\overline{k}}$
 $X_{\overline{k}}$ is quasi-compact, we conclude that there are only
 finitely many of them. Thus (a) holds.
 By Lemma \ref{lemma-descend-open} these connected components
-are each defined over a finite subextension of $k \subset \overline{k}$
+are each defined over a finite subextension of $\overline{k}/k$
 and we get (b).
 If $X$ is of finite type over $k$, then $X_{\overline{k}}$ is of finite
 type over $\overline{k}$
@@ -1321,7 +1322,7 @@ for any field extension $k'$ of $k$.
 \begin{lemma}
 \label{lemma-geometrically-irreducible-check-after-extension}
 Let $X$ be a scheme over the field $k$.
-Let $k \subset k'$ be a field extension.
+Let $k'/k$ be a field extension.
 Then $X$ is geometrically irreducible over $k$ if and only if
 $X_{k'}$ is geometrically irreducible over $k'$.
 \end{lemma}
@@ -1329,8 +1330,8 @@ $X_{k'}$ is geometrically irreducible over $k'$.
 \begin{proof}
 If $X$ is geometrically irreducible over $k$, then it is clear that
 $X_{k'}$ is geometrically irreducible over $k'$. For the converse, note
-that for any field extension $k \subset k''$ there exists a common
-field extension $k' \subset k'''$ and $k'' \subset k'''$. As the
+that for any field extension $k''/k$ there exists a common
+field extension $k'''/k'$ and $k'''/k''$. As the
 morphism $X_{k'''} \to X_{k''}$ is surjective (as a base change of
 a surjective morphism between spectra of fields) we see that the
 irreducibility of $X_{k'''}$ implies the irreducibility of $X_{k''}$.
@@ -1342,7 +1343,7 @@ $X$ is geometrically irreducible over $k$.
 \label{lemma-separably-closed-irreducible}
 Let $X$ be a scheme over a separably closed field $k$.
 If $X$ is irreducible, then $X_K$ is irreducible for any
-field extension $k \subset K$. I.e., $X$ is geometrically
+field extension $K/k$. I.e., $X$ is geometrically
 irreducible over $k$.
 \end{lemma}
 
@@ -1419,13 +1420,18 @@ Hence $X_{k'}$ is irreducible. Hence (4) implies (1).
 
 \begin{lemma}
 \label{lemma-geometrically-irreducible-function-field}
-Let $X$ be a geometrically irreducible scheme over the field $k$.
-Let $\xi \in X$ be its generic point. Then $\kappa(\xi)$ is a
-geometrically irreducible over $k$.
+Let $X$ be an irreducible scheme over the field $k$. Let $\xi \in X$
+be its generic point. The following are equivalent
+\begin{enumerate}
+\item $X$ is geometrically irreducible over $k$, and
+\item $\kappa(\xi)$ is geometrically irreducible over $k$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-Combining
+Assume (1). Recall that $\mathcal{O}_{X, \xi}$ is the filtered
+colimit of $\mathcal{O}_X(U)$ where $U$ runs over the nonempty
+open affine subschemes of $X$. Combining
 Lemma \ref{lemma-geometrically-irreducible-local}
 and
 Algebra, Lemma \ref{algebra-lemma-subalgebra-geometrically-irreducible}
@@ -1435,11 +1441,21 @@ locally nilpotent kernel (see
 Algebra, Lemma \ref{algebra-lemma-minimal-prime-reduced-ring})
 it follows that $\kappa(\xi)$ is geometrically irreducible, see
 Algebra, Lemma \ref{algebra-lemma-p-ring-map}.
+
+\medskip\noindent
+Assume (2). We may assume that $X$ is reduced. Let $U \subset X$ be
+a nonempty affine open. Then $U = \Spec(A)$ where $A$ is a domain
+with fraction field $\kappa(\xi)$. Thus $A$ is a $k$-subalgebra
+of a geometrically irreducible $k$-algebra. Hence by
+Algebra, Lemma \ref{algebra-lemma-subalgebra-geometrically-irreducible}
+we see that $A$ is geometrically irreducible over $k$.
+By Lemma \ref{lemma-geometrically-irreducible-local} we conclude
+that $X$ is geometrically irreducible over $k$.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-separably-closed-field-irreducible-components}
-Let $k \subset k'$ be an extension of fields.
+Let $k'/k$ be an extension of fields.
 Let $X$ be a scheme over $k$. Set $X' = X_{k'}$.
 Assume $k$ separably algebraically closed.
 Then the morphism $X' \to X$ induces a bijection of irreducible components.
@@ -1465,7 +1481,7 @@ Let $k$ be a field. Let $X$ be a scheme over $k$.
 The following are equivalent:
 \begin{enumerate}
 \item $X$ is geometrically irreducible over $k$,
-\item for every finite separable field extension $k \subset k'$
+\item for every finite separable field extension $k'/k$
 the scheme $X_{k'}$ is irreducible, and
 \item $X_{\overline{k}}$ is irreducible, where $k \subset \overline{k}$
 is a separable algebraic closure of $k$.
@@ -1474,8 +1490,8 @@ is a separable algebraic closure of $k$.
 
 \begin{proof}
 Assume $X_{\overline{k}}$ is irreducible, i.e., assume (3).
-Let $k \subset k'$ be a field extension.
-There exists a field extension $\overline{k} \subset \overline{k}'$
+Let $k'/k$ be a field extension.
+There exists a field extension $\overline{k}'/\overline{k}$
 such that $k'$ embeds into $\overline{k}'$ as an extension of $k$.
 By Lemma \ref{lemma-separably-closed-field-irreducible-components}
 we see that $X_{\overline{k}'}$ is irreducible.
@@ -1487,7 +1503,7 @@ Let $k \subset \overline{k}$ be a separable algebraic closure of $k$.
 Assume not (3), i.e., assume $X_{\overline{k}}$ is reducible.
 Our goal is to show that also $X_{k'}$ is
 reducible for some finite subextension
-$k \subset k' \subset \overline{k}$.
+$\overline{k}/k'/k$.
 Let $X = \bigcup_{i \in I} U_i$ be an affine open covering
 with $U_i$ not empty. If for some $i$ the scheme
 $U_i$ is reducible, or if for some pair $i \not = j$ the
@@ -1500,7 +1516,7 @@ is nonempty and we conclude that $U_{i, \overline{k}}$ has
 to be reducible for some $i$. According to
 Algebra, Lemma \ref{algebra-lemma-geometrically-irreducible}
 this means that $U_{i, k'}$ is reducible for some
-finite separable field extension $k \subset k'$.
+finite separable field extension $k'/k$.
 Hence also $X_{k'}$ is reducible. Thus we see that
 (2) implies (3).
 
@@ -1511,7 +1527,7 @@ This proves the lemma.
 
 \begin{lemma}
 \label{lemma-inverse-image-irreducible}
-Let $k \subset K$ be an extension of fields.
+Let $K/k$ be an extension of fields.
 Let $X$ be a scheme over $k$.
 For every irreducible component $T$ of $X$ the inverse image
 $T_K \subset X_K$ is a union of irreducible components of $X_K$.
@@ -1537,7 +1553,7 @@ irreducible components of $X$.
 
 \begin{lemma}
 \label{lemma-image-irreducible}
-Let $k \subset K$ be an extension of fields.
+Let $K/k$ be an extension of fields.
 Let $X$ be a scheme over $k$.
 For every irreducible component $\overline{T} \subset X_K$
 the image of $\overline{T}$ in $X$ is an irreducible component in $X$.
@@ -1587,6 +1603,33 @@ Hence the map is surjective.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-irreducible-dense-rational-points-geometrically-irreducible}
+Let $k$ be a field. Let $X$ be a scheme over $k$. If $X$ is irreducible
+and has a dense set of $k$-rational points, then $X$ is geometrically
+irreducible.
+\end{lemma}
+
+\begin{proof}
+Let $k'/k$ be a finite extension of fields and let $Z, Z' \subset X_{k'}$
+be irreducible components. It suffices to show $Z = Z'$, see
+Lemma \ref{lemma-characterize-geometrically-irreducible}.
+By Lemma \ref{lemma-image-irreducible} we have $p(Z) = p(Z') = X$
+where $p : X_{k'} \to X$ is the projection. If $Z \not = Z'$
+then $Z \cap Z'$ is nowhere dense in $X_{k'}$ and hence $p(Z \cap Z')$
+is not dense by
+Morphisms, Lemma \ref{morphisms-lemma-image-nowhere-dense-finite};
+here we also use that $p$ is a finite morphism as the base change
+of the finite morphism $\Spec(k') \to \Spec(k)$, see
+Morphisms, Lemma \ref{morphisms-lemma-base-change-finite}.
+Thus we can pick a $k$-rational point $x \in X$ with
+$x \not \in p(Z \cap Z')$. Since the residue field of $x$ is $k$
+we see that $p^{-1}(\{x\}) = \{x'\}$ where $x' \in X_{k'}$
+is a point whose residue field is $k'$. Since $x \in p(Z) = p(Z')$
+we conclude that $x' \in Z \cap Z'$ which is the contradiction
+we were looking for.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-galois-action-irreducible-components}
 Let $k$ be a field, with separable algebraic closure $\overline{k}$.
 Let $X$ be a scheme over $k$.
@@ -1602,7 +1645,7 @@ with the following properties:
 is fixed by the action if and only if there exists an irreducible
 component $T \subset X$, which is geometrically irreducible over $k$,
 such that $T_{\overline{k}} = \overline{T}$.
-\item For any field extension $k \subset k'$ with separable
+\item For any field extension $k'/k$ with separable
 algebraic closure $\overline{k}'$ the diagram
 $$
 \xymatrix{
@@ -1709,7 +1752,7 @@ and in particular Noetherian. Let $\mathfrak p = (f_1, \ldots, f_n)$
 be the prime ideal corresponding to $\overline{T} \cap U_{\overline{k}}$.
 Since $A_{\overline{k}} = A \otimes_k \overline{k}$
 we see that there exists a finite subextension
-$k \subset k' \subset \overline{k}$ such that each $f_i \in A_{k'}$.
+$\overline{k}/k'/k$ such that each $f_i \in A_{k'}$.
 It is clear that $\text{Gal}(\overline{k}/k')$
 fixes $\overline{T}$, which proves (1).
 
@@ -1739,7 +1782,7 @@ Clearly $W = T$ and we win.
 Let $k$ be a field.
 Let $X \to \Spec(k)$ be locally of finite type.
 Assume $X$ has finitely many irreducible components.
-Then there exists a finite separable extension $k \subset k'$
+Then there exists a finite separable extension $k'/k$
 such that every irreducible component of $X_{k'}$
 is geometrically irreducible over $k'$.
 \end{lemma}
@@ -1752,7 +1795,7 @@ Lemma \ref{lemma-galois-action-irreducible-components-locally-finite-type} (3)
 shows that $X_{\overline{k}}$ has finitely many irreducible components
 $\overline{T}_1, \ldots, \overline{T}_n$. By
 Lemma \ref{lemma-galois-action-irreducible-components-locally-finite-type} (2)
-there exists a finite extension $k \subset k' \subset \overline{k}$ and
+there exists a finite extension $\overline{k}/k'/k$ and
 irreducible components $T_i \subset X_{k'}$ such that
 $\overline{T}_i = T_{i, \overline{k}}$ and we win.
 \end{proof}
@@ -1791,7 +1834,7 @@ Let $X$ be a scheme over the field $k$.
 \begin{enumerate}
 \item Let $x \in X$. We say $X$ is
 {\it geometrically pointwise integral at $x$} if for every
-field extension $k \subset k'$ and every $x' \in X_{k'}$ lying over $x$
+field extension $k'/k$ and every $x' \in X_{k'}$ lying over $x$
 the local ring $\mathcal{O}_{X_{k'}, x'}$ is integral.
 \item We say $X$ is {\it geometrically pointwise integral} if $X$
 is geometrically pointwise integral at every point.
@@ -1834,7 +1877,8 @@ over $k$,
 irreducible over $k$,
 \item if $X$ is geometrically irreducible, then $A$ is geometrically
 irreducible over $k$,
-\item if $X$ is geometrically reduced and connected, then $A = k$, and
+\item if $X$ is geometrically reduced and geometrically connected, then
+$A = k$, and
 \item if $X$ is geometrically integral, then $A = k$.
 \end{enumerate}
 \end{lemma}
@@ -1846,9 +1890,9 @@ we see that $A = H^0(X, \mathcal{O}_X)$ is a finite dimensional
 $k$-algebra. This proves (1).
 
 \medskip\noindent
-Then $A$ is a product of local rings by
+Then $A$ is a product of local Artinian $k$-algebras by
 Algebra, Lemma \ref{algebra-lemma-finite-dimensional-algebra} and
-Algebra, Proposition \ref{algebra-proposition-dimension-zero-ring}.
+Proposition \ref{algebra-proposition-dimension-zero-ring}.
 If $X = Y \amalg Z$ with $Y$ and $Z$ open in $X$, then we obtain
 an idempotent $e \in A$ by taking the section of $\mathcal{O}_X$
 which is $1$ on $Y$ and $0$ on $Z$. Conversely, if $e \in A$
@@ -1865,11 +1909,11 @@ Algebra, Lemma \ref{algebra-lemma-minimal-prime-reduced-ring}).
 This proves (3).
 
 \medskip\noindent
-If $X$ is geometrically reduced, then same thing is true for
+If $X$ is geometrically reduced, then
 $A \otimes_k \overline{k} =
 H^0(X_{\overline{k}}, \mathcal{O}_{X_{\overline{k}}})$
-(see Cohomology of Schemes, Lemma
-\ref{coherent-lemma-flat-base-change-cohomology} for equality).
+(equality by Cohomology of Schemes, Lemma
+\ref{coherent-lemma-flat-base-change-cohomology}) is reduced.
 This implies that $k_i \otimes_k \overline{k}$ is a product
 of fields and hence $k_i/k$ is separable for example by
 Algebra,
@@ -1886,13 +1930,95 @@ Thus $A$ is geometrically irreducible. This proves (5).
 Of course (5) implies (6).
 
 \medskip\noindent
-If $X$ is geometrically reduced and connected, then
+If $X$ is geometrically reduced and geometrically connected, then
 $A = k_1$ is a field and the extension $k_1/k$ is finite separable and
 geometrically irreducible. However, then $k_1 \otimes_k \overline{k}$
 is a product of $[k_1 : k]$ copies of $\overline{k}$ and we conclude
 that $k_1 = k$. This proves (7). Of course (7) implies (8).
 \end{proof}
 
+\noindent
+Here is a baby version of Stein factorization; actual Stein
+factorization will be discussed in
+More on Morphisms, Section \ref{more-morphisms-section-stein-factorization}.
+
+\begin{lemma}
+\label{lemma-baby-stein}
+Let $X$ be a proper scheme over a field $k$. Set
+$A = H^0(X, \mathcal{O}_X)$. The fibres of the canonical
+morphism $X \to \Spec(A)$ are geometrically connected.
+\end{lemma}
+
+\begin{proof}
+Set $S = \Spec(A)$. The canonical morphism $X \to S$
+is the morphism corresponding to
+$\Gamma(S, \mathcal{O}_S) = A = \Gamma(X, \mathcal{O}_X)$ via
+Schemes, Lemma \ref{schemes-lemma-morphism-into-affine}.
+The $k$-algebra $A$ is a finite product $A = \prod A_i$
+of local Artinian $k$-algebras finite over $k$, see
+Lemma \ref{lemma-proper-geometrically-reduced-global-sections}.
+Denote $s_i \in S$ the point corresponding to the maximal
+ideal of $A_i$. Choose an algebraic closure $\overline{k}$ of $k$ and
+set $\overline{A} = A \otimes_k \overline{k}$.
+Choose an embedding $\kappa(s_i) \to \overline{k}$ over $k$; this
+determines a $\overline{k}$-algebra map
+$$
+\sigma_i : \overline{A} = A \otimes_k \overline{k} \to
+\kappa(s_i) \otimes_k \overline{k} \to \overline{k}
+$$
+Consider the base change
+$$
+\xymatrix{
+\overline{X} \ar[r] \ar[d] & X \ar[d] \\
+\overline{S} \ar[r] & S
+}
+$$
+of $X$ to $\overline{S} = \Spec(\overline{A})$. By
+Cohomology of Schemes, Lemma
+\ref{coherent-lemma-flat-base-change-cohomology} we have
+$\Gamma(\overline{X}, \mathcal{O}_{\overline{X}}) = \overline{A}$.
+If $\overline{s}_i \in \Spec(\overline{A})$ denotes the
+$\overline{k}$-rational point corresponding to $\sigma_i$,
+then we see that $\overline{s}_i$ maps to $s_i \in S$
+and $\overline{X}_{\overline{s}_i}$ is the base change of
+$X_{s_i}$ by $\Spec(\sigma_i)$. Thus we see that it suffices to prove
+the lemma in case $k$ is algebraically closed.
+
+\medskip\noindent
+Assume $k$ is algebraically closed. In this case $\kappa(s_i)$
+is algebraically closed and we have to show that $X_{s_i}$
+is connected. The product decomposition
+$A = \prod A_i$ corresponds to a disjoint union decomposition
+$\Spec(A) = \coprod \Spec(A_i)$, see
+Algebra, Lemma \ref{algebra-lemma-spec-product}.
+Denote $X_i$ the inverse image of $\Spec(A_i)$.
+It follows from
+Lemma \ref{lemma-proper-geometrically-reduced-global-sections} part (2) that
+$A_i = \Gamma(X_i, \mathcal{O}_{X_i})$.
+Observe that $X_{s_i} \to X_i$ is a closed immersion inducing
+an isomorphism on underlying topological spaces (because $\Spec(A_i)$
+is a singleton). Hence if $X_{s_i}$ isn't connected, then neither is
+$X_i$. So either $X_i$ is empty and $A_i = 0$ or $X_i$ can be written
+as $U \amalg V$ with $U$ and $V$ open and nonempty which would
+imply that $A_i$ has a nontrivial idempotent. Since $A_i$ is
+local this is a contradiction and the proof is complete.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-geometrically-reduced-stein}
+Let $k$ be a field. Let $X$ be a proper geometrically reduced scheme over $k$.
+The following are equivalent
+\begin{enumerate}
+\item $H^0(X, \mathcal{O}_X) = k$, and
+\item $X$ is geometrically connected.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-baby-stein} we have (1) $\Rightarrow$ (2).
+By Lemma \ref{lemma-proper-geometrically-reduced-global-sections}
+we have (2) $\Rightarrow$ (1).
+\end{proof}
 
 
 
@@ -1914,7 +2040,7 @@ Let $X$ be a scheme over the field $k$.
 \begin{enumerate}
 \item Let $x \in X$. We say $X$ is
 {\it geometrically normal at $x$} if for every
-field extension $k \subset k'$ and every $x' \in X_{k'}$ lying over $x$
+field extension $k'/k$ and every $x' \in X_{k'}$ lying over $x$
 the local ring $\mathcal{O}_{X_{k'}, x'}$ is normal.
 \item We say $X$ is {\it geometrically normal} over $k$ if $X$
 is geometrically normal at every $x \in X$.
@@ -1939,7 +2065,7 @@ Algebra, Definition \ref{algebra-definition-geometrically-normal}).
 \end{lemma}
 
 \begin{proof}
-It is clear that (1) implies (2). Assume (2). Let $k \subset k'$ be a finite
+It is clear that (1) implies (2). Assume (2). Let $k'/k$ be a finite
 purely inseparable field extension (for example $k = k'$). Consider the ring
 $\mathcal{O}_{X, x} \otimes_k k'$.
 By Algebra, Lemma \ref{algebra-lemma-p-ring-map}
@@ -1953,7 +2079,7 @@ Algebra, Lemma
 \ref{algebra-lemma-geometrically-normal}.
 
 \medskip\noindent
-Assume (3). Let $k \subset k'$ be a field extension. Since
+Assume (3). Let $k'/k$ be a field extension. Since
 $\Spec(k') \to \Spec(k)$ is surjective, also
 $X_{k'} \to X$ is surjective
 (Morphisms, Lemma \ref{morphisms-lemma-base-change-surjective}).
@@ -1983,7 +2109,7 @@ Algebra, Definition \ref{algebra-definition-geometrically-normal}), and
 \end{lemma}
 
 \begin{proof}
-Assume (1). Then for every field extension $k \subset k'$ and
+Assume (1). Then for every field extension $k'/k$ and
 every point $x' \in X_{k'}$ the local ring of $X_{k'}$ at $x'$
 is normal. By definition this means that $X_{k'}$ is normal.
 Hence (2).
@@ -1994,14 +2120,14 @@ It is clear that (2) implies (3) implies (4).
 \medskip\noindent
 Assume (4) and let $U \subset X$ be an affine open subscheme.
 Then $U_{k'}$ is a normal scheme for any finite purely inseparable
-extension $k \subset k'$ (including $k = k'$). This means that
+extension $k'/k$ (including $k = k'$). This means that
 $k' \otimes_k \mathcal{O}(U)$ is a normal ring for all
-finite purely inseparable extensions $k \subset k'$. Hence
+finite purely inseparable extensions $k'/k$. Hence
 $\mathcal{O}(U)$ is a geometrically normal $k$-algebra by definition.
 Hence (4) implies (5).
 
 \medskip\noindent
-Assume (5). For any field extension $k \subset k'$ the base
+Assume (5). For any field extension $k'/k$ the base
 change $X_{k'}$ is gotten by gluing the spectra of the
 rings $\mathcal{O}_X(U) \otimes_k k'$ where $U$ is affine open
 in $X$ (see Schemes, Section \ref{schemes-section-fibre-products}).
@@ -2030,9 +2156,9 @@ $X_{k'}$ is geometrically normal over $k'$.
 
 \begin{proof}
 It is clear that (1) implies (2). Assume (2).
-Let $k \subset k''$ be a finite purely inseparable field extension
+Let $k''/k$ be a finite purely inseparable field extension
 and let $x'' \in X_{k''}$ be a point lying over $x$ (actually it is
-unique). We can find a common field extension $k \subset k'''$
+unique). We can find a common field extension $k'''/k$
 (i.e.\ with both $k' \subset k'''$ and $k'' \subset k'''$) and a point
 $x''' \in X_{k'''}$ lying over both $x'$ and $x''$.
 Consider the map of local rings
@@ -2073,6 +2199,29 @@ Algebra, Lemma
 \ref{algebra-lemma-separable-field-extension-geometrically-normal}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-geometrically-normal-stein}
+Let $k$ be a field. Let $X$ be a proper geometrically normal scheme over $k$.
+The following are equivalent
+\begin{enumerate}
+\item $H^0(X, \mathcal{O}_X) = k$,
+\item $X$ is geometrically connected,
+\item $X$ is geometrically irreducible, and
+\item $X$ is geometrically integral.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-geometrically-reduced-stein} we have the
+equivalence of (1) and (2). A locally Noetherian normal scheme
+(such as $X_{\overline{k}}$) is a disjoint union of
+its irreducible components
+(Properties, Lemma \ref{properties-lemma-normal-Noetherian}).
+Thus we see that (2) and (3) are equivalent.
+Since $X_{\overline{k}}$ is assumed reduced, we see that
+(3) and (4) are equivalent too.
+\end{proof}
+
 
 
 
@@ -2099,7 +2248,7 @@ type over $k$, since this property is preserved under base change.)
 \label{lemma-locally-Noetherian-base-change}
 Let $k$ be a field.
 Let $X$ be a scheme over $k$.
-Let $k \subset k'$ be a finitely generated field extension.
+Let $k'/k$ be a finitely generated field extension.
 Then $X$ is locally Noetherian if and only if $X_{k'}$ is locally
 Noetherian.
 \end{lemma}
@@ -2149,7 +2298,7 @@ definition makes sense.
 Let $k$ be a field. Let $X$ be a locally Noetherian scheme over $k$.
 \begin{enumerate}
 \item Let $x \in X$. We say $X$ is {\it geometrically regular at $x$}
-over $k$ if for every finitely generated field extension $k \subset k'$
+over $k$ if for every finitely generated field extension $k'/k$
 and any $x' \in X_{k'}$ lying over $x$ the local ring
 $\mathcal{O}_{X_{k'}, x'}$ is regular.
 \item We say $X$ is {\it geometrically regular over $k$} if
@@ -2182,7 +2331,7 @@ Algebra, Definition \ref{algebra-definition-geometrically-regular}).
 \begin{proof}
 It is clear that (1) implies (2).
 Assume (2). This in particular implies that $\mathcal{O}_{X, x}$
-is a regular local ring. Let $k \subset k'$ be a finite purely inseparable
+is a regular local ring. Let $k'/k$ be a finite purely inseparable
 field extension. Consider the ring $\mathcal{O}_{X, x} \otimes_k k'$.
 By Algebra, Lemma \ref{algebra-lemma-p-ring-map}
 its spectrum is the same as the spectrum of $\mathcal{O}_{X, x}$.
@@ -2194,7 +2343,7 @@ By assumption this is a regular ring. Hence we deduce (3)
 from the definition of a geometrically regular ring.
 
 \medskip\noindent
-Assume (3). Let $k \subset k'$ be a field extension. Since
+Assume (3). Let $k'/k$ be a field extension. Since
 $\Spec(k') \to \Spec(k)$ is surjective, also
 $X_{k'} \to X$ is surjective
 (Morphisms, Lemma \ref{morphisms-lemma-base-change-surjective}).
@@ -2212,9 +2361,9 @@ The following are equivalent
 \begin{enumerate}
 \item $X$ is geometrically regular,
 \item $X_{k'}$ is a regular scheme for every finitely generated field
-extension $k \subset k'$,
+extension $k'/k$,
 \item $X_{k'}$ is a regular scheme for every finite purely inseparable
-field extension $k \subset k'$,
+field extension $k'/k$,
 \item for every affine open $U \subset X$ the ring $\mathcal{O}_X(U)$
 is geometrically regular (see
 Algebra, Definition \ref{algebra-definition-geometrically-regular}), and
@@ -2225,7 +2374,7 @@ each $\mathcal{O}_X(U_i)$ is geometrically regular over $k$.
 
 \begin{proof}
 Assume (1). Then for every finitely generated field extension
-$k \subset k'$ and
+$k'/k$ and
 every point $x' \in X_{k'}$ the local ring of $X_{k'}$ at $x'$
 is regular. By Properties, Lemma \ref{properties-lemma-characterize-regular}
 this means that $X_{k'}$ is regular. Hence (2).
@@ -2236,15 +2385,15 @@ It is clear that (2) implies (3).
 \medskip\noindent
 Assume (3) and let $U \subset X$ be an affine open subscheme.
 Then $U_{k'}$ is a regular scheme for any finite purely inseparable
-extension $k \subset k'$ (including $k = k'$). This means that
+extension $k'/k$ (including $k = k'$). This means that
 $k' \otimes_k \mathcal{O}(U)$ is a regular ring for all
-finite purely inseparable extensions $k \subset k'$. Hence
+finite purely inseparable extensions $k'/k$. Hence
 $\mathcal{O}(U)$ is a geometrically regular $k$-algebra
 and we see that (4) holds.
 
 \medskip\noindent
 It is clear that (4) implies (5). Let $X = \bigcup U_i$ be an affine
-open covering as in (5). For any field extension $k \subset k'$ the base
+open covering as in (5). For any field extension $k'/k$ the base
 change $X_{k'}$ is gotten by gluing the spectra of the
 rings $\mathcal{O}_X(U_i) \otimes_k k'$ (see
 Schemes, Section \ref{schemes-section-fibre-products}).
@@ -2268,10 +2417,10 @@ $X_{k'}$ is geometrically regular over $k'$.
 
 \begin{proof}
 It is clear that (1) implies (2). Assume (2).
-Let $k \subset k''$ be a finite purely inseparable field extension
+Let $k''/k$ be a finite purely inseparable field extension
 and let $x'' \in X_{k''}$ be a point lying over $x$ (actually it is
 unique). We can find a common, finitely generated, field extension
-$k \subset k'''$ (i.e.\ with both $k' \subset k'''$ and $k'' \subset k'''$)
+$k'''/k$ (i.e.\ with both $k' \subset k'''$ and $k'' \subset k'''$)
 and a point $x''' \in X_{k'''}$ lying over both $x'$ and $x''$.
 Consider the map of local rings
 $$
@@ -2326,7 +2475,7 @@ Algebra, Lemma \ref{algebra-lemma-flat-under-regular}.
 \begin{lemma}
 \label{lemma-geometrically-regular-smooth}
 Let $k$ be a field.
-Let $X$ be a scheme of finite type over $k$.
+Let $X$ be a scheme locally of finite type over $k$.
 Let $x \in X$.
 Then $X$ is geometrically regular at $x$ if and only if $X \to \Spec(k)$
 is smooth at $x$ (Morphisms, Definition \ref{morphisms-definition-smooth}).
@@ -2351,7 +2500,7 @@ Consider the residue field $K := \kappa(x) = \kappa(\mathfrak p)$ of $x$.
 It is a finitely generated extension of $k$.
 By Algebra, Lemma \ref{algebra-lemma-make-separable}
 there exists a finite purely inseparable
-extension $k \subset k'$ such that the compositum
+extension $k'/k$ such that the compositum
 $k'K$ is a separable field extension of $k'$.
 Let $\mathfrak p' \subset A' = k' \otimes_k A$ be a prime ideal
 lying over $\mathfrak p$. It is the unique prime lying over $\mathfrak p$, see
@@ -2416,7 +2565,7 @@ same as Cohen-Macaulay schemes.
 \begin{lemma}
 \label{lemma-CM-base-change}
 Let $X$ be a locally Noetherian scheme over the field $k$.
-Let $k \subset k'$ be a finitely generated field extension.
+Let $k'/k$ be a finitely generated field extension.
 Let $x \in X$ be a point, and let $x' \in X_{k'}$ be a point lying
 over $x$. Then we have
 $$
@@ -2425,7 +2574,7 @@ $$
 \mathcal{O}_{X_{k'}, x'}\text{ is Cohen-Macaulay}
 $$
 If $X$ is locally of finite type over $k$, the same holds for any
-field extension $k \subset k'$.
+field extension $k'/k$.
 \end{lemma}
 
 \begin{proof}
@@ -2454,7 +2603,7 @@ finite extensions of the ground field.
 Let $X$ be a scheme which is locally of finite type over $k$.
 Then
 \begin{enumerate}
-\item for any closed point $x \in X$ the extension $k \subset \kappa(x)$
+\item for any closed point $x \in X$ the extension $\kappa(x)/k$
 is algebraic, and
 \item $X$ is a Jacobson scheme
 (Properties, Definition \ref{properties-definition-jacobson}).
@@ -2482,10 +2631,10 @@ achieve the same result after making a suitably large base field extension.
 \begin{lemma}
 \label{lemma-make-Jacobson}
 Let $X$ be a scheme over a field $k$.
-For any field extension $k \subset K$ whose cardinality is large enough
+For any field extension $K/k$ whose cardinality is large enough
 we have
 \begin{enumerate}
-\item for any closed point $x \in X_K$ the extension $K \subset \kappa(x)$
+\item for any closed point $x \in X_K$ the extension $\kappa(x)/K$
 is algebraic, and
 \item $X_K$ is a Jacobson scheme
 (Properties, Definition \ref{properties-definition-jacobson}).
@@ -2523,12 +2672,12 @@ The following result is typical for the results in this section.
 \label{lemma-ample-after-field-extension}
 Let $k$ be a field. Let $X$ be a scheme over $k$.
 If there exists an ample invertible sheaf on $X_K$ for some
-field extension $k \subset K$, then $X$ has an ample invertible
+field extension $K/k$, then $X$ has an ample invertible
 sheaf.
 \end{lemma}
 
 \begin{proof}
-Let $k \subset K$ be a field extension such that $X_K$ has
+Let $K/k$ be a field extension such that $X_K$ has
 an ample invertible sheaf $\mathcal{L}$.
 The morphism $X_K \to X$ is surjective. Hence $X$ is quasi-compact
 as the image of a quasi-compact scheme (Properties, Definition
@@ -2544,7 +2693,7 @@ Schemes, Lemma \ref{schemes-lemma-characterize-quasi-separated} applies.
 Write $K = \colim A_i$ as the colimit of the subalgebras of $K$
 which are of finite type over $k$. Denote
 $X_i = X \times_{\Spec(k)} \Spec(A_i)$.
-Since $X_K = \lim X_i$ we find an $i$ and an invertible sheaf'
+Since $X_K = \lim X_i$ we find an $i$ and an invertible sheaf
 $\mathcal{L}_i$ on $X_i$ whose pullback to $X_K$ is $\mathcal{L}$
 (Limits, Lemma \ref{limits-lemma-descend-invertible-modules};
 here and below we use that $X$ is quasi-compact and quasi-separated as
@@ -2565,11 +2714,11 @@ Divisors, Proposition \ref{divisors-proposition-push-down-ample}.
 \begin{lemma}
 \label{lemma-quasi-affine-after-field-extension}
 Let $k$ be a field. Let $X$ be a scheme over $k$. If $X_K$ is quasi-affine
-for some field extension $k \subset K$, then $X$ is quasi-affine.
+for some field extension $K/k$, then $X$ is quasi-affine.
 \end{lemma}
 
 \begin{proof}
-Let $k \subset K$ be a field extension such that $X_K$ is quasi-affine.
+Let $K/k$ be a field extension such that $X_K$ is quasi-affine.
 The morphism $X_K \to X$ is surjective. Hence $X$ is quasi-compact
 as the image of a quasi-compact scheme (Properties, Definition
 \ref{properties-definition-quasi-affine}). Since $X_K$ is quasi-separated
@@ -2599,7 +2748,7 @@ Divisors, Lemma \ref{divisors-lemma-push-down-quasi-affine}.
 \begin{lemma}
 \label{lemma-quasi-projective-after-field-extension}
 Let $k$ be a field. Let $X$ be a scheme over $k$. If $X_K$ is quasi-projective
-over $K$ for some field extension $k \subset K$, then $X$ is quasi-projective
+over $K$ for some field extension $K/k$, then $X$ is quasi-projective
 over $k$.
 \end{lemma}
 
@@ -2607,7 +2756,7 @@ over $k$.
 By definition a morphism of schemes $g : Y \to T$ is quasi-projective
 if it is locally of finite type, quasi-compact, and there exists
 a $g$-ample invertible sheaf on $Y$.
-Let $k \subset K$ be a field extension such that $X_K$ is quasi-projective
+Let $K/k$ be a field extension such that $X_K$ is quasi-projective
 over $K$. Let $\Spec(A) \subset X$ be an affine open. Then $U_K$ is an
 affine open subscheme of $X_K$, hence $A_K$ is a $K$-algebra of finite type.
 Then $A$ is a $k$-algebra of finite type by
@@ -2631,12 +2780,12 @@ Descent, Lemma \ref{descent-lemma-descending-property-proper}.
 \begin{lemma}
 \label{lemma-proper-after-field-extension}
 Let $k$ be a field. Let $X$ be a scheme over $k$. If $X_K$ is proper
-over $K$ for some field extension $k \subset K$, then $X$ is proper
+over $K$ for some field extension $K/k$, then $X$ is proper
 over $k$.
 \end{lemma}
 
 \begin{proof}
-Let $k \subset K$ be a field extension such that $X_K$ is proper over $K$.
+Let $K/k$ be a field extension such that $X_K$ is proper over $K$.
 Recall that this implies $X_K$ is separated and quasi-compact
 (Morphisms, Definition \ref{morphisms-definition-proper}).
 The morphism $X_K \to X$ is surjective. Hence $X$ is quasi-compact
@@ -2660,7 +2809,7 @@ By the Hilbert Nullstellensatz
 the residue field $k' = A_i/\mathfrak m$ is a finite
 extension of $k$.  The base change $X_{k'} \to \Spec(k')$
 is proper (Morphisms, Lemma \ref{morphisms-lemma-base-change-proper}).
-Since $k \subset k'$ is finite both $X_{k'} \to X$ and the composition
+Since $k'/k$ is finite both $X_{k'} \to X$ and the composition
 $X_{k'} \to \Spec(k)$
 are proper as well (Morphisms, Lemmas \ref{morphisms-lemma-finite-proper},
 \ref{morphisms-lemma-base-change-proper}, and
@@ -2675,7 +2824,7 @@ by Morphisms, Lemma \ref{morphisms-lemma-image-proper-is-proper}.
 \begin{lemma}
 \label{lemma-projective-after-field-extension}
 Let $k$ be a field. Let $X$ be a scheme over $k$. If $X_K$ is projective
-over $K$ for some field extension $k \subset K$, then $X$ is projective
+over $K$ for some field extension $K/k$, then $X$ is projective
 over $k$.
 \end{lemma}
 
@@ -2974,11 +3123,11 @@ such that $\mathcal{O}_{Y, y}$ is Noetherian of dimension $\leq 1$.
 Assume in addition one of the following conditions is satisfied
 \begin{enumerate}
 \item for every generic point $\eta$ of an irreducible component
-of $X$ the field extension $\kappa(\eta) \supset \kappa(f(\eta))$
+of $X$ the field extension $\kappa(\eta)/\kappa(f(\eta))$
 is finite (or algebraic),
 \item for every generic point $\eta$ of an irreducible component
 of $X$ such that $f(\eta) \leadsto y$ the field extension
-$\kappa(\eta) \supset \kappa(f(\eta))$ is finite (or algebraic),
+$\kappa(\eta)/\kappa(f(\eta))$ is finite (or algebraic),
 \item $f$ is quasi-finite at every generic point of an
 irreducible component of $X$,
 \item $Y$ is locally Noetherian and $f$
@@ -3054,11 +3203,11 @@ such that $\mathcal{O}_{Y, y}$ is Noetherian of dimension $\leq 1$.
 Assume in addition one of the following conditions is satisfied
 \begin{enumerate}
 \item for every generic point $\eta$ of an irreducible component
-of $X$ the field extension $\kappa(\eta) \supset \kappa(f(\eta))$
+of $X$ the field extension $\kappa(\eta)/\kappa(f(\eta))$
 is finite (or algebraic),
 \item for every generic point $\eta$ of an irreducible component
 of $X$ such that $f(\eta) \leadsto y$ the field extension
-$\kappa(\eta) \supset \kappa(f(\eta))$ is finite (or algebraic),
+$\kappa(\eta)/\kappa(f(\eta))$ is finite (or algebraic),
 \item $f$ is quasi-finite at every generic point of $X$,
 \item $Y$ is locally Noetherian and $f$
 is quasi-finite at a dense set of points of $X$,
@@ -3475,14 +3624,14 @@ $$
 We have $\text{trdeg}_B(A) = d$ by
 our assumption that $\dim_\eta(X_\xi) = d$, see
 Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-at-a-point}.
-Since $\mathcal{O}_{X, x} \to \mathcal{O}_{X_s, x}$ has a kernel
+Since $\mathcal{O}_{X, x} \to \mathcal{O}_{X_y, x}$ has a kernel
 (as $f(\eta) \not = y$) and since $\mathcal{O}_{X, x}$
 is a Noetherian domain we see that
 $\dim(\mathcal{O}_{X, x}) > \dim(\mathcal{O}_{X_y, x})$.
 We conclude that
 $$
-\dim_x(X_s) =
-\dim(\mathcal{O}_{X_s, x}) + \text{trdeg}_{\kappa(y)} \kappa(x)
+\dim_x(X_y) =
+\dim(\mathcal{O}_{X_y, x}) + \text{trdeg}_{\kappa(y)} \kappa(x)
 < \dim(B) + d
 $$
 (equality by Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-at-a-point})
@@ -4098,43 +4247,42 @@ Let $V \subset H^0(X, \mathcal{L})$ be a $k$-subvector space. If
 \item for every pair of distinct closed points $x, y \in X$
 there is a section $s \in V$ which vanishes at $x$ but not at $y$, and
 \item for every closed point $x \in X$ and nonzero tangent vector
-$\theta \in T_{X/k, x}$ there exist a section $s \in V$
+$\theta \in T_{X/k, x}$ there exists a section $s \in V$
 which vanishes at $x$ but whose pullback by $\theta$ is nonzero,
 \end{enumerate}
-then $\mathcal{L}$ is very ample and in fact choosing a
-basis $s_0, \ldots, s_n$ of $V$ the canonical morphism
-$\varphi_{\mathcal{L}, (s_0, \ldots, s_n)} : X \to \mathbf{P}^n_k$
+then $\mathcal{L}$ is very ample and the canonical morphism
+$\varphi_{\mathcal{L}, V} : X \to \mathbf{P}(V)$
 is a closed immersion.
 \end{lemma}
 
 \begin{proof}
-Condition (1) implies in particular that the sections $s_0, \ldots, s_n$
-have no common zeros. Hence a morphism
+Condition (1) implies in particular that the elements of $V$ generate
+$\mathcal{L}$ over $X$. Hence we get a canonical morphism
 $$
-\varphi = \varphi_{\mathcal{L}, (s_0, \ldots, s_n)} :
+\varphi = \varphi_{\mathcal{L}, V} :
 X
 \longrightarrow
-\mathbf{P}^n_k
+\mathbf{P}(V)
 $$
-by Constructions, Section \ref{constructions-section-projective-space}.
+by Constructions, Example \ref{constructions-example-projective-space}.
 The morphism $\varphi$ is proper by
 Morphisms, Lemma \ref{morphisms-lemma-image-proper-scheme-closed}.
 By (1) the map $\varphi$ is injective on closed points
 (computation omitted).
-In particular, the fibre over any closed point of $\mathbf{P}^n_k$
+In particular, the fibre over any closed point of $\mathbf{P}(V)$
 is a singleton (small detail omitted). Thus we see that
 $\varphi$ is finite, for example use Cohomology of Schemes, Lemma
 \ref{coherent-lemma-proper-finite-fibre-finite-in-neighbourhood}.
 To finish the proof it suffices to show that the map
 $$
 \varphi^\sharp :
-\mathcal{O}_{\mathbf{P}^n_k}
+\mathcal{O}_{\mathbf{P}(V)}
 \longrightarrow
 \varphi_*\mathcal{O}_X
 $$
 is surjective. This we may check on stalks at closed points.
 Let $x \in X$ be a closed point with image the closed
-point $p = \varphi(x) \in \mathbf{P}^n_k$. Since
+point $p = \varphi(x) \in \mathbf{P}(V)$. Since
 $\varphi^{-1}(\{p\}) = \{x\}$ by (1) and since $\varphi$
 is proper (hence closed), we see that $\varphi^{-1}(U)$
 runs through a fundamental system of open neighbourhoods
@@ -4142,17 +4290,17 @@ of $x$ as $U$ runs through a fundamental system of open neighbourhoods of $p$.
 We conclude that on stalks at $p$ we obtain the map
 $$
 \varphi^\sharp_x :
-\mathcal{O}_{\mathbf{P}^n_k, p}
+\mathcal{O}_{\mathbf{P}(V), p}
 \longrightarrow
 \mathcal{O}_{X, x}
 $$
 In particular, $\mathcal{O}_{X, x}$ is a finite
-$\mathcal{O}_{\mathbf{P}^n_k, p}$-module.
+$\mathcal{O}_{\mathbf{P}(V), p}$-module.
 Moreover, the residue fields of $x$ and $p$ are equal to $k$
 (as $k$ is algebraically closed -- use the Hilbert Nullstellensatz).
 Finally, condition (2) implies that the map
 $$
-T_{X/k, x} \longrightarrow T_{\mathbf{P}^n_k/k, p}
+T_{X/k, x} \longrightarrow T_{\mathbf{P}(V)/k, p}
 $$
 is injective since any nonzero $\theta$ in the kernel of this map
 couldn't possibly satisfy the conclusion of (2).
@@ -4467,8 +4615,8 @@ Lemma \ref{lemma-affine-space-over-field}
 we may choose a closed point $w \in \pi(U)$ whose residue field is
 finite separable over $k$. Pick any $x \in U$ with $\pi(x) = w$. By
 Morphisms, Lemma \ref{morphisms-lemma-etale-over-field}
-the field extension $\kappa(w) \subset \kappa(x)$ is finite separable.
-Hence $k \subset \kappa(x)$ is finite separable. The point $x$ is a
+the field extension $\kappa(x)/\kappa(w)$ is finite separable.
+Hence $\kappa(x)/k$ is finite separable. The point $x$ is a
 closed point of $X$ by
 Morphisms, Lemma
 \ref{morphisms-lemma-algebraic-residue-field-extension-closed-point-fibre}.
@@ -4570,6 +4718,45 @@ is integral (Properties, Lemma \ref{properties-lemma-normal-Noetherian})
 the proof is complete.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-smooth-stratification}
+Let $X$ be a scheme of finite type over a field $k$.
+There exists a finite purely inseparable extension $k'/k$,
+an integer $t \geq 0$, and closed subschemes
+$$
+X_{k'} \supset Z_0 \supset Z_1 \supset \ldots \supset Z_t = \emptyset
+$$
+such that $Z_0 = (X_{k'})_{red}$ and $Z_i \setminus Z_{i + 1}$
+is smooth over $k'$ for all $i$.
+\end{lemma}
+
+\begin{proof}
+We may use induction on $\dim(X)$. By
+Lemma \ref{lemma-finite-extension-geometrically-reduced}
+we can find a finite purely inseparable extension $k'/k$
+such that $(X_{k'})_{red}$ is geometrically reduced over $k'$.
+By Lemma \ref{lemma-geometrically-reduced-dense-smooth-open}
+there is a nowhere dense closed subscheme $X' \subset (X_{k'})_{red}$
+such that $(X_{k'})_{red} \setminus X'$ is smooth over $k'$.
+Then $\dim(X') < \dim(X)$. By induction hypothesis there exists
+a finite purely inseparable extension $k''/k'$,
+an integer $t' \geq 0$, and closed subschemes
+$$
+X'_{k''} \supset Y_0 \supset Y_1 \supset \ldots \supset Y_{t'} = \emptyset
+$$
+such that $Y_0 = (X'_{k''})_{red}$ and $Y_i \setminus Y_{i + 1}$
+is smooth over $k''$ for all $i$. Then we let $t = t' + 1$
+and we consider
+$$
+X_{k''} \supset Z_0 \supset Z_1 \supset \ldots \supset Z_t = \emptyset
+$$
+given by $Z_0 = (X_{k''})_{red}$ and $Z_i = Y_{i - 1}$ for $i > 0$;
+this makes sense as $X'_{k''}$ is a closed subscheme of $X_{k''}$.
+We omit the verification that all the stated properties hold.
+\end{proof}
+
+
+
 
 \section{Types of varieties}
 \label{section-types}
@@ -4582,7 +4769,7 @@ Short section discussion some elementary global properties of varieties.
 Let $k$ be a field. Let $X$ be a variety over $k$.
 \begin{enumerate}
 \item We say $X$ is an {\it affine variety} if $X$ is an affine scheme.
-This is equivalent to requiring $X$ it be isomorphic to a closed
+This is equivalent to requiring $X$ to be isomorphic to a closed
 subscheme of $\mathbf{A}^n_k$ for some $n$.
 \item We say $X$ is a {\it projective variety} if the
 structure morphism $X \to \Spec(k)$ is projective. By
@@ -4684,6 +4871,26 @@ separated as a scheme finite over a separated scheme.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-normalize-projective}
+Let $k$ be a field. Let $X$ be a proper scheme over $k$.
+Let $\nu : X^\nu \to X$ be the normalization morphism, see
+Morphisms, Definition \ref{morphisms-definition-normalization}.
+Then $X^\nu$ is proper over $k$. If $X$ is projective over $k$,
+then $X^\nu$ is projective over $k$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-normalization-locally-algebraic} the morphism $\nu$
+is finite. Hence $X^\nu$ is proper over $k$ by
+Morphisms, Lemmas \ref{morphisms-lemma-finite-proper} and
+\ref{morphisms-lemma-composition-proper}.
+The morphism $\nu$ is projective by
+Morphisms, Lemma \ref{morphisms-lemma-finite-projective}
+and hence if $X$ is projective over $k$, then $X^\nu$ is projective over $k$
+by Morphisms, Lemma \ref{morphisms-lemma-composition-projective}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-relative-normalization-finite}
 Let $k$ be a field. Let $f : Y \to X$ be a quasi-compact
 morphism of locally algebraic schemes over $k$. Let $X'$
@@ -4710,7 +4917,7 @@ Some small details omitted.
 \begin{lemma}
 \label{lemma-finite-extension-geometrically-normal}
 Let $k$ be a field. Let $X$ be an algebraic $k$-scheme.
-Then there exists a finite purely inseparable extension $k \subset k'$
+Then there exists a finite purely inseparable extension $k'/k$
 such that the normalization $Y$ of $X_{k'}$ is geometrically normal over $k'$.
 \end{lemma}
 
@@ -4880,6 +5087,20 @@ Then $\mathcal{O}^*(X)/k^*$ is a finitely generated abelian group.
 \end{lemma}
 
 \begin{proof}
+Since the statement only concerns $X$, we may replace $\overline{X}$
+by a different proper variety over $k$. Let $\nu : \overline{X}^\nu \to
+\overline{X}$ be the normalization morphism. By
+Lemma \ref{lemma-normalization-locally-algebraic}
+we have that $\nu$ is finite and $\overline{X}^\nu$ is a
+variety. Since $X$ is normal, we see that $\nu^{-1}(X) \to X$ is an
+isomorphism (tiny detail omitted). Finally, we see that
+$\overline{X}^\nu$ is proper over $k$ as a finite morphism is proper
+(Morphisms, Lemma \ref{morphisms-lemma-finite-proper})
+and compositions of proper morphisms
+are proper (Morphisms, Lemma \ref{morphisms-lemma-composition-proper}).
+Thus we may and do assume $\overline{X}$ is normal.
+
+\medskip\noindent
 We will use without further mention that for any affine open $U$ of
 $\overline{X}$ the ring $\mathcal{O}(U)$ is a finitely generated
 $k$-algebra, which is Noetherian, a domain and normal, see
@@ -5097,8 +5318,8 @@ which clearly shows that (2) implies (1).
 \medskip\noindent
 If the integral closure $k'$ of $k$ in $\Gamma(X, \mathcal{O}_X)$
 is not trivial, then we see that $X$ is either not geometrically connected
-(if $k \subset k'$ is not purely inseparable) or that $X$ is not
-geometrically reduced (if $k \subset k'$ is nontrivial purely inseparable).
+(if $k'/k$ is not purely inseparable) or that $X$ is not
+geometrically reduced (if $k'/k$ is nontrivial purely inseparable).
 Details omitted. Hence (3) implies (1).
 \end{proof}
 
@@ -5113,7 +5334,7 @@ provided at least one of the following conditions holds:
 \item $k$ is algebraically closed in $k(X)$,
 \item $X$ is geometrically integral over $k$, or
 \item $k$ is the ``intersection'' of the field extensions
-$k \subset \kappa(x)$ where $x$ runs over the closed points of $x$.
+$\kappa(x)/k$ where $x$ runs over the closed points of $x$.
 \end{enumerate}
 \end{lemma}
 
@@ -5129,12 +5350,14 @@ We omit the verification that each of (2), (3), (4) implies (1).
 
 
 
-\section{K\"unneth formula}
+\section{K\"unneth formula, I}
 \label{section-kunneth}
 
 \noindent
-There is a version over a general base too, but first we state
-and prove the version over a field.
+In this section we prove the K\"unneth formula when the base
+is a field and we are considering cohomology of quasi-coherent
+modules. For a more general version, please see
+Derived Categories of Schemes, Section \ref{perfect-section-kunneth}.
 
 \begin{lemma}
 \label{lemma-kunneth}
@@ -5169,7 +5392,7 @@ and then we use the cup product
 $$
 \cup :
 H^p(X \times Y, \text{pr}_1^*\mathcal{F})
-\otimes H^p(X \times Y, \text{pr}_2^*\mathcal{G})
+\otimes H^q(X \times Y, \text{pr}_2^*\mathcal{G})
 \longrightarrow
 H^n(X \times Y, \text{pr}_1^*\mathcal{F}
 \otimes_{\mathcal{O}_{X \times Y}} \text{pr}_2^*\mathcal{G})
@@ -5192,10 +5415,10 @@ Thus by Cohomology, Lemma \ref{cohomology-lemma-functoriality-cech}
 we obtain maps
 $$
 \check{\mathcal{C}}^\bullet(\mathcal{U}, \mathcal{F}) \to
-\check{\mathcal{C}}^\bullet(\mathcal{W}, \mathcal{F})
+\check{\mathcal{C}}^\bullet(\mathcal{W}, \text{pr}_1^*\mathcal{F})
 \quad\text{and}\quad
 \check{\mathcal{C}}^\bullet(\mathcal{V}, \mathcal{G}) \to
-\check{\mathcal{C}}^\bullet(\mathcal{W}, \mathcal{G})
+\check{\mathcal{C}}^\bullet(\mathcal{W}, \text{pr}_2^*\mathcal{G})
 $$
 compatible with pullback maps on cohomology. In Cohomology, Equation
 (\ref{cohomology-equation-needs-signs})
@@ -5207,7 +5430,8 @@ $$
 \check{\mathcal{C}}^\bullet(\mathcal{W}, \text{pr}_2^*\mathcal{G}))
 \longrightarrow
 \check{\mathcal{C}}^\bullet(\mathcal{W},
-\text{pr}_1^*\mathcal{F} \otimes \text{pr}_2^*\mathcal{G})
+\text{pr}_1^*\mathcal{F} \otimes_{\mathcal{O}_{X \times Y}}
+\text{pr}_2^*\mathcal{G})
 $$
 defining the cup product on cohomology. Combining the above we
 obtain a map of complexes
@@ -5255,11 +5479,14 @@ $$
 \otimes
 \check{\mathcal{C}}^\bullet(\mathcal{V}, \mathcal{G})) \ar[d] \\
 \check{\mathcal{C}}^\bullet(\mathcal{W},
-\text{pr}_1^*\mathcal{F} \otimes \text{pr}_2^*\mathcal{G}) \ar[r] &
+\text{pr}_1^*\mathcal{F} \otimes_{\mathcal{O}_{X \times Y}}
+\text{pr}_2^*\mathcal{G}) \ar[r] &
 \check{\mathcal{C}}^\bullet(\mathcal{W},
-\text{pr}_1^*\mathcal{F}' \otimes \text{pr}_2^*\mathcal{G}) \ar[r] &
+\text{pr}_1^*\mathcal{F}' \otimes_{\mathcal{O}_{X \times Y}}
+\text{pr}_2^*\mathcal{G}) \ar[r] &
 \check{\mathcal{C}}^\bullet(\mathcal{W},
-\text{pr}_1^*\mathcal{F}'' \otimes \text{pr}_2^*\mathcal{G})
+\text{pr}_1^*\mathcal{F}'' \otimes_{\mathcal{O}_{X \times Y}}
+\text{pr}_2^*\mathcal{G})
 }
 $$
 (we have dropped the outer zeros).
@@ -5599,7 +5826,7 @@ over the field $\mathbf{C}$ of complex numbers, could also be considered
 as a scheme over $\mathbf{Q}$. But what if we ask that the morphism
 $X \to \Spec(k)$ does not factor as
 $X \to \Spec(k') \to \Spec(k)$ for any nontrivial field
-extension $k \subset k'$? In other words we ask that $k$ is
+extension $k'/k$? In other words we ask that $k$ is
 somehow maximal such that $X$ lives over $k$.
 
 \medskip\noindent
@@ -5753,6 +5980,97 @@ we conclude that $k_1 = k_{12} = k_2$ as desired.
 
 
 
+\section{Automorphisms}
+\label{section-automorphisms}
+
+\noindent
+A section on automorphisms of schemes over fields. For some information
+on (infinitesimal) automorphisms of curves, see
+Algebraic Curves, Section \ref{curves-section-vector-fields}
+and
+Moduli of Curves, Section \ref{moduli-curves-section-finite-aut}.
+
+\begin{lemma}
+\label{lemma-automorphism}
+Let $X$ be a reduced scheme of finite type over a field $k$. Let $f : X \to X$
+be an automorphism over $k$ which induces the identity map on the underlying
+topological space of $X$. Then
+\begin{enumerate}
+\item $f^*\mathcal{F} \cong \mathcal{F}$ for every coherent
+$\mathcal{O}_X$-module, and
+\item if $\dim(Z) > 0$ for every irreducible component $Z \subset X$,
+then $f$ is the identity.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Part (1) follows from part (2) and the fact that the connected components
+of $X$ of dimension $0$ are spectra of fields.
+
+\medskip\noindent
+Let $Z \subset X$ be an irreducible component viewed as an integral closed
+subscheme. Clearly $f(Z) \subset Z$ and $f|_Z : Z \to Z$ is an automorphism
+over $k$ which induces the identity map on the underlying topological space
+of $Z$. Since $X$ is reduced, it suffices to show that the arrows
+$f|_Z : Z \to Z$ are the identity. This reduces us to the case discussed
+in the next paragraph.
+
+\medskip\noindent
+Assume $X$ is irreducible of dimension $> 0$. Choose a nonempty
+affine open $U \subset X$. Since $f(U) \subset U$ and since
+$U \subset X$ is scheme theoretically dense it suffices to
+prove that $f|_U : U \to U$ is the identity.
+
+\medskip\noindent
+Assume $X = \Spec(A)$ is affine, irreducible, of dimension $> 0$
+and $k$ is an infinite field. Let $g \in A$ be nonconstant. The set
+$$
+S = \bigcup\nolimits_{\lambda \in k} V(g - \lambda)
+$$
+is dense in $X$ because it is the inverse image of the dense subset
+$\mathbf{A}^1_k(k)$ by the nonconstant morphism $g : X \to \mathbf{A}^1_k$.
+If $x \in S$, then the image $g(x)$ of $g$ in $\kappa(x)$
+is in the image of $k \to \kappa(x)$. Hence
+$f^\sharp : \kappa(x) \to \kappa(x)$ fixes $g(x)$.
+Thus the image of $f^\sharp(g)$ in $\kappa(x)$ is equal to $g(x)$.
+We conclude that
+$$
+S \subset V(g - f^\sharp(g))
+$$
+and since $X$ is reduced and $S$ is dense we conclude $g=f^\sharp(g)$.
+This proves $f^\sharp = \text{id}_A$ as $A$ is generated as a $k$-algebra
+by elements $g$ as above (details omitted; hint: the set of constant
+functions is a finite dimensional $k$-subvector space of $A$).
+We conclude that $f = \text{id}_X$.
+
+\medskip\noindent
+Assume $X = \Spec(A)$ is affine, irreducible, of dimension $> 0$
+and $k$ is a finite field. If for every $1$-dimensional integral
+closed subscheme $C \subset X$ the restriction $f|_C : C \to C$
+is the identity, then $f$ is the identity. This reduces us to the
+case where $X$ is a curve. A curve over a finite field has a
+finite automorphism group (details omitted). Hence $f$ has finite
+order, say $n$. Then we pick $g : X \to \mathbf{A}^1_k$
+nonconstant as above and we consider
+$$
+S = \{x \in X\text{ closed such that }[\kappa(g(x)) : k]
+\text{ is prime to }n\}
+$$
+Arguing as before we find that $S$ is dense in $X$. Since
+for $x \in X$ closed the map
+$f^\sharp : \kappa(x) \to \kappa(x)$ is an
+automorphism of order dividing $n$
+we see that for $x \in S$ this automorphism
+acts trivially on the subfield generated by
+the image of $g$ in $\kappa(x)$. Thus we conclude that
+$S \subset V(g - f^\sharp(g))$ and we win as before.
+\end{proof}
+
+
+
+
+
+
 \section{Euler characteristics}
 \label{section-euler}
 
@@ -5814,8 +6132,10 @@ be a coherent sheaf with $\dim(\text{Supp}(\mathcal{F})) \leq 0$.
 Then
 \begin{enumerate}
 \item $\mathcal{F}$ is generated by global sections,
+\item $H^0(X, \mathcal{F}) =
+\bigoplus_{x \in \text{Supp}(\mathcal{F})} \mathcal{F}_x$,
 \item $H^i(X, \mathcal{F}) = 0$ for $i > 0$,
-\item $\chi(X, \mathcal{F}) = \dim_k\Gamma(X, \mathcal{F})$, and
+\item $\chi(X, \mathcal{F}) = \dim_k H^0(X, \mathcal{F})$, and
 \item
 $\chi(X, \mathcal{F} \otimes \mathcal{E}) = n\chi(X, \mathcal{F})$
 for every locally free module $\mathcal{E}$ of rank $n$.
@@ -5826,30 +6146,40 @@ for every locally free module $\mathcal{E}$ of rank $n$.
 By Cohomology of Schemes, Lemma \ref{coherent-lemma-coherent-support-closed}
 we see that $\mathcal{F} = i_*\mathcal{G}$ where $i : Z \to X$ is the inclusion
 of the scheme theoretic support of $\mathcal{F}$ and where $\mathcal{G}$
-is a coherent $\mathcal{O}_Z$-module. Since the dimension of $Z$ is
-$0$, we see $Z$ is affine (Properties, Lemma
+is a coherent $\mathcal{O}_Z$-module. By definition of the scheme theoretic
+support the underlying topological space of $Z$ is $\text{Supp}(\mathcal{F})$.
+Since the dimension of $Z$ is $0$, we see $Z$ is affine (Properties, Lemma
 \ref{properties-lemma-locally-Noetherian-dimension-0}).
 Hence $\mathcal{G}$ is globally generated and the higher
 cohomology groups of $\mathcal{G}$ are zero
 (Cohomology of Schemes, Lemma
 \ref{coherent-lemma-quasi-coherent-affine-cohomology-zero}).
-Hence $\mathcal{F} = i_*\mathcal{G}$ is globally generated.
-Since the cohomologies of $\mathcal{F}$ and $\mathcal{G}$ agree
-(Cohomology of Schemes, Lemma \ref{coherent-lemma-relative-affine-cohomology})
-we conclude that the higher cohomology groups of $\mathcal{F}$ are zero
-which gives the first formula. By the projection formula
+In fact, by Lemma \ref{lemma-algebraic-scheme-dim-0}
+the scheme $Z$ is a finite disjoint union of spectra
+of local Artinian rings. Thus correspondingly
+$H^0(Z, \mathcal{G}) = \bigoplus_{z \in Z} \mathcal{G}_z$.
+The cohomologies of $\mathcal{F}$ and $\mathcal{G}$ agree by
+Cohomology of Schemes, Lemma \ref{coherent-lemma-relative-affine-cohomology}.
+Thus $H^i(X, \mathcal{F}) = 0$ for $i > 0$ and
+$H^0(X, \mathcal{F}) = H^0(Z, \mathcal{G})$.
+In particular we have (3) is true.
+For $z \in Z$ corresponding to $x \in \text{Supp}(\mathcal{F})$
+we have $\mathcal{G}_z = (i_*\mathcal{G})_x = \mathcal{F}_x$.
+We conclude that (2) holds. Of course (2) implies (1).
+We have (4) by definition of the Euler characteristic $\chi(X, \mathcal{F})$
+and (3). By the projection formula
 (Cohomology, Lemma \ref{cohomology-lemma-projection-formula}) we have
 $$
 i_*(\mathcal{G} \otimes i^*\mathcal{E}) = \mathcal{F} \otimes \mathcal{E}.
 $$
 Since $Z$ has dimension $0$ the locally free sheaf $i^*\mathcal{E}$
 is isomorphic to $\mathcal{O}_Z^{\oplus n}$ and arguing as above
-we see that the second formula holds.
+we see that (5) holds.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-euler-characteristic-extend-base-field}
-Let $k \subset k'$ be an extension of fields. Let $X$ be a proper scheme
+Let $k'/k$ be an extension of fields. Let $X$ be a proper scheme
 over $k$. Let $\mathcal{F}$ be a coherent sheaf on $X$.
 Let $\mathcal{F}'$ be the pullback of $\mathcal{F}$ to $X_{k'}$.
 Then $\chi(X, \mathcal{F}) = \chi(X', \mathcal{F}')$.
@@ -5899,6 +6229,7 @@ of the spectral sequence), we conclude.
 Compare also with the more general
 Homology, Lemma \ref{homology-lemma-biregular-ss-relation-in-K0}.
 \end{proof}
+
 
 
 
@@ -6200,14 +6531,14 @@ for $i = 1, \ldots, n$.
 
 \noindent
 Note that $\mathcal{F} = \mathcal{O}(d)$ is $m$-regular if and only
-if $d \geq m$. This follows from the computation of cohomology groups
+if $d \geq -m$. This follows from the computation of cohomology groups
 in Cohomology of Schemes, Equation (\ref{coherent-equation-identify}).
 Namely, we see that $H^n(\mathbf{P}^n_k, \mathcal{O}(d)) = 0$
 if and only if $d \geq -n$.
 
 \begin{lemma}
 \label{lemma-m-regular-extend-base-field}
-Let $k \subset k'$ be an extension of fields. Let $n \geq 0$.
+Let $k'/k$ be an extension of fields. Let $n \geq 0$.
 Let $\mathcal{F}$ be a coherent sheaf on $\mathbf{P}^n_k$.
 Let $\mathcal{F}'$ be the pullback of $\mathcal{F}$ to $\mathbf{P}^n_{k'}$.
 Then $\mathcal{F}$ is $m$-regular if and only if $\mathcal{F}'$ is
@@ -6288,7 +6619,7 @@ is surjective.
 \end{lemma}
 
 \begin{proof}
-Let $k \subset k'$ be an extension of fields. Let $\mathcal{F}'$
+Let $k'/k$ be an extension of fields. Let $\mathcal{F}'$
 be as in Lemma \ref{lemma-m-regular-extend-base-field}. By
 Cohomology of Schemes, Lemma \ref{coherent-lemma-flat-base-change-cohomology}
 the base change of the linear map of the lemma to $k'$ is the
@@ -6410,7 +6741,7 @@ d \longmapsto {d + n \choose n} = \frac{d^n}{n!} + \ldots
 $$
 This follows from the following lemma and the fact that
 $$
-H^0(\mathbf{P}^n_k, \mathcal{O}_{\mathbf{P}^n_k}) = k[T_0, \ldots, T_n]_d
+H^0(\mathbf{P}^n_k, \mathcal{O}_{\mathbf{P}^n_k}(d)) = k[T_0, \ldots, T_n]_d
 $$
 (degree $d$ part) whose dimension over $k$ is ${d + n \choose n}$.
 
@@ -6716,7 +7047,8 @@ induces purely inseparable residue field extensions.
 By Lemma \ref{lemma-frobenius} the morphisms $F_X : X \to X$ and the base change
 $h : X^{(p)} \to X$ of $F_S$ are universal homeomorphisms.
 Since $h \circ F_{X/S} = F_X$ we conclude that $F_{X/S}$ is a universal
-homeomorphism. By Morphisms, Lemmas
+homeomorphism (Morphisms, Lemma
+\ref{morphisms-lemma-permanence-universal-homeomorphism}). By Morphisms, Lemmas
 \ref{morphisms-lemma-universal-homeomorphism} and
 \ref{morphisms-lemma-universally-injective}
 we conclude that $F_{X/S}$ has the other properties as well.
@@ -6967,7 +7299,7 @@ every $a \in A$ there exists an $n$ such that $u^n a \in R$. It follows
 that $A = R_u$.
 
 \medskip\noindent
-Let $\mathfrak m_A$ be the radical of $A$. Let $x \in \mathfrak m_A$
+Let $\mathfrak m_A$ be the Jacobson radical of $A$. Let $x \in \mathfrak m_A$
 be a nonzero element. Since $\dim(A) = 1$ we see that $K = A_x$.
 After replacing $x$ by $x^n u^m$ for some $n \geq 1$ and
 $m \in \mathbf{Z}$ we may assume $x$ maps to a unit of $B$.
@@ -7007,13 +7339,14 @@ finishing the proof.
 Let $B$ be a semi-local Noetherian domain of dimension $1$.
 Let $B'$ be the integral closure of $B$ in its fraction field.
 Then $B'$ is a semi-local Dedekind domain.
-Let $x$ be a nonzero element of the radical of $B'$.
+Let $x$ be a nonzero element of the Jacobson radical of $B'$.
 Then for every $y \in B'$ there exists an $n$ such that
 $x^n y \in B$.
 \end{lemma}
 
 \begin{proof}
-Let $\mathfrak m_B$ be the radical of $B$. The structure of $B'$ results from
+Let $\mathfrak m_B$ be the Jacobson radical of $B$.
+The structure of $B'$ results from
 Algebra, Lemma \ref{algebra-lemma-integral-closure-Dedekind}.
 Given $x, y \in B'$ as in the statement of the lemma consider
 the subring $B \subset A \subset B'$ generated by $x$ and $y$.
@@ -7025,7 +7358,7 @@ closed points of $B$. Thus $\mathfrak m_B^n A \subset B$ for
 a suitable $n$. Moreover, $\Spec(B') \to \Spec(A)$ is
 surjective (Algebra, Lemma \ref{algebra-lemma-integral-overring-surjective}),
 hence $A$ is semi-local as well. It also follows that
-$x$ is in the radical $\mathfrak m_A$ of $A$. Note that
+$x$ is in the Jacobson radical $\mathfrak m_A$ of $A$. Note that
 $\mathfrak m_A = \sqrt{\mathfrak m_B A}$.
 Thus $x^m y \in \mathfrak m_B A$ for some $m$.
 Then $x^{nm} y \in B$.
@@ -7099,7 +7432,7 @@ Let $K$ be a field. Let $A_1, \ldots, A_r \subset K$ be Noetherian
 semi-local rings of dimension $1$ with fraction field $K$. If
 $A_i \otimes A_j \to K$ is surjective for all $i \not = j$, then
 there exists a Noetherian semi-local domain $A \subset K$
-of dimension $1$ containing $A_1, \ldots, A_r$ such that
+of dimension $1$ contained in $A_1, \ldots, A_r$ such that
 \begin{enumerate}
 \item $A \to A_i$ induces an open immersion $j_i : \Spec(A_i) \to \Spec(A)$,
 \item $\Spec(A)$ is the union of the opens $j_i(\Spec(A_i))$,
@@ -7124,20 +7457,20 @@ $A = A_1 \cap B$.
 \begin{lemma}
 \label{lemma-create-globally-generated}
 Let $A$ be a domain with fraction field $K$. Let $B_1, \ldots, B_r \subset K$
-be Noetherian $1$-dimensional semi-local rings whose fraction
+be Noetherian $1$-dimensional semi-local domains whose fraction
 fields are $K$. If $A \otimes B_i \to K$ are surjective for $i = 1, \ldots, r$,
-then there exists an $x \in A$ such that $x^{-1}$ is in the radical of
+then there exists an $x \in A$ such that $x^{-1}$ is in the Jacobson radical of
 $B_i$ for $i = 1, \ldots, r$.
 \end{lemma}
 
 \begin{proof}
 Let $B_i'$ be the integral closure of $B_i$ in $K$. Suppose we find a
-nonzero $x \in A$ such that $x^{-1}$ is in the radical of $B'_i$ for
+nonzero $x \in A$ such that $x^{-1}$ is in the Jacobson radical of $B'_i$ for
 $i = 1, \ldots, r$. Then by
 Lemma \ref{lemma-semi-local-dimension-one-conductor},
 after replacing $x$ by a power we get $x^{-1} \in B_i$.
 Since $\Spec(B'_i) \to \Spec(B_i)$ is surjective we
-see that $x^{-1}$ is then also in the radical of $B_i$.
+see that $x^{-1}$ is then also in the Jacobson radical of $B_i$.
 Thus we may assume that each $B_i$ is a semi-local Dedekind domain.
 
 \medskip\noindent
@@ -7397,7 +7730,7 @@ $\Pic(X) \to \Pic(U)$ is surjective.
 
 \begin{proof}
 Let $X \setminus U = \{x_i; i \in I\}$.
-Choose affine opens $U_i \subset X$ with $x_i \in X$ and
+Choose affine opens $U_i \subset X$ with $x_i \in U_i$ and
 $x_j \not \in U_i$ for $j \not = i$. This is possible by condition (2).
 Say $U_i = \Spec(A_i)$. Let $\mathfrak m_i \subset A_i$ be the maximal
 ideal corresponding to $x_i$. By our assumption on the local rings
@@ -7490,9 +7823,10 @@ sheaf.
 \begin{proof}
 Since $X$ is quasi-compact we can find a finite collection
 $(\mathcal{L}_i, s_i)$, $i = 1, \ldots, n$
-of pairs such that $X_{s_i}$ is affine and $X = \bigcup X_{s_i}$.
+of pairs such that $\mathcal{L}_i$ is globally generated, $X_{s_i}$
+is affine and $X = \bigcup X_{s_i}$.
 Again because $X$ is quasi-compact we can find, for each $i$, a finite
-collection of sections $t_{i, j}$, $j = 1, \ldots, m_i$
+collection of sections $t_{i, j}$ of $\mathcal{L}_i$, $j = 1, \ldots, m_i$
 such that $X = \bigcup X_{t_{i, j}}$. Set $t_{i, 0} = s_i$.
 Consider the invertible sheaf
 $$
@@ -7934,7 +8268,7 @@ Algebra, Lemma \ref{algebra-lemma-characterize-dvr}.
 Let $A$ be a reduced Nagata local ring of dimension $1$.
 Let $A \to A'$ be as in Lemma \ref{lemma-pre-delta-invariant}.
 Let $A^h$, $A^{sh}$, resp.\ $A^\wedge$
-be the henselization, strict henselization, reps.\ completion of $A$.
+be the henselization, strict henselization, resp.\ completion of $A$.
 Then $A^h$, $A^{sh}$, resp. $A^\wedge$ is a reduced Nagata local
 ring of dimension $1$ and
 $A' \otimes_A A^h$, $A' \otimes_A A^{sh}$, resp. $A' \otimes_A A^\wedge$
@@ -8024,7 +8358,7 @@ Let $A'$, resp.\ $B'$ be the integral closure of $A$, resp.\ $B$
 in its total ring of fractions.
 Then $B' = A' \otimes_A B$ by
 Lemma \ref{lemma-normalization-same-after-completion}.
-Hence $B'/B = A'/A \otimes_A B$.
+Hence $B'/B = (A'/A) \otimes_A B$.
 The equality now follows from
 Algebra, Lemma \ref{algebra-lemma-pullback-module}
 and the fact that $B \otimes_A \kappa_A = \kappa_B$.
@@ -8247,7 +8581,7 @@ as the number of connected components of the left hand side.
 Let $k$ be a field. Let $X$ be a locally algebraic $k$-scheme.
 Let $K/k$ be an extension of fields. Let $y \in X_K$ be a
 point with image $x$ in $X$. Then $X$ is geometrically unibranch
-at $x$ if and only if $Y$ is geometrically unibranch at $Y$.
+at $x$ if and only if $X_K$ is geometrically unibranch at $y$.
 \end{lemma}
 
 \begin{proof}
@@ -8480,7 +8814,7 @@ of generic points of irreducible components of $X$. If
 \begin{enumerate}
 \item $f$ is separated,
 \item there is an open covering $X = \bigcup U_i$ such that
-$f|_{U_i} : U_i \to X$ is an open immersion, and
+$f|_{U_i} : U_i \to Y$ is an open immersion, and
 \item if $\xi, \xi' \in X^0$, $\xi \not = \xi'$, then $f(\xi) \not = f(\xi')$,
 \end{enumerate}
 then $f$ is an open immersion.
@@ -8579,7 +8913,7 @@ mapping to $\xi$ (warning: a priori we do not know that $\eta$ specializes
 to $t_j$). Assumption (3) applied to $\eta$ tells us that the image $\theta$
 of $\xi$ in $X$ corresponds to a minimal prime of $\mathcal{O}_{X, x_j}$.
 Lifting $\xi$ via the isomorphism of (5) we obtain a specialization
-$\eta' \leadsto t_j$ with $\eta' \in X^0$ mapping to $\theta \leadsto x_j$.
+$\eta' \leadsto t_j$ with $\eta' \in T^0$ mapping to $\theta \leadsto x_j$.
 The injectivity of (4) shows that $\eta = \eta'$. Thus
 every minimal prime of $\mathcal{O}_{T', t'_j}$ lies below
 a minimal prime of $\mathcal{O}_{T, t_j}$. We conclude that
@@ -8772,28 +9106,16 @@ and $\mathbf{A}^1_{\mathbf{F}_p}$ behave similarly in many respects.
 
 \begin{lemma}
 \label{lemma-proper-minus-point}
-Let $X$ be an irreducible scheme of dimension $> 0$ over a field $k$.
+Let $X$ be a separated, irreducible scheme of dimension $> 0$ over a field $k$.
 Let $x \in X$ be a closed point. The open subscheme $X \setminus \{x\}$
 is not proper over $k$.
 \end{lemma}
 
 \begin{proof}
-Namely, choose a specialization $x' \leadsto x$ with $x' \not = x$
-(for example take $x'$ to be the generic point). By
-Schemes, Lemma \ref{schemes-lemma-points-specialize}
-there exists a morphism $a : \Spec(A) \to X$
-where $A$ is a valuation ring with fraction field $K$
-such that the generic point of $\Spec(A)$
-maps to $x'$ and the closed point of $\Spec(A)$ maps to $x$.
-The morphism $\Spec(K) \to X \setminus \{x\}$ does
-not extend to a morphism $b : \Spec(A) \to X \setminus \{x\}$
-since by the uniqueness in Schemes, Lemma
-\ref{schemes-lemma-separated-implies-valuative}
-we would have $a = b$ as morphisms into $X$ which is absurd.
-Hence the valuative criterion
-(Schemes, Proposition
-\ref{schemes-proposition-characterize-universally-closed})
-shows that $X \to \Spec(k)$ is not universally closed, hence not proper.
+Since $X$ is irreducible, $U = X \setminus \{x\}$ is not closed in $X$.
+In particular, the immersion $U \to X$ is not proper.
+By Morphisms, Lemma \ref{morphisms-lemma-image-proper-scheme-closed}
+(here we use $X$ is separated), $U \to \Spec(k)$ is not proper either.
 \end{proof}
 
 \begin{lemma}
@@ -8897,6 +9219,104 @@ Morphisms, Lemma
 Then $X \to X'$ and $\{x'_1, \ldots, x'_m\}$ is as desired.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-dim-1-projective-completion-after-insep}
+Let $X$ be a separated scheme of finite type over $k$ with $\dim(X) \leq 1$.
+Then there exists a commutative diagram
+$$
+\xymatrix{
+\overline{Y}_1 \amalg \ldots \amalg \overline{Y}_n \ar[rd] &
+Y_1 \amalg \ldots \amalg Y_n \ar[r]_-\nu \ar[d] \ar[l]^j &
+X_{k'} \ar[r] \ar[d] &
+X \ar[d]^f \\
+& \Spec(k'_1) \amalg \ldots \amalg \Spec(k'_n) \ar[r] &
+\Spec(k') \ar[r] &
+\Spec(k)
+}
+$$
+of schemes with the following properties:
+\begin{enumerate}
+\item $k'/k$ is a finite purely inseparable extension of fields,
+\item $\nu$ is the normalization of $X_{k'}$,
+\item $j$ is an open immersion with dense image,
+\item $k'_i/k'$ is a finite separable extension for $i = 1, \ldots, n$,
+\item $\overline{Y}_i$ is smooth, projective, geometrically irreducible
+dimension $\leq 1$ over $k'_i$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+As we may replace $X$ by its reduction, we may and do assume $X$ is reduced.
+Choose $X \to \overline{X}$ as in
+Lemma \ref{lemma-reduced-dim-1-projective-completion}.
+If we can show the lemma for $\overline{X}$, then the lemma follows
+for $X$ (details omitted).
+Thus we may and do assume $X$ is projective.
+
+\medskip\noindent
+Choose $k'/k$ finite purely inseparable such that the normalization of
+$X_{k'}$ is geometrically normal over $k'$, see
+Lemma \ref{lemma-finite-extension-geometrically-normal}.
+Denote $Y = (X_{k'})^\nu$ the normalization; for properties
+of the normalization, see Section \ref{section-normalization}.
+Then $Y$ is geometrically regular as normal and regular are the same
+in dimension $\leq 1$, see
+Properties, Lemma \ref{properties-lemma-normal-dimension-1-regular}.
+Hence $Y$ is smooth over $k'$ by
+Lemma \ref{lemma-geometrically-regular-smooth}.
+Let $Y = Y_1 \amalg \ldots \amalg Y_n$ be the decomposition
+of $Y$ into irreducible components.
+Set $k'_i = \Gamma(Y_i, \mathcal{O}_{Y_i})$.
+These are finite separable extensions of $k'$ by
+Lemma \ref{lemma-proper-geometrically-reduced-global-sections}.
+The proof is finished by Lemma \ref{lemma-baby-stein}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-regular-point-on-curve}
+Let $k$ be a field. Let $X$ be a curve over $k$. Let $x \in X$ be a closed
+point. We think of $x$ as a (reduced) closed subscheme of $X$ with sheaf
+of ideals $\mathcal{I}$. The following are equivalent
+\begin{enumerate}
+\item $\mathcal{O}_{X, x}$ is regular,
+\item $\mathcal{O}_{X, x}$ is normal,
+\item $\mathcal{O}_{X, x}$ is a discrete valuation ring,
+\item $\mathcal{I}$ is an invertible $\mathcal{O}_X$-module,
+\item $x$ is an effective Cartier divisor on $X$.
+\end{enumerate}
+If $k$ is perfect or if $\kappa(x)$ is separable over $k$,
+these are also equivalent to
+\begin{enumerate}
+\item[(6)] $X \to \Spec(k)$ is smooth at $x$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since $X$ is a curve, the local ring $\mathcal{O}_{X, x}$ is a Noetherian
+local domain of dimension $1$ (Lemma \ref{lemma-dimension-locally-algebraic}).
+Parts (4) and (5) are equivalent by definition and are equivalent to
+$\mathcal{I}_x = \mathfrak m_x \subset \mathcal{O}_{X, x}$ having one generator
+(Divisors, Lemma \ref{divisors-lemma-effective-Cartier-in-points}).
+The equivalence of (1), (2), (3), (4), and (5) therefore follows from
+Algebra, Lemma \ref{algebra-lemma-characterize-dvr}. The final statement
+follows from Lemma \ref{lemma-dense-smooth-open-variety-over-perfect-field}
+in case $k$ is perfect. If $\kappa(x)/k$ is separable, then the equivalence
+follows from Algebra, Lemma \ref{algebra-lemma-separable-smooth}.
+\end{proof}
+
+\begin{remark}
+\label{remark-smooth-projective-compactification}
+Let $k$ be a field. Let $X$ be a regular curve over $k$. By
+Lemmas \ref{lemma-regular-point-on-curve} and
+\ref{lemma-reduced-dim-1-projective-completion}
+there exists a nonsingular projective curve $\overline{X}$
+which is a compactification of $X$, i.e., there exists an
+open immersion $j : X \to \overline{X}$ such that the complement
+consists of a finite number of closed points. If $k$ is perfect,
+then $X$ and $\overline{X}$ are smooth over $k$ and
+$\overline{X}$ is a smooth projective compactification of $X$.
+\end{remark}
+
 \noindent
 Observe that if an affine scheme $X$ over $k$ is proper over $k$
 then $X$ is finite over $k$ (Morphisms, Lemma
@@ -8915,31 +9335,72 @@ is H-projective over $k$.
 \end{lemma}
 
 \begin{proof}
-Choose $X \to \overline{X}$ as in
-Lemma \ref{lemma-dim-1-projective-completion}.
-By Lemma \ref{lemma-find-globally-generated}
-we can find a globally generated invertible sheaf $\mathcal{L}$
-on $\overline{X}$ and a section $s \in \Gamma(\overline{X}, \mathcal{L})$
-such that $X = \overline{X}_s$.
-Choose a basis $s = s_0, s_1, \ldots, s_m$ of the finite dimensional
-$k$-vector space $\Gamma(\overline{X}, \mathcal{L})$
-(Cohomology of Schemes, Lemma
-\ref{coherent-lemma-proper-over-affine-cohomology-finite}).
-We obtain a corresponding morphism
+Choose $X \to \overline{X}$ with
+$\overline{X} \setminus X = \{x_1, \ldots, x_r\}$ as in
+Lemma \ref{lemma-reduced-dim-1-projective-completion}.
+Then $\overline{X}$ is a curve as well.
+If $r = 0$, then $X = \overline{X}$ is H-projective over $k$.
+Thus we may assume $r \geq 1$ and our goal is to show that
+$X$ is affine. By Lemma \ref{lemma-open-in-affine-curve-affine}
+it suffices to show that $\overline{X} \setminus \{x_1\}$ is affine.
+This reduces us to the claim stated in the next paragraph.
+
+\medskip\noindent
+Let $X$ be an H-projective curve over $k$. Let $x \in X$ be a closed point
+such that $\mathcal{O}_{X, x}$ is a discrete valuation ring. Claim:
+$U = X \setminus \{x\}$ is affine. By Lemma \ref{lemma-regular-point-on-curve}
+the point $x$ defines an effective Cartier divisor of $X$.
+For $n \geq 1$ denote $nx = x + \ldots + x$ the $n$-fold sum, see
+Divisors, Definition \ref{divisors-definition-sum-effective-Cartier-divisors}.
+Denote $\mathcal{O}_{nx}$ the structure sheaf of $nx$ viewed as a
+coherent module on $X$.
+Since every invertible module on the local scheme $nx$ is trivial
+the first short exact sequence of
+Divisors, Remark \ref{divisors-remark-ses-regular-section}
+reads
 $$
-f : \overline{X} \longrightarrow \mathbf{P}^m_k
+0 \to \mathcal{O}_X
+\xrightarrow{1} \mathcal{O}_X(nx) \to \mathcal{O}_{nx} \to 0
 $$
-such that the inverse image of $D_{+}(T_0)$ is $X$, see
-Constructions, Lemma \ref{constructions-lemma-projective-space}.
+in our case. Note that $\dim_k H^0(X, \mathcal{O}_{nx}) \geq n$.
+Namely, by Lemma \ref{lemma-chi-tensor-finite} we have
+$H^0(X, \mathcal{O}_{nx}) = \mathcal{O}_{X, x}/(\pi^n)$ where $\pi$ in
+$\mathcal{O}_{X, x}$ is a uniformizer and the powers $\pi^i$ map to
+$k$-linearly independent elements in $\mathcal{O}_{X, x}/(\pi^n)$
+for $i = 0, 1, \ldots, n - 1$. We have $\dim_k H^1(X, \mathcal{O}_X) < \infty$
+by Cohomology of Schemes, Lemma
+\ref{coherent-lemma-proper-over-affine-cohomology-finite}.
+If $n > \dim_k H^1(X, \mathcal{O}_X)$
+we conclude from the long exact cohomology sequence
+that there exists an $s \in \Gamma(X, \mathcal{O}_X(nx))$
+which is not a section of $\mathcal{O}_X$.
+If we take $n$ minimal with this property, then $s$ will
+map to a generator of the stalk
+$\left(\mathcal{O}_X(nx)\right)_x$ since otherwise it would
+define a section of $\mathcal{O}_X((n - 1)x) \subset \mathcal{O}_X(nx)$.
+For this $n$ we conclude that $s_0 = 1$ and $s_1 = s$
+generate the invertible module $\mathcal{L} = \mathcal{O}_X(nx)$.
+
+\medskip\noindent
+Consider the corresponding morphism
+$f = \varphi_{\mathcal{L}, (s_0, s_1)} : X \to \mathbf{P}^1_k$
+of Constructions, Section \ref{constructions-section-projective-space}.
+Observe that the inverse image of $D_{+}(T_0)$ is $U = X \setminus \{x\}$
+as the section $s_0$ of $\mathcal{L}$ only vanishes at $x$.
 In particular, $f$ is non-constant, i.e., $\Im(f)$ has more
-than one point. A topological argument shows that $f$ maps the generic
-point $\eta$ of $\overline{X}$ to a nonclosed point of $\mathbf{P}^n_k$.
-Hence if $y \in \mathbf{P}^n_k$ is a closed point, then $f^{-1}(\{y\})$
-is a closed set of $\overline{X}$ not containing $\eta$, hence finite.
+than one point. Hence $f$ must map the generic
+point $\eta$ of $X$ to the generic point of $\mathbf{P}^1_k$.
+Hence if $y \in \mathbf{P}^1_k$ is a closed point, then $f^{-1}(\{y\})$
+is a closed set of $X$ not containing $\eta$, hence finite.
+Finally, $f$ is proper\footnote{Namely, a H-projective variety
+is a proper variety by Morphisms, Lemma
+\ref{morphisms-lemma-projective-is-quasi-projective-proper}.
+A morphism of varieties whose source is a proper variety is a proper morphism
+by Morphisms, Lemma \ref{morphisms-lemma-image-proper-scheme-closed}.}.
 By Cohomology of Schemes, Lemma
 \ref{coherent-lemma-proper-finite-fibre-finite-in-neighbourhood}\footnote{One
 can avoid using this lemma which relies on the theorem of formal
-functions. Namely, $\overline{X}$ is projective hence it suffices to show
+functions. Namely, $X$ is projective hence it suffices to show
 a proper morphism $f : X \to Y$ with finite fibres between quasi-projective
 schemes over $k$ is finite. To do this, one chooses an affine open of $X$
 containing the fibre of $f$ over a point $y$ using that any finite set of
@@ -8947,7 +9408,7 @@ points of a quasi-projective scheme over $k$ is contained in an affine.
 Shrinking $Y$ to a small affine neighbourhood of $y$ one reduces to the
 case of a proper morphism between affines. Such a morphism is finite by
 Morphisms, Lemma \ref{morphisms-lemma-integral-universally-closed}.}
-we conclude that $f$ is finite. Hence $X = f^{-1}(D_{+}(T_0))$
+we conclude that $f$ is finite. Hence $U = f^{-1}(D_{+}(T_0))$
 is affine.
 \end{proof}
 
@@ -9027,7 +9488,7 @@ one expects of the degree.
 
 \begin{lemma}
 \label{lemma-degree-base-change}
-Let $k \subset k'$ be an extension of fields. Let $X$ be a proper scheme of
+Let $k'/k$ be an extension of fields. Let $X$ be a proper scheme of
 dimension $\leq 1$ over $k$. Let $\mathcal{E}$ be a locally free
 $\mathcal{O}_X$-module of constant rank $n$. Then the degree of
 $\mathcal{E}/X/k$ is equal to the degree of
@@ -9086,13 +9547,14 @@ and has fibres of dimension $\leq 0$. Hence $f$ is finite
 Thus
 $$
 Rf_*f^*\mathcal{E} = f_*f^*\mathcal{E} =
-\mathcal{E} \otimes_{\mathcal{O}_X} f_*\mathcal{O}_X
+\mathcal{E} \otimes_{\mathcal{O}_X} f_*\mathcal{O}_{X'}
 $$
 Since $f$ induces an isomorphism on local rings at generic points of
 all irreducible components of dimension $1$ we see that the kernel
 and cokernel
 $$
-0 \to \mathcal{K} \to \mathcal{O}_X \to f_*\mathcal{O}_X \to \mathcal{Q} \to 0
+0 \to \mathcal{K} \to \mathcal{O}_X \to f_*\mathcal{O}_{X'}
+\to \mathcal{Q} \to 0
 $$
 have supports of dimension $\leq 0$. Note that tensoring this with
 $\mathcal{E}$ is still an exact sequence as $\mathcal{E}$ is locally free.
@@ -9102,7 +9564,7 @@ We obtain
 & =
 \chi(X, \mathcal{E}) - \chi(X, f_*f^*\mathcal{E}) \\
 & =
-\chi(X, \mathcal{E}) - \chi(X, \mathcal{E} \otimes f_*\mathcal{O}_X) \\
+\chi(X, \mathcal{E}) - \chi(X, \mathcal{E} \otimes f_*\mathcal{O}_{X'}) \\
 & =
 \chi(X, \mathcal{K} \otimes \mathcal{E}) -
 \chi(X, \mathcal{Q} \otimes \mathcal{E}) \\
@@ -9110,7 +9572,7 @@ We obtain
 n\chi(X, \mathcal{K}) -
 n\chi(X, \mathcal{Q}) \\
 & =
-n\chi(X, \mathcal{O}_X) - n\chi(X, f_*\mathcal{O}_X) \\
+n\chi(X, \mathcal{O}_X) - n\chi(X, f_*\mathcal{O}_{X'}) \\
 & =
 n\chi(X, \mathcal{O}_X) - n\chi(X', \mathcal{O}_{X'})
 \end{align*}
@@ -9479,7 +9941,7 @@ grows linearly with $n$. Hence for any finite collection of closed
 points $x_1, \ldots, x_t$ of $X$, we can find an $n$ such that
 $\dim_k H^0(X, \mathcal{L}^{\otimes n}) > \sum \dim_k \kappa(x_i)$.
 (Recall that by Hilbert Nullstellensatz, the extension fields
-$k \subset \kappa(x_i)$ are finite, see for example
+$\kappa(x_i)/k$ are finite, see for example
 Morphisms, Lemma \ref{morphisms-lemma-closed-point-fibre-locally-finite-type}).
 Hence we can find a nonzero $s \in H^0(X, \mathcal{L}^{\otimes n})$
 vanishing in $x_1, \ldots, x_t$. In particular, if we choose
@@ -9548,35 +10010,6 @@ This is a finite surjective morphism of schemes proper over $k$
 $f^*\mathcal{L}$ is ample (Cohomology of Schemes, Lemma
 \ref{coherent-lemma-surjective-finite-morphism-ample}).
 Thus we conclude by Lemma \ref{lemma-ample-curve}.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-regular-point-on-curve}
-Let $k$ be a field. Let $X$ be a curve over $k$. Let $x \in X$ be a closed
-point. We think of $x$ as a (reduced) closed subscheme of $X$ with sheaf
-of ideals $\mathcal{I}$. The following are equivalent
-\begin{enumerate}
-\item $\mathcal{O}_{X, x}$ is regular,
-\item $\mathcal{O}_{X, x}$ is normal,
-\item $\mathcal{O}_{X, x}$ is a discrete valuation ring,
-\item $\mathcal{I}$ is an invertible $\mathcal{O}_X$-module,
-\item $x$ is an effective Cartier divisor on $X$.
-\end{enumerate}
-If $k$ is perfect, these are also equivalent to
-\begin{enumerate}
-\item[(6)] $X \to \Spec(k)$ is smooth at $x$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-Since $X$ is a curve, the local ring $\mathcal{O}_{X, x}$ is a Noetherian
-local domain of dimension $1$ (Lemma \ref{lemma-dimension-locally-algebraic}).
-Parts (4) and (5) are equivalent by definition and are equivalent to
-$\mathcal{I}_x = \mathfrak m_x \subset \mathcal{O}_{X, x}$ having one generator
-(Divisors, Lemma \ref{divisors-lemma-effective-Cartier-in-points}).
-The equivalence of (1), (2), (3), (4), and (5) therefore follows from
-Algebra, Lemma \ref{algebra-lemma-characterize-dvr}. The final statement
-follows from Lemma \ref{lemma-dense-smooth-open-variety-over-perfect-field}.
 \end{proof}
 
 \begin{lemma}
@@ -9736,7 +10169,7 @@ of Divisors, Lemma \ref{divisors-lemma-make-maps-regular-section}.
 These are injective and have cokernels $\mathcal{Q}$, $\mathcal{Q}'$
 supported on nowhere dense closed subschemes of $X = \text{Supp}(\mathcal{F})$.
 Tensoring with the invertible module
-$\mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_1^{\otimes n_1}$
+$\mathcal{L}_1^{\otimes n_1} \otimes \ldots \otimes \mathcal{L}_r^{\otimes n_r}$
 is exact, hence using additivity again
 we see that
 \begin{align*}
@@ -9827,18 +10260,21 @@ $$
 $$
 by coherent subsheaves such that for each $j = 1, \ldots, m$
 there exists an integral closed subscheme $V_j \subset X$
-and a sheaf of ideals $\mathcal{I}_j \subset \mathcal{O}_{V_j}$
+and a nonzero sheaf of ideals $\mathcal{I}_j \subset \mathcal{O}_{V_j}$
 such that
 $$
 \mathcal{F}_j/\mathcal{F}_{j - 1}
 \cong (V_j \to X)_* \mathcal{I}_j
 $$
+It follows that $V_j \subset \text{Supp}(\mathcal{F})$ and
+hence $\dim(V_j) \leq d$.
 By the additivity we remarked upon above it suffices to
 prove the result for each of the subquotients
 $\mathcal{F}_j/\mathcal{F}_{j - 1}$. Thus it suffices to prove
 the result when $\mathcal{F} = (V \to X)_*\mathcal{I}$ where
-$V \subset X$ is an integral closed subscheme of dimension $\leq d$.
-If $\dim(V) < d$ and more generally for $\mathcal{F}$
+$V \subset X$ is an integral closed subscheme of dimension $\leq d$
+and $\mathcal{I} \subset \mathcal{O}_V$ is a nonzero coherent
+sheaf of ideals. If $\dim(V) < d$ and more generally for $\mathcal{F}$
 whose support has dimension $< d$, then the first term
 in $E(\mathcal{F})$ has total degree $< d$ by
 Lemma \ref{lemma-numerical-polynomial-from-euler}
@@ -9986,7 +10422,7 @@ The equality follows from Lemma \ref{lemma-euler-characteristic-morphism}
 and the projection formula
 (Cohomology, Lemma \ref{cohomology-lemma-projection-formula}).
 If $f(Z)$ has dimension $< d$, then the right hand side
-is a polynomial of total degree $<d$ by
+is a polynomial of total degree $< d$ by
 Lemma \ref{lemma-numerical-polynomial-from-euler}
 and the result is true. Assume $\dim(f(Z)) = d$. Let
 $\xi \in f(Z)$ be the generic point. By
@@ -10088,9 +10524,10 @@ scheme $Z(s) \subset X$. Since $X$ is a variety, $s$ is a regular section
 of $\mathcal{L}_1$, so $Z(s)$ is an effective Cartier divisor,
 thus $Z(s)$ has codimension $1$ in $X$, and
 hence $Z(s)$ has dimension $d - 1$ (here we use material from
-Divisors, Sections \ref{divisors-section-effective-Cartier-divisors} and
-\ref{divisors-section-Noetherian-effective-Cartier} and from dimension theory
-as in Lemma \ref{lemma-dimension-locally-algebraic}).
+Divisors, Sections \ref{divisors-section-effective-Cartier-divisors},
+\ref{divisors-section-effective-Cartier-invertible}, and
+\ref{divisors-section-Noetherian-effective-Cartier}
+and from dimension theory as in Lemma \ref{lemma-dimension-locally-algebraic}).
 By Lemma \ref{lemma-numerical-intersection-effective-Cartier-divisor}
 we have
 $$
@@ -10285,6 +10722,533 @@ $$
 \text{embed dim of }\mathcal{O}_{X, x}^\wedge/k
 $$
 if $k, X, x$ are as in Definition \ref{definition-embedding-dimension}.
+
+
+
+
+
+
+\section{Bertini theorems}
+\label{section-bertini}
+
+\noindent
+In this section we prove results of the form: given a smooth projective
+variety $X$ over a field $k$ there exists an ample divisor $H \subset X$
+which is smooth.
+
+\begin{lemma}
+\label{lemma-generate-over-complement}
+Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $\mathcal{L}$
+be an ample invertible $\mathcal{O}_X$-module. Let $Z \subset X$ be a
+closed subscheme. Then there exists an integer $n_0$ such that for all
+$n \geq n_0$ the kernel $V_n$ of
+$\Gamma(X, \mathcal{L}^{\otimes n}) \to \Gamma(Z, \mathcal{L}^{\otimes n}|_Z)$
+generates $\mathcal{L}^{\otimes n}|_{X \setminus Z}$ and
+the canonical morphism
+$$
+X \setminus Z \longrightarrow \mathbf{P}(V_n)
+$$
+is an immersion of schemes over $k$.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{I} \subset \mathcal{O}_X$ be the quasi-coherent ideal sheaf of
+$Z$. Observe that via the inclusion
+$\mathcal{I} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes n} \subset
+\mathcal{L}^{\otimes n}$ we have
+$V_n = \Gamma(X, \mathcal{I} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes n})$.
+Choose $n_1$ such that for $n \geq n_1$ the sheaf
+$\mathcal{I} \otimes \mathcal{L}^{\otimes n}$ is globally generated, see
+Properties, Proposition \ref{properties-proposition-characterize-ample}.
+It follows that $V_n$ gererates $\mathcal{L}^{\otimes n}|_{X \setminus Z}$
+for $n \geq n_1$.
+
+\medskip\noindent
+For $n \geq n_1$ denote
+$\psi_n : V_n \to
+\Gamma(X \setminus Z, \mathcal{L}^{\otimes n}|_{X \setminus Z})$
+the restriction map. We get a canonical morphism
+$$
+\varphi = \varphi_{\mathcal{L}^{\otimes n}|_{X \setminus Z}, \psi_n} :
+X \setminus Z
+\longrightarrow
+\mathbf{P}(V_n)
+$$
+by Constructions, Example \ref{constructions-example-projective-space}.
+Choose $n_2$ such that for all $n \geq n_2$ the invertible sheaf
+$\mathcal{L}^{\otimes n}$ is very ample on $X$.
+We claim that $n_0 = n_1 + n_2$ works.
+
+\medskip\noindent
+Proof of the claim. Say $n \geq n_0$ and write $n = n_1 + n'$.
+For $x \in X \setminus Z$ we can choose $s_1 \in V_1$ not
+vanishing at $x$. Set $V' = \Gamma(X, \mathcal{L}^{\otimes n'})$.
+By our choice of $n$ and $n'$ we see that the corresponding morphism
+$\varphi' : X \to \mathbf{P}(V')$ is a closed immersion. Thus if we choose
+$s' \in \Gamma(X, \mathcal{L}^{\otimes n'})$ not vanishing at $x$,
+then $X_{s'} = (\varphi')^{-1}(D_+(s'))$ (see
+Constructions, Lemma \ref{constructions-lemma-invertible-map-into-proj})
+is affine and $X_{s'} \to D_+(s')$ is a closed immersion.
+Then $s = s_1 \otimes s' \in V_n$ does not vanish at $x$.
+If $D_+(s) \subset \mathbf{P}(V_n)$ denotes the
+corresponding open affine space of our projective space, then
+$\varphi^{-1}(D_+(s)) = X_s \subset X \setminus Z$ (see reference above).
+The open $X_s = X_{s'} \cap X_{s_1}$ is affine, see
+Properties, Lemma \ref{properties-lemma-affine-cap-s-open}.
+Consider the ring map
+$$
+\text{Sym}(V)_{(s)} \longrightarrow \mathcal{O}_X(X_s)
+$$
+defining the morphism $X_s \to D_+(s)$. Because $X_{s'} \to D_+(s')$
+is a closed immersion, the images of the elements
+$$
+\frac{s_1 \otimes t'}{s_1 \otimes s'}
+$$
+where $t' \in V'$ generate the image of
+$\mathcal{O}_X(X_{s'}) \to \mathcal{O}_X(X_s)$.
+Since $X_s \to X_{s'}$ is an open immersion,
+this implies that $X_s \to D_+(s)$ is an immersion of affine schemes
+(see below). Thus $\varphi_n$ is an immersion by
+Morphisms, Lemma \ref{morphisms-lemma-check-immersion}.
+
+\medskip\noindent
+Let $a : A' \to A$ and $c : B \to A$ be ring maps such that
+$\Spec(a)$ is an immersion and $\Im(a) \subset \Im(c)$.
+Set $B' = A' \times_A B$ with projections $b : B' \to B$
+and $c' : B' \to A'$. By assumption $c'$
+is surjective and hence $\Spec(c')$ is a closed immersion.
+Whence $\Spec(c') \circ \Spec(a)$ is an immersion
+(Schemes, Lemma \ref{schemes-lemma-composition-immersion}).
+Then $\Spec(c)$ has to be an immersion because it factors
+the immersion $\Spec(c') \circ \Spec(a) = \Spec(b) \circ \Spec(c)$, see
+Morphisms, Lemma \ref{morphisms-lemma-immersion-permanence}.
+\end{proof}
+
+\begin{situation}
+\label{situation-family-divisors}
+Let $k$ be a field,
+let $X$ be a scheme over $k$,
+let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module,
+let $V$ be a finite dimensional $k$-vector space, and
+let $\psi : V \to \Gamma(X, \mathcal{L})$ be a $k$-linear map.
+Say $\dim(V) = r$ and we have a basis $v_1, \ldots, v_r$ of $V$.
+Then we obtain a ``universal divisor''
+$$
+H_{univ} = Z(s_{univ}) \subset  \mathbf{A}^r \times_k X
+$$
+as the zero scheme
+(Divisors, Definition \ref{divisors-definition-zero-scheme-s}) of the section
+$$
+s_{univ} = \sum\nolimits_{i = 1, \ldots, r} x_i \psi(v_i) \in
+\Gamma(\mathbf{A}^r \times_k X, \text{pr}_2^*\mathcal{L})
+$$
+For a field extension $k'/k$ the $k'$-points $v \in \mathbf{A}^r_k(k')$
+correspond to vectors $(a_1, \ldots, a_r)$ of elements of $k'$.
+Thus we may on the one hand think of $v$ as the element
+$v = \sum_{i = 1, \ldots, r} a_i v_i \in V \otimes_k k'$
+and on the other hand we may assign to $v$ the section
+$$
+\psi(v) = \sum\nolimits_{i = 1, \ldots, r} a_i \psi(v_i) \in
+\Gamma(X_{k'}, \mathcal{L}|_{X_{k'}})
+$$
+With this notation it is clear that the fibre of $H_{univ}$ over
+$v \in V \otimes k'$ is the zero scheme of $\psi(v)$.
+In a formula:
+$$
+H_v = H_{univ, v} = Z(\psi(v))
+$$
+We will denote this common value by $H_v$ as indicated. Finally, in
+this situation let $P$ be a property of vectors $v \in V \otimes_k k'$
+for $k'/k$ an arbitrary field extension\footnote{For example we could
+consider the condition that $H_v$ is smooth over $k'$, or geometrically
+irreducible over $k'$.}. We say $P$ {\it holds for general}
+$v \in V \otimes_k k'$ if there exists a nonempty Zariski open
+$U \subset \mathbf{A}^r_k$ such that if $v$ corresponds to a $k'$-point
+of $U$ for any $k'/k$ then $P(v)$ holds.
+\end{situation}
+
+\begin{lemma}
+\label{lemma-bertini}
+In Situation \ref{situation-family-divisors} assume
+\begin{enumerate}
+\item $X$ is smooth over $k$,
+\item the image of $\psi : V \to \Gamma(X, \mathcal{L})$
+generates $\mathcal{L}$,
+\item the corresponding morphism
+$\varphi_{\mathcal{L}, \psi} : X \to \mathbf{P}(V)$ is
+an immersion.
+\end{enumerate}
+Then for general $v \in V \otimes_k k'$
+the scheme $H_v$ is smooth over $k'$.
+\end{lemma}
+
+\begin{proof}
+(We observe that $X$ is separated and finite type as a locally
+closed subscheme of a projective space.)
+Let us use the notation introduced above the statement of the lemma.
+We consider the projections
+$$
+\xymatrix{
+\mathbf{A}^r_k \times_k X \ar[d] &
+H_{univ} \ar[l] \ar[ld]^p \ar[r] \ar[rd]_q &
+\mathbf{A}^r_k \times_k X \ar[d] \\
+X & &
+\mathbf{A}^r_k
+}
+$$
+Let $\Sigma \subset H_{univ}$ be the singular locus of the morphsm
+$q : H_{univ} \to \mathbf{A}^r_k$, i.e., the set of points where
+$q$ is not smooth. Then $\Sigma$ is closed because the smooth locus
+of a morphism is open by definition. Since the fibre of a
+smooth morphism is smooth, it suffices to prove $q(\Sigma)$
+is contained in a proper closed subset of $\mathbf{A}^r_k$.
+Since $\Sigma$ (with reduced induced scheme structure) is a
+finite type scheme over $k$ it suffices to prove $\dim(\Sigma) < r$
+This follows from Lemma \ref{lemma-dimension-fibres-locally-algebraic}.
+Since dimensions aren't changed by replacing $k$ by a bigger field
+(Morphisms, Lemma \ref{morphisms-lemma-dimension-fibre-after-base-change}),
+we may and do assume $k$ is algebraically closed.
+By dimension theory (Lemma \ref{lemma-dimension-fibres-locally-algebraic}),
+it suffices to prove that for $x \in X \setminus Z$ closed we have
+$p^{-1}(\{x\}) \cap \Sigma$ has dimension $< r - \dim(X')$
+where $X'$ is the unique irreducible component of $X$ containing $x$.
+As $X$ is smooth over $k$ and $x$ is a closed point we have
+$\dim(X') = \dim \mathfrak m_x/\mathfrak m_x^2$
+(Morphisms, Lemma \ref{morphisms-lemma-smooth-omega-finite-locally-free}
+and Algebra, Lemma \ref{algebra-lemma-rank-omega}).
+Thus we win if
+$$
+\dim p^{-1}(x) \cap \Sigma < r - \dim \mathfrak m_x/\mathfrak m_x^2
+$$
+for all $x \in X$ closed.
+
+\medskip\noindent
+Since $V$ globally generated $\mathcal{L}$, for every irreducible component
+$X'$ of $X$ there is a nonempty Zariski open of $\mathbf{A}^r$ such that the
+fibres of $q$ over this open do not contain $X'$. (For example, if $x' \in X'$
+is a closed point, then we can take the open corresponding to those
+vectors $v \in V$ such that $\psi(v)$ does not vanish at $x'$. This
+open will be the complement of a hyperplane in $\mathbf{A}^r_k$.)
+Let $U \subset \mathbf{A}^r$ be the (nonempty) intersection of these opens.
+Then the fibres of $q^{-1}(U) \to U$ are effective Cartier divisors
+on the fibres of $U \times_k X \to U$ (because a nonvanishing section
+of an invertible module on an integral scheme is a regular section). Hence the
+morphism $q^{-1}(U) \to U$ is flat by
+Divisors, Lemma \ref{divisors-lemma-fibre-Cartier}.
+Thus for $x \in X$ closed and $v \in V = \mathbf{A}^r_k(k)$,
+if $(x, v) \in H_{univ}$, i.e., if $x \in H_v$
+then $q$ is smooth at $(x, v)$ if and only if the fibre
+$H_v$ is smooth at $x$, see
+Morphisms, Lemma \ref{morphisms-lemma-smooth-at-point}.
+
+\medskip\noindent
+Consider the image $\psi(v)_x$ in the stalk $\mathcal{L}_x$
+of the section corresponding to $v \in V$. We have
+$$
+x \in H_v \Leftrightarrow \psi(v)_x \in \mathfrak m_x\mathcal{L}_x
+$$
+If this is true, then we have
+$$
+H_v\text{ singular at }x \Leftrightarrow
+\psi(v)_x \in \mathfrak m_x^2\mathcal{L}_x
+$$
+Namely, $\psi(v)_x$ is not contained in $\mathfrak m_x^2\mathcal{L}_x$
+$\Leftrightarrow$
+the local equation for $H_v \subset X$ at $x$ is not contained
+in $\mathfrak m_x^2$
+$\Leftrightarrow$
+$\mathcal{O}_{H_v, x}$ is regular
+(Algebra, Lemma \ref{algebra-lemma-regular-ring-CM})
+$\Leftrightarrow$
+$H_v$ is smooth at $x$ over $k$
+(Algebra, Lemma \ref{algebra-lemma-separable-smooth}).
+We conclude that the closed points of $p^{-1}(x) \cap \Sigma$ correspond
+to those $v \in V$ such that $\psi(v)_x \in \mathfrak m_x^2\mathcal{L}_x$.
+However, as $\varphi_{\mathcal{L}, \psi}$ is an immersion the
+map
+$$
+V \longrightarrow \mathcal{L}_x/\mathfrak m_x^2\mathcal{L}_x
+$$
+is surjective (small detail omitted). By the above, the closed points
+of the locus $p^{-1}(x) \cap \Sigma$ viewed as a subspace of $V$
+is the kernel of this map and hence has dimension
+$r - \dim \mathfrak m_x/\mathfrak m_x^2 - 1$ as desired.
+\end{proof}
+
+
+
+
+
+
+\section{Enriques-Severi-Zariski}
+\label{section-vanishing-negative}
+
+\noindent
+In this section we prove some results of the form: twisting by
+a ``very negative'' invertible module kills low
+degree cohomology. We also deduce the connectedness
+of a hypersurface section of a normal proper scheme of
+dimension $\geq 2$.
+
+\begin{lemma}
+\label{lemma-vanishin-h0-negative}
+Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $\mathcal{L}$
+be an ample invertible $\mathcal{O}_X$-module. Let $\mathcal{F}$ be a
+coherent $\mathcal{O}_X$-module. If $\text{Ass}(\mathcal{F})$ does not
+contain any closed points, then
+$\Gamma(X, \mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes n}) = 0$
+for $n \ll 0$.
+\end{lemma}
+
+\begin{proof}
+For a coherent $\mathcal{O}_X$-module $\mathcal{F}$
+let $\mathcal{P}(\mathcal{F})$ be the property: there
+exists an $n_0 \in \mathbf{Z}$ such that for $n \leq n_0$
+every section $s$ of
+$\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes n}$
+has support consisting only of closed points.
+Since $\text{Ass}(\mathcal{F}) =
+\text{Ass}(\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes n})$
+we see that it suffices to prove $\mathcal{P}$
+holds for all coherent modules on $X$.
+To do this we will prove that conditions (1), (2), and (3) of
+Cohomology of Schemes, Lemma
+\ref{coherent-lemma-property-higher-rank-cohomological}
+are satisfied.
+
+\medskip\noindent
+To see condition (1) suppose that
+$$
+0 \to \mathcal{F}_1 \to \mathcal{F} \to \mathcal{F}_2 \to 0
+$$
+is a short exact sequence of coherent $\mathcal{O}_X$-modules
+such that we have $\mathcal{P}$ for $\mathcal{F}_i$, $i = 1, 2$.
+Let $n_1, n_2$ be the cutoffs we find.
+Let $\mathcal{F}'_2 \subset \mathcal{F}_2$ be the maximal
+coherent submodule whose support is a finite set of closed
+points. Let $\mathcal{I} \subset \mathcal{O}_X$ be the annihilator
+of $\mathcal{F}'_2$. Since $\mathcal{L}$ is ample, we can find an $e > 0$
+such that $\mathcal{I} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes e}$
+is globally generated. Set $n_0 = \min(n_2, n_1 - e)$. Let $n \leq n_0$
+and let $t$ be a global section of
+$\mathcal{F} \otimes \mathcal{L}^{\otimes n}$.
+The image of $t$ in $\mathcal{F}_2 \otimes \mathcal{L}^{\otimes n}$
+falls into $\mathcal{F}'_2 \otimes \mathcal{L}^{\otimes n}$ because
+$n \leq n_2$. Hence for any
+$s \in \Gamma(X, \mathcal{I} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes e})$
+the product $t \otimes s$ lies in
+$\mathcal{F}_1 \otimes \mathcal{L}^{\otimes n + e}$.
+Thus $t \otimes s$ has support contained in
+the finite set of closed points in $\text{Ass}(\mathcal{F}_1)$
+because $n + e \leq n_1$. Since by our choice of $e$
+we may choose $s$ invertible in any point
+not in the support of $\mathcal{F}'_2$
+we conclude that the support of $t$ is contained in the union of the 
+finite set of closed points in $\text{Ass}(\mathcal{F}_1)$ and
+the finite set of closed points in $\text{Ass}(\mathcal{F}_2)$.
+This finishes the proof of condition (1).
+
+\medskip\noindent
+Condition (2) is immediate.
+
+\medskip\noindent
+For condition (3) we choose $\mathcal{G} = \mathcal{O}_Z$.
+In this case, if $Z$ is a closed point of $X$, then there is
+nothing the show. If $\dim(Z) > 0$, then we will show that
+$\Gamma(Z, \mathcal{L}^{\otimes n}|_Z) = 0$
+for $n < 0$. Namely, let $s$ be a nonzero section of a negative
+power of $\mathcal{L}|_Z$. Choose a nonzero section $t$ of a positive
+power of $\mathcal{L}|_Z$ (this is possible as $\mathcal{L}$ is ample, see
+Properties, Proposition \ref{properties-proposition-characterize-ample}).
+Then $s^{\deg(t)} \otimes t^{\deg(s)}$
+is a nonzero global section of $\mathcal{O}_Z$
+(because $Z$ is integral) and hence
+a unit (Lemma \ref{lemma-proper-geometrically-reduced-global-sections}).
+This implies that $t$ is a trivializing section
+of a positive power of $\mathcal{L}$.
+Thus the function $n \mapsto \dim_k \Gamma(X, \mathcal{L}^{\otimes n})$
+is bounded on an infinite set of positive integers which contradicts
+asymptotic Riemann-Roch
+(Proposition \ref{proposition-asymptotic-riemann-roch})
+since $\dim(Z) > 0$.
+\end{proof}
+
+\begin{lemma}[Enriques-Severi-Zariski]
+\label{lemma-vanishin-h1-negative}
+Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $\mathcal{L}$
+be an ample invertible $\mathcal{O}_X$-module. Let $\mathcal{F}$ be a
+coherent $\mathcal{O}_X$-module. Assume that
+for $x \in X$ closed we have $\text{depth}(\mathcal{F}_x) \geq 2$.
+Then
+$H^1(X, \mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes m}) = 0$
+for $m \ll 0$.
+\end{lemma}
+
+\begin{proof}
+Choose a closed immersion $i : X \to \mathbf{P}^n_k$ such that
+$i^*\mathcal{O}(1) \cong \mathcal{L}^{\otimes e}$ for some $e > 0$
+(see Morphisms, Lemma
+\ref{morphisms-lemma-finite-type-over-affine-ample-very-ample}).
+Then it suffices to prove the lemma for
+$$
+\mathcal{G} =
+i_*(\mathcal{F} \oplus \mathcal{F} \otimes \mathcal{L} \oplus \ldots
+\oplus \mathcal{F} \otimes \mathcal{L}^{\otimes e - 1})
+\quad\text{and}\quad \mathcal{O}(1)
+$$
+on $\mathbf{P}^n_k$. Namely, we have
+$$
+H^1(\mathbf{P}^n_k, \mathcal{G}(m)) =
+\bigoplus\nolimits_{j = 0, \ldots, e - 1}
+H^1(X, \mathcal{F} \otimes \mathcal{L}^{\otimes j + me})
+$$
+by
+Cohomology of Schemes, Lemma \ref{coherent-lemma-relative-affine-cohomology}.
+Also, if $y \in \mathbf{P}^n_k$ is a closed point then
+$\text{depth}(\mathcal{G}_y) = \infty$ if $y \not \in i(X)$
+and $\text{depth}(\mathcal{G}_y) = \text{depth}(\mathcal{F}_x)$
+if $y = i(x)$ because in this case
+$\mathcal{G}_y \cong \mathcal{F}_x^{\oplus e}$ as a module over
+$\mathcal{O}_{\mathbf{P}^n_k, x}$ and we can use for example
+Algebra, Lemma \ref{algebra-lemma-depth-goes-down-finite}
+to get the equality.
+
+\medskip\noindent
+Assume $X = \mathbf{P}^n_k$ and $\mathcal{L} = \mathcal{O}(1)$ and
+$k$ is infinite. Choose $s \in H^0(\mathbf{P}^1_k, \mathcal{O}(1))$
+which determines an exact sequence
+$$
+0 \to \mathcal{F}(-1) \xrightarrow{s} \mathcal{F} \to \mathcal{G} \to 0
+$$
+as in Lemma \ref{lemma-exact-sequence-induction}. Since the map
+$\mathcal{F}(-1) \to \mathcal{F}$ is affine locally given by
+multiplying by a nonzerodivisor on $\mathcal{F}$
+we see that for $x \in \mathbf{P}^n_k$ closed we have
+$\text{depth}(\mathcal{G}_x) \geq 1$, see
+Algebra, Lemma \ref{algebra-lemma-depth-drops-by-one}.
+Hence by Lemma \ref{lemma-vanishin-h0-negative}
+we have $H^0(\mathcal{G}(m)) = 0$ for $m \ll 0$.
+Looking at the long exact sequence of cohomology after twisting
+(see Remark \ref{remark-exact-sequence-induction-cohomology})
+we find that the sequence of numbers
+$$
+\dim H^1(\mathbf{P}^n_k, \mathcal{F}(m))
+$$
+stabilizes for $m \leq m_0$ for some integer $m_0$.
+Let $N$ be the common dimension of these
+spaces for $m \leq m_0$. We have to show $N = 0$.
+
+\medskip\noindent
+For $d > 0$ and $m \leq m_0$ consider the bilinear map
+$$
+H^0(\mathbf{P}^n_k, \mathcal{O}(d)) \times
+H^1(\mathbf{P}^n_k, \mathcal{F}(m - d))
+\longrightarrow
+H^1(\mathbf{P}^n_k, \mathcal{F}(m))
+$$
+By linear algebra, there is a codimension $\leq N^2$ subspace
+$V_m \subset H^0(\mathbf{P}^n_k, \mathcal{O}(d))$ such that
+multiplication by $s' \in V_m$ annihilates
+$H^1(\mathbf{P}^n_k, \mathcal{F}(m - d))$.
+Observe that for $m' < m \leq m_0$ the diagram
+$$
+\xymatrix{
+H^0(\mathbf{P}^n_k, \mathcal{O}(d)) \times
+H^1(\mathbf{P}^n_k, \mathcal{F}(m' - d)) \ar[r] \ar[d]^{1 \times s^{m' - m}} &
+H^1(\mathbf{P}^n_k, \mathcal{F}(m')) \ar[d]^{s^{m' - m}}\\
+H^0(\mathbf{P}^n_k, \mathcal{O}(d)) \times
+H^1(\mathbf{P}^n_k, \mathcal{F}(m - d)) \ar[r] &
+H^1(\mathbf{P}^n_k, \mathcal{F}(m))
+}
+$$
+commutes with isomorphisms going vertically. Thus $V_m = V$ is
+independent of $m \leq m_0$. For $x \in \text{Ass}(\mathcal{F})$
+set $Z = \overline{\{x\}}$. For $d$ large enough the linear map
+$$
+H^0(\mathbf{P}^n_k, \mathcal{O}(d)) \to H^0(Z, \mathcal{O}(d)|_Z)
+$$
+has rank $> N^2$ because $\dim(Z) \geq 1$ (for example this follows
+from asymptotic Riemann-Roch and ampleness $\mathcal{O}(1)$; details
+omitted). Hence we can find $s' \in V$ such that $s'$ does not vanish
+in any associated point of $\mathcal{F}$ (use that the set
+of associated points is finite). Then we obtain
+$$
+0 \to \mathcal{F}(-d) \xrightarrow{s'} \mathcal{F} \to \mathcal{G}' \to 0
+$$
+and as before we conclude as before that multiplication by $s'$
+on $H^1(\mathbf{P}^n_k, \mathcal{F}(m - d))$ is injective
+for $m \ll 0$. This contradicts the choice of $s'$ unless
+$N = 0$ as desired.
+
+\medskip\noindent
+We still have to treat the case where $k$ is finite.
+In this case let $K/k$ be any infinite algebraic field extension.
+Denote $\mathcal{F}_K$ and $\mathcal{L}_K$ the pullbacks
+of $\mathcal{F}$ and $\mathcal{L}$ to $X_K = \Spec(K) \times_{\Spec(k)} X$.
+We have
+$$
+H^1(X_K, \mathcal{F}_K \otimes \mathcal{L}_K^{\otimes m}) =
+H^1(X, \mathcal{F} \otimes \mathcal{L}^{\otimes m}) \otimes_k K
+$$
+by Cohomology of Schemes, Lemma
+\ref{coherent-lemma-flat-base-change-cohomology}.
+On the other hand, a closed point $x_K$ of $X_K$ maps to a closed point
+$x$ of $X$ because $K/k$ is an algebraic extension. The
+ring map $\mathcal{O}_{X, x} \to \mathcal{O}_{X_K, x_K}$
+is flat (Lemma \ref{lemma-change-fields-flat}). Hence we have
+$$
+\text{depth}(\mathcal{F}_{x_K}) =
+\text{depth}(\mathcal{F}_x \otimes_{\mathcal{O}_{X, x}}
+\mathcal{O}_{X_K, x_K}) \geq
+\text{depth}(\mathcal{F}_x)
+$$
+by Algebra, Lemma \ref{algebra-lemma-apply-grothendieck-module}
+(in fact equality holds here but we don't need it).
+Therefore the result over $k$ follows
+from the result over the infinite field $K$ and the proof is complete.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-connectedness-ample-divisor}
+Let $k$ be a field. Let $X$ be a proper scheme over $k$. Let $\mathcal{L}$
+be an ample invertible $\mathcal{O}_X$-module. Let
+$s \in \Gamma(X, \mathcal{L})$. Assume
+\begin{enumerate}
+\item $s$ is a regular section
+(Divisors, Definition \ref{divisors-definition-regular-section}),
+\item for every closed point $x \in X$ we have
+$\text{depth}(\mathcal{O}_{X, x}) \geq 2$, and
+\item $X$ is connected.
+\end{enumerate}
+Then the zero scheme $Z(s)$ of $s$ is connected.
+\end{lemma}
+
+\begin{proof}
+Since $s$ is a regular section, so is
+$s^n \in \Gamma(X, \mathcal{L}^{\otimes n})$ for all $n > 1$.
+Moreover, the inclusion morphism $Z(s) \to Z(s^n)$ is a bijection
+on underlying topological spaces. Hence if $Z(s)$ is disconnected,
+so is $Z(s^n)$. Now consider the canonical short exact sequence
+$$
+0 \to \mathcal{L}^{\otimes -n} \xrightarrow{s^n}
+\mathcal{O}_X \to \mathcal{O}_{Z(s^n)} \to 0
+$$
+Consider the $k$-algebra $R_n = \Gamma(X, \mathcal{O}_{Z(s^n)})$.
+If $Z(s)$ is disconnected, i.e., $Z(s^n)$ is disconnected,
+then either $R_n$ is zero in case $Z(s^n) = \emptyset$ or
+$R_n$ contains a nontrivial idempotent in case $Z(s^n) = U \amalg V$ with
+$U, V \subset Z(s^n)$ open and nonempty (the reader may wish to consult
+Lemma \ref{lemma-proper-geometrically-reduced-global-sections}).
+Thus the map $\Gamma(X, \mathcal{O}_X) \to R_n$ cannot be an isomorphism.
+It follows that either $H^0(X, \mathcal{L}^{\otimes -n})$ or
+$H^1(X, \mathcal{L}^{\otimes -n})$ is nonzero for infinitely
+many positive $n$. This contradicts Lemma \ref{lemma-vanishin-h0-negative} or
+\ref{lemma-vanishin-h1-negative}
+and the proof is complete.
+\end{proof}
+
+
+
 
 
 

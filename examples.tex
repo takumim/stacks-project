@@ -132,6 +132,111 @@ See discussion above.
 
 
 
+\section{The structure sheaf on the fibre product}
+\label{section-silly}
+
+\noindent
+Let $X, Y, S, a, b, p, q, f$ be as in the introduction to
+Derived Categories of Schemes,
+Section \ref{perfect-section-kunneth}. Picture:
+$$
+\xymatrix{
+& X \times_S Y \ar[ld]^p \ar[rd]_q \ar[dd]^f \\
+X \ar[rd]_a & & Y \ar[ld]^b \\
+& S
+}
+$$
+Then we have a canonical map
+$$
+can :
+p^{-1}\mathcal{O}_X \otimes_{f^{-1}\mathcal{O}_S} q^{-1}\mathcal{O}_Y
+\longrightarrow
+\mathcal{O}_{X \times_S Y}
+$$
+which is not an isomorphism in general.
+
+\medskip\noindent
+For example, let $S = \Spec(\mathbf{R})$, $X = \Spec(\mathbf{C})$, and
+$Y = \Spec(\mathbf{C})$. Then
+$X \times_S Y = \Spec(\mathbf{C}) \amalg \Spec(\mathbf{C})$
+is a discrete space with two points
+and the sheaves $p^{-1}\mathcal{O}_X$, $q^{-1}\mathcal{O}_Y$
+and $f^{-1}\mathcal{O}_S$ are the constant sheaves with values
+$\mathbf{C}$, $\mathbf{C}$, and $\mathbf{R}$.
+Hence the source of $can$ is the constant sheaf
+with value $\mathbf{C} \otimes_\mathbf{R} \mathbf{C}$
+on the discrete space with two points. Thus its global
+sections have dimension $8$ as an $\mathbf{R}$-vector space
+whereas taking global sections of the target of $can$
+we obtain $\mathbf{C} \times \mathbf{C}$
+which has dimension $4$ as an $\mathbf{R}$-vector space.
+
+\medskip\noindent
+Another example is the following. Let $k$ be an algebraically
+closed field. Consider
+$S = \Spec(k)$, $X = \mathbf{A}^1_k$, and $Y = \mathbf{A}^1_k$.
+Then for $U \subset X \times_S Y = \mathbf{A}^2_k$ nonempty open
+the images $p(U) \subset X = \mathbf{A}^1_k$ and $q(U) \subset \mathbf{A}^1_k$
+are open and the reader can show that
+$$
+\left(
+p^{-1}\mathcal{O}_X \otimes_{f^{-1}\mathcal{O}_S} q^{-1}\mathcal{O}_Y
+\right)(U) = \mathcal{O}_X(p(U)) \otimes_k \mathcal{O}_Y(q(U))
+$$
+This is not equal to $\mathcal{O}_{X \times_S Y}(U)$
+if $U$ is the complement of an irreducible curve $C$ in
+$X \times_S Y = \mathbf{A}^2_k$ such that both $p|_C$ and $q|_C$
+are nonconstant.
+
+\medskip\noindent
+Returning to the general case, let $z = (x, y, s, \mathfrak p)$
+be a point of $X \times_S Y$ as in
+Schemes, Lemma \ref{schemes-lemma-points-fibre-product}.
+Then on stalks at $z$ the map $can$ gives the map
+$$
+can_z :
+\mathcal{O}_{X, x} \otimes_{\mathcal{O}_{S, s}} \mathcal{O}_{Y, y}
+\longrightarrow
+\mathcal{O}_{X \times_S Y, z}
+$$
+This is a flat ring homomorphism as the target is a localization of the
+source (details omitted; hint reduce to the case that $X$, $Y$, and $S$
+are affine).
+Observe that the source is in general not a local ring, and this gives
+another way to see that $can$ is not an isomorphism in general.
+
+\medskip\noindent
+More generally, suppose we have an $\mathcal{O}_X$-module $\mathcal{F}$ and an
+$\mathcal{O}_Y$-module $\mathcal{G}$. Then there is a canonical map
+\begin{align*}
+& p^{-1}\mathcal{F} \otimes_{f^{-1}\mathcal{O}_S} q^{-1}\mathcal{G} \\
+& =
+p^{-1}(\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{O}_X)
+\otimes_{f^{-1}\mathcal{O}_S}
+q^{-1}(\mathcal{O}_Y \otimes_{\mathcal{O}_Y} \mathcal{G}) \\
+& =
+p^{-1}\mathcal{F} \otimes_{p^{-1}\mathcal{O}_X} p^{-1}\mathcal{O}_X
+\otimes_{f^{-1}\mathcal{O}_S}
+q^{-1}\mathcal{O}_Y \otimes_{q^{-1}\mathcal{O}_Y} q^{-1}\mathcal{G} \\
+& \xrightarrow{can}
+p^{-1}\mathcal{F} \otimes_{q^{-1}\mathcal{O}_X}
+\mathcal{O}_{X \times_S Y}
+\otimes_{q^{-1}\mathcal{O}_Y} q^{-1}\mathcal{G}  \\
+& =
+p^{-1}\mathcal{F} \otimes_{q^{-1}\mathcal{O}_X}
+\mathcal{O}_{X \times_S Y}
+\otimes_{\mathcal{O}_{X \times_S Y}}
+\mathcal{O}_{X \times_S Y}
+\otimes_{q^{-1}\mathcal{O}_Y} q^{-1}\mathcal{G}  \\
+& =
+p^*\mathcal{F} \otimes_{\mathcal{O}_{X \times_S Y}} q^*\mathcal{G}
+\end{align*}
+which is rarely an isomorphism.
+
+
+
+
+
 \section{A nonintegral connected scheme whose local rings are domains}
 \label{section-connected-locally-integral-not-integral}
 
@@ -306,7 +411,7 @@ to prove that for all $t > 0$ there exists a $d \gg 0$ and an integer
 $n$ such that we can find an homogeneous element
 $z \in k[x_1, \ldots, x_n]$ of degree $d$ which cannot be written as
 a sum (\ref{equation-sum}) for the given $t$ in $k[[x_1, \ldots, x_n]]$.
-Take $n > 2t$ and any $d > 1$ prime to the characteristic of $p$ and
+Take $n > 2t$ and any $d > 1$ prime to the characteristic of $k$ and
 set $z = \sum_{i = 1, \ldots, n} x_i^d$. Then the vanishing locus
 of the ideal
 $$
@@ -525,66 +630,33 @@ See above.
 \label{section-derived-complete-modules}
 
 \noindent
-Let $A$ be a ring and let $I$ be an ideal. Consider the category
-$\mathcal{C}$ of derived complete modules as defined in
+Please read More on Algebra, Section
+\ref{more-algebra-section-derived-complete-modules}
+before reading this section.
+
+\medskip\noindent
+Let $A$ be a ring, let $I$ be an ideal of $A$, and denote $\mathcal{C}$
+the category of derived complete modules as defined in
 More on Algebra, Definition \ref{more-algebra-definition-derived-complete}.
-By More on Algebra, Lemma \ref{more-algebra-lemma-serre-subcategory}
-we see that $\mathcal{C}$ is abelian.
 
 \medskip\noindent
 Let $T$ be a set and let $M_t$, $t \in T$ be a family of derived complete
-modules. We claim that in general $\bigoplus M_t$ is not a complete module.
-For a specific example, let $A = \mathbf{Z}_p$ and $I = (p)$ and
-$\bigoplus_{n \in \mathbf{N}} \mathbf{Z}_p$. The map from
+modules. We claim that in general $\bigoplus M_t$ is not a derived complete
+module. For a specific example, let $A = \mathbf{Z}_p$ and $I = (p)$ and
+consider $\bigoplus_{n \in \mathbf{N}} \mathbf{Z}_p$. The map from
 $\bigoplus_{n \in \mathbf{N}} \mathbf{Z}_p$ to its $p$-adic completion
 isn't surjective. This means that $\bigoplus_{n \in \mathbf{N}} \mathbf{Z}_p$
 cannot be derived complete as this would imply otherwise, see
 More on Algebra, Lemma \ref{more-algebra-lemma-complete-derived-complete}.
+Hence the inclusion functor $\mathcal{C} \to \text{Mod}_A$ does not commute
+with either direct sums or (filtered) colimits.
 
 \medskip\noindent
-Assume $I$ is finitely generated. Let ${}^\wedge : D(A) \to D(A)$ denote
-the {\bf derived completion} functor, see
-More on Algebra, Lemma \ref{more-algebra-lemma-derived-completion}.
-We claim that
-$$
-M = H^0((\bigoplus M_t)^\wedge) \in \Ob(\mathcal{C})
-$$
-is a direct sum of $M_t$ in the category $\mathcal{C}$. Note that
-for $E$ a derived complete object of $D(A)$ we have
-$$
-\Hom_{D(A)}((\bigoplus M_t)^\wedge, E) =
-\Hom_{D(A)}(\bigoplus M_t, E) =
-\prod \Hom_{D(A)}(M_t, E)
-$$
-Note that the right hand side is zero if $H^i(E) = 0$ for $i < 1$.
-In particular, applying this with $E = \tau_{\geq 1} (\bigoplus M_t)^\wedge$
-which is derived complete by
-More on Algebra, Lemma \ref{more-algebra-lemma-serre-subcategory}
-we see that the canonical map
-$(\bigoplus M_t)^\wedge \to \tau_{\geq 1}(\bigoplus M_t)^\wedge$
-is zero, in other words, we have
-$H^i((\bigoplus M_t)^\wedge) = 0$ for $i \geq 1$. Then, for
-an object $N \in \mathcal{C}$ we see that
-\begin{align*}
-\Hom_\mathcal{C}(M, N)
-& =
-\Hom_{D(A)}((\bigoplus M_t)^\wedge, N)\\
-& =
-\prod \Hom_A(M_t, N) \\
-& =
-\prod \Hom_\mathcal{C}(M_t, N)
-\end{align*}
-as desired. This implies that $\mathcal{C}$ has all colimits, see
-Categories, Lemma \ref{categories-lemma-colimits-coproducts-coequalizers}.
-In fact, arguing similarly as above we see that given a system $M_t$
-in $\mathcal{C}$ over a preordered set $T$ the colimit
-in $\mathcal{C}$ is equal to $H^0((\colim M_t)^\wedge)$ where the inner
-colimit is the colimit in the category of $A$-modules.
-
-\medskip\noindent
-However, we claim that filtered colimits are not exact in the category
-$\mathcal{C}$. Namely, suppose that $A = \mathbf{Z}_p$ and $I = (p)$.
-One has inclusions
+Assume $I$ is finitely generated. By the discussion in More on Algebra, Section
+\ref{more-algebra-section-derived-complete-modules} the category
+$\mathcal{C}$ has arbitrary colimits. However, we claim that filtered colimits
+are not exact in the category $\mathcal{C}$. Namely, suppose that
+$A = \mathbf{Z}_p$ and $I = (p)$. One has inclusions
 $f_n : \mathbf{Z}_p/p\mathbf{Z}_p \to \mathbf{Z}_p/p^n\mathbf{Z}_p$
 of $p$-adically complete $A$-modules given by multiplication by
 $p^{n - 1}$. There are commutative diagrams
@@ -596,12 +668,18 @@ $$
 \mathbf{Z}_p/p^{n + 1}\mathbf{Z}_p
 }
 $$
-Now take the colimit of these inclusions in the category $\mathcal{C}$ derived
-to get $\mathbf{Z}_p/p\mathbf{Z}_p \to 0$. Namely, the colimit in
+We claim: the colimit of these inclusions in the category $\mathcal{C}$
+gives the map $\mathbf{Z}_p/p\mathbf{Z}_p \to 0$. Namely, the colimit in
 $\text{Mod}_A$ of the system on the right is $\mathbf{Q}_p/\mathbf{Z}_p$.
-The reader can directly compute that
-$(\mathbf{Q}_p/\mathbf{Z}_p)^\wedge = \mathbf{Z}_p[1]$ in $D(A)$.
-Thus $H^0 = 0$ which proves our claim.
+Thus the colimit in $\mathcal{C}$ is
+$$
+H^0((\mathbf{Q}_p/\mathbf{Z}_p)^\wedge) =
+H^0(\mathbf{Z}_p[1]) = 0
+$$
+by More on Algebra, Section
+\ref{more-algebra-section-derived-complete-modules}
+where ${}^\wedge$ is derived completion.
+This proves our claim.
 
 \begin{lemma}
 \label{lemma-derived-complete-modules}
@@ -616,7 +694,8 @@ in general, hence $\mathcal{C}$ is not a Grothendieck abelian category.
 \end{lemma}
 
 \begin{proof}
-See discussion above.
+See More on Algebra, Lemma \ref{more-algebra-lemma-derived-complete-modules}
+and discussion above.
 \end{proof}
 
 
@@ -711,6 +790,66 @@ at $(x)$ is not flat over $R$ and a fortiori not flat over $R[x]$.
 
 \begin{proof}
 See discussion above.
+\end{proof}
+
+\noindent
+It turns out there is a ring $R$ such that $R[[x]]$ is flat
+over $R$, but $R[[x]]$ is not flat over $R[x]$. See
+\href{https://math.stackexchange.com/users/164860/badam-baplan}{this post}
+by Badam Baplan. Namely, let
+$R$ be a valuation ring. Then $R$ is coherent (Algebra, Example
+\ref{algebra-example-valuation-ring-coherent}) and hence
+$R[[x]]$ is flat over $R$ by 
+Algebra, Proposition \ref{algebra-proposition-characterize-coherent}.
+On the other hand, we have the following lemma.
+
+\begin{lemma}
+\label{lemma-almost-integral-when-powerseries-flat}
+Let $R$ be a domain with fraction field $K$.
+If $R[[x]]$ is flat over $R[x]$, then $R$ is normal if and only
+if $R$ is completely normal
+(Algebra, Definition \ref{algebra-definition-almost-integral}).
+\end{lemma}
+
+\begin{proof}
+Suppose we have $\alpha \in K$ and a nonzero $r \in R$ such that
+$r \alpha^n \in R$ for all $n \geq 1$. Then we consider
+$f = \sum r \alpha^{n - 1} x^n$ in $R[[x]]$. Write $\alpha = a/b$
+for $a, b \in R$ with $b$ nonzero. Then we see that $(a x - b)f = -rb$.
+It follows that $rb$ is in the ideal $(ax - b)R[[x]]$.
+Let $S = \{h \in R[x] : h(0) = 1\}$. This is a multiplicative subset
+and flatness of $R[x] \to R[[x]]$ implies that $S^{-1}R[x] \to R[[x]]$
+is faithfully flat (details omitted; hint: use Algebra, Lemma
+\ref{algebra-lemma-ff-rings}). Hence
+$$
+S^{-1}R/(ax - b)S^{-1}R \to R[[x]]/(ax - b)R[[x]]
+$$
+is injective. We conclude that
+$h rb = (ax - b) g$ for some $h \in S$ and $g \in R[x]$.
+Writing $h = 1 + h_1 x + \ldots + h_d x^d$ shows that we obtain
+$$
+1 + h_1 x + \ldots + h_d x^d = (1/r)(\alpha x - 1)g
+$$
+This factorization in $K[x]$ gives a corresponding factorization
+in $K[x^{-1}]$ which shows that $\alpha$ is the root of a monic
+polynomial with coefficients in $R$ as desired.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-completion-polynomial-ring-not-flat-bis}
+If $R$ is a valuation ring of dimension $> 1$, then $R[[x]]$
+is flat over $R$ but not flat over $R[x]$.
+\end{lemma}
+
+\begin{proof}
+The arguments above show that this is true if we can show that
+$R$ is not completely normal (valuation rings are
+normal, see Algebra, Lemma \ref{algebra-lemma-valuation-ring-normal}).
+Let $\mathfrak p \subset \mathfrak m \subset R$ be a chain of primes.
+Pick nonzero $x \in \mathfrak p$ and $y \in \mathfrak m \setminus \mathfrak p$.
+Then $x y^{-n} \in R$ for all $n \geq 1$ (if not then $y^n/x \in R$
+which is absurd because $y \not \in \mathfrak p$). Hence $1/y$ is
+almost integral over $R$ but not in $R$.
 \end{proof}
 
 \noindent
@@ -1087,6 +1226,125 @@ for all $n \geq 1$. Surjectivity easily follows from these remarks.
 
 
 
+
+\section{Another local ring with nonreduced completion}
+\label{section-another-local-completion-nonreduced}
+
+\noindent
+In this section we make an example of a Noetherian local domain
+of dimension $2$ complete with respect to a principal ideal
+such that the recompletion of a localization is nonreduced.
+
+\medskip\noindent
+Let $p$ be a prime number. Let $k$ be a field of characteristic $p$
+such that $k$ has infinite degree over its subfield $k^p$ of $p$th powers.
+For example $k = \mathbf{F}_p(t_1, t_2, t_3, \ldots)$.
+Consider the ring
+$$
+A =
+\left\{
+\begin{matrix}
+\sum a_{i, j} x^iy^j \in k[[x, y]] \text{ such that for all }n \geq 0
+\text{ we have } \\
+[k^p(a_{n, n}, a_{n, n + 1}, a_{n + 1, n},
+a_{n, n + 2}, a_{n + 2, n}, \ldots) : k^p] < \infty
+\end{matrix}
+\right\}
+$$
+As a set we have
+$$
+k^p[[x, y]] \subset A  \subset k[[x, y]]
+$$
+Every element $f$ of $A$ can be uniquely written as a series
+$$
+f = f_0 + f_1 xy + f_2 (xy)^2 + f_3 (xy)^3 + \ldots
+$$
+with
+$$
+f_n = a_{n, n} + a_{n, n + 1} y + a_{n + 1, n} x +
+a_{n, n + 2} y^2 + a_{n + 2, n} x^2 + \ldots
+$$
+and the condition in the formula defining $A$ means that the
+coefficients of $f_n$ generate a finite extension of $k^p$.
+From this presentation it is clear that $A$ is an
+$k^p[[x, y]]$-subalgebra of $k[[x, y]]$ complete with
+respect to the ideal $xy$. Moreover, we clearly have
+$$
+A/xy A = C \times_k D
+$$
+where $k^p[[x]] \subset C \subset k[[x]]$ and
+$k^p[[y]] \subset D \subset k[[y]]$ are the subrings
+of power series from
+Algebra, Example \ref{algebra-example-bad-dvr-char-p}.
+Hence $C$ and $D$ are dvrs and we see that $A/ xy A$ is
+Noetherian. By Algebra, Lemma \ref{algebra-lemma-completion-Noetherian} we
+conclude that $A$ is Noetherian. Since $\dim(k[[x, y]]) = 2$ using
+Algebra, Lemma \ref{algebra-lemma-integral-sub-dim-equal}
+we conclude that $\dim(A) = 2$.
+
+\medskip\noindent
+Let $f = \sum a_i x^i$ be a power series such that
+$k^p(a_0, a_1, a_2, \ldots)$ has infinite degree over $k^p$.
+Then $f \not \in A$ but $f^p \in A$. We set
+$$
+B = A[f] \subset k[[x, y]]
+$$
+Since $B$ is finite over $A$ we see that $B$ is Noetherian.
+Also, $B$ is  complete with respect to the ideal generated by $xy$, see
+Algebra, Lemma \ref{algebra-lemma-completion-tensor}.
+In fact $B$ is free over $A$ with basis $1, f, f^2, \ldots, f^{p - 1}$;
+we omit the proof.
+
+\medskip\noindent
+We claim the ring
+$$
+(B_y)^\wedge = (B[1/y])^\wedge = \lim B[1/y]/(xy)^n B[1/y] =
+\lim B[1/y] / x^n B[1/y]
+$$
+is nonreduced. Namely, this ring is free over
+$$
+(A_y)^\wedge = (A[1/y])^\wedge = \lim A[1/y]/(xy)^n A[1/y] =
+\lim A[1/y] / x^n A[1/y]
+$$
+with basis $1, f, \ldots, f^{p - 1}$. However, there is an
+element $g \in (A_y)^\wedge$ such that $f^p = g^p$. Namely,
+we can just take $g = \sum a_i x^i$ (the same expression as
+we used for $f$) which makes sense in $(A_y)^\wedge$.
+Hence we see that
+$$
+(B_y)^\wedge = (A_y)^\wedge[f]/(f^p - g^p) \cong
+(A_y)^\wedge[\tau]/(\tau^p)
+$$
+is nonreduced. In fact, this example shows slightly more.
+Namely, observe that $(A_y)^\wedge$ is a dvr with
+uniformizer $x$ and residue field the fraction field
+of the dvr $D$ given above. Hence we see that even
+$$
+(B_y)^\wedge[1/(xy)] = ((B_y)^\wedge)_{xy}
+$$
+is nonreduced. This produces an example of the following kind.
+
+\begin{lemma}
+\label{lemma-nonreduced-recompletion}
+There exists a local Noetherian $2$-dimensional domain $(B, \mathfrak m)$
+complete with respect to a principal ideal $I = (b)$ and an
+element $f \in \mathfrak m$, $f \not \in I$ such that
+the $I$-adic completion $C = (B_f)^\wedge$ of the principal
+localization $B_f$ is nonreduced and even such that
+$C_b = C[1/b] = (B_f)^\wedge[1/b]$ is nonreduced.
+\end{lemma}
+
+\begin{proof}
+See discussion above.
+\end{proof}
+
+
+
+
+
+
+
+
 \section{A non catenary Noetherian local ring}
 \label{section-non-catenary-Noetherian-local}
 
@@ -1121,7 +1379,7 @@ x^{-j}(z - \sum\nolimits_{i = 1, \ldots, j - 1} a_i x^i)
 \sum\nolimits_{i = j}^\infty a_i x^{i - j}
 \in k[[x]].
 $$
-Note that $z = z_1$.
+Note that $z = xz_1$.
 Let $R$ be the subring of $k[[x]]$ generated by $x$, $z$ and all of the
 $z_j$, in other words
 $$
@@ -1131,7 +1389,7 @@ Consider the ideals $\mathfrak m = (x)$ and
 $\mathfrak n = (x - 1, z_1, z_2, \ldots)$ of $R$.
 
 \medskip\noindent
-We have $x(z_{j + 1} + a_j) = z_j$. Hence $R/\mathfrak m = k$
+We have $xz_{j + 1} + a_j = z_j$. Hence $R/\mathfrak m = k$
 and $\mathfrak m$ is a maximal ideal. Moreover, any element of $R$
 not in $\mathfrak m$ maps to a unit in $k[[x]]$ and hence
 $R_{\mathfrak m} \subset k[[x]]$. In fact it is easy to deduce
@@ -1147,7 +1405,7 @@ k[x, z_1, z_2, z_3, \ldots ]/(x - 1)
 k[z].
 $$
 Namely, the relation above implies that
-$(x - 1)(z_{j + 1} + a_j) = -z_{j + 1} - a_j + z_j$, and hence
+$z_{j + 1} = z_j - a_j - (x - 1)z_{j + 1}$, and hence
 we may express the class of $z_{j + 1}$ in terms of $z_j$ in
 the quotient $R/(x - 1)$. Since the fraction field of $R$
 has transcendence degree $2$ over $k$ by construction we see that $z$ is
@@ -1174,7 +1432,7 @@ and set $B = S^{-1}R$. We claim that
 \item The ring $B$ is a $k$-algebra.
 \item The maximal ideals of the ring $B$ are the two ideals
 $\mathfrak mB$ and $\mathfrak nB$.
-\item The residue fields at these maximal ideals is $k$.
+\item The residue field at these maximal ideals is $k$.
 \item We have $B_{\mathfrak mB} = R_{\mathfrak m}$
 and $B_{\mathfrak nB} = R_{\mathfrak n}$
 which are Noetherian regular local rings of dimensions $1$ and $2$.
@@ -1184,8 +1442,8 @@ We omit the details of the verifications.
 
 \medskip\noindent
 Whenever given a $k$-algebra $B$ with the properties listed above we
-get an example as follows. Take $A = k + \text{rad}(B) \subset B$,
-in our case $\text{rad}(B) = \mathfrak mB + \mathfrak nB$.
+get an example as follows. Take $A = k + \text{rad}(B) \subset B$
+with $\text{rad}(B) = \mathfrak mB \cap \mathfrak nB$ the Jacobson radical.
 It is easy to see that $B$ is finite over $A$ and hence $A$ is
 Noetherian by Eakin's theorem (see \cite{Eakin}, or
 \cite[Appendix A1]{Nagata}, or insert future reference here).
@@ -1395,6 +1653,46 @@ Morphisms, Lemma \ref{morphisms-lemma-ubiquity-uc}.
 
 
 
+\section{Underlying space Noetherian not Noetherian}
+\label{section-noetherian-not-noetherian}
+
+\noindent
+We give two examples to show that a scheme whose underlying topological space
+is Noetherian may not be a Noetherian scheme.
+
+\begin{example}
+\label{example-many-variables}
+Let $k$ be a field, and let $A = k[x_1, x_2, x_3, \dots] /
+(x_1^2, x_2^2, x_3^2, \dots)$.  Any prime ideal of $A$ contains the
+nilpotents $x_1, x_2, x_3, \dots$, so $\mathfrak p = (x_1, x_2, x_3,
+\dots)$ is the only prime ideal of $A$.  Therefore the underlying
+topological space of $\operatorname{Spec} A$ is a single point and in
+particular is Noetherian.  However $\mathfrak p$ is clearly not finitely
+generated.
+\end{example}
+
+\begin{example}
+\label{example-many-mononials}
+Let $k$ be a field, and let $A \subseteq k[x, y]$ be the
+subring generated by $k$ and the monomials $\{xy^i\}_{i \ge 0}$.  The prime
+ideals of $A$ that do not contain $x$ are in one-to-one correspondence with
+the prime ideals of $A_x \cong k[x, x^{-1}, y]$.  If $\mathfrak p$ is a
+prime ideal that does contain $x$, then it contains every $xy^i$, $i \ge 0$,
+because $(xy^i)^2 = x(xy^{2i}) \in \mathfrak p$ and $\mathfrak p$ is
+radical.  Consequently $\mathfrak p = (\{xy^i\}_{i \ge 0})$.  Therefore the
+underlying topological space of $\operatorname{Spec} A$ is Noetherian, since
+it consists of the points of the Noetherian scheme
+$\Spec(A[x, x^{-1}, y])$ and the prime ideal $\mathfrak p$.
+But the ring $A$ is non-Noetherian because $\mathfrak p$
+is not finitely generated.  Note that
+in this example, $A$ also has the property of being a domain.
+\end{example}
+
+
+
+
+
+
 \section{Non-quasi-affine variety with quasi-affine normalization}
 \label{section-nonquasi-affine}
 
@@ -1475,9 +1773,9 @@ $k$. To see that it is separated one has to show that the
 ring map $A \otimes_k B \to B_{x + y}$ is surjective. To see
 this use that $A \otimes_k B$ contains the element
 $xy/(x + y) \otimes 1/xy$ which maps to $1/(x + y)$.
-The morphism $X \to Y$ is given by the natural maps
+The morphism $Y \to X$ is given by the natural maps
 $D(x + y) \to \Spec(A)$ and $D(xy) \to \Spec(B)$.
-Since these are both finite we deduce that $X \to Y$ is finite
+Since these are both finite we deduce that $Y \to X$ is finite
 as desired. We omit the verification that $X$ is indeed the
 coequalizer of the displayed diagram above, however, see
 (insert future reference for pushouts in the category of schemes
@@ -1500,6 +1798,106 @@ which is itself not quasi-affine.
 \begin{proof}
 See discussion above and (insert future reference on normalization here).
 \end{proof}
+
+
+
+\section{Taking scheme theoretic images}
+\label{section-scheme-theoretic-image}
+
+\noindent
+Let $k$ be a field. Let $t$ be a variable. Let $Y = \Spec(k[t])$
+and $X = \coprod_{n \geq 1} \Spec(k[t]/(t^n))$. Denote
+$f : X \to Y$ the morphism
+using the closed immersion $\Spec(k[t]/(t^n)) \to \Spec(k[t])$
+for each $n \geq 1$. In this case we have
+\begin{enumerate}
+\item The scheme theoretic image
+(Morphisms, Definition \ref{morphisms-definition-scheme-theoretic-image})
+of $f$ is $Y$. On the other hand, the image of $f$ is the closed
+point $t = 0$ in $Y$. Thus the underlying closed subset of the
+scheme theoretic image of $f$
+is not equal to the closure of the image of $f$.
+\item The formation of the scheme theoretic image does not commute
+with restriction to the open subscheme $V = \Spec(k[t, 1/t]) \subset Y$.
+Namely, the preimage of $V$ in $X$ is empty and hence the scheme theoretic
+image of $f|_{f^{-1}(V)} : f^{-1}(V) \to V$ is the empty scheme.
+This is not equal to $Y \cap V$.
+\end{enumerate}
+
+
+
+
+\section{Images of locally closed subsets}
+\label{section-non-chevalley}
+
+\noindent
+Chevalley's theorem says that the image of a constructible set
+by a finitely presented morphism of affine schemes is constructible, see
+Algebra, Theorem \ref{algebra-theorem-chevalley} and
+Morphisms, Section \ref{morphisms-section-constructible}.
+We will see the same thing does not hold
+for images of locally closed subsets.
+
+\medskip\noindent
+Let $k$ be a field of characteristic $0$. Consider the projection morphism
+$$
+f :
+X = \Spec(k[t, x_1, x_2, \ldots, y_1, y_2, \ldots])
+\longrightarrow
+\Spec(k[x_1, x_2, \ldots, y_1, y_2, \ldots]) = Y
+$$
+This is a morphism of finite presentation.
+Let $Z$ be the closed subset of $X$ defined by
+$$
+x_1(t - 1) = 0,\quad
+x_2(t - 1)(t - 2) = 0,\quad
+x_3(t - 1)(t - 2)(t - 3) = 0,\quad \ldots
+$$
+Let $U = \bigcup_{j \geq 1} U_j$ be the open of $X$ defined by
+$$
+U_j = \text{points where }y_j(t - 1)(t - 2) ... (t - j)\text{ is nonzero}
+$$
+Then we have
+$$
+f(Z \cap U_j) =
+\text{points where }x_1, \ldots, x_j\text{ are zero and }y_j\text{ is nonzero}
+$$
+We claim that $B = f(Z \cap U) = \bigcup_{j \geq 1} f(Z \cap U_j)$ is
+not a finite union of locally closed subsets of $Y$.
+
+\medskip\noindent
+Proof of the claim. Suppose that $B = A_1 \cup \cdots \cup A_m$
+is a finite cover of $B$ by locally closed subsets of $Y$.
+We will show by induction on $n$ that $m \geq n$. The base
+case $n = 1$ is OK as $B$ is nonempty. Assume $n > 1$ and that
+the induction hypothesis holds for $n - 1$. Since the closure of $B$ is
+$(x_1 = 0)$, one of the $A_i$ must contain some nonempty open subset of
+$(x_1 = 0)$. Then $A_i$ must be open in $(x_1 = 0)$.
+But any such open subset cannot contain a point with
+$y_1 = 0$; indeed, for points of $B$, $y_1 = 0$ forces $x_2 = 0$,
+and this shows $B$ contains no neighborhood of $(x, y)$ inside $(x_1 = 0)$.
+Therefore, the remaining $m - 1$ elements restrict
+to a constructible cover of $B \cap (y_1 = 0)$.
+However, observe that the right shift map
+$x_i \mapsto x_{i + 1}$, $y_i \mapsto y_{i + 1}$ identifies $B$
+with $B \cap (y_1 = 0)$! Thus by induction hypothesis, we see that
+$m - 1 \geq n - 1$ and we conclde $m \geq n$. This finishes
+the proof of the induction step and thereby establishes the claim.
+
+\begin{lemma}
+\label{lemma-no-chevalley}
+There exists a morphism $f : X \to Y$ of finite presentation
+between affine schemes and a locally closed subset $T$ of $X$
+such that $f(T)$ is not a finite union of locally closed subsets of $Y$.
+\end{lemma}
+
+\begin{proof}
+See discussion above.
+\end{proof}
+
+
+
+
 
 
 
@@ -1542,6 +1940,21 @@ have to be defined by an ideal $I \subset k[x_1, x_2, x_3, \ldots]$
 such that $I_n = I k[x_1, x_2, x_3, \ldots][1/x_n]$.
 But the only element $f \in k[x_1, x_2, x_3, \ldots]$
 which ends up in all $I_n$ is $0$! Hence $I$ does not exist.
+
+\medskip\noindent
+The morphism $Z \to X$ also gives an example of bad behaviour
+of scheme theoretic images of immersions. Namely, the arguments above
+show that the scheme theoretic image of the immersion $Z \to X$ is $X$.
+On the other hand, we see
+\begin{enumerate}
+\item $Z$ is not topologically dense in $X$, and
+\item the scheme theoretic image of $Z = Z \cap U \to U$ is just
+$Z$. This is not equal to $U \cap X = U$ and hence formation
+of the scheme theoretic image in this case
+does not commute with restrictions to opens.
+\end{enumerate}
+
+
 
 
 
@@ -1848,6 +2261,12 @@ for every prime $\mathfrak p$ of $R$ we have
 $M_{\mathfrak p} \cong R_{\mathfrak p}$ as an
 $R_{\mathfrak p}$-module.
 
+\medskip\noindent
+An example of a similar flavor is $R = \mathbf{Z}$ and
+$M = \sum_{p \text{ prime}} \frac{1}{p} \mathbf{Z} \subset \mathbf{Q}$,
+which equals the set of fractions $\frac{a}{b}$ with $b$ nonzero and
+squarefree.
+
 
 
 
@@ -1984,55 +2403,13 @@ the functor $\Hom_R(I, M)$ is exact, i.e., $I$ is a projective
 $R$-module.
 \end{proof}
 
-\begin{lemma}
-\label{lemma-map-cannot-be-injective}
-\begin{slogan}
-A map of finite free modules cannot be injective if the source has
-rank bigger than the target.
-\end{slogan}
-Let $R$ be a nonzero ring. Let $n \geq 1$. Let $M$ be an $R$-module generated
-by $< n$ elements. Then any $R$-module map $f : R^{\oplus n} \to M$ has a
-nonzero kernel.
-\end{lemma}
-
-\begin{proof}
-Choose a surjection $R^{\oplus n - 1} \to M$.
-We may lift the map $f$ to a map $f' : R^{\oplus n} \to R^{\oplus n - 1}$.
-It suffices to prove $f'$ has a nonzero kernel.
-The map $f' : R^{\oplus n} \to R^{\oplus n - 1}$ is given by a
-matrix $A = (a_{ij})$. If one of the $a_{ij}$ is not nilpotent, say
-$a = a_{ij}$ is not, then we can replace $A$ by the localization $A_a$
-and we may assume $a_{ij}$ is a unit. Since if we find a nonzero kernel
-after localization then there was a nonzero kernel to start with as
-localization is exact, see
-Algebra, Proposition \ref{algebra-proposition-localization-exact}.
-In this case we can do a base change on both $R^{\oplus n}$
-and $R^{\oplus n - 1}$ and reduce to the case where
-$$
-A =
-\left(
-\begin{matrix}
-1 & 0 & 0 & \ldots \\
-0 & a_{22} & a_{23} & \ldots \\
-0 & a_{32} & \ldots \\
-\ldots & \ldots
-\end{matrix}
-\right)
-$$
-Hence in this case we win by induction on $n$. If not then each
-$a_{ij}$ is nilpotent. Set $I = (a_{ij}) \subset R$. Note that
-$I^{m + 1} = 0$ for some $m \geq 0$. Let $m$ be the largest integer
-such that $I^m \not = 0$. Then we see that $(I^m)^{\oplus n}$ is
-contained in the kernel of the map and we win.
-\end{proof}
-
 \noindent
 Suppose that $P \subset Q$ is an inclusion of $R$-modules with $Q$ a
 finite $R$-module and $P$ locally free, see
 Algebra, Definition \ref{algebra-definition-locally-free}.
 Suppose that $Q$ can be generated by $N$ elements as an $R$-module.
 Then it follows from
-Lemma \ref{lemma-map-cannot-be-injective}
+Algebra, Lemma \ref{algebra-lemma-map-cannot-be-injective}
 that $P$ is finite locally free (with the free parts having rank
 at most $N$). And in this case $P$ is a finite $R$-module, see
 Algebra, Lemma \ref{algebra-lemma-finite-projective}.
@@ -2065,12 +2442,12 @@ Let $C_i$, $i = 1, \ldots, n$ be smooth, projective, geometrically irreducible
 curves over $K$. Let $P_i \in C_i(K)$ be a rational point and
 let $Q_i \in C_i$ be a point such that $[\kappa(Q_i) : K] = 2$.
 Then $[P_1 \times \ldots \times P_n]$ is nonzero in
-$A_0(U_1 \times_K \ldots \times_K U_n)$ where $U_i = C_i \setminus \{Q_i\}$.
+$\CH_0(U_1 \times_K \ldots \times_K U_n)$ where $U_i = C_i \setminus \{Q_i\}$.
 \end{lemma}
 
 \begin{proof}
 There is a degree map
-$\deg : A_0(C_1 \times_K \ldots \times_K C_n) \to \mathbf{Z}$
+$\deg : \CH_0(C_1 \times_K \ldots \times_K C_n) \to \mathbf{Z}$
 Because each $Q_i$ has degree $2$ over $K$ we see that
 any zero cycle supported on the ``boundary''
 $$
@@ -2091,7 +2468,7 @@ $\kappa(Q_n)$ is a quadratic extension of $\mathbf{Q}$.
 Set $U_n = C_n \setminus \{Q_n\}$; this is an affine curve.
 Let $\mathcal{L}_n$ be the inverse of the ideal sheaf of $P_n$
 on $U_n$. Note that $c_1(\mathcal{L}_n) = [P_n]$ in the group of
-zero cycles $A_0(U_n)$. Set $A_n = \Gamma(U_n, \mathcal{O}_{U_n})$.
+zero cycles $\CH_0(U_n)$. Set $A_n = \Gamma(U_n, \mathcal{O}_{U_n})$.
 Let $L_n = \Gamma(U_n, \mathcal{L}_n)$ which is a locally
 free module of rank $1$ over $A_n$. Set
 $$
@@ -2102,7 +2479,7 @@ so that $\Spec(B_n) = U_1 \times \ldots \times U_n$ all products
 over $\Spec(\mathbf{Q})$. For $i \leq n$ we set
 $$
 L_{n, i} =
-A_1 \otimes_{\mathbf{Q}} \ldots \otimes_{\mathbf{Q}} M_i
+A_1 \otimes_{\mathbf{Q}} \ldots \otimes_{\mathbf{Q}} L_i
 \otimes_{\mathbf{Q}} \ldots \otimes_{\mathbf{Q}} A_n
 $$
 which is a locally free $B_n$-module of rank $1$. Note that this is
@@ -2127,7 +2504,7 @@ $$
 $$
 Because the elements $e_1, \ldots, e_{n + 1}$ are part of a basis
 after a faithfully flat base change we conclude that
-the chern classes
+the Chern classes
 $$
 c_i(\text{pr}_1^*\mathcal{L}_1 \oplus \ldots \oplus
 \text{pr}_m^*\mathcal{L}_m), \quad i = m, m - 1, \ldots, m - n
@@ -2527,7 +2904,7 @@ $S/xS \cong (R/xR)[t]/(xy)$ maps onto $k[t]$ with nilpotent kernel.
 There is a surjection $S \to R[y]$, $t \longmapsto y$ which induces
 an isomorphism on inverting $x$ and a surjection with nilpotent kernel
 modulo $x$. Hence the kernel of $S \to R[y]$ is locally nilpotent.
-In particular $S \to R[y]$ is a universal homeomorphism.
+In particular $S \to R[y]$ induces a universal homeomorphism on spectra.
 
 \medskip\noindent
 First we claim that $S$ is an $S$-module which is relatively pure
@@ -2547,7 +2924,7 @@ second case we may multiply $f$ by a unit so that $f \in R[y]$
 (Weierstrass preparation; details omitted). Then it is easy to see that
 $R[y]/fR[y] \cong k[[x, y]]/(f)$ hence $f$ defines a prime ideal
 of $R[y]$ and $\mathfrak mR[y] + fR[y] \not = R[y]$.
-Since $S \to R[y]$ is a universal homeomorphism we deduce the
+Since $S \to R[y]$ induces a universal homeomorphism on spectra we deduce the
 desired result for $S$ also.
 
 \medskip\noindent
@@ -2746,6 +3123,194 @@ See discussion above.
 
 
 
+
+\section{Flat and formally unramified is not formally \'etale}
+\label{section-flat-formally-unramified-not-formally-etale}
+
+\noindent
+In More on Morphisms, Lemma
+\ref{more-morphisms-lemma-unramified-flat-formally-etale}
+it is shown that an unramified flat morphism of schemes $X \to S$
+is formally \'etale. The goal of this section is to give two examples
+that illustrate that we cannot replace `unramified' by `formally unramified'.
+The first example exploits special properties of perfect rings, while the
+second example shows the result fails even for maps of Noetherian regular rings.
+
+\begin{lemma}
+\label{lemma-perfect-closure-polynomial-ring}
+Let $A = \mathbb{F}_p[T]$ be the polynomial ring in one variable over
+$\mathbb{F}_p$. Let $A_{perf}$  denote the perfect closure of $A$.
+Then $A \rightarrow A_{perf}$ is flat and formally unramified,
+but not formally \'etale.
+\end{lemma}
+
+\begin{proof}
+Note that under the Frobenius map $F_A : A \to A$, the target copy of $A$
+is a free-module over the domain with basis $\{1, T, \dots, T^{p - 1}\}$.
+Thus, $F_A$ is faithfully flat, and consequently,  so is
+$A \to A_{perf}$ since it is a colimit of faithfully flat maps.
+Since $A_{perf}$ is a perfect ring, the relative Frobenius
+$F_{A_{perf}/A}$ is a surjection. In  other words,
+$A_{perf} = A[A_{perf}^p]$, which readily implies
+$\Omega_{A_{perf}/A} = 0$. Then
+$A \rightarrow A_{perf}$ is formally unramified by
+More on Morphisms, Lemma
+\ref{more-morphisms-lemma-formally-unramified-differentials}
+
+\medskip\noindent
+It suffices to show that $A \rightarrow A_{perf}$
+is not formally smooth. Note that since $A$ is a
+smooth $\mathbb{F}_p$-algebra, the cotangent complex
+$L_{A/\mathbb{F}_P} \simeq \Omega_{A/\mathbb{F}_p}[0]$
+is concentrated in degree $0$, see
+Cotangent, Lemma \ref{cotangent-lemma-when-projective}. Moreover,
+$L_{A_{perf}/\mathbb{F}_p} = 0$ in $D(A_{perf})$
+by Cotangent, Lemma \ref{cotangent-lemma-perfect-zero}.
+Consider the distinguished triangle of cotangent complexes
+$$
+L_{A/\mathbb{F}_p} \otimes_A A_{perf} \to
+L_{A_{perf}/\mathbb{F}_p} \to
+L_{A_{perf}/A} \to
+(L_{A/\mathbb{F}_p} \otimes_A A_{perf})[1]
+$$
+in $D(A_{perf})$, see Cotangent, Section \ref{cotangent-section-triangle}.
+We find $L_{A_{perf}/A} = \Omega_{A/\mathbb{F}_p} \otimes_A A_{perf}[1]$,
+that is, $L_{A_{perf}/A}$ is equal to a free rank $1$ $A_{perf}$
+module placed in degree $-1$. Thus $A \rightarrow A_{perf}$
+is not formally smooth by
+More on Morphisms, Lemma \ref{more-morphisms-lemma-NL-formally-smooth}
+and
+Cotangent, Lemma \ref{cotangent-lemma-relation-with-naive-cotangent-complex}.
+\end{proof}
+
+\noindent
+The next example also involves rings of prime characteristic, but is perhaps
+a little more surprising. The drawback is that it requires more knowledge of
+characteristic $p$ phenomena than the previous example. Recall that we say a
+ring $A$ of prime characteristic is $F$-finite if the Frobenius map on $A$
+is finite. 
+
+\begin{lemma}
+\label{lemma-completion-etale}
+Let $(A, \mathfrak m, \kappa)$ be a Noetherian local ring of prime
+characteristic $p > 0$ such that $[\kappa : \kappa^p] < \infty$.
+Then the  canonical map  $A \to A^\wedge$ to the completion of $A$
+is flat and formally unramified. However, if $A$ is regular but not
+excellent, then this map is not formally \'etale.
+\end{lemma}
+
+\begin{proof}
+Flatness of the completion is
+Algebra, Lemma \ref{algebra-lemma-completion-flat}.
+To show that the map is formally unramified, it
+suffices to show that $\Omega_{A^\wedge/A} = 0$, see
+Algebra, Lemma \ref{algebra-lemma-characterize-formally-unramified}.
+
+\medskip\noindent
+We sketch a proof. Choose $x_1, \ldots, x_r \in A$ which map to a $p$-basis
+$\overline{x}_1, \ldots, \overline{x}_r$ of $\kappa$, i.e.,
+such that $\kappa$ is minimally generated by $\overline{x}_i$ over $\kappa^p$.
+Choose a minimal set of generators $y_1, \ldots, y_s$ of $\mathfrak m$.
+For each $n$ the elements $x_1, \ldots, x_r, y_1, \ldots, y_s$ generate
+$A/\mathfrak m^n$ over $(A/\mathfrak m^n)^p$ by Frobenius.
+Some details omitted. We conclude that $F : A^\wedge \to A^\wedge$
+is finite. Hence $\Omega_{A^\wedge/A}$ is a finite $A^\wedge$-module.
+On the other hand, for any $a \in A^\wedge$ and $n$ we can find
+$a_0 \in A$ such that $a - a_0 \in \mathfrak m^nA^\wedge$.
+We conclude that $\text{d}(a) \in \bigcap \mathfrak m^n \Omega_{A^\wedge/A}$
+which implies that $\text{d}(a)$ is zero by
+Algebra, Lemma \ref{algebra-lemma-intersect-powers-ideal-module-zero}.
+Thus $\Omega_{A^\wedge/A} = 0$.
+
+\medskip\noindent
+Suppose $A$ is regular. Then, using the Cohen structure theorem
+$x_1, \ldots, x_r, y_1, \ldots, y_s$ is a $p$-basis for the ring
+$A^\wedge$, i.e., we have
+$$
+A^\wedge = \bigoplus\nolimits_{I, J} (A^\wedge)^p
+x_1^{i_1} \ldots x_r^{i_r} y_1^{j_1} \ldots y_s^{j_s}
+$$
+with $I = (i_1, \ldots, i_r)$, $J = (j_1, \ldots, j_s)$ and
+$0 \leq i_a, j_b \leq p - 1$. Details omitted. In particular, we see that
+$\Omega_{A^\wedge}$ is a free $A^\wedge$-module with basis
+$\text{d}(x_1), \ldots, \text{d}(x_r), \text{d}(y_1), \ldots, \text{d}(y_s)$.
+
+\medskip\noindent
+Now if $A \to A^\wedge$ is formally \'etale or even just formally smooth,
+then we see that $\NL_{A^\wedge/A}$ has vanishing cohomology in degrees $-1, 0$
+by Algebra, Proposition \ref{algebra-proposition-characterize-formally-smooth}.
+It follows from the Jacobi-Zariski sequence
+(Algebra, Lemma \ref{algebra-lemma-exact-sequence-NL}) for the ring
+maps $\mathbf{F}_p \to A \to A^\wedge$ that we get an isomorphism
+$\Omega_A \otimes_A A^\wedge \cong \Omega_{A^\wedge}$.
+Hence we find that $\Omega_A$ is free on
+$\text{d}(x_1), \ldots, \text{d}(x_r), \text{d}(y_1), \ldots, \text{d}(y_s)$.
+Looking at fraction fields and using that $A$ is normal
+we conclude that $a \in A$ is a $p$th power if and only if its image in
+$A^\wedge$ is a $p$th power (details omitted; use
+Algebra, Lemma \ref{algebra-lemma-derivative-zero-pth-power}).
+A second consequence is that the operators $\partial/\partial x_a$ and
+$\partial/\partial y_b$ are defined on $A$.
+
+\medskip\noindent
+We will show that the above lead to the conclusion that $A$ is finite
+over $A^p$ with $p$-basis $x_1, \ldots, x_r, y_1, \ldots, y_s$.
+This will contradict the non-excellency of $A$ by a result of
+Kunz, see \cite[Corollary 2.6]{Kun76}.
+Namely, say $a \in A$ and write
+$$
+a =  \sum\nolimits_{I, J} (a_{I, J})^p
+x_1^{i_1} \ldots x_r^{i_r} y_1^{j_1} \ldots y_s^{j_s}
+$$
+with $a_{I, J} \in A^\wedge$. To finish the proof it suffices to
+show that $a_{I, J} \in A$. Applying the operator
+$$
+(\partial/\partial x_1)^{p - 1} \ldots
+(\partial/\partial x_r)^{p - 1}
+(\partial/\partial y_1)^{p - 1} \ldots
+(\partial/\partial y_s)^{p - 1}
+$$
+to both sides we conclude that $a_{I, J}^p \in A$ where
+$I = (p - 1, \ldots, p - 1)$ and $J = (p - 1, \ldots, p - 1)$.
+By our remark above, this also implies $a_{I, J} \in A$.
+After replacing $a$ by $a' = a - a_{I, J}^p x^I y^J$
+we can use a $1$-order lower differential operators to get
+another coefficient $a_{I, J}$ to be in $A$. Etc.
+\end{proof}
+
+\begin{remark}
+\label{remark-reference-existence-regular-nonexcellent-rings}
+Non-excellent regular rings whose residue fields have a finite $p$-basis
+can be constructed even in the function field of $\mathbb{P}^2_k$, over a 
+characteristic $p$ field $k = \overline{k}$. See
+\cite[$\mathsection 4.1$]{DS18}.
+\end{remark}
+
+\noindent
+The proof of Lemma \ref{lemma-completion-etale} actually shows a little more.
+
+\begin{lemma}
+\label{lemma-excellent-regular-local-rings}
+Let $(A, \mathfrak m, \kappa)$ be a regular local ring of characteristic
+$p > 0$. Suppose $[\kappa : \kappa^p] < \infty$. Then $A$ is excellent
+if and only if $A \to A^\wedge$ is formally \'etale.
+\end{lemma}
+
+\begin{proof}
+The backward implication follows from Lemma \ref{lemma-completion-etale}.
+For the forward implication, note that we already know from
+Lemma \ref{lemma-completion-etale}
+that $A \to A^\wedge$ is formally unramified or equivalently
+that $\Omega_{A^\wedge/A}$ is zero.
+Thus, it suffices to show that the completion map is formally smooth when
+$A$ is excellent. By N\'eron-Popescu
+desingularization $A \to A^\wedge$ can be  written as a filtered
+colimit of smooth $A$-algebras
+(Smoothing Ring Maps, Theorem \ref{smoothing-theorem-popescu}).
+Hence $\NL_{A^\wedge/A}$ has vanishing cohomology in degree $-1$.
+Thus $A \to A^\wedge$ is formally smooth by Algebra, Proposition
+\ref{algebra-proposition-characterize-formally-smooth}.
+\end{proof}
 
 
 
@@ -3221,7 +3786,7 @@ $P$ has a $k$-rational point then all of the $a_i$ are squares.
 
 \medskip\noindent
 We claim that $P$ is an fppf torsor if and only if the field extension
-$k \subset k' = k(\sqrt{a_1}, \sqrt{a_2}, \ldots)$ is finite.
+$k' = k(\sqrt{a_1}, \sqrt{a_2}, \ldots)/k$ is finite.
 If $k'$ is finite over $k$, then
 $\{\Spec(k') \to \Spec(k)\}$
 is an fppf covering which trivializes $P$ and we see that $P$ is indeed
@@ -3231,7 +3796,7 @@ $\{S_i \to \Spec(k)\}$ such that each $P_{S_i}$ is trivial.
 Pick an $i$ such that $S_i$ is not empty. Let $s \in S_i$ be a closed
 point. By
 Varieties, Lemma \ref{varieties-lemma-locally-finite-type-Jacobson}
-the field extension $k \subset \kappa(s)$ is finite, and by construction
+the field extension $\kappa(s)/k$ is finite, and by construction
 $P_{\kappa(s)}$ has a $\kappa(s)$-rational point. Thus we see that
 $k \subset k' \subset \kappa(s)$ and $k'$ is finite over $k$.
 
@@ -3740,7 +4305,7 @@ is not zero.
 \medskip\noindent
 Let $X = \Spec(k)$ where $k$ is a field.
 Then any \'etale covering of $X$ can be dominated
-by a covering $\{\Spec(k') \to \Spec(k)\}$ with $k \subset k'$
+by a covering $\{\Spec(k') \to \Spec(k)\}$ with $k'/k$
 a finite separable extension of fields. Since $F(\Spec(k')) = 0$
 we see that $G(X) = 0$.
 
@@ -3846,6 +4411,122 @@ of $a$ and $b$ is the fibre of $\mathbf{A}^1_\mathbf{Z}$ over $(p)$.
 \begin{lemma}
 \label{lemma-lisse-etale-not-functorial}
 The lisse-\'etale site is not functorial, even for morphisms of schemes.
+\end{lemma}
+
+\begin{proof}
+See discussion above.
+\end{proof}
+
+
+
+
+
+
+\section{Sheaves on the category of Noetherian schemes}
+\label{section-sheaves-locally-Noetherian}
+
+\noindent
+Let $S$ be a locally Noetherian scheme. As in
+Artin's Axioms, Section \ref{artin-section-noetherian}
+consider the inclusion functor
+$$
+u : (\textit{Noetherian}/S)_{fppf} \longrightarrow (\Sch/S)_{fppf}
+$$
+of the fppf site of locally Noetherian schemes over $S$ into a
+big fppf site of $S$. As explained in the section referenced,
+this functor is continuous. Hence we obtain an adjoint pair of functors
+$$
+u^s :
+\Sh((\Sch/S)_{fppf})
+\longrightarrow
+\Sh((\textit{Noetherian}/S)_{fppf})
+$$
+and
+$$
+u_s :
+\Sh((\textit{Noetherian}/S)_{fppf})
+\longrightarrow
+\Sh((\Sch/S)_{fppf})
+$$
+see Sites, Section \ref{sites-section-continuous-functors}.
+However, we claim that $u$ in general does not define a
+morphism of sites, see Sites, Definition \ref{sites-definition-morphism-sites}.
+In other words, we claim that the functor $u_s$ is not left exact in general.
+
+\medskip\noindent
+Let $p$ be a prime number and set $S = \Spec(\mathbf{F}_p)$.
+Consider the injective map of sheaves
+$$
+a : \mathcal{F} \longrightarrow \mathcal{G}
+$$
+on $(\textit{Noetherian}/S)_{fppf}$ defined as follows: for $U$
+a locally Noetherian scheme over $S$ we define
+$$
+\mathcal{G}(U) = \Gamma(U, \mathcal{O}_U)^* =
+\Mor_S(U, \mathbf{G}_{m, S})
+$$
+and we take
+$$
+\mathcal{F}(U) = \{f \in \mathcal{G}(U) \mid \text{fppf locally }f
+\text{ has arbitrary }p\text{-power roots}\}
+$$
+A Noetherian $\mathbf{F}_p$-algebra $A$ has a nilpotent nilradical
+$I \subset A$, the $p$-power roots of $1$ in $A$ are of the
+elements of the form $1 + a$, $a \in I$, and hence no-nontrivial
+$p$-power root of $1$ has arbitrary $p$-power roots. We conclude
+that $\mathcal{F}(U)$ is a $p$-torsion free abelian group for any
+locally Noetherian scheme $U$; some details omitted. It follows that
+$p : \mathcal{F} \to \mathcal{F}$
+is an injective map of abelian sheaves on $(\textit{Noetherian}/S)_{fppf}$.
+
+\medskip\noindent
+To get a contradiction, assume $u_s$ is exact. Then
+$p : u_s\mathcal{F} \to u_s\mathcal{F}$ is injective too
+and we find that $(u_s\mathcal{F})(V)$ is a $p$-torsion
+free abelian group for any $V$ over $S$. Since
+representable presheaves are sheaves on fppf sites, by
+Sites, Lemma \ref{sites-lemma-pullback-representable-sheaf},
+we see that $u_s\mathcal{G}$ is represented by
+$\mathbf{G}_{m, S}$. Using that $u_s\mathcal{F} \to u_s\mathcal{G}$
+is injective, we find a $p$-torsion free subgroup
+$$
+(u_s\mathcal{F})(V) \subset \Gamma(V, \mathcal{O}_V)^*
+$$
+for every scheme $V$ over $S$ with the following property:
+for every morphism $V \to U$ of schemes over $S$ with $U$
+locally Noetherian the subgroup
+$$
+\mathcal{F}(U) \subset \Gamma(U, \mathcal{O}_U)^*
+$$
+maps into the subgroup $(u_s\mathcal{F})(V)$ by the restriction
+mapping $\Gamma(U, \mathcal{O}_U)^* \to \Gamma(V, \mathcal{O}_V)^*$.
+
+\medskip\noindent
+The actual contradiction now is obtained as follows:
+let $k = \bigcup_{n \geq 0} \mathbf{F}_p(t^{1/{p^n}})$
+and set
+$$
+B = k \otimes_{\mathbf{F}_p(t)} k
+$$
+and $V = \Spec(B)$. Since we have the two projection morphisms
+$V \to \Spec(k)$ corresponding to the two coprojections $k \to B$
+and since $\Spec(k)$ is Noetherian, we conclude the subgroup
+$$
+(u_s\mathcal{F})(V) \subset B^*
+$$
+contains $k^* \otimes 1$ and $1 \otimes k^*$. This is a contradiction
+because
+$$
+(t^{1/p} \otimes 1) \cdot (1 \otimes t^{-1/p}) =
+t^{1/p} \otimes t^{-1/p}
+$$
+is a nontrivial $p$-torsion unit of $B$.
+
+\begin{lemma}
+\label{lemma-not-a-morphism-of-sites-noetherian-to-all}
+With $S = \Spec(\mathbf{F}_p)$ the inclusion functor
+$(\textit{Noetherian}/S)_{fppf} \to (\Sch/S)_{fppf}$
+does not define a morphism of sites.
 \end{lemma}
 
 \begin{proof}
@@ -4287,7 +4968,7 @@ rational equivalences $L\sim L_0'$ and $M\sim L_0'+M_0'$ on $E$.
 Combining these equivalences, we find that $L_0+M_0'\sim 0$
 on $E$ and hence on $V_Y$. If $V_Y$ were projective over ${\mathbf C}$,
 it would have
-an ample line bundle $H$, which would have degree $>0$ on all curves
+an ample line bundle $H$, which would have degree $> 0$ on all curves
 in $V_Y$. In particular $H$ would have positive degree on $L_0+M_0'$,
 contradicting that the degree of a line bundle is well-defined
 on 1-cycles modulo rational equivalence on a proper scheme
@@ -4306,7 +4987,7 @@ of $D$, then $Z$ is a smooth projective 3-fold, and the non-projective
 3-fold $V_Y$ differs from $Z$ by a ``flop'' over $Y-P$.
 
 
-\section{Descent data for schemes need not be effective, even for a projective morphism}
+\section{Non-effective descent data for projective schemes}
 \label{section-non-effective-descent-projective}
 
 \noindent
@@ -4974,7 +5655,7 @@ H^1(X, \Omega_{X/k}) \times H^1(X, T_{X/k})
 \longrightarrow H^2(X, \mathcal{O}_X)
 $$
 This is a nondegenerate pairing by coherent duality.
-A computation shows that the chern class
+A computation shows that the Chern class
 $c_1(\mathcal{O}_X(n)) \in H^1(X, \Omega_{X/k})$
 in Hodge cohomology is nonzero.
 Hence there is a first order deformation
@@ -5113,7 +5794,7 @@ Then $H^1_{fppf}(\Spec(K), G)$ is torsion.
 
 \begin{proof}
 Every $G$-torsor $P$ over $\Spec(K)$ is smooth over $K$ as a form of $G$.
-Hence $P$ has a point over a finite separable extension $K \subset L$.
+Hence $P$ has a point over a finite separable extension $L/K$.
 Say $[L : K] = n$. Let $[n](P)$ denote the $G$-torsor whose class is $n$
 times the class of $P$ in $H^1_{fppf}(\Spec(K), G)$. There is a canonical
 morphism
@@ -5205,7 +5886,7 @@ Proposition \ref{proposition-nonalghomstack} contradicts
 of formal objects for $\underline{\Mor}_S(X, [S/A])$. The same problem
 is mentioned in the Erratum \cite{AokiHomStacksErr} to
 \cite{AokiHomStacks}. Unfortunately, the Erratum goes on
-the assert that $\underline{\Mor}_S(\mathcal{Y}, \mathcal{Z})$
+to assert that $\underline{\Mor}_S(\mathcal{Y}, \mathcal{Z})$
 is algebraic if $\mathcal{Z}$ is separated, which also contradicts
 Proposition \ref{proposition-nonalghomstack} as $[S/A]$ is separated.
 \end{remark}
@@ -5531,7 +6212,7 @@ Choose an ordinary abelian surface $X$ over $k$ and a very ample line bundle
 $L$ on $X$. The section ring $\Gamma_*(X, L) = \bigoplus_n H^0(X,L^n)$ is
 the coordinate ring of the affine cone over $X$ with respect to $L$. It is
 a normal ring for $L$ sufficiently positive. Let $S$ denote the henselization
-of $\Gamma_*(X, L)$ at vertex of the cone. Then $S$ is a henselian noetherian
+of $\Gamma_*(X, L)$ at vertex of the cone. Then $S$ is a henselian Noetherian
 normal domain of dimension $3$. We obtain a finite injective
 map $R \to S$ as the henselization of a Noether normalization
 for the finite type $k$-algebra $\Gamma_*(X, L)$. As $R^+$ is an
@@ -5729,7 +6410,7 @@ is not a topological group.
 To see this we consider the set
 $$
 U = \{(x_0, x_1, x_2, \ldots)\text{ such that }
-|x_j| < |\text{cos}(jx_0)| \text{ for } j > 0\}
+|x_j| < |\cos(jx_0)| \text{ for } j > 0\}
 $$
 Using that $jx_0$ is never an integral multiple of $\pi/2$ as $\pi$
 is not rational it is easy to show that $U \cap G_n$ is open. Since
@@ -5743,9 +6424,9 @@ $$
 $$
 for $|x_0| < \epsilon_0$ and $|x_j| < \epsilon_j$. However, if we
 take $j$ large enough such that $j \epsilon_0 > \pi/2$, then we can
-choose $x_0 \in \mathbf{Q}$ such that $|\text{cos}(jx_0)|$ is smaller than
+choose $x_0 \in \mathbf{Q}$ such that $|\cos(jx_0)|$ is smaller than
 $\epsilon_j$, hence there exists an $x_j$ with
-$|\text{cos}(jx_0)| < |x_j| < \epsilon_j$. This contradiction proves the claim.
+$|\cos(jx_0)| < |x_j| < \epsilon_j$. This contradiction proves the claim.
 
 \begin{lemma}
 \label{lemma-colimit-topology}
@@ -5853,7 +6534,9 @@ the spectrum of the integers as a topological space,
 because any spectrum is quasi-compact as a topological space
 (Algebra, Lemma \ref{algebra-lemma-quasi-compact}).
 No, it refers to the spectrum of the integers in the
-canonical topology on the category of schemes.
+canonical topology on the category of schemes, and the
+definition of a quasi-compact object in a site
+(Sites, Definition \ref{sites-definition-quasi-compact}).
 
 \medskip\noindent
 Let $U$ be a nonprincipal ultrafilter on the set $P$ of prime numbers.
@@ -5977,7 +6660,7 @@ See discussion above.
 
 \noindent
 We continue working with our nonprincipal ultrafilter $U$ on the set $P$
-of prime numners.
+of prime numbers.
 Let $R$ be a ring. Denote $R_A = S_A^{-1}R = R \otimes \mathbf{Z}_A$
 for $A \in U$.
 Claim II: given closed subsets $T_A \subset \Spec(R_A)$, $A \in U$
@@ -6035,7 +6718,7 @@ $$
 $$
 By Descent, Lemma \ref{descent-lemma-universal-effective-epimorphism}
 and the two claims proved above
-this is a universally effective epimorphism.
+this is a universal effective epimorphism.
 In any category with fibre products, the universal effective epimorphisms
 give $\mathcal{C}$ the structure of a site (modulo some set theoretical
 issues which are easy to fix) defining the canonical topology.
@@ -6046,8 +6729,8 @@ $$
 n \in \mathbf{N}, A_1, \ldots, A_n \in U
 $$
 factors through $\Spec(\mathbf{Z}[1/p])$ for some $p$.
-Hence this finite family cannot be a universally effective epimorphism
-and more generally no universally effective epimorphism
+Hence this finite family cannot be a universal effective epimorphism
+and more generally no universal effective epimorphism
 $\{g_j : T_j \to \Spec(\mathbf{Z})\}$ can refine
 $\{\Spec(\mathbf{Z}_{A_i}) \to \Spec(\mathbf{Z})\}_{i = 1, \ldots, n}$.
 By Sites, Definition \ref{sites-definition-quasi-compact}

@@ -48,10 +48,8 @@ Here we follow the papers
 \cite{Lipman-notes}, and \cite{Neeman-improvement}.
 
 \medskip\noindent
-After a brief discussion of compactifications in
-Section \ref{section-compactify}
-we discuss the upper shriek functors $f^!$ for
-compactifyable morphisms in
+We discuss the important and useful upper shriek functors $f^!$ for
+separated morphisms of finite type between Noetherian schemes in
 Sections \ref{section-upper-shriek},
 \ref{section-upper-shriek-properties}, and
 \ref{section-base-change-shriek}
@@ -99,8 +97,8 @@ a dualizing complex $\omega_A^\bullet$ for $A$ such that
 $K|_U$ is isomorphic to the image of $\omega_A^\bullet$ by
 the functor $\widetilde{} : D(A) \to D(\mathcal{O}_U)$.
 \item There is an affine open covering $X = \bigcup U_i$, $U_i = \Spec(A_i)$
-such that for each $i$ there exists a dualizing complex $\omega_i^\bullet$
-for $A_i$ such that $K|_U$ is isomorphic to the image of $\omega_i^\bullet$ by
+such that for each $i$ there exists a dualizing complex $\omega_i^\bullet$ for
+$A_i$ such that $K|_{U_i}$ is isomorphic to the image of $\omega_i^\bullet$ by
 the functor $\widetilde{} : D(A_i) \to D(\mathcal{O}_{U_i})$.
 \end{enumerate}
 \end{lemma}
@@ -197,6 +195,63 @@ is a quasi-isomorphism in this case and the proof is done.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-internal-hom-evaluate-isom}
+Let $X$ be a Noetherian scheme. Let $K, L, M \in D_\QCoh(\mathcal{O}_X)$. 
+Then the map
+$$
+R\SheafHom(L, M) \otimes_{\mathcal{O}_X}^\mathbf{L} K
+\longrightarrow
+R\SheafHom(R\SheafHom(K, L), M)
+$$
+of Cohomology, Lemma \ref{cohomology-lemma-internal-hom-evaluate}
+is an isomorphism in the following two cases
+\begin{enumerate}
+\item $K \in D^-_{\textit{Coh}}(\mathcal{O}_X)$,
+$L \in D^+_{\textit{Coh}}(\mathcal{O}_X)$, and $M$ affine locally has
+finite injective dimension (see proof), or
+\item $K$ and $L$ are in $D_{\textit{Coh}}(\mathcal{O}_X)$,
+the object $R\SheafHom(L, M)$ has finite tor dimension, and
+$L$ and $M$ affine locally have finite injective dimension
+(in particular $L$ and $M$ are bounded).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Proof of (1). We say $M$ has affine locally finite injective dimension
+if $X$ has an open covering by affines $U = \Spec(A)$ such that the object
+of $D(A)$ corresponding to $M|_U$ (Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-affine-compare-bounded})
+has finite injective dimension\footnote{This condition is independent of the
+choice of the affine open cover of the Noetherian scheme $X$.
+Details omitted.}. To prove the lemma we may
+replace $X$ by $U$, i.e., we may assume $X = \Spec(A)$
+for some Noetherian ring $A$. Observe that
+$R\SheafHom(K, L)$ is in $D^+_{\textit{Coh}}(\mathcal{O}_X)$ by
+Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-coherent-internal-hom}.
+Moreover, the formation of the left and right hand side
+of the arrow commutes with the functor $D(A) \to D_\QCoh(\mathcal{O}_X)$ by
+Lemma \ref{lemma-affine-duality} and
+Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-quasi-coherence-internal-hom}
+(to be sure this uses the assumptions on $K$, $L$, $M$ and what we just
+proved about $R\SheafHom(K, L)$).
+Then finally the arrow is an isomorphism by
+More on Algebra, Lemmas
+\ref{more-algebra-lemma-internal-hom-evaluate-isomorphism} part (2).
+
+\medskip\noindent
+Proof of (2). We argue as above. A small change is that here we get
+$R\SheafHom(K, L)$ in $D_{\textit{Coh}}(\mathcal{O}_X)$ because
+affine locally (which is allowable by Lemma \ref{lemma-affine-duality})
+we may appeal to Dualizing Complexes, Lemma
+\ref{dualizing-lemma-finite-ext-into-bounded-injective}.
+Then we finally conclude by
+More on Algebra, Lemma
+\ref{more-algebra-lemma-internal-hom-evaluate-isomorphism-technical}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-dualizing-schemes}
 Let $K$ be a dualizing complex on a locally Noetherian scheme $X$.
 Then $K$ is an object of $D_{\textit{Coh}}(\mathcal{O}_X)$
@@ -210,7 +265,7 @@ $$
 which comes equipped with a canonical isomorphism
 $\text{id} \to D \circ D$. If $X$ is quasi-compact, then
 $D$ exchanges $D^+_{\textit{Coh}}(\mathcal{O}_X)$ and
-$D^-_{\textit{Coh}}(\mathcal{O}_X)$ and induces an equivalence
+$D^-_{\textit{Coh}}(\mathcal{O}_X)$ and induces an anti-equivalence
 $D^b_{\textit{Coh}}(\mathcal{O}_X) \to D^b_{\textit{Coh}}(\mathcal{O}_X)$.
 \end{lemma}
 
@@ -231,20 +286,35 @@ $$
 commutes. We conclude that $D$ sends $D_{\textit{Coh}}(\mathcal{O}_X)$ into
 $D_{\textit{Coh}}(\mathcal{O}_X)$. Moreover, the canonical map
 $$
-L \longrightarrow
+L
+\longrightarrow
+R\SheafHom_{\mathcal{O}_X}(K, K) \otimes_{\mathcal{O}_X}^\mathbf{L} L
+\longrightarrow
 R\SheafHom_{\mathcal{O}_X}(R\SheafHom_{\mathcal{O}_X}(L, K), K)
 $$
-(Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-internal-hom-evaluate})
+(using Cohomology, Lemma \ref{cohomology-lemma-internal-hom-evaluate}
+for the second arrow)
 is an isomorphism for all $L$ because this is true on affines by
-Dualizing Complexes, Lemma \ref{dualizing-lemma-dualizing}.
+Dualizing Complexes, Lemma \ref{dualizing-lemma-dualizing}\footnote{An
+alternative is to first show that
+$R\SheafHom_{\mathcal{O}_X}(K, K) = \mathcal{O}_X$ by
+working affine locally and then use
+Lemma \ref{lemma-internal-hom-evaluate-isom} part (2)
+to see the map is an isomorphism.}
+and we have already seen on affines that we recover what
+happens in algebra.
 The statement on boundedness properties of the functor $D$
 in the quasi-compact case also follows from the corresponding
 statements of Dualizing Complexes, Lemma \ref{dualizing-lemma-dualizing}.
 \end{proof}
 
 \noindent
-Let $X$ be a locally ringed space. We will say that an object $L$ of
-$D(\mathcal{O}_X)$ is {\it invertible} if there is an open covering
+Let $X$ be a locally ringed space. Recall that an object $L$ of
+$D(\mathcal{O}_X)$ is {\it invertible} if it is an invertible object
+for the symmetric monoidal structure on $D(\mathcal{O}_X)$ given
+by derived tensor product. In
+Cohomology, Lemma \ref{cohomology-lemma-invertible-derived}
+we have seen this means $L$ is perfect and there is an open covering
 $X = \bigcup U_i$ such that $L|_{U_i} \cong \mathcal{O}_{U_i}[-n_i]$
 for some integers $n_i$. In this case, the function
 $$
@@ -252,10 +322,9 @@ x \mapsto n_x,\quad
 \text{where }n_x\text{ is the unique integer such that }
 H^{n_x}(L_x) \not = 0
 $$
-is locally constant on $X$. In particular, it follows that
+is locally constant on $X$. In particular, we have
 $L = \bigoplus H^n(L)[-n]$ which gives a well defined complex of
 $\mathcal{O}_X$-modules (with zero differentials) representing $L$.
-In particular $L$ is a perfect object of $D(\mathcal{O}_X)$.
 
 \begin{lemma}
 \label{lemma-dualizing-unique-schemes}
@@ -311,7 +380,7 @@ for $x \in X$ we have
 $\delta(x) \leq i \leq \delta(x) + \dim(\text{Supp}(\mathcal{F}_x))$,
 \item $\dim(\text{Supp}(\mathcal{E}^{i + \delta(x)}_x)) \leq i$,
 \item $\text{depth}(\mathcal{F}_x)$ is the smallest integer
-$i \geq 0$ such that $\mathcal{E}^{i + \delta(x)} \not = 0$, and
+$i \geq 0$ such that $\mathcal{E}_x^{i + \delta(x)} \not = 0$, and
 \item we have
 $x \in \text{Supp}(\bigoplus_{j \leq i} \mathcal{E}^j)
 \Leftrightarrow
@@ -369,8 +438,8 @@ as this would clash (for general morphisms $f$) with the notation in
 This is almost the same as \cite[Example 4.2]{Neeman-Grothendieck}.
 \end{reference}
 Let $f : X \to Y$ be a morphism between quasi-separated and quasi-compact
-schemes. The functor $Rf_* : D_\QCoh(X) \to D_\QCoh(Y)$ has a
-right adjoint.
+schemes. The functor $Rf_* : D_\QCoh(\mathcal{O}_X) \to D_\QCoh(\mathcal{O}_Y)$
+has a right adjoint.
 \end{lemma}
 
 \begin{proof}
@@ -490,18 +559,32 @@ and the second arrow is the counit $Rf_*a(K) \to K$ of the adjunction.
 Let $f : X \to Y$ be a morphism of quasi-compact and quasi-separated schemes.
 Let $a$ be the right adjoint to
 $Rf_* : D_\QCoh(\mathcal{O}_X) \to D_\QCoh(\mathcal{O}_Y)$.
-Then (\ref{equation-sheafy-trace})
+Let $L \in D_\QCoh(\mathcal{O}_X)$ and $K \in D_\QCoh(\mathcal{O}_Y)$.
+Then the map (\ref{equation-sheafy-trace})
 $$
 Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K))
 \longrightarrow
 R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)
 $$
-is an isomorphism for all $L \in D_\QCoh(\mathcal{O}_X)$ and
-$K \in D_\QCoh(\mathcal{O}_Y)$.
+becomes an isomorphism after applying the functor
+$DQ_Y : D(\mathcal{O}_Y) \to D_\QCoh(\mathcal{O}_Y)$
+discussed in Derived Categories of Schemes, Section
+\ref{perfect-section-better-coherator}.
 \end{lemma}
 
 \begin{proof}
-Let $M \in D_\QCoh(\mathcal{O}_Y)$. Then we have the following
+The statement makes sense as $DQ_Y$ exists by
+Derived Categories of Schemes, Lemma \ref{perfect-lemma-better-coherator}.
+Since $DQ_Y$ is the right adjoint to the inclusion
+functor $D_\QCoh(\mathcal{O}_Y) \to D(\mathcal{O}_Y)$
+to prove the lemma we have to show that for any $M \in D_\QCoh(\mathcal{O}_Y)$
+the map (\ref{equation-sheafy-trace}) induces an bijection
+$$
+\Hom_Y(M, Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)))
+\longrightarrow
+\Hom_Y(M, R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K))
+$$
+To see this we use the following string of equalities
 \begin{align*}
 \Hom_Y(M, Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)))
 & =
@@ -521,8 +604,58 @@ The third equality by construction of $a$.
 The fourth equality by Derived Categories of Schemes, Lemma
 \ref{perfect-lemma-cohomology-base-change} (this is the important step).
 The fifth by Cohomology, Lemma \ref{cohomology-lemma-internal-hom}.
-Thus the result holds by the Yoneda lemma.
 \end{proof}
+
+\begin{example}
+\label{example-iso-on-RSheafHom}
+The statement of Lemma \ref{lemma-iso-on-RSheafHom} is not true without
+applying the ``coherator'' $DQ_Y$. Indeed, suppose $Y = \Spec(R)$ and
+$X = \mathbf{A}^1_R$. Take $L = \mathcal{O}_X$ and $K = \mathcal{O}_Y$.
+The left hand side of the arrow is in $D_\QCoh(\mathcal{O}_Y)$ but
+the right hand side of the arrow is isomorphic to
+$\prod_{n \geq 0} \mathcal{O}_Y$ which is not quasi-coherent.
+\end{example}
+
+\begin{remark}
+\label{remark-iso-on-RSheafHom}
+In the situation of Lemma \ref{lemma-iso-on-RSheafHom} we have
+$$
+DQ_Y(Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K))) =
+Rf_* DQ_X(R\SheafHom_{\mathcal{O}_X}(L, a(K)))
+$$
+by Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-pushforward-better-coherator}.
+Thus if $R\SheafHom_{\mathcal{O}_X}(L, a(K)) \in D_\QCoh(\mathcal{O}_X)$,
+then we can ``erase'' the $DQ_Y$ on the left hand side of the arrow.
+On the other hand, if we know that
+$R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K) \in D_\QCoh(\mathcal{O}_Y)$,
+then we can ``erase'' the $DQ_Y$ from the right hand side of the arrow.
+If both are true then we see that (\ref{equation-sheafy-trace})
+is an isomorphism. Combining this with
+Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-quasi-coherence-internal-hom}
+we see that $Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)) \to
+R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)$ is an isomorphism if
+\begin{enumerate}
+\item $L$ and $Rf_*L$ are perfect, or
+\item $K$ is bounded below and $L$ and $Rf_*L$ are pseudo-coherent.
+\end{enumerate}
+For (2) we use that $a(K)$ is bounded below if $K$
+is bounded below, see Lemma \ref{lemma-twisted-inverse-image-bounded-below}.
+\end{remark}
+
+\begin{example}
+\label{example-iso-on-RSheafHom-noetherian}
+Let $f : X \to Y$ be a proper morphism of Noetherian schemes,
+$L \in D^-_{\textit{Coh}}(X)$ and $K \in D^+_{\QCoh}(\mathcal{O}_Y)$.
+Then the map $Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)) \to
+R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)$ is an isomorphism.
+Namely, the complexes $L$ and $Rf_*L$ are pseudo-coherent by
+Derived Categories of Schemes, Lemmas
+\ref{perfect-lemma-identify-pseudo-coherent-noetherian} and
+\ref{perfect-lemma-direct-image-coherent}
+and the discussion in Remark \ref{remark-iso-on-RSheafHom} applies.
+\end{example}
 
 \begin{lemma}
 \label{lemma-iso-global-hom}
@@ -544,9 +677,16 @@ R\Gamma(Y, Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)))
 $$
 and
 $$
-R\Hom_Y(Rf_*L, K) = R\Gamma(Y, R\SheafHom_{\mathcal{O}_X}(Rf_*L, a(K)))
+R\Hom_Y(Rf_*L, K) = R\Gamma(Y, R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K))
 $$
 Thus the lemma is a consequence of Lemma \ref{lemma-iso-on-RSheafHom}.
+Namely, a map $E \to E'$ in $D(\mathcal{O}_Y)$ which induces
+an isomorphism $DQ_Y(E) \to DQ_Y(E')$ induces a quasi-isomorphism
+$R\Gamma(Y, E) \to R\Gamma(Y, E')$. Indeed we have
+$H^i(Y, E) = \Ext^i_Y(\mathcal{O}_Y, E) = \Hom(\mathcal{O}_Y[-i], E) =
+\Hom(\mathcal{O}_Y[-i], DQ_Y(E))$ because $\mathcal{O}_Y[-i]$
+is in $D_\QCoh(\mathcal{O}_Y)$ and $DQ_Y$ is the right adjoint
+to the inclusion functor $D_\QCoh(\mathcal{O}_Y) \to D(\mathcal{O}_Y)$.
 \end{proof}
 
 
@@ -789,17 +929,17 @@ Derived Categories of Schemes, Lemma
 \ref{perfect-lemma-map-from-pseudo-coherent-to-complex-with-support}
 and get a map $I \to \mathcal{O}_Y$ of perfect complexes
 whose restriction to $V$ is an isomorphism such that the composition
-$I \otimes^\mathbf{L}_{\mathcal{O}_Y} Rf_*P \to Rf_*P \to K$ is zero.
+$I \otimes^\mathbf{L}_{\mathcal{O}_Y} Rf_*P \to Rf_*P \to Q$ is zero.
 By Derived Categories of Schemes, Lemma
 \ref{perfect-lemma-cohomology-base-change}
 we have $I \otimes^\mathbf{L}_{\mathcal{O}_Y} Rf_*P =
 Rf_*(Lf^*I \otimes^\mathbf{L}_{\mathcal{O}_X} P)$.
 We conclude that the composition
 $$
-Lf^*I \otimes^\mathbf{L}_{\mathcal{O}_X} P \to P \to a(K)
+Lf^*I \otimes^\mathbf{L}_{\mathcal{O}_X} P \to P \to a(Q)
 $$
 is zero. However, the restriction to $U$ is the map
-$P|_U \to a(K)|_U$ which we assumed to be nonzero.
+$P|_U \to a(Q)|_U$ which we assumed to be nonzero.
 This contradiction finishes the proof.
 \end{proof}
 
@@ -1152,7 +1292,7 @@ $$
 \gamma_{A + B} : (k \circ k')^* \circ a \to a'' \circ (l \circ l')^* \\
 \gamma_{C + D} : (l \circ l')^* \circ b \to b'' \circ (m \circ m')^* \\
 \gamma_{A + C} : (k')^* \circ (a' \circ b') \to (a'' \circ b'') \circ (m')^* \\
-\gamma_{A + C} : k^* \circ (a \circ b) \to (a' \circ b') \circ m^*
+\gamma_{B + D} : k^* \circ (a \circ b) \to (a' \circ b') \circ m^*
 \end{matrix}
 $$
 By Lemma \ref{lemma-compose-base-change-maps-horizontal} we have
@@ -1290,11 +1430,11 @@ L(g')^*a(K) \longrightarrow a'(Lg^*K)
 $$
 in the following cases
 \begin{enumerate}
-\item for all $K \in D_\QCoh(\mathcal{O}_X)$ if $f$
+\item for all $K \in D_\QCoh(\mathcal{O}_Y)$ if $f$
 is flat of finite presentation,
-\item for all $K \in D_\QCoh(\mathcal{O}_X)$ if $f$
+\item for all $K \in D_\QCoh(\mathcal{O}_Y)$ if $f$
 is perfect and $Y$ Noetherian,
-\item for $K \in D_\QCoh^+(\mathcal{O}_X)$ if $g$ has finite Tor dimension
+\item for $K \in D_\QCoh^+(\mathcal{O}_Y)$ if $g$ has finite Tor dimension
 and $Y$ Noetherian.
 \end{enumerate}
 \end{lemma}
@@ -1495,13 +1635,12 @@ is given by
 $$
 \varphi \longmapsto \text{Tr}_{f, K} \circ Rf_*\varphi
 $$
-The isomorphism
+The map (\ref{equation-sheafy-trace})
 $$
 Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K))
 \longrightarrow
 R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)
 $$
-of Lemma \ref{lemma-iso-on-RSheafHom}
 comes about by composition with $\text{Tr}_{f, K}$.
 Every trace map we are going to consider in this section will be a
 special case of this trace map. Before we discuss some special cases
@@ -1904,7 +2043,7 @@ we have $\gamma \circ f_*\delta = \alpha \circ \epsilon^{-1}$ as desired.
 
 \noindent
 Let $i : (Z, \mathcal{O}_Z) \to (X, \mathcal{O}_X)$ be a morphism
-of ringed spaces such that $i$ is a homomorphism onto a closed
+of ringed spaces such that $i$ is a homeomorphism onto a closed
 subset and such that $i^\sharp : \mathcal{O}_X \to i_*\mathcal{O}_Z$
 is surjective. (For example a closed immersion of schemes.)
 Let $\mathcal{I} = \Ker(i^\sharp)$. For a sheaf
@@ -2624,6 +2763,46 @@ for $f' : X' \to Y'$ is the base change of $\text{Tr}_{f, \mathcal{O}_Y}$
 via the base change isomorphism.
 \end{remark}
 
+\begin{remark}
+\label{remark-relative-dualizing-complex-relative-cup-product}
+Let $f : X \to Y$, $\omega^\bullet_{X/Y}$, and $\text{Tr}_{f, \mathcal{O}_Y}$
+be as in Remark \ref{remark-relative-dualizing-complex}.
+Let $K$ and $M$ be in $D_\QCoh(\mathcal{O}_X)$ with
+$M$ pseudo-coherent (for example perfect). Suppose given a map
+$K \otimes_{\mathcal{O}_X}^\mathbf{L} M \to \omega^\bullet_{X/Y}$
+which corresponds to an isomorphism
+$K \to R\SheafHom_{\mathcal{O}_X}(M, \omega^\bullet_{X/Y})$
+via Cohomology, Equation (\ref{cohomology-equation-internal-hom}).
+Then the relative cup product
+(Cohomology, Remark \ref{cohomology-remark-cup-product})
+$$
+Rf_*K \otimes_{\mathcal{O}_Y}^\mathbf{L} Rf_*M
+\to
+Rf_*(K \otimes_{\mathcal{O}_X}^\mathbf{L} M)
+\to
+Rf_*\omega^\bullet_{X/Y}
+\xrightarrow{\text{Tr}_{f, \mathcal{O}_Y}}
+\mathcal{O}_Y
+$$
+determines an isomorphism
+$Rf_*K \to R\SheafHom_{\mathcal{O}_Y}(Rf_*M, \mathcal{O}_Y)$.
+Namely, since $\omega^\bullet_{X/Y} = a(\mathcal{O}_Y)$
+the canonical map (\ref{equation-sheafy-trace})
+$$
+Rf_*R\SheafHom_{\mathcal{O}_X}(M, \omega^\bullet_{X/Y}) \to
+R\SheafHom_{\mathcal{O}_Y}(Rf_*M, \mathcal{O}_Y)
+$$
+is an isomorphism by
+Lemma \ref{lemma-iso-on-RSheafHom} and
+Remark \ref{remark-iso-on-RSheafHom}
+and the fact that $M$ and $Rf_*M$ are pseudo-coherent, see
+Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-flat-proper-pseudo-coherent-direct-image-general}.
+To see that the relative cup product
+induces this isomorphism use the commutativity of the diagram in
+Cohomology, Remark \ref{cohomology-remark-relative-cup-and-composition}.
+\end{remark}
+
 \begin{lemma}
 \label{lemma-properties-relative-dualizing}
 Let $Y$ be a quasi-compact and quasi-separated scheme.
@@ -2645,53 +2824,28 @@ is an isomorphism.
 \begin{proof}
 In view of the fact that formation of $\omega_{X/Y}^\bullet$ commutes
 with base change (see Remark \ref{remark-relative-dualizing-complex}),
-we may and do assume that $Y$ is affine. We will repeatedly use that
-$Rf_*R\SheafHom_{\mathcal{O}_X}(L, a(K)) =
-R\SheafHom_{\mathcal{O}_Y}(Rf_*L, K)$, see
-Lemma \ref{lemma-iso-on-RSheafHom}.
-Let $E$ be a perfect object of $D(\mathcal{O}_X)$
-with dual $E^\vee$, see Cohomology, Lemma
-\ref{cohomology-lemma-dual-perfect-complex}.
-Then
-$$
-Rf_*(E \otimes_{\mathcal{O}_X}^\mathbf{L} \omega_{X/Y}^\bullet) =
-Rf_*R\SheafHom_{\mathcal{O}_X}(E^\vee, \omega_{X/Y}^\bullet) =
-R\SheafHom_{\mathcal{O}_Y}(Rf_*E^\vee, \mathcal{O}_Y)
-$$
-By Derived Categories of Schemes, Lemma
-\ref{perfect-lemma-flat-proper-perfect-direct-image-general}
-the complex $Rf_*E^\vee$ is perfect.
-Hence the dual $R\SheafHom_{\mathcal{O}_Y}(Rf_*E^\vee, \mathcal{O}_Y)$
-is perfect as well. We conclude that $\omega_{X/Y}^\bullet$
-is pseudo-coherent by
+we may and do assume that $Y$ is affine. For a perfect object $E$ of
+$D(\mathcal{O}_X)$ we have
+\begin{align*}
+Rf_*(E \otimes_{\mathcal{O}_X}^\mathbf{L} \omega_{X/Y}^\bullet)
+& =
+Rf_*R\SheafHom_{\mathcal{O}_X}(E^\vee, \omega_{X/Y}^\bullet) \\
+& =
+R\SheafHom_{\mathcal{O}_Y}(Rf_*E^\vee, \mathcal{O}_Y) \\
+& =
+(Rf_*E^\vee)^\vee
+\end{align*}
+For the first equality, see
+Cohomology, Lemma \ref{cohomology-lemma-dual-perfect-complex}.
+For the second equality, see Lemma \ref{lemma-iso-on-RSheafHom},
+Remark \ref{remark-iso-on-RSheafHom}, and 
 Derived Categories of Schemes, Lemma
-\ref{perfect-lemma-perfect-enough} amd
-More on Morphisms, Lemma
-\ref{more-morphisms-lemma-characterize-pseudo-coherent}.
-
-\medskip\noindent
-Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_Y$-module. By
-Lemma \ref{lemma-compare-with-pullback-flat-proper} we have
-$$
-a(\mathcal{F}) =
-Lf^*\mathcal{F} \otimes_{\mathcal{O}_X}^\mathbf{L} \omega_{X/Y}^\bullet =
-f^{-1}\mathcal{F} \otimes_{f^{-1}\mathcal{O}_Y}^\mathbf{L} \omega_{X/Y}^\bullet
-$$
-Second equality by Cohomology, Lemma
-\ref{cohomology-lemma-variant-derived-pullback}.
-By Lemma \ref{lemma-twisted-inverse-image-bounded-below}
-there exists an integer $N$ such that
-$H^i(a(\mathcal{F})) = 0$ for $i \leq -N$.
-Looking at stalks we conclude that $\omega_{X/Y}^\bullet$ has finite
-tor dimension (details omitted; hint: for $y \in Y$ any
-$\mathcal{O}_{Y, y}$-module occurs as $\mathcal{F}_y$
-for some quasi-coherent module on the affine scheme $Y$).
-
-\medskip\noindent
-Combining the results of the previous two paragraphs we find that
-$\omega_{X/Y}^\bullet$ is $Y$-perfect, see
-Derived Categories of Schemes, Definition
-\ref{perfect-definition-relatively-perfect}.
+\ref{perfect-lemma-flat-proper-perfect-direct-image-general}.
+The third equality is the definition of the dual. In particular
+these references also show that the outcome is a perfect object
+of $D(\mathcal{O}_Y)$. We conclude that $\omega_{X/Y}^\bullet$
+is $Y$-perfect by More on Morphisms, Lemma
+\ref{more-morphisms-lemma-characterize-relatively-perfect}.
 This proves (1).
 
 \medskip\noindent
@@ -2702,7 +2856,7 @@ Let $M$ be an object of $D_\QCoh(\mathcal{O}_Y)$. Then
 & =
 \Hom_Y(Rf_*Lf^*M, \mathcal{O}_Y) \\
 & =
-\Hom_Y(M \otimes_{\mathcal{O}_Y}^\mathbf{L} Rf_*\mathcal{O}_Y, \mathcal{O}_Y)
+\Hom_Y(M \otimes_{\mathcal{O}_Y}^\mathbf{L} Rf_*\mathcal{O}_X, \mathcal{O}_Y)
 \end{align*}
 The first equality holds by Cohomology, Lemma
 \ref{cohomology-lemma-adjoint}.
@@ -2750,7 +2904,10 @@ The second equality is the definition of $\omega_{X/Y}^\bullet$.
 The third equality comes from the construction of the dual perfect
 complex $E^\vee$, see Cohomology, Lemma
 \ref{cohomology-lemma-dual-perfect-complex}.
-The fourth equality is given in the first paragraph of the proof.
+The fourth equality follows from the equality
+$Rf_*R\SheafHom_{\mathcal{O}_X}(E^\vee, \omega_{X/Y}^\bullet) =
+R\SheafHom_{\mathcal{O}_Y}(Rf_*E^\vee, \mathcal{O}_Y)$
+shown in the first paragraph of the proof.
 The fifth equality holds by double duality for perfect complexes
 (Cohomology, Lemma
 \ref{cohomology-lemma-dual-perfect-complex})
@@ -2804,7 +2961,7 @@ for the diagonal $\Delta : X \to X \times_Y X$.
 \end{lemma}
 
 \begin{proof}
-Let $a$ be the right adjoint for $f$ as in
+Let $a$ be the right adjoint to $Rf_*$ as in
 Lemma \ref{lemma-twisted-inverse-image}.
 Consider the cartesian square
 $$
@@ -3233,8 +3390,8 @@ degree $0$. But on the other hand,
 $a'(\mathcal{O}_{\Spec(k)}) = \mathcal{O}_E(-2)[1]$
 which is an invertible sheaf of degree $-2$ placed in
 cohomological degree $-1$, so different. In this example
-(4) is the only hypothesis of Lemma \ref{lemma-more-base-change}
-which is violated.
+the hypothesis of Tor indepence in Lemma \ref{lemma-more-base-change}
+is violated.
 \end{example}
 
 \begin{lemma}
@@ -3538,7 +3695,7 @@ c(\mathcal{O}_{X \times_S X}) \\
 The first equality is (\ref{equation-pre-rigid}) because
 $\omega_{X/S}^\bullet = a(\mathcal{O}_S)$. The second equality by
 Lemma \ref{lemma-compare-with-pullback-flat-proper-noetherian}.
-The third equality because $p \circ \Delta = \text{id}_X$.
+The third equality because $\text{pr}_1 \circ \Delta = \text{id}_X$.
 The fourth equality by Lemma \ref{lemma-regular-immersion}.
 Observe that $\wedge^d(\mathcal{N}_\Delta)$ is an invertible
 $\mathcal{O}_X$-module. Hence $\wedge^d(\mathcal{N}_\Delta)[-d]$
@@ -3556,245 +3713,41 @@ the proof is complete.
 
 
 
-
-
-\section{Compactifications}
-\label{section-compactify}
-
-\noindent
-We interrupt the flow of the arguments for a little bit of geometry.
-
-\medskip\noindent
-Let $S$ be a quasi-compact and quasi-separated scheme. We will say a
-scheme $X$ over $S$ {\it has a compactification over $S$}
-or {\it is compactifyable over $S$} if there exists
-a quasi-compact open immersion $X \to \overline{X}$ into a scheme
-$\overline{X}$ proper over $S$. If $X$ has a compactification over
-$S$, then $X \to S$ is separated and of finite type. It is a theorem of
-Nagata (see \cite{Lutkebohmert}, \cite{Conrad-Nagata}, \cite{Nagata-1},
-\cite{Nagata-2}, \cite{Nagata-3}, and \cite{Nagata-4}) that the converse is
-true as well (we will give a
-precise statement and a proof if we ever need this result).
-
-\medskip\noindent
-Let $S$ be a quasi-compact and quasi-separated scheme.
-Let $X$ be a scheme over $S$. The category
-of {\it compactifications of $X$ over $S$} is the category whose
-objects are open immersions $j : X \to \overline{X}$ over $S$ with
-$\overline{X} \to S$ proper and whose morphisms
-$(j' : X' \to \overline{X}') \to (j : X \to \overline{X})$
-are morphisms $f : \overline{X}' \to \overline{X}$ of schemes over $S$
-such that $f \circ j' = j$.
-
-\begin{lemma}
-\label{lemma-compactifications-cofiltered}
-Let $S$ be a quasi-compact and quasi-separated scheme.
-Let $X$ be a compactifyable scheme over $S$.
-The category of compactifications of $X$ over $S$ is
-cofiltered.
-\end{lemma}
-
-\begin{proof}
-We have to check conditions (1), (2), (3) of
-Categories, Definition \ref{categories-definition-codirected}.
-Condition (1) holds exactly because we assumed that $X$
-is compactifyable.
-Let $j_i : X \to \overline{X}_i$, $i = 1, 2$ be two compactifications.
-Then we can consider the scheme theoretic closure $\overline{X}$
-of $(j_1, j_2) : X \to \overline{X}_1 \times_S \overline{X}_2$.
-This determines a third compactification $j : X \to \overline{X}$
-which dominates both $j_i$:
-$$
-\xymatrix{
-(X, \overline{X}_1) & (X, \overline{X}) \ar[l] \ar[r] & (X, \overline{X}_2)
-}
-$$
-Thus (2) holds. Let $f_1, f_2 : \overline{X}_1 \to \overline{X}_2$
-be two morphisms between compactifications
-$j_i : X \to \overline{X}_i$, $i = 1, 2$.
-Let $\overline{X} \subset \overline{X}_1$ be the equalizer of
-$f_1$ and $f_2$. As $\overline{X}_2 \to S$ is separated, we see
-that $\overline{X}$ is a closed subscheme of $\overline{X}_1$
-and hence proper over $S$. Moreover, we obtain an
-open immersion $X \to \overline{X}$ because $f_1|_X = f_2|_X = \text{id}_X$.
-The morphism $(X \to \overline{X}) \to (j_1 : X \to \overline{X}_1)$
-given by the closed immersion $\overline{X} \to \overline{X}_1$
-equalizes $f_1$ and $f_2$ which proves condition (3) and
-finishes the proof.
-\end{proof}
-
-\noindent
-We can also consider the category of all compactifications (for varying $X$).
-It turns out that this category, localized at the set of morphisms
-which induce an isomorphism on the interior
-is equivalent to the category of compactifyable schemes over $S$.
-
-\begin{lemma}
-\label{lemma-compactifyable}
-Let $S$ be a quasi-compact and quasi-separated scheme. Let $f : X \to Y$
-be a morphism of schemes over $S$ with $Y$ separated and of finite type
-over $S$ and $X$ compactifyable over $S$. Then $X$ has a compactification
-over $Y$.
-\end{lemma}
-
-\begin{proof}
-Let $f : X \to Y$ be a morphism of schemes over $S$ with $Y$ separated
-and of finite type over $S$. Let $j : X \to \overline{X}$ be a
-compactification of $X$ over $S$. Then we let $\overline{X}'$ be
-the scheme theoretic image of $(j, f) : X \to \overline{X} \times_S Y$.
-The morphism $\overline{X}' \to Y$ is proper because
-$\overline{X} \times_S Y \to Y$ is proper as a base change of
-$\overline{X} \to S$. On the other hand, since $Y$ is separated
-over $S$, the morphism $(1, f) : X \to X \times_S Y$ is a closed
-immersion (Schemes, Lemma \ref{schemes-lemma-semi-diagonal})
-and hence $X \to \overline{X}'$ is an open immersion.
-\end{proof}
-
-\noindent
-Let $S$ be a quasi-compact and quasi-separated scheme.
-We define the {\it category of compactifications} to be the category
-whose objects are pairs $(X, \overline{X})$ where $\overline{X}$
-is a scheme proper over $S$ and $X \subset \overline{X}$ is a
-quasi-compact open and whose morphisms
-are commutative diagrams
-$$
-\xymatrix{
-X \ar[d] \ar[r]_f & Y \ar[d] \\
-\overline{X} \ar[r]^{\overline{f}} & \overline{Y}
-}
-$$
-of morphisms of schemes over $S$.
-
-\begin{lemma}
-\label{lemma-right-multiplicative-system}
-Let $S$ be a quasi-compact and quasi-separated scheme.
-The collection of morphisms
-$(u, \overline{u}) : (X', \overline{X}') \to (X, \overline{X})$
-such that $u$ is an isomorphism forms a right multiplicative system
-(Categories, Definition \ref{categories-definition-multiplicative-system})
-of arrows in the category of compactifications.
-\end{lemma}
-
-\begin{proof}
-Axiom RMS1 is trivial to verify. Let us check RMS2 holds.
-Suppose given a diagram
-$$
-\xymatrix{
-& (X', \overline{X}') \ar[d]_{(u, \overline{u})} \\
-(Y, \overline{Y}) \ar[r]^{(f, \overline{f})} & (X, \overline{X})
-}
-$$
-with $u : X' \to X$ an isomorphism. Then we let $Y' = Y \times_X X'$
-with the projection map $v : Y' \to Y$ (an isomorphism). We also
-set $\overline{Y}' = \overline{Y} \times_{\overline{X}} \overline{X}'$
-with the projection map $\overline{v} : \overline{Y}' \to \overline{Y}$
-It is clear that $Y' \to \overline{Y}'$ is an open immersion.
-The diagram
-$$
-\xymatrix{
-(Y', \overline{Y}') \ar[r]_{(g, \overline{g})} \ar[d]_{(v, \overline{v})} &
-(X', \overline{X}') \ar[d]_{(u, \overline{u})} \\
-(Y, \overline{Y}) \ar[r]^{(f, \overline{f})} & (X, \overline{X})
-}
-$$
-shows that axiom RMS2 holds.
-
-\medskip\noindent
-Let us check RMS3 holds. Suppose given a pair of morphisms
-$(f, \overline{f}), (g, \overline{g}) :
-(X, \overline{X}) \to (Y, \overline{Y})$
-of compactifications and a morphism
-$(v, \overline{v}) : (Y, \overline{Y}) \to (Y', \overline{Y}')$
-such that $v$ is an isomorphism and such that
-$(v, \overline{v}) \circ (f, \overline{f}) =
-(v, \overline{v}) \circ (g, \overline{g})$. Then $f = g$.
-Hence if we let $\overline{X}' \subset \overline{X}$
-be the equalizer of $\overline{f}$ and $\overline{g}$,
-then $(u, \overline{u}) : (X, \overline{X}') \to (X, \overline{X})$
-will be a morphism of the category of compactifications
-such that $(f, \overline{f}) \circ (u, \overline{u}) =
-(g, \overline{g}) \circ (u, \overline{u})$ as desired.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-invert-right-multiplicative-system}
-Let $S$ be a quasi-compact and quasi-separated scheme.
-The functor $(X, \overline{X}) \mapsto X$ defines an
-equivalence from the category of compactifications localized
-(Categories, Lemma \ref{categories-lemma-right-localization})
-at the right
-multiplicative system of Lemma \ref{lemma-right-multiplicative-system}
-to the category of compactifyable schemes over $S$.
-\end{lemma}
-
-\begin{proof}
-Denote $\mathcal{C}$ the category of compactifications and
-denote $Q : \mathcal{C} \to \mathcal{C}'$ the localization
-functor of Categories, Lemma
-\ref{categories-lemma-properties-right-localization}.
-Denote $\mathcal{D}$ the category of compactifyable schemes
-over $S$. It is clear from the lemma just cited and our
-choice of multiplicative system that we
-obtain a functor $\mathcal{C}' \to \mathcal{D}$.
-This functor is clearly essentially surjective.
-If $f : X \to Y$ is a morphism of compactifyable
-schemes, then we choose an open immersion $Y \to \overline{Y}$
-into a scheme proper over $S$, and then we choose an embedding
-$X \to \overline{X}$ into a scheme $\overline{X}$ proper over
-$\overline{Y}$ (possible by Lemma \ref{lemma-compactifyable}
-applied to $X \to \overline{Y}$). This gives a morphism
-$(X, \overline{X}) \to (Y, \overline{Y})$ of compactifications
-which produces our given morphism $X \to Y$.
-Finally, suppose given a pair of morphisms in the
-localized category with the same source and target: say
-$$
-a = ((f, \overline{f}) : (X', \overline{X}') \to (Y, \overline{Y}),
-(u, \overline{u}) : (X', \overline{X}') \to (X, \overline{X}))
-$$
-and
-$$
-b = ((g, \overline{g}) : (X'', \overline{X}'') \to (Y, \overline{Y}),
-(v, \overline{v}) : (X'', \overline{X}'') \to (X, \overline{X}))
-$$
-which produce the same morphism $X \to Y$ over $S$, in other words
-$f \circ u^{-1} = g \circ v^{-1}$. By
-Categories, Lemma \ref{categories-lemma-morphisms-right-localization}
-we may assume that $(X', \overline{X}') = (X'', \overline{X}'')$
-and $(u, \overline{u}) = (v, \overline{v})$. In this case we
-can consider the equalizer $\overline{X}''' \subset \overline{X}'$
-of $\overline{f}$ and $\overline{g}$. The morphism
-$(w, \overline{w}) : (X', \overline{X}''') \to (X', \overline{X}')$ is in
-the multiplicative subset and we see that $a = b$ in the localized
-category by precomposing with $(w, \overline{w})$.
-\end{proof}
-
-
-
-
-
-
-
 \section{Upper shriek functors}
 \label{section-upper-shriek}
 
 \noindent
 In this section, we construct the functors $f^!$ for morphisms
-between compactifyable schemes over a fixed Noetherian base.
+between schemes which are of finite type and separated
+over a fixed Noetherian base using compactifications.
 As is customary in coherent duality, there are a number of diagrams
 that have to be shown to be commutative. We suggest the reader,
 after reading the construction, skips the verification of the
 lemmas and continues to the next section where we discuss
 properties of the upper shriek functors.
 
-\medskip\noindent
-Given a morphism $f : X \to Y$ of compactifyable schemes over a Noetherian
-base scheme $S$, we will define an exact functor
+\begin{situation}
+\label{situation-shriek}
+Here $S$ is a Noetherian scheme and $\textit{FTS}_S$ is the category whose
+\begin{enumerate}
+\item objects are schemes $X$ over $S$ such that the structure
+morphism $X \to S$ is both separated and of finite type, and
+\item morphisms $f : X \to Y$ between objects are morphisms
+of schemes over $S$.
+\end{enumerate}
+\end{situation}
+
+\noindent
+In Situation \ref{situation-shriek} given a morphism $f : X \to Y$
+in $\textit{FTS}_S$, we will define an exact functor
 $$
 f^! : D_\QCoh^+(\mathcal{O}_Y) \to D_\QCoh^+(\mathcal{O}_X)
 $$
 of triangulated categories. Namely, we choose a compactification
 $X \to \overline{X}$ over $Y$ which is possible by
-Lemma \ref{lemma-compactifyable}. Denote $\overline{f} : \overline{X} \to Y$
+More on Flatness, Theorem \ref{flat-theorem-nagata} and
+Lemma \ref{flat-lemma-compactifyable}.
+Denote $\overline{f} : \overline{X} \to Y$
 the structure morphism. Let
 $\overline{a} : D_\QCoh(\mathcal{O}_Y) \to D_\QCoh(\mathcal{O}_{\overline{X}})$
 be the right adjoint of $R\overline{f}_*$
@@ -3808,15 +3761,16 @@ Lemma \ref{lemma-twisted-inverse-image-bounded-below}.
 
 \begin{lemma}
 \label{lemma-shriek-well-defined}
-Let $f : X \to Y$ be a morphism between compactifyable schemes over a
-Noetherian scheme $S$. The functor $f^!$ is, up to canonical isomorphism,
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism
+of $\textit{FTS}_S$. The functor $f^!$ is, up to canonical isomorphism,
 independent of the choice of the compactification.
 \end{lemma}
 
 \begin{proof}
-Consider the category of compactifications of $X$ over $Y$,
-which is cofiltered according to
-Lemmas \ref{lemma-compactifications-cofiltered} and \ref{lemma-compactifyable}.
+The category of compactifications of $X$ over $Y$ is defined
+in More on Flatness, Section \ref{flat-section-compactify}.
+By More on Flatness, Theorem \ref{flat-theorem-nagata} and
+Lemma \ref{flat-lemma-compactifyable} it is nonempty.
 To every choice of a compactification
 $$
 j : X \to \overline{X},\quad \overline{f} : \overline{X} \to Y
@@ -3828,8 +3782,11 @@ constructed in Lemma \ref{lemma-twisted-inverse-image}.
 
 \medskip\noindent
 Suppose given a morphism $g : \overline{X}_1 \to \overline{X}_2$
-between compactifications $j_i : X \to \overline{X}_i$ over $Y$.
-Namely, let $\overline{c}$ be the right adjoint of
+between compactifications $j_i : X \to \overline{X}_i$ over $Y$
+such that $g^{-1}(j_2(X)) = j_1(X)$\footnote{This may fail
+with our definition of compactification. See
+More on Flatness, Section \ref{flat-section-compactify}.}.
+Let $\overline{c}$ be the right adjoint of
 Lemma \ref{lemma-twisted-inverse-image} for $g$.
 Then $\overline{c} \circ \overline{a}_2 = \overline{a}_1$
 because these functors are adjoint to
@@ -3850,23 +3807,73 @@ $$
 is an isomorphism of functors which we will denote by $\alpha_g$.
 
 \medskip\noindent
-To finish the proof, since the category of compactifications of $X$ over $Y$
-is cofiltered, it suffices to show compositions of morphisms of
-compactifications of $X$ over $Y$ are turned into compositions of
-isomorphisms of functors\footnote{Namely, if $\alpha, \beta : F \to G$
-are morphisms of functors and $\gamma : G \to H$ is an isomorphism
-of functors such that $\gamma \circ \alpha = \gamma \circ \beta$, then
-we conclude $\alpha = \beta$.}. To do this, suppose that
-$j_3 : X \to \overline{X}_3$
-is a third compactification and that $h : \overline{X}_2 \to \overline{X}_3$
-is a morphism of compactifications. Let $\overline{d}$ be the
-right adjoint of Lemma \ref{lemma-twisted-inverse-image} for $h$.
-Then $\overline{d} \circ \overline{a}_3 = \overline{a}_2$
-and there is a canonical transformation
+Consider two compactifications $j_i : X \to \overline{X}_i$, $i = 1, 2$
+of $X$ over $Y$. By More on Flatness, Lemma
+\ref{flat-lemma-compactifications-cofiltered} part (b)
+we can find a compactification $j : X \to \overline{X}$
+with dense image and morphisms
+$g_i : \overline{X} \to \overline{X}_i$ of compactifications.
+By More on Flatness, Lemma
+\ref{flat-lemma-compactifications-cofiltered} part (c)
+we have $g_i^{-1}(j_i(X)) = j(X)$. Hence we get isomorpisms
 $$
+\alpha_{g_i} :
+j^* \circ \overline{a}
+\longrightarrow
+j_i^* \circ \overline{a}_i
+$$
+by the previous paragraph. We obtain an isomorphism
+$$
+\alpha_{g_2} \circ \alpha_{g_1}^{-1} :
+j_1^* \circ \overline{a}_1 \to j_2^* \circ \overline{a}_2
+$$
+To finish the proof we have to show that these isomorphisms are well defined.
+We claim it suffices to show the composition of isomorphisms constructed
+in the previous paragraph is another (for a precise statement see the next
+paragraph). We suggest the reader check this is true on a napkin, but we
+will also completely spell it out in the rest of this paragraph.
+Namely, consider a second choice of a compactification
+$j' : X \to \overline{X}'$ with dense image
+and morphisms of compactifications $g'_i : \overline{X}' \to \overline{X}_i$.
+By More on Flatness, Lemma \ref{flat-lemma-compactifications-cofiltered}
+we can find a compactification $j'' : X \to \overline{X}''$
+with dense image and morphisms of compactifications
+$h : \overline{X}'' \to \overline{X}$ and
+$h' : \overline{X}'' \to \overline{X}'$. We may even assume
+$g_1 \circ h = g'_1 \circ h'$ and $g_2 \circ h = g'_2 \circ h'$.
+The result of the next paragraph gives
+$$
+\alpha_{g_i} \circ \alpha_h = \alpha_{g_i \circ h} =
+\alpha_{g'_i \circ h'} = \alpha_{g'_i} \circ \alpha_{h'}
+$$
+for $i = 1, 2$. Since these are all isomorphisms of functors
+we conclude that $\alpha_{g_2} \circ \alpha_{g_1}^{-1} =
+\alpha_{g'_2} \circ \alpha_{g'_1}^{-1}$ as desired.
+
+\medskip\noindent
+Suppose given compactifications $j_i : X \to \overline{X}_i$
+for $i = 1, 2, 3$.  Suppose given morphisms
+$g : \overline{X}_1 \to \overline{X}_2$ and
+$h : \overline{X}_2 \to \overline{X}_3$ of compactifications
+such that $g^{-1}(j_2(X)) = j_1(X)$ and $h^{-1}(j_2(X)) = j_3(X)$.
+Let $\overline{a}_i$ be as above. The claim above means that
+$$
+\alpha_g \circ \alpha_h = \alpha_{g \circ h} :
+j_1^* \circ \overline{a}_1 \to j_3^* \circ \overline{a}_3
+$$
+Let $\overline{c}$, resp.\ $\overline{d}$ be the right adjoint of
+Lemma \ref{lemma-twisted-inverse-image} for $g$, resp.\ $h$.
+Then $\overline{c} \circ \overline{a}_2 = \overline{a}_1$ and
+$\overline{d} \circ \overline{a}_3 = \overline{a}_2$
+and there are canonical transformations
+$$
+j_1^* \circ \overline{c} \longrightarrow j_2^*
+\quad\text{and}\quad
 j_2^* \circ \overline{d} \longrightarrow j_3^*
 $$
 of functors
+$D^+_\QCoh(\mathcal{O}_{\overline{X}_2}) \to D^+_\QCoh(\mathcal{O}_X)$
+and
 $D^+_\QCoh(\mathcal{O}_{\overline{X}_3}) \to D^+_\QCoh(\mathcal{O}_X)$
 for the same reasons as above. Denote $\overline{e}$ the
 right adjoint of Lemma \ref{lemma-twisted-inverse-image}
@@ -3929,16 +3936,16 @@ lemma are equal to $\text{id}_X$).
 
 \begin{lemma}
 \label{lemma-upper-shriek-composition}
-Let $f : X \to Y$ and $g : Y \to Z$ be composable
-morphisms between compactifyable
-schemes over a Noetherian scheme $S$. Then there is a canonical
+In Situation \ref{situation-shriek} let $f : X \to Y$ and $g : Y \to Z$
+be composable morphisms of $\textit{FTS}_S$. Then there is a canonical
 isomorphism $(g \circ f)^! \to f^! \circ g^!$.
 \end{lemma}
 
 \begin{proof}
 Choose a compactification $i : Y \to \overline{Y}$ of $Y$ over $Z$.
 Choose a compactification $X \to \overline{X}$ of $X$ over
-$\overline{Y}$. This uses Lemma \ref{lemma-compactifyable} twice.
+$\overline{Y}$. This uses More on Flatness, Theorem \ref{flat-theorem-nagata}
+and Lemma \ref{flat-lemma-compactifyable} twice.
 Let $\overline{a}$ be the
 right adjoint of Lemma \ref{lemma-twisted-inverse-image} for
 $\overline{X} \to \overline{Y}$ and let $\overline{b}$
@@ -3948,7 +3955,7 @@ $\overline{Y} \to Z$.
 Then $\overline{a} \circ \overline{b}$ is the
 right adjoint of Lemma \ref{lemma-twisted-inverse-image} for
 the composition $\overline{X} \to Z$.
-Hence $g^! = j_Y^* \circ \overline{b}$ and
+Hence $g^! = i^* \circ \overline{b}$ and
 $(g \circ f)^! = (X \to \overline{X})^* \circ \overline{a} \circ \overline{b}$.
 Let $U$ be the inverse image of $Y$ in $\overline{X}$
 so that we get the commutative diagram
@@ -3964,15 +3971,15 @@ right adjoint of Lemma \ref{lemma-twisted-inverse-image} for
 $U \to Y$.
 Then $f^! = j^* \circ \overline{a}'$. We obtain
 $$
-\gamma : (j')^* \circ \overline{a} \to \overline{a}' \circ j_Y^*
+\gamma : (j')^* \circ \overline{a} \to \overline{a}' \circ i^*
 $$
 by (\ref{equation-sheafy}) and we can use it to define
 $$
 (g \circ f)^! =
-j_X^* \circ \overline{a} \circ \overline{b} =
+(j' \circ j)^* \circ \overline{a} \circ \overline{b} =
 j^* \circ (j')^* \circ \overline{a} \circ \overline{b}
 \to
-j^* \circ \overline{a}' \circ j_Y^* \circ \overline{b} =
+j^* \circ \overline{a}' \circ i^* \circ \overline{b} =
 f^! \circ g^!
 $$
 which is an isomorphism on objects of $D_\QCoh^+(\mathcal{O}_Z)$ by
@@ -3999,12 +4006,13 @@ Z
 }
 $$
 We can first choose a compactification $i : Y \to \overline{Y}$
-of $Y$ over $Z$ which dominates both $\overline{Y}_1$ and $\overline{Y}_2$,
-see Lemma \ref{lemma-compactifications-cofiltered}.
-By Lemma \ref{lemma-right-multiplicative-system} and
+with dense image of $Y$ over $Z$ which dominates both
+$\overline{Y}_1$ and $\overline{Y}_2$,
+see More on Flatness, Lemma \ref{flat-lemma-compactifications-cofiltered}.
+By More on Flatness, Lemma \ref{flat-lemma-right-multiplicative-system} and
 Categories, Lemmas \ref{categories-lemma-morphisms-right-localization} and
 \ref{categories-lemma-equality-morphisms-right-localization}
-we can choose a compactification $X \to \overline{X}$ of
+we can choose a compactification $X \to \overline{X}$ with dense image of
 $X$ over $\overline{Y}$ with morphisms $\overline{X} \to \overline{X}_1$
 and $\overline{X} \to \overline{X}_2$ and such that the composition
 $\overline{X} \to \overline{Y} \to \overline{Y}_1$ is equal to
@@ -4028,6 +4036,8 @@ Y \ar[rr]^{i_2} \ar[d] & & \overline{Y}_2 \ar[dll] \\
 Z
 }
 $$
+and moreover the compactifications $X \to \overline{X}_1$ and
+$Y \to \overline{Y}_2$ have dense image.
 We use $\overline{a}_i$, $\overline{a}'_i$, $\overline{c}$, and
 $\overline{c}'$ for the
 right adjoint of Lemma \ref{lemma-twisted-inverse-image} for
@@ -4060,6 +4070,10 @@ X \ar[r] \ar[d] \ar@{}[dr]|E & \overline{X}_1 \ar[d] \\
 X \ar[r] & \overline{X}_2
 }
 $$
+is cartesian (see
+More on Flatness, Lemma \ref{flat-lemma-compactifications-cofiltered} part (c)
+for A, D, E and recall that $U_i$ is the inverse image of $Y$
+by $\overline{X}_i \to \overline{Y}_i$ for B, C) and hence
 gives rise to a base change map (\ref{equation-sheafy}) as follows
 $$
 \begin{matrix}
@@ -4131,11 +4145,10 @@ we conclude.
 
 \begin{lemma}
 \label{lemma-pseudo-functor}
-Let $S$ be a Noetherian scheme. The constructions of
+In Situation \ref{situation-shriek} the constructions of
 Lemmas \ref{lemma-shriek-well-defined} and \ref{lemma-upper-shriek-composition}
-define a pseudo functor from the category of
-compactifyable schemes over $S$ into the $2$-category of
-categories (see Categories, Definition
+define a pseudo functor from the category $\textit{FTS}_S$
+into the $2$-category of categories (see Categories, Definition
 \ref{categories-definition-functor-into-2-category}).
 \end{lemma}
 
@@ -4154,7 +4167,9 @@ is commutative (for the meaning of the $\gamma$'s, see below).
 To do this we choose a compactification $\overline{Z}$
 of $Z$ over $T$, then a compactification $\overline{Y}$ of $Y$ over
 $\overline{Z}$, and then a compactification $\overline{X}$ of
-$X$ over $\overline{Y}$. This uses Lemma \ref{lemma-compactifyable} thrice.
+$X$ over $\overline{Y}$. This uses
+More on Flatness, Theorem \ref{flat-theorem-nagata} and
+Lemma \ref{flat-lemma-compactifyable}.
 Let $W \subset \overline{Y}$ be the inverse image of $Z$ under
 $\overline{Y} \to \overline{Z}$ and let $U \subset V \subset \overline{X}$
 be the inverse images of $Y \subset W$ under $\overline{X} \to \overline{Y}$.
@@ -4187,8 +4202,8 @@ Remark \ref{remark-going-around}).
 
 \begin{lemma}
 \label{lemma-map-pullback-to-shriek-well-defined}
-Let $f : X \to Y$ be a morphism between compactifyable schemes over a
-Noetherian scheme $S$. There are canonical maps
+In Situation \ref{situation-shriek} let
+$f : X \to Y$ be a morphism of $\textit{FTS}_S$. There are canonical maps
 $$
 \mu_{f, K} :
 Lf^*K \otimes_{\mathcal{O}_X}^\mathbf{L} f^!\mathcal{O}_Y
@@ -4196,7 +4211,7 @@ Lf^*K \otimes_{\mathcal{O}_X}^\mathbf{L} f^!\mathcal{O}_Y
 f^!K
 $$
 functorial in $K$ in $D^+_\QCoh(\mathcal{O}_Y)$.
-If $g : Y \to Z$ is another morphism between compactifyable schemes, then
+If $g : Y \to Z$ is another morphism of $\textit{FTS}_S$, then
 the diagram
 $$
 \xymatrix{
@@ -4222,20 +4237,26 @@ then Lemma \ref{lemma-transitivity-compare-with-pullback} proves
 the commutativity of the diagram (in greater generality).
 
 \medskip\noindent
-In general, choose a compactification $j : X \to \overline{X}$
-of $X$ over $Y$. Since $f^!$ is defined as $j^* \circ \overline{a}$
-we obtain $\mu_f$ as the restriction of the map
-(\ref{equation-compare-with-pullback})
+Let us define the map $\mu_{f, K}$. Choose a compactification
+$j : X \to \overline{X}$ of $X$ over $Y$. Since $f^!$ is defined
+as $j^* \circ \overline{a}$ we obtain $\mu_{f, K}$ as the restriction
+of the map (\ref{equation-compare-with-pullback})
 $$
 L\overline{f}^*K \otimes_{\mathcal{O}_{\overline{X}}}^\mathbf{L}
 \overline{a}(\mathcal{O}_Y)
 \longrightarrow
 \overline{a}(K)
 $$
-to $X$. To see this is independent of the choice of the compactification,
-we may assume given a morphism $g : \overline{X}_1 \to \overline{X}_2$
-between compactifications $j_i : X \to \overline{X}_i$ over $Y$.
-But now we know that the maps
+to $X$. To see this is independent of the choice of the compactification
+we argue as in the proof of Lemma \ref{lemma-shriek-well-defined}.
+We urge the reader to read the proof of that lemma first.
+
+\medskip\noindent
+Assume given a morphism $g : \overline{X}_1 \to \overline{X}_2$
+between compactifications $j_i : X \to \overline{X}_i$ over $Y$
+such that $g^{-1}(j_2(X)) = j_1(X)$. Denote $\overline{c}$ the
+right adjoint for pushforward of Lemma \ref{lemma-twisted-inverse-image}
+for the morphism $g$. The maps
 $$
 L\overline{f}_1^*K \otimes_{\mathcal{O}_{\overline{X}}}^\mathbf{L}
 \overline{a}_1(\mathcal{O}_Y)
@@ -4247,15 +4268,64 @@ L\overline{f}_2^*K \otimes_{\mathcal{O}_{\overline{X}}}^\mathbf{L}
 \longrightarrow
 \overline{a}_2(K)
 $$
-fit into a commutative diagram by
-Lemma \ref{lemma-transitivity-compare-with-pullback}
-with two other maps given by $\mu_g$ which restrict to an
-isomorphism on $X$ by Lemma \ref{lemma-compare-on-open}.
-This implies the two displayed maps above restrict to the
-same map on the open, via the identification
-$\overline{a}_1(K)|_X = \overline{a}_2(K)|_X$ used in the definition
-of $f^!$. Having said this, the commutativity of the diagram
-follows from the construction of the isomorphism
+fit into the commutative diagram
+$$
+\xymatrix{
+Lg^*(L\overline{f}_2^*K \otimes^\mathbf{L}
+\overline{a}_2(\mathcal{O}_Y))
+\otimes^\mathbf{L} \overline{c}(\mathcal{O}_{\overline{X}_2})
+\ar@{=}[d] \ar[r]_-\sigma &
+\overline{c}(L\overline{f}_2^*K \otimes^\mathbf{L}
+\overline{a}_2(\mathcal{O}_Y)) \ar[r] &
+\overline{c}(\overline{a}_2(K)) \ar@{=}[d] \\
+L\overline{f}_1^*K \otimes^\mathbf{L} Lg^*\overline{a}_2(\mathcal{O}_Y)
+\otimes^\mathbf{L} \overline{c}(\mathcal{O}_{\overline{X}_2})
+\ar[r]^-{1 \otimes \tau} &
+L\overline{f}_1^*K \otimes^\mathbf{L} \overline{a}_1(\mathcal{O}_Y) \ar[r] &
+\overline{a}_1(K)
+}
+$$
+by Lemma \ref{lemma-transitivity-compare-with-pullback}. By
+Lemma \ref{lemma-compare-on-open} the maps $\sigma$ and $\tau$
+restrict to an isomorphism over $X$. In fact, we can say more.
+Recall that in the proof of Lemma \ref{lemma-shriek-well-defined} we used
+the map (\ref{equation-sheafy}) $\gamma : j_1^* \circ \overline{c} \to j_2^*$
+to construct our isomorphism
+$\alpha_g : j_1^* \circ \overline{a}_1 \to j_2^* \circ \overline{a}_2$.
+Pulling back to map $\sigma$ by $j_1$ we obtain the identity
+map on $j_2^*\left(L\overline{f}_2^*K \otimes^\mathbf{L}
+\overline{a}_2(\mathcal{O}_Y)\right)$ if we identify
+$j_1^*\overline{c}(\mathcal{O}_{\overline{X}_2})$
+with $\mathcal{O}_X$ via $j_1^* \circ \overline{c} \to j_2^*$, see
+Lemma \ref{lemma-restriction-compare-with-pullback}.
+Similarly, the map $\tau : Lg^*\overline{a}_2(\mathcal{O}_Y)
+\otimes^\mathbf{L} \overline{c}(\mathcal{O}_{\overline{X}_2}) \to
+\overline{a}_1(\mathcal{O}_Y) = \overline{c}(\overline{a}_2(\mathcal{O}_Y))$
+pulls back to the identity map on $j_2^*\overline{a}_2(\mathcal{O}_Y)$.
+We conclude that pulling back by $j_1$ and applying $\gamma$ wherever
+we can we obtain a commutative diagram
+$$
+\xymatrix{
+j_2^*\left(L\overline{f}_2^*K \otimes^\mathbf{L}
+\overline{a}_2(\mathcal{O}_Y)\right) \ar[r] \ar[d] &
+j_2^*\overline{a}_2(K) \\
+j_1^*L\overline{f}_1^*K \otimes^\mathbf{L} j_2^*\overline{a}_2(\mathcal{O}_Y) &
+j_1^*(L\overline{f}_1^*K \otimes^\mathbf{L} \overline{a}_1(\mathcal{O}_Y))
+\ar[r] \ar[l]_{1 \otimes \alpha_g} &
+j_1^* \overline{a}_1(K) \ar[lu]_{\alpha_g}
+}
+$$
+The commutativity of this diagram exactly tells us that the map
+$\mu_{f, K}$ constructed using the compactification $\overline{X}_1$
+is the same as the map $\mu_{f, K}$ constructed using the compactification
+$\overline{X}_2$ via the identification $\alpha_g$ used in the proof
+of Lemma \ref{lemma-shriek-well-defined}. Some categorical arguments
+exactly as in the proof of  Lemma \ref{lemma-shriek-well-defined}
+now show that $\mu_{f, K}$ is well defined (small detail omitted).
+
+\medskip\noindent
+Having said this, the commutativity of the diagram in the statement
+of our lemma follows from the construction of the isomorphism
 $(g \circ f)^! \to f^! \circ g^!$ (first part of the proof of
 Lemma \ref{lemma-upper-shriek-composition} using
 $\overline{X} \to \overline{Y} \to Z$) and the result
@@ -4273,10 +4343,14 @@ Here are some properties of the upper shriek functors.
 
 \begin{lemma}
 \label{lemma-shriek-open-immersion}
-Let $S$ be a Noetherian scheme. Let $Y$ be a compactifyable
-scheme over $S$ and let $j : X \to Y$ be an open immersion.
+In Situation \ref{situation-shriek} let $Y$ be an object
+of $\textit{FTS}_S$ and let $j : X \to Y$ be an open immersion.
 Then there is a canonical isomorphism $j^! = j^*$ of functors.
 \end{lemma}
+
+\noindent
+For an \'etale morphism $f : X \to Y$ of $\textit{FTS}_S$
+we also have $f^* \cong f^!$, see Lemma \ref{lemma-shriek-etale}.
 
 \begin{proof}
 In this case we may choose $\overline{X} = Y$ as our compactification.
@@ -4287,9 +4361,31 @@ identity functor and hence $j^! = j^*$ by definition.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-restrict-before-or-after}
+In Situation \ref{situation-shriek} let
+$$
+\xymatrix{
+U \ar[r]_j \ar[d]_g & X \ar[d]^f \\
+V \ar[r]^{j'} & Y
+}
+$$
+be a commutative diagram of $\textit{FTS}_S$ where $j$ and $j'$ are
+open immersions. Then $j^* \circ f^! = g^! \circ (j')^*$ as functors
+$D^+_\QCoh(\mathcal{O}_Y) \to D^+(\mathcal{O}_U)$.
+\end{lemma}
+
+\begin{proof}
+Let $h = f \circ j = j' \circ g$. By
+Lemma \ref{lemma-upper-shriek-composition} we have
+$h^! = j^! \circ f^! = g^! \circ (j')^!$. By
+Lemma \ref{lemma-shriek-open-immersion}
+we have $j^! = j^*$ and $(j')^! = (j')^*$.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-shriek-affine-line}
-Let $S$ be a Noetherian scheme. Let $Y$ be a compactifyable
-scheme over $S$ and let $f : X = \mathbf{A}^1_Y \to Y$ be
+In Situation \ref{situation-shriek} let $Y$ be an object of $\textit{FTS}_S$
+and let $f : X = \mathbf{A}^1_Y \to Y$ be
 the projection. Then there is a (noncanonical) isomorphism
 $f^!(-) \cong Lf^*(-) [1]$ of functors.
 \end{lemma}
@@ -4303,8 +4399,8 @@ this follows from Lemmas \ref{lemma-upper-shriek-P1} and
 
 \begin{lemma}
 \label{lemma-shriek-closed-immersion}
-Let $S$ be a Noetherian scheme. Let $Y$ be a compactifyable
-scheme over $S$ and let $i : X \to Y$ be a closed immersion.
+In Situation \ref{situation-shriek} let $Y$ be an object of
+$\textit{FTS}_S$ and let $i : X \to Y$ be a closed immersion.
 Then there is a canonical isomorphism
 $i^!(-) = R\SheafHom(\mathcal{O}_X, -)$ of functors.
 \end{lemma}
@@ -4315,8 +4411,8 @@ This is a restatement of Lemma \ref{lemma-twisted-inverse-image-closed}.
 
 \begin{remark}[Local description upper shriek]
 \label{remark-local-calculation-shriek}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a morphism of
-compactifyable schemes over $S$. Using the lemmas above we can compute
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Using the lemmas above we can compute
 $f^!$ locally as follows. Suppose that we are given affine opens
 $$
 \xymatrix{
@@ -4365,8 +4461,8 @@ applying $R\Hom(A, -)$.
 
 \begin{lemma}
 \label{lemma-shriek-coherent}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a morphism
-of compactifyable schemes over $S$. Then $f^!$ maps
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Then $f^!$ maps
 $D_{\textit{Coh}}^+(\mathcal{O}_Y)$ into $D_{\textit{Coh}}^+(\mathcal{O}_X)$.
 \end{lemma}
 
@@ -4387,8 +4483,8 @@ and induction.
 
 \begin{lemma}
 \label{lemma-shriek-dualizing}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a morphism
-of compactifyable schemes over $S$. If $K$ is a dualizing complex
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. If $K$ is a dualizing complex
 for $Y$, then $f^!K$ is a dualizing complex for $X$.
 \end{lemma}
 
@@ -4413,8 +4509,8 @@ transforms dualizing complexes into dualizing complexes.
 
 \begin{lemma}
 \label{lemma-shriek-via-duality}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a morphism
-of compactifyable schemes over $S$. Let $K$ be a dualizing complex
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Let $K$ be a dualizing complex
 on $Y$. Set $D_Y(M) = R\SheafHom_{\mathcal{O}_Y}(M, K)$ for
 $M \in D_{\textit{Coh}}(\mathcal{O}_Y)$ and
 $D_X(E) = R\SheafHom_{\mathcal{O}_X}(E, f^!K)$ for
@@ -4428,7 +4524,8 @@ for $M \in D_{\textit{Coh}}^+(\mathcal{O}_Y)$.
 
 \begin{proof}
 Choose compactification $j : X \subset \overline{X}$ of $X$ over $Y$
-(Lemma \ref{lemma-compactifyable}). Let $a$ be the
+(More on Flatness, Theorem \ref{flat-theorem-nagata} and
+Lemma \ref{flat-lemma-compactifyable}). Let $a$ be the
 right adjoint of Lemma \ref{lemma-twisted-inverse-image} for
 $\overline{X} \to Y$. Set
 $D_{\overline{X}}(E) = R\SheafHom_{\mathcal{O}_{\overline{X}}}(E, a(K))$
@@ -4476,12 +4573,18 @@ by Yoneda's lemma.
 
 \begin{lemma}
 \label{lemma-perfect-comparison-shriek}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a perfect
-(e.g., flat) morphism of compactifyable schemes over $S$. Then
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Assume $f$ is perfect (e.g., flat). Then
 \begin{enumerate}
-\item[(a)] $f^!$ maps $D_{\textit{Coh}}^b(\mathcal{O}_Y)$ into
+\item[(a)] $f^!\mathcal{O}_Y$ is in $D_{\textit{Coh}}^b(\mathcal{O}_X)$,
+\item[(b)] $f^!\mathcal{O}_Y$ has finite tor dimension in
+$D(f^{-1}\mathcal{O}_Y)$,
+\item[(c)] $\mathcal{O}_X \to
+R\SheafHom_{\mathcal{O}_X}(f^!\mathcal{O}_Y, f^!\mathcal{O}_Y)$
+is an isomorphism,
+\item[(d)] $f^!$ maps $D_{\textit{Coh}}^b(\mathcal{O}_Y)$ into
 $D_{\textit{Coh}}^b(\mathcal{O}_X)$,
-\item[(b)] the map
+\item[(e)] the map
 $\mu_{f,  K} :
 Lf^*K \otimes_{\mathcal{O}_X}^\mathbf{L} f^!\mathcal{O}_Y
 \to
@@ -4495,33 +4598,45 @@ is an isomorphism for all $K \in D_\QCoh^+(\mathcal{O}_Y)$.
 (A flat morphism of finite presentation is perfect, see
 More on Morphisms, Lemma
 \ref{more-morphisms-lemma-flat-finite-presentation-perfect}.)
-We begin with a series of preliminary remarks.
+Assertions (a), (b), and (c) are local on $X$.
+Thus we may assume $X$ and $Y$ are affine.
+Then Remark \ref{remark-local-calculation-shriek}
+turns (a), (b), and (c) into (1)(a), (1)(b), and (1)(c) of
+Dualizing Complexes, Lemma \ref{dualizing-lemma-relative-dualizing-algebraic}.
+(Use Derived Categories of Schemes, Lemmas
+\ref{perfect-lemma-tor-dimension-rel-affine},
+\ref{perfect-lemma-pseudo-coherent},
+\ref{perfect-lemma-identify-pseudo-coherent-noetherian}
+\ref{perfect-lemma-quasi-coherence-internal-hom} to match the assertions.)
+
+\medskip\noindent
+To prove (d) and (e) we begin with a series of preliminary remarks.
 \begin{enumerate}
 \item We already know that $f^!$ sends $D_{\textit{Coh}}^+(\mathcal{O}_Y)$
 into $D_{\textit{Coh}}^+(\mathcal{O}_X)$, see
 Lemma \ref{lemma-shriek-coherent}.
-\item If $f$ is an open immersion, then (a) and (b) are true because
-we can take $\overline{X} = Y$ in the construction of $f^!$ and $\mu_f$.
-See also Lemma \ref{lemma-shriek-open-immersion}.
-\item If $f$ is a perfect proper morphism, then (b) is true by
+\item If $f$ is an open immersion, then $f^! = f^*$ and (d) and (e)
+are true because we can take $\overline{X} = Y$ in the construction
+of $f^!$ and $\mu_f$, see Lemma \ref{lemma-shriek-open-immersion}.
+\item If $f$ is a perfect proper morphism, then (e) is true by
 Lemma \ref{lemma-compare-with-pullback-flat-proper-noetherian}.
-\item If there exists an open covering $X = \bigcup U_i$ and (a) is
-true for $U_i \to Y$, then (a) is true for $X \to Y$. Same for (b).
+\item If there exists an open covering $X = \bigcup U_i$ and (d) is
+true for $U_i \to Y$, then (d) is true for $X \to Y$. Same for (e).
 This holds because the construction of $f^!$ and $\mu_f$ commutes
 with passing to open subschemes.
-\item If $g : Y \to Z$ is a second perfect morphism of compactifyable
-schemes over $S$ and (b) holds for $f$ and $g$, then
+\item If $g : Y \to Z$ is a second perfect morphism in $\textit{FTS}_S$
+and (e) holds for $f$ and $g$, then
 $f^!g^!\mathcal{O}_Z =
 Lf^*g^!\mathcal{O}_Z \otimes_{\mathcal{O}_X}^\mathbf{L} f^!\mathcal{O}_Y$
-and (b) holds for $g \circ f$ by the commutative diagram
+and (e) holds for $g \circ f$ by the commutative diagram
 of Lemma \ref{lemma-map-pullback-to-shriek-well-defined}.
-\item If (a) and (b) hold for both $f$ and $g$, then
-(a) and (b) hold for $g \circ f$. Namely, then $f^!g^!\mathcal{O}_Z$
+\item If (d) and (e) hold for both $f$ and $g$, then
+(d) and (e) hold for $g \circ f$. Namely, then $f^!g^!\mathcal{O}_Z$
 is bounded above (by the previous point) and $L(g \circ f)^*$ has finite
-cohomological dimension and (a) follows from (b) which we saw above.
+cohomological dimension and (d) follows from (e) which we saw above.
 \end{enumerate}
-From these points we see it suffices to prove the result in case $X$ is affine.
-Choose an immersion $X \to \mathbf{A}^n_Y$
+From these points we see it suffices to prove (d) and (e) in case $X$ is
+affine. Choose an immersion $X \to \mathbf{A}^n_Y$
 (Morphisms, Lemma \ref{morphisms-lemma-quasi-affine-finite-type-over-S})
 which we factor as $X \to U \to \mathbf{A}^n_Y \to Y$ where $X \to U$
 is a closed immersion and $U \subset \mathbf{A}^n_Y$ is open.
@@ -4531,27 +4646,27 @@ Thus it suffices to prove the lemma for a perfect closed immersion
 and for the projection $\mathbf{A}^n_Y \to Y$.
 
 \medskip\noindent
-Let $f : X \to Y$ be a perfect closed immersion. We already know (b) holds.
+Let $f : X \to Y$ be a perfect closed immersion. We already know (d) holds.
 Let $K \in D^b_{\textit{Coh}}(\mathcal{O}_Y)$.
 Then $f^!K = R\SheafHom(\mathcal{O}_X, K)$
 (Lemma \ref{lemma-shriek-closed-immersion})
 and $f_*f^!K = R\SheafHom_{\mathcal{O}_Y}(f_*\mathcal{O}_X, K)$.
 Since $f$ is perfect, the complex $f_*\mathcal{O}_X$ is perfect
 and hence $R\SheafHom_{\mathcal{O}_Y}(f_*\mathcal{O}_X, K)$ is bounded above.
-This proves that (a) holds. Some details omitted.
+This proves that (d) holds. Some details omitted.
 
 \medskip\noindent
-Let $f : \mathbf{A}^n_Y \to Y$ be the projection. Then (a) holds
+Let $f : \mathbf{A}^n_Y \to Y$ be the projection. Then (d) holds
 by repeated application of Lemma \ref{lemma-shriek-affine-line}.
-Finally, (b) is true because it holds for $\mathbf{P}^n_Y \to Y$
+Finally, (e) is true because it holds for $\mathbf{P}^n_Y \to Y$
 (flat and proper) and because $\mathbf{A}^n_Y \subset \mathbf{P}^n_Y$
 is an open.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-flat-shriek-relatively-perfect}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a flat
-morphism of compactifyable schemes over $S$. Then
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. If $f$ is flat, then
 $f^!\mathcal{O}_Y$ is a $Y$-perfect object of $D(\mathcal{O}_X)$ and
 $\mathcal{O}_X \to
 R\SheafHom_{\mathcal{O}_X}(f^!\mathcal{O}_Y, f^!\mathcal{O}_Y)$
@@ -4569,8 +4684,9 @@ Dualizing Complexes, Lemma \ref{dualizing-lemma-relative-dualizing-algebraic}.
 
 \begin{lemma}
 \label{lemma-lci-shriek}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a local complete
-intersection morphism of compactifyable schemes over $S$. Then
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Assume $f : X \to Y$ is a local complete
+intersection morphism. Then
 \begin{enumerate}
 \item $f^!\mathcal{O}_Y$ is an invertible object of $D(\mathcal{O}_X)$, and
 \item $f^!$ maps perfect complexes to perfect complexes.
@@ -4617,14 +4733,14 @@ Lemma \ref{lemma-compute-for-effective-Cartier} and the proof is complete.
 \label{section-base-change-shriek}
 
 \noindent
-Let $S$ be a Noetherian scheme. Let
+In Situation \ref{situation-shriek} let
 $$
 \xymatrix{
 X' \ar[r]_{g'} \ar[d]_{f'} & X \ar[d]^f \\
 Y' \ar[r]^g & Y
 }
 $$
-be a cartesian diagram of compactifyable schemes over $S$ such that
+be a cartesian diagram in $\textit{FTS}_S$ such that
 $X$ and $Y'$ are Tor independent over $Y$. Our setup is currently
 not sufficient to construct a base change map
 $L(g')^* \circ f^! \to (f')^! \circ Lg^*$ in this generality.
@@ -4637,21 +4753,34 @@ The reader who is well versed with derived algebraic geometry
 will realize this is not a ``real'' problem. Namely, taking
 $\overline{X}'$ to be the derived fibre product of
 $\overline{X}$ and $Y'$ over $Y$, one can argue exactly as in
-the next paragraph to define this map. After all, the Tor independence
+the proof of Lemma \ref{lemma-base-change-shriek-flat}
+to define this map. After all, the Tor independence
 of $X$ and $Y'$ guarantees that $X'$ will be an open subscheme
 of the derived scheme $\overline{X}'$.}.
 
+\medskip\noindent
+A partial remedy will be found in
+Section \ref{section-relative-dualizing-complexes}.
+Namely, if the morphism $f$ is flat, then there is a good
+notion of a relative dualizing complex and using
+Lemmas \ref{lemma-compactifyable-relative-dualizing}
+\ref{lemma-base-change-relative-dualizing},
+and \ref{lemma-perfect-comparison-shriek}
+we may construct a canonical base change isomorphism.
+If we ever need to use this, we will add precise statements and
+proofs later in this chapter.
+
 \begin{lemma}
 \label{lemma-base-change-shriek-flat}
-Let $S$ be a Noetherian scheme. Let
+In Situation \ref{situation-shriek} let
 $$
 \xymatrix{
 X' \ar[r]_{g'} \ar[d]_{f'} & X \ar[d]^f \\
 Y' \ar[r]^g & Y
 }
 $$
-be a cartesian diagram of compactifyable schemes over $S$ with
-$g$ flat. Then there is an isomorphism
+be a cartesian diagram of $\textit{FTS}_S$ with $g$ flat.
+Then there is an isomorphism
 $L(g')^* \circ f^! \to (f')^! \circ Lg^*$ on
 $D_\QCoh^+(\mathcal{O}_Y)$.
 \end{lemma}
@@ -4688,22 +4817,68 @@ we may assume that $Y$ and $Y'$ are affine.
 Thus the result by Lemma \ref{lemma-more-base-change}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-shriek-etale}
+In Situation \ref{situation-shriek} let $f : X \to Y$ be an \'etale
+morphism of $\textit{FTS}_S$. Then $f^! \cong f^*$ as functors on
+$D^+_\QCoh(\mathcal{O}_Y)$.
+\end{lemma}
+
+\begin{proof}
+We are going to use that an \'etale morphism is flat, syntomic,
+and a local complete intersection morphism
+(Morphisms, Lemma \ref{morphisms-lemma-etale-syntomic} and
+\ref{morphisms-lemma-etale-flat} and
+More on Morphisms, Lemma \ref{more-morphisms-lemma-flat-lci}).
+By Lemma \ref{lemma-perfect-comparison-shriek} it suffices
+to show $f^!\mathcal{O}_Y = \mathcal{O}_X$.
+By Lemma \ref{lemma-lci-shriek} we know that $f^!\mathcal{O}_Y$
+is an invertible module. Consider the commutative diagram
+$$
+\xymatrix{
+X \times_Y X \ar[r]_{p_2} \ar[d]_{p_1} & X \ar[d]^f \\
+X \ar[r]^f & Y
+}
+$$
+and the diagonal $\Delta : X \to X \times_Y X$. Since $\Delta$
+is an open immersion (by Morphisms, Lemmas
+\ref{morphisms-lemma-diagonal-unramified-morphism} and
+\ref{morphisms-lemma-etale-smooth-unramified}), by
+Lemma \ref{lemma-shriek-open-immersion} we have $\Delta^! = \Delta^*$.
+By Lemma \ref{lemma-upper-shriek-composition} we have
+$\Delta^! \circ p_1^! \circ f^! = f^!$.
+By Lemma \ref{lemma-base-change-shriek-flat} applied to
+the diagram we have $p_1^!\mathcal{O}_X = p_2^*f^!\mathcal{O}_Y$.
+Hence we conclude
+$$
+f^!\mathcal{O}_Y = \Delta^!p_1^!f^!\mathcal{O}_Y =
+\Delta^*(p_1^*f^!\mathcal{O}_Y \otimes p_1^!\mathcal{O}_X) =
+\Delta^*(p_2^*f^!\mathcal{O}_Y \otimes p_1^*f^!\mathcal{O}_Y) =
+(f^!\mathcal{O}_Y)^{\otimes 2}
+$$
+where in the second step we have used
+Lemma \ref{lemma-perfect-comparison-shriek} once more.
+Thus $f^!\mathcal{O}_Y = \mathcal{O}_X$ as desired.
+\end{proof}
+
+
 \noindent
 In the rest of this section, we formulate some easy to prove
 results which would be consequences of a good theory of the
 base change map.
 
-\begin{lemma}[Poor man's base change]
+\begin{lemma}[Makeshift base change]
 \label{lemma-base-change-locally}
-Let $S$ be a Noetherian scheme. Let
+In Situation \ref{situation-shriek} let
 $$
 \xymatrix{
 X' \ar[r]_{g'} \ar[d]_{f'} & X \ar[d]^f \\
 Y' \ar[r]^g & Y
 }
 $$
-be a cartesian diagram of compactifyable schemes over $S$.
-Let $E \in D^+_\QCoh(\mathcal{O}_Y)$.
+be a cartesian diagram of $\textit{FTS}_S$.
+Let $E \in D^+_\QCoh(\mathcal{O}_Y)$ be an object
+such that $Lg^*E$ is in $D^+(\mathcal{O}_Y)$.
 If $f$ is flat, then $L(g')^*f^!E$ and $(f')^!Lg^*E$
 restrict to isomorphic objects of $D(\mathcal{O}_{U'})$
 for $U' \subset X'$ affine open mapping into affine opens of $Y$, $Y'$, and $X$.
@@ -4730,8 +4905,8 @@ Dualizing Complexes, Lemma \ref{dualizing-lemma-bc-flat}.
 
 \begin{lemma}
 \label{lemma-relative-dualizing-fibres}
-Let $f : X \to Y$ be a flat morphism of compactifyable schemes over
-a Noetherian scheme $S$. Set
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Assume $f$ is flat. Set
 $\omega_{X/Y}^\bullet = f^!\mathcal{O}_Y$ in $D^b_{\textit{Coh}}(X)$.
 Let $y \in Y$ and $h : X_y \to X$ the projection.
 Then $Lh^*\omega_{X/Y}^\bullet$ is a dualizing complex
@@ -4759,9 +4934,9 @@ This follows from Lemma \ref{lemma-shriek-dualizing}.
 \label{section-duality}
 
 \noindent
-In this section we spell out what kind of a duality theory
-our very general results above give for compactifyable schemes
-over a fixed Noetherian base scheme.
+In this section we spell out what kind of a duality theory our very general
+results above give for finite type separated schemes over a fixed
+Noetherian base scheme.
 
 \medskip\noindent
 Recall that a dualizing complex on a Noetherian scheme $X$, is an
@@ -4770,13 +4945,13 @@ complex for the corresponding rings, see
 Definition \ref{definition-dualizing-scheme}.
 
 \medskip\noindent
-Let $S$ be a Noetherian base scheme.
-We summarize the most important points of the results obtained above:
+Given a Noetherian scheme $S$ denote $\textit{FTS}_S$ the category
+of schemes which are of finite type and separated over $S$. Then:
 \begin{enumerate}
 \item the functors $f^!$ turn $D_\QCoh^+$ into a pseudo functor
-on the category of compactifyable schemes over $S$,
-\item if $f : X \to Y$ is a proper morphism between compactifyable
-schemes over $S$, then $f^!$ is the restriction of the right adjoint of
+on $\textit{FTS}_S$,
+\item if $f : X \to Y$ is a proper morphism in $\textit{FTS}_S$,
+then $f^!$ is the restriction of the right adjoint of
 $Rf_* : D_\QCoh(\mathcal{O}_X) \to D_\QCoh(\mathcal{O}_Y)$
 to $D_\QCoh^+(\mathcal{O}_Y)$ and there is a canonical isomorphism
 $$
@@ -4784,16 +4959,17 @@ Rf_*R\SheafHom_{\mathcal{O}_X}(K, f^!M)
 \to
 R\SheafHom_{\mathcal{O}_Y}(Rf_*K, M)
 $$
-for all $K \in D_\QCoh(\mathcal{O}_X)$ and $M \in D_\QCoh^+(\mathcal{O}_Y)$,
-\item if $X$ has a dualizing complex $\omega_X^\bullet$, then the functor
+for all $K \in D_{\textit{Coh}}^-(\mathcal{O}_X)$ and
+$M \in D_\QCoh^+(\mathcal{O}_Y)$,
+\item if an object $X$ of $\textit{FTS}_S$ has a dualizing complex
+$\omega_X^\bullet$, then the functor
 $D_X = R\SheafHom_{\mathcal{O}_X}(-, \omega_X^\bullet)$
 defines an involution of $D_{\textit{Coh}}(\mathcal{O}_X)$
 switching $D_{\textit{Coh}}^+(\mathcal{O}_X)$ and
 $D_{\textit{Coh}}^-(\mathcal{O}_X)$ and fixing
 $D_{\textit{Coh}}^b(\mathcal{O}_X)$,
-\item if $f : X \to Y$ is a morphism of compactifyable
-schemes over $S$ and $\omega_Y^\bullet$ is a dualizing complex on $Y$,
-then
+\item if $f : X \to Y$ is a morphism of $\textit{FTS}_S$
+and $\omega_Y^\bullet$ is a dualizing complex on $Y$, then
 \begin{enumerate}
 \item $\omega_X^\bullet = f^!\omega_Y^\bullet$ is a dualizing complex for $X$,
 \item $f^!M = D_X(Lf^*D_Y(M))$ canonically for
@@ -4803,22 +4979,23 @@ $$
 Rf_*R\SheafHom_{\mathcal{O}_X}(K, \omega_X^\bullet) =
 R\SheafHom_{\mathcal{O}_Y}(Rf_*K, \omega_Y^\bullet)
 $$
+for $K$ in $D^-_{\textit{Coh}}(\mathcal{O}_X)$,
 \end{enumerate}
-\item if $f : X \to Y$ is a closed immersion of compactifyable schemes
-over $S$, then $f^!(-) = R\SheafHom(\mathcal{O}_X, -)$,
-\item if $f : Y \to X$ is a finite morphism of compactifyable schemes
-over $S$, then $f_*f^!(-) = R\SheafHom_{\mathcal{O}_X}(f_*\mathcal{O}_X, -)$,
+\item if $f : X \to Y$ is a closed immersion in $\textit{FTS}_S$,
+then $f^!(-) = R\SheafHom(\mathcal{O}_X, -)$,
+\item if $f : Y \to X$ is a finite morphism in $\textit{FTS}_S$,
+then $f_*f^!(-) = R\SheafHom_{\mathcal{O}_X}(f_*\mathcal{O}_Y, -)$,
 \item if $f : X \to Y$ is the inclusion of an effective Cartier divisor
-into a compactifyable scheme over $S$, then
-$f^!(-) = Lf^*(-) \otimes_{\mathcal{O}_X} \mathcal{O}_Y(-X)[-1]$,
+into an object of $\textit{FTS}_S$, then
+$f^!(-) = Lf^*(-) \otimes_{\mathcal{O}_X} f^*\mathcal{O}_Y(X)[-1]$,
 \item if $f : X \to Y$ is a Koszul regular immersion of codimension $c$
-into a compactifyable scheme over $S$, then
+into an object of $\textit{FTS}_S$, then
 $f^!(-) \cong Lf^*(-) \otimes_{\mathcal{O}_X} \wedge^c\mathcal{N}[-c]$, and
 \item if $f : X \to Y$ is a smooth proper morphism of relative dimension $d$
-of compactifyable schemes over $S$, then
-$f^!(-) \cong Lf^*  \otimes_{\mathcal{O}_X} \Omega^d_{X/Y}[d]$.
+in $\textit{FTS}_S$, then
+$f^!(-) \cong Lf^*(-)  \otimes_{\mathcal{O}_X} \Omega^d_{X/Y}[d]$.
 \end{enumerate}
-See Lemmas
+This follows from Lemmas
 \ref{lemma-dualizing-schemes},
 \ref{lemma-iso-on-RSheafHom},
 \ref{lemma-twisted-inverse-image-closed},
@@ -4831,7 +5008,8 @@ See Lemmas
 \ref{lemma-shriek-closed-immersion},
 \ref{lemma-shriek-dualizing},
 \ref{lemma-shriek-via-duality}, and
-\ref{lemma-perfect-comparison-shriek}.
+\ref{lemma-perfect-comparison-shriek} and
+Example \ref{example-iso-on-RSheafHom-noetherian}.
 We have obtained our functors by a very abstract procedure
 which finally rests on invoking an existence theorem
 (Derived Categories, Proposition \ref{derived-proposition-brown}).
@@ -4861,16 +5039,18 @@ complex.
 \end{situation}
 
 \noindent
-Let $X$ be a scheme of finite type over $S$.
-Let $\mathcal{U} : X = \bigcup_{i = 1, \ldots, n} U_i$
-be a finite open covering of $X$ by quasi-compact compactifyable
-schemes over $S$. Every affine scheme of finite type
-over $S$ is compactifyable over $S$ by
-Morphisms, Lemma \ref{morphisms-lemma-quasi-projective-finite-type-over-S}
+In Situation \ref{situation-dualizing} let $X$ be a scheme of finite type
+over $S$. Let $\mathcal{U} : X = \bigcup_{i = 1, \ldots, n} U_i$
+be a finite open covering of $X$ by objects of $\textit{FTS}_S$, see
+Situation \ref{situation-shriek}. All this means is that the morphisms
+$U_i \to S$ are separated (as they are already of finite type).
+Every affine scheme of finite type over $S$ is an object of $\textit{FTS}_S$
+by Schemes, Lemma \ref{schemes-lemma-compose-after-separated}
 hence such open coverings certainly exist.
-For each $i, j, k \in \{1, \ldots, n\}$
-the schemes $p_i : U_i \to S$, $p_{ij} : U_i \cap U_j \to S$,
-and $p_{ijk} : U_i \cap U_j \cap U_k \to S$ are compactifyable.
+Then for each $i, j, k \in \{1, \ldots, n\}$
+the morphisms $p_i : U_i \to S$, $p_{ij} : U_i \cap U_j \to S$,
+and $p_{ijk} : U_i \cap U_j \cap U_k \to S$ are separated and
+each of these schemes is an object of $\textit{FTS}_S$.
 From such an open covering we obtain
 \begin{enumerate}
 \item $\omega_i^\bullet = p_i^!\omega_S^\bullet$
@@ -4914,7 +5094,7 @@ and $\mathcal{U}$ are indeed dualizing complexes.
 \label{lemma-good-dualizing-unique}
 In Situation \ref{situation-dualizing} let $X$ be a scheme of finite type
 over $S$ and let $\mathcal{U}$ be a finite open covering of $X$
-by compactifyable schemes. If there exists a dualizing complex
+by schemes separated over $S$. If there exists a dualizing complex
 normalized relative to $\omega_S^\bullet$ and $\mathcal{U}$, then it is unique
 up to unique isomorphism.
 \end{lemma}
@@ -4945,7 +5125,7 @@ are $1$ and we get an isomorphism $H^0(L) = \mathcal{O}_X$.
 \label{lemma-good-dualizing-independence-covering}
 In Situation \ref{situation-dualizing} let $X$ be a scheme of finite type
 over $S$ and let $\mathcal{U}$, $\mathcal{V}$ be two finite open coverings
-of $X$ by compactifyable schemes.
+of $X$ by schemes separated over $S$.
 If there exists a dualizing complex normalized
 relative to $\omega_S^\bullet$ and $\mathcal{U}$, then
 there exists a dualizing complex normalized relative to
@@ -4989,7 +5169,7 @@ the required property.
 \label{lemma-existence-good-dualizing}
 In Situation \ref{situation-dualizing} let $X$ be a scheme of finite type
 over $S$ and let $\mathcal{U}$ be a finite open covering
-of $X$ by compactifyable schemes. Then there exists
+of $X$ by schemes separated over $S$. Then there exists
 a dualizing complex normalized relative to $\omega_S^\bullet$ and
 $\mathcal{U}$.
 \end{lemma}
@@ -5048,11 +5228,11 @@ The upshot of the lemmas above is that given any scheme $X$ of finite type
 over $S$, there is a pair $(K, \alpha_U)$ given up to unique isomorphism,
 consisting of an object $K \in D(\mathcal{O}_X)$ and isomorphisms
 $\alpha_U : K|_U \to \omega_U^\bullet$ for every open subscheme
-$U \subset X$ which has a compactification over $S$. Here
+$U \subset X$ which is separated over $S$. Here
 $\omega_U^\bullet = (U \to S)^!\omega_S^\bullet$ is a dualizing
 complex on $U$, see Section \ref{section-duality}. Moreover, if
 $\mathcal{U} : X = \bigcup U_i$ is a finite open covering
-by opens which are compactifyable over $S$, then
+by opens which are separated over $S$, then
 $(K, \alpha_{U_i})$ is a dualizing complex normalized relative to
 $\omega_S^\bullet$ and $\mathcal{U}$.
 Namely, uniqueness up to unique isomorphism by
@@ -5077,8 +5257,7 @@ $\omega_S^\bullet$ is not just an object of the derived category of $X$
 but comes equipped with the local isomorphisms described above.
 This does not conflict with setting
 $\omega_X^\bullet = p^!\omega_S^\bullet$ where $p : X \to S$ is the
-structure morphism if $X$ has a compactification over $S$ (see
-Dualizing Complexes, Section \ref{dualizing-section-dualizing}). More generally
+structure morphism if $X$ is separated over $S$. More generally
 we have the following sanity check.
 
 \begin{lemma}
@@ -5095,7 +5274,7 @@ This is just a matter of bookkeeping.
 Choose a finite affine open covering $\mathcal{V} : Y = \bigcup V_j$.
 For each $j$ choose a finite affine open covering $f^{-1}(V_j) = U_{ji}$.
 Set $\mathcal{U} : X = \bigcup U_{ji}$. The schemes $V_j$ and $U_{ji}$ are
-compactifyable over $S$, hence we have the upper shriek functors for
+separated over $S$, hence we have the upper shriek functors for
 $q_j : V_j \to S$, $p_{ji} : U_{ji} \to S$ and
 $f_{ji} : U_{ji} \to V_j$ and $f_{ji}' : U_{ji} \to Y$.
 Let $(L, \beta_j)$ be a dualizing complex normalized relative to
@@ -5148,13 +5327,13 @@ $a(\omega_Y^\bullet) = \omega_X^\bullet$.
 
 \begin{proof}
 Let $p : X \to S$ and $q : Y \to S$ be the structure morphisms.
-If $X$ and $Y$ are compactifyable over $S$, then this follows
+If $X$ and $Y$ are separated over $S$, then this follows
 from the fact that $\omega_X^\bullet = p^!\omega_S^\bullet$,
 $\omega_Y^\bullet = q^!\omega_S^\bullet$, $f^! = a$, and
 $f^! \circ q^! = p^!$ (Lemma \ref{lemma-upper-shriek-composition}).
 In the general case we first use Lemma \ref{lemma-good-over-both}
 to reduce to the case $Y = S$. In this case $X$ and $Y$
-are compactifyable over $S$ and we've just seen the result.
+are separated over $S$ and we've just seen the result.
 \end{proof}
 
 \noindent
@@ -5211,17 +5390,18 @@ Rf_*R\SheafHom_{\mathcal{O}_X}(K, f^!_{new}M)
 \to
 R\SheafHom_{\mathcal{O}_Y}(Rf_*K, M)
 $$
-for all $K \in D_\QCoh(\mathcal{O}_X)$ and
-$M \in D_{\textit{Coh}}^+(\mathcal{O}_Y)$, and most importantly
+for $K \in D^-_{\textit{Coh}}(\mathcal{O}_X)$ and
+$M \in D_{\textit{Coh}}^+(\mathcal{O}_Y)$, and
 $$
 Rf_*R\SheafHom_{\mathcal{O}_X}(K, \omega_X^\bullet) =
 R\SheafHom_{\mathcal{O}_Y}(Rf_*K, \omega_Y^\bullet)
 $$
+for $K \in D^-_{\textit{Coh}}(\mathcal{O}_X)$ and
 \end{enumerate}
-If $X$ is compactifyable over $S$, then
+If $X$ is separated over $S$, then
 $\omega_X^\bullet$ is canonically isomorphic to
 $(X \to S)^!\omega_S^\bullet$ and
-if $f$ is a morphism between compactifyable schemes
+if $f$ is a morphism between schemes separated
 over $S$, then there is a canonical isomorphism\footnote{We haven't
 checked that these are compatible with the isomorphisms
 $(g \circ f)^! \to f^! \circ g^!$ and
@@ -5265,7 +5445,7 @@ Proof of (6). Let $a$ be the
 right adjoint of Lemma \ref{lemma-twisted-inverse-image} for the
 proper morphism $f : X \to Y$ of schemes of finite type over $S$.
 The issue is that we do not know $X$ or $Y$ is
-compactifyable over $S$ (and in general this won't be true)
+separated over $S$ (and in general this won't be true)
 hence we cannot immediately apply
 Lemma \ref{lemma-shriek-via-duality} to $f$ over $S$.
 To get around this we use the canonical identification
@@ -5274,7 +5454,8 @@ Lemma \ref{lemma-proper-map-good-dualizing-complex}.
 Hence $f^!_{new}$ is the restriction of $a$ to
 $D_{\textit{Coh}}^+(\mathcal{O}_Y)$ by Lemma \ref{lemma-shriek-via-duality}
 applied to $f : X \to Y$ over the base scheme $Y$!
-Thus the result is true by Lemma \ref{lemma-iso-on-RSheafHom}.
+The displayed equalities hold by
+Example \ref{example-iso-on-RSheafHom-noetherian}.
 
 \medskip\noindent
 The final assertions follow from the construction of normalized
@@ -5294,7 +5475,7 @@ up to canonical isomorphism. We sketch the proof. Any second dualizing complex
 is of the form $\omega_S^\bullet \otimes_{\mathcal{O}_S}^\mathbf{L} \mathcal{L}$
 where $\mathcal{L}$ is an invertible object of $D(\mathcal{O}_S)$, see
 Lemma \ref{lemma-dualizing-unique-schemes}.
-For any compactifyable $p : U \to S$ we have
+For any separated morphism $p : U \to S$ of finite type we have
 $p^!(\omega_S^\bullet \otimes^\mathbf{L}_{\mathcal{O}_S} \mathcal{L}) =
 p^!(\omega_S^\bullet) \otimes^\mathbf{L}_{\mathcal{O}_U} Lp^*\mathcal{L}$
 by Lemma \ref{lemma-compare-with-pullback-perfect}.
@@ -5411,7 +5592,7 @@ complex over $\mathcal{O}_{S, s}$.
 
 \begin{proof}
 We may replace $X$ by an affine neighbourhood of $x$, hence we may
-and do assume that $f : X \to S$ is compactifyable.
+and do assume that $f : X \to S$ is separated.
 Then $\omega_X^\bullet = f^!\omega_S^\bullet$. We have to show that
 $R\Hom_{\mathcal{O}_{X, x}}(\kappa(x), \omega_{X, x}^\bullet)$
 is sitting in degree $0$. Let $i_x : x \to X$ denote the inclusion
@@ -5428,7 +5609,7 @@ s \ar[r]^{i_s} & S
 $$
 By Morphisms, Lemma
 \ref{morphisms-lemma-closed-point-fibre-locally-finite-type}
-the extension $\kappa(s) \subset \kappa(x)$ is finite and hence
+the extension $\kappa(x)/\kappa(s)$ is finite and hence
 $\pi$ is a finite morphism. We conclude that
 $$
 i_x^!\omega_X^\bullet = i_x^! f^! \omega_S^\bullet =
@@ -5442,7 +5623,7 @@ R\pi_*(\pi^!(\kappa(s)[0])) =
 R\SheafHom_{\mathcal{O}_s}(R\pi_*(\kappa(x)[0]), \kappa(s)[0]) =
 \widetilde{\Hom_{\kappa(s)}(\kappa(x), \kappa(s))}
 $$
-The first equality by Lemma \ref{lemma-iso-on-RSheafHom}
+The first equality by Example \ref{example-iso-on-RSheafHom-noetherian}
 applied with $L = \kappa(x)[0]$. The second equality holds because
 $\pi_*$ is exact.
 Thus $\pi^!(\kappa(s)[0])$ is supported in degree $0$ and we win.
@@ -5486,9 +5667,8 @@ Lemma \ref{lemma-good-dualizing-normalized} to conclude.
 
 \begin{lemma}
 \label{lemma-shriek}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a morphism of
-compactifyable schemes over $S$. Let $x \in X$ with image $y \in Y$.
-Then
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Let $x \in X$ with image $y \in Y$. Then
 $$
 H^i(f^!\mathcal{O}_Y)_x \not = 0
 \Rightarrow - \dim_x(X_y) \leq i.
@@ -5510,9 +5690,9 @@ Thus the lemma follows from Dualizing Complexes, Lemma
 
 \begin{lemma}
 \label{lemma-flat-shriek}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a flat morphism of
-compactifyable schemes over $S$. Let $x \in X$ with image $y \in Y$.
-Then
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Let $x \in X$ with image $y \in Y$.
+If $f$ is flat, then
 $$
 H^i(f^!\mathcal{O}_Y)_x \not = 0
 \Rightarrow - \dim_x(X_y) \leq i \leq 0.
@@ -5530,9 +5710,8 @@ this follows from Dualizing Complexes, Lemma
 
 \begin{lemma}
 \label{lemma-shriek-over-CM}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a flat morphism of
-compactifyable schemes over $S$. Let $x \in X$ with image $y \in Y$.
-Assume
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Let $x \in X$ with image $y \in Y$. Assume
 \begin{enumerate}
 \item $\mathcal{O}_{Y, y}$ is Cohen-Macaulay, and
 \item $\text{trdeg}_{\kappa(f(\xi))}(\kappa(\xi)) \leq r$
@@ -5556,13 +5735,10 @@ this follows from Dualizing Complexes, Lemma
 \ref{dualizing-lemma-relative-dualizing-CM-vanishing}.
 \end{proof}
 
-
-
-
 \begin{lemma}
 \label{lemma-flat-quasi-finite-shriek}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a flat quasi-finite
-morphism of schemes of compactifyable schemes over $S$. Then
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. If $f$ is flat and quasi-finite, then
 $$
 f^!\mathcal{O}_Y = \omega_{X/Y}[0]
 $$
@@ -5577,9 +5753,9 @@ Lemma \ref{lemma-shriek-coherent}.
 
 \begin{lemma}
 \label{lemma-CM-shriek}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a Cohen-Macaulay
-morphism (More on Morphisms, Definition \ref{more-morphisms-definition-CM})
-of compactifyable schemes over $S$. Then
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. If $f$ is Cohen-Macaulay (More on Morphisms, Definition
+\ref{more-morphisms-definition-CM}), then
 $$
 f^!\mathcal{O}_Y = \omega_{X/Y}[d]
 $$
@@ -5691,11 +5867,11 @@ and to refer to
 $$
 \omega_X = H^{-\dim(X)}(\omega_X^\bullet)
 $$
-as the dualizing module of $X$. If $X$ is compactifyable over $k$,
-then this is a special case of Example \ref{example-proper-over-local}, i.e.,
+as the dualizing module of $X$. If $X$ is separated over $k$, then
 $\omega_X^\bullet = f^!\mathcal{O}_{\Spec(k)}$ where
-$f : X \to \Spec(k)$ is the structure morphism (follows from
-Lemma \ref{lemma-duality-bootstrap}).
+$f : X \to \Spec(k)$ is the structure morphism by
+Lemma \ref{lemma-duality-bootstrap}. If $X$ is proper over $k$, then
+this is a special case of Example \ref{example-proper-over-local}.
 \end{example}
 
 \begin{lemma}
@@ -5883,9 +6059,9 @@ and our definitions.
 
 \begin{lemma}
 \label{lemma-affine-flat-Noetherian-CM}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a flat
-morphism of compactifyable schemes over $S$. Let $x \in X$.
-The following are equivalent
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism
+of $\textit{FTS}_S$. Let $x \in X$. If $f$ is flat, then
+the following are equivalent
 \begin{enumerate}
 \item $f$ is Cohen-Macaulay at $x$,
 \item $f^!\mathcal{O}_Y$ has a unique nonzero cohomology sheaf
@@ -5921,10 +6097,9 @@ This proves $f$ is Cohen-Macaulay at $x$ as desired.
 
 \begin{remark}
 \label{remark-CM-morphism-compare-dualizing}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a
-Cohen-Macaulay morphism of relative dimension $d$
-of compactifyable schemes over $S$.
-Let $\omega_{X/Y} = H^{-d}(f^!\mathcal{O}_Y)$
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism
+of $\textit{FTS}_S$. Assume $f$ is a Cohen-Macaulay morphism of
+relative dimension $d$. Let $\omega_{X/Y} = H^{-d}(f^!\mathcal{O}_Y)$
 be the unique nonzero cohomology sheaf of $f^!\mathcal{O}_Y$, see
 Lemma \ref{lemma-CM-shriek}.
 Then there is a canonical isomorphism
@@ -5948,8 +6123,9 @@ have
 $$
 \omega_X = f^*\omega_Y \otimes_{\mathcal{O}_X} \omega_{X/Y}.
 $$
-Similar results hold for $X$ and $Y$ not necessarily compactifyable
-over $S$ with dualizing complexes normalized with respect to
+Similar results hold for $X$ and $Y$ arbitrary finite type schemes
+over $S$ (i.e., not necessarily separated over $S$)
+with dualizing complexes normalized with respect to
 $\omega_S^\bullet$ as in Section \ref{section-glue}.
 \end{remark}
 
@@ -6080,7 +6256,7 @@ same as Gorenstein schemes.
 \begin{lemma}
 \label{lemma-gorenstein-base-change}
 Let $X$ be a locally Noetherian scheme over the field $k$.
-Let $k \subset k'$ be a finitely generated field extension.
+Let $k'/k$ be a finitely generated field extension.
 Let $x \in X$ be a point, and let $x' \in X_{k'}$ be a point lying
 over $x$. Then we have
 $$
@@ -6089,7 +6265,7 @@ $$
 \mathcal{O}_{X_{k'}, x'}\text{ is Gorenstein}
 $$
 If $X$ is locally of finite type over $k$, the same holds for any
-field extension $k \subset k'$.
+field extension $k'/k$.
 \end{lemma}
 
 \begin{proof}
@@ -6184,7 +6360,7 @@ at $f(x)$, then $g \circ f$ is Gorenstein at $x$.
 \item If $f$ and $g$ are Gorenstein, then $g \circ f$ is Gorenstein.
 \item If $g \circ f$ is Gorenstein at $x$ and $f$ is flat at $x$,
 then $f$ is Gorenstein at $x$ and $g$ is Gorenstein at $f(x)$.
-\item If $f \circ g$ is Gorenstein and $f$ is flat, then
+\item If $g \circ f$ is Gorenstein and $f$ is flat, then
 $f$ is Gorenstein and $g$ is Gorenstein at every point in
 the image of $f$.
 \end{enumerate}
@@ -6197,6 +6373,10 @@ Dualizing Complexes, Lemma \ref{dualizing-lemma-flat-under-gorenstein}.
 
 \begin{lemma}
 \label{lemma-flat-morphism-from-gorenstein-scheme}
+\begin{slogan}
+Gorensteinnes of the total space of a flat fibration implies
+same for base and fibres
+\end{slogan}
 Let $f : X \to Y$ be a flat morphism of locally Noetherian schemes.
 If $X$ is Gorenstein, then $f$ is Gorenstein and $\mathcal{O}_{Y, f(x)}$
 is Gorenstein for all $x \in X$.
@@ -6217,7 +6397,7 @@ Let $x' \in X'$ be a point with image $x \in X$.
 \begin{enumerate}
 \item If $f$ is Gorenstein at $x$, then
 $f' : X' \to Y'$ is Gorenstein at $x'$.
-\item If $f$ is flat and $x$ and $f'$ is Gorenstein at $x'$, then $f$
+\item If $f$ is flat at $x$ and $f'$ is Gorenstein at $x'$, then $f$
 is Gorenstein at $x$.
 \item If $Y' \to Y$ is flat at $f'(x')$ and $f'$ is Gorenstein at
 $x'$, then $f$ is Gorenstein at $x$.
@@ -6226,7 +6406,7 @@ $x'$, then $f$ is Gorenstein at $x$.
 
 \begin{proof}
 Note that the assumption on $Y' \to Y$ implies that for $y' \in Y'$
-mapping to $y \in Y$ the field extension $\kappa(y) \subset \kappa(y')$
+mapping to $y \in Y$ the field extension $\kappa(y')/\kappa(y)$
 is finitely generated. Hence also all the fibres
 $X'_{y'} = (X_y)_{\kappa(y')}$ are locally Noetherian, see
 Varieties, Lemma \ref{varieties-lemma-locally-Noetherian-base-change}.
@@ -6317,12 +6497,12 @@ Some details omitted; hint: look at cohomology modules.
 
 \begin{lemma}
 \label{lemma-affine-flat-Noetherian-gorenstein}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$ be a flat
-morphism of compactifyable schemes over $S$. Let $x \in X$.
-The following are equivalent
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism
+of $\textit{FTS}_S$. Let $x \in X$. If $f$ is flat, then
+the following are equivalent
 \begin{enumerate}
 \item $f$ is Gorenstein at $x$,
-\item $f^!\mathcal{O}_X$ is isomorphic to an invertible object
+\item $f^!\mathcal{O}_Y$ is isomorphic to an invertible object
 in a neighbourhood of $x$.
 \end{enumerate}
 In particular, the set of points where $f$ is Gorenstein is
@@ -6426,7 +6606,7 @@ $$
 X \xrightarrow{g} \mathbf{A}^n_S \xrightarrow{p} S
 $$
 with $g$ flat and quasi-finite and $S$ Noetherian. Then $X$ and
-$\mathbf{A}^n_S$ are compactifyable over $S$ and we have
+$\mathbf{A}^n_S$ are separated over $S$ and we have
 $$
 f^!\mathcal{O}_S = g^!p^!\mathcal{O}_S = g^!\mathcal{O}_{\mathbf{A}^n_S}[n]
 $$
@@ -6468,7 +6648,7 @@ Set $y = \varphi_i(y_i)$. Note that
 $$
 X_{i, y_i} = \Spec(\kappa(y_i)) \times_{\Spec(\kappa(y))} X_y.
 $$
-and that $\kappa(y) \subset \kappa(y_i)$ is a finitely generated field
+and that $\kappa(y_i)/\kappa(y)$ is a finitely generated field
 extension. Hence if $X_y$ is locally Noetherian, then
 $X_{i, y_i}$ is locally Noetherian, see
 Varieties, Lemma \ref{varieties-lemma-locally-Noetherian-base-change}.
@@ -6516,6 +6696,298 @@ Dualizing Complexes, Lemma \ref{dualizing-lemma-descent-ascent}.
 
 
 
+
+
+
+\section{Duality for proper schemes over fields}
+\label{section-duality-proper-over-field}
+
+\noindent
+In this section we work out the consequences of the very general
+material above on dualizing complexes and duality for proper schemes
+over fields.
+
+\begin{lemma}
+\label{lemma-duality-proper-over-field}
+Let $X$ be a proper scheme over a field $k$. There exists a dualizing complex
+$\omega_X^\bullet$ with the following properties
+\begin{enumerate}
+\item $H^i(\omega_X^\bullet)$ is nonzero only for $i \in [-\dim(X), 0]$,
+\item $\omega_X = H^{-\dim(X)}(\omega_X^\bullet)$ is a coherent
+$(S_2)$-module whose support is the irreducible components
+of dimension $\dim(X)$,
+\item the dimension of the support of $H^i(\omega_X^\bullet)$ is at most $-i$,
+\item for $x \in X$ closed the module
+$H^i(\omega_{X, x}^\bullet) \oplus \ldots \oplus H^0(\omega_{X, x}^\bullet)$
+is nonzero if and only if $\text{depth}(\mathcal{O}_{X, x}) \leq -i$,
+\item for $K \in D_\QCoh(\mathcal{O}_X)$ there are functorial
+isomorphisms\footnote{This property
+characterizes $\omega_X^\bullet$ in $D_\QCoh(\mathcal{O}_X)$
+up to unique isomorphism by the Yoneda lemma. Since $\omega_X^\bullet$
+is in $D^b_{\textit{Coh}}(\mathcal{O}_X)$ in fact it suffices to consider
+$K \in D^b_{\textit{Coh}}(\mathcal{O}_X)$.}
+$$
+\Ext^i_X(K, \omega_X^\bullet) = \Hom_k(H^{-i}(X, K), k)
+$$
+compatible with shifts and distinguished triangles,
+\item there are functorial isomorphisms
+$\Hom(\mathcal{F}, \omega_X) = \Hom_k(H^{\dim(X)}(X, \mathcal{F}), k)$
+for $\mathcal{F}$ quasi-coherent on $X$, and
+\item if $X \to \Spec(k)$ is smooth of relative dimension $d$,
+then $\omega_X^\bullet \cong \wedge^d\Omega_{X/k}[d]$ and
+$\omega_X \cong \wedge^d\Omega_{X/k}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Denote $f : X \to \Spec(k)$ the structure morphism. Let $a$ be the
+right adjoint of pushforward of this morphism, see
+Lemma \ref{lemma-twisted-inverse-image}. Consider the relative dualizing
+complex
+$$
+\omega_X^\bullet = a(\mathcal{O}_{\Spec(k)})
+$$
+Compare with Remark \ref{remark-relative-dualizing-complex}.
+Since $f$ is proper we have
+$f^!(\mathcal{O}_{\Spec(k)}) = a(\mathcal{O}_{\Spec(k)})$ by
+definition, see Section \ref{section-upper-shriek}.
+Applying Lemma \ref{lemma-shriek-dualizing} we find that
+$\omega_X^\bullet$ is a dualizing complex. Moreover, we see that
+$\omega_X^\bullet$ and $\omega_X$ are as in
+Example \ref{example-proper-over-local} and as in
+Example \ref{example-equidimensional-over-field}.
+
+\medskip\noindent
+Parts (1), (2), and (3) follow from
+Lemma \ref{lemma-vanishing-good-dualizing}.
+
+\medskip\noindent
+For a closed point $x \in X$ we see that $\omega_{X, x}^\bullet$ is a
+normalized dualizing complex over $\mathcal{O}_{X, x}$, see
+Lemma \ref{lemma-good-dualizing-normalized}.
+Part (4) then follows from Dualizing Complexes, Lemma
+\ref{dualizing-lemma-depth-in-terms-dualizing-complex}.
+
+\medskip\noindent
+Part (5) holds by construction as $a$ is the right adjoint to
+$Rf_* : D_\QCoh(\mathcal{O}_X) \to D(\mathcal{O}_{\Spec(k)}) = D(k)$
+which we can identify with $K \mapsto R\Gamma(X, K)$. We also use
+that the derived category $D(k)$ of $k$-modules is the same as the
+category of graded $k$-vector spaces.
+
+\medskip\noindent
+Part (6) follows from Lemma \ref{lemma-dualizing-module-proper-over-A}
+for coherent $\mathcal{F}$ and in general by unwinding
+(5) for $K = \mathcal{F}[0]$ and $i = -\dim(X)$.
+
+\medskip\noindent
+Part (7) follows from Lemma \ref{lemma-smooth-proper}.
+\end{proof}
+
+\begin{remark}
+\label{remark-duality-proper-over-field}
+Let $k$, $X$, and $\omega_X^\bullet$
+be as in Lemma \ref{lemma-duality-proper-over-field}.
+The identity on the complex $\omega_X^\bullet$ corresponds, via
+the functorial isomorphism in part (5), to a map
+$$
+t : H^0(X, \omega_X^\bullet) \longrightarrow k
+$$
+For an arbitrary $K$ in $D_\QCoh(\mathcal{O}_X)$ the identification
+$\Hom(K, \omega_X^\bullet)$ with $H^0(X, K)^\vee$ in part (5)
+corresponds to the pairing
+$$
+\Hom_X(K, \omega_X^\bullet) \times H^0(X, K) \longrightarrow k,\quad
+(\alpha, \beta) \longmapsto t(\alpha(\beta))
+$$
+This follows from the functoriality of the isomorphisms in (5). Similarly
+for any $i \in \mathbf{Z}$ we get the pairing
+$$
+\Ext^i_X(K, \omega_X^\bullet) \times H^{-i}(X, K) \longrightarrow k,\quad
+(\alpha, \beta) \longmapsto t(\alpha(\beta))
+$$
+Here we think of $\alpha$ as a morphism $K[-i] \to \omega_X^\bullet$
+and $\beta$ as an element of $H^0(X, K[-i])$ in order to define
+$\alpha(\beta)$. Observe that if $K$ is general, then we only know
+that this pairing is nondegenerate on one side: the pairing induces an
+isomorphism of $\Hom_X(K, \omega_X^\bullet)$,
+resp.\ $\Ext^i_X(K, \omega_X^\bullet)$ with the $k$-linear dual of $H^0(X, K)$,
+resp.\ $H^{-i}(X, K)$ but in general not vice versa. If $K$
+is in $D^b_{\textit{Coh}}(\mathcal{O}_X)$, then
+$\Hom_X(K, \omega_X^\bullet)$, $\Ext_X(K, \omega_X^\bullet)$,
+$H^0(X, K)$, and $H^i(X, K)$ are finite dimensional $k$-vector spaces (by
+Derived Categories of Schemes, Lemmas
+\ref{perfect-lemma-coherent-internal-hom} and
+\ref{perfect-lemma-direct-image-coherent-bdd-below})
+and the pairings are perfect in the usual sense.
+\end{remark}
+
+\begin{remark}
+\label{remark-coherent-duality-proper-over-field}
+We continue the discussion in Remark \ref{remark-duality-proper-over-field}
+and we use the same notation $k$, $X$, $\omega_X^\bullet$, and $t$.
+If $\mathcal{F}$ is a coherent $\mathcal{O}_X$-module we obtain
+perfect pairings
+$$
+\langle -, - \rangle :
+\Ext^i_X(\mathcal{F}, \omega_X^\bullet) \times H^{-i}(X,\mathcal{F})
+\longrightarrow k,\quad
+(\alpha, \beta) \longmapsto t(\alpha(\beta))
+$$
+of finite dimensional $k$-vector spaces. These pairings satisfy the
+following (obvious) functoriality: if $\varphi : \mathcal{F} \to \mathcal{G}$
+is a homomorphism of coherent $\mathcal{O}_X$-modules, then we have
+$$
+\langle \alpha \circ \varphi, \beta \rangle =
+\langle \alpha, \varphi(\beta) \rangle
+$$
+for $\alpha \in \Ext^i_X(\mathcal{G}, \omega_X^\bullet)$ and
+$\beta \in H^{-i}(X, \mathcal{F})$. In other words, the $k$-linear map
+$\Ext^i_X(\mathcal{G}, \omega_X^\bullet) \to
+\Ext^i_X(\mathcal{F}, \omega_X^\bullet)$ induced by $\varphi$
+is, via the pairings, the $k$-linear dual of the $k$-linear map
+$H^{-i}(X, \mathcal{F}) \to H^{-i}(X, \mathcal{G})$ induced
+by $\varphi$. Formulated in this manner, this still works if
+$\varphi$ is a homomorphism of quasi-coherent $\mathcal{O}_X$-modules.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-duality-proper-over-field-perfect}
+Let $k$, $X$, and $\omega_X^\bullet$
+be as in Lemma \ref{lemma-duality-proper-over-field}.
+Let $t : H^0(X, \omega_X^\bullet) \to k$ be as in
+Remark \ref{remark-duality-proper-over-field}.
+Let $E \in D(\mathcal{O}_X)$ be perfect. Then the pairings
+$$
+H^i(X, \omega_X^\bullet \otimes_{\mathcal{O}_X}^\mathbf{L} E^\vee)
+\times
+H^{-i}(X, E) \longrightarrow k, \quad
+(\xi, \eta) \longmapsto
+t((1_{\omega_X^\bullet} \otimes \epsilon)(\xi \cup \eta))
+$$
+are perfect for all $i$. Here $\cup$ denotes the cupproduct
+of Cohomology, Section \ref{cohomology-section-cup-product} and
+$\epsilon : E^\vee \otimes_{\mathcal{O}_X}^\mathbf{L} E \to \mathcal{O}_X$
+is as in Cohomology, Example \ref{cohomology-example-dual-derived}.
+\end{lemma}
+
+\begin{proof}
+By replacing $E$ with $E[-i]$ this reduces to the case $i = 0$.
+By Cohomology, Lemma \ref{cohomology-lemma-ext-composition-is-cup}
+we see that the pairing is the same as the one discussed
+in Remark \ref{remark-duality-proper-over-field}
+whence the result by the discussion in that remark.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-duality-proper-over-field-CM}
+Let $X$ be a proper scheme over a field $k$ which is Cohen-Macaulay
+and equidimensional of dimension $d$. The module $\omega_X$
+of Lemma \ref{lemma-duality-proper-over-field} has the following properties
+\begin{enumerate}
+\item $\omega_X$ is a dualizing module on $X$
+(Section \ref{section-dualizing-module}),
+\item $\omega_X$ is a coherent Cohen-Macaulay module whose support is $X$,
+\item there are functorial isomorphisms
+$\Ext^i_X(K, \omega_X[d]) = \Hom_k(H^{-i}(X, K), k)$
+compatible with shifts and distinguished triangles for $K \in D_\QCoh(X)$,
+\item there are functorial isomorphisms
+$\Ext^{d - i}(\mathcal{F}, \omega_X) = \Hom_k(H^i(X, \mathcal{F}), k)$
+for $\mathcal{F}$ quasi-coherent on $X$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+It is clear from Lemma \ref{lemma-duality-proper-over-field}
+that $\omega_X$ is a dualizing module (as it is the left most
+nonvanishing cohomology sheaf of a dualizing complex).
+We have $\omega_X^\bullet = \omega_X[d]$ and $\omega_X$ is Cohen-Macaulay
+as $X$ is Cohen-Macualay, see Lemma \ref{lemma-dualizing-module-CM-scheme}.
+The other statements follow from this combined with the
+corresponding statements of Lemma \ref{lemma-duality-proper-over-field}.
+\end{proof}
+
+\begin{remark}
+\label{remark-rework-duality-locally-free-CM}
+Let $X$ be a proper Cohen-Macaulay scheme over a field $k$
+which is equidimensional of dimension $d$.
+Let $\omega_X^\bullet$ and $\omega_X$ be as in
+Lemma \ref{lemma-duality-proper-over-field}.
+By Lemma \ref{lemma-duality-proper-over-field-CM}
+we have $\omega_X^\bullet = \omega_X[d]$.
+Let $t : H^d(X, \omega_X) \to k$ be the map of
+Remark \ref{remark-duality-proper-over-field}.
+Let $\mathcal{E}$ be a finite locally free $\mathcal{O}_X$-module
+with dual $\mathcal{E}^\vee$. Then we have perfect pairings
+$$
+H^i(X, \omega_X \otimes_{\mathcal{O}_X} \mathcal{E}^\vee)
+\times
+H^{d - i}(X, \mathcal{E})
+\longrightarrow
+k,\quad
+(\xi, \eta) \longmapsto t(1 \otimes \epsilon)(\xi \cup \eta))
+$$
+where $\cup$ is the cup-product and
+$\epsilon : \mathcal{E}^\vee \otimes_{\mathcal{O}_X} \mathcal{E}
+\to \mathcal{O}_X$ is the evaluation map.
+This is a special case of Lemma \ref{lemma-duality-proper-over-field-perfect}.
+\end{remark}
+
+\noindent
+Here is a sanity check for the dualizing complex.
+
+\begin{lemma}
+\label{lemma-sanity-check-duality}
+Let $X$ be a proper scheme over a field $k$. Let $\omega_X^\bullet$ and
+$\omega_X$ be as in Lemma \ref{lemma-duality-proper-over-field}.
+\begin{enumerate}
+\item If $X \to \Spec(k)$ factors as $X \to \Spec(k') \to \Spec(k)$
+for some field $k'$, then $\omega_X^\bullet$ and $\omega_X$
+are as in Lemma \ref{lemma-duality-proper-over-field} for the morphism
+$X \to \Spec(k')$.
+\item If $K/k$ is a field extension, then the pullback of
+$\omega_X^\bullet$ and $\omega_X$ to the base change $X_K$
+are as in  Lemma \ref{lemma-duality-proper-over-field} for the morphism
+$X_K \to \Spec(K)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Denote $f : X \to \Spec(k)$ the structure morphism and denote
+$f' : X \to \Spec(k')$ the given factorization.
+In the proof of Lemma \ref{lemma-duality-proper-over-field}
+we took $\omega_X^\bullet = a(\mathcal{O}_{\Spec(k)})$
+where $a$ be is the right adjoint of
+Lemma \ref{lemma-twisted-inverse-image} for $f$.
+Thus we have to show
+$a(\mathcal{O}_{\Spec(k)}) \cong a'(\mathcal{O}_{\Spec(k)})$
+where $a'$ be is the right adjoint of
+Lemma \ref{lemma-twisted-inverse-image} for $f'$.
+Since $k' \subset H^0(X, \mathcal{O}_X)$ we see that $k'/k$ is a finite
+extension (Cohomology of Schemes, Lemma
+\ref{coherent-lemma-proper-over-affine-cohomology-finite}).
+By uniqueness of adjoints we have $a = a' \circ b$ where
+$b$ is the right adjoint of Lemma
+\ref{lemma-twisted-inverse-image} for $g : \Spec(k') \to \Spec(k)$.
+Another way to say this: we have $f^! = (f')^! \circ g^!$.
+Thus it suffices to show that $\Hom_k(k', k) \cong k'$ as
+$k'$-modules, see Example \ref{example-affine-twisted-inverse-image}.
+This holds because these are $k'$-vector spaces of
+the same dimension (namely dimension $1$).
+
+\medskip\noindent
+Proof of (2). This holds because we have base change for $a$ by
+Lemma \ref{lemma-more-base-change}. See discussion in
+Remark \ref{remark-relative-dualizing-complex}.
+\end{proof}
+
+
+
+
+
+
+
+
 \section{Relative dualizing complexes}
 \label{section-relative-dualizing-complexes}
 
@@ -6523,7 +6995,7 @@ Dualizing Complexes, Lemma \ref{dualizing-lemma-descent-ascent}.
 For a proper, flat morphism of finite presentation we have a
 rigid relative dualizing complex, see
 Remark \ref{remark-relative-dualizing-complex} and
-Lemma \ref{lemma-van-den-bergh}. For a compactifyable
+Lemma \ref{lemma-van-den-bergh}. For a separated and finite type
 morphism $f : X \to Y$ of Noetherian schemes, we can consider
 $f^!\mathcal{O}_Y$. In this section we define relative dualizing complexes
 for morphisms which are flat and locally of finite presentation
@@ -6539,7 +7011,7 @@ Dualizing Complexes, Section
 \label{definition-relative-dualizing-complex}
 Let $X \to S$ be a morphism of schemes which is flat and
 locally of finite presentation. Let $W \subset X \times_S X$
-be any open such that the diagonal $\Delta_{X/S} : X \times_S X$
+be any open such that the diagonal $\Delta_{X/S} : X \to X \times_S X$
 factors through a closed immersion $\Delta : X \to W$.
 A {\it relative dualizing complex} is a
 pair $(K, \xi)$ consisting of an object $K \in D(\mathcal{O}_X)$
@@ -6892,9 +7364,9 @@ it here).
 
 \begin{lemma}
 \label{lemma-compactifyable-relative-dualizing}
-Let $S$ be a Noetherian scheme. Let $f : X \to Y$
-be a flat morphism of compactifyable schemes over $S$.
-Then $f^!\mathcal{O}_Y$ is (the first component of)
+In Situation \ref{situation-shriek} let $f : X \to Y$
+be a morphism of $\textit{FTS}_S$. If $f$ is flat, then
+$f^!\mathcal{O}_Y$ is (the first component of)
 a relative dualizing complex for $X$ over $Y$ in the sense of
 Definition \ref{definition-relative-dualizing-complex}.
 \end{lemma}
@@ -7078,25 +7550,24 @@ of rank $r$ in a neighbourhood as desired.
 \begin{lemma}
 \label{lemma-fundamental-class-lci}
 Let $Y$ be a Noetherian scheme. Let $f : X \to Y$ be a
-local complete intersection morphism.
+local complete intersection morphism which factors
+as an immersion $X \to P$ followed by a proper smooth morphism $P \to Y$.
 Let $r$ be the locally constant function on
-$X$ such that $\omega_{Y/X} = H^{-r}(f^!\mathcal{O}_Y)$
+$X$ such that $\omega_{X/Y} = H^{-r}(f^!\mathcal{O}_Y)$
 is the unique nonzero cohomology sheaf of $f^!\mathcal{O}_Y$, see
 Lemma \ref{lemma-lci-shriek}.
-Assume $f$ factors
-as an immersion $X \to P$ followed by a proper smooth morphism
-$P \to Y$.
 Then there is a map
 $$
-\wedge^r\Omega_{X/Y} \longrightarrow \omega_{Y/X}
+\wedge^r\Omega_{X/Y} \longrightarrow \omega_{X/Y}
 $$
 which is an isomorphism on the stalk at a point $x$ if and only
 if $f$ is smooth at $x$.
 \end{lemma}
 
 \begin{proof}
-The assumption implies that $X$ is compactifyable over $Y$ hence $f^!$
-is defined. Let $j : W \to P$ be an open subscheme such that
+The assumption implies that $X$ is compactifiable over $Y$ hence $f^!$
+is defined, see Section \ref{section-upper-shriek}.
+Let $j : W \to P$ be an open subscheme such that
 $X \to P$ factors through a closed immersion $i : X \to W$.
 Moreover, we have $f^! = i^! \circ j^! \circ g^!$ where
 $g : P \to Y$ is the given morphism.
@@ -7162,9 +7633,9 @@ then $f$ is Koszul at $x$ (More on Morphisms, Definition
 we have
 $\text{trdeg}_{\kappa(f(\xi))} \kappa(\xi) = r$.
 \end{enumerate}
-Then with $\omega_{Y/X} = H^{-r}(f^!\mathcal{O}_Y)$ there is a map
+Then with $\omega_{X/Y} = H^{-r}(f^!\mathcal{O}_Y)$ there is a map
 $$
-\wedge^r\Omega_{X/Y} \longrightarrow \omega_{Y/X}
+\wedge^r\Omega_{X/Y} \longrightarrow \omega_{X/Y}
 $$
 which is an isomorphism on the locus where $f$ is smooth.
 \end{lemma}
@@ -7192,6 +7663,1557 @@ we see that $j_*\omega_{U/Y} = \omega_{X/Y}$.
 Hence the map over $U$ extends to $X$ and the proof
 is complete.
 \end{proof}
+
+
+
+
+
+
+\section{Extension by zero for coherent modules}
+\label{section-extension-by-zero}
+
+\noindent
+The material in this section and the next few can be found
+in the appendix by Deligne of \cite{RD}.
+
+\medskip\noindent
+In this section $j : U \to X$ will be an open immersion of Noetherian schemes.
+We are going to consider inverse systems $(K_n)$ in
+$D^b_{\textit{Coh}}(\mathcal{O}_X)$ constructed as follows.
+Let $\mathcal{F}^\bullet$ be a bounded complex of coherent
+$\mathcal{O}_X$-modules. Let $\mathcal{I} \subset \mathcal{O}_X$
+be a quasi-coherent sheaf of ideals with $V(\mathcal{I}) = X \setminus U$.
+Then we can set
+$$
+K_n = \mathcal{I}^n\mathcal{F}^\bullet
+$$
+More precisely, $K_n$ is the object of $D^b_{\textit{Coh}}(\mathcal{O}_X)$
+represented by the complex whose term in degree $q$
+is the coherent submodule $\mathcal{I}^n\mathcal{F}^q$ of $\mathcal{F}^q$.
+Observe that the maps $\ldots \to K_3 \to K_2 \to K_1$ induce isomorphisms
+on restriction to $U$. Let us call such a system a {\it Deligne system}.
+
+\begin{lemma}
+\label{lemma-lift-map}
+Let $j : U \to X$ be an open immersion of Noetherian schemes.
+Let $(K_n)$ be a Deligne system and denote
+$K \in D^b_{\textit{Coh}}(\mathcal{O}_U)$ the value
+of the constant system $(K_n|_U)$. Let $L$ be an object of
+$D^b_{\textit{Coh}}(\mathcal{O}_X)$.
+Then $\colim \Hom_X(K_n, L) = \Hom_U(K, L|_U)$.
+\end{lemma}
+
+\begin{proof}
+Let $L \to M \to N \to L[1]$ be a distinguished triangle in
+$D^b_{\textit{Coh}}(\mathcal{O}_X)$. Then we obtain
+a commutative diagram
+$$
+\xymatrix{
+\ldots \ar[r] &
+\colim \Hom_X(K_n, L) \ar[r] \ar[d] &
+\colim \Hom_X(K_n, M) \ar[r] \ar[d] &
+\colim \Hom_X(K_n, N) \ar[r] \ar[d] &
+\ldots \\
+\ldots \ar[r] &
+\Hom_U(K, L|_U) \ar[r] &
+\Hom_U(K, M|_U) \ar[r] &
+\Hom_U(K, N|_U) \ar[r] &
+\ldots
+}
+$$
+whose rows are exact by Derived Categories, Lemma
+\ref{derived-lemma-representable-homological} and
+Algebra, Lemma \ref{algebra-lemma-directed-colimit-exact}.
+Hence if the statement of the lemma holds for
+$N[-1]$, $L$, $N$, and $L[1]$ then it holds for $M$ by the 5-lemma.
+Thus, using the distinguished triangles
+for the canonical truncations of $L$ (see Derived Categories, Remark
+\ref{derived-remark-truncation-distinguished-triangle})
+we reduce to the case that $L$ has only one nonzero cohomology sheaf.
+
+\medskip\noindent
+Choose a bounded complex $\mathcal{F}^\bullet$ of coherent
+$\mathcal{O}_X$-modules and a quasi-coherent ideal
+$\mathcal{I} \subset \mathcal{O}_X$ cutting out $X \setminus U$
+such that $K_n$ is represented by $\mathcal{I}^n\mathcal{F}^\bullet$.
+Using ``stupid'' truncations we obtain compatible termwise split short
+exact sequences of complexes
+$$
+0 \to \sigma_{\geq a + 1} \mathcal{I}^n\mathcal{F}^\bullet \to
+\mathcal{I}^n\mathcal{F}^\bullet \to
+\sigma_{\leq a} \mathcal{I}^n\mathcal{F}^\bullet \to 0
+$$
+which in turn correspond to compatible systems of distinguished
+triangles in $D^b_{\textit{Coh}}(\mathcal{O}_X)$.
+Arguing as above we reduce to the case where $\mathcal{F}^\bullet$
+has only one nonzero term. This reduces us to the case discussed in
+the next paragraph.
+
+\medskip\noindent
+Given a coherent $\mathcal{O}_X$-module $\mathcal{F}$ and a coherent
+$\mathcal{O}_X$-module $\mathcal{G}$ we
+have to show that the canonical map
+$$
+\colim \Ext^i_X(\mathcal{I}^n\mathcal{F}, \mathcal{G})
+\longrightarrow
+\Ext^i_U(\mathcal{F}|_U, \mathcal{G}|_U)
+$$
+is an isomorphism for all $i \geq 0$. For $i = 0$ this is
+Cohomology of Schemes, Lemma \ref{coherent-lemma-homs-over-open}.
+Assume $i > 0$.
+
+\medskip\noindent
+Injectivity. Let $\xi \in \Ext^i_X(\mathcal{I}^n\mathcal{F}, \mathcal{G})$
+be an element whose restriction to $U$ is zero. We have to show there exists
+an $m \geq n$ such that the restriction of $\xi$ to
+$\mathcal{I}^m\mathcal{F} = \mathcal{I}^{m - n}\mathcal{I}^n\mathcal{F}$
+is zero. After replacing $\mathcal{F}$ by $\mathcal{I}^n\mathcal{F}$
+we may assume $n = 0$, i.e., we have
+$\xi \in \Ext^i_X(\mathcal{F}, \mathcal{G})$
+whose restriction to $U$ is zero. By
+Derived Categories of Schemes, Proposition \ref{perfect-proposition-DCoh}
+we have
+$D^b_{\textit{Coh}}(\mathcal{O}_X) = D^b(\textit{Coh}(\mathcal{O}_X))$.
+Hence we can compute the $\Ext$ group in the abelian category of
+coherent $\mathcal{O}_X$-modules. This implies there exists an
+surjection $\alpha : \mathcal{F}'' \to \mathcal{F}$ such that
+$\xi \circ \alpha = 0$ (this is where we use that $i > 0$).
+Set $\mathcal{F}' = \Ker(\alpha)$ so that we have a short exact
+sequence
+$$
+0 \to \mathcal{F}' \to \mathcal{F}'' \to \mathcal{F} \to 0
+$$
+It follows that $\xi$ is the image of an element
+$\xi' \in \Ext^{i - 1}_X(\mathcal{F}', \mathcal{G})$
+whose restriction to $U$ is in the image of
+$\Ext^{i - 1}_U(\mathcal{F}''|_U, \mathcal{G}|_U) \to
+\Ext^{i - 1}_U(\mathcal{F}'|_U, \mathcal{G}|_U)$.
+By Artin-Rees the inverse systems $(\mathcal{I}^n\mathcal{F}')$ and
+$(\mathcal{I}^n \mathcal{F}'' \cap \mathcal{F}')$ are pro-isomorphic, see
+Cohomology of Schemes, Lemma \ref{coherent-lemma-Artin-Rees}.
+Since we have the compatible system of short exact sequences
+$$
+0 \to
+\mathcal{F}' \cap \mathcal{I}^n\mathcal{F}'' \to
+\mathcal{I}^n\mathcal{F}'' \to
+\mathcal{I}^n\mathcal{F} \to 0
+$$
+we obtain a commutativew diagram
+$$
+\xymatrix{
+\colim \Ext^{i - 1}_X(\mathcal{I}^n\mathcal{F}'', \mathcal{G})
+\ar[r] \ar[d] &
+\colim \Ext^{i - 1}_X(\mathcal{F}' \cap \mathcal{I}^n\mathcal{F}'', \mathcal{G})
+\ar[r] \ar[d] &
+\colim \Ext^i_X(\mathcal{I}^n\mathcal{F}, \mathcal{G})
+\ar[d] \\
+\Ext^{i - 1}_U(\mathcal{F}''|_U, \mathcal{G}|_U) \ar[r] &
+\Ext^{i - 1}_U(\mathcal{F}'|_U, \mathcal{G}|_U) \ar[r] &
+\Ext^{i - 1}_U(\mathcal{F}|_U, \mathcal{G}|_U)
+}
+$$
+with exact rows. By induction on $i$ and the comment on inverse systems above
+we find that the left two vertical arrows are isomorphisms.
+Now $\xi$ gives an element in the top right group which is the image
+of $\xi'$ in the middle top group, which in turn maps to an element of
+the bottom middle group coming from some element in the left bottom group.
+We conclude that $\xi$ maps to zero in
+$\Ext^i_X(\mathcal{I}^n\mathcal{F}, \mathcal{G})$
+for some $n$ as desired.
+
+\medskip\noindent
+Surjectivity. Let $\xi \in \Ext^i_U(\mathcal{F}|_U, \mathcal{G}|_U)$.
+Arguing as above using that $i > 0$ we can find an surjection
+$\mathcal{H} \to \mathcal{F}|_U$ of coherent $\mathcal{O}_U$-modules
+such that $\xi$ maps to zero in $\Ext^i_U(\mathcal{H}, \mathcal{G}|_U)$.
+Then we can find a map $\varphi : \mathcal{F}'' \to \mathcal{F}$
+of coherent $\mathcal{O}_X$-modules whose restriction to $U$ is
+$\mathcal{H} \to \mathcal{F}|_U$, see
+Properties, Lemma \ref{properties-lemma-extend-finite-presentation}.
+Observe that the lemma doesn't guarantee $\varphi$ is surjective
+but this won't matter (it is possible to pick a surjective $\varphi$
+with a little bit of additional work).
+Denote $\mathcal{F}' = \Ker(\varphi)$. The short exact sequence
+$$
+0 \to \mathcal{F}'|_U \to \mathcal{F}''|_U \to \mathcal{F}|_U \to 0
+$$
+shows that $\xi$ is the image of $\xi'$ in
+$\Ext^{i - 1}_U(\mathcal{F}'|_U, \mathcal{G}|_U)$.
+By induction on $i$ we can find an $n$ such that
+$\xi'$ is the image of some $\xi'_n$ in
+$\Ext^{i - 1}_X(\mathcal{I}^n\mathcal{F}', \mathcal{G})$.
+By Artin-Rees we can find an $m \geq n$ such that
+$\mathcal{F}' \cap \mathcal{I}^m\mathcal{F}'' \subset
+\mathcal{I}^n\mathcal{F}'$. Using the short exact sequence
+$$
+0 \to \mathcal{F}' \cap \mathcal{I}^m\mathcal{F}'' \to
+\mathcal{I}^m\mathcal{F}'' \to \mathcal{I}^m\Im(\varphi) \to 0
+$$
+the image of $\xi'_n$ in
+$\Ext^{i - 1}_X(\mathcal{F}' \cap \mathcal{I}^m\mathcal{F}'', \mathcal{G})$
+maps by the boundary map to an element $\xi_m$ of
+$\Ext^i_X(\mathcal{I}^m\Im(\varphi), \mathcal{G})$ which maps
+to $\xi$. Since $\Im(\varphi)$ and $\mathcal{F}$ agree over $U$
+we see that $\mathcal{F}/\mathcal{I}^m\Im(\varphi)$ is supported
+on $X \setminus U$. Hence there exists an $l \geq m$
+such that $\mathcal{I}^l\mathcal{F} \subset \mathcal{I}^m\Im(\varphi)$, see
+Cohomology of Schemes, Lemma \ref{coherent-lemma-power-ideal-kills-sheaf}.
+Taking the image of $\xi_m$ in
+$\Ext^i_X(\mathcal{I}^l\mathcal{F}, \mathcal{G})$ we win.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-lift-map-plus}
+The result of Lemma \ref{lemma-lift-map} holds even for
+$L \in D^+_{\textit{Coh}}(\mathcal{O}_X)$.
+\end{lemma}
+
+\begin{proof}
+Namely, if $(K_n)$ is a Deligne system then there exists a
+$b \in \mathbf{Z}$ such that $H^i(K_n) = 0$ for $i > b$.
+Then $\Hom(K_n, L) = \Hom(K_n, \tau_{\leq b}L)$ and
+$\Hom(K, L) = \Hom(K, \tau_{\leq b}L)$. Hence using
+the result of the lemma for $\tau_{\leq b}L$ we win.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-extension-by-zero}
+Let $j : U \to X$ be an open immersion of Noetherian schemes.
+\begin{enumerate}
+\item Let $(K_n)$ and $(L_n)$ be Deligne systems.
+Let $K$ and $L$ be the values of the constant systems
+$(K_n|_U)$ and $(L_n|_U)$. Given a morphism $\alpha : K \to L$
+of $D(\mathcal{O}_U)$
+there is a unique morphism of pro-systems $(K_n) \to (L_n)$
+of $D^b_{\textit{Coh}}(\mathcal{O}_X)$ whose restriction to $U$ is $\alpha$.
+\item Given $K \in D^b_{\textit{Coh}}(\mathcal{O}_U)$ there exists a
+Deligne system $(K_n)$ such that $(K_n|_U)$ is constant
+with value $K$.
+\item The pro-object $(K_n)$ of $D^b_{\textit{Coh}}(\mathcal{O}_X)$
+of (2) is unique up to unique isomorphism (as a pro-object).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Part (1) is an immediate consequence of Lemma \ref{lemma-lift-map}
+and the fact that morphisms between pro-systems are
+the same as morphisms between the functors they corepresent, see
+Categories, Remark \ref{categories-remark-pro-category-copresheaves}.
+
+\medskip\noindent
+Let $K$ be as in (2). We can choose $K' \in D^b_{\textit{Coh}}(\mathcal{O}_X)$
+whose restriction to $U$ is isomorphic to $K$, see
+Derived Categories of Schemes, Lemma \ref{perfect-lemma-lift-coherent}.
+By Derived Categories of Schemes, Proposition \ref{perfect-proposition-DCoh}
+we can represent $K'$ by a bounded complex $\mathcal{F}^\bullet$
+of coherent $\mathcal{O}_X$-modules. Choose a quasi-coherent sheaf
+of ideals $\mathcal{I} \subset \mathcal{O}_X$ whose vanishing
+locus is $X \setminus U$ (for example choose $\mathcal{I}$ to correspond
+to the reduced induced subscheme structure on $X \setminus U$).
+Then we can set $K_n$ equal to the object represented by the complex
+$\mathcal{I}^n\mathcal{F}^\bullet$ as in the introduction
+to this section.
+
+\medskip\noindent
+Part (3) is immediate from parts (1) and (2).
+\end{proof}
+
+\begin{lemma}
+\label{lemma-extension-by-zero-triangle}
+Let $j : U \to X$ be an open immersion of Noetherian schemes. Let
+$$
+K \to L \to M \to K[1]
+$$
+be a distinguished triangle of $D^b_{\textit{Coh}}(\mathcal{O}_U)$.
+Then there exists an inverse system of distinguished triangles
+$$
+K_n \to L_n \to M_n \to K_n[1]
+$$
+in $D^b_{\textit{Coh}}(\mathcal{O}_X)$ such that $(K_n)$, $(L_n)$, $(M_n)$
+are Deligne systems and such that the restriction of these
+distinguished triangles to $U$ is isomorphic to the distinguished triangle
+we started out with.
+\end{lemma}
+
+\begin{proof}
+Let $(K_n)$ be as in Lemma \ref{lemma-extension-by-zero} part (2).
+Choose an object $L'$ of $D^b_{\textit{Coh}}(\mathcal{O}_X)$
+whose restriction to $U$ is $L$ (we can do this as the lemma shows).
+By Lemma \ref{lemma-lift-map} we can find an $n$ and a morphism
+$K_n \to L'$ on $X$ whose restriction to $U$ is the given arrow
+$K \to L$. We conclude there is a morphism $K' \to L'$ of
+$D^b_{\textit{Coh}}(\mathcal{O}_X)$ whose restriction to $U$
+is the given arrow $K \to L$.
+
+\medskip\noindent
+By Derived Categories of Schemes, Proposition \ref{perfect-proposition-DCoh}
+we can find a morphism $\alpha^\bullet : \mathcal{F}^\bullet \to
+\mathcal{G}^\bullet$ of bounded complexes
+of coherent $\mathcal{O}_X$-modules representing $K' \to L'$.
+Choose a quasi-coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_X$
+whose vanishing locus is $X \setminus U$.
+Then we let
+$K_n = \mathcal{I}^n\mathcal{F}^\bullet$
+and
+$L_n = \mathcal{I}^n\mathcal{G}^\bullet$.
+Observe that $\alpha^\bullet$ induces a morphism of
+complexes $\alpha_n^\bullet : \mathcal{I}^n\mathcal{F}^\bullet \to
+\mathcal{I}^n\mathcal{G}^\bullet$. From the construction of cones in
+Derived Categories, Section \ref{derived-section-cones}
+it is clear that
+$$
+C(\alpha_n)^\bullet = \mathcal{I}^nC(\alpha^\bullet)
+$$
+and hence we can set $M_n = C(\alpha_n)^\bullet$. Namely, we
+have a compatible system of distinguished triangles
+(see discussion in Derived Categories, Section
+\ref{derived-section-canonical-delta-functor})
+$$
+K_n \to L_n \to M_n \to K_n[1]
+$$
+whose restriction to $U$ is isomorphic to the distinguished 
+triangle we started out with by axiom TR3 and Derived Categories,
+Lemma \ref{derived-lemma-third-isomorphism-triangle}.
+\end{proof}
+
+\begin{remark}
+\label{remark-extension-by-zero}
+Let $j : U \to X$ be an open immersion of Noetherian schemes.
+Sending $K \in D^b_{\textit{Coh}}(\mathcal{O}_U)$ to a Deligne
+system whose restriction to $U$ is $K$ determines a functor
+$$
+Rj_! :
+D^b_{\textit{Coh}}(\mathcal{O}_U)
+\longrightarrow
+\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_X)
+$$
+which is ``exact'' by Lemma \ref{lemma-extension-by-zero-triangle} and
+which is
+``left adjoint'' to the functor
+$j^* : D^b_{\textit{Coh}}(\mathcal{O}_X) \to
+D^b_{\textit{Coh}}(\mathcal{O}_U)$ by Lemma \ref{lemma-lift-map}.
+\end{remark}
+
+\begin{remark}
+\label{remark-extension-by-zero-linear-pro-system}
+Let $(A_n)$ and $(B_n)$ be inverse systems of a category $\mathcal{C}$.
+Let us say a linear-pro-morphism from $(A_n)$ to $(B_n)$ is given
+by a compatible family of morphisms $\varphi_n : A_{cn + d} \to B_n$
+for all $n \geq 1$ for some fixed integers $c, d \geq 1$.
+We'll say $(\varphi_n : A_{cn + d} \to B_n)$ and
+$(\psi_n : A_{c'n + d'} \to B_n)$ determine the same morphism
+if there exist $c'' \geq \max(c, c')$ and $d'' \geq \max(d, d')$
+such that the two induced morphisms $A_{c'' n + d''} \to B_n$ are the same
+for all $n$. It seems likely that Deligne systems $(K_n)$ with given value on
+$U$ are well defined up to linear-pro-isomorphisms. If we ever need this
+we will carefully formulate and prove this here.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-deligne-system-2-out-of-3}
+Let $j : U \to X$ be an open immersion of Noetherian schemes.
+Let
+$$
+K_n \to L_n \to M_n \to K_n[1]
+$$
+be an inverse system of distinguished triangles in
+$D^b_{\textit{Coh}}(\mathcal{O}_X)$. If $(K_n)$ and $(M_n)$
+are pro-isomorphic to Deligne systems, then so is $(L_n)$.
+\end{lemma}
+
+\begin{proof}
+Observe that the systems $(K_n|_U)$ and $(M_n|_U)$ are essentially constant
+as they are pro-isomorphic to constant systems.
+Denote $K$ and $M$ their values. By Derived Categories, Lemma
+\ref{derived-lemma-essentially-constant-2-out-of-3}
+we see that the inverse system $L_n|_U$ is essentially constant as well.
+Denote $L$ its value.
+Let $N \in D^b_{\textit{Coh}}(\mathcal{O}_X)$. Consider the commutative
+diagram
+$$
+\xymatrix{
+\ldots \ar[r] &
+\colim \Hom_X(M_n, N) \ar[r] \ar[d] &
+\colim \Hom_X(L_n, N) \ar[r] \ar[d] &
+\colim \Hom_X(K_n, N) \ar[r] \ar[d] &
+\ldots \\
+\ldots \ar[r] &
+\Hom_U(M, N|_U) \ar[r] &
+\Hom_U(L, N|_U) \ar[r] &
+\Hom_U(K, N|_U) \ar[r] &
+\ldots
+}
+$$
+By Lemma \ref{lemma-lift-map} and the fact that isomorphic ind-systems
+have the same colimit, we see that the vertical arrows two to the right
+and two to the left of the middle one are isomorphisms. By the 5-lemma
+we conclude that the
+middle vertical arrow is an isomorphism. Now, if $(L'_n)$ is a Deligne system
+whose restriction to $U$ has constant value $L$ (which
+exists by Lemma \ref{lemma-extension-by-zero}), then
+we have $\colim \Hom_X(L'_n, N) = \Hom_U(L, N|_U)$ as well.
+Hence the pro-systems $(L_n)$ and $(L'_n)$ are
+pro-isomorphic by
+Categories, Remark \ref{categories-remark-pro-category-copresheaves}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-consequence-Artin-Rees-bis}
+Let $X$ be a Noetherian scheme. Let $\mathcal{I} \subset \mathcal{O}_X$
+be a quasi-coherent sheaf of ideals. Let $\mathcal{F}^\bullet$ be a
+complex of coherent $\mathcal{O}_X$-modules. Let $p \in \mathbf{Z}$.
+Set $\mathcal{H} = H^p(\mathcal{F}^\bullet)$ and
+$\mathcal{H}_n = H^p(\mathcal{I}^n\mathcal{F}^\bullet)$.
+Then there are canonical $\mathcal{O}_X$-module maps
+$$
+\ldots \to \mathcal{H}_3 \to \mathcal{H}_2 \to \mathcal{H}_1 \to \mathcal{H}
+$$
+There exists a $c > 0$ such that for $n \geq c$ the image of
+$\mathcal{H}_n \to \mathcal{H}$ is contained in
+$\mathcal{I}^{n - c}\mathcal{H}$ and there is a canonical
+$\mathcal{O}_X$-module map
+$\mathcal{I}^n\mathcal{H} \to \mathcal{H}_{n - c}$ such that the compositions
+$$
+\mathcal{I}^n \mathcal{H} \to \mathcal{H}_{n - c} \to
+\mathcal{I}^{n - 2c}\mathcal{H}
+\quad\text{and}\quad
+\mathcal{H}_n \to \mathcal{I}^{n - c}\mathcal{H} \to \mathcal{H}_{n - 2c}
+$$
+are the canonical ones. In particular, the inverse systems
+$(\mathcal{H}_n)$ and $(\mathcal{I}^n\mathcal{H})$
+are isomorphic as pro-objects of $\textit{Mod}(\mathcal{O}_X)$.
+\end{lemma}
+
+\begin{proof}
+If $X$ is affine, translated into algebra this is More on Algebra, Lemma
+\ref{more-algebra-lemma-consequence-Artin-Rees-bis}.
+In the general case, argue exactly as in the proof of that lemma
+replacing the reference to Artin-Rees in algebra with a reference to
+Cohomology of Schemes, Lemma \ref{coherent-lemma-Artin-Rees}.
+Details omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-characterize-extension-by-zero-algebra}
+Let $j : U \to X$ be an open immersion of Noetherian schemes.
+Let $a \leq b$ be integers. Let $(K_n)$ be an inverse system of
+$D^b_{\textit{Coh}}(\mathcal{O}_X)$
+such that $H^i(K_n) = 0$ for $i \not \in [a, b]$.
+The following are equivalent
+\begin{enumerate}
+\item $(K_n)$ is pro-isomorphic to a Deligne system,
+\item for every $p \in \mathbf{Z}$ there exists a coherent
+$\mathcal{O}_X$-module $\mathcal{F}$ such that the pro-systems
+$(H^p(K_n))$ and $(\mathcal{I}^n\mathcal{F})$ are pro-isomorphic.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Assume (1). To prove (2) holds we may assume $(K_n)$ is a Deligne system.
+By definition we may choose a bounded complex $\mathcal{F}^\bullet$
+of coherent $\mathcal{O}_X$-modules and a quasi-coherent
+sheaf of ideals cutting out $X \setminus U$ such that
+$K_n$ is represented by $\mathcal{I}^n\mathcal{F}^\bullet$.
+Thus the result follows from Lemma \ref{lemma-consequence-Artin-Rees-bis}.
+
+\medskip\noindent
+Assume (2). We will prove that $(K_n)$ is as in (1) by induction on
+$b - a$. If $a = b$ then (1) holds essentially by assumption.
+If $a < b$ then we consider the compatible system of
+distinguished triangles
+$$
+\tau_{\leq a}K_n \to K_n \to \tau_{\geq a + 1}K_n \to (\tau_{\leq a}K_n)[1]
+$$
+See Derived Categories, Remark
+\ref{derived-remark-truncation-distinguished-triangle}.
+By induction on $b - a$ we know that $\tau_{\leq a}K_n$ and
+$\tau_{\geq a + 1}K_n$ are pro-isomorphic to Deligne systems.
+We conclude by Lemma \ref{lemma-deligne-system-2-out-of-3}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-characterize-extension-by-zero}
+Let $j : U \to X$ be an open immersion of Noetherian schemes. Let
+$(K_n)$ be an inverse system in $D^b_{\textit{Coh}}(\mathcal{O}_X)$.
+Let $X = W_1 \cup \ldots \cup W_r$ be an open covering.
+The following are equivalent
+\begin{enumerate}
+\item $(K_n)$ is pro-isomorphic to a Deligne system,
+\item for each $i$ the restriction $(K_n|_{W_i})$
+is pro-isomorphic to a Deligne system with respect to
+the open immersion $U \cap W_i \to W_i$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+By induction on $r$. If $r = 1$ then the result is clear.
+Assume $r > 1$. Set $V = W_1 \cup \ldots \cup W_{r - 1}$.
+By induction we see that $(K_n|_V)$ is a Deligne system.
+This reduces us to the discussion in the next paragraph.
+
+\medskip\noindent
+Assume $X = V \cup W$ is an open covering and
+$(K_n|_W)$ and $(K_n|_V)$ are pro-isomorphic to Deligne systems.
+We have to show that $(K_n)$ is pro-isomorphic to a Deligne system.
+Observe that $(K_n|_{V \cap W})$ is pro-isomorphic to a Deligne system
+(it follows immediately from the construction of Deligne systems
+that restrictions to opens preserves them). In particular the pro-systems
+$(K_n|_{U \cap V})$,
+$(K_n|_{U \cap W})$, and
+$(K_n|_{U \cap V \cap W})$
+are essentially constant. It follows from the distinguished triangles
+in Cohomology, Lemma \ref{cohomology-lemma-exact-sequence-j-star} and
+Derived Categories, Lemma \ref{derived-lemma-essentially-constant-2-out-of-3}
+that $(K_n|_U)$ is essentially constant.
+Denote $K \in D^b_{\textit{Coh}}(\mathcal{O}_U)$ the value of this system.
+Let $L$ be an object of $D^b_{\textit{Coh}}(\mathcal{O}_X)$.
+Consider the diagram
+$$
+\xymatrix{
+\colim \Ext^{-1}(K_n|_V, L|_V) \oplus
+\colim \Ext^{-1}(K_n|_W, L|_W) \ar[r] \ar[d] &
+\Ext^{-1}(K|_{U \cap V}, L|_{U \cap V}) \oplus
+\Ext^{-1}(K|_{U \cap W}, L|_{U \cap W}) \ar[d] \\
+\colim \Ext^{-1}(K_n|_{V \cap W}, L|_{V \cap W}) \ar[r] \ar[d] &
+\Ext^{-1}(K|_{U \cap V \cap W}, L|_{U \cap V \cap W}) \ar[d] \\
+\colim \Hom(K_n, L) \ar[d] \ar[r] &
+\Hom(K|_U, L|_U) \ar[d] \\
+\colim \Hom(K_n|_V, L|_V) \oplus \colim \Hom(K_n|_W, L|_W) \ar[r] \ar[d] &
+\Hom(K|_{U \cap V}, L|_{U \cap V}) \oplus
+\Hom(K|_{U \cap W}, L|_{U \cap W}) \ar[d] \\
+\colim \Hom(K_n|_{V \cap W}, L|_{V \cap W}) \ar[r] &
+\Hom(K|_{U \cap V \cap W}, L|_{U \cap V \cap W})
+}
+$$
+The vertical sequences are exact by
+Cohomology, Lemma \ref{cohomology-lemma-mayer-vietoris-hom}
+and the fact that filtered colimits are exact.
+All horizontal arrows except for the middle one are isomorphisms
+by Lemma \ref{lemma-lift-map} and the fact that pro-isomorphic systems
+have the same colimits. Hence the middle one is an isomorphism too by
+the 5-lemma. It follows that $(K_n)$ is pro-isomorphic to
+a Deligne system for $K$. Namey, if $(K'_n)$ is a Deligne system
+whose restriction to $U$ has constant value $K$ (which
+exists by Lemma \ref{lemma-extension-by-zero}), then
+we have $\colim \Hom_X(K'_n, L) = \Hom_U(K, L|_U)$ as well.
+Hence the pro-systems $(K_n)$ and $(K'_n)$ are
+pro-isomorphic by
+Categories, Remark \ref{categories-remark-pro-category-copresheaves}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-tensoring-Deligne-system}
+Let $j : U \to X$ be an open immersion of Noetherian schemes. Let
+$\mathcal{I} \subset \mathcal{O}_X$ be a quasi-coherent sheaf of
+ideals with $V(\mathcal{I}) = X \setminus U$.
+Let $K$ be in $D^b_{\textit{Coh}}(\mathcal{O}_X)$.
+Then
+$$
+K \otimes_{\mathcal{O}_X}^\mathbf{L} \mathcal{I}^n
+$$
+is pro-isomorphic to a Deligne system with constant value $K|_U$ over $U$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-characterize-extension-by-zero} the question is
+local on $X$. Thus we may assume $X$ is the spectrum of a Noetherian
+ring. In this case the statement follows from the algebra version which is
+More on Algebra, Lemma \ref{more-algebra-lemma-tensoring-Deligne-system}.
+\end{proof}
+
+
+
+
+
+
+
+\section{Preliminaries to compactly supported cohomology}
+\label{section-preliminaries-compactly-supported}
+
+\noindent
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism
+in the category $\textit{FTS}_S$. Using the constructions in the
+previous section, we will construct a functor
+$$
+Rf_! :
+D^b_{\textit{Coh}}(\mathcal{O}_X)
+\longrightarrow
+\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)
+$$
+which reduces to the functor of Remark \ref{remark-extension-by-zero}
+if $f$ is an open immersion and in general is constructed using a
+compactification of $f$. Before we do this, we need the following lemmas
+to prove our construction is well defined.
+
+\begin{lemma}
+\label{lemma-well-defined-pre}
+Let $f : X \to Y$ be a proper morphism of Noetherian schemes.
+Let $V \subset Y$ be an open subscheme and set $U = f^{-1}(V)$.
+Picture
+$$
+\xymatrix{
+U \ar[r]_j \ar[d]_g & X \ar[d]^f \\
+V \ar[r]^{j'} & Y
+}
+$$
+Then we have a canonical isomorphism $Rj'_! \circ Rg_* \to Rf_* \circ Rj_!$
+of functors $D^b_{\textit{Coh}}(\mathcal{O}_U) \to
+\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)$ where
+$Rj_!$ and $Rj'_!$ are as in Remark \ref{remark-extension-by-zero}.
+\end{lemma}
+
+\begin{proof}[First proof]
+Let $K$ be an object of $D^b_{\textit{Coh}}(\mathcal{O}_U)$. Let $(K_n)$
+be a Deligne system for $U \to X$ whose restriction to $U$ is constant
+with value $K$. Of course this means that $(K_n)$ represents $Rj_!K$
+in $\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_X)$. Observe that
+both $Rj'_!Rg_*K$ and $Rf_*Rj_!K$ restrict to the constant pro-object with
+value $Rg_*K$ on $V$. This is immediate for the first one and for the second
+one it follows from the fact that $(Rf_*K_n)|_V = Rg_*(K_n|_U) = Rg_*K$.
+By the uniqueness of Deligne systems in Lemma \ref{lemma-extension-by-zero}
+it suffices to show that $(Rf_*K_n)$ is pro-isomorphic to a
+Deligne system. The lemma referenced will also show that the
+isomorphism we obtain is functorial.
+
+\medskip\noindent
+Proof that $(Rf_*K_n)$ is pro-isomorphic to a Deligne system.
+First, we observe that the question is independent of the choice
+of the Deligne system $(K_n)$ corresponding to $K$ (by the aforementioned
+uniqueness). By Lemmas \ref{lemma-extension-by-zero-triangle} and
+\ref{lemma-deligne-system-2-out-of-3}
+if we have a distinguished triangle
+$$
+K \to L \to M \to K[1]
+$$
+in $D^b_{\textit{Coh}}(\mathcal{O}_U)$ and the result holds for
+$K$ and $M$, then the result holds for $L$. Using the distinguished
+triangles of canonical truncations (Derived Categories, Remark
+\ref{derived-remark-truncation-distinguished-triangle})
+we reduce to the problem studied in the next paragraph.
+
+\medskip\noindent
+Let $\mathcal{F}$ be a coherent $\mathcal{O}_X$-module.
+Let $\mathcal{J} \subset \mathcal{O}_Y$ be a quasi-coherent
+sheaf of ideals cutting out $Y \setminus V$. Denote
+$\mathcal{J}^n\mathcal{F}$ the image of
+$f^*\mathcal{J}^n \otimes \mathcal{F} \to \mathcal{F}$.
+We have to show that $(Rf_*(\mathcal{J}^n\mathcal{F}))$
+is a Deligne system. By Lemma \ref{lemma-characterize-extension-by-zero}
+the question is local on $Y$. Thus we may assume $Y = \Spec(A)$ is affine
+and $\mathcal{J}$ corresponds to an ideal $I \subset A$. By
+Lemma \ref{lemma-characterize-extension-by-zero-algebra}
+it suffices to show that the inverse system of cohomology modules
+$(H^p(X, I^n\mathcal{F}))$ is pro-isomorphic to the inverse system
+$(I^n M)$ for some finite $A$-module $M$.
+This is shown in Cohomology of Schemes, Lemma
+\ref{coherent-lemma-cohomology-powers-ideal-application}.
+\end{proof}
+
+\begin{proof}[Second proof]
+Let $K$ be an object of $D^b_{\textit{Coh}}(\mathcal{O}_U)$.
+Let $L$ be an object of $D^b_{\textit{Coh}}(\mathcal{O}_Y)$.
+We will construct a bijection
+$$
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)}(Rj'_!Rg_*K, L)
+\longrightarrow
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)}(Rf_*Rj_!K, L)
+$$
+functorial in $K$ and $L$. Fixing $K$ this will determine an isomorphism
+of pro-objects
+$Rf_*Rj_!K \to Rj'_!Rg_*K$
+by Categories, Remark \ref{categories-remark-pro-category-copresheaves}
+and varying $K$ we obtain that this determines
+an isomorphism of functors. To actually produce the isomorphism we
+use the sequence of functorial equalities
+\begin{align*}
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)}(Rj'_!Rg_*K, L)
+& =
+\Hom_V(Rg_*K, L|_V) \\
+& =
+\Hom_U(K, g^!(L|_V)) \\
+& =
+\Hom_U(K, f^!L|_U)) \\
+& =
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_X)}(Rj_!K, f^!L) \\
+& =
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)}(Rf_*Rj_!K, L)
+\end{align*}
+The first equality is true by Lemma \ref{lemma-lift-map}.
+The second equality is true because $g$ is proper (as the base change
+of $f$ to $V$) and hence $g^!$ is the right adjoint of pushforward by
+construction, see Section \ref{section-upper-shriek}.
+The third equality holds as $g^!(L|_V) = f^!L|_U$ by
+Lemma \ref{lemma-restrict-before-or-after}.
+Since $f^!L$ is in $D^+_{\textit{Coh}}(\mathcal{O}_X)$ by
+Lemma \ref{lemma-shriek-coherent} the fourth equality follows from 
+Lemma \ref{lemma-lift-map-plus}. The fifth equality holds again
+because $f^!$ is the right adjoint to $Rf_*$ as $f$ is proper.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-well-defined}
+Let $j : U \to X$ be an open immersion of Noetherian schemes.
+Let $j' : U \to X'$ be a compactification of $U$ over $X$ (see proof)
+and denote $f : X' \to X$ the structure morphism.
+Then we have a canonical isomorphism $Rj_! \to Rf_* \circ R(j')_!$
+of functors $D^b_{\textit{Coh}}(\mathcal{O}_U) \to
+\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_X)$ where
+$Rj_!$ and $Rj'_!$ are as in Remark \ref{remark-extension-by-zero}.
+\end{lemma}
+
+\begin{proof}
+The fact that $X'$ is a compactification of $U$ over $X$ means
+precisely that $f : X' \to X$ is proper, that $j'$ is an open immersion,
+and $j = f \circ j'$. See
+More on Flatness, Section \ref{flat-section-compactify}.
+If $j'(U) = f^{-1}(j(U))$, then the lemma follows immediately from
+Lemma \ref{lemma-well-defined-pre}.
+If $j'(U) \not = f^{-1}(j(U))$, then denote $X'' \subset X'$ the
+scheme theoretic closure of $j' : U \to X'$ and denote
+$j'' : U \to X''$ the corresponding open immersion.
+Picture
+$$
+\xymatrix{
+& & X'' \ar[d]^{f'} \\
+& & X' \ar[d]^f \\
+U \ar[rr]^j \ar[rru]^{j'} \ar[rruu]^{j''} & & X
+}
+$$
+By
+More on Flatness, Lemma \ref{flat-lemma-compactifications-cofiltered} part (c)
+and the discussion above we have isomorphisms
+$Rf'_* \circ Rj''_! = Rj'_!$ and $R(f \circ f')_* \circ Rj''_! = Rj_!$.
+Since $R(f \circ f')_* = Rf_* \circ Rf'_*$ we conclude.
+\end{proof}
+
+\begin{remark}
+\label{remark-covariance-open-j-lower-shriek}
+Let $X \supset U \supset U'$ be open subschemes of a Noetherian scheme $X$.
+Denote $j : U \to X$ and $j' : U' \to X$ the inclusion morphisms.
+We claim there is a canonical map
+$$
+Rj'_!(K|_{U'}) \longrightarrow Rj_!K
+$$
+functorial for $K$ in $D^b_{\textit{Coh}}(\mathcal{O}_U)$. Namely, by
+Lemma \ref{lemma-lift-map} we have for any $L$ in
+$D^b_{\textit{Coh}}(\mathcal{O}_X)$ the map
+\begin{align*}
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_X)}(Rj_!K, L)
+& =
+\Hom_U(K, L|_U) \\
+& \to
+\Hom_{U'}(K|_{U'}, L|_{U'}) \\
+& =
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_X)}(Rj'_!(K|_{U'}), L)
+\end{align*}
+functorial in $L$ and $K'$. The functoriality in $L$ shows by
+Categories, Remark \ref{categories-remark-pro-category-copresheaves}
+that we obtain a canonical map $Rj'_!(K|_{U'}) \to Rj_!K$ which is
+functorial in $K$ by the functoriality of the arrow above in $K$.
+
+\medskip\noindent
+Here is an explicit construction of this arrow. Namely, suppose
+that $\mathcal{F}^\bullet$ is a bounded complex of coherent
+$\mathcal{O}_X$-modules whose restriction to $U$ represents $K$
+in the derived category. We have seen in the proof of
+Lemma \ref{lemma-extension-by-zero}
+that such a complex always exists. Let $\mathcal{I}$, resp.\ $\mathcal{I}'$
+be a quasi-coherent sheaf of ideals on $X$ with
+$V(\mathcal{I}) = X \setminus U$, resp.\ $V(\mathcal{I}') = X \setminus U'$.
+After replacing $\mathcal{I}$ by $\mathcal{I} + \mathcal{I}'$
+we may assume $\mathcal{I}' \subset \mathcal{I}$.
+By construction $Rj_!K$, resp.\ $Rj'_!(K|_{U'})$ is represented by the
+inverse system $(K_n)$, resp.\ $(K'_n)$ of $D^b_{\textit{Coh}}(\mathcal{O}_X)$
+with
+$$
+K_n = \mathcal{I}^n\mathcal{F}^\bullet
+\quad\text{resp.}\quad
+K'_n = (\mathcal{I}')^n\mathcal{F}^\bullet
+$$
+Clearly the map constructed above is given by the maps
+$K'_n \to K_n$ coming from the inclusions
+$(\mathcal{I}')^n \subset \mathcal{I}^n$.
+\end{remark}
+
+
+
+
+
+
+\section{Compactly supported cohomology for coherent modules}
+\label{section-compactly-supported}
+
+\noindent
+In Situation \ref{situation-shriek} given a morphism $f : X \to Y$
+in $\textit{FTS}_S$, we will define a functor
+$$
+Rf_! : D^b_{\textit{Coh}}(\mathcal{O}_X)
+\longrightarrow
+\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)
+$$
+Namely, we choose a compactification $j : X \to \overline{X}$ over $Y$
+which is possible by More on Flatness, Theorem \ref{flat-theorem-nagata} and
+Lemma \ref{flat-lemma-compactifyable}. Denote
+$\overline{f} : \overline{X} \to Y$ the structure morphism. Then we set
+$$
+Rf_!K  = R\overline{f}_* Rj_! K
+$$
+for $K \in D^b_{\textit{Coh}}(\mathcal{O}_X)$ where $Rj_!$ is
+as in Remark \ref{remark-extension-by-zero}.
+
+\begin{lemma}
+\label{lemma-lower-shriek-well-defined}
+The functor $Rf_!$ is, up to isomorphism, independent
+of the choice of the compactification.
+\end{lemma}
+
+\noindent
+In fact, the functor $Rf_!$ will be characterized as a ``left adjoint''
+to $f^!$ which will determine it up to unique isomorphism.
+
+\begin{proof}
+Consider the category of compactifications of $X$ over $Y$, which is
+cofiltered according to More on Flatness, Theorem \ref{flat-theorem-nagata} and
+Lemmas \ref{flat-lemma-compactifications-cofiltered} and
+\ref{flat-lemma-compactifyable}.
+To every choice of a compactification
+$$
+j : X \to \overline{X},\quad \overline{f} : \overline{X} \to Y
+$$
+the construction above associates the functor $R\overline{f}_* \circ Rj_!$.
+Suppose given a morphism $g : \overline{X}_1 \to \overline{X}_2$
+between compactifications $j_i : X \to \overline{X}_i$ over $Y$.
+Then we get an isomorphism
+$$
+R\overline{f}_{2, *} \circ Rj_{2, !} =
+R\overline{f}_{2, *} \circ Rg_* \circ j_{1, !} =
+R\overline{f}_{1, *} \circ Rj_{1, !}
+$$
+using Lemma \ref{lemma-well-defined} in the first equality. In this way
+we see our functor is independent of the choice of compactification
+up to isomorphism.
+\end{proof}
+
+\begin{proposition}
+\label{proposition-duality-compactly-supported}
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Then the functors $Rf_!$ and $f^!$ are adjoint in
+the following sense: for all $K \in D^b_{\textit{Coh}}(\mathcal{O}_X)$
+and $L \in D^+_{\textit{Coh}}(\mathcal{O}_Y)$ we have
+$$
+\Hom_X(K, f^!L) =
+\Hom_{\text{Pro-}D^+_{\textit{Coh}}(\mathcal{O}_Y)}(Rf_!K, L)
+$$
+bifunctorially in $K$ and $L$.
+\end{proposition}
+
+\begin{proof}
+Choose a compactification $j : X \to \overline{X}$ over $Y$ and
+denote $\overline{f} : \overline{X} \to Y$ the structure morphism.
+Then we have
+\begin{align*}
+\Hom_X(K, f^!L)
+& =
+\Hom_X(K, j^*\overline{f}{}^!L) \\
+& =
+\Hom_{\text{Pro-}D^+_{\textit{Coh}}(\mathcal{O}_{\overline{X}})}
+(Rj_!K, \overline{f}{}^!L) \\
+& =
+\Hom_{\text{Pro-}D^+_{\textit{Coh}}(\mathcal{O}_Y)}(Rf_*Rj_!K, L) \\
+& =
+\Hom_{\text{Pro-}D^+_{\textit{Coh}}(\mathcal{O}_Y)}(Rf_!K, L)
+\end{align*}
+The first equality follows immediately from the construction of $f^!$ in
+Section \ref{section-upper-shriek}.
+By Lemma \ref{lemma-shriek-coherent} we have $\overline{f}{}^!L$
+in $D^+_{\textit{Coh}}(\mathcal{O}_{\overline{X}})$ hence the second
+equality follows from Lemma \ref{lemma-lift-map-plus}.
+Since $\overline{f}$ is proper the functor $\overline{f}{}^!$
+is the right adjoint of pushforward by construction. This is
+why we have the third equality.
+The fourth equality holds because $Rf_! = Rf_* Rj_!$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-compactly-supported-triangle}
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$. Let
+$$
+K \to L \to M \to K[1]
+$$
+be a distinguished triangle of $D^b_{\textit{Coh}}(\mathcal{O}_X)$.
+Then there exists an inverse system of distinguished triangles
+$$
+K_n \to L_n \to M_n \to K_n[1]
+$$
+in $D^b_{\textit{Coh}}(\mathcal{O}_Y)$ such that the pro-systems
+$(K_n)$, $(L_n)$, and $(M_n)$ give $Rf_!K$, $Rf_!L$, and $Rf_!M$.
+\end{lemma}
+
+\begin{proof}
+Choose a compactification $j : X \to \overline{X}$ over $Y$ and
+denote $\overline{f} : \overline{X} \to Y$ the structure morphism.
+Choose an inverse system of distinguished triangles
+$$
+\overline{K}_n \to \overline{L}_n \to \overline{M}_n \to \overline{K}_n[1]
+$$
+in $D^b_{\textit{Coh}}(\mathcal{O}_{\overline{X}})$ as in
+Lemma \ref{lemma-extension-by-zero-triangle} corresponding to the
+open immersion $j$ and the given distinguished triangle. Take
+$K_n = R\overline{f}_*\overline{K}_n$
+and similarly for $L_n$ and $M_n$. This works by the very definition
+of $Rf_!$.
+\end{proof}
+
+\begin{remark}
+\label{remark-compose-inverse-systems}
+Let $\mathcal{C}$ be a category. Suppose given an inverse system
+$$
+\ldots \xrightarrow{\alpha_4} (M_{3, n}) \xrightarrow{\alpha_3} (M_{2, n})
+\xrightarrow{\alpha_2} (M_{1, n})
+$$
+of inverse systems in the category of pro-objects of $\mathcal{C}$.
+In other words, the arrows $\alpha_i$ are morphisms of pro-objects. By
+Categories, Example \ref{categories-example-pro-morphism-inverse-systems}
+we can represent each $\alpha_i$ by a pair $(m_i, a_i)$ where
+$m_i : \mathbf{N} \to \mathbf{N}$ is an increasing function and
+$a_{i, n} : M_{i, m_i(n)} \to M_{i - 1, n}$ is a morphism of $\mathcal{C}$
+making the diagrams
+$$
+\xymatrix{
+\ldots \ar[r] &
+M_{i, m_i(3)} \ar[d]^{a_{i, 3}} \ar[r] &
+M_{i, m_i(2)} \ar[d]^{a_{i, 2}} \ar[r] &
+M_{i, m_i(1)} \ar[d]^{a_{i, 1}} \\
+\ldots \ar[r] &
+M_{i - 1, 3} \ar[r] &
+M_{i - 1, 2} \ar[r] &
+M_{i - 1, 1}
+}
+$$
+commute. By replacing $m_i(n)$ by $\max(n, m_i(n))$ and adjusting
+the morphisms $a_i(n)$ accordingly (as in the example referenced)
+we may assume that $m_i(n) \geq n$. In this situation consider the
+inverse system
+$$
+\ldots \to
+M_{4, m_4(m_3(m_2(4)))} \to
+M_{3, m_3(m_2(3))} \to
+M_{2, m_2(2)} \to
+M_{1, 1}
+$$
+with general term
+$$
+M_k = M_{k, m_k(m_{k - 1}(\ldots (m_2(k))\ldots))}
+$$
+For any object $N$ of $\mathcal{C}$ we have
+$$
+\colim_i \colim_n \Mor_\mathcal{C}(M_{i, n}, N) =
+\colim_k \Mor_\mathcal{C}(M_k, N) 
+$$
+We omit the details. In other words, we see that the inverse system $(M_k)$
+has the property
+$$
+\colim_i \Mor_{\text{Pro-}\mathcal{C}}((M_{i, n}), N) =
+\Mor_{\text{Pro-}\mathcal{C}}((M_k), N)
+$$
+This property determines the inverse system $(M_k)$ up to pro-isomorphism
+by the discussion in
+Categories, Remark \ref{categories-remark-pro-category-copresheaves}.
+In this way we can turn certain inverse systems in $\text{Pro-}\mathcal{C}$
+into pro-objects with countable index categories.
+\end{remark}
+
+\begin{remark}
+\label{remark-composition-lower-shriek}
+In Situation \ref{situation-shriek} let $f : X \to Y$ and $g : Y \to Z$
+be composable morphisms of $\textit{FTS}_S$. Let us define the composition
+$$
+Rg_! \circ Rf_! :
+D^b_{\textit{Coh}}(\mathcal{O}_X)
+\longrightarrow
+\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Z)
+$$
+Namely, by the very construction of $Rf_!$
+for $K$ in $D^b_{\textit{Coh}}(\mathcal{O}_X)$
+the output $Rf_!K$ is the pro-isomorphism class
+of an inverse system $(M_n)$ in $D^b_{\textit{Coh}}(\mathcal{O}_Y)$.
+Then, since $Rg_!$ is constructed similarly, we see that
+$$
+\ldots \to Rg_!M_3 \to Rg_!M_2 \to Rg_!M_1
+$$
+is an inverse system of $\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)$.
+By the discussion in Remark \ref{remark-compose-inverse-systems}
+there is a unique pro-isomorphism class, which we will denote
+$Rg_! Rf_! K$, of inverse systems in $D^b_{\textit{Coh}}(\mathcal{O}_Z)$
+such that
+$$
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Z)}(Rg_!Rf_!K, L) =
+\colim_n \Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Z)}(Rg_!M_n, L)
+$$
+We omit the discussion necessary to see that this construction
+is functorial in $K$ as it will immediately follow from the next lemma.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-composition-lower-shriek}
+In Situation \ref{situation-shriek} let $f : X \to Y$ and $g : Y \to Z$
+be composable morphisms of $\textit{FTS}_S$. With notation as in
+Remark \ref{remark-composition-lower-shriek} we have
+$Rg_! \circ Rf_! = R(g \circ f)_!$.
+\end{lemma}
+
+\begin{proof}
+By the discussion in
+Categories, Remark \ref{categories-remark-pro-category-copresheaves}
+it suffices to show that we obtain the same answer if we compute
+$\Hom$ into $L$ in $D^b_{\textit{Coh}}(\mathcal{O}_Z)$. To do this
+we compute, using the notation in
+Remark \ref{remark-composition-lower-shriek}, as follows
+\begin{align*}
+\Hom_Z(Rg_!Rf_!K, L)
+& =
+\colim_n \Hom_Z(Rg_!M_n, L) \\
+& =
+\colim_n \Hom_Y(M_n, g^!L) \\
+& =
+\Hom_Y(Rf_!K, g^!L) \\
+& =
+\Hom_X(K, f^!g^!L) \\
+& =
+\Hom_X(K, (g \circ f)^!L) \\
+& =
+\Hom_Z(R(g \circ f)_!K, L)
+\end{align*}
+The first equality is the definition of $Rg_!Rf_!K$. The second
+equality is Proposition \ref{proposition-duality-compactly-supported}
+for $g$.
+The third equality is the fact that $Rf_!K$ is given by $(M_n)$.
+The fourth equality is
+Proposition \ref{proposition-duality-compactly-supported} for $f$.
+The fifth equality is Lemma \ref{lemma-upper-shriek-composition}.
+The sixth is 
+Proposition \ref{proposition-duality-compactly-supported} for $g \circ f$.
+\end{proof}
+
+\begin{remark}
+\label{remark-covariance-open-lower-shriek}
+In Situation \ref{situation-shriek} let $f : X \to Y$ be a morphism of
+$\textit{FTS}_S$ and let $U \subset X$ be an open. Set
+$g = f|_U : U \to Y$. Then there is a canonical morphism
+$$
+Rg_!(K|_U) \longrightarrow Rf_!K
+$$
+functorial in $K$ in $D^b_{\textit{Coh}}(\mathcal{O}_X)$
+which can be defined in at least 3 ways.
+\begin{enumerate}
+\item Denote $i : U \to X$ the inclusion morphism. We have
+$Rg_! = Rf_! \circ Ri_!$ by
+Lemma \ref{lemma-composition-lower-shriek}
+and we can use $Rf_!$ applied to the map $Ri_!(K|_U) \to K$
+which is a special case of
+Remark \ref{remark-covariance-open-j-lower-shriek}.
+\item Choose a compactification $j : X \to \overline{X}$
+of $X$ over $Y$ with structure morphism $\overline{f} : \overline{X} \to Y$.
+Set $j' = j \circ i : U \to \overline{X}$. We can
+use that $Rf_! = R\overline{f}_* \circ Rj_!$ and
+$Rg_! = R\overline{f}_* \circ Rj'_!$
+and we can use $R\overline{f}_*$ applied to the map
+$Rj'_!(K|_U) \to Rj_!K$ of
+Remark \ref{remark-covariance-open-j-lower-shriek}.
+\item We can use
+\begin{align*}
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)}(Rf_!K, L)
+& =
+\Hom_X(K, f^!L) \\
+& \to
+\Hom_U(K|_U, f^!L|_U) \\
+& =
+\Hom_U(K|_U, g^!L) \\
+& =
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)}(Rg_!(K|_U), L)
+\end{align*}
+functorial in $L$ and $K$. Here we have used
+Proposition \ref{proposition-duality-compactly-supported}
+twice and the construction of upper shriek functors which
+shows that $g^! = i^* \circ f^!$. The functoriality in $L$ shows by
+Categories, Remark \ref{categories-remark-pro-category-copresheaves}
+that we obtain a canonical map $Rg_!(K|_U) \to Rf_!K$ in
+$\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)$ which is
+functorial in $K$ by the functoriality of the arrow above in $K$.
+\end{enumerate}
+Each of these three constructions gives the same arrow; we omit the
+details.
+\end{remark}
+
+\begin{remark}
+\label{remark-covariance-etale-lower-shriek}
+Let us generalize the covariance of compactly supported cohomology
+given in Remark \ref{remark-covariance-open-lower-shriek}
+to \'etale morphisms. Namely, in Situation \ref{situation-shriek}
+suppose given a commutative diagram
+$$
+\xymatrix{
+U \ar[rr]_h \ar[rd]_g & & X \ar[ld]^f \\
+& Y
+}
+$$
+of $\textit{FTS}_S$ with $h$ \'etale. Then there is a canonical morphism
+$$
+Rg_!(h^*K) \longrightarrow Rf_!K
+$$
+functorial in $K$ in $D^b_{\textit{Coh}}(\mathcal{O}_X)$. We define
+this transformation using the sequence of maps
+\begin{align*}
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)}(Rf_!K, L)
+& =
+\Hom_X(K, f^!L) \\
+& \to
+\Hom_U(h^*K, h^*(f^!L)) \\
+& =
+\Hom_U(h^*K, h^!f^!L) \\
+& =
+\Hom_U(h^*K, g^!L) \\
+& =
+\Hom_{\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)}(Rg_!(h^*K), L)
+\end{align*}
+functorial in $L$ and $K$. Here we have used
+Proposition \ref{proposition-duality-compactly-supported}
+twice, we have used the equality $h^* = h^!$ of
+Lemma \ref{lemma-shriek-etale}, and we have used the equality
+$h^! \circ f^! = g^!$ of Lemma \ref{lemma-upper-shriek-composition}.
+The functoriality in $L$ shows by
+Categories, Remark \ref{categories-remark-pro-category-copresheaves}
+that we obtain a canonical map $Rg_!(h^*K) \to Rf_!K$ in
+$\text{Pro-}D^b_{\textit{Coh}}(\mathcal{O}_Y)$ which is
+functorial in $K$ by the functoriality of the arrow above in $K$.
+\end{remark}
+
+\begin{remark}
+\label{remark-covariance-lower-shriek}
+In Remarks \ref{remark-covariance-open-lower-shriek} and
+\ref{remark-covariance-etale-lower-shriek} we have seen
+that the construction of compactly supported cohomology is
+covariant with respect to open immersions and \'etale morphisms.
+In fact, the correct generality is that given a commutative diagram
+$$
+\xymatrix{
+U \ar[rr]_h \ar[rd]_g & & X \ar[ld]^f \\
+& Y
+}
+$$
+of $\textit{FTS}_S$ with $h$ flat and quasi-finite there exists a
+canonical transformation
+$$
+Rg_! \circ h^* \longrightarrow Rf_!
+$$
+As in Remark \ref{remark-covariance-etale-lower-shriek}
+this map can be constructed using a transformation of functors
+$h^* \to h^!$ on $D^+_{\textit{Coh}}(\mathcal{O}_X)$. Recall that
+$h^!K = h^*K \otimes \omega_{U/X}$ where $\omega_{U/X} = h^!\mathcal{O}_X$
+is the relative dualizing sheaf of the flat quasi-finite morphism $h$ (see
+Lemmas \ref{lemma-perfect-comparison-shriek} and
+\ref{lemma-flat-quasi-finite-shriek}).
+Recall that $\omega_{U/X}$ is the same as the relative dualizing
+module which will be constructed in Discriminants, Remark
+\ref{discriminant-remark-relative-dualizing-for-quasi-finite}
+by
+Discriminants, Lemma \ref{discriminant-lemma-compare-dualizing}.
+Thus we can use the trace element
+$\tau_{U/X} : \mathcal{O}_U \to \omega_{U/X}$
+which will be constructed in Discriminants, Remark
+\ref{discriminant-remark-relative-dualizing-for-flat-quasi-finite}
+to define our transformation.
+If we ever need this, we will precisely formulate
+and prove the result here.
+\end{remark}
+
+
+
+
+
+
+
+\section{Duality for compactly supported cohomology}
+\label{section-duality-compactly-supported}
+
+\noindent
+Let $k$ be a field. Let $U$ be a separated scheme of finite type over $k$.
+Let $K$ be an object of $D^b_{\textit{Coh}}(\mathcal{O}_U)$. Let us define
+the compactly supported cohomology $H^i_c(U, K)$ of $K$ as follows.
+Choose an open immersion $j : U \to X$ into a scheme proper over $k$
+and a Deligne system $(K_n)$ for $j : U \to X$ whose restriction
+to $U$ is constant with value $K$. Then we set
+$$
+H^i_c(U, K) = \lim H^i(X, K_n)
+$$
+We view this as a topological $k$-vector space using the limit topology
+(see More on Algebra, Section \ref{more-algebra-section-topological-ring}).
+There are several points to make here.
+
+\medskip\noindent
+First, this definition is independent of the choice of $X$ and $(K_n)$.
+Namely, if $p : U \to \Spec(k)$ denotes the structure morphism, then
+we already know that $Rp_!K = (R\Gamma(X, K_n))$
+is well defined up to pro-isomorphism in $D(k)$ hence so is the limit
+defining $H^i_c(U, K)$.
+
+\medskip\noindent
+Second, it may seem more natural to use the expression
+$$
+H^i(R\lim R\Gamma(X, K_n)) = R\Gamma(X, R\lim K_n)
+$$
+but this would give the same answer: since the $k$-vector spaces
+$H^j(X, K_n)$ are finite dimensional, these inverse systems satisfy
+Mittag-Leffler and hence $R^1\lim$ terms of Cohomology, Lemma
+\ref{cohomology-lemma-RGamma-commutes-with-Rlim} vanish.
+
+\medskip\noindent
+If $U' \subset U$ is an open subscheme, then there is a canonical map
+$$
+H^i_c(U', K|_{U'}) \longrightarrow H^i_c(U, K)
+$$
+functorial for $K$ in $D^b_{\textit{Coh}}(\mathcal{O}_U)$.
+See for example Remark \ref{remark-covariance-open-lower-shriek}.
+In fact, using Remark \ref{remark-covariance-etale-lower-shriek}
+we see that more generally such a map exists for an \'etale morphism
+$U' \to U$ of separated schemes of finite type over $k$.
+
+\medskip\noindent
+If $V$ is a $k$-vector space then we put a topology on $\Hom_k(V, k)$
+as follows: write $V = \bigcup V_i$ as the filtered union of its finite
+dimensional $k$-subvector spaces and use the limit topology on
+$\Hom_k(V, k) = \lim \Hom_k(V_i, k)$. If $\dim_k V < \infty$ then
+the topology on $\Hom_k(V, k)$ is discrete. More generally, if
+$V = \colim_n V_n$ is written as a directed colimit of finite dimensional
+vector spaces, then $\Hom_k(V, k) = \lim \Hom_k(V_n, k)$ as topological
+vector spaces.
+
+\begin{lemma}
+\label{lemma-duality-compact-support}
+Let $p : U \to \Spec(k)$ be separated of finite type where $k$ is a field.
+Let $\omega_{U/k}^\bullet = p^!\mathcal{O}_{\Spec(k)}$.
+There are canonical isomorphisms
+$$
+\Hom_k(H^i(U, K), k) =
+H^{-i}_c(U, R\SheafHom_{\mathcal{O}_U}(K, \omega_{U/k}^\bullet))
+$$
+of topological $k$-vector spaces
+functorial for $K$ in $D^b_{\textit{Coh}}(\mathcal{O}_U)$.
+\end{lemma}
+
+\begin{proof}
+Choose a compactification $j : U \to X$ over $k$. Let
+$\mathcal{I} \subset \mathcal{O}_X$ be a quasi-coherent ideal
+sheaf with $V(\mathcal{I}) = X \setminus U$.
+By Derived Categories of Schemes, Proposition \ref{perfect-proposition-DCoh}
+we may choose $M \in D^b_{\textit{Coh}}(\mathcal{O}_X)$
+with $K = M|_U$. We have
+$$
+H^i(U, K) =
+\Ext^i_U(\mathcal{O}_U, M|_U) =
+\colim \Ext^i_X(\mathcal{I}^n, M) =
+\colim H^i(X, R\SheafHom_{\mathcal{O}_X}(\mathcal{I}^n, M))
+$$
+by Lemma \ref{lemma-lift-map}.
+Since $\mathcal{I}^n$ is a coherent $\mathcal{O}_X$-module,
+we have $\mathcal{I}^n$ in $D^-_{\textit{Coh}}(\mathcal{O}_X)$,
+hence $R\SheafHom_{\mathcal{O}_X}(\mathcal{I}^n, M)$ is in
+$D^+_{\textit{Coh}}(\mathcal{O}_X)$ by
+Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-coherent-internal-hom}.
+
+\medskip\noindent
+Let $\omega_{X/k}^\bullet = q^!\mathcal{O}_{\Spec(k)}$ where
+$q : X \to \Spec(k)$ is the structure morphism, see
+Section \ref{section-duality-proper-over-field}. We find that
+\begin{align*}
+\Hom_k(
+&
+H^i(X, R\SheafHom_{\mathcal{O}_X}(\mathcal{I}^n, M)), k) \\
+& =
+\Ext^{-i}_X(R\SheafHom_{\mathcal{O}_X}(\mathcal{I}^n, M),
+\omega_{X/k}^\bullet) \\
+& =
+H^{-i}(X, R\SheafHom_{\mathcal{O}_X}(R\SheafHom_{\mathcal{O}_X}(
+\mathcal{I}^n, M), \omega_{X/k}^\bullet))
+\end{align*}
+by Lemma \ref{lemma-duality-proper-over-field}. By
+Lemma \ref{lemma-internal-hom-evaluate-isom} part (1) the canonical map
+$$
+R\SheafHom_{\mathcal{O}_X}(M, \omega_{X/k}^\bullet)
+\otimes_{\mathcal{O}_X}^\mathbf{L} \mathcal{I}^n
+\longrightarrow
+R\SheafHom_{\mathcal{O}_X}(R\SheafHom_{\mathcal{O}_X}(
+\mathcal{I}^n, M), \omega_{X/k}^\bullet)
+$$
+is an isomorphism. Observe that
+$\omega^\bullet_{U/k} = \omega^\bullet_{X/k}|_U$
+because $p^!$ is constructed as $q^!$ composed with restriction to $U$.
+Hence $R\SheafHom_{\mathcal{O}_X}(M, \omega_{X/k}^\bullet)$ is
+an object of $D^b_{\textit{Coh}}(\mathcal{O}_X)$ which restricts
+to $R\SheafHom_{\mathcal{O}_U}(K, \omega_{U/k}^\bullet)$ on $U$.
+Hence by Lemma \ref{lemma-tensoring-Deligne-system} we conclude that
+$$
+\lim H^{-i}(X, R\SheafHom_{\mathcal{O}_X}(M, \omega_{X/k}^\bullet)
+\otimes_{\mathcal{O}_X}^\mathbf{L} \mathcal{I}^n)
+$$
+is an avatar for the right hand side of the equality of the lemma.
+Combining all the isomorphisms obtained in this manner we get
+the isomorphism of the lemma.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-duality-compact-support-restrict-open}
+With notation as in Lemma \ref{lemma-duality-compact-support}
+suppose $U' \subset U$ is an open subscheme. Then the diagram
+$$
+\xymatrix{
+\Hom_k(H^i(U, K), k) \ar[rr] & &
+H^{-i}_c(U, R\SheafHom_{\mathcal{O}_U}(K, \omega_{U/k}^\bullet)) \\
+\Hom_k(H^i(U', K|_{U'}), k) \ar[rr] \ar[u] & &
+H^{-i}_c(U', R\SheafHom_{\mathcal{O}_{U'}}(K, \omega_{U'/k}^\bullet)) \ar[u]
+}
+$$
+is commutative. Here the horizontal arrows are the isomorphisms of
+Lemma \ref{lemma-duality-compact-support}, the vertical arrow on the
+left is the contragredient to the restriction map
+$H^i(U, K) \to H^i(U', K|_{U'})$, and the right vertical arrow
+is Remark \ref{remark-covariance-open-lower-shriek} (see discussion
+before the lemma).
+\end{lemma}
+
+\begin{proof}
+We strongly urge the reader to skip this proof. Choose $X$ and $M$ as
+in the proof of Lemma \ref{lemma-duality-compact-support}. We are going to drop
+the subscript $\mathcal{O}_X$ from $R\SheafHom$ and $\otimes^\mathbf{L}$.
+We write
+$$
+H^i(U, K) = \colim H^i(X, R\SheafHom(\mathcal{I}^n, M))
+$$
+and
+$$
+H^i(U', K|_{U'}) = \colim H^i(X, R\SheafHom((\mathcal{I}')^n, M))
+$$
+as in the proof of Lemma \ref{lemma-duality-compact-support} where we choose
+$\mathcal{I}' \subset \mathcal{I}$ as in the discussion in
+Remark \ref{remark-covariance-open-j-lower-shriek} so that the map
+$H^i(U, K) \to H^i(U', K|_{U'})$ is induced by the maps
+$(\mathcal{I}')^n \to \mathcal{I}^n$.
+We similarly write
+$$
+H^i_c(U, R\SheafHom(K, \omega_{U/k}^\bullet)) =
+\lim H^i(X,  R\SheafHom(M, \omega_{X/k}^\bullet)
+\otimes^\mathbf{L} \mathcal{I}^n)
+$$
+and
+$$
+H^i_c(U', R\SheafHom(K|_{U'}, \omega_{U'/k}^\bullet)) =
+\lim H^i(X,  R\SheafHom(M, \omega_{X/k}^\bullet)
+\otimes^\mathbf{L} (\mathcal{I}')^n)
+$$
+so that the arrow $H^i_c(U', R\SheafHom(K|_{U'}, \omega_{U'/k}^\bullet))
+\to H^i_c(U, R\SheafHom(K, \omega_{U/k}^\bullet))$ is similarly
+deduced from the maps $(\mathcal{I}')^n \to \mathcal{I}^n$.
+The diagrams
+$$
+\xymatrix{
+R\SheafHom(M, \omega_{X/k}^\bullet)
+\otimes^\mathbf{L} \mathcal{I}^n
+\ar[rr] & &
+R\SheafHom(R\SheafHom(\mathcal{I}^n, M), \omega_{X/k}^\bullet) \\
+R\SheafHom(M, \omega_{X/k}^\bullet) \otimes^\mathbf{L} (\mathcal{I}')^n
+\ar[rr] \ar[u] & &
+R\SheafHom(R\SheafHom((\mathcal{I}')^n, M), \omega_{X/k}^\bullet) \ar[u]
+}
+$$
+commute because the construction of the horizontal arrows in
+Cohomology, Lemma \ref{cohomology-lemma-internal-hom-evaluate}
+is functorial in all three entries. Hence we finally come down
+to the assertion that the diagrams
+$$
+\xymatrix{
+\Hom_k(H^i(X, R\SheafHom(\mathcal{I}^n, M)), k) \ar[r] &
+H^{-i}(X, R\SheafHom(R\SheafHom(
+\mathcal{I}^n, M), \omega_{X/k}^\bullet)) \\
+\Hom_k(H^i(X, R\SheafHom((\mathcal{I}')^n, M)), k) \ar[r] \ar[u] &
+H^{-i}(X, R\SheafHom(R\SheafHom(
+(\mathcal{I}')^n, M), \omega_{X/k}^\bullet)) \ar[u]
+}
+$$
+commute. This is true because the duality isomorphism
+$$
+\Hom_k(H^i(X, L), k) = \Ext^{-i}_X(L, \omega_{X/k}^\bullet) =
+H^{-i}(X, R\SheafHom(L, \omega_{X/k}^\bullet))
+$$
+is functorial for $L$ in $D_\QCoh(\mathcal{O}_X)$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-h0-compactly-supported}
+Let $X$ be a proper scheme over a field $k$. Let
+$K \in D^b_{\textit{Coh}}(\mathcal{O}_X)$ with $H^i(K) = 0$
+for $i < 0$. Set $\mathcal{F} = H^0(K)$.
+Let $Z \subset X$ be closed with complement $U = X \setminus U$.
+Then
+$$
+H^0_c(U, K|_U) \subset H^0(X, \mathcal{F})
+$$
+is given by those global sections of $\mathcal{F}$ which
+vanish in an open neighbourhood of $Z$.
+\end{lemma}
+
+\begin{proof}
+Consider the map
+$H^0_c(U, K|_U) \to H^0_X(X, K) = H^0(X, K) = H^0(X, \mathcal{F})$ of
+Remark \ref{remark-covariance-open-lower-shriek}. To study this
+we represent $K$ by a bounded complex $\mathcal{F}^\bullet$ with
+$\mathcal{F}^i = 0$ for $i < 0$. Then we have by definition
+$$
+H^0_c(U, K|_U) = \lim H^0(X, \mathcal{I}^n\mathcal{F}^\bullet)
+= \lim \Ker(
+H^0(X, \mathcal{I}^n\mathcal{F}^0) \to
+H^0(X, \mathcal{I}^n\mathcal{F}^1))
+$$
+By Artin-Rees (Cohomology of Schemes, Lemma \ref{coherent-lemma-Artin-Rees})
+this is the same as $\lim H^0(X, \mathcal{I}^n\mathcal{F})$.
+Thus the arrow $H^0_c(U, K|_U) \to H^0(X, \mathcal{F})$
+is injective and the image consists of those global sections of $\mathcal{F}$
+which are contained in the subsheaf $\mathcal{I}^n\mathcal{F}$
+for any $n$. The characterization of these as the sections which
+vanish in a neighbourhood of $Z$ comes from Krull's intersection
+theorem (Algebra, Lemma \ref{algebra-lemma-intersect-powers-ideal-module-zero})
+by looking at stalks of $\mathcal{F}$. See discussion in
+Algebra, Remark \ref{algebra-remark-intersection-powers-ideal}
+for the case of functions.
+\end{proof}
+
+
+
+
+\section{Lichtenbaum's theorem}
+\label{section-lichtenbaum}
+
+\noindent
+The theorem below was conjectured by Lichtenbaum and proved by Grothendieck
+(see \cite{Hartshorne-local-cohomology}). There is a very nice proof of the
+theorem by Kleiman in \cite{Kleiman-Lichtenbaum}. A generalization of
+the theorem to the case of cohomology with supports can be found in
+\cite{Lyubeznik-Lichtenbaum}. The most interesting part of the argument
+is contained in the proof of the following lemma.
+
+\begin{lemma}
+\label{lemma-lichtenbaum}
+Let $U$ be a variety. Let $\mathcal{F}$ be a coherent $\mathcal{O}_U$-module.
+If $H^d(U, \mathcal{F})$ is nonzero, then $\dim(U) \geq d$ and if
+equality holds, then $U$ is proper.
+\end{lemma}
+
+\begin{proof}
+By the Grothendieck's vanishing result in
+Cohomology, Proposition \ref{cohomology-proposition-vanishing-Noetherian}
+we conclude that $\dim(U) \geq d$.
+Assume $\dim(U) = d$. Choose a compactification $U \to X$
+such that $U$ is dense in $X$. (This is possible by
+More on Flatness, Theorem \ref{flat-theorem-nagata} and
+Lemma \ref{flat-lemma-compactifyable}.) After replacing $X$ by its
+reduction we find that $X$ is a proper variety of dimension $d$
+and we see that $U$ is proper if and only if $U = X$.
+Set $Z = X \setminus U$. We will show that $H^d(U, \mathcal{F})$
+is zero if $Z$ is nonempty.
+
+\medskip\noindent
+Choose a coherent $\mathcal{O}_X$-module
+$\mathcal{G}$ whose restriction to $U$ is $\mathcal{F}$, see
+Properties, Lemma \ref{properties-lemma-lift-finite-presentation}.
+Let $\omega_X^\bullet$ denote the dualizing complex of $X$ as in
+Section \ref{section-duality-proper-over-field}.
+Set $\omega_U^\bullet = \omega_X^\bullet|_U$.
+Then $H^d(U, \mathcal{F})$ is dual to
+$$
+H^{-d}_c(U, R\SheafHom_{\mathcal{O}_U}(\mathcal{F}, \omega_U^\bullet))
+$$
+by Lemma \ref{lemma-duality-compact-support}. By
+Lemma \ref{lemma-duality-proper-over-field} we see that
+the cohomology sheaves of $\omega_X^\bullet$ vanish in degrees $< -d$
+and $H^{-d}(\omega_X^\bullet) = \omega_X$ is a coherent
+$\mathcal{O}_X$-module which is $(S_2)$ and whose support is $X$.
+In particular, $\omega_X$ is torsion free, see
+Divisors, Lemma \ref{divisors-lemma-torsion-free-finite-noetherian-domain}.
+Thus we see that the cohomology sheaf
+$$
+H^{-d}(R\SheafHom_{\mathcal{O}_X}(\mathcal{G}, \omega_X^\bullet)) =
+\SheafHom(\mathcal{G}, \omega_X)
+$$
+is torsion free, see
+Divisors, Lemma \ref{divisors-lemma-hom-into-torsion-free}.
+Consequently this sheaf has no nonzero sections vanishing
+on any nonempty open of $X$ (those would be torsion sections).
+Thus it follows from Lemma \ref{lemma-h0-compactly-supported} that
+$H^{-d}_c(U, R\SheafHom_{\mathcal{O}_U}(\mathcal{F}, \omega_U^\bullet))$
+is zero, and hence $H^d(U, \mathcal{F})$ is zero as desired.
+\end{proof}
+
+\begin{theorem}
+\label{theorem-lichtenbaum}
+Let $X$ be a nonempty separated scheme of finite type over a field $k$.
+Let $d = \dim(X)$. The following are equivalent
+\begin{enumerate}
+\item $H^d(X, \mathcal{F}) = 0$ for all coherent $\mathcal{O}_X$-modules
+$\mathcal{F}$ on $X$,
+\item $H^d(X, \mathcal{F}) = 0$ for all quasi-coherent $\mathcal{O}_X$-modules
+$\mathcal{F}$ on $X$, and
+\item no irreducible component $X' \subset X$ of dimension $d$
+is proper over $k$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Assume there exists an irreducible component $X' \subset X$ (which we view
+as an integral closed subscheme) which is proper and has dimension $d$.
+Let $\omega_{X'}$ be a dualizing module of $X'$ over $k$, see
+Lemma \ref{lemma-duality-proper-over-field}. Then
+$H^d(X', \omega_{X'})$ is nonzero as it is dual to $H^0(X', \mathcal{O}_{X'})$
+by the lemma. Hence we see that $H^d(X, \omega_{X'}) = H^d(X', \omega_{X'})$
+is nonzero and we conclude that (1) does not hold.
+In this way we see that (1) implies (3).
+
+\medskip\noindent
+Let us prove that (3) implies (1).
+Let $\mathcal{F}$ be a coherent $\mathcal{O}_X$-module such that
+$H^d(X, \mathcal{F})$ is nonzero. Choose a filtration
+$$
+0 = \mathcal{F}_0 \subset \mathcal{F}_1 \subset
+\ldots \subset \mathcal{F}_m = \mathcal{F}
+$$
+as in Cohomology of Schemes, Lemma \ref{coherent-lemma-coherent-filter}.
+We obtain exact sequences
+$$
+H^d(X, \mathcal{F}_i) \to H^d(X, \mathcal{F}_{i + 1}) \to
+H^d(X, \mathcal{F}_{i + 1}/\mathcal{F}_i)
+$$
+Thus for some $i \in \{1, \ldots, m\}$ we find that
+$H^d(X, \mathcal{F}_{i + 1}/\mathcal{F}_i)$ is nonzero.
+By our choice of the filtration this means that there exists
+an integral closed subscheme $Z \subset X$
+and a nonzero coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_Z$
+such that $H^d(Z, \mathcal{I})$ is nonzero.
+By Lemma \ref{lemma-lichtenbaum}
+we conclude $\dim(Z) = d$ and $Z$ is proper over $k$
+contradicting (3). Hence (3) implies (1).
+
+\medskip\noindent
+Finally, let us show that (1) and (2) are equivalent for any Noetherian scheme
+$X$. Namely, (2) trivially implies (1). On the other hand, assume (1) and
+let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_X$-module. Then we can write
+$\mathcal{F} = \colim \mathcal{F}_i$ as the filtered colimit of its coherent
+submodules, see
+Properties, Lemma \ref{properties-lemma-quasi-coherent-colimit-finite-type}.
+Then we have $H^d(X, \mathcal{F}) = \colim H^d(X, \mathcal{F}_i) = 0$
+by Cohomology, Lemma \ref{cohomology-lemma-quasi-separated-cohomology-colimit}.
+Thus (2) is true.
+\end{proof}
+
 
 
 

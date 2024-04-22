@@ -191,7 +191,7 @@ Let $(A, I)$ be a henselian pair. Let $X$ be an algebraic space over $A$
 such that the structure morphism $f : X \to \Spec(A)$ is proper.
 Let $i : X_0 \to X$ be the inclusion of $X \times_{\Spec(A)} \Spec(A/I)$.
 For any sheaf $\mathcal{F}$ on $X_\etale$ we
-have $\Gamma(X, \mathcal{F}) = \Gamma(Z, i^{-1}\mathcal{F})$.
+have $\Gamma(X, \mathcal{F}) = \Gamma(X_0, i^{-1}\mathcal{F})$.
 \end{lemma}
 
 \begin{proof}
@@ -200,12 +200,12 @@ Cohomology of Spaces, Lemma \ref{spaces-cohomology-lemma-weak-chow}.
 Consider the diagram
 $$
 \xymatrix{
-\Gamma(X_0, \mathcal{F}_0) \ar[r] \ar[d] &
-\Gamma(Y_0, \mathcal{G}_0) \ar@<1ex>[r] \ar@<-1ex>[r] \ar[d] &
-\Gamma((Y \times_X Y)_0, \mathcal{H}_0) \ar[d] \\
-\Gamma(X, \mathcal{F}) \ar[r] &
-\Gamma(Y, \mathcal{G}) \ar@<1ex>[r] \ar@<-1ex>[r] &
-\Gamma(Y \times_X Y, \mathcal{H})
+\Gamma(X_0, \mathcal{F}_0) \ar[r] &
+\Gamma(Y_0, \mathcal{G}_0) \ar@<1ex>[r] \ar@<-1ex>[r] &
+\Gamma((Y \times_X Y)_0, \mathcal{H}_0) \\
+\Gamma(X, \mathcal{F}) \ar[r] \ar[u] &
+\Gamma(Y, \mathcal{G}) \ar@<1ex>[r] \ar@<-1ex>[r] \ar[u] &
+\Gamma(Y \times_X Y, \mathcal{H}) \ar[u]
 }
 $$
 Here $\mathcal{G}$, resp.\ $\mathcal{H}$ is the pullbackf or
@@ -221,7 +221,7 @@ By Lemma \ref{lemma-surjective-proper} it follows that the left one is too.
 \label{lemma-h0-proper-over-henselian-local}
 Let $A$ be a henselian local ring. Let $X$ be an algebraic space
 over $A$ such that $f : X \to \Spec(A)$
-be a proper morphism. Let $X_0 \subset X$ be the fibre of
+is a proper morphism. Let $X_0 \subset X$ be the fibre of
 $f$ over the closed point. For any sheaf $\mathcal{F}$ on $X_\etale$ we
 have $\Gamma(X, \mathcal{F}) = \Gamma(X_0, \mathcal{F}|_{X_0})$.
 \end{lemma}
@@ -450,7 +450,7 @@ The second one is a special case of Lemma \ref{lemma-proper-base-change}.
 
 \begin{lemma}
 \label{lemma-base-change-separably-closed}
-Let $k \subset k'$ be an extension of separably closed fields.
+Let $k'/k$ be an extension of separably closed fields.
 Let $X$ be a proper algebraic space over $k$.
 Let $\mathcal{F}$ be a torsion abelian sheaf on $X$.
 Then the map $H^q_\etale(X, \mathcal{F}) \to
@@ -694,10 +694,10 @@ in $D(X'_\etale)$.
 $i_g^*(Rf_{big, *}K) = Rf'_{small, *}(i_{g'}^*K)$
 in $D(\textit{Mod}(X'_\etale, \mathcal{O}_{X'}))$.
 \item[(5)] For $K$ in $D((\textit{Spaces}/Y)_\etale)$ we have
-$g_{big}^{-1}(Rf_{big, *}K) = Rf'_{small, *}((g'_{big})^{-1}K)$
+$g_{big}^{-1}(Rf_{big, *}K) = Rf'_{big, *}((g'_{big})^{-1}K)$
 in $D((\textit{Spaces}/X')_\etale)$.
 \item[(6)] For $K$ in $D((\textit{Spaces}/Y)_\etale, \mathcal{O})$ we have
-$g_{big}^*(Rf_{big, *}K) = Rf'_{small, *}((g'_{big})^*K)$
+$g_{big}^*(Rf_{big, *}K) = Rf'_{big, *}((g'_{big})^*K)$
 in $D(\textit{Mod}(X'_\etale, \mathcal{O}_{X'}))$.
 \end{enumerate}
 \end{lemma}
@@ -715,22 +715,12 @@ and Topologies, Lemma
 on choosing a K-injective complex of abelian sheaves representing $K$.
 
 \medskip\noindent
-Part (5) follows from
-Cohomology on Sites, Lemmas \ref{sites-cohomology-lemma-cohomology-of-open} and
-\ref{sites-cohomology-lemma-restrict-K-injective-to-open}
-and Topologies, Lemma
-\ref{topologies-lemma-morphism-big-small-cartesian-diagram-etale}
-on choosing a K-injective complex of abelian sheaves representing $K$.
+Part (5) is Cohomology on Sites, Lemma
+\ref{sites-cohomology-lemma-localize-cartesian-square}.
 
 \medskip\noindent
-Part (6): Observe that $g_{big}$ and $g'_{big}$ are localizations
-and hence $g_{big}^{-1} = g_{big}^*$ and $(g'_{big})^{-1} = (g'_{big})^*$
-are the restriction functors. Hence (6) follows from
-Cohomology on Sites, Lemmas \ref{sites-cohomology-lemma-cohomology-of-open} and
-\ref{sites-cohomology-lemma-restrict-K-injective-to-open}
-and Topologies, Lemma
-\ref{topologies-lemma-morphism-big-small-cartesian-diagram-etale}
-on choosing a K-injective complex of modules representing $K$.
+Part (6) is  Cohomology on Sites, Lemma
+\ref{sites-cohomology-lemma-localize-cartesian-square-modules}.
 
 \medskip\noindent
 Part (2) can be proved as follows. Above we have seen
@@ -1500,7 +1490,7 @@ This finishes the proof.
 Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
 For $K \in D_\QCoh(\mathcal{O}_X)$ the maps
 $$
-L\pi_X^*K \longrightarrow R\epsilon_{X, *}(La_X^*\mathcal{F})
+L\pi_X^*K \longrightarrow R\epsilon_{X, *}(La_X^*K)
 \quad\text{and}\quad
 K \longrightarrow Ra_{X, *}(La_X^*K)
 $$

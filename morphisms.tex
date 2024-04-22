@@ -221,7 +221,7 @@ In this section we collect some facts on immersions.
 Let $Z \to Y \to X$ be morphisms of schemes.
 \begin{enumerate}
 \item If $Z \to X$ is an immersion, then $Z \to Y$ is an immersion.
-\item If $Z \to X$ is a quasi-compact immersion and $Z \to Y$ is
+\item If $Z \to X$ is a quasi-compact immersion and $Y \to X$ is
 quasi-separated, then $Z \to Y$ is a quasi-compact immersion.
 \item If $Z \to X$ is a closed immersion and $Y \to X$ is separated,
 then $Z \to Y$ is a closed immersion.
@@ -338,6 +338,34 @@ But the only element $f \in k[x_1, x_2, x_3, \ldots]$
 which ends up in all $I_n$ is $0$! Hence $I$ does not exist.
 \end{example}
 
+\begin{lemma}
+\label{lemma-check-immersion}
+Let $f : Y \to X$ be a morphism of schemes. If for all $y \in Y$
+there is an open subscheme $f(y) \in U \subset X$ such that
+$f|_{f^{-1}(U)} : f^{-1}(U) \to U$ is an immersion, then $f$ is
+an immersion.
+\end{lemma}
+
+\begin{proof}
+This statement follows readily from the discussion of closed subschemes
+at the end of Schemes, Section \ref{schemes-section-immersions}
+but we will also give a detailed proof.
+Let $Z \subset X$ be the closure of $f(Y)$. Since taking closures
+commutes with restricting to opens, we see from the assumption that
+$f(Y) \subset Z$ is open. Hence $Z' = Z \setminus f(Y)$ is closed.
+Hence $X' = X \setminus Z'$ is an open subscheme of $X$ and
+$f$ factors as $f : Y \to X'$ followed by the inclusion.
+If $y \in Y$ and $U \subset X$ is as in the statement
+of the lemma, then $U' = X' \cap U$ is an open neighbourhood
+of $f'(y)$ such that $(f')^{-1}(U') \to U'$ is an immersion
+(Lemma \ref{lemma-immersion-permanence}) with closed image.
+Hence it is a closed immersion, see
+Schemes, Lemma \ref{schemes-lemma-immersion-when-closed}.
+Since being a closed immersion is local on the target
+(for example by Lemma \ref{lemma-closed-immersion})
+we conclude that $f'$ is a closed immersion as desired.
+\end{proof}
+
 
 
 
@@ -383,15 +411,20 @@ the functor $i_*$ is fully faithful.
 
 \medskip\noindent
 Now we turn to the description of the essential image of the
-functor $i_*$. It is clear that $\mathcal{I}(i_*\mathcal{F}) = 0$
-for any quasi-coherent $\mathcal{O}_Z$-module, for example
-by our local description above. Next, suppose that $\mathcal{G}$
+functor $i_*$. We have $\mathcal{I}(i_*\mathcal{F}) = 0$
+for any quasi-coherent $\mathcal{O}_Z$-module, for example by
+Modules, Lemma \ref{modules-lemma-i-star-equivalence}.
+Next, suppose that $\mathcal{G}$
 is any quasi-coherent $\mathcal{O}_X$-module such that
 $\mathcal{I}\mathcal{G} = 0$. It suffices to show that the canonical map
 $$
 \mathcal{G} \longrightarrow i_* i^*\mathcal{G}
 $$
-is an isomorphism. By exactly the same arguments as above we see that
+is an isomorphism\footnote{This was proved in a more general situation
+in the proof of  Modules, Lemma \ref{modules-lemma-i-star-equivalence}.}.
+In the case of schemes and quasi-coherent modules, working affine locally
+on $X$ and using Lemma \ref{lemma-closed-immersion} and
+Schemes, Lemma \ref{schemes-lemma-widetilde-pullback}
 it suffices to prove the following algebraic statement: Given a ring
 $R$, an ideal $I$ and an $R$-module $N$ such that $IN = 0$ the canonical map
 $$
@@ -805,12 +838,10 @@ is not an equality, i.e., $f(X) \subset Z$ is not a dense subset, and
 \item the construction of the scheme theoretic image does not commute with
 restriction to open subschemes to $Y$.
 \end{enumerate}
-Namely, the immersion of Example \ref{example-thibaut} gives
-an example for both phenomena. (If $Z \to U \to X$ is as in
-Example \ref{example-thibaut}, then the scheme theoretic image
-of $Z \to X$ is $X$ and $Z$ is not topologically dense in $X$.
-Also, the scheme theoretic image of $Z = Z \cap U \to U$ is just
-$Z$ which is not equal to $U \cap X = U$.)
+In Examples, Section \ref{examples-section-scheme-theoretic-image}
+the reader finds an example for both phenomena.
+These phenomena can arise even for immersions, see
+Examples, Section \ref{examples-section-strange-immersion}.
 However, the next lemma shows that both disasters are avoided
 when the morphism is quasi-compact.
 
@@ -847,7 +878,7 @@ $$
 X' = \coprod U_i \longrightarrow X \longrightarrow Y.
 $$
 Then $f_*\mathcal{O}_X$ is a subsheaf of $f'_*\mathcal{O}_{X'}$,
-and hence $\mathcal{I} = \Ker(\mathcal{O}_Y \to \mathcal{O}_{X'})$.
+and hence $\mathcal{I} = \Ker(\mathcal{O}_Y \to f'_*\mathcal{O}_{X'})$.
 By Schemes, Lemma \ref{schemes-lemma-push-forward-quasi-coherent}
 the sheaf $f'_*\mathcal{O}_{X'}$ is quasi-coherent on $Y$. Hence we win.
 \end{proof}
@@ -868,7 +899,10 @@ adds points which are specializations of points in the image.
 \label{lemma-reach-points-scheme-theoretic-image}
 Let $f : X \to Y$ be a quasi-compact morphism.
 Let $Z$ be the scheme theoretic image of $f$.
-Let $z \in Z$. There exists a valuation ring $A$ with
+Let $z \in Z$\footnote{By
+Lemma \ref{lemma-quasi-compact-scheme-theoretic-image} set-theoretically
+$Z$ agrees with the closure of $f(X)$ in $Y$.}.
+There exists a valuation ring $A$ with
 fraction field $K$ and a commutative diagram
 $$
 \xymatrix{
@@ -900,7 +934,7 @@ equality. Hence (as localization is exact, see
 Algebra, Proposition \ref{algebra-proposition-localization-exact})
 we see that
 $R_{\mathfrak p} \to
-(A_1)_{\mathfrak p} \times \ldots \times (A_1)_{\mathfrak p}$
+(A_1)_{\mathfrak p} \times \ldots \times (A_n)_{\mathfrak p}$
 is not zero. Hence one of the rings $(A_i)_{\mathfrak p}$ is not zero.
 Hence there exists an $i$ and a prime $\mathfrak q_i \subset A_i$
 lying over a prime $\mathfrak p_i \subset \mathfrak p$.
@@ -967,7 +1001,7 @@ The assumption that $V$ is retrocompact in $Y$
 (Topology, Definition \ref{topology-definition-quasi-compact})
 means that $V \to Y$ is a quasi-compact morphism.
 By Schemes, Lemma \ref{schemes-lemma-quasi-compact-permanence}
-the morphism $s : V \to Y$ is quasi-compact.
+the morphism $s : V \to X$ is quasi-compact.
 Hence the construction of the scheme theoretic image $Y'$
 of $s$ commutes with restriction to opens by
 Lemma \ref{lemma-quasi-compact-scheme-theoretic-image}.
@@ -1207,7 +1241,7 @@ image of $f$ is a dense subset of $S$.
 
 \noindent
 So for example, if $k$ is an infinite field and $\lambda_1, \lambda_2, \ldots$
-is a countable collection of elements of $k$, then the morphism
+is a countable collection of distinct elements of $k$, then the morphism
 $$
 \coprod\nolimits_{i = 1, 2, \ldots } \Spec(k)
 \longrightarrow
@@ -1240,7 +1274,7 @@ target are in the image does hold if the morphism is quasi-compact.
 Morphisms whose image contains the generic points are dominant
 \end{slogan}
 Let $f : X \to S$ be a quasi-compact morphism of schemes.
-Then $f$ is dominant (if and) only if for every irreducible
+Then $f$ is dominant if and only if for every irreducible
 component $Z \subset S$ the generic point of $Z$ is in the
 image of $f$.
 \end{lemma}
@@ -1260,15 +1294,33 @@ A disjoint union of affines is affine, see
 Schemes, Lemma \ref{schemes-lemma-disjoint-union-affines}.
 Generic points of irreducible components of $V$
 are exactly the generic points of the irreducible components of
-$S$ that meet $V$. Also, $f$ is dominant if and only $f'$ is dominant
+$S$ that meet $V$. Also, $f$ is dominant if and only if $f'$ is dominant
 no matter what choices of $V, n, U_i$ we make above. Thus we
 have reduced the lemma to the case of a morphism of affine schemes.
 The affine case is
 Algebra, Lemma \ref{algebra-lemma-image-dense-generic-points}.
 \end{proof}
 
-\noindent
-Here is a slightly more useful variant of the lemma above.
+\begin{lemma}
+\label{lemma-base-change-dominant}
+Let $f : X \to S$ be a quasi-compact dominant morphism of schemes.
+Let $g : S' \to S$ be a morphism of schemes and denote $f' : X' \to S'$
+the base change of $f$ by $g$. If generalizations lift along $g$,
+then $f'$ is dominant.
+\end{lemma}
+
+\begin{proof}
+Observe that $f'$ is quasi-compact by Schemes, Lemma
+\ref{schemes-lemma-quasi-compact-preserved-base-change}.
+Let $\eta' \in S'$ be the generic point of an irreducible
+component of $S'$. If generalizations lift along $g$,
+then $\eta = g(\eta')$ is the generic point of an irreducible
+component of $S$. By Lemma \ref{lemma-quasi-compact-dominant}
+we see that $\eta$ is in the image of $f$.
+Hence $\eta'$ is in the image of $f'$ by
+Schemes, Lemma \ref{schemes-lemma-points-fibre-product}.
+It follows that $f'$ is dominant by Lemma \ref{lemma-quasi-compact-dominant}.
+\end{proof}
 
 \begin{lemma}
 \label{lemma-quasi-compact-generic-point-not-in-image}
@@ -1489,7 +1541,7 @@ if for any morphism of schemes $S' \to S$ the base change
 $f' : X_{S'} \to S'$ is injective (on underlying topological spaces).
 \item We say $f$ is {\it radicial} if $f$ is injective as a
 map of topological spaces, and for every $x \in X$ the field
-extension $\kappa(x) \supset \kappa(f(x))$ is purely inseparable.
+extension $\kappa(x)/\kappa(f(x))$ is purely inseparable.
 \end{enumerate}
 \end{definition}
 
@@ -1539,8 +1591,8 @@ Thus (1) implies (2).
 If there are two different points $x, x' \in X$ mapping to the same point of $s$
 then (2) is violated.
 If for some $s = f(x)$, $x \in X$ the field extension
-$\kappa(s) \subset \kappa(x)$ is not purely inseparable, then
-we may find a field extension $\kappa(s) \subset K$ such that
+$\kappa(x)/\kappa(s)$ is not purely inseparable, then
+we may find a field extension $K/\kappa(s)$ such that
 $\kappa(x)$ has two $\kappa(s)$-homomorphisms into $K$. By
 Schemes, Lemma \ref{schemes-lemma-characterize-points} this
 implies that the map
@@ -1680,7 +1732,7 @@ Schemes, Lemma \ref{schemes-lemma-characterize-quasi-separated}
 we see the morphism $f$ is quasi-separated. Hence by
 Schemes, Lemma \ref{schemes-lemma-push-forward-quasi-coherent} the
 sheaf $\mathcal{A} = f_*\mathcal{O}_X$ is a quasi-coherent sheaf
-of $\mathcal{O}_X$-algebras. Thus we have the scheme
+of $\mathcal{O}_S$-algebras. Thus we have the scheme
 $g : Y = \underline{\Spec}_S(\mathcal{A}) \to S$ over $S$.
 The identity map
 $\text{id} : \mathcal{A} = f_*\mathcal{O}_X \to f_*\mathcal{O}_X$
@@ -1929,6 +1981,84 @@ Lemma \ref{lemma-characterize-affine}.
 
 
 
+\section{Families of ample invertible modules}
+\label{section-families-ample-invertible-modules}
+
+\noindent
+A short section on the notion of a family of ample invertible modules.
+
+\begin{definition}
+\label{definition-family-ample-invertible-modules}
+\begin{reference}
+\cite[II Definition 2.2.4]{SGA6}
+\end{reference}
+Let $X$ be a scheme. Let $\{\mathcal{L}_i\}_{i \in I}$
+be a family of invertible $\mathcal{O}_X$-modules. We say
+$\{\mathcal{L}_i\}_{i \in I}$ is an
+{\it ample family of invertible modules on $X$} if
+\begin{enumerate}
+\item $X$ is quasi-compact, and
+\item for every $x \in X$ there exists an $i \in I$, an $n \geq 1$,
+and $s \in \Gamma(X, \mathcal{L}_i^{\otimes n})$ such
+that $x \in X_s$ and $X_s$ is affine.
+\end{enumerate}
+\end{definition}
+
+\noindent
+If $\{\mathcal{L}_i\}_{i \in I}$ is an ample family of invertible
+modules on a scheme $X$, then there exists a finite subset $I' \subset I$ such
+that $\{\mathcal{L}_i\}_{i \in I'}$ is an ample family of invertible
+modules on $X$ (follows immediately from quasi-compactness).
+A scheme having an ample family of invertible modules has an affine
+diagonal by the next lemma and hence is a fortiori quasi-separated.
+
+\begin{lemma}
+\label{lemma-affine-diagonal}
+Let $X$ be a scheme such that for every point $x \in X$ there exists
+an invertible $\mathcal{O}_X$-module $\mathcal{L}$ and a global
+section $s \in \Gamma(X, \mathcal{L})$ such that $x \in X_s$ and
+$X_s$ is affine. Then the diagonal of $X$ is an affine morphism.
+\end{lemma}
+
+\begin{proof}
+Given invertible $\mathcal{O}_X$-modules $\mathcal{L}$, $\mathcal{M}$
+and global sections $s \in \Gamma(X, \mathcal{L})$,
+$t \in \Gamma(X, \mathcal{M})$ such that $X_s$ and $X_t$ are affine
+we have to prove $X_s \cap X_t$ is affine. Namely, then
+Lemma \ref{lemma-characterize-affine}
+applied to $\Delta : X \to X \times X$ and the fact that
+$\Delta^{-1}(X_s \times X_t) = X_s \cap X_t$ shows that $\Delta$
+is affine. The fact that $X_s \cap X_t$ is affine follows from
+Properties, Lemma \ref{properties-lemma-affine-cap-s-open}.
+\end{proof}
+
+\begin{remark}
+\label{remark-affine-s-opens-cover-family}
+In Properties, Lemma \ref{properties-lemma-affine-s-opens-cover-quasi-separated}
+we see that a scheme which has an ample invertible module
+is separated. This is wrong for schemes having an ample
+family of invertible modules. Namely, let $X$ be as in
+Schemes, Example \ref{schemes-example-affine-space-zero-doubled}
+with $n = 1$, i.e., the affine line with zero doubled.  We use the notation
+of that example except that we write $x$ for $x_1$ and $y$
+for $y_1$.  There is, for every integer $n$, an invertible
+sheaf $\mathcal{L}_n$ on $X$ which is trivial on $X_1$ and
+$X_2$ and whose transition function $U_{12} \to U_{21}$ is
+$f(x) \mapsto y^n f(y)$.  The global sections of
+$\mathcal{L}_n$ are pairs $(f(x), g(y)) \in k[x] \oplus
+k[y]$ such that $y^n f(y) = g(y)$.  The sections $s = (1,
+y)$ of $\mathcal{L}_1$ and $t = (x, 1)$ of
+$\mathcal{L}_{-1}$ determine an open affine cover because
+$X_s = X_1$ and $X_t = X_2$.  Therefore $X$ has an
+ample family of invertible modules but it is not separated.
+\end{remark}
+
+
+
+
+
+
+
 
 
 \section{Quasi-affine morphisms}
@@ -1954,19 +2084,13 @@ A quasi-affine morphism is separated and quasi-compact.
 Let $f : X \to S$ be quasi-affine.
 Quasi-compactness is immediate from
 Schemes, Lemma \ref{schemes-lemma-quasi-compact-affine}.
-We will show $f$ is separated using
-Schemes, Lemma \ref{schemes-lemma-characterize-separated}. Let
-$x_1, x_2 \in X$ be points of $X$ which map to the same point $s \in S$.
-Choose any affine open $W \subset S$ containing $s$. By assumption
-$f^{-1}(W)$ is isomorphic to an open subscheme of an affine scheme,
-say $f^{-1}(W) \to Y$ is such an open immersion.
-Choose affine open neighbourhoods $x_1 \in U \subset f^{-1}(W)$
-and $x_2 \in V \subset f^{-1}(W)$. We may think of $U$ and $V$
-as open subschemes of $Y$ and hence we see that
-$U \cap V$ is affine and that
-$\mathcal{O}(U) \otimes_{\mathbf{Z}} \mathcal{O}(V) \to \mathcal{O}(U \cap V)$
-is surjective (by the lemma cited above applied to $U, V$ in $Y$).
-Hence by the lemma cited we conclude that $f$ is separated.
+Let $U \subset S$ be an affine open. If we can show that
+$f^{-1}(U)$ is a separated scheme, then $f$ is separated
+(Schemes, Lemma \ref{schemes-lemma-characterize-separated}
+shows that being separated is local on the base).
+By assumption $f^{-1}(U)$ is isomorphic to an open subscheme
+of an affine scheme. An affine scheme is separated and hence
+every open subscheme of an affine scheme is separated as desired.
 \end{proof}
 
 \begin{lemma}
@@ -2427,11 +2551,11 @@ The following are equivalent
 \item For all affine opens $U \subset X$, $V \subset S$
 with $f(U) \subset V$ the ring map
 $\mathcal{O}_S(V) \to \mathcal{O}_X(U)$ is of finite type.
-\item There exists an open covering $S = \bigcup_{j \in J} V_j$
+\item There exist an open covering $S = \bigcup_{j \in J} V_j$
 and open coverings $f^{-1}(V_j) = \bigcup_{i \in I_j} U_i$ such
 that each of the morphisms $U_i \to V_j$, $j\in J, i\in I_j$
 is locally of finite type.
-\item There exists an affine open covering $S = \bigcup_{j \in J} V_j$
+\item There exist an affine open covering $S = \bigcup_{j \in J} V_j$
 and affine open coverings $f^{-1}(V_j) = \bigcup_{i \in I_j} U_i$ such
 that the ring map $\mathcal{O}_S(V_j) \to \mathcal{O}_X(U_i)$ is
 of finite type, for all $j\in J, i\in I_j$.
@@ -2448,7 +2572,8 @@ We check conditions (a), (b) and (c) of Definition
 \ref{definition-property-local}.
 By Algebra, Lemma \ref{algebra-lemma-base-change-finiteness}
 being of finite type is stable under base change and hence
-we conclude (a) holds. By the same lemma being of finite type
+we conclude (a) holds. By Algebra, Lemma
+\ref{algebra-lemma-compose-finite-type} being of finite type
 is stable under composition and trivially for any ring
 $R$ the ring map $R \to R_f$ is of finite type.
 We conclude (b) holds. Finally, property (c) is true
@@ -2487,7 +2612,7 @@ finite type.
 In the proof of Lemma \ref{lemma-locally-finite-type-characterize}
 we saw that being of finite type is a local property of ring maps.
 Hence the first statement of the lemma follows from
-Lemma \ref{lemma-composition-type-P} combined
+Lemma \ref{lemma-base-change-type-P} combined
 with the fact that being of finite type is a property of ring maps that is
 stable under base change, see
 Algebra, Lemma \ref{algebra-lemma-base-change-finiteness}.
@@ -2583,7 +2708,7 @@ The following are equivalent:
 such that $f$ corresponds to a finite ring map $R \to k$.
 \item There exists an affine open $U = \Spec(R)$ of $S$
 such that the image of $f$ consists of a closed point $u$ in $U$
-and the field extension $\kappa(u) \subset k$ is finite.
+and the field extension $k/\kappa(u)$ is finite.
 \end{enumerate}
 \end{lemma}
 
@@ -2940,6 +3065,17 @@ catenary. Thus $R_{\mathfrak p}$ is universally catenary.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-catenary-check-irreducible}
+Let $S$ be a locally Noetherian scheme. Then $S$ is universally catenary
+if and only if the irreducible components of $S$ are universally catenary.
+\end{lemma}
+
+\begin{proof}
+Omitted. For the affine case, please see
+Algebra, Lemma \ref{algebra-lemma-catenary-check-irreducible}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-ubiquity-uc}
 The following types of schemes are universally catenary.
 \begin{enumerate}
@@ -3177,7 +3313,7 @@ we may replace $X$ by $X_s$ and $S$ by $\Spec(\kappa(s))$.
 Thus we may assume that $S = \Spec(k)$ is the spectrum of a field.
 In this case, let $\Spec(A) = U \subset X$ be any affine open
 containing $x$. The point $x$ corresponds to a prime ideal
-$\mathfrak q \subset A$ such that $k \subset \kappa(\mathfrak q)$
+$\mathfrak q \subset A$ such that $\kappa(\mathfrak q)/k$
 is an algebraic field extension. By
 Algebra, Lemma \ref{algebra-lemma-finite-residue-extension-closed}
 we see that $\mathfrak q$ is a maximal ideal, i.e., $x \in U$ is a
@@ -3194,7 +3330,7 @@ Let $f : X \to S$ be a morphism of schemes.
 Let $x \in X$ be a point. Set $s = f(x)$.
 Assume $f$ is locally of finite type.
 Then $x$ is a closed point of its fibre
-if and only if $\kappa(s) \subset \kappa(x)$ is
+if and only if $\kappa(x)/\kappa(s)$ is
 a finite field extension.
 \end{lemma}
 
@@ -3248,7 +3384,7 @@ one more time.
 Let $f : X \to S$ be a morphism of schemes.
 Let $x \in X$ be a point. Set $s = f(x)$.
 If $f$ is quasi-finite at $x$, then the residue field
-extension $\kappa(s) \subset \kappa(x)$ is finite.
+extension $\kappa(x)/\kappa(s)$ is finite.
 \end{lemma}
 
 \begin{proof}
@@ -3612,6 +3748,26 @@ Algebra, Lemma \ref{algebra-lemma-four-rings}
 with $R = A$, $S = S' = C$ and $R' = B$.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-quasi-finite-local-source}
+Let $f : X \to Y$ and $g : Y \to S$ be morphisms of schemes.
+If $f$ is surjective, $g \circ f$ locally quasi-finite, and
+$g$ locally of finite type, then $g : Y \to S$  is locally quasi-finite.
+\end{lemma}
+
+\begin{proof}
+Let $x \in X$ with images $y \in Y$ and $s \in S$.
+Since $g \circ f$ is locally quasi-finite by
+Lemma \ref{lemma-residue-field-quasi-finite}
+the extension $\kappa(x)/\kappa(s)$ is finite.
+Hence $\kappa(y)/\kappa(s)$ is finite. Hence
+$y$ is a closed point of $Y_s$ by
+Lemma \ref{lemma-algebraic-residue-field-extension-closed-point-fibre}.
+Since $f$ is surjective, we see that every point of $Y$ is
+closed in its fibre over $S$. Thus by
+Lemma \ref{lemma-quasi-finite-at-point-characterize}
+we conclude that $g$ is quasi-finite at every point.
+\end{proof}
 
 
 
@@ -3676,11 +3832,11 @@ The following are equivalent
 \item For every affine opens $U \subset X$, $V \subset S$
 with $f(U) \subset V$ the ring map
 $\mathcal{O}_S(V) \to \mathcal{O}_X(U)$ is of finite presentation.
-\item There exists an open covering $S = \bigcup_{j \in J} V_j$
+\item There exist an open covering $S = \bigcup_{j \in J} V_j$
 and open coverings $f^{-1}(V_j) = \bigcup_{i \in I_j} U_i$ such
 that each of the morphisms $U_i \to V_j$, $j\in J, i\in I_j$
 is locally of finite presentation.
-\item There exists an affine open covering $S = \bigcup_{j \in J} V_j$
+\item There exist an affine open covering $S = \bigcup_{j \in J} V_j$
 and affine open coverings $f^{-1}(V_j) = \bigcup_{i \in I_j} U_i$ such
 that the ring map $\mathcal{O}_S(V_j) \to \mathcal{O}_X(U_i)$ is
 of finite presentation, for all $j\in J, i\in I_j$.
@@ -3691,13 +3847,14 @@ the restriction $f|_U : U \to V$ is locally of finite presentation.
 \end{lemma}
 
 \begin{proof}
-This follows from Lemma \ref{lemma-locally-P} if we show that
+This follows from Lemma \ref{lemma-locally-P-characterize} if we show that
 the property ``$R \to A$ is of finite presentation'' is local.
 We check conditions (a), (b) and (c) of Definition
 \ref{definition-property-local}.
 By Algebra, Lemma \ref{algebra-lemma-base-change-finiteness}
 being of finite presentation is stable under base change and hence
-we conclude (a) holds. By the same lemma being of finite presentation
+we conclude (a) holds. By Algebra, Lemma
+\ref{algebra-lemma-compose-finite-type} being of finite presentation
 is stable under composition and trivially for any ring
 $R$ the ring map $R \to R_f$ is of finite presentation.
 We conclude (b) holds. Finally, property (c) is true
@@ -3813,7 +3970,7 @@ Omitted.
 \begin{lemma}
 \label{lemma-noetherian-finite-type-finite-presentation}
 \begin{slogan}
-Over a locally noetherian base, finite type is finite presentation.
+Over a locally Noetherian base, finite type is finite presentation.
 \end{slogan}
 Let $f : X \to S$ be a morphism.
 \begin{enumerate}
@@ -3969,6 +4126,9 @@ Algebra, Theorem \ref{algebra-theorem-chevalley}.
 
 \begin{theorem}[Chevalley's Theorem]
 \label{theorem-chevalley}
+\begin{reference}
+\cite[IV, Theorem 1.8.4]{EGA}
+\end{reference}
 Let $f : X \to Y$ be a morphism of schemes.
 Assume $f$ is quasi-compact and locally of finite presentation.
 Then the image of every locally constructible subset is locally constructible.
@@ -4290,6 +4450,24 @@ above.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-pushforward-flat-affine}
+Let $f : X \to Y$ be an affine morphism of schemes over a base scheme $S$.
+Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_X$-module.
+Then $\mathcal{F}$ is flat over $S$ if and only if
+$f_*\mathcal{F}$ is flat over $S$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-flat-module-characterize} and the fact that
+$f$ is an affine morphism, this reduces us to the affine case.
+Say $X \to Y \to S$ corresponds to the ring maps $C \leftarrow B \leftarrow A$.
+Let $N$ be the $C$-module corresponding to $\mathcal{F}$.
+Recall that $f_*\mathcal{F}$ corresponds to $N$ viewed as a $B$-module, see
+Schemes, Lemma \ref{schemes-lemma-widetilde-pullback}.
+Thus the result is clear.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-composition-module-flat}
 Let $X \to Y \to Z$ be morphisms of schemes. Let $\mathcal{F}$ be a
 quasi-coherent $\mathcal{O}_X$-module. Let $x \in X$ with image $y$ in $Y$.
@@ -4316,7 +4494,7 @@ Let $f : X \to S$ be a morphism of schemes.
 Let $\mathcal{F}$ be a quasi-coherent sheaf of $\mathcal{O}_X$-modules.
 Let $g : S' \to S$ be a morphism of schemes.
 Denote $g' : X' = X_{S'} \to X$ the projection.
-Let $x' \in X'$ be a point with image $x = g(x') \in X$.
+Let $x' \in X'$ be a point with image $x = g'(x') \in X$.
 If $\mathcal{F}$ is flat over $S$ at $x$, then
 $(g')^*\mathcal{F}$ is flat over $S'$ at $x'$.
 In particular, if $\mathcal{F}$ is flat over $S$, then
@@ -4358,16 +4536,20 @@ Lemma \ref{lemma-locally-finite-presentation-universally-open} above.
 We can also argue directly as follows.
 
 \medskip\noindent
-Let $f : X \to S$ be flat locally of finite presentation.
+Let $f : X \to S$ be flat and locally of finite presentation.
+By Lemmas \ref{lemma-base-change-flat} and
+\ref{lemma-base-change-finite-presentation} any base change of $f$ is flat
+and locally of finite presentation. Hence it suffices to show $f$ is open.
 To show $f$ is open it suffices to show that we may cover
 $X$ by open affines $X = \bigcup U_i$ such that $U_i \to S$
-is open. By definition we may cover $X$ by
-affine opens $U_i \subset X$ such that each $U_i$ maps
-into an affine open $V_i \subset S$ and such that
+is open. We may cover $X$ by affine opens $U_i \subset X$ such that each
+$U_i$ maps into an affine open $V_i \subset S$ and such that
 the induced ring map $\mathcal{O}_S(V_i) \to \mathcal{O}_X(U_i)$ is
-of finite presentation. Thus $U_i \to V_i$ is open by
-Algebra, Proposition \ref{algebra-proposition-fppf-open}.
-The lemma follows.
+flat and of finite presentation (Lemmas \ref{lemma-flat-characterize} and
+\ref{lemma-locally-finite-presentation-characterize}).
+Then $U_i \to V_i$ is open by
+Algebra, Proposition \ref{algebra-proposition-fppf-open}
+and the proof is complete.
 \end{proof}
 
 \begin{lemma}
@@ -4391,6 +4573,10 @@ This follows from Algebra, Lemma \ref{algebra-lemma-going-down-flat-module}.
 
 \begin{lemma}
 \label{lemma-fpqc-quotient-topology}
+\begin{reference}
+\cite[Expose VIII, Corollaire 4.3]{SGA1} and
+\cite[IV, Corollaire 2.3.12]{EGA}
+\end{reference}
 Let $f : X \to Y$ be a quasi-compact, surjective, flat morphism.
 A subset $T \subset Y$ is open (resp.\ closed) if and only
 $f^{-1}(T)$ is open (resp.\ closed). In other words, $f$ is
@@ -4508,6 +4694,10 @@ and that $A \to B$ is flat. Since $B_{f_i} = A_{f_i} \otimes_A B$ we win.
 
 \begin{lemma}
 \label{lemma-flat-base-change-scheme-theoretic-image}
+\begin{slogan}
+Taking scheme theoretic images commutes with flat base change
+in the quasi-compact case
+\end{slogan}
 Let $f : X \to Y$ be a flat morphism of schemes. Let $g : V \to Y$ be a
 quasi-compact morphism of schemes. Let $Z \subset Y$ be the scheme theoretic
 image of $g$ and let $Z' \subset X$ be the scheme theoretic image of the
@@ -4559,13 +4749,20 @@ $$
 \end{matrix}
 \right\}
 $$
+If $Z \subset X$ is such a closed subscheme, every morphism of schemes
+$g : Y \to X$ with $g(Y) \subset Z$ set theoretically factors (scheme
+theoretically) through $Z$.
 \end{lemma}
 
 \begin{proof}
-The affine case is
+The affine case of the bijection is
 Algebra, Lemma \ref{algebra-lemma-pure-open-closed-specializations}.
-In general the lemma follows by covering $X$ by affines and glueing.
-Details omitted.
+For general schemes $X$ the bijection follows by covering $X$ by affines
+and glueing. Details omitted. For the final assertion, observe that the
+projection $Z \times_{X, g} Y \to Y$ is a flat
+(Lemma \ref{lemma-base-change-flat}) closed immersion which
+is bijective on underlying topological spaces and hence must be
+an isomorphism by the bijection esthablished in the first part of the proof.
 \end{proof}
 
 \begin{lemma}
@@ -5018,6 +5215,22 @@ Lemma \ref{algebra-lemma-dimension-fibres-bounded-open-upstairs}
 \end{proof}
 
 \begin{lemma}
+\label{lemma-morphism-finite-type-bounded-dimension}
+Let $f : X \to Y$ be a morphism of finite type with $Y$ quasi-compact.
+Then the dimension of the fibres of $f$ is bounded.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-openness-bounded-dimension-fibres}
+the set $U_n \subset X$ of points where the dimension of the fibre
+is $\leq n$ is open. Since $f$ is of finite type, every point is
+contained in some $U_n$ (because the dimension of a finite
+type algebra over a field is finite). Since $Y$ is quasi-compact and $f$ is of
+finite type, we see that $X$ is quasi-compact. Hence $X = U_n$ for
+some $n$.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-openness-bounded-dimension-fibres-finite-presentation}
 Let $f : X \to S$ be a morphism of schemes.
 Let $n \geq 0$. Assume $f$ is locally of finite presentation.
@@ -5133,6 +5346,9 @@ fibres and is flat of finite presentation.
 
 \begin{lemma}
 \label{lemma-flat-finite-presentation-CM-fibres-relative-dimension}
+\begin{slogan}
+Cohen-Macaulay morphisms decompose into clopens of pure relative dimension
+\end{slogan}
 Let $f : X \to S$ be a morphism of schemes.
 Assume that
 \begin{enumerate}
@@ -5574,8 +5790,8 @@ be a commutative diagram of morphisms of schemes. Assume that
 \begin{enumerate}
 \item $f$ is surjective and syntomic,
 \item $p$ is syntomic, and
-\item $q$ is locally of finite presentation\footnote{In fact, if
-$f$ is surjective, flat, and of finite presentation and $p$ is syntomic,
+\item $q$ is locally of finite presentation\footnote{In fact, if $f$ is
+surjective, flat, and locally of finite presentation and $p$ is syntomic,
 then both $q$ and $f$ are syntomic, see
 Descent, Lemma \ref{descent-lemma-syntomic-permanence}.}.
 \end{enumerate}
@@ -5955,18 +6171,38 @@ compatible with $\text{d}_{X/S}$ and $\text{d} : A \to \Omega_{A/R}$.
 \end{lemma}
 
 \begin{proof}
-We claim that the $A$-module $M = \Gamma(U, \Omega_{X/S}) =
-\Gamma(U, \Omega_{U/V})$ together with
-$\text{d}_{X/S} = \text{d}_{U/V} : A \to M$
-is a universal $R$-derivation of $A$. This follows by combining
-Lemmas \ref{lemma-affine-case-derivation}
-and \ref{lemma-universal-derivation-universal} above.
-The universal property of
-$\text{d} : A \to \Omega_{A/R}$
-(see Algebra, Lemma \ref{algebra-lemma-universal-omega})
-and the Yoneda lemma
+By Lemma \ref{lemma-differentials-restrict-open} we may replace
+$X$ and $S$ by $U$ and $V$. Thus we may assume $X = \Spec(A)$
+and $S = \Spec(R)$ and we have to show the lemma with $U = X$
+and $V = S$. Consider the $A$-module $M = \Gamma(X, \Omega_{X/S})$
+together with the $R$-derivation $\text{d}_{X/S} : A \to M$.
+Let $N$ be another $A$-module and denote $\widetilde{N}$ the quasi-coherent
+$\mathcal{O}_X$-module associated to $N$, see
+Schemes, Section \ref{schemes-section-quasi-coherent-affine}.
+Precomposing by $\text{d}_{X/S} : A \to M$ we get an arrow
+$$
+\alpha : \Hom_A(M, N) \longrightarrow \text{Der}_R(A, N)
+$$
+Using Lemmas \ref{lemma-universal-derivation-universal} and
+\ref{lemma-affine-case-derivation} we get identifications
+$$
+\Hom_{\mathcal{O}_X}(\Omega_{X/S}, \widetilde{N}) =
+\text{Der}_S(\mathcal{O}_X, \widetilde{N}) =
+\text{Der}_R(A, N)
+$$
+Taking global sections determines an arrow
+$\Hom_{\mathcal{O}_X}(\Omega_{X/S}, \widetilde{N}) \to \Hom_R(M, N)$.
+Combining this arrow and the identifications above we get an arrow
+$$
+\beta : \text{Der}_R(A, N) \longrightarrow \Hom_R(M, N)
+$$
+Checking what happens on global sections, we find that $\alpha$
+and $\beta$ are each others inverse. Hence we see that
+$\text{d}_{X/S} : A \to M$ satisfies
+the same universal property as $\text{d} : A \to \Omega_{A/R}$,
+see Algebra, Lemma \ref{algebra-lemma-universal-omega}. Thus the Yoneda lemma
 (Categories, Lemma \ref{categories-lemma-yoneda})
-imply there is a unique isomorphism of $A$-modules
+implies there is a unique isomorphism of $A$-modules
 $M \cong \Omega_{A/R}$ compatible with derivations.
 \end{proof}
 
@@ -6337,6 +6573,130 @@ Algebra, Lemma \ref{algebra-lemma-application-NL}.
 
 
 
+\section{Finite order differential operators}
+\label{section-differential-operators}
+
+\noindent
+We suggest the reader take a look at the corresponding section
+in the chapter on commutative algebra
+(Algebra, Section \ref{algebra-section-differential-operators})
+and the corresponding section in the chapter on sheaves of modules
+(Modules, Section \ref{modules-section-differential-operators}).
+
+\begin{lemma}
+\label{lemma-affine-case-differential-operators}
+Let $R \to A$ be a ring map. Denote $f : X \to S$ the corresponding
+morphism of affine schemes. Let $\mathcal{F}$ and $\mathcal{G}$
+be $\mathcal{O}_X$-modules. If $\mathcal{F}$ is quasi-coherent then
+the map
+$$
+\text{Diff}^k_{X/S}(\mathcal{F}, \mathcal{G}) \to
+\text{Diff}^k_{A/R}(\Gamma(X, \mathcal{F}), \Gamma(X, \mathcal{G}))
+$$
+sending a differential operator to its action on global sections
+is bijective.
+\end{lemma}
+
+\begin{proof}
+Write $\mathcal{F} = \widetilde{M}$ for some $A$-module $M$. Set
+$N = \Gamma(X, \mathcal{G})$. Let $D : M \to N$ be a differential
+operator of order $k$. We have to show there exists
+a unique differential operator $\mathcal{F} \to \mathcal{G}$ of order $k$
+which gives rise to $D$ on global sections. Let $U = D(f) \subset X$
+be a standard affine open. Then $\mathcal{F}(U) = M_f$ is the localization.
+By Algebra, Lemma \ref{algebra-lemma-invert-system-differential-operators}
+the differential operator $D$ extends to a unique differential operator
+$$
+D_f : \mathcal{F}(U) = \widetilde{M}(U) = M_f \to N_f = \widetilde{N}(U)
+$$
+The uniqueness shows that these maps $D_f$ glue to give a map of sheaves
+$\widetilde{M} \to \widetilde{N}$ on the basis of all standard opens
+of $X$. Hence we get a unique map of sheaves
+$\widetilde{D} : \widetilde{M} \to \widetilde{N}$ agreeing with these maps
+by the material in Sheaves, Section \ref{sheaves-section-bases}.
+Since $\widetilde{D}$ is given by differential operators of order $k$ on
+the standard opens, we find that $\widetilde{D}$ is a differential operator
+of order $k$ (small detail omitted).
+Finally, we can post-compose with the canonical $\mathcal{O}_X$-module map
+$c : \widetilde{N} \to \mathcal{G}$
+(Schemes, Lemma \ref{schemes-lemma-compare-constructions})
+to get $c \circ \widetilde{D} : \mathcal{F} \to \mathcal{G}$
+which is a differential operator of order $k$ by
+Modules, Lemma \ref{modules-lemma-composition-differential-operators}.
+This proves existence. We omit the proof of uniqueness.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-base-change-differential-operators}
+Let $a : X \to S$ and $b : Y \to S$ be morphisms of schemes.
+Let $\mathcal{F}$ and $\mathcal{F}'$ be quasi-coherent $\mathcal{O}_X$-modules.
+Let $D : \mathcal{F} \to \mathcal{F}'$ be a differential operator
+of order $k$ on $X/S$. Let $\mathcal{G}$ be a quasi-coherent
+$\mathcal{O}_Y$-module. Then there is a unique differential
+operator
+$$
+D' :
+\text{pr}_1^*\mathcal{F} \otimes_{\mathcal{O}_{X \times_S Y}}
+\text{pr}_2^*\mathcal{G}
+\longrightarrow
+\text{pr}_1^*\mathcal{F}' \otimes_{\mathcal{O}_{X \times_S Y}}
+\text{pr}_2^*\mathcal{G}
+$$
+of order $k$ on $X \times_S Y / Y$ such that
+$
+D'(s \otimes t) = D(s) \otimes t
+$
+for local sections $s$ of $\mathcal{F}$ and $t$ of $\mathcal{G}$.
+\end{lemma}
+
+\begin{proof}
+In case $X$, $Y$, and $S$ are affine, this follows, via
+Lemma \ref{lemma-affine-case-differential-operators},
+from the corresponding algebra result, see
+Algebra, Lemma \ref{algebra-lemma-base-change-differential-operators}.
+In general, one uses coverings by affines
+(for example as in Schemes, Lemma
+\ref{schemes-lemma-affine-covering-fibre-product})
+to construct $D'$ globally. Details omitted.
+\end{proof}
+
+\begin{remark}
+\label{remark-base-change-differential-operators}
+Let $a : X \to S$ and $b : Y \to S$ be morphisms of schemes.
+Denote $p : X \times_S Y \to X$ and $q : X \times_S Y \to Y$ the
+projections. In this remark, given an $\mathcal{O}_X$-module $\mathcal{F}$
+and an $\mathcal{O}_Y$-module $\mathcal{G}$ let us set
+$$
+\mathcal{F} \boxtimes \mathcal{G} =
+p^*\mathcal{F} \otimes_{\mathcal{O}_{X \times_S Y}} q^*\mathcal{G}
+$$
+Denote $\mathcal{A}_{X/S}$ the additive category
+whose objects are quasi-coherent $\mathcal{O}_X$-modules and
+whose morphisms are differential operators of finite order on $X/S$.
+Similarly for $\mathcal{A}_{Y/S}$ and $\mathcal{A}_{X \times_S Y/S}$.
+The construction of Lemma \ref{lemma-base-change-differential-operators}
+determines a functor
+$$
+\boxtimes : 
+\mathcal{A}_{X/S} \times \mathcal{A}_{Y/S} \longrightarrow
+\mathcal{A}_{X \times_S Y/S},
+\quad
+(\mathcal{F}, \mathcal{G}) \longmapsto \mathcal{F} \boxtimes \mathcal{G}
+$$
+which is bilinear on morphisms. If $X = \Spec(A)$, $Y = \Spec(B)$, and
+$S = \Spec(R)$, then via the identification of quasi-coherent sheaves
+with modules this functor is given by $(M, N) \mapsto M \otimes_R N$
+on objects and sends the morphism $(D, D') : (M, N) \to (M', N')$ to
+$D \otimes D' : M \otimes_R N \to M' \otimes_R N'$.
+\end{remark}
+
+
+
+
+
+
+
+
 \section{Smooth morphisms}
 \label{section-smooth}
 
@@ -6376,7 +6736,7 @@ Algebra, Definition \ref{algebra-definition-smooth}.
 Let $f : X \to S$ be a morphism of schemes.
 \begin{enumerate}
 \item We say that $f$ is {\it smooth at $x \in X$} if
-there exists an affine open neighbourhood $\Spec(A) = U \subset X$
+there exist an affine open neighbourhood $\Spec(A) = U \subset X$
 of $x$ and affine open $\Spec(R) = V \subset S$
 with $f(U) \subset V$ such that the induced ring map
 $R \to A$ is smooth.
@@ -6555,7 +6915,7 @@ Let $V \subset S$ be an affine open neighbourhood of $f(x)$.
 The following are equivalent
 \begin{enumerate}
 \item The morphism $f$ is smooth at $x$.
-\item There exist an affine open $U \subset X$,
+\item There exists an affine open $U \subset X$,
 with $x \in U$ and $f(U) \subset V$ such that the
 induced morphism $f|_U : U \to V$ is standard smooth.
 \end{enumerate}
@@ -7081,7 +7441,7 @@ The same holds for G-unramified morphisms.
 The proof of Lemma \ref{lemma-unramified-characterize}
 shows that being unramified (resp.\ G-unramified)
 is a local property of ring maps. Hence the lemma follows from
-Lemma \ref{lemma-composition-type-P} combined
+Lemma \ref{lemma-base-change-type-P} combined
 with the fact that being unramified (resp.\ G-unramified)
 is a property of ring maps that is stable under base change, see
 Algebra, Lemma \ref{algebra-lemma-unramified}.
@@ -7166,7 +7526,7 @@ This lemma implies that if $X$ is a disjoint union of spectra of finite
 separable field extensions of $k$ then $X \to \Spec(k)$ is unramified.
 Conversely, suppose that $X \to \Spec(k)$ is unramified.
 By Algebra, Lemma \ref{algebra-lemma-unramified-at-prime} for every $x \in X$
-the residue field extension $k \subset \kappa(x)$ is
+the residue field extension $\kappa(x)/k$ is
 finite separable. Since $X \to \Spec(k)$ is locally
 quasi-finite (Lemma \ref{lemma-unramified-quasi-finite})
 we see that all points of $X$ are isolated closed points, see
@@ -7186,7 +7546,7 @@ morphisms locally of finite type with unramified fibres.
 Let $f : X \to S$ be a morphism of schemes.
 \begin{enumerate}
 \item If $f$ is unramified then for any $x \in X$ the field extension
-$\kappa(f(x)) \subset \kappa(x)$ is finite separable.
+$\kappa(x)/\kappa(f(x))$ is finite separable.
 \item If $f$ is locally of finite type, and for every
 $s \in S$ the fibre $X_s$ is a disjoint union of spectra of finite separable
 field extensions of $\kappa(s)$ then $f$ is unramified.
@@ -7247,7 +7607,7 @@ $$
 $$
 is zero.
 \item We have $\mathfrak m_s\mathcal{O}_{X, x} = \mathfrak m_x$
-and the field extension $\kappa(s) \subset \kappa(x)$ is finite
+and the field extension $\kappa(x)/\kappa(s)$ is finite
 separable.
 \end{enumerate}
 \end{lemma}
@@ -7338,8 +7698,8 @@ Lemma \ref{lemma-unramified-at-point}.
 Let $f : X \to Y$ be a morphism of schemes over $S$.
 \begin{enumerate}
 \item If $X$ is unramified over $S$, then $f$ is unramified.
-\item If $X$ is G-unramified over $S$ and $Y$ of finite type over $S$, then
-$f$ is G-unramified.
+\item If $X$ is G-unramified over $S$ and $Y$ is locally of finite type
+over $S$, then $f$ is G-unramified.
 \end{enumerate}
 \end{lemma}
 
@@ -7349,8 +7709,8 @@ By Lemma \ref{lemma-permanence-finite-type} we see that $f$
 is locally of finite type.
 By assumption we have $\Omega_{X/S} = 0$. Hence
 $\Omega_{X/Y} = 0$ by Lemma \ref{lemma-triangle-differentials}. Thus
-$f$ is unramified. If $X$ is G-unramified over $S$ and $Y$ of finite type
-over $S$, then by
+$f$ is unramified. If $X$ is G-unramified over $S$ and $Y$ is locally of
+finite type over $S$, then by
 Lemma \ref{lemma-finite-presentation-permanence}
 we see that $f$ is locally of finite presentation and we conclude
 that $f$ is G-unramified.
@@ -7696,7 +8056,7 @@ $$
 is zero.
 \item The local ring map $\mathcal{O}_{S, s} \to \mathcal{O}_{X, x}$
 is flat, we have $\mathfrak m_s\mathcal{O}_{X, x} = \mathfrak m_x$ and
-the field extension $\kappa(s) \subset \kappa(x)$ is finite
+the field extension $\kappa(x)/\kappa(s)$ is finite
 separable.
 \item There exist affine opens $U \subset X$,
 and $V \subset S$ such that $x \in U$, $f(U) \subset V$ and the
@@ -7812,21 +8172,46 @@ we see that $x \in T$. Hence $f$ is \'etale at $x$ by
 Lemma \ref{lemma-etale-at-point}.
 \end{proof}
 
-\noindent
-Our proof of the following lemma is somewhat complicated.
-It uses the ``Crit\`ere de platitude par fibres'' to see that
-a morphism $X \to Y$ over $S$ between schemes \'etale over $S$
-is automatically flat. The details are in the chapter on commutative algebra.
-
 \begin{lemma}
 \label{lemma-etale-permanence}
+\begin{slogan}
+Cancellation law for \'etale morphisms
+\end{slogan}
 Let $f : X \to Y$ be a morphism of schemes over $S$.
 If $X$ and $Y$ are \'etale over $S$, then
 $f$ is \'etale.
 \end{lemma}
 
 \begin{proof}
-See Algebra, Lemma \ref{algebra-lemma-map-between-etale}.
+As a first proof one may reduce to the affine case and then use
+Algebra, Lemma \ref{algebra-lemma-map-between-etale}. This proof is
+somewhat complicated as it uses the ``Crit\`ere de platitude par fibres''
+to see that a morphism $X \to Y$ over $S$ between schemes \'etale over $S$
+is automatically flat.
+
+\medskip\noindent
+We give a second proof using the graph argument. Namely, consider the
+factorization $X \to X \times_S Y \to Y$, where the first arrow
+is given by $\text{id}_X$ and $f$ and the second arrow is the projection.
+We claim both arrows are \'etale and hence $f$ is \'etale by
+Lemma \ref{lemma-composition-etale}. Namely, the projection is \'etale
+as it is the base change of $X \to S$, see Lemma \ref{lemma-base-change-etale}.
+The first arrow is the base change of the diagonal morphism
+$Y \to Y \times_S Y$ because the square
+$$
+\xymatrix{
+X \ar[d] \ar[r] & X \times_S Y \ar[d] \\
+Y \ar[r] & Y \times_S Y
+}
+$$
+is cartesian. The diagonal $Y \to Y \times_S Y$ is an open immersion
+because $Y \to S$ is \'etale and hence unramified
+(Lemma \ref{lemma-etale-smooth-unramified}) and we may use
+Lemma \ref{lemma-diagonal-unramified-morphism}. The base change
+of an open immersion is an open immersion
+(Schemes, Lemma \ref{schemes-lemma-base-change-immersion})
+and an open immersion is \'etale
+(Lemma \ref{lemma-open-immersion-etale}). This finishes the second proof.
 \end{proof}
 
 \begin{lemma}
@@ -7871,7 +8256,7 @@ $\mathbf{A}_S^d \to S$.
 Smooth schemes are \'etale-locally like affine spaces.
 \end{slogan}
 Let $\varphi : X \to Y$ be a morphism of schemes. Let $x \in X$.
-Let $V \subset Y$ be an affine open neighbourhood of $f(x)$.
+Let $V \subset Y$ be an affine open neighbourhood of $\varphi(x)$.
 If $\varphi$ is smooth at $x$, then there exists an integer $d \geq 0$
 and an affine open $U \subset X$ with $x \in U$ and
 $\varphi(U) \subset V$ such that there exists a commutative diagram
@@ -8170,13 +8555,19 @@ Assume $\mathcal{L}$ is $f$-ample and $\mathcal{M}$ ample.
 By assumption $Y$ and $f$ are quasi-compact (see
 Definition \ref{definition-relatively-ample} and
 Properties, Definition \ref{properties-definition-ample}).
-Hence $X$ is quasi-compact. Pick $x \in X$. We can choose $m \geq 1$
+Hence $X$ is quasi-compact. By Properties, Lemma
+\ref{properties-lemma-ample-separated} the scheme $Y$ is
+separated and by Lemma \ref{lemma-relatively-ample-separated}
+the morphism $f$ is separated. Hence $X$ is separated by
+Schemes, Lemma \ref{schemes-lemma-separated-permanence}.
+Pick $x \in X$. We can choose $m \geq 1$
 and $t \in \Gamma(Y, \mathcal{M}^{\otimes m})$ such that $Y_t$
 is affine and $f(x) \in Y_t$. Since $\mathcal{L}$ restricts to an
 ample invertible sheaf on $f^{-1}(Y_t) = X_{f^*t}$
 we can choose $n \geq 1$ and $s \in \Gamma(X_{f^*t}, \mathcal{L}^{\otimes n})$
 with $x \in (X_{f^*t})_s$ with $(X_{f^*t})_s$ affine.
-By Properties, Lemma \ref{properties-lemma-invert-s-sections}
+By Properties, Lemma \ref{properties-lemma-invert-s-sections} part (2)
+whose assumptions are satisfied by the above,
 there exists an integer $e \geq 1$ and a section
 $s' \in \Gamma(X, \mathcal{L}^{\otimes n} \otimes f^*\mathcal{M}^{\otimes em})$
 which restricts to $s(f^*t)^e$ on $X_{f^*t}$. For any $b > 0$
@@ -8495,35 +8886,48 @@ in (4) is used to guarantee that $f_*\mathcal{L}$ is quasi-coherent via
 Schemes, Lemma \ref{schemes-lemma-push-forward-quasi-coherent}.
 
 \medskip\noindent
-Assume (2).
-We will prove (4).
+Assume (2). We will prove (4).
 Let $S = \bigcup V_j$ be an open covering as in (2).
 Set $X_j = f^{-1}(V_j)$ and $f_j : X_j \to V_j$ the
 restriction of $f$. We see that $f$ is separated by
 Lemma \ref{lemma-relatively-very-ample-separated} (as being
-separated is local on the base). Consider the map
-$\psi : f^*f_*\mathcal{L} \to \mathcal{L}$. On each $V_j$ there exists a
-quasi-coherent sheaf $\mathcal{E}_j$ and an embedding
-$i : X_j \to \mathbf{P}(\mathcal{E}_j)$ with
-$\mathcal{L}_{X_j} \cong i^*\mathcal{O}_{\mathbf{P}(\mathcal{E}_j)}(1)$.
-In other words there is a map $\mathcal{E}_j \to (f_*\mathcal{L})|_{X_j}$
+separated is local on the base). By assumption there exists a
+quasi-coherent $\mathcal{O}_{V_j}$-module $\mathcal{E}_j$ and an immersion
+$i_j : X_j \to \mathbf{P}(\mathcal{E}_j)$ with
+$\mathcal{L}|_{X_j} \cong i_j^*\mathcal{O}_{\mathbf{P}(\mathcal{E}_j)}(1)$.
+The morphism $i_j$ corresponds to a surjection
+$f_j^*\mathcal{E}_j \to \mathcal{L}|_{X_j}$, see
+Constructions, Section \ref{constructions-section-projective-bundle}.
+This map is adjoint to a map $\mathcal{E}_j \to f_*\mathcal{L}|_{V_j}$
 such that the composition
 $$
 f_j^*\mathcal{E}_j \to (f^*f_*\mathcal{L})|_{X_j} \to \mathcal{L}|_{X_j}
 $$
-is surjective. Hence we conclude that $\psi$ is surjective. Let
+is surjective. We conclude that
+$\psi : f^*f_*\mathcal{L} \to \mathcal{L}$ is surjective. Let
 $r_{\mathcal{L}, \psi} : X \to \mathbf{P}(f_*\mathcal{L})$ be the
-associated morphism.
-Using the maps $\mathcal{E}_j \to (f_*\mathcal{L})|_{X_j}$
-we see that there is a factorization
+associated morphism. We still have to show that $r_{\mathcal{L}, \psi}$
+is an immersion; we urge the reader to prove this for themselves.
+The $\mathcal{O}_{V_j}$-module map $\mathcal{E}_j \to f_*\mathcal{L}|_{V_j}$
+determines a homomorphism on symmetric algebras, which in turn defines a
+morphism
+$$
+\mathbf{P}(f_*\mathcal{L}|_{V_j}) \supset U_j \longrightarrow
+\mathbf{P}(\mathcal{E}_j)
+$$
+where $U_j$ is the open subscheme of
+Constructions, Lemma \ref{constructions-lemma-morphism-relative-proj}.
+The compatibility of $\psi$ with $\mathcal{E}_j \to f_*\mathcal{L}|_{V_j}$
+shows that $r_{\mathcal{L}, \psi}(X_j) \subset U_j$ and that there is a
+factorization
 $$
 \xymatrix{
-X_j \ar[r]^-{r_{\mathcal{L}, \psi}} &
-\mathbf{P}(f_*\mathcal{L})|_{V_j} \ar[r] &
+X_j \ar[r]^-{r_{\mathcal{L}, \psi}} & U_j \ar[r] &
 \mathbf{P}(\mathcal{E}_j)
 }
 $$
-which shows that $r_{\mathcal{L}, \psi}$ is an immersion.
+We omit the verification.
+This shows that $r_{\mathcal{L}, \psi}$ is an immersion.
 
 \medskip\noindent
 At this point we see that (1), (2) and (4) are equivalent.
@@ -8593,7 +8997,7 @@ Assume that
 \item the morphism $X \to S$ is of finite type, and
 \item $S$ is affine.
 \end{enumerate}
-Then there exists an $n \geq 0$ and an immersion
+Then there exist an $n \geq 0$ and an immersion
 $i : X \to \mathbf{P}^n_S$ over $S$ such that
 $\mathcal{L} \cong i^*\mathcal{O}_{\mathbf{P}^n_S}(1)$.
 \end{lemma}
@@ -8726,7 +9130,7 @@ Assume that
 \item the morphism $X \to S$ is locally of finite type.
 \end{enumerate}
 Then there exists a $d_0 \geq 1$ such that for every $d \geq d_0$
-there exists an $n \geq 0$ and an immersion
+there exist an $n \geq 0$ and an immersion
 $i : X \to \mathbf{P}^n_S$ over $S$ such that
 $\mathcal{L}^{\otimes d} \cong i^*\mathcal{O}_{\mathbf{P}^n_S}(1)$.
 \end{lemma}
@@ -8943,6 +9347,61 @@ and applying Lemma \ref{lemma-finite-type-over-affine-ample-very-ample} to
 each of the restrictions of $f$ and
 $\mathcal{L}$. We see that (2) implies (1) by
 Lemma \ref{lemma-characterize-relatively-ample}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-invertible-add-enough-ample-very-ample}
+Let $f : X \to S$ be a morphism of schemes.
+Let $\mathcal{N}$, $\mathcal{L}$ be invertible $\mathcal{O}_X$-modules.
+Assume $S$ is quasi-compact, $f$ is of finite type, and $\mathcal{L}$
+is $f$-ample. Then
+$\mathcal{N} \otimes_{\mathcal{O}_X} \mathcal{L}^{\otimes d}$
+is $f$-very ample for all $d \gg 1$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-characterize-very-ample-on-finite-type}
+we reduce to the case $S$ is affine. Combining
+Lemma \ref{lemma-finite-type-over-affine-ample-very-ample} and
+Properties, Proposition \ref{properties-proposition-characterize-ample}
+we can find an integer $d_0$ such that
+$\mathcal{N} \otimes \mathcal{L}^{\otimes d_0}$
+is globally generated. Choose global sections
+$s_0, \ldots, s_n$ of $\mathcal{N} \otimes \mathcal{L}^{\otimes d_0}$
+which generate it. This determines a morphism
+$j : X \to \mathbf{P}^n_S$ over $S$. By
+Lemma \ref{lemma-finite-type-over-affine-ample-very-ample}
+we can also pick an integer $d_1$ such that for all $d \geq d_1$
+there exist sections $t_{d, 0}, \ldots, t_{d, n(d)}$
+of $\mathcal{L}^{\otimes d}$ which generate it and define
+an immersion
+$$
+j_d = \varphi_{\mathcal{L}^{\otimes d}, t_{d, 0}, \ldots, t_{d, n(d)}} :
+X
+\longrightarrow
+\mathbf{P}^{n(d)}_S
+$$
+over $S$. Then for $d \geq d_0 + d_1$ we can consider the
+morphism
+$$
+\varphi_{\mathcal{N} \otimes \mathcal{L}^{\otimes d},
+s_j \otimes t_{d - d_0, i}} :
+X
+\longrightarrow
+\mathbf{P}^{(n + 1)(n(d - d_0) + 1) - 1}_S
+$$
+This morphism is an immersion as it is the composition
+$$
+X \to \mathbf{P}^n_S \times_S \mathbf{P}^{n(d - d_0)}_S
+\to \mathbf{P}^{(n + 1)(n(d - d_0) + 1) - 1}_S
+$$
+where the first morphism is $(j, j_{d - d_0})$ and
+the second is the Segre embedding
+(Constructions, Lemma \ref{constructions-lemma-segre-embedding}).
+Since $j$ is an immersion, so is $(j, j_{d - d_0})$
+(apply Lemma \ref{lemma-immersion-permanence}). We have a composition of
+immersions and hence an immersion
+(Schemes, Lemma \ref{schemes-lemma-composition-immersion}).
 \end{proof}
 
 
@@ -9231,62 +9690,6 @@ of universally closed (resp.\ proper) morphisms
 \end{proof}
 
 \noindent
-The following lemma says that the image of a proper scheme (in a separated
-scheme of finite type over the base) is proper.
-
-\begin{lemma}
-\label{lemma-image-proper-is-proper}
-Let $S$ be a scheme.
-Let $f : X \to Y$ be a morphism of schemes over $S$.
-If $X$ is universally closed over $S$ and $f$ is surjective then
-$Y$ is universally closed over $S$. In particular, if also $Y$ is
-separated and of finite type over $S$, then $Y$ is proper over $S$.
-\end{lemma}
-
-\begin{proof}
-Assume $X$ is universally closed and $f$ surjective.
-Denote $p : X \to S$, $q : Y \to S$ the structure morphisms.
-Let $S' \to S$ be a morphism of schemes. The base change
-$f' : X_{S'} \to Y_{S'}$ is surjective
-(Lemma \ref{lemma-base-change-surjective}), and the base
-change $p' : X_{S'} \to S'$ is closed.
-If $T \subset Y_{S'}$ is closed, then $(f')^{-1}(T) \subset X_{S'}$
-is closed, hence $p'((f')^{-1}(T)) = q'(T)$ is closed.
-So $q'$ is closed.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-scheme-theoretic-image-is-proper}
-Suppose given a commutative diagram of schemes
-$$
-\xymatrix{
-X \ar[rr]_h \ar[rd]_f & & Y \ar[ld]^g \\
-& S
-}
-$$
-Assume
-\begin{enumerate}
-\item $X \to S$ is a proper morphism, and
-\item $Y \to S$ is separated and locally of finite type.
-\end{enumerate}
-Then the scheme theoretic image $Z \subset Y$ of $h$
-is proper over $S$ and $X \to Z$ is surjective.
-\end{lemma}
-
-\begin{proof}
-The scheme theoretic image of $h$ is constructed in Section
-\ref{section-scheme-theoretic-image}.
-Observe that $h$ is quasi-compact
-(Schemes, Lemma \ref{schemes-lemma-quasi-compact-permanence})
-hence $h(X) \subset Z$
-is dense (Lemma \ref{lemma-quasi-compact-scheme-theoretic-image}).
-On the other hand $h(X)$ is closed in $Y$
-(Lemma \ref{lemma-image-proper-scheme-closed})
-hence $X \to Z$ is surjective.
-Thus $Z \to S$ is a proper (Lemma \ref{lemma-image-proper-is-proper}).
-\end{proof}
-
-\noindent
 The proof of the following lemma is due to Bjorn Poonen, see
 \href{https://mathoverflow.net/questions/23337/is-a-universally-closed-morphism-of-schemes-quasi-compact/23528#23528}{this location}.
 
@@ -9352,6 +9755,66 @@ for $i \in I \setminus J$ we see that $z \in Z$. On the other hand
 $f_T(z) = t' \not \in V(g)$ which contradicts $f_T(Z) \subset V(g)$.
 Thus the assumption ``$f_T(Z)$ closed'' is wrong and we conclude indeed
 that $f_T$ is not closed, as desired.
+\end{proof}
+
+\noindent
+The following lemma says that the image of a proper scheme (in a separated
+scheme of finite type over the base) is proper.
+
+\begin{lemma}
+\label{lemma-image-proper-is-proper}
+Let $S$ be a scheme. Let $f : X \to Y$ be a morphism of schemes over $S$.
+If $X$ is universally closed over $S$ and $f$ is surjective then
+$Y$ is universally closed over $S$. In particular, if also $Y$ is
+separated and locally of finite type over $S$, then $Y$ is proper over $S$.
+\end{lemma}
+
+\begin{proof}
+Assume $X$ is universally closed and $f$ surjective.
+Denote $p : X \to S$, $q : Y \to S$ the structure morphisms.
+Let $S' \to S$ be a morphism of schemes. The base change
+$f' : X_{S'} \to Y_{S'}$ is surjective
+(Lemma \ref{lemma-base-change-surjective}), and the base
+change $p' : X_{S'} \to S'$ is closed.
+If $T \subset Y_{S'}$ is closed, then $(f')^{-1}(T) \subset X_{S'}$
+is closed, hence $p'((f')^{-1}(T)) = q'(T)$ is closed.
+So $q'$ is closed. This proves the first statement.
+Thus $Y \to S$ is quasi-compact by
+Lemma \ref{lemma-universally-closed-quasi-compact}
+and hence $Y \to S$ is proper by definition
+if in addition $Y \to S$ is locally of finite type and separated.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-scheme-theoretic-image-is-proper}
+Suppose given a commutative diagram of schemes
+$$
+\xymatrix{
+X \ar[rr]_h \ar[rd]_f & & Y \ar[ld]^g \\
+& S
+}
+$$
+Assume
+\begin{enumerate}
+\item $X \to S$ is a universally closed (for example proper) morphism, and
+\item $Y \to S$ is separated and locally of finite type.
+\end{enumerate}
+Then the scheme theoretic image $Z \subset Y$ of $h$
+is proper over $S$ and $X \to Z$ is surjective.
+\end{lemma}
+
+\begin{proof}
+The scheme theoretic image of $h$ is constructed in Section
+\ref{section-scheme-theoretic-image}. Since $f$ is quasi-compact
+(Lemma \ref{lemma-universally-closed-quasi-compact})
+we find that $h$ is quasi-compact
+(Schemes, Lemma \ref{schemes-lemma-quasi-compact-permanence}).
+Hence $h(X) \subset Z$
+is dense (Lemma \ref{lemma-quasi-compact-scheme-theoretic-image}).
+On the other hand $h(X)$ is closed in $Y$
+(Lemma \ref{lemma-image-proper-scheme-closed})
+hence $X \to Z$ is surjective.
+Thus $Z \to S$ is a proper (Lemma \ref{lemma-image-proper-is-proper}).
 \end{proof}
 
 \noindent
@@ -9460,7 +9923,8 @@ and the definitions.
 
 \noindent
 One usually does not have to consider all possible diagrams
-when testing the valuative criterion.
+when testing the valuative criterion. We will call a valuative
+criterion as in the next lemma a ``refined valuative criterion''.
 
 \begin{lemma}
 \label{lemma-refined-valuative-criterion-universally-closed}
@@ -10074,7 +10538,7 @@ then $f$ is projective.
 \end{lemma}
 
 \begin{proof}
-Choose an embedding $X \to \mathbf{P}(\mathcal{E})$ where $\mathcal{E}$
+Choose a closed immersion $X \to \mathbf{P}(\mathcal{E})$ where $\mathcal{E}$
 is a quasi-coherent, finite type $\mathcal{O}_S$-module. Then
 we get a morphism $X \to \mathbf{P}(\mathcal{E}) \times_S Y$.
 This morphism is a closed immersion because it is the composition
@@ -10298,6 +10762,9 @@ See Algebra, Lemma \ref{algebra-lemma-base-change-integral}.
 
 \begin{lemma}
 \label{lemma-integral-universally-closed}
+\begin{slogan}
+integral $=$ affine $+$ universally closed
+\end{slogan}
 Let $f : X \to S$ be a morphism of schemes.
 The following are equivalent
 \begin{enumerate}
@@ -10505,7 +10972,7 @@ f^*f_*\mathcal{O}_X \longrightarrow \mathcal{O}_X
 $$
 coming from the adjunction map $f^*f_* \to \text{id}$. Then $\sigma$
 is a closed immersion by
-Schemes, Lemma \ref{schemes-lemma-semi-diagonal} and
+Schemes, Lemma \ref{schemes-lemma-section-immersion} and
 Constructions, Lemma \ref{constructions-lemma-projective-bundle-separated}.
 \end{proof}
 
@@ -10526,7 +10993,7 @@ Lemma \ref{lemma-universal-homeomorphism}.
 
 \begin{definition}
 \label{definition-universal-homeomorphism}
-A morphisms $f : X \to Y$ of schemes is called a {\it universal homeomorphism}
+A morphism $f : X \to Y$ of schemes is called a {\it universal homeomorphism}
 if the base change $f' : Y' \times_Y X \to Y'$ is a homeomorphism for
 every morphism $Y' \to Y$.
 \end{definition}
@@ -10654,6 +11121,62 @@ This means that $f$ is a closed immersion, see
 Lemma \ref{lemma-closed-immersion}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-permanence-universal-homeomorphism}
+Let $f : X \to Z$ be the composition of two morphisms 
+$g : X \to Y$ and $h : Y \to Z$.
+If two of the morphisms $\{f, g, h\}$ are universal homeomorphisms,
+so is the third morphism.
+\end{lemma}
+
+\begin{proof}
+If both of $g$ and $h$ are universal homeomorphisms, so is $f$ by
+Lemma \ref{lemma-composition-universal-homeomorphism}.
+
+\medskip\noindent
+Suppose both of $f$ and $g$ are universal homeomorphisms. We want to show
+that $h$ is also. Now base change the diagram along an arbitrary morphism
+$\alpha : Z' \to Z$ of schemes,  we get the following diagram with all
+squares Cartesian:
+$$
+\xymatrix{
+X' \ar[r]^{g'} \ar[d] & Y' \ar[r]^{h'} \ar[d] & Z' \ar[d] \\
+X \ar[r]^{g} & Y \ar[r]^{h} & Z.
+}
+$$
+Our assumption implies that the composition $f'= h' \circ g' : X' \to Z'$
+and $g' : X' \to Y'$ are homeomorphisms, therefore so is $h'$.
+This finishes the proof of $h$ being a universal homeomorphism.
+
+\medskip\noindent
+Finally, assume $f$ and $h$ are universal
+homeomorphisms. We want to show that $g$ is a universal homeomorphism.
+Let $\beta : Y' \to Y$ be an arbitrary morphism of schemes.
+We get the following diagram with all squares Cartesian:
+$$
+\xymatrix{
+X' \ar[r]^{g'} \ar[d] & Y' \ar[d]^{\gamma} & \\
+X'' \ar[r]^{g''} \ar[d] & Y'' \ar[r]^{h''} \ar[d] & Y' \ar[d]^{h \circ \beta} \\
+X \ar[r]^{g} & Y \ar[r]^{h} & Z.
+}
+$$
+Here the morphism $\gamma : Y' \to Y''$ is defined by the universal property of
+fiber products and the two morphisms
+$id_{Y'} : Y' \to Y'$ and $\beta : Y' \to Y$.
+We shall prove that $g'$ is a homeomorphism.
+Since the property of being a homeomorphism has 2-out-of-3 property, we see
+that $g''$ is a homeomorphism.
+Staring at the top square, it suffices to prove that $\gamma$ is a universal
+homeomorphism. Since $h''$ is a homeomorphism, we see that it is
+an affine morphism by Lemma \ref{lemma-homeomorphism-affine}
+and a fortiori separated (Lemma \ref{lemma-affine-separated}).
+Since $h'' \circ \gamma$ is the identity, we see that $\gamma$
+is a closed immersion by
+Schemes, Lemma \ref{schemes-lemma-section-immersion}.
+Since $h''$ is bijective, it follows that $\gamma$ is a bijective
+closed immersion and hence a universal homeomorphism (for example by the
+characterization in Lemma \ref{lemma-universal-homeomorphism}) as desired.
+\end{proof}
 
 
 
@@ -10747,15 +11270,13 @@ In this way we see that the lemma holds in the remaining case.
 \label{lemma-special-elements-and-localization}
 Let $A \subset B$ be a ring extension. Let $S \subset A$ be a
 multiplicative subset. Let $n \geq 1$ and
-$b_i \in B$ for $1 \leq i \leq n$. If the set
+$b_i \in B$ for $1 \leq i \leq n$. Any $x \in S^{-1}B$ such that
 $$
-\{x \in S^{-1}B \mid
-x \not \in S^{-1}A\text{ and } b_i x^i \in S^{-1}A\text{ for }i = 1, \ldots, n\}
+x \not \in S^{-1}A\text{ and } b_i x^i \in S^{-1}A\text{ for }i = 1, \ldots, n
 $$
-is nonempty, then so is
+is equal to $s^{-1}y$ with $s \in S$ and $y \in B$ such that
 $$
-\{x \in B \mid
-x \not \in A\text{ and } b_i x^i \in A\text{ for }i = 1, \ldots, n\}
+y \not \in A\text{ and } b_i y^i \in A\text{ for }i = 1, \ldots, n
 $$
 \end{lemma}
 
@@ -10894,7 +11415,7 @@ such that $b_i^2, b_i^3 \in A[b_1, \ldots, b_{i - 1}]$ for $i = 1, \ldots, n$.
 \end{proposition}
 
 \begin{proof}
-Assume (1). By transfinite induction we construct for each ordinal $\alpha$
+Assume (1). Using transfinite recursion we construct for each ordinal $\alpha$
 an $A$-subalgebra $B_\alpha \subset B$ as follows. Set $B_0 = A$. If $\alpha$
 is a limit ordinal, then we set $B_\alpha = \colim_{\beta < \alpha} B_\beta$.
 If $\alpha = \beta + 1$, then either
@@ -10986,7 +11507,7 @@ on which case $\alpha$ falls into.
 \item In the proof of (2) $\Rightarrow$ (1) we also need to consider
 the case where $B$ is generated over $A$ by a single element $b$
 with $pb, b^p \in B$ for some prime number $p$. Here $A \subset B$
-defines a universal homeomorphism for example by
+induces a universal homeomorphism on spectra for example by
 Algebra, Lemma \ref{algebra-lemma-p-ring-map}.
 \end{enumerate}
 This finishes the proof.
@@ -11039,7 +11560,479 @@ $b \in B'$ a contradiction. Thus $\ell = p$ and $b^p \in B'$
 and we get a contradiction exactly as before.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-make-universal-homeo}
+Let $A$ be a ring. Let $x, y \in A$.
+\begin{enumerate}
+\item If $x^3 = y^2$ in $A$, then $A \to B = A[t]/(t^2 - x, t^3 - y)$
+induces bijections on residue fields and a
+universal homeomorphism on spectra.
+\item If there is a prime number $p$ such that $p^px = y^p$ in $A$, then
+$A \to B = A[t]/(t^p - x, pt - y)$ induces a universal
+homeomorphism on spectra.
+\end{enumerate}
+\end{lemma}
 
+\begin{proof}
+We will use the criterion of Lemma \ref{lemma-universal-homeomorphism}
+to check this. In both cases the ring map is integral. Thus it suffices to show
+that given a field $k$ and a ring map $\varphi : A \to k$
+the $k$-algebra $B \otimes_A k$ has a unique prime ideal
+whose residue field is equal to $k$ in case (1) and
+purely inseparable over $k$ in case (2). See
+Lemma \ref{lemma-universally-injective}.
+
+\medskip\noindent
+In case (1) set $\lambda = 0$ if $\varphi(x) = 0$ and set
+$\lambda = \varphi(y)/\varphi(x)$ if not. Then
+$B = k[t]/(t^2 - \lambda^2, t^3 - \lambda^2)$.
+Thus the result is clear.
+
+\medskip\noindent
+In case (2) if the characteristic of $k$ is $p$, then
+we obtain $\varphi(y) = 0$ and $B = k[t]/(t^p - \varphi(x))$
+which is a local Artinian $k$-algebra whose residue field
+is either $k$ or a degree $p$ purely inseparable extension of $k$.
+If the characteristic of $k$ is not $p$, then setting
+$\lambda = \varphi(y)/p$ we see $B = k[t]/(t - \lambda) = k$
+and we conclude as well.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-universal-homeo-limit}
+Let $A \to B$ be a ring map.
+\begin{enumerate}
+\item If $A \to B$ induces a universal homeomorphism on spectra,
+then $B = \colim B_i$ is a filtered colimit of finitely presented $A$-algebras
+$B_i$ such that $A \to B_i$ induces a universal homeomorphism on spectra.
+\item If $A \to B$ induces isomorphisms on residue fields and
+a universal homeomorphism on spectra, then $B = \colim B_i$ is a
+filtered colimit of finitely presented $A$-algebras $B_i$ such that
+$A \to B_i$ induces isomorphisms on residue fields and a
+universal homeomorphism on spectra.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Proof of (1). We will use the criterion of
+Algebra, Lemma \ref{algebra-lemma-when-colimit}.
+Let $A \to C$ be of finite presentation and let $\varphi : C \to B$
+be an $A$-algebra map. Let $B' = \varphi(C) \subset B$ be the image.
+Then $A \to B'$ induces a universal homeomorphism on spectra by
+Lemma \ref{lemma-subalgebra-inherits}.
+By Algebra, Lemma \ref{algebra-lemma-ring-colimit-fp}
+we can write $B' = \colim_{i \in I} B_i$
+with $A \to B_i$ of finite presentation and surjective
+transition maps.
+By Algebra, Lemma \ref{algebra-lemma-characterize-finite-presentation}
+we can choose an index $0 \in I$
+and a factorization $C \to B_0 \to B'$ of the map $C \to B'$.
+We claim that $\Spec(B_i) \to \Spec(A)$ is a universal homeomorphism
+for $i$ sufficiently large. The claim finishes the proof of (1).
+
+\medskip\noindent
+Proof of the claim. By Lemma \ref{lemma-reduction-universal-homeomorphism}
+the ring map $A_{red} \to B'_{red}$ induces a universal homeomorphism
+on spectra. Thus $A_{red} \subset B'_{red}$ by
+Algebra, Lemma \ref{algebra-lemma-image-dense-generic-points}.
+Setting $A' = \Im(A \to B')$ we have surjections $A \to A' \to A_{red}$
+inducing bijections $\Spec(A_{red}) = \Spec(A') = \Spec(A)$.
+Thus $A' \subset B'$ induces a universal homeomorphism on spectra.
+By Proposition \ref{proposition-universal-homeomorphism}
+and the fact that $B'$ is finite type over $A'$ we can
+find $n$ and $b'_1, \ldots, b'_n \in B'$ such that
+$B' = A'[b'_1, \ldots, b'_n]$
+and such that for $j = 1, \ldots, n$ we have
+\begin{enumerate}
+\item $(b'_j)^2, (b'_j)^3 \in A'[b'_1, \ldots, b'_{j - 1}]$, or
+\item there exists a prime number $p$ with
+$pb'_j, (b'_j)^p \in A'[b'_1, \ldots, b'_{j - 1}]$.
+\end{enumerate}
+Choose $b_1, \ldots, b_n \in B_0$ lifting $b'_1, \ldots, b'_n$.
+For $i \geq 0$ denote $b_{j, i}$ the image of $b_j$ in $B_i$.
+For large enough $i$ we will have for $j = 1, \ldots, n$
+\begin{enumerate}
+\item $b_{j, i}^2, b_{j, i}^3 \in A_i[b_{1, i}, \ldots, b_{j - 1, i}]$, or
+\item there exists a prime number $p$ with
+$pb_{j, i}, b_{j, i}^p \in A_i[b_{1, i}, \ldots, b_{j - 1, i}]$.
+\end{enumerate}
+Here $A_i \subset B_i$ is the image of $A \to B_i$. Observe that $A \to A_i$
+is a surjective ring map whose kernel is a locally nilpotent ideal.
+After increasing $i$ more if necessary, we may assume $B_i$
+is generated by $b_1, \ldots, b_n$ over $A_i$, in other words
+$B_i = A_i[b_1, \ldots, b_n]$.
+By Algebra, Lemmas \ref{algebra-lemma-p-ring-map} and
+\ref{algebra-lemma-2-3-ring-map} we conclude that
+$A \to A_i \to A_i[b_1] \to \ldots \to A_i[b_1, \ldots, b_n] = B_i$
+induce universal homeomorphisms on spectra. This finishes the proof
+of the claim.
+
+\medskip\noindent
+The proof of (2) is exactly the same.
+\end{proof}
+
+
+
+
+
+
+
+\section{Absolute weak normalization and seminormalization}
+\label{section-seminormalization}
+
+\noindent
+Motivated by the results proved in the previous section
+we give the following definition.
+
+\begin{definition}
+\label{definition-seminormal-ring}
+Let $A$ be a ring.
+\begin{enumerate}
+\item We say $A$ is {\it seminormal} if for all $x, y \in A$
+with $x^3 = y^2$ there is a unique $a \in A$ with
+$x = a^2$ and $y = a^3$.
+\item We say $A$ is {\it absolutely weakly normal} if
+(a) $A$ is seminormal and
+(b) for any prime number $p$ and $x, y \in A$ with $p^px = y^p$
+there is a unique $a \in A$ with $x = a^p$ and $y = pa$.
+\end{enumerate}
+\end{definition}
+
+\noindent
+An amusing observation, see \cite{Costa},
+is that in the definition of seminormal rings it suffices\footnote{Let
+$A$ be a ring such that for all $x, y \in A$ with $x^3 = y^2$ there is
+an $a \in A$ with $x = a^2$ and $y = a^3$. Then $A$ is reduced: if
+$x^2 = 0$, then $x^2 = x^3$ and hence there exists an $a$ such that
+$x = a^3$ and $x = a^2$. Then $x = a^3 = ax = a^4 = x^2 = 0$. Finally,
+if $a_1^2 = a_2^2$ and $a_1^3 = a_2^3$ for $a_1, a_2$ in a reduced ring,
+then $(a_1 - a_2)^3 = a_1^3 - 3a_1^2a_2 +3a_1a_2^2 - a_2^3 =
+(1 - 3 + 3 - 1)a_1^3 = 0$ and hence $a_1 = a_2$.} to assume the existence
+of $a$. Absolutely weakly normal schemes were defined in
+\cite[Appendix B]{rydh_descent}.
+
+\begin{lemma}
+\label{lemma-seminormal-local-property}
+Being seminormal or being absolutely weakly normal
+is a local property of rings, see
+Properties, Definition \ref{properties-definition-property-local}.
+\end{lemma}
+
+\begin{proof}
+Suppose that $A$ is seminormal and $f \in A$. Let $x', y' \in A_f$
+with $(x')^3 = (y')^2$. Write $x' = x/f^{2n}$ and $y' = y/f^{3n}$
+for some $n \geq 0$ and $x, y \in A$. After replacing $x, y$
+by $f^{2m}x, f^{3m}y$ and $n$ by $n + m$, we see that
+$x^3 = y^2$ in $A$. Then we find a unique $a \in A$ with
+$x = a^2$ and $y = a^3$. Setting $a' = a/f^n$ we get
+$x' = (a')^2$ and $y' = (a')^3$ as desired. Uniqueness
+of $a'$ follows from uniqueness of $a$.
+In exactly the same manner the reader shows that if $A$ is
+absolutely weakly normal,
+then $A_f$ is absolutely weakly normal.
+
+\medskip\noindent
+Assume $A$ is a ring and $f_1, \ldots, f_n \in A$ generate the unit
+ideal. Assume $A_{f_i}$ is seminormal for each $i$.
+Let $x, y \in A$ with $x^3 = y^2$. For each $i$ we find a unique
+$a_i \in A_{f_i}$ with $x = a_i^2$ and $y = a_i^3$ in $A_{f_i}$.
+By the uniqueness and the result of the first paragraph (which
+tells us that $A_{f_if_j}$ is seminormal) we see that
+$a_i$ and $a_j$ map to the same element of $A_{f_if_j}$.
+By Algebra, Lemma \ref{algebra-lemma-standard-covering}
+we find a unique $a \in A$
+mapping to $a_i$ in $A_{f_i}$ for all $i$.
+Then $x = a^2$ and $y = a^3$ by the same token. Clearly this $a$ is unique.
+Thus $A$ is seminormal. If we assume $A_{f_i}$ is absolutely weakly normal,
+then the exact same argument shows that $A$ is absolutely weakly normal.
+\end{proof}
+
+\noindent
+Next we define seminormal schemes and absolutely weakly normal schemes.
+
+\begin{definition}
+\label{definition-seminormal}
+Let $X$ be a scheme.
+\begin{enumerate}
+\item We say $X$ is {\it seminormal} if every $x \in X$ has
+an affine open neighbourhood $\Spec(R) = U \subset X$
+such that the ring $R$ is seminormal.
+\item We say $X$ is {\it absolutely weakly normal} if every $x \in X$ has
+an affine open neighbourhood $\Spec(R) = U \subset X$
+such that the ring $R$ is absolutely weakly normal.
+\end{enumerate}
+\end{definition}
+
+\noindent
+Here is the obligatory lemma.
+
+\begin{lemma}
+\label{lemma-locally-seminormal}
+Let $X$ be a scheme. The following are equivalent:
+\begin{enumerate}
+\item The scheme $X$ is seminormal.
+\item For every affine open $U \subset X$ the ring $\mathcal{O}_X(U)$
+is seminormal.
+\item There exists an affine open covering $X = \bigcup U_i$ such that
+each $\mathcal{O}_X(U_i)$ is seminormal.
+\item There exists an open covering $X = \bigcup X_j$
+such that each open subscheme $X_j$ is seminormal.
+\end{enumerate}
+Moreover, if $X$ is seminormal
+then every open subscheme is seminormal.
+The same statements are true with ``seminormal'' replaced by
+``absolutely weakly normal''.
+\end{lemma}
+
+\begin{proof}
+Combine Properties, Lemma \ref{properties-lemma-locally-P} and
+Lemma \ref{lemma-seminormal-local-property}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-seminormal-reduced}
+A seminormal scheme or ring is reduced. A fortiori the same
+is true for absolutely weakly normal schemes or rings.
+\end{lemma}
+
+\begin{proof}
+Let $A$ be a ring.
+If $a \in A$ is nonzero but $a^2 = 0$, then $a^2 = 0^2$ and
+$a^3 = 0^3$ and hence $A$ is not seminormal.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-seminormalization-ring}
+Let $A$ be a ring.
+\begin{enumerate}
+\item The category of ring maps $A \to B$ inducing a
+universal homeomorphism on spectra has a final object $A \to A^{awn}$.
+\item Given $A \to B$ in the category of (1) the resulting map
+$B \to A^{awn}$ is an isomorphism if and only if $B$ is
+absolutely weakly normal.
+\item The category of ring maps $A \to B$ inducing isomorphisms on
+residue fields and a universal homeomorphism on spectra has a final
+object $A \to A^{sn}$.
+\item Given $A \to B$ in the category of (3) the resulting map
+$B \to A^{sn}$ is an isomorphism if and only if $B$ is seminormal.
+\end{enumerate}
+For any ring map $\varphi : A \to A'$ there are unique maps
+$\varphi^{awn} : A^{awn} \to (A')^{awn}$ and
+$\varphi^{sn} : A^{sn} \to (A')^{sn}$ compatible with $\varphi$.
+\end{lemma}
+
+\begin{proof}
+We prove (1) and (2) and we omit the proof of (3) and (4) and
+the final statement. Consider the category of $A$-algebras of the form
+$$
+B = A[x_1, \ldots, x_n]/J
+$$
+where $J$ is a finitely generated ideal such that $A \to B$ defines a
+universal homeomorphism on spectra. We claim this category is directed
+(Categories, Definition \ref{categories-definition-directed}). Namely, given
+$$
+B = A[x_1, \ldots, x_n]/J
+\quad\text{and}\quad
+B' = A[x_1, \ldots, x_{n'}]/J'
+$$
+then we can consider
+$$
+B'' = A[x_1, \ldots, x_{n + n'}]/J''
+$$
+where $J''$ is generated by the elements of $J$ and the elements
+$f(x_{n + 1}, \ldots, x_{n + n'})$ where $f \in J'$.
+Then we have $A$-algebra homomorphisms $B \to B''$ and $B' \to B''$
+which induce an isomorphism $B \otimes_A B' \to B''$.
+It follows from
+Lemmas \ref{lemma-base-change-universal-homeomorphism} and
+\ref{lemma-composition-universal-homeomorphism}
+that $\Spec(B'') \to \Spec(A)$ is a universal homeomorphism and
+hence $A \to B''$ is in our category.
+Finally, given $\varphi, \varphi' : B \to B'$
+in our category with $B$ as displayed above,
+then we consider the quotient $B''$ of $B'$
+by the ideal generated by $\varphi(x_i) - \varphi'(x_i)$, $i = 1, \ldots, n$.
+Since $\Spec(B') = \Spec(B)$ we see that $\Spec(B'') \to \Spec(B')$
+is a bijective closed immersion hence a universal homeomorphism.
+Thus $B''$ is in our category and $\varphi, \varphi'$ are equalized
+by $B' \to B''$. This completes the proof of our claim. We set
+$$
+A^{awn} = \colim B
+$$
+where the colimit is over the category just described. Observe that
+$A \to A^{awn}$ induces a universal homeomorphism on spectra by
+Lemma \ref{lemma-colimit-inherits} (this is where we use the category
+is directed).
+
+\medskip\noindent
+Given a ring map $A \to B$ of finite presentation inducing a universal
+homeomorphism on spectra, we get a canonical map $B \to A^{awn}$ by the
+very construction of $A^{awn}$. Since every $A \to B$ as in (1)
+is a filtered colimit of $A \to B$ as in (1) of finite presentation
+(Lemma \ref{lemma-universal-homeo-limit}), we see that
+$A \to A^{awn}$ is final in the category (1).
+
+\medskip\noindent
+Let $x, y \in A^{awn}$ be elements such that $x^3 = y^2$.
+Then $A^{awn} \to A^{awn}[t]/(t^2 - x, t^3 - y)$ induces
+a universal homeomorphism on spectra by Lemma \ref{lemma-make-universal-homeo}.
+Thus $A \to A^{awn}[t]/(t^2 - x, t^3 - y)$ is in the category (1)
+and we obtain a unique $A$-algebra map
+$A^{awn}[t]/(t^2 - x, t^3 - y) \to A^{awn}$.
+The image $a \in A^{awn}$ of $t$ is therefore the unique
+element such that $a^2 = x$ and $a^3 = y$ in $A^{awn}$.
+In exactly the same manner, given a prime $p$ and $x, y \in A^{awn}$
+with $p^px = y^p$ we find a unique $a \in A^{awn}$ with
+$a^p = x$ and $pq = y$. Thus $A^{awn}$ is absolutely weakly normal
+by definition.
+
+\medskip\noindent
+Finally, let $A \to B$ be in the category (1) with $B$ absolutely weakly normal.
+Since $A^{awn} \to B^{awn}$ induces a universal homeomorphism on spectra and 
+since $A^{awn}$ is reduced (Lemma \ref{lemma-seminormal-reduced}) we find
+$A^{awn} \subset B^{awn}$
+(see Algebra, Lemma \ref{algebra-lemma-image-dense-generic-points}).
+If this inclusion is not an equality, then
+Lemma \ref{lemma-pth-power-and-multiple}
+implies there is an element $b \in B^{awn}$, $b \not \in A^{awn}$
+such that either $b^2, b^3 \in A^{awn}$ or $pb, b^p \in A^{awn}$
+for some prime number $p$. However, by the existence and uniqueness in
+Definition \ref{definition-seminormal-ring} this forces $b \in A^{awn}$
+and hence we obtain the contradiction that finishes the proof.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-seminormalization}
+Let $X$ be a scheme.
+\begin{enumerate}
+\item The category of universal homeomorphisms $Y \to X$ has
+an initial object $X^{awn} \to X$.
+\item Given $Y \to X$ in the category of (1) the resulting morphism
+$X^{awn} \to Y$ is an isomorphism if and only if $Y$ is
+absolutely weakly normal.
+\item The category of universal homeomorphisms $Y \to X$ which
+induce ismomorphisms on residue fields has an initial object
+$X^{sn} \to X$.
+\item Given $Y \to X$ in the category of (3) the resulting morphism
+$X^{sn} \to Y$ is an isomorphism if and only if $Y$ is seminormal.
+\end{enumerate}
+For any morphism $h : X' \to X$ of schemes there are unique morphisms
+$h^{awn} : (X')^{awn} \to X^{awn}$ and $h^{sn} : (X')^{sn} \to X^{sn}$
+compatible with $h$.
+\end{lemma}
+
+\begin{proof}
+We will prove (1) and (2) and omit the proof of (3) and (4).
+Let $h : X' \to X$ be a morphism of schemes. If (1) holds for $X$
+and $X'$, then $X' \times_X X^{awn} \to X'$ is a universal homeomorphism
+and hence we get a unique morphism $(X')^{awn} \to X' \times_X X^{awn}$
+over $X'$ by the universal property of $(X')^{awn} \to X'$. Composed with the
+projection $X' \times_X X^{awn} \to X^{awn}$ we obtain $h^{awn}$.
+If in addition (2) holds for $X$ and $X'$ and $h$ is an open immersion, then
+$X' \times_X X^{awn}$ is absolutely weakly normal
+(Lemma \ref{lemma-locally-seminormal}) and we deduce that
+$(X')^{awn} \to X' \times_X X^{awn}$ is an isomorphism.
+
+\medskip\noindent
+Recall that any universal homeomorphism is affine, see
+Lemma \ref{lemma-homeomorphism-affine}. Thus if $X$ is affine
+then (1) and (2) follow immediately from
+Lemma \ref{lemma-seminormalization-ring}.
+Let $X$ be a scheme and let $\mathcal{B}$ be the set of affine opens
+of $X$. For each $U \in \mathcal{B}$ we obtain $U^{awn} \to U$
+and for $V \subset U$, $V, U \in \mathcal{B}$ we obtain a canonical
+isomorphism $\rho_{V, U} : V^{awn} \to V \times_U U^{awn}$ by the discussion
+in the previous paragraph. Thus by relative glueing
+(Constructions, Lemma \ref{constructions-lemma-relative-glueing})
+we obtain a morphism $X^{awn} \to X$ which restricts
+to $U^{awn}$ over $U$ compatibly with the $\rho_{V, U}$.
+Next, let $Y \to X$ be a universal homeomorphism.
+Then $U \times_X Y \to U$ is a universal homeomorphism for $U \in \mathcal{B}$
+and we obtain a unique morphism $g_U : U^{awn} \to U \times_X Y$ over $U$.
+These $g_U$ are compatible with the morphisms $\rho_{V, U}$; details
+omitted. Hence there is a unique morphism $g : X^{awn} \to Y$
+over $X$ agreeing with $g_U$ over $U$, see
+Constructions, Remark \ref{constructions-remark-relative-glueing-functorial}.
+This proves (1) for $X$. Part (2) follows because it holds affine locally.
+\end{proof}
+
+\begin{definition}
+\label{definition-seminormalization}
+Let $X$ be a scheme.
+\begin{enumerate}
+\item The morphism $X^{sn} \to X$ constructed in
+Lemma \ref{lemma-seminormalization}
+is the {\it seminormalization} of $X$.
+\item The morphism $X^{awn} \to X$ constructed in
+Lemma \ref{lemma-seminormalization}
+is the {\it absolute weak normalization} of $X$.
+\end{enumerate}
+\end{definition}
+
+\noindent
+To be sure, the seminormalization $X^{sn}$ of $X$ is a seminormal
+scheme and the absolute weak normalization $X^{awn}$ is an
+absolutely weakly normal scheme.
+Moreover, for any morphism $h : Y \to X$ of schemes we obtain a
+canonical commutative diagram
+$$
+\xymatrix{
+Y^{awn} \ar[d]^{h^{awn}} \ar[r] &
+Y^{sn} \ar[d]^{h^{sn}} \ar[r] &
+Y \ar[d]^h \\
+X^{awn} \ar[r] &
+X^{sn} \ar[r] &
+X
+}
+$$
+of schemes; the arrows $h^{sn}$ and $h^{awn}$ are the unique
+ones compatible with $h$.
+
+\begin{lemma}
+\label{lemma-characterize-seminormal}
+Let $X$ be a scheme. The following are equivalent
+\begin{enumerate}
+\item $X$ is seminormal,
+\item $X$ is equal to its own seminormalization, i.e., the morphism
+$X^{sn} \to X$ is an isomorphism,
+\item if $\pi : Y \to X$ is a universal homomorphism inducing isomorphisms
+on residue fields with $Y$ reduced, then $\pi$ is an isomorphism.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The equivalence of (1) and (2) is clear from
+Lemma \ref{lemma-seminormalization}. If (3) holds, then $X^{sn} \to X$
+is an isomorphism and we see that (2) holds.
+
+\medskip\noindent
+Assume (2) holds and let $\pi : Y \to X$ be a universal homomorphism
+inducing isomorphisms on residue fields with $Y$ reduced. Then there exists
+a factorization $X \to Y \to X$ of $\text{id}_X$ by
+Lemma \ref{lemma-seminormalization}. Then $X \to Y$ is a closed immersion
+(by Schemes, Lemma \ref{schemes-lemma-section-immersion}
+and the fact that $\pi$ is separated for example by
+Lemma \ref{lemma-universally-injective-separated}). Since $X \to Y$
+is also a bijection on points, the reducedness of $Y$ shows that it
+has to be an isomorphism. This finishes the proof.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-characterize-absolutely-weakly-normal}
+Let $X$ be a scheme. The following are equivalent
+\begin{enumerate}
+\item $X$ is absolutely weakly normal,
+\item $X$ is equal to its own absolute weak normalization, i.e., the morphism
+$X^{awn} \to X$ is an isomorphism,
+\item if $\pi : Y \to X$ is a universal homomorphism with $Y$ reduced, then
+$\pi$ is an isomorphism.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+This is proved in exactly the same manner as
+Lemma \ref{lemma-characterize-seminormal}.
+\end{proof}
 
 
 
@@ -11769,7 +12762,7 @@ and $S$ the set of odd integers give a counter example.
 \begin{lemma}
 \label{lemma-birational-birational}
 Let $f : X \to Y$ be a birational morphism of schemes having finitely
-may irreducible components over a base scheme $S$. Assume one of the
+many irreducible components over a base scheme $S$. Assume one of the
 following conditions is satisfied
 \begin{enumerate}
 \item $f$ is locally of finite type and $Y$ reduced,
@@ -11929,13 +12922,16 @@ $Y$ each of the morphisms $U_i \to Y$ is finite.
 In other words (2) holds.
 
 \medskip\noindent
-It is clear that (3) implies (1).
-Assume $f^{-1}(\{\eta\}) = \{\xi_1, \ldots, \xi_n\}$ and assume
-that $f$ is quasi-separated.
-Since $Y$ is affine this implies that $X$ is quasi-separated.
-Since each $\xi_i$ maps to a generic point of an irreducible component
-of $Y$, we see that each $\xi_i$ is a generic point of an irreducible
-component of $X$.
+It is clear that (3) implies (1). Assume $f$ is quasi-separated and (1).
+Write $f^{-1}(\{\eta\}) = \{\xi_1, \ldots, \xi_n\}$. There are no
+specializations among the $\xi_i$ by Lemma \ref{lemma-finite-fibre}.
+Since each $\xi_i$ maps to the generic
+point $\eta$ of an irreducible component of $Y$, there cannot be a
+nontrivial specialization $\xi \leadsto \xi_i$ in $X$
+(since $\xi$ would map to $\eta$ as well).
+We conclude each $\xi_i$ is a generic point of an
+irreducible component of $X$.
+Since $Y$ is affine and $f$ quasi-separated we see $X$ is quasi-separated.
 By Properties, Lemma \ref{properties-lemma-maximal-points-affine}
 we can find an affine open $U \subset X$ containing each $\xi_i$.
 By Algebra, Lemma \ref{algebra-lemma-generically-finite} we see
@@ -11992,7 +12988,7 @@ Lemma \ref{lemma-generically-finite}
 is the statement that a quasi-finite morphism is finite
 over a dense open of the target. This will be shown in
 More on Morphisms,
-Section \ref{more-morphisms-section-application-etale-neighbourhoods}.
+Lemma \ref{more-morphisms-lemma-quasi-finite-finite-over-dense-open}.
 \end{remark}
 
 \begin{lemma}
@@ -12118,7 +13114,7 @@ $R \to A$ is of finite type
 By Lemma \ref{lemma-dominant-finite-number-irreducible-components}
 the generic point of $X$ maps to the generic point of $Y$
 hence $R \to A$ is injective. Let $K = R(Y)$ be the fraction field
-of $R$ and $L = R(X)$ the fraction field of $A$. Then $K \subset L$
+of $R$ and $L = R(X)$ the fraction field of $A$. Then $L/K$
 is a finitely generated field extension. Hence we see that
 (1) is equivalent to (2).
 
@@ -12161,7 +13157,7 @@ Assume $[R(X) : R(Y)] < \infty$, or any other of the equivalent
 conditions (1) -- (4) of Lemma \ref{lemma-finite-degree}.
 Then the positive integer
 $$
-\text{deg}(X/Y) = [R(X) : R(Y)]
+\deg(X/Y) = [R(X) : R(Y)]
 $$
 is called the {\it degree of $X$ over $Y$}.
 \end{definition}
@@ -12620,7 +13616,7 @@ of the initial morphism $f$.
 
 \noindent
 The factorization is the composition of the canonical morphism
-$Y \to \underline{\Spec}(f_*\mathcal{O}_Y)$ (see
+$Y \to \underline{\Spec}_X(f_*\mathcal{O}_Y)$ (see
 Constructions, Lemma
 \ref{constructions-lemma-canonical-morphism})
 and the morphism of relative spectra coming from the inclusion map
@@ -12645,8 +13641,8 @@ X' \ar[ru]^h \ar[r]^\nu & X
 $$
 for some unique morphism $h : X' \to Z$.
 \end{enumerate}
-Moreover, in (2) the morphism $h : X' \to Z$ is the normalization of
-$Z$ in $Y$.
+Moreover, the morphism $f' : Y \to X'$ is dominant and in (2) the
+morphism $h : X' \to Z$ is the normalization of $Z$ in $Y$.
 \end{lemma}
 
 \begin{proof}
@@ -12657,7 +13653,7 @@ Assume given a factorization $f = \pi \circ g$ with $\pi : Z \to X$
 integral as in (2). By Definition \ref{definition-integral}
 $\pi$ is affine, and hence $Z$ is the relative
 spectrum of a quasi-coherent sheaf of $\mathcal{O}_X$-algebras $\mathcal{B}$.
-The morphism $g : X \to Z$ corresponds to a map of $\mathcal{O}_X$-algebras
+The morphism $g : Y \to Z$ corresponds to a map of $\mathcal{O}_X$-algebras
 $\chi : \mathcal{B} \to f_*\mathcal{O}_Y$. Since $\mathcal{B}(U)$ is
 integral over $\mathcal{O}_X(U)$ for every affine open $U \subset X$
 (by Definition \ref{definition-integral})
@@ -12669,10 +13665,19 @@ this provides us with a unique morphism
 $h : X' \to Z$. We omit the verification that the diagram commutes.
 
 \medskip\noindent
-It is clear that (1) and (2) characterize the
-factorization $f = \nu \circ f'$ since it characterizes it
-as an initial object in a category. The morphism $h$ in (2)
-is integral by Lemma \ref{lemma-finite-permanence}.
+It is clear that (1) and (2) characterize the factorization $f = \nu \circ f'$
+since it characterizes it as an initial object in a category.
+
+\medskip\noindent
+From the universal property in (2) we see that $f'$ does not factor through
+a proper closed subscheme of $X'$. Hence the scheme theoretic image of $f'$
+is $X'$. Since $f'$ is quasi-compact (by Schemes, Lemma
+\ref{schemes-lemma-quasi-compact-permanence} and the fact that $\nu$ is
+separated as an affine morphism) we see that $f'(Y)$ is dense in $X'$.
+Hence $f'$ is dominant.
+
+\medskip\noindent
+The morphism $h$ in (2) is integral by Lemma \ref{lemma-finite-permanence}.
 Given a factorization $g = \pi' \circ g'$ with $\pi' : Z' \to Z$
 integral, we get a factorization $f = (\pi \circ \pi') \circ g'$ and
 we get a morphism $h' : X' \to Z'$. Uniqueness implies that
@@ -12907,7 +13912,7 @@ Let $f : X \to S$ be a morphism. Assume that
 \item $f$ is quasi-compact and quasi-separated,
 \item quasi-compact opens of $X$ have finitely many irreducible components,
 \item if $x \in X$ is a generic point of an irreducible component,
-then the field extension $\kappa(f(x)) \subset \kappa(x)$ is finitely
+then the field extension $\kappa(x)/\kappa(f(x))$ is finitely
 generated, and
 \item $X$ is reduced.
 \end{enumerate}
@@ -12941,7 +13946,7 @@ is contained in the product of the integral closures $A_{ij}$ of
 $R$ in $\kappa(\mathfrak q_{ij})$. Since $R$ is Noetherian
 it suffices to show that $A_{ij}$ is a finite $R$-module for each $i, j$.
 Let $\mathfrak p_{ij} \subset R$ be the image of $\mathfrak q_{ij}$.
-As $\kappa(\mathfrak p_{ij}) \subset \kappa(\mathfrak q_{ij})$
+As $\kappa(\mathfrak q_{ij})/\kappa(\mathfrak p_{ij})$
 is a finitely generated field extension by assumption (4),
 we see that $R \to \kappa(\mathfrak q_{ij})$ is essentially of finite type.
 Thus $R \to A_{ij}$ is finite by Algebra, Lemma
@@ -13231,7 +14236,8 @@ Suppose that $\alpha : X' \to X$ is as in (3). It is clear that
 $X'$ satisfies the assumptions under which the normalization
 is defined. Let $f' : Y' \to X'$ be the morphism
 (\ref{equation-generic-points}) constructed starting with $X'$.
-As $\alpha$ is birational it is clear that $Y' = Y$ and $f = \alpha \circ f'$.
+As $\alpha$ is locally birational it is clear that
+$Y' = Y$ and $f = \alpha \circ f'$.
 Hence the factorization $X^\nu \to X' \to X$ exists
 and $X^\nu \to X'$ is the normalization of $X'$ by
 Lemma \ref{lemma-characterize-normalization}. This proves (3).
@@ -13279,7 +14285,7 @@ We may assume $X$ is reduced, see Lemma \ref{lemma-normalization-reduced}.
 Then the lemma follows either from the local description in
 Lemma \ref{lemma-description-normalization}
 or from Lemma \ref{lemma-normalization-normal} part (3) because
-$\coprod Z_i \to X$ is integral and birational (as $X$ is reduced
+$\coprod Z_i \to X$ is integral and locally birational (as $X$ is reduced
 and has locally finitely many irreducible components).
 \end{proof}
 
@@ -13366,6 +14372,436 @@ $A/\mathfrak q_i \subset A'_i$ are finite. Hence $A \to \prod A'_i$
 is a finite ring map and we win.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-normalization-geom-unibranch-univ-homeo}
+Let $X$ be an irreducible, geometrically unibranch scheme.
+The normalization morphism $\nu : X^\nu \to X$ is a universal
+homeomorphism.
+\end{lemma}
+
+\begin{proof}
+We have to show that $\nu$ is integral, universally injective,
+and surjective, see Lemma \ref{lemma-universal-homeomorphism}.
+By Lemma \ref{lemma-normalization-normal} the morphism $\nu$
+is integral. Let $x \in X$ and set $A = \mathcal{O}_{X, x}$.
+Since $X$ is irreducible we see that $A$ has a single
+minimal prime $\mathfrak p$ and $A_{red} = A/\mathfrak p$.
+By Lemma \ref{lemma-stalk-normalization} the stalk
+$A' = (\nu_*\mathcal{O}_{X^\nu})_x$ is the integral closure of
+$A$ in the fraction field of $A_{red}$. By
+More on Algebra, Definition \ref{more-algebra-definition-unibranch}
+we see that $A'$ has a single prime $\mathfrak m'$ lying
+over $\mathfrak m_x \subset A$ and $\kappa(\mathfrak m')/\kappa(x)$
+is purely inseparable. Hence $\nu$ is bijective (hence surjective)
+and universally injective by Lemma \ref{lemma-universally-injective}.
+\end{proof}
+
+
+
+
+
+
+
+\section{Weak normalization}
+\label{section-weak-normalization}
+
+\noindent
+We will only define the weak normalization of a scheme when
+it locally has finitely many irreducible components; similar
+to the case of normalization.
+
+\begin{lemma}
+\label{lemma-relative-weak-normalization-algebra}
+Let $A \to B$ be a ring map inducing a dominant morphism
+$\Spec(B) \to \Spec(A)$ of spectra. There exists an $A$-subalgebra
+$B' \subset B$ such that
+\begin{enumerate}
+\item $\Spec(B') \to \Spec(A)$ is a universal homeomorphism,
+\item given a factorization $A \to C \to B$ such that
+$\Spec(C) \to \Spec(A)$ is a universal homeomorphism, the
+image of $C \to B$ is contained in $B'$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We will use Lemma \ref{lemma-reduction-universal-homeomorphism}
+without further mention. Consider the commutative diagram
+$$
+\xymatrix{
+B \ar[r] & B_{red} \\
+A \ar[u] \ar[r] & A_{red} \ar[u]
+}
+$$
+For any factorization $A \to C \to B$ of $A \to B$ as in (2), we see
+that $A_{red} \to C_{red} \to B_{red}$ is a factorization of
+$A_{red} \to B_{red}$ as in (2). It follows that if the
+lemma holds for $A_{red} \to B_{red}$ and produces the $A_{red}$-subalgebra
+$B'_{red} \subset B_{red}$, then setting $B' \subset B$
+equal to the inverse image of $B'_{red}$ solves the lemma for
+$A \to B$. This reduces us to the case discussed in the next paragraph.
+
+\medskip\noindent
+Assume $A$ and $B$ are reduced. In this case $A \subset B$ by
+Algebra, Lemma \ref{algebra-lemma-image-dense-generic-points}.
+Let $A \to C \to B$ be a factorization as in (2).
+Then we may apply Proposition \ref{proposition-universal-homeomorphism}
+to $A \subset C$ to see that every element of $C$ is contained
+in an extension $A[c_1, \ldots, c_n] \subset C$ such that for
+$i = 1, \ldots, n$ we have
+\begin{enumerate}
+\item $c_i^2, c_i^3 \in A[c_1, \ldots, c_{i - 1}]$, or
+\item there exists a prime number $p$ with
+$pc_i, c_i^p \in A[c_1, \ldots, c_{i - 1}]$.
+\end{enumerate}
+Thus property (2) holds if we define $B' \subset B$ to be the
+subset of elements $b \in B$ which are contained in an extension
+$
+A[b_1, \ldots, b_n] \subset B
+$
+such that (*) holds: for $i = 1, \ldots, n$ we have
+\begin{enumerate}
+\item $b_i^2, b_i^3 \in A[b_1, \ldots, b_{i - 1}]$, or
+\item there exists a prime number $p$ with
+$pb_i, b_i^p \in A[b_1, \ldots, b_{i - 1}]$.
+\end{enumerate}
+There are only two things to check: (a) $B'$ is an $A$-subalgebra, and
+(b) $\Spec(B') \to \Spec(A)$ is a universal homeomorphism.
+Part (a) follows because given $n \geq 0$ and $b_1, \ldots, b_n \in B$
+satisfying (*) and $m \geq 0$ and $b'_1, \ldots, b'_m \in B$
+satisfying (*), the integer
+$n + m$ and $b_1, \ldots, b_n, b'_1, \ldots, b'_m \in B$
+also satisfies (*). Finally, part (b) holds by
+Proposition \ref{proposition-universal-homeomorphism} and our construction
+of $B'$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-relative-weak-normalization-localization}
+Let $A \to B$ be a ring map inducing a dominant morphism
+$\Spec(B) \to \Spec(A)$ of spectra. Formation of the $A$-subalgebra
+$B' \subset B$ in Lemma \ref{lemma-relative-weak-normalization-algebra}
+commutes with localization (see proof for explanation).
+\end{lemma}
+
+\begin{proof}
+Let $S \subset A$ be a multiplicative subset. Then $S^{-1}A \to S^{-1}B$ is a
+ring map which induces a dominant morphism $\Spec(S^{-1}B) \to \Spec(S^{-1}A)$
+as well (see Lemmas \ref{lemma-base-change-dominant} and
+\ref{lemma-generalizations-lift-flat}).
+Hence Lemma \ref{lemma-relative-weak-normalization-algebra}
+produces an $S^{-1}A$-subalgebra $(S^{-1}B)' \subset S^{-1}B$.
+The statement means that $S^{-1}B' = (S^{-1}B)'$ as $S^{-1}A$-subalgebras
+of $S^{-1}B$.
+
+\medskip\noindent
+To see this is true, we will use the construction of $B'$ and
+$(S^{-1}B)'$ in the proof of
+Lemma \ref{lemma-relative-weak-normalization-algebra}.
+In the first step, we see that $B'$ is the inverse image of
+the $A_{red}$-subalgebra $B'_{red} \subset B_{red}$ constructed
+for the ring map $A_{red} \to B_{red}$ and similarly for $(S^{-1}B)'$.
+Noting that $S^{-1}B_{red} = (S^{-1}B)_{red}$ this reduces
+us to the case discussed in the next paragraph.
+
+\medskip\noindent
+If $A$ and $B$ are reduced, we have constructed $B'$ as the union
+of the subalgebras $A[b_1, \ldots, b_n]$ such that for $i = 1, \ldots, n$
+we have
+\begin{enumerate}
+\item $b_i^2, b_i^3 \in A[b_1, \ldots, b_{i - 1}]$, or
+\item there exists a prime number $p$ with
+$pb_i, b_i^p \in A[b_1, \ldots, b_{i - 1}]$.
+\end{enumerate}
+Similarly for $(S^{-1}B)' \subset S^{-1}B$. Thus it is clear that the
+image of $B' \to B \to S^{-1}B$ is contained in $(S^{-1}B)'$.
+To show that the corresponding map $S^{-1}B' \to (S^{-1}B)'$
+is surjective, one uses Lemma \ref{lemma-special-elements-and-localization}
+to clear denominators successively; we omit the details.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-relative-seminormalization-algebra}
+Let $A \to B$ be a ring map inducing a dominant morphism
+$\Spec(B) \to \Spec(A)$ of spectra. There exists an $A$-subalgebra
+$B' \subset B$ such that
+\begin{enumerate}
+\item $\Spec(B') \to \Spec(A)$ is a universal homeomorphism inducing
+isomorphisms on residue fields,
+\item given a factorization $A \to C \to B$ such that $\Spec(C) \to \Spec(A)$
+is a universal homeomorphism inducing isomorphisms on residue fields,
+the image of $C \to B$ is contained in $B'$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+This proof is exactly the same as the proof of
+Lemma \ref{lemma-relative-weak-normalization-algebra} except we use
+Proposition \ref{proposition-universal-homeomorphism-equal-residue-fields}
+in stead of Proposition \ref{proposition-universal-homeomorphism}
+\end{proof}
+
+\begin{lemma}
+\label{lemma-relative-seminormalization-localization}
+Let $A \to B$ be a ring map inducing a dominant morphism
+$\Spec(B) \to \Spec(A)$ of spectra. Formation of the $A$-subalgebra
+$B' \subset B$ in Lemma \ref{lemma-relative-seminormalization-algebra}
+commutes with localization (see proof for explanation).
+\end{lemma}
+
+\begin{proof}
+The proof is the same as the proof of
+Lemma \ref{lemma-relative-weak-normalization-localization}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-relative-seminormalization}
+Let $f : Y \to X$ be a quasi-compact, quasi-separated, and dominant
+morphism of schemes.
+\begin{enumerate}
+\item The category of factorizations $Y \to X' \to X$ where $X' \to X$
+is a universal homeomorphism has an initial object $Y \to X^{Y/wn} \to X$.
+\item The category of factorizations $Y \to X' \to X$ where $X' \to X$
+is a universal homeomorphism inducing isomorphisms on residue fields
+has an initial object $Y \to X^{Y/sn} \to X$.
+\end{enumerate}
+Moreover, formation of the factorization $Y \to X^{Y/wn} \to X$ and
+$Y \to X^{Y/sn} \to X$ commutes with base change to open subschemes of $X$.
+\end{lemma}
+
+\begin{proof}
+We will prove (1) and omit the proof of (2); also the final assertion
+will follow from the construction of the factorization. We will use
+Lemma \ref{lemma-universal-homeomorphism} without
+further mention. First, let $Y \to X^{Y/n} \to X$ be the normalization
+of $X$ in $Y$, see Definition \ref{definition-normalization-X-in-Y}.
+For $Y \to X' \to X$ as in (1), we obtain a unique morphism
+$X^{Y/n} \to X'$ compatible with the given morphisms, see
+Lemma \ref{lemma-characterize-normalization}. Thus it suffices
+to prove the lemma with $f$ replaced by $X^{Y/n} \to X$. This reduces
+us to the case studied in the next paragraph.
+
+\medskip\noindent
+Assume $f$ is integral (the rest of the proof works more generally if
+$f$ is affine). Let $U = \Spec(A)$ be an affine open of $X$ and let
+$V = f^{-1}(U) = \Spec(B)$ be the inverse image in $Y$.
+Then $A \to B$ is a ring map which induces a dominant morphism
+on spectra. By Lemma \ref{lemma-relative-weak-normalization-algebra}
+we obtain an $A$-subalgebra $B' \subset B$ such that setting
+$U^{V/wn} = \Spec(B')$ the factorization $V \to U^{V/wn} \to U$
+is initial in the category of factorizations $V \to U' \to U$ where
+$U' \to U$ is a universal homeomorphism.
+
+\medskip\noindent
+If $U_1 \subset U_2 \subset X$ are affine opens, then setting
+$V_i = f^{-1}(U_i)$ we obtain a canonical morphism
+$$
+\rho_{U_1}^{U_2} : U_1^{V_1/wn} \to U_1 \times_{U_2} U_2^{V_2/wn}
+$$
+over $U_1$ by the universal property of $U_1^{V_1/wn}$. These morphisms satisfy
+a natural functoriality which we leave to the reader to formulate and prove.
+Furthermore, the morphism $\rho_{U_1}^{U_2}$
+is an isomorphism; this follows from
+Lemma \ref{lemma-relative-weak-normalization-localization}
+provided that $U_1 \subset U_2$ is a standard open
+and in the general case can be reduced to this case
+by the functorial nature of these maps and
+Schemes, Lemma \ref{schemes-lemma-standard-open-two-affines}
+(details omitted). Thus by relative glueing
+(Constructions, Lemma \ref{constructions-lemma-relative-glueing})
+we obtain a morphism $X^{Y/wn} \to X$ which restricts
+to $U^{V/wn} \to U$ over $U$ compatibly with the $\rho_{U_1}^{U_2}$.
+Of course, the morphisms $V \to U^{V/wn}$ glue to a morphism $Y \to X^{Y/wn}$
+(see Constructions, Remark
+\ref{constructions-remark-relative-glueing-functorial})
+and we get our factorization $Y \to X^{Y/wn} \to X$ where the second morphism
+is a universal homeomorphism.
+
+\medskip\noindent
+Finally, let $Y \to X' \to X$ be a factorization as in (1).
+With $V \to U^{V/wn} \to U \subset X$ as above,
+we obtain a factorization $V \to U \times_X X' \to U$ where
+the second arrow is a universal homeomorphism
+and we obtain a unique morphism $g_U : U^{V/wn} \to U \times_X X'$ over $U$
+by the universal property of $U^{V/wn}$.
+These $g_U$ are compatible with the morphisms $\rho_{U_1}^{U_2}$; details
+omitted. Hence there is a unique morphism $g : X^{Y/wn} \to X'$
+over $X$ agreeing with $g_U$ over $U$, see
+Constructions, Remark \ref{constructions-remark-relative-glueing-functorial}.
+This proves that $Y \to X^{Y/wn} \to X$ is initial in our category
+and the proof is complete.
+\end{proof}
+
+\begin{definition}
+\label{definition-relative-seminormalization}
+Let $f : Y \to X$ be a quasi-compact, quasi-separated, and dominant
+morphism of schemes.
+\begin{enumerate}
+\item The factorization $Y \to X^{Y/sn} \to X$ constructed in
+Lemma \ref{lemma-relative-seminormalization} part (2)
+is the {\it seminormalization of $X$ in $Y$}.
+\item The factorization $Y \to X^{Y/wn} \to X$ constructed in
+Lemma \ref{lemma-relative-seminormalization} part (1)
+is the {\it weak normalization of $X$ in $Y$}.
+\end{enumerate}
+\end{definition}
+
+\noindent
+Here is a way to reinterpret the seminormalization of a scheme
+which locally has finitely many irreducible components.
+
+\begin{lemma}
+\label{lemma-seminormal-and-normalization}
+Let $X$ be a scheme such that every quasi-compact open has
+finitely many irreducible components. Let $\nu : X^\nu \to X$
+be the normalization of $X$. Then the seminormalization of $X$ in
+$X^\nu$ is is the seminormalization of $X$. In a formula:
+$X^{sn} = X^{X^\nu/sn}$.
+\end{lemma}
+
+\begin{proof}
+Let $f : Y \to X$ be as in (\ref{equation-generic-points})
+so that $X^\nu$ is the normalization of $X$ in $Y$.
+The seminormalization $X^{sn} \to X$ of $X$ is the initial object in the
+category of universal homeomorphisms $X' \to X$ inducing isomorphisms on
+residue fields. Since $Y$ is the disjoint union of the spectra of the
+residue fields at the generic points of irreducible components of $X$,
+we see that for any $X' \to X$ in this category we obtain a canonical
+lift $f' : Y \to X'$ of $f$. Then by
+Lemma \ref{lemma-characterize-normalization}
+we obtain a canonical morphism $X^\nu \to X'$.
+Whence in turn a canonical morphism $X^{X^\nu/sn} \to X'$
+by the universal property of $X^{X^\nu/sn}$.
+In this way we see that $X^{X^\nu/sn}$ satisfies the
+same universal property that $X^{sn}$ has and we conclude.
+\end{proof}
+
+\noindent
+Lemma \ref{lemma-seminormal-and-normalization} motivates the
+following definition. Since we have only constructed the
+normalization in case $X$ locally has finitely many irreducible components,
+we will also restrict ourselves to that case for the weak normalization.
+
+\begin{definition}
+\label{definition-weak-normalization}
+Let $X$ be a scheme such that every quasi-compact open has
+finitely many irreducible components. We define the
+{\it weak normalization} of $X$ as the weak normalization
+$$
+X^\nu \longrightarrow X^{wn} \longrightarrow X
+$$
+of $X$ in the normalization $X^\nu$ of $X$
+(Definition \ref{definition-normalization}).
+In a formula: $X^{wn} = X^{X^\nu/wn}$.
+\end{definition}
+
+\noindent
+Combined with Lemma \ref{lemma-seminormal-and-normalization} we see that
+for a scheme $X$ which locally has finitely many irreducible components
+there are canonical morphisms
+$$
+X^\nu \to X^{wn} \to X^{sn} \to X
+$$
+Having made this definition, we can say what it means for a scheme
+to be weakly normal (provided it has locally finitely many irreducible
+components).
+
+\begin{definition}
+\label{definition-weakly-normal}
+Let $X$ be a scheme such that every quasi-compact open has
+finitely many irreducible components. We say $X$ is {\it weakly normal}
+if the weak normalization $X^{wn} \to X$ is an isomorphism
+(Definition \ref{definition-weak-normalization}).
+\end{definition}
+
+\noindent
+It follows immediately from the definitions that for a scheme $X$ such
+that every quasi-compact open has finitely many irreducible components
+we have
+$$
+X\text{ normal} \Rightarrow
+X\text{ weakly normal} \Rightarrow
+X\text{ seminormal}
+$$
+We can work out the meaning of weak normality in the affine case as follows.
+
+\begin{lemma}
+\label{lemma-affine-weakly-normal}
+Let $X = \Spec(A)$ be an affine scheme which has finitely many
+irreducible components. Then $X$ is weakly normal if and only if
+\begin{enumerate}
+\item $A$ is seminormal (Definition \ref{definition-seminormal-ring}),
+\item for a prime number $p$ and $z, w \in A$ such that
+(a) $z$ is a nonzerodivisor, (b) $w^p$ is divisible by $z^p$, and
+(c) $pw$ is divisible by $z$, then $w$ is divisible by $z$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Assume $X$ is weakly normal. Since a weakly normal scheme is seminormal,
+we see that (1) holds (by our definition of weakly normal schemes).
+In particular $A$ is reduced. Let $p, z, w$ be as in (2).
+Choose $x, y \in A$ such that $z^p x = w^p$ and $zy = pw$.
+Then $p^p x = y^p$. The ring map
+$A \to C = A[t]/(t^p - x, pt - y)$ induces a universal homeomorphism
+on spectra. The normalization $X^\nu$ of $X$
+is the spectrum of the integral closure $A'$
+of $A$ in the total ring of fractions of $A$, see
+Lemma \ref{lemma-description-normalization}.
+Note that $a = w/z \in A'$ because $a^p = x$.
+Hence we have an $A$-algebra homomorphism $A \to C \to A'$
+sending $t$ to $a$.
+At this point the defining property $X = X^{wn} = X^{X^\nu/wn}$
+of being weakly normal tells us that $C \to A'$ maps into $A$.
+Thus we find $a \in A$ as desired.
+
+\medskip\noindent
+Conversely, assume (1) and (2). Let $A'$ be as in the previous paragraph.
+We have to show that $X^{X^\nu/wn} = X$. By construction in the proof
+of Lemma \ref{lemma-relative-weak-normalization-algebra}, the scheme
+$X^{X^\nu/wn}$ is the spectrum of the subring of $A'$
+which is the union of the subrings $A[a_1, \ldots, a_n] \subset A'$
+such that for $i = 1, \ldots, n$ we have
+\begin{enumerate}
+\item[(a)] $a_i^2, a_i^3 \in A[a_1, \ldots, a_{i - 1}]$, or
+\item[(b)] there exists a prime number $p$ with
+$pa_i, a_i^p \in A[a_1, \ldots, a_{i - 1}]$.
+\end{enumerate}
+Then we can use (1) and (2) to inductively see that $a_1, \ldots, a_n \in A$;
+we omit the details. Consequently, we have $X = X^{X^\nu/wn}$ and hence
+$X$ is weakly normal.
+\end{proof}
+
+\noindent
+Here is the obligatory lemma.
+
+\begin{lemma}
+\label{lemma-locally-weakly-normal}
+Let $X$ be a scheme such that every quasi-compact open has
+finitely many irreducible components. The following are equivalent:
+\begin{enumerate}
+\item The scheme $X$ is weakly normal.
+\item For every affine open $U \subset X$ the ring $\mathcal{O}_X(U)$
+satisfies conditions (1) and (2) of Lemma \ref{lemma-affine-weakly-normal}.
+\item There exists an affine open covering $X = \bigcup U_i$ such that
+each ring $\mathcal{O}_X(U_i)$
+satisfies conditions (1) and (2) of Lemma \ref{lemma-affine-weakly-normal}.
+\item There exists an open covering $X = \bigcup X_j$
+such that each open subscheme $X_j$ is weakly normal.
+\end{enumerate}
+Moreover, if $X$ is weakly normal then every open subscheme is weakly normal.
+\end{lemma}
+
+\begin{proof}
+The condition to $X$ be weakly normal is that the morphism
+$X^{wn} = X^{X^\nu/wn} \to X$ is an isomorphism. Since the construction
+of $X^\nu \to X$ commutes with base change to open subschemes
+and since the construction of $X^{X^\nu/wn}$ commutes with base
+change to open subschemes of $X$ (Lemma \ref{lemma-relative-seminormalization})
+the lemma is clear.
+\end{proof}
+
+
+
 
 
 
@@ -13430,6 +14866,9 @@ the set of points where a morphism is quasi-finite is open.
 
 \begin{lemma}
 \label{lemma-quasi-finite-points-open}
+\begin{slogan}
+The locally quasi-finite locus of a morphism is open
+\end{slogan}
 Let $f : X \to S$ be a morphism of schemes.
 The set of points of $X$ where $f$ is quasi-finite is an open
 $U \subset X$. The induced morphism $U \to S$ is locally quasi-finite.
@@ -13437,7 +14876,7 @@ $U \subset X$. The induced morphism $U \to S$ is locally quasi-finite.
 
 \begin{proof}
 Suppose $f$ is quasi-finite at $x$.
-Let $x \in U = \Spec(R) \subset X$, $V = \Spec(A) \subset S$
+Let $x \in U = \Spec(A) \subset X$, $V = \Spec(R) \subset S$
 be affine opens as in Definition \ref{definition-quasi-finite}.
 By either Theorem \ref{theorem-main-theorem} above or
 Algebra, Lemma \ref{algebra-lemma-quasi-finite-open},
@@ -13595,33 +15034,6 @@ and hence the fibres of $f$ all have degree $d$.
 \end{proof}
 
 \begin{lemma}
-\label{lemma-bound-degree-in-nbhd-generic-point}
-Let $f : X \to Y$ be a morphism schemes. Assume
-\begin{enumerate}
-\item $f$ is locally of finite type,
-\item $f$ is either quasi-compact or separated,
-\item $f$ is generically finite, i.e., one of (1) -- (5) of
-Lemma \ref{lemma-finite-degree} holds.
-\end{enumerate}
-Then there is a nonempty open $V \subset Y$ such that
-$f^{-1}(V) \to V$ is finite locally free of degree $\deg(X/Y)$.
-In particular, the degrees of the fibres of $f^{-1}(V) \to V$
-are bounded by $\deg(X/Y)$.
-\end{lemma}
-
-\begin{proof}
-We may choose $V$ such that $f^{-1}(V) \to V$ is finite.
-Then we may shrink $V$ and assume that $f^{-1}(V) \to V$
-is flat and of finite presentation by generic flatness
-(Proposition \ref{proposition-generic-flatness}).
-Then the morphism is finite locally free by
-Lemma \ref{lemma-finite-flat}.
-Since $V$ is irreducible the morphism has a fixed degree.
-The final statement follows from this and
-Lemma \ref{lemma-finite-locally-free-universally-bounded}.
-\end{proof}
-
-\begin{lemma}
 \label{lemma-composition-universally-bounded}
 A composition of morphisms with universally bounded fibres
 is a morphism with universally bounded fibres. More precisely,
@@ -13655,8 +15067,8 @@ example because $Y_z$ is a disjoint union of $1$-point schemes, or by
 Algebra, Lemmas \ref{algebra-lemma-finite-dimensional-algebra} and
 \ref{algebra-lemma-artinian-finite-length}.
 So we see that
-$\dim_k(B) = \sum_{\mathfrak m}(B_{\mathfrak m})$ and
-$\dim_k(A) = \sum_{\mathfrak m}(A_{\mathfrak m})$ where
+$\dim_k(B) = \sum_{\mathfrak m} \dim_k(B_{\mathfrak m})$ and
+$\dim_k(A) = \sum_{\mathfrak m} \dim_k(A_{\mathfrak m})$ where
 in both cases $\mathfrak m$ runs over the maximal ideals of
 $B$ (not of $A$). By the above, and Nakayama's Lemma
 (Algebra, Lemma \ref{algebra-lemma-NAK})
@@ -13665,7 +15077,7 @@ $B_{\mathfrak m}^{\oplus n}$ as a $B_{\mathfrak m}$-module. Hence
 $\dim_k(A_{\mathfrak m}) \leq n \dim_k(B_{\mathfrak m})$. Putting
 everything together we see that
 $$
-\dim_k(A) = \sum\nolimits_{\mathfrak m}(A_{\mathfrak m})
+\dim_k(A) = \sum\nolimits_{\mathfrak m} \dim_ta	(A_{\mathfrak m})
 \leq \sum\nolimits_{\mathfrak m} n \dim_k(B_{\mathfrak m})
 = n \dim_k(B) \leq nm
 $$
@@ -13853,6 +15265,57 @@ Hence $\dim_k(B) \leq \dim_k(A) \leq n$ as desired.
 
 
 
+
+\section{Miscellany}
+\label{section-misc}
+
+\noindent
+Results which do not fit elsewhere.
+
+\begin{lemma}
+\label{lemma-factor-through-point}
+Let $f : Y \to X$ be a morphism of schemes. Let $x \in X$ be a point.
+Assume that $Y$ is reduced and $f(Y)$ is set-theoretically contained
+in $\{x\}$. Then $f$ factors through the canonical morphism
+$x = \Spec(\kappa(x)) \to X$.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hints: working affine locally one reduces to a commutative algebra
+lemma. Given a ring map $A \to B$ with $B$ reduced such that there exists
+a unique prime ideal $\mathfrak p \subset A$ in the image of
+$\Spec(B) \to \Spec(A)$, then $A \to B$ factors through $\kappa(\mathfrak p)$.
+This is a nice exercise.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-factor-through-set-of-points}
+Let $f : Y \to X$ be a morphism of schemes. Let $E \subset X$.
+Assume $X$ is locally Noetherian, there are no nontrivial specializations
+among the elements of $E$, $Y$ is reduced, and $f(Y) \subset E$.
+Then $f$ factors through $\coprod_{x \in E} x \to X$.
+\end{lemma}
+
+\begin{proof}
+When $E$ is a singleton this follows from
+Lemma \ref{lemma-factor-through-point}. If $E$ is finite, then $E$
+(with the induced topology of $X$) is a finite discrete space by
+our assumption on specializations. Hence this case reduces to the
+singleton case. In general, there is a reduction to the
+case where $X$ and $Y$ are affine schemes. Say $f : Y \to X$ corresponds to
+the ring map $\varphi : A \to B$. Denote $A' \subset B$ the image of $\varphi$.
+Let $E' \subset \Spec(A') \subset \Spec(A)$ be the set of minimal primes
+of $A'$. By Algebra, Lemma \ref{algebra-lemma-injective-minimal-primes-in-image}
+the set $E'$ is contained in the image of
+$\Spec(B) \to \Spec(A') \subset \Spec(A)$. We conclude that $E' \subset E$.
+Since $A'$ is Noetherian we have $E'$ is finite by Algebra, Lemma
+\ref{algebra-lemma-Noetherian-irreducible-components}.
+Since any other point in the image of $\Spec(B) \to \Spec(A)$ is
+a specialization of an element of $E'$ and in $E$, we conclude that
+the image is contained in $E'$ (by our assumption on specializations between
+points of $E$). Thus we reduce to the case where
+$E$ is finite which we dealt with above.
+\end{proof}
 
 
 

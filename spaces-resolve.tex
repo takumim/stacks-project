@@ -65,7 +65,7 @@ f^{-1}(U) \to U\text{ is an isomorphism}
 \end{equation}
 A morphism from $X/S$ to $X'/S$ will be a morphism of algebraic spaces
 $X \to X'$ compatible with the structure morphisms over $S$. In
-Restricted Power Series, Section \ref{restricted-section-modifications}
+Algebraization of Formal Spaces, Section \ref{restricted-section-modifications}
 we have seen that this category only depends on the completion of $A$
 and we have proven some elementary properties of objects in this category.
 In this section we specifically study cases where
@@ -888,10 +888,10 @@ Noetherian algebraic space over $S$. The following are equivalent
 \item there exists an alteration $X \to Y$ with $X$ regular,
 \item there exists a resolution of singularities of $Y$,
 \item $Y$ has a resolution of singularities by normalized blowups,
-\item the normalization $Y^\nu \to Y$ is finite and $Y^\nu$ has
-finitely many singular points $y_1, \ldots, y_m \in |Y|$ such that the
-completions of the henselian local rings $\mathcal{O}_{Y^\nu, y_i}^h$
-are normal.
+\item the normalization $Y^\nu \to Y$ is finite, $Y^\nu$ has
+finitely many singular points $y_1, \ldots, y_m \in |Y|$, and
+for each $i$ the completion of the henselian local ring
+$\mathcal{O}_{Y^\nu, y_i}^h$ is normal.
 \end{enumerate}
 \end{theorem}
 
@@ -979,7 +979,7 @@ On the other hand, if $t = 1 + ers$ for some $e$, then
 $$
 A[1/z] \cong k[x', y', 1/z]
 $$
-where $x' = x/z^{es}$, $y' = y/z^{et}$ and $z = (x')^r + (y')^s$.
+where $x' = x/z^{es}$, $y' = y/z^{er}$ and $z = (x')^r + (y')^s$.
 Thus $A[1/z]$ is a localization of a polynomial ring and hence
 a UFD. It follows from an argument of Nagata that $A$ is a UFD.
 See Algebra, Lemma \ref{algebra-lemma-invert-prime-elements}.
@@ -994,7 +994,7 @@ See \cite{Brieskorn} and \cite{Lipman-rational} for nonvanishing of
 local Picard groups in general.
 \end{reference}
 The ring $A = \mathbf{C}[[x, y, z]]/(x^r + y^s + z^t)$
-is not a UFD when $r < s < t$ are pairwise coprime integers
+is not a UFD when $1 < r < s < t$ are pairwise coprime integers
 and not equal to $2, 3, 5$. For example consider the special
 case $A = \mathbf{C}[[x, y, z]]/(x^2 + y^5 + z^7)$.
 Consider the maps

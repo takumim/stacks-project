@@ -31,7 +31,7 @@ covered in Grothendieck's lectures in the s\'eminair Bourbaki, see
 \cite{Gr-IV},
 \cite{Gr-V}, and
 \cite{Gr-VI}. For projective schemes the Quot and Hilbert schemes
-live inside Grassmanians of spaces of sections of suitable very
+live inside Grassmannians of spaces of sections of suitable very
 ample invertible sheaves, and this provides a method of construction
 for these schemes. Our approach is different: we use Artin's axioms to
 prove Quot and Hilb are algebraic spaces.
@@ -1445,9 +1445,9 @@ pseudo-coherent complexes, see
 More on Algebra, Lemma \ref{more-algebra-lemma-pseudo-coherent-tensor}.
 \end{proof}
 
-\begin{theorem}[Algebraicity of stack coherent sheaves; flat case]
+\begin{theorem}[Algebraicity of the stack of coherent sheaves; flat case]
 \label{theorem-coherent-algebraic}
-Let $S$ be a scheme. Let $f : X \to B$ be morphism of algebraic spaces
+Let $S$ be a scheme. Let $f : X \to B$ be a morphism of algebraic spaces
 over $S$. Assume that $f$ is of finite presentation, separated, and
 flat\footnote{This assumption is not necessary. See
 Section \ref{section-not-flat}.}. Then $\Cohstack_{X/B}$ is
@@ -1558,7 +1558,7 @@ or Quot functors. Our strategy will be to show algebraicity of some
 cases of Hilbert stacks and Quot functors as a consequence of the
 algebraicity of the stack of coherent sheaves.
 
-\begin{theorem}[Algebraicity of stack coherent sheaves; general case]
+\begin{theorem}[Algebraicity of the stack of coherent sheaves; general case]
 \label{theorem-coherent-algebraic-general}
 Let $S$ be a scheme. Let $f : X \to B$ be morphism of algebraic spaces
 over $S$. Assume that $f$ is of finite presentation and separated. Then
@@ -2173,7 +2173,7 @@ whose image in $\mathcal{F}_T$ is a local section $k$ of $\mathcal{K}$
 and whose image in $\mathcal{Q}'$ is the local section $\varphi(k)$ of
 $\mathcal{Q} \otimes \mathcal{J}$. Then set
 $\mathcal{Q}'_\varphi = \mathcal{F}_{T'}/\mathcal{K}'_\varphi$.
-Conversely, any second lift of $x$ corresponds to one the
+Conversely, any second lift of $x$ corresponds to one of the
 qotients constructed in this manner. If we ever need this
 remark we will turn this remark into a lemma, precisely formulate
 the result and give a detailed proof (in fact, all of the above
@@ -2336,7 +2336,7 @@ $$
 \Cohstack_{X/B}
 $$
 on $(\Sch/S)_{fppf}$ which associates to the quotient
-$\mathcal{F}_T \to \mathcal{Q}$ the coherent sheaf $\mathcal{Q}$.
+$\mathcal{F}_T \to \mathcal{Q}$ the module $\mathcal{Q}$.
 By Theorem \ref{theorem-coherent-algebraic-general} we know that
 $\Cohstack_{X/B}$ is an algebraic stack.
 By Algebraic Stacks, Lemma
@@ -2601,7 +2601,7 @@ We will deduce it is an open substack of the stack of coherent sheaves
 \label{lemma-picard-stack-open-in-coh}
 Let $S$ be a scheme. Let $f : X \to B$ be a morphism of algebraic spaces
 over $S$ which is flat, of finite presentation, and proper.
-Then natural map
+The natural map
 $$
 \Picardstack_{X/B} \longrightarrow \Cohstack_{X/B}
 $$
@@ -3451,7 +3451,7 @@ We strongly encourage the reader to skip the proof.
 \medskip\noindent
 The construction from left to right in either arrow is straightforward:
 given $X \to T$ of finite type the functor
-$\mathcal{S}_T \to  \Spacesstack'_{ft}$ assignes to $U/T$ the
+$\mathcal{S}_T \to  \Spacesstack'_{ft}$ assigns to $U/T$ the
 base change $X_U \to U$. We will explain how to construct a quasi-inverse.
 
 \medskip\noindent
@@ -4378,7 +4378,7 @@ $X_1 \to S_1$ is invertible, we see from
 More on Morphisms, Lemma \ref{more-morphisms-lemma-finite-free-open}
 that $\mathcal{L}$ is invertible on an open neighbourhood of $X_1$ in $X$.
 Since $X \to S$ is closed and since $\Ker(R \to R_1)$
-is contained in the radical ideal
+is contained in the Jacobson radical
 (More on Algebra, Lemma \ref{more-algebra-lemma-limit-henselian})
 we see that any open neighbourhood of $X_1$ in $X$ is equal to $X$.
 Thus $\mathcal{L}$ is invertible. Finally, the set of points in
@@ -4399,8 +4399,8 @@ $$
 lifting the map $R_1[X_1, \ldots, X_s] \to A_1$. Since each $B_d$
 is finite projective over $R$ we conclude from 
 Nakayama's lemma (Algebra, Lemma \ref{algebra-lemma-NAK}
-using again that $\Ker(R \to R_1)$ is contained in the radical
-ideal of $R$) that $\Psi$ is surjective. Since $- \otimes_R R_1$ is right
+using again that $\Ker(R \to R_1)$ is contained in the Jacobson radical
+of $R$) that $\Psi$ is surjective. Since $- \otimes_R R_1$ is right
 exact we can find $G_1, \ldots, G_t \in \Ker(\Psi)$
 mapping to $F_1, \ldots, F_t$ in $R_1[X_1, \ldots, X_s]$.
 Observe that $\Ker(\Psi)_d$ is a finite projective $R$-module
@@ -5658,8 +5658,8 @@ compatible with the transition isomorphisms.
 \medskip\noindent
 Observe that $(R, \Ker(R \to R_1))$ is a henselian pair, see
 More on Algebra, Lemma \ref{more-algebra-lemma-limit-henselian}.
-In particular, $\Ker(R \to R_1)$ is contained in the Jacobson
-radical of $R$. The we may apply More on Morphisms of Spaces, Lemma
+In particular, $\Ker(R \to R_1)$ is contained in the Jacobson radical of $R$.
+Then we may apply More on Morphisms of Spaces, Lemma
 \ref{spaces-more-morphisms-lemma-henselian-relatively-perfect}
 to see that $E$ is $R$-perfect.
 
@@ -5668,8 +5668,8 @@ Finally, we have to check condition (2) of Lemma \ref{lemma-complexes}.
 By Lemma \ref{lemma-complexes-open-neg-exts-vanishing}
 the set of points $t$ of $\Spec(R)$ where the negative self-exts of $E_t$
 vanish is an open. Since this condition is true in $V(\Ker(R \to R_1))$
-and since $\Ker(R \to R_1)$ is contained in the Jacobson
-radical of $R$ we conclude it holds for all points.
+and since $\Ker(R \to R_1)$ is contained in the Jacobson radical of $R$
+we conclude it holds for all points.
 \end{proof}
 
 \begin{theorem}[Algebraicity of moduli of complexes on a proper morphism]

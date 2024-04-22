@@ -89,6 +89,8 @@ sets with a left $G$-action.
 \item Given a ring $R$ the category $\text{Mod}_R$ of $R$-modules.
 \item Given a field $k$ the category of vector spaces over $k$.
 \item The category of rings.
+\item The category of divided power rings, see
+Divided Power Algebra, Section \ref{dpa-section-divided-power-rings}.
 \item The category of schemes.
 \item The category $\textit{Top}$ of topological spaces.
 \item Given a topological space $X$ the category
@@ -187,7 +189,7 @@ defined in an obvious manner.
 Let $F : \mathcal{A} \to \mathcal{B}$ be a functor.
 \begin{enumerate}
 \item We say $F$ is {\it faithful} if
-for any objects $x, y$ of $\Ob(\mathcal{A})$ the map
+for any objects $x, y \in \Ob(\mathcal{A})$ the map
 $$
 F : \Mor_\mathcal{A}(x, y) \to \Mor_\mathcal{B}(F(x), F(y))
 $$
@@ -204,12 +206,11 @@ $\mathcal{B}$.
 
 \begin{definition}
 \label{definition-subcategory}
-A {\it subcategory} of a category $\mathcal{B}$ is
-a category $\mathcal{A}$ whose objects and arrows
-form subsets of the objects and arrows
-of $\mathcal{B}$ and such that source, target
-and composition in $\mathcal{A}$ agree with those
-of $\mathcal{B}$. We say $\mathcal{A}$ is a
+A {\it subcategory} of a category $\mathcal{B}$ is a category $\mathcal{A}$
+whose objects and arrows form subsets of the objects and arrows of $\mathcal{B}$
+and such that source, target and composition in $\mathcal{A}$ agree with those
+of $\mathcal{B}$ and such that the identity morphism of an object of
+$\mathcal{A}$ matches the one in $\mathcal{B}$. We say $\mathcal{A}$ is a
 {\it full subcategory} of $\mathcal{B}$ if $\Mor_\mathcal{A}(x, y)
 = \Mor_\mathcal{B}(x, y)$ for all $x, y \in \Ob(\mathcal{A})$.
 We say $\mathcal{A}$ is a {\it strictly full} subcategory of $\mathcal{B}$
@@ -258,9 +259,9 @@ denoted $\mathcal{C}/X$ as follows.
 The objects of $\mathcal{C}/X$ are morphisms $Y\to X$ for
 some $Y\in \Ob(\mathcal{C})$. Morphisms between objects
 $Y\to X$ and $Y'\to X$ are morphisms $Y\to Y'$ in $\mathcal{C}$ that
-make the obvious diagram commute.  Note that there is a functor
+make the obvious diagram commute. Note that there is a functor
 $p_X : \mathcal{C}/X\to \mathcal{C}$ which simply forgets the
-morphism.  Moreover given a morphism $f : X'\to X$ in
+morphism. Moreover given a morphism $f : X'\to X$ in
 $\mathcal{C}$ there is an induced functor
 $F : \mathcal{C}/X' \to \mathcal{C}/X$ obtained by composition with $f$,
 and $p_X\circ F = p_{X'}$.
@@ -274,9 +275,9 @@ denoted $X/\mathcal{C}$ as follows.
 The objects of $X/\mathcal{C}$ are morphisms $X\to Y$ for
 some $Y\in \Ob(\mathcal{C})$. Morphisms between objects
 $X\to Y$ and $X\to Y'$ are morphisms $Y\to Y'$ in $\mathcal{C}$ that
-make the obvious diagram commute.  Note that there is a functor
+make the obvious diagram commute. Note that there is a functor
 $p_X : X/\mathcal{C}\to \mathcal{C}$ which simply forgets the
-morphism.  Moreover given a morphism $f : X'\to X$ in
+morphism. Moreover given a morphism $f : X'\to X$ in
 $\mathcal{C}$ there is an induced functor
 $F : X/\mathcal{C} \to X'/\mathcal{C}$
 obtained by composition with $f$,
@@ -360,7 +361,7 @@ In this case we say that $G$ is a {\it quasi-inverse} to $F$.
 \begin{lemma}
 \label{lemma-construct-quasi-inverse}
 Let $F : \mathcal{A} \to \mathcal{B}$ be a fully faithful functor.
-Suppose for every $X \in \Ob(\mathcal{B})$ given an
+Suppose for every $X \in \Ob(\mathcal{B})$ we are given an
 object $j(X)$ of $\mathcal{A}$ and an isomorphism $i_X : X \to F(j(X))$.
 Then there is a unique functor $j : \mathcal{B} \to \mathcal{A}$
 such that $j$ extends the rule on objects, and the isomorphisms
@@ -370,7 +371,32 @@ are quasi-inverse equivalences of categories.
 \end{lemma}
 
 \begin{proof}
-This lemma proves itself.
+To construct $j : \mathcal{B} \to \mathcal{A}$, there are two steps. Firstly,
+we define the map $j : \Ob(\mathcal{B}) \to \Ob(\mathcal{A})$ that associates
+$j(X)$ to $X \in \mathcal{B}$. Secondly, if $X,Y \in \Ob(\mathcal{B})$ and
+$\phi : X \to Y$, we consider $\phi' := i_Y \circ\phi\circ i_X^{-1}$. There is
+an unique $\varphi$ verifying $F(\varphi) = \phi'$, using that $F$ is fully
+faithful. We define $j(\phi) = \varphi$. We omit the verification that $j$
+is a functor. By construction the diagram
+$$
+\xymatrix{
+X \ar[r]_-{i_X} \ar[d]_{\phi}
+&
+F(j(X)) \ar[d]^{F\circ j(\phi)}
+\\
+Y \ar[r]^-{i_Y}
+&
+F(j(Y))
+}
+$$
+commutes. Hence, as each $i_X$ is an isomorphism, $\{i_X\}_X$ is an
+isomorphism of functors $\text{id}_\mathcal{B} \to F\circ j$. To conclude, we
+have to also prove that $j \circ F$ is isomorphic to $\text{id}_\mathcal{A}$.
+However, since $F$ is fully faithful, in order to do this it suffices
+to prove this after post-composing with $F$, i.e., it suffices to
+show that $F \circ j \circ F$ is isomorphic to $F \circ \text{id}_\mathcal{A}$
+(small detail omitted). Since $F \circ j \cong \text{id}_\mathcal{B}$
+this is clear.
 \end{proof}
 
 \begin{lemma}
@@ -485,7 +511,7 @@ $$
 which takes an object $X$ to the set
 $\Mor_\mathcal{C}(X, U)$. In other words $h_U$ is a presheaf.
 Given a morphism $f : X\to Y$ the corresponding map
-$h_U(f) :  \Mor_\mathcal{C}(Y, U)\to \Mor_\mathcal{C}(X, U)$
+$h_U(f) : \Mor_\mathcal{C}(Y, U)\to \Mor_\mathcal{C}(X, U)$
 takes $\phi$ to $\phi\circ f$. We will always denote
 this presheaf $h_U : \mathcal{C}^{opp} \to \textit{Sets}$.
 It is called the {\it representable presheaf} associated to $U$.
@@ -496,16 +522,15 @@ sometimes referred to as the
 
 \noindent
 Note that given a morphism $\phi : U \to V$ in $\mathcal{C}$ we get a
-corresponding natural transformation of functors
-$h(\phi) : h_U \to h_V$ defined simply by composing with the morphism
-$U \to V$. It is trivial to see that this turns
+corresponding natural transformation of functors $h(\phi) : h_U \to h_V$
+defined by composing with the morphism $U \to V$. This turns
 composition of morphisms in $\mathcal{C}$ into composition of
 transformations of functors. In other words we get a functor
 $$
 h :
 \mathcal{C}
 \longrightarrow
-\text{Fun}(\mathcal{C}^{opp}, \textit{Sets}) = \textit{PSh}(\mathcal{C})
+\textit{PSh}(\mathcal{C})
 $$
 Note that the target is a ``big'' category, see
 Remark \ref{remark-big-categories}. On the other hand,
@@ -770,7 +795,72 @@ Then $g \circ f : x \to z$ is representable.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $t \in \Ob(\mathcal C)$ and $ \varphi \in \Mor_{\mathcal C}(t,z) $.
+As $g$ and $f$ are representable, we obtain commutative diagrams
+$$
+\xymatrix{
+y \times_z t \ar[r]_q \ar[d]_p &
+t \ar[d]^{\varphi} \\
+y \ar[r]^{g} & z
+}
+\quad\quad
+\xymatrix{
+x \times_y (y\! \times_z\! t) \ar[r]_{q'} \ar[d]_{p'} &
+y \times_z t \ar[d]^p \\
+x \ar[r]^f & y
+}
+$$
+with the universal property of Definition \ref{definition-fibre-products}.
+We claim that $x \times_z t = x \times_y (y \times_z t)$
+with morphisms $q \circ q' : x \times_z t \to t$ and $p' : x \times_z t \to x$
+is a fibre product. First, it follows from the commutativity of the
+diagrams above that $\varphi \circ q \circ q' = f \circ g \circ p'$.
+To verify the universal property, let
+$w \in \Ob(\mathcal C)$ and suppose $\alpha : w \to x$ and
+$\beta : w \to y$ are morphisms with
+$\varphi \circ \beta = f \circ g \circ \alpha$.
+By definition of the fibre product, there
+are unique morphisms $\delta$ and $\gamma$ such that
+$$
+\xymatrix{
+w \ar[rrrd]^\beta \ar@{-->}[rrd]_\delta \ar[rrdd]_{f\circ\alpha} & & \\
+& & y \times_z t \ar[d]_p \ar[r]_q & t \ar[d]^{\varphi} \\
+& & y \ar[r]^{g} & z
+}
+$$
+and
+$$
+\xymatrix{
+w \ar[rrrd]^\delta \ar@{-->}[rrd]_\gamma \ar[rrdd]_{\alpha} & & \\
+& & x \times_y (y\!\times_z\! t) \ar[d]_{p'} \ar[r]_{q'} &
+y \times_z t \ar[d]^{p} \\
+& & x \ar[r]^{f} & y
+}
+$$
+commute. Then, $\gamma$ makes the diagram
+$$
+\xymatrix{
+w \ar[rrrd]^\beta \ar@{-->}[rrd]_\gamma \ar[rrdd]_{\alpha} & & \\
+& & x \times_z t \ar[d]_{p'} \ar[r]_{q\circ q'} & t \ar[d]^{\varphi} \\
+& & x \ar[r]^{g\circ f} & z
+}
+$$
+commute. To show its uniqueness, let $\gamma'$ verify $ q\circ q'\circ\gamma' =
+\beta $ and $ p'\circ \gamma' = \alpha $. Because $\gamma$ is unique, we just
+need to prove that $ q'\circ\gamma' = \delta $ and $ p'\circ\gamma' = \alpha $
+to conclude. We supposed the second equality. For the first one, we also need
+to use the uniqueness of delta. Notice that $\delta$ is the only morphism
+verifying $ q\circ\delta = \beta $ and $ p\circ\delta = f\circ\alpha $. We
+already supposed that $ q\circ (q'\circ\gamma') = \beta $. Furthermore, by
+definition of the fibre product, we know that $ f\circ p' = p\circ q' $.
+Therefore:
+$$
+p\circ (q'\circ\gamma') =
+(p\circ q')\circ\gamma' =
+(f\circ p')\circ\gamma' =
+f\circ (p'\circ\gamma') = f\circ\alpha.
+$$
+Then $ q'\circ\gamma' = \delta $, which concludes the proof.
 \end{proof}
 
 \begin{lemma}
@@ -802,7 +892,7 @@ we describe them.
 
 \medskip\noindent
 As a really trivial first example we observe
-that the category of sets has fibred products and hence every
+that the category of sets has fibre products and hence every
 morphism is representable. Namely, if $f : X \to Y$
 and $g : Z \to Y$ are maps of sets then we define
 $X \times_Y Z$ as the subset of $X \times Z$ consisting
@@ -853,7 +943,7 @@ Let $F, G, H : \mathcal{C}^{opp} \to \textit{Sets}$
 be functors. Let $a : F \to G$ and $b : H \to G$ be
 transformations of functors. Then the fibre product
 $F \times_{a, G, b} H$ in the category
-$\text{Fun}(\mathcal{C}^{opp}, \textit{Sets})$
+$\textit{PSh}(\mathcal{C})$
 exists and is given by the formula
 $$
 (F \times_{a, G, b} H)(X) =
@@ -938,7 +1028,7 @@ be as in (3). Note that $h_U \times h_V = h_{U \times V}$ is representable.
 Denote $\eta : h_{U \times V} \to F \times F$ the map
 corresponding to the product $\xi \times \xi' : h_U \times h_V \to F \times F$.
 Then the fibre product $F \times_{\Delta, F \times F, \eta} h_{U \times V}$
-is representable by assumption. This means there exists
+is representable by assumption. This means there exist
 $W \in \Ob(\mathcal{C})$, morphisms
 $W \to U$, $W \to V$ and $h_W \to F$ such that
 $$
@@ -963,7 +1053,7 @@ $W' = W \times_{(p_1, p_2), U \times U} U$. It is formal
 to show that $W'$ represents $F \times_{\Delta, F \times F} h_U$
 because
 $$
-h_{W'} =  h_W \times_{h_U \times h_U} h_U
+h_{W'} = h_W \times_{h_U \times h_U} h_U
 = (h_U \times_{\xi, F, \xi'} h_U) \times_{h_U \times h_U} h_U
 = F \times_{F \times F} h_U.
 $$
@@ -1010,7 +1100,7 @@ the diagram
 $$
 \xymatrix{
 y \ar[r]_g \ar[d]_f & z \ar[d]^q \ar[rrdd]^\beta & & \\
-x \ar[r]^p \ar[rrrd]^\alpha & x \amalg_y z  \ar@{-->}[rrd]^\gamma & & \\
+x \ar[r]^p \ar[rrrd]^\alpha & x \amalg_y z \ar@{-->}[rrd]^\gamma & & \\
 & & & w
 }
 $$
@@ -1053,7 +1143,7 @@ a unique morphism $s : W \to Z$ such that $t = e \circ s$.
 \end{definition}
 
 \noindent
-As in the case of the fibre product above, equalizers when
+As in the case of the fibre products above, equalizers when
 they exist are unique up to unique isomorphism. There is a
 straightforward generalization of this definition to the
 case where we have more than $2$ morphisms.
@@ -1140,7 +1230,36 @@ $Y \amalg_X Y$.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let suppose that $f$ is a monomorphism. Let $W$ be an object of $\mathcal C$
+and $\alpha, \beta \in \Mor_\mathcal C(W,X)$ such that $f\circ \alpha = f\circ
+\beta$. Therefore $\alpha = \beta$ as $f$ is monic. In addition, we have the
+commutative diagram
+$$
+\xymatrix{
+X \ar[r]^{\text{id}_X} \ar[d]_{\text{id}_X} & X \ar[d]^{f} \\
+X \ar[r]^{f} & Y
+}
+$$
+which verify the universal property with $\gamma := \alpha = \beta$.
+Thus $X$ is indeed the fibre product $X\times_Y X$.
+
+\medskip\noindent
+Suppose that $ X\times_Y X \cong X $. The diagram
+$$
+\xymatrix{
+X \ar[r]^{\text{id}_X} \ar[d]_{\text{id}_X} & X \ar[d]^{f} \\
+X \ar[r]^{f} & Y }
+$$
+commutes and if $W\in\Ob(\mathcal C)$ and $\alpha,\beta : X\to Y$
+such that $ f\circ\alpha = f\circ\beta $, we have a unique $\gamma$ verifying
+$$
+\gamma = \text{id}_X\circ\gamma = \alpha = \beta
+$$
+which proves that $\alpha = \beta$.
+
+\medskip\noindent
+The proof is exactly the same for the second point, but with the
+pushout $Y\amalg_X Y = Y$.
 \end{proof}
 
 
@@ -1166,9 +1285,9 @@ $\mathcal{C}$ is given by an object $\lim_\mathcal{I} M$ in $\mathcal{C}$
 together with morphisms $p_i : \lim_\mathcal{I} M \to M_i$ such that
 \begin{enumerate}
 \item for $\phi : i \to i'$ a morphism
-in $\mathcal{I}$ we have $p_{i'} =  M(\phi) \circ p_i$, and
+in $\mathcal{I}$ we have $p_{i'} = M(\phi) \circ p_i$, and
 \item for any object $W$ in $\mathcal{C}$ and any family of
-morphisms $q_i : W \to M_i$ (indexed by $i \in \mathcal{I}$)
+morphisms $q_i : W \to M_i$ (indexed by $i \in \Ob(\mathcal{I})$)
 such that for all $\phi : i \to i'$
 in $\mathcal{I}$ we have $q_{i'} = M(\phi) \circ q_i$ there
 exists a unique morphism $q : W \to \lim_\mathcal{I} M$ such that
@@ -1180,7 +1299,7 @@ $q_i = p_i \circ q$ for every object $i$ of $\mathcal{I}$.
 Limits $(\lim_\mathcal{I} M, (p_i)_{i\in \Ob(\mathcal{I})})$ are
 (if they exist)
 unique up to unique isomorphism by the uniqueness requirement
-in the definition. Products of pairs, fibred products, and equalizers are
+in the definition. Products of pairs, fibre products, and equalizers are
 examples of limits. The limit over the empty diagram is a final object
 of $\mathcal{C}$.
 In the category of sets all limits exist.
@@ -1195,7 +1314,7 @@ together with morphisms $s_i : M_i \to \colim_\mathcal{I} M$ such that
 \item for $\phi : i \to i'$ a morphism
 in $\mathcal{I}$ we have $s_i = s_{i'} \circ M(\phi)$, and
 \item for any object $W$ in $\mathcal{C}$ and any family of
-morphisms $t_i : M_i \to W$ (indexed by $i \in \mathcal{I}$)
+morphisms $t_i : M_i \to W$ (indexed by $i \in \Ob(\mathcal{I})$)
 such that for all $\phi : i \to i'$
 in $\mathcal{I}$ we have $t_i = t_{i'} \circ M(\phi)$ there
 exists a unique morphism $t : \colim_\mathcal{I} M \to W$ such that
@@ -1240,13 +1359,41 @@ exists satisfies the following property
 $$
 \Mor_\mathcal{C}(\colim_i M_i, W)
 =
-\lim_{i\in \mathcal{I}^\text{opp}} \Mor_\mathcal{C}(M_i, W)
+\lim_{i \in \mathcal{I}^{opp}} \Mor_\mathcal{C}(M_i, W)
 $$
 where on the right we have the limit over the opposite category
 with value in the category of sets.
 \end{enumerate}
 By the Yoneda lemma (and its dual) this formula completely determines the
 limit, respectively the colimit.
+\end{remark}
+
+\begin{remark}
+\label{remark-cones-and-cocones}
+Let $M : \mathcal{I} \to \mathcal{C}$ be a diagram. In this setting a
+{\it cone} for $M$ is given by an object $W$ and a family of morphisms
+$q_i : W \to M_i$, $i \in \Ob(\mathcal{I})$ such that for all morphisms
+$\phi : i \to i'$ of $\mathcal{I}$ the diagram
+$$
+\xymatrix{
+& W \ar[dl]_{q_i} \ar[dr]^{q_{i'}} \\
+M_i \ar[rr]^{M(\phi)} & & M_{i'}
+}
+$$
+is commutative. The collection of cones forms a category with an obvious
+notion of morphisms. Clearly, the limit of $M$, if it exists, is a final
+object in the category of cones. Dually, a {\it cocone} for $M$ is given
+by an object $W$ and a family of morphisms $t_i : M_i \to W$ such that for
+all morphisms $\phi : i \to i'$ in $\mathcal{I}$ the diagram
+$$
+\xymatrix{
+M_i \ar[rr]^{M(\phi)} \ar[dr]_{t_i} & & M_{i'} \ar[dl]^{t_{i'}} \\
+& W
+}
+$$
+commutes. The collection of cocones forms a category with an obvious notion
+of morphisms. Similarly to the above the colimit of $M$ exists
+if and only if the category of cocones has an initial object.
 \end{remark}
 
 \noindent
@@ -1418,7 +1565,7 @@ $$
 $$
 exists, where the morphisms are determined by their components
 as follows: The component $M_{s(a)}$ maps via $\psi$
-to the component $M_{t(a)}$ via the morphism $a$.
+to the component $M_{t(a)}$ via the morphism $M(a)$.
 The component $M_{s(a)}$ maps via $\phi$ to the component
 $M_{s(a)}$ by the identity morphism. Then this coequalizer is the
 colimit of the diagram.
@@ -1467,7 +1614,7 @@ where the equivalence relation $\sim$ is the equivalence relation
 generated by setting $m_i \sim m_{i'}$ if $m_i \in M_i$,
 $m_{i'} \in M_{i'}$ and $M(\phi)(m_i) = m_{i'}$ for some
 $\phi : i \to i'$. In other words, $m_i \in M_i$
-and $m_{i'} \in M_{i'}$ are equivalent if there is a
+and $m_{i'} \in M_{i'}$ are equivalent if there are a
 chain of morphisms in $\mathcal{I}$
 $$
 \xymatrix{
@@ -1526,7 +1673,7 @@ exists and is the same.
 \end{lemma}
 
 \begin{proof}
-Let $M \to X$ be an object representing the limit in $\mathcal{C}/X$.
+Let $L \to X$ be an object representing the limit in $\mathcal{C}/X$.
 Consider the functor
 $$
 W \longmapsto \lim_i \Mor_\mathcal{C}(W, M_i).
@@ -1537,10 +1684,10 @@ get morphisms $f_i = s_i \circ \varphi_i : W \to X$. But as $\mathcal{I}$
 is connected we see that all $f_i$ are equal. Since $\mathcal{I}$
 is nonempty there is at least one $f_i$.
 Hence this common value $W \to X$ defines the structure of an
-object of $W$ in $\mathcal{C}/X$ and $(\varphi_i)$ defines is an
+object of $W$ in $\mathcal{C}/X$ and $(\varphi_i)$ defines an
 element of $\lim_i \Mor_{\mathcal{C}/X}(W, M_i)$.
-Thus we obtain a unique morphism $\phi : W \to M$ such that
-$\varphi_i$ is the composition of $\phi$ with $M \to M_i$ as desired.
+Thus we obtain a unique morphism $\phi : W \to L$ such that
+$\varphi_i$ is the composition of $\phi$ with $L \to M_i$ as desired.
 \end{proof}
 
 \begin{lemma}
@@ -1576,10 +1723,10 @@ Let $H : \mathcal{I} \to \mathcal{J}$ be a functor between categories.
 We say {\it $\mathcal{I}$ is cofinal in $\mathcal{J}$} or that
 $H$ is {\it cofinal} if
 \begin{enumerate}
-\item for all $y \in \Ob(\mathcal{J})$ there exists a
+\item for all $y \in \Ob(\mathcal{J})$ there exist an
 $x \in \Ob(\mathcal{I})$ and a morphism $y \to H(x)$, and
 \item given $y \in \Ob(\mathcal{J})$, $x, x' \in \Ob(\mathcal{I})$
-and morphisms $y \to H(x)$ and $y \to H(x')$ there exists a sequence
+and morphisms $y \to H(x)$ and $y \to H(x')$ there exist a sequence
 of morphisms
 $$
 x = x_0 \leftarrow x_1 \rightarrow x_2 \leftarrow x_3 \rightarrow \ldots
@@ -1620,11 +1767,11 @@ Let $H : \mathcal{I} \to \mathcal{J}$ be a functor between categories.
 We say {\it $\mathcal{I}$ is initial in $\mathcal{J}$} or that
 $H$ is {\it initial} if
 \begin{enumerate}
-\item for all $y \in \Ob(\mathcal{J})$ there exists a
+\item for all $y \in \Ob(\mathcal{J})$ there exist an
 $x \in \Ob(\mathcal{I})$ and a morphism $H(x) \to y$,
 \item for any $y \in \Ob(\mathcal{J})$, $x , x' \in \Ob(\mathcal{I})$ and
 morphisms $H(x) \to y$, $H(x') \to y$ in $\mathcal{J}$
-there exists a sequence of morphisms
+there exist a sequence of morphisms
 $$
 x = x_0 \leftarrow x_1 \rightarrow x_2 \leftarrow x_3 \rightarrow \ldots
 \rightarrow x_{2n} = x'
@@ -1671,7 +1818,7 @@ Assume
 Definition \ref{definition-fibre-category})
 of $\mathcal{I}$ over $\mathcal{I}'$ are all connected, and
 \item for every morphism $\alpha' : x' \to y'$ in $\mathcal{I}'$ there
-exist a morphism $\alpha : x \to y$ in $\mathcal{I}$ such that
+exists a morphism $\alpha : x \to y$ in $\mathcal{I}$ such that
 $F(\alpha) = \alpha'$.
 \end{enumerate}
 Then for every diagram $M : \mathcal{I}' \to \mathcal{C}$
@@ -1727,13 +1874,13 @@ This is a special case of Lemma \ref{lemma-colimit-constant-connected-fibers}.
 \label{section-finite-limits}
 
 \noindent
-A {\it finite} (co)limit is a (co)limit whose diagram category is finite,
-i.e., the diagram category has finitely many objects and finitely many
+A {\it finite} (co)limit is a (co)limit whose index category is finite,
+i.e., the index category has finitely many objects and finitely many
 morphisms. A (co)limit is called {\it nonempty} if the index category is
 nonempty. A (co)limit is called {\it connected} if the index category is
 connected, see
 Definition \ref{definition-category-connected}.
-It turns out that there are ``enough'' finite diagram categories.
+It turns out that there are ``enough'' finite index categories.
 
 \begin{lemma}
 \label{lemma-finite-diagram-category}
@@ -1819,9 +1966,9 @@ The following are equivalent:
 \begin{proof}
 Since equalizers and fibre products are finite connected
 limits we see that (1) implies (2). For the converse, let $\mathcal{I}$
-be a finite connected diagram category. Let
+be a finite connected index category. Let
 $F : \mathcal{J} \to \mathcal{I}$
-be the functor of diagram categories constructed in the proof of
+be the functor of index categories constructed in the proof of
 Lemma \ref{lemma-finite-diagram-category}.
 Then we see that we may replace $\mathcal{I}$ by $\mathcal{J}$.
 The result is that we may assume that
@@ -1847,7 +1994,7 @@ and all other morphism sets the same as in $\mathcal{I}$. For any functor
 $M : \mathcal{I} \to \mathcal{C}$ we can construct a functor
 $M' : \mathcal{I}' \to \mathcal{C}$ by setting
 $$
-M'(x) = M(x_{i_1}) \times_{M(a), M(y_j), M(b)} M(x_{i_2})
+M'(x) = M(x_{i_1}) \times_{M(a), M(y_{j_0}), M(b)} M(x_{i_2})
 $$
 and for a morphism $f' : x \to y_j$ corresponding to, say,
 $f : x_{i_1} \to y_j$ we set $M'(f) = M(f) \circ \text{pr}_1$.
@@ -1880,7 +2027,7 @@ we see that finite nonempty limits exist, i.e., (1) holds. Assume (3).
 If $a, b : A \to B$ are morphisms of $\mathcal{C}$, then the
 equalizer of $a, b$ is
 $$
-(A \times_{a, B, b} A)\times_{(pr_1, pr_2), A \times A, \Delta} A.
+(A \times_{a, B, b} A)\times_{(\text{pr}_1, \text{pr}_2), A \times A, \Delta} A.
 $$
 Thus (3) implies (2), and the lemma is proved.
 \end{proof}
@@ -1892,12 +2039,12 @@ The following are equivalent:
 \begin{enumerate}
 \item Finite limits exist in $\mathcal{C}$.
 \item Finite products and equalizers exist.
-\item The category has a final object and fibred products exist.
+\item The category has a final object and fibre products exist.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-Since products of pairs, fibre products, equalizers, and final objects
+Since finite products, fibre products, equalizers, and final objects
 are limits over finite index categories we see that (1) implies both (2)
 and (3). By
 Lemma \ref{lemma-limits-products-equalizers}
@@ -1906,7 +2053,7 @@ Note that the product $A \times B$ is the fibre product over the
 final object. If $a, b : A \to B$ are morphisms of $\mathcal{C}$, then the
 equalizer of $a, b$ is
 $$
-(A \times_{a, B, b} A)\times_{(pr_1, pr_2), A \times A, \Delta} A.
+(A \times_{a, B, b} A)\times_{(\text{pr}_1, \text{pr}_2), A \times A, \Delta} A.
 $$
 Thus (3) implies (2) and the lemma is proved.
 \end{proof}
@@ -1947,8 +2094,8 @@ Lemma \ref{lemma-almost-finite-limits-exist}.
 Let $\mathcal{C}$ be a category.
 The following are equivalent:
 \begin{enumerate}
-\item Finite colimits exist in $\mathcal{C}$,
-\item Finite coproducts and coequalizers exist in $\mathcal{C}$, and
+\item Finite colimits exist in $\mathcal{C}$.
+\item Finite coproducts and coequalizers exist in $\mathcal{C}$.
 \item The category has an initial object and pushouts exist.
 \end{enumerate}
 \end{lemma}
@@ -1975,7 +2122,7 @@ or {\it filtered} if the following conditions hold:
 \begin{enumerate}
 \item the category $\mathcal{I}$ has at least one object,
 \item for every pair of objects $x, y$ of $\mathcal{I}$
-there exists an object $z$ and morphisms $x \to z$,
+there exist an object $z$ and morphisms $x \to z$,
 $y \to z$, and
 \item for every pair of objects $x, y$ of $\mathcal{I}$
 and every pair of morphisms $a, b : x \to y$ of $\mathcal{I}$
@@ -2046,7 +2193,7 @@ We give a counter example to the lemma in
 the case where $\mathcal{J}$ is infinite. Namely, let
 $\mathcal{I}$ consist of $\mathbf{N} = \{1, 2, 3, \ldots\}$
 with a unique morphism $i \to i'$ whenever $i \leq i'$.
-Let $\mathcal{J}$ consist of the discrete category
+Let $\mathcal{J}$ be the discrete category
 $\mathbf{N} = \{1, 2, 3, \ldots\}$ (only morphisms are identities).
 Let $M_{i, j} = \{1, 2, \ldots, i\}$ with obvious inclusion maps
 $M_{i, j} \to M_{i', j}$ when $i \leq i'$. In this case
@@ -2089,7 +2236,7 @@ some lemmas on the possible things one can require.
 \label{lemma-preserve-products}
 Let $\mathcal{I}$ be an index category, i.e., a category. Assume
 that for every pair of objects $x, y$ of $\mathcal{I}$
-there exists an object $z$ and morphisms $x \to z$ and $y \to z$.
+there exist an object $z$ and morphisms $x \to z$ and $y \to z$.
 Then
 \begin{enumerate}
 \item If $M$ and $N$ are diagrams of sets over $\mathcal{I}$,
@@ -2104,8 +2251,8 @@ do not commute with finite nonempty products.
 Proof of (1). Let $(\overline{m}, \overline{n})$
 be an element of $\colim M_i \times \colim N_i$.
 Then we can find $m \in M_x$ and $n \in N_y$ for some
-$x, y \in \Ob(\mathcal{I})$ such that $m$ mapsto
-$\overline{m}$ and $n$ mapsto $\overline{n}$. See
+$x, y \in \Ob(\mathcal{I})$ such that $m$ maps to
+$\overline{m}$ and $n$ maps to $\overline{n}$. See
 Section \ref{section-limit-sets}.
 Choose $a : x \to z$ and $b : y \to z$
 in $\mathcal{I}$. Then $(M(a)(m), N(b)(n))$ is an element of
@@ -2134,7 +2281,7 @@ even if you only care about finite products.
 \label{lemma-colimits-abelian-as-sets}
 Let $\mathcal{I}$ be an index category, i.e., a category. Assume
 that for every pair of objects $x, y$ of $\mathcal{I}$
-there exists an object $z$ and morphisms $x \to z$ and $y \to z$.
+there exist an object $z$ and morphisms $x \to z$ and $y \to z$.
 Let $M : \mathcal{I} \to \textit{Ab}$ be a diagram of abelian
 groups over $\mathcal{I}$. Then the colimit of $M$ in the category
 of sets surjects onto the colimit of $M$ in the category of
@@ -2165,7 +2312,7 @@ x \ar[d] \ar[r] & y \ar@{..>}[d] \\
 z \ar@{..>}[r] & w
 }
 $$
-in $\mathcal{I}$ there exists an object $w$ and dotted arrows
+in $\mathcal{I}$ there exist an object $w$ and dotted arrows
 making the diagram commute. Then $\mathcal{I}$ is either empty
 or a nonempty disjoint union of connected categories having
 the same property.
@@ -2174,7 +2321,7 @@ the same property.
 \begin{proof}
 If $\mathcal{I}$ is the empty category, then the lemma is true.
 Otherwise, we define a relation on objects of $\mathcal{I}$ by
-saying that $x \sim y$ if there exists a $z$ and
+saying that $x \sim y$ if there exist a $z$ and
 morphisms $x \to z$ and $y \to z$. This is an equivalence
 relation by the assumption of the lemma. Hence $\Ob(\mathcal{I})$
 is a disjoint union of equivalence classes. Let $\mathcal{I}_j$
@@ -2193,7 +2340,7 @@ x \ar[d] \ar[r] & y \ar@{..>}[d] \\
 z \ar@{..>}[r] & w
 }
 $$
-in $\mathcal{I}$ there exists an object $w$ and dotted arrows
+in $\mathcal{I}$ there exist an object $w$ and dotted arrows
 making the diagram commute. Then
 \begin{enumerate}
 \item an injective morphism $M \to N$ of diagrams of sets over
@@ -2292,7 +2439,7 @@ Let $\mathcal{I}$ be an index category, i.e., a category.
 Assume
 \begin{enumerate}
 \item for every pair of morphisms $a : w \to x$ and $b : w \to y$
-in $\mathcal{I}$ there exists an object $z$ and morphisms $c : x \to z$
+in $\mathcal{I}$ there exist an object $z$ and morphisms $c : x \to z$
 and $d : y \to z$ such that $c \circ a = d \circ b$, and
 \item for every pair of morphisms $a, b : x \to y$ there exists
 a morphism $c : y \to z$ such that $c \circ a = c \circ b$.
@@ -2304,7 +2451,7 @@ of disjoint filtered index categories $\mathcal{I}_j$.
 \begin{proof}
 If $\mathcal{I}$ is the empty category, then the lemma is true.
 Otherwise, we define a relation on objects of $\mathcal{I}$ by
-saying that $x \sim y$ if there exists a $z$ and
+saying that $x \sim y$ if there exist a $z$ and
 morphisms $x \to z$ and $y \to z$. This is an equivalence
 relation by the first assumption of the lemma. Hence $\Ob(\mathcal{I})$
 is a disjoint union of equivalence classes. Let $\mathcal{I}_j$
@@ -2327,7 +2474,7 @@ we may write $\mathcal{I} = \coprod \mathcal{I}_j$ with each $\mathcal{I}_j$
 filtered. By
 Lemma \ref{lemma-directed-commutes}
 we see that colimits of $\mathcal{I}_j$ commute with equalizers and
-fibred products. Thus it suffices to show that equalizers and fibre products
+fibre products. Thus it suffices to show that equalizers and fibre products
 commute with coproducts in the category of sets (including empty coproducts).
 In other words, given a set $J$ and sets $A_j, B_j, C_j$ and set maps
 $A_j \to B_j$, $C_j \to B_j$ for $j \in J$ we have to show that
@@ -2366,7 +2513,7 @@ or {\it cofiltered} if the following conditions hold:
 \begin{enumerate}
 \item the category $\mathcal{I}$ has at least one object,
 \item for every pair of objects $x, y$ of $\mathcal{I}$
-there exists an object $z$ and morphisms $z \to x$,
+there exist an object $z$ and morphisms $z \to x$,
 $z \to y$, and
 \item for every pair of objects $x, y$ of $\mathcal{I}$
 and every pair of morphisms $a, b : x \to y$ of $\mathcal{I}$
@@ -2420,7 +2567,7 @@ there exists $k \in I$ with $i \leq k, j \leq k$.
 \item We say $\leq$ is a {\it partial order} if it is a preorder
 which is antisymmetric (if $i \leq j$ and $j \leq i$, then $i = j$).
 \item A {\it partially ordered set} is a set endowed with a partial order.
-\item A {\it directed partially ordered set} is a direct set
+\item A {\it directed partially ordered set} is a directed set
 whose ordering is a partial order.
 \end{enumerate}
 \end{definition}
@@ -2467,7 +2614,7 @@ called the {\it transition maps}.
 In other words a system over $I$ is just a diagram
 $M : \mathcal{I} \to \mathcal{C}$ where $\mathcal{I}$ is the category
 we associated to $I$ above: objects are elements of $I$ and
-there is a unique arrow $i \to i'$ in $\mathcal{I}$ if and only $i \leq i'$.
+there is a unique arrow $i \to i'$ in $\mathcal{I}$ if and only if $i \leq i'$.
 An inverse system is a diagram $M : \mathcal{I}^{opp} \to \mathcal{C}$.
 From this point of view we could take (co)limits of any (inverse)
 system over $I$. However, it is customary to take
@@ -2542,13 +2689,12 @@ In this case the colimit is sometimes (unfortunately)
 called the ``direct limit''. We will not use this last
 terminology. It turns out that diagrams over a filtered
 category are no more general than directed systems in the
-following sense. Before we do so we discuss the difference
-between
+following sense.
 
 \begin{lemma}
 \label{lemma-directed-category-system}
 Let $\mathcal{I}$ be a filtered index category.
-There exists a directed set $I$
+There exist a directed set $I$
 and a system $(x_i, \varphi_{ii'})$ over $I$ in $\mathcal{I}$
 with the following properties:
 \begin{enumerate}
@@ -2569,7 +2715,7 @@ of Lemma \ref{lemma-functorial-colimit} is an isomorphism.
 $M : \mathcal{I}^{opp} \to \mathcal{C}$ in $\mathcal{C}$, denote
 $(M(x_i), M(\varphi_{ii'}))$ the corresponding inverse system
 over $I$. If $\lim_{i \in I} M(x_i)$ exists then so does
-$\lim_\mathcal{I} M$ and the transformation
+$\lim_{\mathcal{I}^{opp}} M$ and the transformation
 $$
 \theta :
 \lim_{\mathcal{I}^{opp}} M
@@ -2591,7 +2737,7 @@ our construction will produce a directed partially ordered set.}, and a cofinal
 functor $M_0 : \mathcal{I}_0 \to \mathcal{I}$. Then, by
 Lemma \ref{lemma-cofinal}, the colimit of a diagram
 $M : \mathcal{I} \to \mathcal{C}$ coincides with the
-colimit of the diagram $M \circ M_0 | \mathcal{I}_0 \to \mathcal{C}$,
+colimit of the diagram $M \circ M_0 : \mathcal{I}_0 \to \mathcal{C}$,
 from which the statement follows. The second statement is dual to the
 first and may be proved by interpreting a limit in $\mathcal{C}$ as
 a colimit in $\mathcal{C}^{opp}$. We omit the details.
@@ -2619,11 +2765,11 @@ Now let $\mathcal{F}$ be any finitely generated
 subcategory of $\mathcal{I}\times \omega$.
 By using the axioms of a filtered category and a simple induction
 argument on a finite set of generators of $\mathcal{F}$,
-we may construct a cocone $(\{f_i\}, i_\infty)$ in $\mathcal{I}$
-for the diagram $\mathcal{F} \to \mathcal{I}$. That is, a morphism
+we may construct a cocone $(\{f_i\}, i_\infty)$ in $\mathcal{I} \times \omega$
+for the diagram $\mathcal{F} \to \mathcal{I} \times \omega$. That is, a morphism
 $f_i : i \to i_\infty$ for every object $i$ in $\mathcal{F}$
 such that for each arrow $f : i \to i'$ in $\mathcal{F}$
-we have $f_i = f\circ f_{i'}$. We can also choose $i_\infty$ such
+we have $f_i = f_{i'} \circ f$. We can also choose $i_\infty$ such
 that there are no arrows from $i_\infty$ to an object in $\mathcal{F}$.
 This is possible since
 we may always post-compose the arrows $f_i$ with an arrow
@@ -2639,7 +2785,7 @@ is closed under composition, so $\mathcal{F}^+$ is indeed
 a category. By construction, it is a finitely
 generated subcategory of $\mathcal{I}$ which has $i_\infty$ as
 unique final object. Since, by Lemma \ref{lemma-cofinal},
-the colimit of  any diagram $M : \mathcal{I} \to \mathcal{C}$
+the colimit of any diagram $M : \mathcal{I} \to \mathcal{C}$
 coincides with the colimit of $M\circ\Pi$ , this gives the desired
 reduction.
 
@@ -2664,7 +2810,7 @@ object of $\mathcal{I}$ is the final object in the subcategory
 consisting of only that object and its identity arrow, the functor
 $M_0$ is surjective on objects. In particular, Condition (1) of
 Definition \ref{definition-cofinal} is satisfied. Given
-an object $i$ of $\mathcal{I}$, $\mathcal{F}_1, \mathcal{F}_2$ in
+an object $i$ of $\mathcal{I}$, objects $\mathcal{F}_1, \mathcal{F}_2$ in
 $\mathcal{I}_0$ and maps $\varphi_1 : i \to M_0(\mathcal{F}_1)$
 and $\varphi_2 : i \to M_0(\mathcal{F}_2)$ in
 $\mathcal{I}$, we can take $\mathcal{F}_{12}$ to be a finitely
@@ -2759,28 +2905,31 @@ X = \colim_{i \in \mathcal{I}} M_i.
 $$
 Then $X$ comes equipped with the coprojections $M_i \to X$.
 A stronger condition would be to require that $X$ is the colimit and
-that there exists an $i \in \mathcal{I}$ and a morphism $X \to M_i$ such
-that the composition $X \to M_i \to X$ is $\text{id}_X$. A stronger condition
-is the following.
+that there exist an $i \in \mathcal{I}$ and a morphism $X \to M_i$ such
+that the composition $X \to M_i \to X$ is $\text{id}_X$. An even
+stronger condition is the following.
 
 \begin{definition}
 \label{definition-essentially-constant-diagram}
 Let $M : \mathcal{I} \to \mathcal{C}$ be a diagram in a category
 $\mathcal{C}$.
 \begin{enumerate}
-\item Assume the index category $\mathcal{I}$ is filtered.
-We say $M$ {\it is essentially constant} with {\it value} $X$ if
-$X = \colim_i M_i$ and there exists an $i \in \mathcal{I}$
-and a morphism $X \to M_i$ such that
+\item Assume the index category $\mathcal{I}$ is filtered and
+let $(X, \{M_i \to X\}_i)$ be a cocone for $M$, see
+Remark \ref{remark-cones-and-cocones}. We say $M$ is
+{\it essentially constant} with {\it value} $X$ if there exist an
+$i \in \mathcal{I}$ and a morphism $X \to M_i$ such that
 \begin{enumerate}
 \item $X \to M_i \to X$ is $\text{id}_X$, and
 \item for all $j$ there exist $k$ and morphisms $i \to k$ and $j \to k$
 such that the morphism $M_j \to M_k$ equals the composition
 $M_j \to X \to M_i \to M_k$.
 \end{enumerate}
-\item Assume the index category $\mathcal{I}$ is cofiltered. We say
+\item Assume the index category $\mathcal{I}$ is cofiltered and let
+$(X, \{X \to M_i\}_i)$ be a cone for $M$, see
+Remark \ref{remark-cones-and-cocones}. We say
 $M$ is {\it essentially constant} with {\it value} $X$ if
-$X = \lim_i M_i$ and there exists an $i \in \mathcal{I}$
+there exist an $i \in \mathcal{I}$
 and a morphism $M_i \to X$ such that
 \begin{enumerate}
 \item $X \to M_i \to X$ is $\text{id}_X$, and
@@ -2789,6 +2938,8 @@ such that the morphism $M_k \to M_j$ equals the composition
 $M_k \to M_i \to X \to M_j$.
 \end{enumerate}
 \end{enumerate}
+Please keep in mind Lemma \ref{lemma-essentially-constant-is-limit-colimit}
+when using this definition.
 \end{definition}
 
 \noindent
@@ -2815,18 +2966,38 @@ essentially constant inverse diagram.
 \noindent
 If $(M_i, f_{ii'})$ is an essentially constant system and the morphisms
 $f_{ii'}$ are monomorphisms, then for all $i \leq i'$ sufficiently large the
-morphisms $f_{ii'}$ are isomorphisms. In general this need not be the
-case however. An example is the system
+morphisms $f_{ii'}$ are isomorphisms. On the other hand, consider the system
 $$
 \mathbf{Z}^2 \to \mathbf{Z}^2 \to \mathbf{Z}^2 \to \ldots
 $$
 with maps given by $(a, b) \mapsto (a + b, 0)$. This system is essentially
-constant with value $\mathbf{Z}$. A non-example is to let
+constant with value $\mathbf{Z}$ but every transition map has a kernel.
+
+\medskip\noindent
+Here is an example of a system which is not essentially constant. Let
 $M = \bigoplus_{n \geq 0} \mathbf{Z}$ and to let $S : M \to M$ be the
 shift operator $(a_0, a_1, \ldots) \mapsto (a_1, a_2, \ldots)$. In this
 case the system $M \to M \to M \to \ldots$ with transition maps $S$
 has colimit $0$ and the composition $0 \to M \to 0$ is the identity,
 but the system is not essentially constant.
+
+\medskip\noindent
+The following lemma is a sanity check.
+
+\begin{lemma}
+\label{lemma-essentially-constant-is-limit-colimit}
+Let $M : \mathcal{I} \to \mathcal{C}$ be a diagram.
+If $\mathcal{I}$ is filtered and $M$ is essentially
+constant as an ind-object, then $X = \colim M_i$ exists and $M$
+is essentially constant with value $X$.
+If $\mathcal{I}$ is cofiltered and $M$ is essentially
+constant as a pro-object, then $X = \lim M_i$ exists and $M$ is
+essentially constant with value $X$.
+\end{lemma}
+
+\begin{proof}
+Omitted. This is a good excercise in the definitions.
+\end{proof}
 
 \begin{remark}
 \label{remark-ind-category}
@@ -2842,7 +3013,7 @@ $$
 There is a canonical functor $\mathcal{C} \to \text{Ind-}\mathcal{C}$
 which maps $X$ to the {\it constant system} on $X$. This is a fully
 faithful embedding. In this language one sees that a diagram $F$ is
-essentially constant if and only $F$ is isomorphic to a constant system.
+essentially constant if and only if $F$ is isomorphic to a constant system.
 If we ever need this material, then we will formulate this into a lemma
 and prove it here.
 \end{remark}
@@ -2861,9 +3032,73 @@ $$
 There is a canonical functor $\mathcal{C} \to \text{Pro-}\mathcal{C}$
 which maps $X$ to the {\it constant system} on $X$. This is a fully
 faithful embedding. In this language one sees that a diagram $F$ is
-essentially constant if and only $F$ is isomorphic to a constant system.
+essentially constant if and only if $F$ is isomorphic to a constant system.
 If we ever need this material, then we will formulate this into a lemma
 and prove it here.
+\end{remark}
+
+\begin{example}
+\label{example-pro-morphism-inverse-systems}
+Let $\mathcal{C}$ be a category. Let $(X_n)$ and $(Y_n)$ be inverse
+systems in $\mathcal{C}$ over $\mathbf{N}$ with the usual ordering.
+Picture:
+$$
+\ldots \to X_3 \to X_2 \to X_1
+\quad\text{and}\quad
+\ldots \to Y_3 \to Y_2 \to Y_1
+$$
+Let $a : (X_n) \to (Y_n)$ be a morphism of pro-objects of $\mathcal{C}$.
+What does $a$ amount to? Well, for each $n \in \mathbf{N}$ there should
+exist an $m(n)$ and a morphism $a_n : X_{m(n)} \to Y_n$. These morphisms
+ought to agree in the following sense: for all $n' \geq n$ there exists an
+$m(n', n) \geq m(n'), m(n)$ such that the diagram
+$$
+\xymatrix{
+X_{m(n, n')} \ar[rr] \ar[d] & & X_{m(n)} \ar[d]^{a_n} \\
+X_{m(n')} \ar[r]^{a_{n'}} & Y_{n'} \ar[r] & Y_n
+}
+$$
+commutes. After replacing $m(n)$ by $\max_{k, l \leq n}\{m(n, k), m(k, l)\}$
+we see that we obtain $\ldots \geq m(3) \geq m(2) \geq m(1)$ and a commutative
+diagram
+$$
+\xymatrix{
+\ldots \ar[r] &
+X_{m(3)} \ar[d]^{a_3} \ar[r] &
+X_{m(2)} \ar[d]^{a_2} \ar[r] &
+X_{m(1)} \ar[d]^{a_1} \\
+\ldots \ar[r] &
+Y_3 \ar[r] &
+Y_2 \ar[r] &
+Y_1
+}
+$$
+Given an increasing map $m' : \mathbf{N} \to \mathbf{N}$ with $m' \geq m$
+and setting $a'_i : X_{m'(i)} \to X_{m(i)} \to Y_i$ the pair
+$(m', a')$ defines the same morphism of pro-systems. Conversely, given
+two pairs $(m_1, a_1)$ and $(m_1, a_2)$ as above then these define the same
+morphism of pro-objects if and only if we can find $m' \geq m_1, m_2$
+such that $a'_1 = a'_2$.
+\end{example}
+
+\begin{remark}
+\label{remark-pro-category-copresheaves}
+Let $\mathcal{C}$ be a category. Let $F : \mathcal{I} \to \mathcal{C}$ and
+$G : \mathcal{J} \to \mathcal{C}$ be cofiltered diagrams in $\mathcal{C}$.
+Consider the functors $A, B : \mathcal{C} \to \textit{Sets}$ defined by
+$$
+A(X) = \colim_i \Mor_\mathcal{C}(F(i), X)
+\quad\text{and}\quad
+B(X) = \colim_j \Mor_\mathcal{C}(G(j), X)
+$$
+We claim that a morphism of pro-systems from $F$ to $G$ is the same thing
+as a transformation of functors $t : B \to A$. Namely, given $t$
+we can apply $t$ to the class of $\text{id}_{G(j)}$ in $B(G(j))$
+to get a compatible system of elements
+$\xi_j \in A(G(j)) = \colim_i \Mor_\mathcal{C}(F(i), G(j))$
+which is exactly our definition of a morphism in $\text{Pro-}\mathcal{C}$ in
+Remark \ref{remark-pro-category}. We omit the construction of a
+transformation $B \to A$ given a morphism of pro-objects from $F$ to $G$.
 \end{remark}
 
 \begin{lemma}
@@ -2886,19 +3121,26 @@ Let $\mathcal{C}$ be a category. Let $M : \mathcal{I} \to \mathcal{C}$
 be a diagram with filtered index category $\mathcal{I}$.
 The following are equivalent
 \begin{enumerate}
-\item $M$ is an essentially constant ind-object, and
+\item $M$ is an essentially constant ind-object,
+\item there exists a cocone $(X, \{M_i \to X\}_i)$ such that for any
+$W$ in $\mathcal{C}$ the map
+$\colim_i \Mor_\mathcal{C}(W, M_i) \to \Mor_\mathcal{C}(W, X)$
+is bijective,
 \item $X = \colim_i M_i$ exists and for any $W$ in $\mathcal{C}$
 the map
-$$
-\colim_i \Mor_\mathcal{C}(W, M_i) \longrightarrow
-\Mor_\mathcal{C}(W, X)
-$$
+$\colim_i \Mor_\mathcal{C}(W, M_i) \to \Mor_\mathcal{C}(W, X)$
+is bijective, and
+\item there exists an $i$ in $\mathcal{I}$ and a morphism $X \to M_i$
+such that for any $W$ in $\mathcal{C}$ the map
+$\Mor_\mathcal{C}(W, X) \to \colim_{j \geq i} \Mor_\mathcal{C}(W, M_j)$
 is bijective.
 \end{enumerate}
+In cases (2), (3), and (4) the value of the essentially constant system is $X$.
 \end{lemma}
 
 \begin{proof}
-Assume (2) holds. Then $\text{id}_X \in \Mor_\mathcal{C}(X, X)$
+It is clear that (3) implies (2). Assume (2).
+Then $\text{id}_X \in \Mor_\mathcal{C}(X, X)$
 comes from a morphism $X \to M_i$ for some $i$, i.e., $X \to M_i \to X$
 is the identity. Then both maps
 $$
@@ -2921,7 +3163,18 @@ $$
 is the identity too. Setting $W = M_j$ and starting with $\text{id}_{M_j}$
 in the colimit, we see that $M_j \to X \to M_i \to M_k$ is equal to
 $M_j \to M_k$ for some $k$ large enough. This proves (1) holds.
-The proof of (1) $\Rightarrow$ (2) is omitted.
+
+\medskip\noindent
+Assume (4). Let $k$ be an object of $\mathcal{I}$. Setting $W = M_k$
+we deduce there exists a unique morphism $M_k \to X$ such that
+there exists a $j$ and morphisms $k \to j$ and
+$i \to j$ in $\mathcal{I}$ such that $M_k \to X \to M_i \to M_j$
+is equal to $M_k \to M_j$. The uniqueness guarantees that we obtain a
+cocone $(X, \{M_k \to X\})$. In this way we see that (4) implies (2);
+some details omitted.
+
+\medskip\noindent
+We omit the proof that (1) implies the other conditions.
 \end{proof}
 
 \begin{lemma}
@@ -2930,43 +3183,24 @@ Let $\mathcal{C}$ be a category. Let $M : \mathcal{I} \to \mathcal{C}$
 be a diagram with cofiltered index category $\mathcal{I}$.
 The following are equivalent
 \begin{enumerate}
-\item $M$ is an essentially constant pro-object, and
+\item $M$ is an essentially constant pro-object,
+\item there exists a cone $(X, \{X \to M_i\})$
+such that for any $W$ in $\mathcal{C}$ the map
+$\colim_{i \in \mathcal{I}^{opp}} \Mor_\mathcal{C}(M_i, W) \to
+\Mor_\mathcal{C}(X, W)$ is bijective,
 \item $X = \lim_i M_i$ exists and for any $W$ in $\mathcal{C}$
 the map
-$$
-\colim_{i \in \mathcal{I}^{opp}} \Mor_\mathcal{C}(M_i, W)
-\longrightarrow
-\Mor_\mathcal{C}(X, W)
-$$
-is bijective.
+$\colim_{i \in \mathcal{I}^{opp}} \Mor_\mathcal{C}(M_i, W) \to
+\Mor_\mathcal{C}(X, W)$ is bijective, and
+\item there exists an $i$ in $\mathcal{I}$ and a morphism $M_i \to X$
+such that for any $W$ in $\mathcal{C}$ the map $\Mor_\mathcal{C}(X, W) \to
+\colim_{i \in \mathcal{I}^{opp}} \Mor_\mathcal{C}(M_i, W)$ is bijective.
 \end{enumerate}
+In cases (2), (3), and (4) the value of the essentially constant system is $X$.
 \end{lemma}
 
 \begin{proof}
-Assume (2) holds. Then $\text{id}_X \in \Mor_\mathcal{C}(X, X)$
-comes from a morphism $M_i \to X$ for some $i$, i.e., $X \to M_i \to X$
-is the identity. Then both maps
-$$
-\Mor_\mathcal{C}(X, W)
-\longrightarrow
-\colim_i \Mor_\mathcal{C}(M_i, W)
-\longrightarrow
-\Mor_\mathcal{C}(X, W)
-$$
-are bijective for all $W$ where the first one is induced by the morphism
-$M_i \to X$ we found above, and the composition is the identity. This means
-that the composition
-$$
-\colim_i \Mor_\mathcal{C}(M_i, W)
-\longrightarrow
-\Mor_\mathcal{C}(X, W)
-\longrightarrow
-\colim_i \Mor_\mathcal{C}(M_i, W)
-$$
-is the identity too. Setting $W = M_j$ and starting with $\text{id}_{M_j}$
-in the colimit, we see that $M_k \to M_i \to X \to M_j$ is equal to
-$M_k \to M_j$ for some $k$ large enough. This proves (1) holds.
-The proof of (1) $\Rightarrow$ (2) is omitted.
+This lemma is dual to Lemma \ref{lemma-characterize-essentially-constant-ind}.
 \end{proof}
 
 \begin{lemma}
@@ -3023,6 +3257,8 @@ then $\mathcal{I}^{opp}$ is cofinal in $\mathcal{J}^{opp}$.
 \section{Exact functors}
 \label{section-exact-functor}
 
+\noindent
+In this section we define exact functors.
 
 \begin{definition}
 \label{definition-exact}
@@ -3059,11 +3295,31 @@ Suppose (3) holds. The fibre product over the final object is the product.
 If $a, b : A \to B$ are morphisms of $\mathcal{A}$, then the
 equalizer of $a, b$ is
 $$
-(A \times_{a, B, b} A)\times_{(pr_1, pr_2), A \times A, \Delta} A.
+(A \times_{a, B, b} A)\times_{(\text{pr}_1, \text{pr}_2), A \times A, \Delta} A.
 $$
 Thus (3) implies (2). Finally (1) implies (3) because
 the empty limit is a final object, and fibre products are limits.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-characterize-right-exact}
+Let $F : \mathcal{A} \to \mathcal{B}$ be a functor.
+Suppose all finite colimits exist in $\mathcal{A}$,
+see Lemma \ref{lemma-colimits-exist}.
+The following are equivalent:
+\begin{enumerate}
+\item $F$ is right exact,
+\item $F$ commutes with finite coproducts and coequalizers, and
+\item $F$ transforms an initial object of $\mathcal{A}$
+into an initial object of $\mathcal{B}$, and commutes with pushouts.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Dual to Lemma \ref{lemma-characterize-left-exact}.
+\end{proof}
+
+
 
 
 \section{Adjoint functors}
@@ -3095,9 +3351,9 @@ a morphism $u(v(Y)) \to Y$ corresponding to $\text{id}_{v(Y)}$.
 These maps are called the {\it adjunction maps}. The adjunction maps
 are functorial in $X$ and $Y$, hence we obtain morphisms of functors
 $$
-\text{id}_\mathcal{C} \to v \circ u\quad (\text{unit})
+\eta : \text{id}_\mathcal{C} \to v \circ u\quad (\text{unit})
 \quad\text{and}\quad
-u \circ v \to \text{id}_\mathcal{D}\quad (\text{counit}).
+\epsilon : u \circ v \to \text{id}_\mathcal{D}\quad (\text{counit}).
 $$
 Moreover, if $\alpha : u(X) \to Y$
 and $\beta : X \to v(Y)$ are morphisms, then the following are equivalent
@@ -3134,45 +3390,68 @@ it is right adjoint to $u$.
 \end{proof}
 
 \begin{lemma}
-\label{lemma-adjoint-fully-faithful}
+\label{lemma-left-adjoint-composed-fully-faithful}
+\begin{reference}
+Bhargav Bhatt, private communication.
+\end{reference}
 Let $u$ be a left adjoint to $v$ as in Definition \ref{definition-adjoint}.
-Then
 \begin{enumerate}
-\item $u$ is fully faithful $\Leftrightarrow \text{id} \cong v \circ u$.
-\item $v$ is fully faithful $\Leftrightarrow u \circ v \cong \text{id}$.
+\item If $v \circ u$ is fully faithful, then $u$ is fully faithful.
+\item If $u \circ v$ is fully faithful, then $v$ is fully faithful.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-Assume $u$ is fully faithful. We have to show the adjunction map
-$X \to v(u(X))$ is an isomorphism. Let $X' \to v(u(X))$ be any morphism.
+Proof of (2). Assume $u \circ v$ is fully faithful.
+Say we have $X$, $Y$ in $\mathcal{D}$.
+Then the natural composite map
+$$
+\Mor(X,Y) \to \Mor(v(X),v(Y)) \to \Mor(u(v(X)), u(v(Y)))
+$$
+is a bijection, so $v$ is at least faithful. To show full faithfulness,
+we must show that the second map above is injective.
+But the adjunction between $u$ and $v$ says that
+$$
+\Mor(v(X), v(Y)) \to \Mor(u(v(X)), u(v(Y))) \to \Mor(u(v(X)), Y)
+$$
+is a bijection, where the first map is natural one and
+the second map comes from the counit $u(v(Y)) \to Y$ of the adjunction.
+So this says that
+$\Mor(v(X), v(Y)) \to \Mor(u(v(X)), u(v(Y)))$
+is also injective, as wanted. The proof of (1) is dual to this.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-adjoint-fully-faithful}
+Let $u$ be a left adjoint to $v$ as in Definition \ref{definition-adjoint}.
+Then
+\begin{enumerate}
+\item $u$ is fully faithful $\Leftrightarrow$ $\text{id} \cong v \circ u$
+$\Leftrightarrow$ $\eta : \text{id} \to v \circ u$ is an isomorphism,
+\item $v$ is fully faithful $\Leftrightarrow$
+$u \circ v \cong \text{id}$ $\Leftrightarrow$
+$\epsilon : u \circ v \to \text{id}$ is an isomorphism.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Proof of (1).
+Assume $u$ is fully faithful. We will show $\eta_X : X \to v(u(X))$
+is an isomorphism. Let $X' \to v(u(X))$ be any morphism.
 By adjointness this corresponds to a morphism $u(X') \to u(X)$. By fully
-faithfulness of $u$ this corresponds to a morphism $X' \to X$. Thus we
-see that $X \to v(u(X))$ defines a bijection
-$\Mor(X', X) \to \Mor(X', v(u(X)))$. Hence it is an isomorphism.
-Conversely, if $\varphi : \text{id} \to v \circ u$ is a natural
-isomorphism, then $u$
-is faithful for the trivial reason that the composition $\Mor(X,X') \to
-\Mor(u(X),u(X')) \to \Mor(v(u(X)),v(u(X')))$ is a bijection. Furthermore, $u$
-is full: A preimage for a morphism $\gamma : u(X) \to u(X')$ is
-$u(\varphi_{X'}^{-1} \circ v(\varepsilon_{u(X')} \circ u(\varphi_{X'}) \circ
-\gamma) \circ \eta_X)$, where $\eta : \text{id}_C \to v \circ u$ is the
-unit and $\varepsilon : u \circ v \to \text{id}_D$ is the counit of the
-adjunction.
+faithfulness of $u$ this corresponds to a unique morphism $X' \to X$.
+Thus we see that post-composing by $\eta_X$ defines a bijection
+$\Mor(X', X) \to \Mor(X', v(u(X)))$. Hence $\eta_X$ is an isomorphism.
+If there exists an isomorphism $\text{id} \cong v \circ u$ of functors,
+then $v \circ u$ is fully faithful. By
+Lemma \ref{lemma-left-adjoint-composed-fully-faithful} we see
+that $u$ is fully faithful. By the above this implies $\eta$
+is an isomorphism. Thus all $3$ conditions are equivalent (and these
+conditions are also equivalent to $v \circ u$ being fully faithful).
 
 \medskip\noindent
 Part (2) is dual to part (1).
 \end{proof}
-
-\begin{remark}
-\label{remark-composition-of-adjoints-isomorphic-to-identity}
-The proof of Lemma \ref{lemma-adjoint-fully-faithful} shows that, in the
-situation of Definition \ref{definition-adjoint}, the composition $v \circ u$
-is isomorphic to the identity via \emph{some} natural isomorphism if and only
-if the unit is a natural isomorphism. Dually, the composition $u \circ v$ is
-isomorphic to the identity via some natural isomorphism if and only if the
-counit is a natural isomorphism.
-\end{remark}
 
 \begin{lemma}
 \label{lemma-adjoint-exact}
@@ -3223,6 +3502,25 @@ Let $u$ be a left adjoint of $v$ as in Definition \ref{definition-adjoint}.
 
 \begin{proof}
 Obvious from the definitions and Lemma \ref{lemma-adjoint-exact}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-unit-counit-relations}
+Let $u : \mathcal{C} \to \mathcal{D}$ be a left adjoint to the functor
+$v : \mathcal{D} \to \mathcal{C}$. Let $\eta_X : X \to v(u(X))$ be the unit
+and $\epsilon_Y : u(v(Y)) \to Y$ be the counit. Then
+$$
+u(X) \xrightarrow{u(\eta_X)} u(v(u(X))
+\xrightarrow{\epsilon_{u(X)}} u(X)
+\quad\text{and}\quad
+v(Y) \xrightarrow{\eta_{v(Y)}} v(u(v(Y))) \xrightarrow{v(\epsilon_Y)}
+v(Y)
+$$
+are the identity morphisms.
+\end{lemma}
+
+\begin{proof}
+Omitted.
 \end{proof}
 
 \begin{lemma}
@@ -3325,10 +3623,10 @@ category which has limits. Let $F : \mathcal{C} \to \textit{Sets}$ be a
 functor. Assume that
 \begin{enumerate}
 \item $F$ commutes with limits,
-\item there exists a family $\{x_i\}_{i \in I}$ of objects of $\mathcal{C}$
+\item there exist a family $\{x_i\}_{i \in I}$ of objects of $\mathcal{C}$
 and for each $i \in I$ an element $f_i \in F(x_i)$
 such that for $y \in \Ob(\mathcal{C})$ and $g \in F(y)$
-there exists an $i$ and a morphism $\varphi : x_i \to y$
+there exist an $i$ and a morphism $\varphi : x_i \to y$
 with $F(\varphi)(f_i) = g$.
 \end{enumerate}
 Then $F$ is representable, i.e., there exists an object $x$
@@ -3438,7 +3736,7 @@ every object $y$ of $\mathcal{D}$ there exists a set of pairs
 $(x_i, f_i)_{i \in I}$ with $x_i \in \Ob(\mathcal{C})$,
 $f_i \in \Mor_\mathcal{D}(y, G(x_i))$ such that for any
 pair $(x, f)$ with $x \in \Ob(\mathcal{C})$,
-$f \in \Mor_\mathcal{C}(y, G(x))$ there is an $i$ and a morphism
+$f \in \Mor_\mathcal{D}(y, G(x))$ there are an $i$ and a morphism
 $h : x_i \to x$ such that $f = G(h) \circ f_i$.
 Then $G$ has a left adjoint $F$.
 \end{theorem}
@@ -3452,6 +3750,126 @@ An application of Yoneda's lemma (Lemma \ref{lemma-yoneda})
 turns the rule $y \mapsto F(y)$ into a functor which
 by construction is an adjoint to $G$. We omit the details.
 \end{proof}
+
+
+
+
+
+\section{Categorically compact objects}
+\label{section-compact}
+
+\noindent
+A little bit about ``small'' objects of a category.
+
+\begin{definition}
+\label{definition-compact-object}
+Let $\mathcal{C}$ be a big\footnote{See Remark \ref{remark-big-categories}.}
+category. An object $X$ of $\mathcal{C}$ is called a {\it categorically compact}
+if we have
+$$
+\Mor_\mathcal{C}(X, \colim_i M_i) =
+\colim_i \Mor_\mathcal{C}(X, M_i)
+$$
+for every filtered diagram $M : \mathcal{I} \to \mathcal{C}$ such that
+$\colim_i M_i$ exists.
+\end{definition}
+
+\noindent
+Often this definition is made only under the assumption that $\mathcal{C}$
+has all filtered colimits.
+
+\begin{lemma}
+\label{lemma-extend-functor-by-colim}
+Let $\mathcal{C}$ and $\mathcal{D}$ be big categories having filtered
+colimits. Let $\mathcal{C}' \subset \mathcal{C}$ be a small full subcategory
+consisting of categorically compact objects of $\mathcal{C}$ such that every
+object of $\mathcal{C}$ is a filtered colimit of objects of $\mathcal{C}'$.
+Then every functor $F' : \mathcal{C}' \to \mathcal{D}$ has a unique
+extension $F : \mathcal{C} \to \mathcal{D}$ commuting with filtered colimits.
+\end{lemma}
+
+\begin{proof}
+For every object $X$ of $\mathcal{C}$ we may write $X$ as a filtered
+colimit $X = \colim X_i$ with $X_i \in \Ob(\mathcal{C}')$. Then we set
+$$
+F(X) = \colim F'(X_i)
+$$
+in $\mathcal{D}$. We will show below that this construction does not
+depend on the choice of the colimit presentation of $X$.
+
+\medskip\noindent
+Suppose given a morphism $\alpha : X \to Y$ of $\mathcal{C}$
+and $X = \colim_{i \in I} X_i$ and $Y = \colim_{j \in J} Y_i$
+are written as filtered colimit of objects in $\mathcal{C}'$.
+For each $i \in I$ since $X_i$ is a categorically compact object of
+$\mathcal{C}$ we can find a $j \in J$ and a commutative diagram
+$$
+\xymatrix{
+X_i \ar[r] \ar[d] & X \ar[d]^\alpha \\
+Y_j \ar[r] & Y
+}
+$$
+Then we obtain a morphism $F'(X_i) \to F'(Y_j) \to F(Y)$ where the second
+morphism is the coprojection into $F(Y) = \colim F'(Y_j)$. The arrow
+$\beta_i : F'(X_i) \to F(Y)$ does not depend on the choice of $j$.
+For $i \leq i'$ the composition
+$$
+F'(X_i) \to F'(X_{i'}) \xrightarrow{\beta_{i'}} F(Y)
+$$
+is equal to $\beta_i$. Thus we obtain a well defined arrow
+$$
+F(\alpha) : F(X) = \colim F(X_i) \to F(Y)
+$$
+by the universal property of the colimit. If $\alpha' : Y \to Z$ is a
+second morphism of $\mathcal{C}$ and $Z = \colim Z_k$ is also
+written as filtered colimit of objects in $\mathcal{C}'$, then
+it is a pleasant exercise to show that the induced
+morphisms $F(\alpha) : F(X) \to F(Y)$ and $F(\alpha') : F(Y) \to F(Z)$
+compose to the morphism $F(\alpha' \circ \alpha)$. Details omitted.
+
+\medskip\noindent
+In particular, if we are given two presentations
+$X = \colim X_i$ and $X = \colim X'_{i'}$ as filtered
+colimits of systems in $\mathcal{C}'$, then we get mutually inverse
+arrows $\colim F'(X_i) \to \colim F'(X'_{i'})$ and
+$\colim F'(X'_{i'}) \to \colim F'(X_i)$. In other words, the
+value $F(X)$ is well defined independent of the choice of the
+presentation of $X$ as a filtered colimit of objects of $\mathcal{C}'$.
+Together with the functoriality of $F$ discussed in the previous
+paragraph, we find that $F$ is a functor. Also, it is clear that
+$F(X) = F'(X)$ if $X \in \Ob(\mathcal{C}')$.
+
+\medskip\noindent
+The uniqueness statement in the lemma is clear, provided
+we show that $F$ commutes with filtered colimits (because this
+statement doesn't make sense otherwise). To show this, suppose that
+$X = \colim_{\lambda \in \Lambda} X_\lambda$
+is a filtered colimit of $\mathcal{C}$. Since $F$ is a functor
+we certainly get a map
+$$
+\colim_\lambda F(X_\lambda) \longrightarrow F(X)
+$$
+On the other hand, write $X = \colim X_i$
+as a filtered colimit of objects of $\mathcal{C}'$.
+As above, for each $i \in I$ we can choose a $\lambda \in \Lambda$
+and a commutative diagram
+$$
+\xymatrix{
+X_i \ar[rr] \ar[rd] & & X_\lambda \ar[ld] \\
+& X
+}
+$$
+As above this determines a well defined morphism
+$F'(X_i) \to \colim_\lambda F(X_\lambda)$ compatible
+with transition morphisms and hence a morphism
+$$
+F(X) = \colim_i F'(X_i) \longrightarrow \colim_\lambda F(X_\lambda)
+$$
+This morphism is inverse to the morphism above (details omitted)
+and proves that $F(X) = \colim_\lambda F(X_\lambda)$ as desired.
+\end{proof}
+
+
 
 
 
@@ -3487,7 +3905,7 @@ with $t \in S$ can be completed to a commutative dotted square with
 $s \in S$.
 \item[LMS3] For every pair of morphisms $f, g : X \to Y$ and
 $t \in S$ with target $X$ such that $f \circ t = g \circ t$
-there exists a $s \in S$ with source $Y$ such that
+there exists an $s \in S$ with source $Y$ such that
 $s \circ f = s \circ g$.
 \end{enumerate}
 A set of arrows $S$ of $\mathcal{C}$ is
@@ -3536,7 +3954,7 @@ $(f : X \to Y', s : Y \to Y')$ with $s \in S$ up to equivalence.
 of a pair $(f, s)$ as $s^{-1}f : X \to Y$.)
 \item Two pairs $(f_1 : X \to Y_1, s_1 : Y \to Y_1)$ and
 $(f_2 : X \to Y_2, s_2 : Y \to Y_2)$ are said to be equivalent
-if there exists a third pair $(f_3 : X \to Y_3, s_3 : Y \to Y_3)$
+if there exist a third pair $(f_3 : X \to Y_3, s_3 : Y \to Y_3)$
 and morphisms $u : Y_1 \to Y_3$ and $v : Y_2 \to Y_3$ of $\mathcal{C}$
 fitting into the commutative diagram
 $$
@@ -3654,7 +4072,7 @@ where $p_4 = (f_4, s_4)$. Similarly, $p_2 E p_4$. Combining these,
 we find $p_1 \sim p_2$.
 
 \medskip\noindent
-Proof of (2). Let  $p = (f : X \to Y', s : Y \to Y')$ and
+Proof of (2). Let $p = (f : X \to Y', s : Y \to Y')$ and
 $q = (g : Y \to Z', t : Z \to Z')$ be pairs as in the definition of composition
 above. To compose we choose a diagram
 $$
@@ -3684,7 +4102,7 @@ u_{34} \circ h_3 \circ s
 = h_{24} \circ h_2 \circ s.
 $$
 Hence, LMS3 shows that there
-exists a $Z'_4$ and an $s_{44} : Z_4 \to Z'_4$ such that
+exist a $Z'_4$ and an $s_{44} : Z_4 \to Z'_4$ such that
 $s_{44} \circ u_{34} \circ h_3 = s_{44} \circ h_{24} \circ h_2$.
 Replacing $Z_4$, $h_{24}$ and $u_{34}$ by $Z'_4$,
 $s_{44} \circ h_{24}$ and $s_{44} \circ u_{34}$, we may
@@ -3870,29 +4288,60 @@ have the same denominator.
 \begin{lemma}
 \label{lemma-equality-morphisms-left-localization}
 Let $\mathcal{C}$ be a category and let $S$ be a left multiplicative
-system of morphisms of $\mathcal{C}$. Let $A, B : X \to Y$ be
-morphisms of $S^{-1}\mathcal{C}$ which are the equivalence
-classes of $(f : X \to Y', s : Y \to Y')$ and
-$(g : X \to Y', s : Y \to Y')$. Then
-$A = B$ if and only if there exists a morphism
-$a : Y' \to Y''$ with $a \circ s \in S$ and
-such that $a \circ f = a \circ g$.
+system of morphisms of $\mathcal{C}$. Let $A, B : X \to Y$ be morphisms
+of $S^{-1}\mathcal{C}$ which are the equivalence classes of
+$(f : X \to Y', s : Y \to Y')$ and $(g : X \to Y', s : Y \to Y')$.
+The following are equivalent
+\begin{enumerate}
+\item $A = B$
+\item there exists a morphism $t : Y' \to Y''$
+in $S$ with $t \circ f = t \circ g$, and
+\item there exists a morphism $a : Y' \to Y''$
+such that $a \circ f = a \circ g$ and $a \circ s \in S$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-The equality of $A$ and $B$ means that there exists a commutative diagram
+We are going to use that $S^{-1}\mathcal{C}$ is a category
+(Lemma \ref{lemma-left-localization}) and we will
+use the notation of Definition \ref{definition-left-localization-as-fraction}
+as well as the discussion following that definition to identify some
+morphisms in $S^{-1}\mathcal{C}$. Thus we write $A = s^{-1}f$ and $B = s^{-1}g$.
+
+\medskip\noindent
+If $A = B$ then
+$(\text{id}_{Y'}^{-1}s) \circ A = (\text{id}_{Y'}^{-1}s) \circ B$.
+We have $(\text{id}_{Y'}^{-1}s) \circ A = \text{id}_{Y'}^{-1}f$
+and $(\text{id}_{Y'}^{-1}s) \circ B = \text{id}_{Y'}^{-1}g$.
+The equality of $\text{id}_{Y'}^{-1}f$ and $\text{id}_{Y'}^{-1}g$
+means by definition that there exists a commutative diagram
 $$
 \xymatrix{
  & Y' \ar[d]^u & \\
 X \ar[ru]^f \ar[r]^h \ar[rd]_g &
 Z &
-Y \ar[lu]_s \ar[l]_t \ar[ld]^s \\
+Y' \ar[lu]_{\text{id}_{Y'}} \ar[l]_t \ar[ld]^{\text{id}_{Y'}} \\
 & Y' \ar[u]_v &
 }
 $$
-with $t \in S$. In particular $u \circ s = v \circ s$. Hence by LMS3 there
-exists a $s' : Z \to Y''$ in $S$ such that $s' \circ u = s' \circ v$.
-Setting $a$ equal to this common value does the job.
+with $t \in S$. In particular $u = v = t \in S$ and $t \circ f = t\circ g$.
+Thus (1) implies (2).
+
+\medskip\noindent
+The implication (2) $\Rightarrow$ (3) is immediate. Assume $a$ is as in (3).
+Denote $s' = a \circ s \in S$.
+Then $\text{id}_{Y''}^{-1}s'$ is an isomorphism in the category
+$S^{-1}\mathcal{C}$ (with inverse $(s')^{-1}\text{id}_{Y''}$).
+Thus to check $A = B$ it suffices to check that
+$\text{id}_{Y''}^{-1}s' \circ A = \text{id}_{Y''}^{-1}s' \circ B$.
+We compute using the rules discussed in the text following
+Definition \ref{definition-left-localization-as-fraction} that
+$\text{id}_{Y''}^{-1}s' \circ A =
+\text{id}_{Y''}^{-1}(a \circ s) \circ s^{-1}f =
+\text{id}_{Y''}^{-1}(a \circ f) =
+\text{id}_{Y''}^{-1}(a \circ g) =
+\text{id}_{Y''}^{-1}(a \circ s) \circ s^{-1}g =
+\text{id}_{Y''}^{-1}s' \circ B$ and we see that (1) is true.
 \end{proof}
 
 \begin{remark}
@@ -4007,7 +4456,7 @@ Q(X) \ar[d]_{Q(f)} \ar[r]_a & Q(X') \ar[d]^{Q(f')} \\
 Q(Y) \ar[r]^b & Q(Y')
 }
 $$
-is a commutative diagram in $S^{-1}\mathcal{C}$, then there exists
+is a commutative diagram in $S^{-1}\mathcal{C}$, then there exist
 a morphism $f'' : X'' \to Y''$ in $\mathcal{C}$ and a commutative
 diagram
 $$
@@ -4085,7 +4534,7 @@ $(f : X' \to Y, s : X' \to X)$ with $s \in S$ up to equivalence.
 of a pair $(f, s)$ as $fs^{-1} : X \to Y$.)
 \item Two pairs $(f_1 : X_1 \to Y, s_1 : X_1 \to X)$ and
 $(f_2 : X_2 \to Y, s_2 : X_2 \to X)$ are said to be equivalent
-if there exists a third pair $(f_3 : X_3 \to Y, s_3 : X_3 \to X)$
+if there exist a third pair $(f_3 : X_3 \to Y, s_3 : X_3 \to X)$
 and morphisms $u : X_3 \to X_1$ and $v : X_3 \to X_2$ of $\mathcal{C}$
 fitting into the commutative diagram
 $$
@@ -4180,10 +4629,14 @@ Let $\mathcal{C}$ be a category and let $S$ be a right multiplicative
 system of morphisms of $\mathcal{C}$. Let $A, B : X \to Y$ be
 morphisms of $S^{-1}\mathcal{C}$ which are the equivalence
 classes of $(f : X' \to Y, s : X' \to X)$ and
-$(g : X' \to Y, s : X' \to X)$. Then
-$A = B$ if and only if there exists a morphism
-$a : X'' \to X'$ with $s \circ a \in S$ and
-such that $f \circ a = g \circ a$.
+$(g : X' \to Y, s : X' \to X)$. The following are equivalent
+\begin{enumerate}
+\item $A = B$,
+\item there exists a morphism $t : X'' \to X'$ in $S$ with
+$f \circ t = g \circ t$, and
+\item there exists a morphism $a : X'' \to X'$ with
+$f \circ a = g \circ a$ and $s \circ a \in S$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -4267,7 +4720,7 @@ Q(X) \ar[d]_{Q(f)} \ar[r]_a & Q(X') \ar[d]^{Q(f')} \\
 Q(Y) \ar[r]^b & Q(Y')
 }
 $$
-is a commutative diagram in $S^{-1}\mathcal{C}$, then there exists
+is a commutative diagram in $S^{-1}\mathcal{C}$, then there exist
 a morphism $f'' : X'' \to Y''$ in $\mathcal{C}$ and a commutative
 diagram
 $$
@@ -4320,7 +4773,7 @@ $fg, gh \in S$, then $g \in S$.
 
 \noindent
 Note that a saturated multiplicative system contains all isomorphisms.
-Moreover, if  $f, g, h$ are composable morphisms in a category and
+Moreover, if $f, g, h$ are composable morphisms in a category and
 $fg, gh$ are isomorphisms, then $g$ is an isomorphism (because then $g$
 has both a left and a right inverse, hence is invertible).
 
@@ -4386,7 +4839,7 @@ $at \in S$. Then we can use LMS2 for $S$ to find a commutative diagram
 $$
 \xymatrix{
 X \ar[d]_t \ar[r]_g & Y \ar[dd]^s \\
-Z \ar[d]_a  \\
+Z \ar[d]_a \\
 Z' \ar[r]^{f'} & W
 }
 $$
@@ -4523,7 +4976,7 @@ G' \circ F \ar[r]_{{}_{G'}t}
 G' \circ F'
 }
 $$
-in other words ${}_{G'}t \circ s_F =  s_{F'}\circ {}_Gt$.
+in other words ${}_{G'}t \circ s_F = s_{F'}\circ {}_Gt$.
 To prove this we just consider what happens on
 any object $x \in \Ob(\mathcal{A})$:
 $$
@@ -4562,7 +5015,7 @@ $$
 }
 $$
 we define the {\it horizontal} composition $s \star t$ to be the
-transformation of functors ${}_{G'}t \circ s_F =  s_{F'}\circ {}_Gt$.
+transformation of functors ${}_{G'}t \circ s_F = s_{F'}\circ {}_Gt$.
 \end{definition}
 
 \noindent
@@ -4732,10 +5185,20 @@ in the following list of cases (to be updated as we go along):
 \begin{enumerate}
 \item The $2$-category of categories $\textit{Cat}$.
 \item The $(2, 1)$-category of categories $\textit{Cat}$.
-\item The $2$-category of groupoids $\textit{Groupoids}$.
-\item The $(2, 1)$-category of groupoids $\textit{Groupoids}$.
+\item The $2$-category of groupoids $\textit{Groupoids}$;
+this is a $(2, 1)$-category.
 \item The $2$-category of fibred categories over a fixed category.
 \item The $(2, 1)$-category of fibred categories over a fixed category.
+\item The $2$-category of categories fibred in groupoids over a fixed category;
+this is a $(2, 1)$-category.
+\item The $2$-category of stacks over a fixed site.
+\item The $(2, 1)$-category of stacks over a fixed site.
+\item The $2$-category of stacks in groupoids over a fixed site;
+this is a $(2, 1)$-category.
+\item The $2$-category of stacks in setoids over a fixed site;
+this is a $(2, 1)$-category.
+\item The $2$-category of algebraic stacks over a fixed scheme;
+this is a $(2, 1)$-category.
 \end{enumerate}
 See Definition \ref{definition-2-1-category}.
 Note that in each case the class of objects of the $2$-category
@@ -4845,7 +5308,7 @@ $$
 Again this is not a very workable notion, but it does sometimes come up.
 There is a theorem that says that any pseudo-functor is isomorphic to
 a functor. Finally, there are the notions of
-{\it functor between  $2$-categories}, and
+{\it functor between $2$-categories}, and
 {\it pseudo functor between $2$-categories}.
 This last notion leads us into $3$-category territory.
 We would like to avoid having to define this at almost any cost!
@@ -4930,7 +5393,8 @@ $$
 Now in the case of categories, the fibre product is a final object in the
 category of such diagrams. Correspondingly a 2-fibre product is a final object
 in a 2-category (see definition below). The {\it $2$-category
-of $2$-commutative diagrams} is the $2$-category defined as follows:
+of $2$-commutative diagrams over $f$ and $g$}
+is the $2$-category defined as follows:
 \begin{enumerate}
 \item Objects are quadruples $(w, a, b, \phi)$ as above where $\phi$
 is an invertible 2-morphism $\phi : f \circ a \to g \circ b$,
@@ -5312,7 +5776,7 @@ if you know what I mean.
 \end{proof}
 
 \noindent
-Henceforth we do not write the parentheses when dealing with fibred products
+Henceforth we do not write the parentheses when dealing with fibre products
 of more than 2 categories.
 
 \begin{lemma}
@@ -5650,6 +6114,26 @@ is given by $W \mapsto (p_\mathcal{W}(W), X(W), Y(W), t_W)$.
 Details omitted; compare with Lemma \ref{lemma-2-fibre-product-categories}.
 \end{proof}
 
+\begin{example}
+\label{example-different-2-fibre-products}
+The constructions of $2$-fibre products of categories over categories given in
+Lemma \ref{lemma-2-product-categories-over-C} and of categories in
+Lemma \ref{lemma-2-fibre-product-categories}
+(as in Example \ref{example-2-fibre-product-categories})
+produce non-equivalent outputs in general.
+Namely, let $\mathcal{S}$ be the groupoid category with one object and two
+arrows, and let $\mathcal{X}$ be the discrete category with one object.
+Taking the $2$-fibre product $\mathcal{X} \times_\mathcal{S} \mathcal{X}$
+as categories yields the discrete category with two objects. However, if
+we view all of these as categories over $\mathcal{S}$, the
+$2$-fiber product $\mathcal{X} \times_\mathcal{S} \mathcal{X}$
+as categories over $\mathcal{S}$ is the discrete category with one object.
+The difference is that (in the notation of
+Lemma \ref{lemma-2-product-categories-over-C}), we were allowed to choose
+any comparison isomorphism $f$ in the first situation, but could only
+choose the identity arrow in the second situation.
+\end{example}
+
 \begin{lemma}
 \label{lemma-fibre-2-fibre-product-categories-over-C}
 Let $\mathcal{C}$ be a category.
@@ -5894,7 +6378,7 @@ functor $ f^\ast : \mathcal{S}_U \to \mathcal{S}_V$.
 Assume $p : \mathcal{S} \to \mathcal{C}$ is a fibred category.
 \begin{enumerate}
 \item A {\it choice of pullbacks}\footnote{This is probably nonstandard
-terminology. In some texts this is called a ``cleavage''  but it conjures up
+terminology. In some texts this is called a ``cleavage'' but it conjures up
 the wrong image. Maybe a ``cleaving'' would be a better word.
 A related notion is that of a ``splitting'', but in many texts a ``splitting''
 means a choice of pullbacks such that $g^*f^* = (f \circ g)^*$
@@ -6083,7 +6567,7 @@ Since $\phi : F(x) \to G(y)$ is an isomorphism, by the uniqueness
 of strongly cartesian morphisms we find a unique isomorphism
 $f^*\phi : F(f^*x) \to G(f^*y)$ such that
 $G(b) \circ f^*\phi = \phi \circ F(a)$. In other words
-$(G(a), G(b)) : (V, f^*x, f^*y, f^*\phi) \to (U, x, y, \phi)$
+$(a, b) : (V, f^*x, f^*y, f^*\phi) \to (U, x, y, \phi)$
 is a morphism in $\mathcal{X} \times_\mathcal{S} \mathcal{Y}$.
 We omit the verification that this is a strongly cartesian morphism
 (and that these are in fact the only strongly cartesian morphisms).
@@ -6420,7 +6904,7 @@ $$
 \mathcal{S}'_1 \ar[r]^{G'} & \mathcal{S}'_2
 }
 $$
-there is a {\it functoriality map}
+there are {\it functoriality maps}
 \begin{equation}
 \label{equation-functorial}
 \mathcal{I}_{\mathcal{S}_1/\mathcal{S}'_1}
@@ -6557,7 +7041,7 @@ Assume $p : \mathcal{S} \to \mathcal{C}$ is fibred in groupoids.
 To show all fibre categories $\mathcal{S}_U$ for
 $U \in \Ob(\mathcal{C})$
 are groupoids, we must exhibit for every $f : y \to x$ in $\mathcal{S}_U$ an
-inverse morphism.  The diagram on the left (in $\mathcal{S}_U$) is mapped by
+inverse morphism. The diagram on the left (in $\mathcal{S}_U$) is mapped by
 $p$ to the diagram on the right:
 $$
 \xymatrix{
@@ -6566,10 +7050,10 @@ x \ar@{-->}[u] \ar[ru]_{\text{id}_x} & &
 U \ar@{-->}[u]\ar[ru]_{\text{id}_U} & \\
 }
 $$
-Since only $\text{i}d_U$ makes the diagram on the right commute, there is a
+Since only $\text{id}_U$ makes the diagram on the right commute, there is a
 unique $g : x \to y$ making the diagram on the left commute, so
 $fg = \text{id}_x$. By a similar argument there is a unique $h : y \to x$ so
-that $gh = \text{id}_y$. Then $fgh = f : y \to x$.  We have $fg = \text{id}_x$,
+that $gh = \text{id}_y$. Then $fgh = f : y \to x$. We have $fg = \text{id}_x$,
 so $h = f$. Condition (2) of Definition \ref{definition-fibred-groupoids} says
 exactly that every morphism of $\mathcal{S}$ is strongly cartesian. Hence
 condition (1) of Definition \ref{definition-fibred-groupoids} implies that
@@ -6648,7 +7132,7 @@ A homomorphism of groups $p : G \to H$ gives rise to a functor
 $p : \mathcal{S}\to\mathcal{C}$ as in Example
 \ref{example-group-homomorphism-functor}. This functor
 $p : \mathcal{S}\to\mathcal{C}$ is fibred in groupoids if and only if
-$p$ is surjective.  The fibre category $\mathcal{S}_U$ over the (unique)
+$p$ is surjective. The fibre category $\mathcal{S}_U$ over the (unique)
 object $U\in \Ob(\mathcal{C})$ is the category associated to the
 kernel of $p$ as in Example \ref{example-group-groupoid}.
 \end{example}
@@ -6685,7 +7169,7 @@ the fibre categories are the same and $f: A \to B$ in the diagram below has
 two lifts.
 $$
 \xymatrix{
-B' \ar[r]^{g'} & T' &  & B \ar[r]^g & T & \\
+B' \ar[r]^{g'} & T' & & B \ar[r]^g & T & \\
 A' \ar@{-->}[u]^{??} \ar[ru]_{h'} & & \ar@{}[u]^{above} &
 A \ar[u]^f \ar[ru]_{gf = h} & \\
 }
@@ -6745,6 +7229,28 @@ it is enough to show that the $2$-fibre product of groupoids
 is a groupoid, which is clear (from the construction in
 Lemma \ref{lemma-2-fibre-product-categories} for example).
 \end{proof}
+
+\begin{remark}
+\label{remark-2-product-fibred-categories-same}
+Let $\mathcal{C}$ be a category. Let $f : \mathcal{X} \to \mathcal{S}$
+and $g : \mathcal{Y} \to \mathcal{S}$ be $1$-morphisms of
+categories fibred in groupoids over $\mathcal{C}$.
+Let $p : \mathcal{S} \to \mathcal{C}$ be the given functor.
+We claim the $2$-fibre product of Lemma \ref{lemma-2-product-fibred-categories}
+is canonically equivalent (as a category) to the one in
+Example \ref{example-2-fibre-product-categories}.
+Objects of the former are quadruples $(U, x, y, \alpha)$
+where $p(\alpha) = \text{id}_U$
+(see Lemma \ref{lemma-2-product-categories-over-C})
+and objects of the latter are triples $(x, y, \alpha)$ (see
+Example \ref{example-2-fibre-product-categories}).
+The equivalence between the two categories is given by
+the rules $(U, x, y, \alpha) \mapsto (x, y, \alpha)$
+and $(x, y, \alpha) \mapsto (p(f(x)), x, y', \alpha')$
+where $\alpha' = g(\gamma)^{-1} \circ \alpha$ and $\gamma : y' \to y$
+is a lift of the arrow $p(\alpha) : p(f(x)) \to p(g(y))$.
+Details omitted.
+\end{remark}
 
 \begin{lemma}
 \label{lemma-equivalence-fibred-categories}
@@ -6829,13 +7335,13 @@ gives the desired result.
 
 \medskip\noindent
 Finally suppose for all $G_U$ is an equivalence for all $U$, so it is
-fully faithful and essentially surjective.  We have seen this implies $G$ is
+fully faithful and essentially surjective. We have seen this implies $G$ is
 fully faithful, and thus to prove it is an equivalence we have to prove that
-it is essentially surjective.  This is clear, for if $z'\in
+it is essentially surjective. This is clear, for if $z'\in
 \Ob(\mathcal{S}')$ then $z'\in \Ob(\mathcal{S}'_U)$ where
-$U = p'(z')$.  Since $G_U$ is essentially surjective we know that
+$U = p'(z')$. Since $G_U$ is essentially surjective we know that
 $z'$ is isomorphic, in $\mathcal{S}'_U$, to an object of the form
-$G_U(z)$ for some $z\in \Ob(\mathcal{S}_U)$.  But morphisms
+$G_U(z)$ for some $z\in \Ob(\mathcal{S}_U)$. But morphisms
 in $\mathcal{S}'_U$ are morphisms in $\mathcal{S}'$ and hence $z'$ is
 isomorphic to $G(z)$ in $\mathcal{S}'$.
 \end{proof}
@@ -7895,7 +8401,7 @@ As promised this is invariant under equivalences.
 \label{definition-representable-fibred-category}
 Let $\mathcal{C}$ be a category.
 A category fibred in groupoids $p : \mathcal{S} \to \mathcal{C}$ is
-called {\it representable} if there exists an object
+called {\it representable} if there exist an object
 $X$ of $\mathcal{C}$ and an equivalence $j : \mathcal{S} \to \mathcal{C}/X$
 (in the $2$-category of groupoids over $\mathcal{C}$).
 \end{definition}
@@ -7983,14 +8489,65 @@ we have $\Mor_{\textit{PSh}(\mathcal{C})}(h_X, h_Y)
 
 
 
-\section{Representable 1-morphisms}
-\label{section-representable-1-morphisms}
+
+
+\section{The 2-Yoneda lemma}
+\label{section-2-yoneda}
 
 \noindent
+Let $\mathcal{C}$ be a category. The $2$-category of fibred categories
+over $\mathcal{C}$ was constructed/defined in
+Definition \ref{definition-fibred-categories-over-C}.
+If $\mathcal{S}$, $\mathcal{S}'$ are fibred categories
+over $\mathcal{C}$ then
+$$
+\Mor_{\textit{Fib}/\mathcal{C}}(\mathcal{S}, \mathcal{S}')
+$$
+denotes the category of $1$-morphisms in this $2$-category.
+Here is the $2$-category analogue of the Yoneda lemma
+in the setting of fibred categories.
+
+\begin{lemma}[2-Yoneda lemma for fibred categories]
+\label{lemma-yoneda-2category-fibred}
 Let $\mathcal{C}$ be a category.
-In this section we explain what it means for a $1$-morphism
-between categories fibred in groupoids over $\mathcal{C}$
-to be representable. Note that the $2$-category of categories
+Let $\mathcal{S} \to \mathcal{C}$ be a fibred category over $\mathcal{C}$.
+Let $U \in \Ob(\mathcal{C})$.
+The functor
+$$
+\Mor_{\textit{Fib}/\mathcal{C}}(\mathcal{C}/U, \mathcal{S})
+\longrightarrow
+\mathcal{S}_U
+$$
+given by $G \mapsto G(\text{id}_U)$ is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Make a choice of pullbacks for $\mathcal{S}$
+(see Definition \ref{definition-pullback-functor-fibred-category}).
+We define a functor
+$$
+\mathcal{S}_U
+\longrightarrow
+\Mor_{\textit{Fib}/\mathcal{C}}(\mathcal{C}/U, \mathcal{S})
+$$
+as follows. Given
+$x \in \Ob(\mathcal{S}_U)$
+the associated functor is
+\begin{enumerate}
+\item on objects: $(f : V \to U) \mapsto f^*x$, and
+\item on morphisms: the arrow $(g : V'/U \to V/U)$ maps to
+the composition
+$$
+(f \circ g)^*x \xrightarrow{(\alpha_{g, f})_x} g^*f^*x \rightarrow f^*x
+$$
+where $\alpha_{g, f}$ is as in Lemma \ref{lemma-fibred}.
+\end{enumerate}
+We omit the verification that this is an inverse to the functor
+of the lemma.
+\end{proof}
+
+\noindent
+Let $\mathcal{C}$ be a category. The $2$-category of categories
 fibred in groupoids over $\mathcal{C}$ is a
 ``full'' sub $2$-category of the $2$-category of categories over
 $\mathcal{C}$ (see
@@ -8062,7 +8619,7 @@ Example \ref{example-functor-groupoids}.
 There is an obvious functor $G : \mathcal{S}' \to \mathcal{S}$
 over $\mathcal{C}$ given by taking the pair $(U, x)$, where
 $U \in \Ob(\mathcal{C})$ and $x \in F(U)$, to
-$x(\text{id}_U) \in \mathcal{S}$.  Now
+$x(\text{id}_U) \in \mathcal{S}$. Now
 Lemma \ref{lemma-yoneda-2category}
 implies that for each $U$,
 $$
@@ -8075,7 +8632,20 @@ is an equivalence, and thus $G$ is an equivalence between $\mathcal{S}$ and
 $\mathcal{S}'$ by Lemma \ref{lemma-equivalence-fibred-categories}.
 \end{remark}
 
+
+
+
+
+\section{Representable 1-morphisms}
+\label{section-representable-1-morphisms}
+
 \noindent
+Let $\mathcal{C}$ be a category.
+In this section we explain what it means for a $1$-morphism
+between categories fibred in groupoids over $\mathcal{C}$
+to be representable.
+
+\medskip\noindent
 Let $\mathcal{C}$ be a category.
 Let $\mathcal{X}$, $\mathcal{Y}$ be categories fibred in groupoids
 over $\mathcal{C}$.
@@ -8230,7 +8800,7 @@ we know what it means to say that it has a final object (see
 Definition \ref{definition-final-object-2-category}). And it has
 a final object namely $\text{id} : \mathcal{C} \to \mathcal{C}$.
 Thus we define {\it $2$-products} of categories fibred in groupoids
-over $\mathcal{C}$ as the $2$-fibred products
+over $\mathcal{C}$ as the $2$-fibre products
 $$
 \mathcal{X} \times \mathcal{Y} :=
 \mathcal{X} \times_\mathcal{C} \mathcal{Y}.
@@ -8279,7 +8849,8 @@ $$
 $$
 is cartesian. This implies that
 $\mathcal{C}/W \cong \mathcal{C}/U \times_\mathcal{S} \mathcal{C}/V$
-(see Lemma \ref{lemma-diagonal-1})
+(see Lemma \ref{lemma-diagonal-1} and
+Remark \ref{remark-2-product-fibred-categories-same})
 as desired.
 
 \medskip\noindent
@@ -8312,13 +8883,623 @@ namely
 & \cong &
 \mathcal{C}/V \times_{(\mathcal{S} \times \mathcal{S})} \mathcal{S}
 \end{eqnarray*}
-(for the last isomorphism see Lemma \ref{lemma-diagonal-2})
+(for the last isomorphism see Lemma \ref{lemma-diagonal-2} and
+Remark \ref{remark-2-product-fibred-categories-same})
 which proves the lemma.
 \end{proof}
 
 \noindent
 {\bf Bibliographic notes:}
 Parts of this have been taken from Vistoli's notes \cite{Vis2}.
+
+
+
+
+
+\section{Monoidal categories}
+\label{section-monoidal}
+
+\noindent
+Let $\mathcal{C}$ be a category. Suppose we are given a functor
+$$
+\otimes : \mathcal{C} \times \mathcal{C} \longrightarrow \mathcal{C}
+$$
+We often want to know whether $\otimes$ satisfies an associative rule
+and whether there is a unit for $\otimes$.
+
+\medskip\noindent
+An {\it associativity constraint} for $(\mathcal{C}, \otimes)$ is
+a functorial isomorphism
+$$
+\phi_{X, Y, Z} : X \otimes (Y \otimes Z) \to (X \otimes Y) \otimes Z
+$$
+such that for all objects $X, Y, Z, W$ the diagram
+$$
+\xymatrix{
+X \otimes (Y \otimes ( Z \otimes W)) \ar[r] \ar[d] &
+(X \otimes Y) \otimes (Z \otimes W) \ar[r] &
+((X \otimes Y) \otimes Z) \otimes W \\
+X \otimes ((Y \otimes Z) \otimes W) \ar[rr] & &
+(X \otimes (Y \otimes Z)) \otimes W \ar[u]
+}
+$$
+is commutative where every arrow is determined by a suitable application
+of $\phi$ and functoriality of $\otimes$. Given an associativity constraint
+there are well defined functors
+$$
+\mathcal{C} \times \ldots \times \mathcal{C} \longrightarrow \mathcal{C},
+\quad
+(X_1, \ldots, X_n) \longmapsto X_1 \otimes \ldots \otimes X_n
+$$
+for all $n \geq 1$.
+
+\medskip\noindent
+Let $\phi$ be an associativity constraint. A {\it unit} for
+$(\mathcal{C}, \otimes, \phi)$ is an object $\mathbf{1}$
+of $\mathcal{C}$ together with functorial isomorphisms
+$$
+\mathbf{1} \otimes X \to X
+\quad\text{and}\quad
+X \otimes \mathbf{1} \to X
+$$
+such that for all objects $X, Y$ the diagram
+$$
+\xymatrix{
+X \otimes (\mathbf{1} \otimes Y) \ar[rr]_\phi \ar[rd] & &
+(X \otimes \mathbf{1}) \otimes Y \ar[ld] \\
+& X \otimes Y
+}
+$$
+is commutative where the diagonal arrows are given by the isomorphisms
+introduced above.
+
+\medskip\noindent
+An equivalent definition would be that a unit is a pair
+$(\mathbf{1}, 1)$ where $\mathbf{1}$ is an object of $\mathcal{C}$ and
+$1 : \mathbf{1} \otimes \mathbf{1} \to \mathbf{1}$
+is an isomorphism such that the functors $L : X \mapsto \mathbf{1} \otimes X$
+and $R : X \mapsto X \otimes \mathbf{1}$ are equivalences.
+Certainly, given a unit as above we get the isomorphism
+$1 : \mathbf{1} \otimes \mathbf{1} \to \mathbf{1}$ for free
+and $L$ and $R$ are equivalences as they are isomorphic to the
+identity functor. Conversely, given $(\mathbf{1}, 1)$ such that
+$L$ and $R$ are equivalences, we obtain functorial isomorphisms
+$l : \mathbf{1} \otimes X \to X$ and $r : X \otimes \mathbf{1} \to X$
+characterized by $L(l) = 1 \otimes \text{id}_X$ and
+$R(r) = \text{id}_X \otimes 1$. Then we can use $r$ and $l$
+in the notion of unit as above.
+
+\medskip\noindent
+A unit is unique up to unique isomorphism if it exists (exercise).
+
+\begin{definition}
+\label{definition-monoidal-category}
+A triple $(\mathcal{C}, \otimes, \phi)$ where $\mathcal{C}$ is a category,
+$\otimes : \mathcal{C} \times \mathcal{C} \to \mathcal{C}$ is a functor,
+and $\phi$ is an associativity constraint is called a {\it monoidal category}
+if there exists a unit $\mathbf{1}$.
+\end{definition}
+
+\noindent
+We always write $\mathbf{1}$ to denote a unit of a monoidal category; as
+it is determined up to unique isomorphism there is no harm in choosing one.
+From now on we no longer write the brackets when taking tensor
+products in monoidal categories and we always identify
+$X \otimes \mathbf{1}$ and $\mathbf{1} \otimes X$ with $X$.
+Moreover, we will say ``let $\mathcal{C}$ be a monoidal category''
+with $\otimes, \phi, \mathbf{1}$ understood.
+
+\begin{definition}
+\label{definition-functor-monoidal-categories}
+Let $\mathcal{C}$ and $\mathcal{C}'$ be monoidal categories.
+A {\it functor of monoidal categories} $F : \mathcal{C} \to \mathcal{C}'$
+is given by a functor $F$ as indicated and a isomorphism
+$$
+F(X) \otimes F(Y) \to F(X \otimes Y)
+$$
+functorial in $X$ and $Y$
+such that for all objects $X$, $Y$, and $Z$ the diagram
+$$
+\xymatrix{
+F(X) \otimes (F(Y) \otimes F(Z)) \ar[r] \ar[d] &
+F(X) \otimes F(Y \otimes Z) \ar[r] &
+F(X \otimes (Y \otimes Z)) \ar[d] \\
+(F(X) \otimes F(Y)) \otimes F(Z) \ar[r] &
+F(X \otimes Y) \otimes F(Z) \ar[r] &
+F((X \otimes Y) \otimes Z)
+}
+$$
+commutes and such that $F(\mathbf{1})$ is a unit in $\mathcal{C}'$.
+\end{definition}
+
+\noindent
+By our conventions about units, we may always assume
+$F(\mathbf{1}) = \mathbf{1}$ if $F$ is a functor of monoidal categories.
+As an example, if $A \to B$ is a ring homomorphism, then
+the functor $M \mapsto M \otimes_A B$ is functor of monoidal
+categories from $\text{Mod}_A$ to $\text{Mod}_B$.
+
+\begin{lemma}
+\label{lemma-invertible}
+Let $\mathcal{C}$ be a monoidal category. Let $X$ be an object of
+$\mathcal{C}$. The following are equivalent
+\begin{enumerate}
+\item the functor $L : Y \mapsto X \otimes Y$ is an equivalence,
+\item the functor $R : Y \mapsto Y \otimes X$ is an equivalence,
+\item there exists an object $X'$ such that
+$X \otimes X' \cong X' \otimes X \cong \mathbf{1}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Assume (1). Choose $X'$ such that $L(X') = \mathbf{1}$, i.e.,
+$X \otimes X' \cong \mathbf{1}$. Denote $L'$ and $R'$ the functors
+corresponding to $X'$. The equation $X \otimes X' \cong \mathbf{1}$
+implies $L \circ L' \cong \text{id}$. Thus $L'$ must be the quasi-inverse
+to $L$ (which exists by assumption). Hence $L' \circ L \cong \text{id}$.
+Hence $X' \otimes X \cong \mathbf{1}$. Thus (3) holds.
+
+\medskip\noindent
+The proof of (2) $\Rightarrow$ (3) is dual to what we just said.
+
+\medskip\noindent
+Assume (3). Then it is clear that $L'$ and $L$ are quasi-inverse
+to each other and it is clear that $R'$ and $R$ are quasi-inverse
+to each other. Thus (1) and (2) hold.
+\end{proof}
+
+\begin{definition}
+\label{definition-invertible}
+Let $\mathcal{C}$ be a monoidal category. An object $X$ of $\mathcal{C}$
+is called {\it invertible} if any (or all) of the equivalent conditions of
+Lemma \ref{lemma-invertible} hold.
+\end{definition}
+
+\noindent
+Observe that if $F : \mathcal{C} \to \mathcal{C}'$ is a functor of
+monoidal categories, then $F$ sends invertible objects to invertible
+objects.
+
+\begin{definition}
+\label{definition-dual}
+Given a monoidal category $(\mathcal{C}, \otimes, \phi)$
+and an object $X$ a {\it left dual} is an object $Y$ together with
+morphisms $\eta : \mathbf{1} \to X \otimes Y$ and
+$\epsilon : Y \otimes X \to \mathbf{1}$
+such that the diagrams
+$$
+\vcenter{
+\xymatrix{
+X \ar[rd]_1 \ar[r]_-{\eta \otimes 1} &
+X \otimes Y \otimes X \ar[d]^{1 \otimes \epsilon} \\
+& X
+}
+}
+\quad\text{and}\quad
+\vcenter{
+\xymatrix{
+Y \ar[rd]_1 \ar[r]_-{1 \otimes \eta} &
+Y \otimes X \otimes Y \ar[d]^{\epsilon \otimes 1} \\
+& Y
+}
+}
+$$
+commute. In this situation we say that $X$ is a {\it right dual} of $Y$.
+\end{definition}
+
+\noindent
+Observe that if $F : \mathcal{C} \to \mathcal{C}'$ is a functor of
+monoidal categories, then $F(Y)$ is a left dual of $F(X)$ if
+$Y$ is a left dual of $X$.
+
+\begin{lemma}
+\label{lemma-left-dual}
+Let $\mathcal{C}$ be a monoidal category. If $Y$ is a left dual to $X$,
+then
+$$
+\Mor(Z' \otimes X, Z) = \Mor(Z', Z \otimes Y)
+\quad\text{and}\quad
+\Mor(Y \otimes Z', Z) = \Mor(Z', X \otimes Z)
+$$
+functorially in $Z$ and $Z'$.
+\end{lemma}
+
+\begin{proof}
+Consider the maps
+$$
+\Mor(Z' \otimes X, Z) \to
+\Mor(Z' \otimes X \otimes Y, Z \otimes Y) \to
+\Mor(Z', Z \otimes Y)
+$$
+where we use $\eta$ in the second arrow
+and the sequence of maps
+$$
+\Mor(Z', Z \otimes Y) \to
+\Mor(Z' \otimes X, Z \otimes Y \otimes X) \to
+\Mor(Z' \otimes X, Z)
+$$
+where we use $\epsilon$ in the second arrow. A straightforward calculation
+using the properties of $\eta$ and $\epsilon$
+shows that the compositions of these are mutually inverse.
+Similarly for the other equality.
+\end{proof}
+
+\begin{remark}
+\label{remark-left-dual-adjoint}
+Lemma \ref{lemma-left-dual} says in particular that $Z \mapsto Z \otimes Y$
+is the right adjoint of $Z' \mapsto Z' \otimes X$. In particular, uniqueness
+of adjoint functors guarantees that a left dual of $X$, if it exists, is
+unique up to unique isomorphism.
+Conversely, assume the functor $Z \mapsto Z \otimes Y$ is a right adjoint of
+the functor $Z' \mapsto Z' \otimes X$, i.e., we're given a bijection
+$$
+\Mor(Z' \otimes X, Z) \longrightarrow \Mor(Z', Z \otimes Y)
+$$
+functorial in both $Z$ and $Z'$. The unit of the adjunction produces
+maps
+$$
+\eta_Z : Z \to Z \otimes X \otimes Y
+$$
+functorial in $Z$ and the counit of the adjoint produces maps
+$$
+\epsilon_{Z'} : Z' \otimes Y \otimes X \to Z'
+$$
+functorial in $Z'$. In particular, we find
+$\eta = \eta_\mathbf{1} : \mathbf{1} \to X \otimes Y$ and
+$\epsilon = \epsilon_\mathbf{1} : Y \otimes X \to \mathbf{1}$.
+As an exercise in the relationship between units, counits, and
+the adjunction isomorphism, the reader can show that we have
+$$
+(\epsilon \otimes \text{id}_Y) \circ \eta_Y = \text{id}_Y
+\quad\text{and}\quad
+\epsilon_X \circ (\eta \otimes \text{id}_X) = \text{id}_X
+$$
+However, this isn't enough to show that
+$(\epsilon \otimes \text{id}_Y) \circ (\text{id}_Y \otimes \eta) =
+\text{id}_Y$ and
+$(\text{id}_X \otimes \epsilon) \circ (\eta \otimes \text{id}_X) =
+\text{id}_X$, because we don't know in general that
+$\eta_Y = \text{id}_Y \otimes \eta$ and we don't know that
+$\epsilon_X = \epsilon \otimes \text{id}_X$. For this it would suffice
+to know that our adjunction isomorphism has the following property:
+for every $W, Z, Z'$ the diagram
+$$
+\xymatrix{
+\Mor(Z' \otimes X, Z) \ar[r] \ar[d]_{\text{id}_W \otimes -} &
+\Mor(Z', Z \otimes Y) \ar[d]^{\text{id}_W \otimes -} \\
+\Mor(W \otimes Z' \otimes X, W \otimes Z) \ar[r] &
+\Mor(W \otimes Z', W \otimes Z \otimes Y)
+}
+$$
+If this holds, we will say {\it the adjunction is compatible with
+the given tensor structure}. Thus the requirement that
+$Z \mapsto Z \otimes Y$ be the right adjoint of $Z' \mapsto Z' \otimes X$
+compatible with the given tensor structure is an equivalent formulation of the
+property of being a left dual.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-tensor-dual}
+Let $\mathcal{C}$ be a monoidal category. If $Y_i$, $i = 1, 2$
+are left duals of $X_i$, $i = 1, 2$, then $Y_2 \otimes Y_1$ is
+a left dual of $X_1 \otimes X_2$.
+\end{lemma}
+
+\begin{proof}
+Follows from uniqueness of adjoints and Remark \ref{remark-left-dual-adjoint}.
+\end{proof}
+
+\noindent
+A {\it commutativity constraint} for $(\mathcal{C}, \otimes)$ is a
+functorial isomorphism
+$$
+\psi : X \otimes Y \longrightarrow Y \otimes X
+$$
+such that the composition
+$$
+X \otimes Y \xrightarrow{\psi} Y \otimes X \xrightarrow{\psi} X \otimes Y
+$$
+is the identity. We say $\psi$ is {\it compatible} with a given associativity
+constraint $\phi$ if for all objects $X, Y, Z$ the diagram
+$$
+\xymatrix{
+X \otimes (Y \otimes Z) \ar[r]_\phi \ar[d]^\psi &
+(X \otimes Y) \otimes Z \ar[r]_\psi &
+Z \otimes (X \otimes Y) \ar[d]^\phi \\
+X \otimes (Z \otimes Y) \ar[r]^\phi &
+(X \otimes Z) \otimes Y \ar[r]^\psi &
+(Z \otimes X) \otimes Y
+}
+$$
+commutes.
+
+\begin{definition}
+\label{definition-symmetric-monoidal-category}
+A quadruple $(\mathcal{C}, \otimes, \phi, \psi)$ where
+$\mathcal{C}$ is a category,
+$\otimes : \mathcal{C} \otimes \mathcal{C} \to \mathcal{C}$ is a functor,
+$\phi$ is an associativity constraint, and
+$\psi$ is a commutativity constraint compatible with $\phi$
+is called a {\it symmetric monoidal category} if there exists
+a unit.
+\end{definition}
+
+\noindent
+To be sure, if $(\mathcal{C}, \otimes, \phi, \psi)$ is a
+symmetric monoidal category, then $(\mathcal{C}, \otimes, \phi)$
+is a monoidal category.
+
+\begin{lemma}
+\label{lemma-dual-symmetric}
+Let $(\mathcal{C}, \otimes, \phi, \psi)$ be a symmetric monoidal category.
+Let $X$ be an object of $\mathcal{C}$ and let $Y$,
+$\eta : \mathbf{1} \to X \otimes Y$, and
+$\epsilon : Y \otimes X \to \mathbf{1}$
+be a left dual of $X$ as in Definition \ref{definition-dual}.
+Then $\eta' = \psi \circ \eta : \mathbf{1} \to Y \otimes X$
+and $\epsilon' = \epsilon \circ \psi : X \otimes Y \to \mathbf{1}$
+makes $X$ into a left dual of $Y$.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hint: pleasant exercise in the definitions.
+\end{proof}
+
+\begin{definition}
+\label{definition-functor-symmetric-monoidal-categories}
+Let $\mathcal{C}$ and $\mathcal{C}'$ be symmetric monoidal categories.
+A {\it functor of symmetric monoidal categories}
+$F : \mathcal{C} \to \mathcal{C}'$
+is given by a functor $F$ as indicated and an isomorphism
+$$
+F(X) \otimes F(Y) \to F(X \otimes Y)
+$$
+functorial in $X$ and $Y$
+such that $F$ is a functor of monoidal categories and such that
+for all objects $X$ and $Y$ the diagram
+$$
+\xymatrix{
+F(X) \otimes F(Y) \ar[r] \ar[d] &
+F(X \otimes Y) \ar[d] \\
+F(Y) \otimes F(X) \ar[r] &
+F(Y \otimes X)
+}
+$$
+commutes.
+\end{definition}
+
+\begin{remark}
+\label{remark-internal-hom-monoidal}
+Let $\mathcal{C}$ be a monoidal category. We say $\mathcal{C}$ has
+an {\it internal hom} if for every pair of objects $X, Y$ of $\mathcal{C}$
+there is an object $hom(X, Y)$ of $\mathcal{C}$ such that we have
+$$
+\Mor(X, hom(Y, Z)) = \Mor(X \otimes Y, Z)
+$$
+functorially in $X, Y, Z$. By the Yoneda lemma the bifunctor
+$(X, Y) \mapsto hom(X, Y)$ is determined up to unique isomorphism
+if it exists. Given an internal hom we obtain canonical maps
+\begin{enumerate}
+\item $hom(X, Y) \otimes X \to Y$,
+\item $hom(Y, Z) \otimes hom(X, Y) \to hom(X, Z)$,
+\item $Z \otimes hom(X, Y) \to hom(X, Z \otimes Y)$,
+\item $Y \to hom(X, Y \otimes X)$, and
+\item $hom(Y, Z) \otimes X \to hom(hom(X, Y), Z)$ in case
+$\mathcal{C}$ is symmetric monoidal.
+\end{enumerate}
+Namely, the map in (1) is the image of $\text{id}_{hom(X, Y)}$
+by $\Mor(hom(X, Y), hom(X, Y)) \to \Mor(hom(X, Y) \otimes X, Y)$.
+To construct the map in (2) by the defining property of $hom(X, Z)$
+we need to construct a map
+$$
+hom(Y, Z) \otimes hom(X, Y) \otimes X \longrightarrow Z
+$$
+and such a map exists since by (1) we have
+maps $hom(X, Y) \otimes X \to Y$ and $hom(Y, Z) \otimes Y \to Z$.
+To construct the map in (3) by the defining property of $hom(X, Z \otimes Y)$
+we need to construct a map
+$$
+Z \otimes hom(X, Y) \otimes X \to Z \otimes Y
+$$
+for which we use $\text{id}_Z \otimes a$ where
+$a$ is the map in (1). To construct the map in (4)
+we note that we already have the map
+$Y \otimes hom(X, X) \to hom(X, Y \otimes X)$ by (3).
+Thus it suffices to construct a map $\mathbf{1} \to hom(X, X)$
+and for this we take the element in $\Mor(\mathbf{1}, hom(X, X))$
+corresponding to the canonical isomorphism $\mathbf{1} \otimes X \to X$
+in $\Mor(\mathbf{1} \otimes X, X)$.
+Finally, we come to (5). By the universal property of
+$hom(hom(X, Y), Z)$ it suffices to construct a map
+$$
+hom(Y, Z) \otimes X \otimes hom(X, Y) \longrightarrow Z
+$$
+We do this by swapping the last two tensor products using the
+commutativity constraint and then using the maps
+$hom(X, Y) \otimes X \to Y$ and $hom(Y, Z) \otimes Y \to Z$.
+\end{remark}
+
+
+
+
+
+\section{Categories of dotted arrows}
+\label{section-dotted-arrows}
+
+\noindent 
+We discuss certain ``categories of dotted arrows'' in $(2,1)$-categories. 
+These will appear when formulating various lifting criteria for 
+algebraic stacks, see for example Morphisms of Stacks,
+Section \ref{stacks-morphisms-section-valuative} and
+More on Morphisms of Stacks, Section 
+\ref{stacks-more-morphisms-section-formally-smooth}.
+
+\begin{definition}
+\label{definition-dotted-arrows}
+Let $\mathcal{C}$ be a $(2,1)$-category. Consider a $2$-commutative 
+solid diagram
+\begin{equation}
+\label{equation-dotted-arrows}
+\vcenter{
+\xymatrix{
+S \ar[r]_-x \ar[d]_j & X \ar[d]^f \\
+T \ar[r]^-y \ar@{..>}[ru] & Y
+}
+}
+\end{equation}
+in $\mathcal{C}$. Fix a $2$-isomorphism 
+$$
+\gamma : y \circ j \rightarrow f \circ x
+$$
+witnessing the $2$-commutativity of the diagram.
+Given (\ref{equation-dotted-arrows}) and $\gamma$, a \emph{dotted arrow} 
+is a triple $(a, \alpha, \beta)$ consisting of a morphism 
+$a \colon T \to X$ and and $2$-isomorphisms
+$\alpha : a \circ j \to x$, $\beta : y \to f \circ a$
+such that
+$\gamma = (\text{id}_f \star \alpha) \circ (\beta \star \text{id}_j)$,
+in other words such that
+$$
+\xymatrix{
+& f \circ a \circ j \ar[rd]^{\text{id}_f \star \alpha} \\
+y \circ j \ar[ru]^{\beta \star \text{id}_j} \ar[rr]^\gamma & &
+f \circ x
+}
+$$
+is commutative. A {\it morphism of dotted arrows}
+$(a, \alpha, \beta) \to (a', \alpha', \beta')$ is a
+$2$-arrow $\theta : a \to a'$ such that
+$\alpha = \alpha' \circ (\theta \star \text{id}_j)$ and
+$\beta' = (\text{id}_f \star \theta) \circ \beta$.
+\end{definition}
+
+\noindent
+In the situation of Definition \ref{definition-dotted-arrows}, there 
+is an associated \emph{category of dotted arrows}. 
+This category is a groupoid. It may depend on $\gamma$ in general. 
+The next two lemmas say that categories of dotted arrows 
+are well-behaved with respect to base change and composition for $f$.
+
+\begin{lemma}
+\label{lemma-cat-dotted-arrows-base-change}
+Let $\mathcal{C}$ be a $(2,1)$-category. Assume given a $2$-commutative diagram
+$$
+\xymatrix{
+S \ar[r]_-{x'} \ar[d]_j &
+X' \ar[d]^p \ar[r]_q &
+X \ar[d]^f \\
+T \ar[r]^-{y'} &
+Y' \ar[r]^g &
+Y
+}
+$$
+in $\mathcal{C}$, where the right square is $2$-cartesian 
+with respect to a $2$-isomorphism $\phi \colon g \circ p \to f \circ q$. 
+Choose a $2$-arrow
+$\gamma' : y' \circ j \to p \circ x'$. Set
+$x = q \circ x'$, $y = g \circ y'$ and let
+$\gamma : y \circ j \to f \circ x$ be the $2$-isomorphism 
+$\gamma = (\phi \star \text{id}_{x'}) \circ (\text{id}_g \star \gamma')$. 
+Then the category $\mathcal{D}'$ of dotted arrows
+for the left square and $\gamma'$ is equivalent to the category 
+$\mathcal{D}$ of dotted
+arrows for the outer rectangle and $\gamma$.
+\end{lemma}
+
+\begin{proof}
+There is a functor $\mathcal{D}' \to \mathcal{D}$ which is 
+$(a, \alpha, \beta) \mapsto (q \circ a, \text{id}_q \star \alpha,
+(\phi \star \text{id}_a) \circ (\text{id}_g \star \beta))$ 
+on objects and $\theta \mapsto \text{id}_q \star \theta$ on arrows. 
+Checking that this functor $\mathcal{D}' \to \mathcal{D}$ is an equivalence 
+follows formally from the universal property for $2$-fibre products 
+as in Section \ref{section-2-fibre-products}. Details omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-cat-dotted-arrows-composition}
+Let $\mathcal{C}$ be a $(2,1)$-category. Assume given a solid $2$-commutative
+diagram
+$$
+\xymatrix{
+S \ar[r]_-x \ar[dd]_j & X \ar[d]^f \\
+& Y \ar[d]^g \\
+T \ar[r]^-z \ar@{..>}[ruu] & Z
+}
+$$
+in $\mathcal{C}$. 
+Choose a $2$-isomorphism $\gamma \colon z \circ j \to g \circ f \circ x$. 
+Let $\mathcal{D}$ be the category of dotted arrows for 
+the outer rectangle and $\gamma$. Let $\mathcal{D}'$ be 
+the category of dotted arrows for the solid square
+$$
+\xymatrix{
+S \ar[r]_-{f \circ x} \ar[d]_j & Y \ar[d]^g \\
+T \ar[r]^-z \ar@{..>}[ru] & Z
+}
+$$
+and $\gamma$. Then $\mathcal{D}$ is equivalent to 
+a category $\mathcal{D}''$ which has the following property: 
+there is a functor $\mathcal{D}'' \to \mathcal{D}'$ which turns $\mathcal{D}''$
+into a category fibred in groupoids over $\mathcal{D}'$ and whose fibre
+categories are isomorphic to categories of dotted arrows for certain
+solid squares of the form
+$$
+\xymatrix{
+S \ar[r]_-x \ar[d]_j & X \ar[d]^f \\
+T \ar[r]^-y \ar@{..>}[ru] & Y
+}
+$$
+and some choices of $2$-isomorphism $y \circ j \to f \circ x$.
+\end{lemma}
+
+\begin{proof}
+Construct the category $\mathcal{D}''$ whose objects are tuples
+$(a,\alpha,\beta,b,\eta)$ 
+where $(a,\alpha,\beta)$ is an object of $\mathcal{D}$ and 
+$b \colon T \rightarrow Y$ is a $1$-morphism
+and $\eta \colon b \rightarrow f \circ a$ is a $2$-isomorphism. 
+Morphisms $(a,\alpha,\beta,b,\eta) \rightarrow (a',\alpha',\beta',b',\eta')$
+in $\mathcal{D}''$ 
+are pairs $(\theta_1,\theta_2)$, where $\theta_1 \colon a \rightarrow a'$ 
+defines an arrow $(a, \alpha, \beta) \rightarrow (a', \alpha', \beta')$ 
+in $\mathcal{D}$ and $\theta_2 \colon b \rightarrow b'$ is a $2$-isomorphism 
+with the compatibility condition 
+$\eta' \circ \theta_2 = (\text{id}_f \star \theta_1) \circ \eta$.
+
+\medskip\noindent
+There is a functor $\mathcal{D}'' \rightarrow \mathcal{D}'$ which is
+$(a, \alpha, \beta, b, \eta) \mapsto
+(b, (\text{id}_f \star \alpha) \circ (\eta \star \text{id}_j),
+(\text{id}_g \star \eta^{-1}) \circ \beta)$
+on objects and $(\theta_1,\theta_2) \mapsto \theta_2$ on arrows. 
+Then $\mathcal{D}'' \rightarrow \mathcal{D}'$ is fibred in groupoids. 
+
+\medskip\noindent
+If $(y, \delta, \epsilon)$ is an object of $\mathcal{D}'$, write
+$\mathcal{D}_{y,\delta}$ 
+for the category of dotted arrows for the last displayed diagram with 
+$y \circ j \rightarrow f \circ x$ given by $\delta$.
+There is a functor $\mathcal{D}_{y,\delta} \rightarrow \mathcal{D}''$ given by
+$(a, \alpha, \eta) \mapsto
+(a, \alpha, (\text{id}_g \star \eta) \circ \epsilon, y, \eta)$
+on objects and $\theta \mapsto (\theta, \text{id}_y)$ on arrows. 
+This exhibits an isomorphism from $\mathcal{D}_{y,\delta}$ to
+the fibre category of $\mathcal{D}'' \rightarrow \mathcal{D}'$ over
+$(y,\delta,\epsilon)$.
+
+\medskip\noindent
+There is also a functor $\mathcal{D} \rightarrow \mathcal{D}''$ which is 
+$(a,\alpha,\beta) \mapsto (a,\alpha,\beta,f \circ a, \text{id}_{f \circ a})$ 
+on objects and $\theta \mapsto (\theta, \text{id}_f \star \theta)$ on arrows. 
+This functor is fully faithful and essentially surjective, hence an
+equivalence. Details omitted.
+\end{proof}
+
+
+
+
+
 
 
 

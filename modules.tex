@@ -319,8 +319,6 @@ is not needed, see Lemma \ref{lemma-limits-colimits} above.
 
 
 
-
-
 \section{Sections of sheaves of modules}
 \label{section-sections}
 
@@ -328,11 +326,11 @@ is not needed, see Lemma \ref{lemma-limits-colimits} above.
 Let $(X, \mathcal{O}_X)$ be a ringed space.
 Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_X$-modules.
 Let $s \in \Gamma(X, \mathcal{F}) = \mathcal{F}(X)$ be a
-global section. There is a unique {\it map of $\mathcal{O}_X$-modules
+global section. There is a unique {\it map of $\mathcal{O}_X$-modules}
 $$
 \mathcal{O}_X \longrightarrow \mathcal{F}, \ f \longmapsto fs
 $$
-associated to $s$}. The notation above signifies that a local
+{\it associated to $s$}. The notation above signifies that a local
 section $f$ of $\mathcal{O}_X$, i.e., a section $f$ over some open $U$,
 is mapped to the multiplication of $f$ with the restriction of $s$ to
 $U$. Conversely, any map $\varphi : \mathcal{O}_X \to \mathcal{F}$
@@ -575,29 +573,33 @@ Sheaves, Lemma \ref{sheaves-lemma-equivalence-categories-closed-abelian}.
 \end{proof}
 
 \noindent
-Let $\mathcal{F}$ be a sheaf on $X$. There is a canonical subsheaf
-of $\mathcal{F}$ which consists of exactly those sections whose
-support is contained in $Z$. Here is the exact statement.
+Let $\mathcal{F}$ be an abelian sheaf on the topological space $X$. Given
+a closed subset $Z$, there is a canonical abelian subsheaf of $\mathcal{F}$
+which consists of exactly those sections whose support is contained in $Z$.
+Here is the exact statement.
 
-\begin{lemma}
-\label{lemma-sections-support-in-closed}
+\begin{remark}
+\label{remark-sections-support-in-closed}
 Let $X$ be a topological space. Let $Z \subset X$ be a closed subset.
-Let $\mathcal{F}$ be a sheaf on $X$. For $U \subset X$ open set
+Let $\mathcal{F}$ be an abelian sheaf on $X$. For $U \subset X$ open set, define
 $$
-\Gamma(U, \mathcal{H}_Z(\mathcal{F})) =
+\mathcal{H}_Z(\mathcal{F})(U) =
 \{s \in \mathcal{F}(U) \mid
-\text{ the support of }s\text{ is contained in }Z \cap U\}
+\text{ the support of }s\text{ is contained in }Z \cap U\}.
 $$
-Then $\mathcal{H}_Z(\mathcal{F})$ is an abelian subsheaf of
-$\mathcal{F}$. It is the largest abelian subsheaf of
-$\mathcal{F}$ whose support is contained in $Z$. The construction
-$\mathcal{F} \mapsto \mathcal{H}_Z(\mathcal{F})$ is functorial
-in the abelian sheaf $\mathcal{F}$.
-\end{lemma}
-
-\begin{proof}
-This follows from Lemma \ref{lemma-support-section-closed}.
-\end{proof}
+Then $\mathcal{H}_Z(\mathcal{F})$ is an abelian subsheaf of $\mathcal{F}$.
+It is the largest abelian subsheaf of $\mathcal{F}$ whose support is
+contained in $Z$. By Lemma \ref{lemma-i-star-exact} we may (and we do)
+view $\mathcal{H}_Z(\mathcal{F})$ as an abelian sheaf on $Z$.
+In this way we obtain a left exact functor
+$$
+\textit{Ab}(X) \longrightarrow \textit{Ab}(Z),\quad
+\mathcal{F} \longmapsto \mathcal{H}_Z(\mathcal{F})
+\text{ viewed as abelian sheaf on }Z
+$$
+All of the statements made above follow directly from
+Lemma \ref{lemma-support-section-closed}.
+\end{remark}
 
 \noindent
 This seems like a good opportunity to show that the functor
@@ -606,30 +608,22 @@ $i_*$ has a right adjoint on abelian sheaves.
 \begin{lemma}
 \label{lemma-i-star-right-adjoint}
 Let $i : Z \to X$ be the inclusion of a closed subset into the
-topological space $X$.
-Denote\footnote{This is likely nonstandard notation.}
-$i^! : \textit{Ab}(X) \to \textit{Ab}(Z)$ the functor
-$\mathcal{F} \mapsto i^{-1}\mathcal{H}_Z(\mathcal{F})$.
-Then $i^!$ is a right adjoint to $i_*$, in a formula
-$$
-\Mor_{\textit{Ab}(X)}(i_*\mathcal{G}, \mathcal{F})
-=
-\Mor_{\textit{Ab}(Z)}(\mathcal{G}, i^!\mathcal{F}).
-$$
+topological space $X$. The functor $\textit{Ab}(X) \to \textit{Ab}(Z)$,
+$\mathcal{F} \mapsto \mathcal{H}_Z(\mathcal{F})$ of
+Remark \ref{remark-sections-support-in-closed}
+is a right adjoint to $i_* : \textit{Ab}(Z) \to \textit{Ab}(X)$.
 In particular $i_*$ commutes with arbitrary colimits.
 \end{lemma}
 
 \begin{proof}
-Note that $i_*i^!\mathcal{F} = \mathcal{H}_Z(\mathcal{F})$.
-Since $i_*$ is fully faithful we are reduced to showing that
+We have to show that for any abelian sheaf $\mathcal{F}$ on $X$ and any
+abelian sheaf $\mathcal{G}$ on $Z$ we have
 $$
-\Mor_{\textit{Ab}(X)}(i_*\mathcal{G}, \mathcal{F})
-=
-\Mor_{\textit{Ab}(X)}(i_*\mathcal{G}, \mathcal{H}_Z(\mathcal{F})).
+\Hom_{\textit{Ab}(X)}(i_*\mathcal{G}, \mathcal{F}) =
+\Hom_{\textit{Ab}(Z)}(\mathcal{G}, \mathcal{H}_Z(\mathcal{F}))
 $$
-This follows since the support of the image via any homomorphism
-of a section of $i_*\mathcal{G}$ is contained in $Z$, see
-Lemma \ref{lemma-support-section-closed}.
+This is clear because after all any section of $i_*\mathcal{G}$
+has support in $Z$. Details omitted.
 \end{proof}
 
 \begin{remark}
@@ -641,7 +635,7 @@ does not have a right adjoint simply because
 it is not exact. However, it is very close to being
 true, in fact, the functor $i_*$ is exact on sheaves
 of pointed sets, sections with support in $Z$ can
-be defined for sheaves of pointed sets, and $i^!$
+be defined for sheaves of pointed sets, and $\mathcal{H}_Z$
 makes sense and is a right adjoint to $i_*$.
 \end{remark}
 
@@ -666,11 +660,11 @@ Let $U \subset X$ be an open subset with complement $Z \subset X$.
 Denote $j : U \to X$ the open immersion and
 $i : Z \to X$ the closed immersion.
 For any sheaf of abelian groups $\mathcal{F}$ on $X$
-the adjunction mappings $j_{!}j^*\mathcal{F} \to \mathcal{F}$ and
-$\mathcal{F} \to i_*i^*\mathcal{F}$ give a short exact
+the adjunction mappings $j_{!}j^{-1}\mathcal{F} \to \mathcal{F}$ and
+$\mathcal{F} \to i_*i^{-1}\mathcal{F}$ give a short exact
 sequence
 $$
-0 \to j_{!}j^*\mathcal{F} \to \mathcal{F} \to i_*i^*\mathcal{F} \to 0
+0 \to j_{!}j^{-1}\mathcal{F} \to \mathcal{F} \to i_*i^{-1}\mathcal{F} \to 0
 $$
 of sheaves of abelian groups. For any morphism
 $\varphi : \mathcal{F} \to \mathcal{G}$ of abelian sheaves on $X$
@@ -678,14 +672,14 @@ we obtain a morphism of short exact sequences
 $$
 \xymatrix{
 0 \ar[r] &
-j_{!}j^*\mathcal{F} \ar[r] \ar[d] &
+j_{!}j^{-1}\mathcal{F} \ar[r] \ar[d] &
 \mathcal{F} \ar[r] \ar[d] &
-i_*i^*\mathcal{F} \ar[r] \ar[d] &
+i_*i^{-1}\mathcal{F} \ar[r] \ar[d] &
 0 \\
 0 \ar[r] &
-j_{!}j^*\mathcal{G} \ar[r] &
+j_{!}j^{-1}\mathcal{G} \ar[r] &
 \mathcal{G} \ar[r] &
-i_*i^*\mathcal{G} \ar[r] &
+i_*i^{-1}\mathcal{G} \ar[r] &
 0
 }
 $$
@@ -736,7 +730,7 @@ Let $(X, \mathcal{O}_X)$ be a ringed space.
 Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_X$-modules.
 We say that $\mathcal{F}$ is {\it locally generated by sections}
 if for every $x \in X$ there exists an open
-neighbourhood $U$ such that $\mathcal{F}|_U$
+neighbourhood $U$ of $x$ such that $\mathcal{F}|_U$
 is globally generated as a sheaf of $\mathcal{O}_U$-modules.
 \end{definition}
 
@@ -973,9 +967,9 @@ on $X$ is isomorphic to exactly one of the $\mathcal{F}_i$.
 For each open covering $\mathcal{U} : X = \bigcup U_j$ consider the
 sheaves of $\mathcal{O}_X$-modules $\mathcal{F}$ such that each
 restriction $\mathcal{F}|_{U_j}$ is a quotient of
-$\mathcal{O}_{U_j}^{\oplus r}$ for some $r_j \geq 0$.
+$\mathcal{O}_{U_j}^{\oplus r_j}$ for some $r_j \geq 0$.
 These are parametrized by subsheaves
-$\mathcal{K}_i \subset \mathcal{O}_{U_j}^{\oplus r_j}$ and glueing
+$\mathcal{K}_j \subset \mathcal{O}_{U_j}^{\oplus r_j}$ and glueing
 data
 $$
 \varphi_{jj'} :
@@ -1377,6 +1371,8 @@ if $N$ is free).
 \section{Modules of finite presentation}
 \label{section-finite-presentation}
 
+\noindent
+Here is the definition.
 
 \begin{definition}
 \label{definition-finite-presentation}
@@ -1435,7 +1431,7 @@ Immediate from definitions.
 \begin{lemma}
 \label{lemma-kernel-surjection-finite-free-onto-finite-presentation}
 Let $(X, \mathcal{O}_X)$ be a ringed space.
-Let $\mathcal{F}$ be a $\mathcal{O}_X$-module of finite presentation.
+Let $\mathcal{F}$ be an $\mathcal{O}_X$-module of finite presentation.
 \begin{enumerate}
 \item If $\psi : \mathcal{O}_X^{\oplus r} \to \mathcal{F}$ is a surjection,
 then $\Ker(\psi)$ is of finite type.
@@ -1513,81 +1509,6 @@ Algebra, Lemma \ref{algebra-lemma-module-colimit-fp}.
 \end{proof}
 
 \begin{lemma}
-\label{lemma-finite-presentation-quasi-compact-colimit}
-Let $X$ be a ringed space.
-Let $I$ be a preordered set and
-let $(\mathcal{F}_i, \varphi_{ii'})$ be a system over $I$
-consisting of sheaves of $\mathcal{O}_X$-modules
-(see Categories, Section \ref{categories-section-posets-limits}).
-Assume
-\begin{enumerate}
-\item $I$ is directed,
-\item $\mathcal{G}$ is an $\mathcal{O}_X$-module of finite presentation, and
-\item $X$ has a cofinal system of open coverings
-$\mathcal{U} : X = \bigcup_{j\in J} U_j$ with
-$J$ finite and $U_j \cap U_{j'}$ quasi-compact
-for all $j, j' \in J$.
-\end{enumerate}
-Then we have
-$$
-\colim_i \Hom_X(\mathcal{G}, \mathcal{F}_i)
-=
-\Hom_X(\mathcal{G}, \colim_i \mathcal{F}_i).
-$$
-\end{lemma}
-
-\begin{proof}
-Let $\alpha$ be an element of the right hand side.
-For every point $x \in X$ we may choose an open neighbourhood
-$U \subset X$ and finitely many sections
-$s_j \in \mathcal{G}(U)$ which generate $\mathcal{G}$ over $U$
-and finitely many relations $\sum f_{kj} s_j = 0$, $k = 1, \ldots, n$
-with $f_{kj} \in \mathcal{O}_X(U)$ which generate the kernel
-of $\bigoplus_{j = 1, \ldots, m} \mathcal{O}_U \to \mathcal{G}$.
-After possibly shrinking $U$ to a smaller open neighbourhood of $x$
-we may assume there exists an index $i \in I$ such that
-the sections $\alpha(s_j)$ all come from sections
-$s_j' \in \mathcal{F}_i(U)$.
-After possibly shrinking $U$ to a smaller open neighbourhood of $x$
-and increasing $i$ we may assume the relations
-$\sum f_{kj} s'_j = 0$ hold in $\mathcal{F}_i(U)$.
-Hence we see that $\alpha|_U$ lifts to a morphism
-$\mathcal{G}|_U \to \mathcal{F}_i|_U$ for some index $i \in I$.
-
-\medskip\noindent
-By condition (3) and the preceding arguments, we may choose
-a finite open covering $X = \bigcup_{j = 1, \ldots, m} U_j$
-such that (a) $\mathcal{G}|_{U_j}$ is generated by finitely
-many sections $s_{jk} \in \mathcal{G}(U_j)$, (b) the restriction
-$\alpha|_{U_j}$ comes from a morphism
-$\alpha_j : \mathcal{G} \to \mathcal{F}_{i_j}$
-for some $i_j \in I$, and (c) the intersections
-$U_j \cap U_{j'}$ are all quasi-compact.
-For every pair $(j, j') \in \{1, \ldots, m\}^2$
-and any $k$ we can find
-we can find an index $i \geq \max(i_j, i_{j'})$ such
-that
-$$
-\varphi_{i_ji}(\alpha_j(s_{jk}|_{U_j \cap U_{j'}})) =
-\varphi_{i_{j'}i}(\alpha_{j'}(s_{jk}|_{U_j \cap U_{j'}}))
-$$
-see Sheaves, Lemma \ref{sheaves-lemma-directed-colimits-sections} (2).
-Since there are finitely many of these pairs $(j, j')$ and
-finitely many $s_{jk}$ we see that we can find a single $i$
-which works for all of them. For this index $i$ all of the maps
-$\varphi_{i_ji} \circ \alpha_j$ agree on the overlaps $U_j \cap U_{j'}$
-as the sections $s_{jk}$ generate $\mathcal{G}$ over this overlap.
-Hence we get a morphism $\mathcal{G} \to \mathcal{F}_i$ as desired.
-\end{proof}
-
-\begin{remark}
-\label{remark-condition-necessary}
-In the lemma above some condition beyond the condition that $X$
-is quasi-compact is necessary. See
-Sheaves, Example \ref{sheaves-example-conditions-needed-colimit}.
-\end{remark}
-
-\begin{lemma}
 \label{lemma-finite-presentation-stalk-free}
 Let $(X, \mathcal{O}_X)$ be a ringed space. Let $\mathcal{F}$ be
 a finitely presented $\mathcal{O}_X$-module. Let $x \in X$ such that
@@ -1617,6 +1538,9 @@ after shrinking $U$ once more (Lemma \ref{lemma-finite-type-stalk-zero}).
 \label{section-coherent}
 
 \noindent
+A reference for this section is \cite{FAC}.
+
+\medskip\noindent
 The category of coherent sheaves on a ringed space $X$
 is a more reasonable object
 than the category of quasi-coherent sheaves, in the sense
@@ -1695,7 +1619,7 @@ Let $(X, \mathcal{O}_X)$ be a ringed space.
 \item Any finite type subsheaf of a coherent sheaf is coherent.
 \item Let $\varphi : \mathcal{F} \to \mathcal{G}$
 be a morphism from a finite type sheaf $\mathcal{F}$
-to a coherent sheaf $\mathcal{G}$. Then $\Ker(\varphi)$ is finite type.
+to a coherent sheaf $\mathcal{G}$. Then $\Ker(\varphi)$ is of finite type.
 \item Let $\varphi : \mathcal{F} \to \mathcal{G}$ be a morphism
 of coherent $\mathcal{O}_X$-modules. Then
 $\Ker(\varphi)$ and
@@ -1741,7 +1665,7 @@ Let $U \subset X$ be open and let $\overline{s}_i \in \Coker(\varphi)(U)$,
 $i = 1, \ldots, n$ be sections. We have to show that the kernel of the
 associated morphism
 $\overline{\Psi} : \bigoplus_{i = 1}^n \mathcal{O}_U \to \Coker(\varphi)$
-has finite type. There exists an open covering
+is of finite type. There exists an open covering
 of $U$ such that on each open all the sections $\overline{s}_i$
 lift to sections $s_i$ of $\mathcal{G}$. Hence we may assume
 this is the case over $U$. We may in addition assume there are
@@ -1805,14 +1729,9 @@ we get a short exact sequence
 $0 \to \mathcal{K} \to \mathcal{K}_3 \to \mathcal{F}_1$
 where $\mathcal{K}_3$ is the module of relations among
 the images of the sections $s_i$ in $\mathcal{F}_3$.
-Since $\mathcal{F}_3$ is coherent we see that
-$\mathcal{K}_3$ is finite type. Since $\mathcal{F}_1$
-is coherent we see that the image $\mathcal{I}$
-of $\mathcal{K}_3 \to \mathcal{F}_1$
-is coherent. Hence $\mathcal{K}$
-is the kernel of the map $\mathcal{K}_3 \to \mathcal{I}$
-between a finite type sheaf and a coherent sheaves and hence
-finite type by (2).
+Since $\mathcal{F}_1$ is coherent we see that
+$\mathcal{K}$ is the kernel of a map from a finite type module
+to a coherent module and hence finite type by (2).
 
 \medskip\noindent
 Proof of (5). This follows because (3) and (4) show that
@@ -1888,7 +1807,7 @@ Already these conditions imply a number of pleasing results: For example
 we prove that the category of $\mathcal{O}_Z$-modules is equivalent to
 the category of $\mathcal{O}_X$-modules annihilated by $\mathcal{I}$
 generalizing the result on abelian sheaves of
-Section \ref{section-closed-immersions}
+Section \ref{section-closed-immersions}.
 
 \medskip\noindent
 However, in the Stacks project we choose the
@@ -2016,7 +1935,7 @@ $\mathcal{O}_X$-modules $\mathcal{G}$ such that $\mathcal{I}\mathcal{G} = 0$.
 \end{lemma}
 
 \begin{proof}
-We claim that for a $\mathcal{O}_Z$-module $\mathcal{F}$ the canonical map
+We claim that for an $\mathcal{O}_Z$-module $\mathcal{F}$ the canonical map
 $$
 i^*i_*\mathcal{F} \longrightarrow \mathcal{F}
 $$
@@ -2058,6 +1977,62 @@ because $\mathcal{O}_{Z, x} = \mathcal{O}_{X, x}/\mathcal{I}_x$
 and because $\mathcal{G}_x$ is annihilated by $\mathcal{I}_x$ by assumption.
 \end{proof}
 
+\begin{remark}
+\label{remark-sections-support-in-closed-modules}
+Let $(X, \mathcal{O}_X)$ be a ringed space. Let $Z \subset X$ be
+a closed subset. For an $\mathcal{O}_X$-module $\mathcal{F}$ we can
+consider the {\it submodule of sections with support in $Z$}, denoted
+$\mathcal{H}_Z(\mathcal{F})$, defined by the rule
+$$
+\mathcal{H}_Z(\mathcal{F})(U) =
+\{s \in \mathcal{F}(U) \mid \text{Supp}(s) \subset U \cap Z\}
+$$
+Observe that $\mathcal{H}_Z(\mathcal{F})(U)$ is a module over
+$\mathcal{O}_X(U)$, i.e., $\mathcal{H}_Z(\mathcal{F})$ is an
+$\mathcal{O}_X$-module. By construction $\mathcal{H}_Z(\mathcal{F})$
+is the largest $\mathcal{O}_X$-submodule of $\mathcal{F}$ whose support is
+contained in $Z$.
+Applying Lemma \ref{lemma-i-star-equivalence} to
+the morphism of ringed spaces $(Z, \mathcal{O}_X|_Z) \to (X, \mathcal{O}_X)$ we
+may (and we do) view
+$\mathcal{H}_Z(\mathcal{F})$ as an $\mathcal{O}_X|_Z$-module on $Z$.
+Thus we obtain a functor
+$$
+\textit{Mod}(\mathcal{O}_X) \longrightarrow \textit{Mod}(\mathcal{O}_X|_Z),
+\quad
+\mathcal{F} \longmapsto \mathcal{H}_Z(\mathcal{F})
+\text{ viewed as an }\mathcal{O}_X|_Z\text{-module on }Z
+$$
+This functor is left exact, but in general not exact.
+All of the statements made above follow directly from
+Lemma \ref{lemma-support-section-closed}.
+Clearly the construction is compatible with the construction in
+Remark \ref{remark-sections-support-in-closed}.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-adjoint-section-with-support}
+Let $(X, \mathcal{O}_X)$ be a ringed space. Let $i : Z \to X$ be the
+inclusion of a closed subset. The functor
+$\mathcal{H}_Z : \textit{Mod}(\mathcal{O}_X) \to
+\textit{Mod}(\mathcal{O}_X|_Z)$ of
+Remark \ref{remark-sections-support-in-closed-modules}
+is right adjoint to
+$i_* : \textit{Mod}(\mathcal{O}_X|_Z) \to \textit{Mod}(\mathcal{O}_X)$.
+\end{lemma}
+
+\begin{proof}
+We have to show that for any $\mathcal{O}_X$-module $\mathcal{F}$
+and any $\mathcal{O}_X|_Z$-module $\mathcal{G}$ we have
+$$
+\Hom_{\mathcal{O}_X|_Z}(\mathcal{G}, \mathcal{H}_Z(\mathcal{F})) =
+\Hom_{\mathcal{O}_X}(i_*\mathcal{G}, \mathcal{F})
+$$
+This is clear
+because after all any section of $i_*\mathcal{G}$ has support in $Z$.
+Details omitted.
+\end{proof}
+
 
 
 
@@ -2082,7 +2057,7 @@ Let $(X, \mathcal{O}_X)$ be a ringed space.
 Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_X$-modules.
 \begin{enumerate}
 \item We say $\mathcal{F}$ is {\it locally free} if for every
-point $x \in X$ there exists a set $I$ and an open
+point $x \in X$ there exist a set $I$ and an open
 neighbourhood $x \in U \subset X$
 such that $\mathcal{F}|_U$ is isomorphic to
 $\bigoplus_{i \in I} \mathcal{O}_X|_U$ as an $\mathcal{O}_X|_U$-module.
@@ -2125,7 +2100,7 @@ Omitted.
 \label{lemma-rank}
 Let $(X, \mathcal{O}_X)$ be a ringed space.
 Suppose that the support of $\mathcal{O}_X$ is $X$,
-i.e., all stalk of $\mathcal{O}_X$ are nonzero rings.
+i.e., all stalks of $\mathcal{O}_X$ are nonzero rings.
 Let $\mathcal{F}$ be a locally free sheaf of $\mathcal{O}_X$-modules.
 There exists a locally constant function
 $$
@@ -2197,20 +2172,91 @@ $\mathcal{H}$.)
 
 
 
+\section{Bilinear maps}
+\label{section-bilinear}
+
+
+\noindent
+Let $(X, \mathcal{O}_X)$ be a ringed space.
+Let $\mathcal{F}$, $\mathcal{G}$, and $\mathcal{H}$ be $\mathcal{O}_X$-modules.
+A {\it bilinear map} $f : \mathcal{F} \times \mathcal{G} \to \mathcal{H}$
+of sheaves of $\mathcal{O}_X$-modules is a map of sheaves of sets as indicated
+such that for every open $U \subset X$ the induced map
+$$
+\mathcal{F}(U) \times \mathcal{G}(U) \to \mathcal{H}(U)
+$$
+is an $\mathcal{O}_X(U)$-bilinear map of modules. Equivalently you can ask
+certain diagrams of maps of sheaves of sets commute, immitating the usual
+axioms for bilinear maps of modules. For example, the axiom
+$f(x + y, z) = f(x, z) + f(y, z)$ is represented by the commutativity
+of the diagram
+$$
+\xymatrix{
+\mathcal{F} \times \mathcal{F} \times \mathcal{G}
+\ar[rrr]_{(f \circ \text{pr}_{13}, f \circ \text{pr}_{23})}
+\ar[d]_{(+ \circ \text{pr}_{12}, \text{pr}_3)} & & &
+\mathcal{H} \times \mathcal{H}
+\ar[d]^{+} \\
+\mathcal{F} \times \mathcal{G} \ar[rrr]^f & & &
+\mathcal{H}
+}
+$$
+Another characterization is this: if
+$f : \mathcal{F} \times \mathcal{G} \to \mathcal{H}$
+is a map of sheaves of sets and
+it induces a bilinar map of modules on stalks for all points of $X$, then
+$f$ is a bilinear map of sheaves of modules. This is true as you can test
+whether local sections are equal by checking on stalks.
+
+\medskip\noindent
+Let $\text{Mor}( - , - )$ denote morphisms in the category of sheaves of
+sets on $X$. Another characterization of a bilinear map is this:
+a map of sheaves of sets
+$f : \mathcal{F} \times \mathcal{G} \to \mathcal{H}$
+is bilinear if given any sheaf of sets $\mathcal{S}$ the rule
+$$
+\text{Mor}(\mathcal{S}, \mathcal{F}) \times
+\text{Mor}(\mathcal{S}, \mathcal{G}) \to
+\text{Mor}(\mathcal{S}, \mathcal{H}),\quad
+(a, b) \mapsto f \circ (a \times b)
+$$
+is a bilinear map of modules over the ring
+$\text{Mor}(\mathcal{S}, \mathcal{O}_X)$.
+We don't usually take this point of view as it is easier to think about
+sets of local sections and it is clearly equivalent.
+
+\medskip\noindent
+Finally, here is yet another way to say the definition:
+$\mathcal{O}_X$ is a ring object in the category of sheaves of sets
+and $\mathcal{F}$, $\mathcal{G}$, $\mathcal{H}$ are module objects
+over this ring. Then a bilinear map can be defined for module objects
+over a ring object in any category.
+To formulate what is a ring object and what is a module object
+over a ring object, and what is a bilinear map of such in a
+category it is pleasant (but not strictly necessary)
+to assume the category has finite products; and
+this is true for the category of sheaves of sets.
+
+
+
+
+
 
 
 \section{Tensor product}
 \label{section-tensor-product}
 
 \noindent
-Let $(X, \mathcal{O}_X)$ be a ringed space.
-Let $\mathcal{F}$, $\mathcal{G}$ be $\mathcal{O}_X$-modules.
-We have briefly discussed the tensor product in the setting
+We have already briefly discussed the tensor product in the setting
 of change of rings in Sheaves, Sections
 \ref{sheaves-section-presheaves-modules} and
 \ref{sheaves-section-sheafification-presheaves-modules}.
-In exactly the same way we define first the {\it tensor
-product presheaf}
+Let us generalize this to tensor products of modules.
+
+\medskip\noindent
+Let $(X, \mathcal{O}_X)$ be a ringed space and let
+$\mathcal{F}$ and $\mathcal{G}$ be $\mathcal{O}_X$-modules.
+We define first the {\it tensor product presheaf}
 $$
 \mathcal{F} \otimes_{p, \mathcal{O}_X} \mathcal{G}
 $$
@@ -2235,7 +2281,7 @@ $$
 \text{Bilin}_{\mathcal{O}_X}(\mathcal{F} \times \mathcal{G}, \mathcal{H}).
 $$
 Here the right hand side indicates the set of bilinear maps of sheaves
-of $\mathcal{O}_X$-modules (definition omitted).
+of $\mathcal{O}_X$-modules as defined in Section \ref{section-bilinear}.
 
 \medskip\noindent
 The tensor product of modules $M, N$ over a ring $R$ satisfies symmetry,
@@ -2333,6 +2379,39 @@ Omitted.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-tensor-commute-colimits}
+Let $(X, \mathcal{O}_X)$ be a ringed space.
+For any $\mathcal{O}_X$-module $\mathcal{F}$ the functor
+$$
+\textit{Mod}(\mathcal{O}_X) \longrightarrow \textit{Mod}(\mathcal{O}_X)
+, \quad
+\mathcal{G} \longmapsto \mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G}
+$$
+commutes with arbitrary colimits.
+\end{lemma}
+
+\begin{proof}
+Let $I$ be a preordered set and let $\{\mathcal{G}_i\}$ be
+a system over $I$. Set $\mathcal{G} = \colim_i \mathcal{G}_i$.
+Recall that $\mathcal{G}$ is the sheaf associated to the presheaf
+$\mathcal{G}' : U \mapsto \colim_i \mathcal{G}_i(U)$, see
+Sheaves, Section \ref{sheaves-section-limits-sheaves}.
+By
+Lemma \ref{lemma-tensor-product-sheafification}
+the tensor product $\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G}$
+is the sheafification of the presheaf
+$$
+U \longmapsto
+\mathcal{F}(U) \otimes_{\mathcal{O}_X(U)} \colim_i \mathcal{G}_i(U) =
+\colim_i \mathcal{F}(U) \otimes_{\mathcal{O}_X(U)} \mathcal{G}_i(U)
+$$
+where the equality sign is
+Algebra, Lemma \ref{algebra-lemma-tensor-products-commute-with-limits}.
+Hence the lemma follows from the description of colimits in
+$\textit{Mod}(\mathcal{O}_X)$, see Lemma \ref{lemma-limits-colimits}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-tensor-product-permanence}
 Let $(X, \mathcal{O}_X)$ be a ringed space.
 Let $\mathcal{F}$, $\mathcal{G}$ be $\mathcal{O}_X$-modules.
@@ -2379,13 +2458,16 @@ $(\bigoplus_{i \in I} R) \otimes_R (\bigoplus_{j \in J} R) =
 If $\mathcal{F}_2 \to \mathcal{F}_1 \to \mathcal{F} \to 0$
 is exact, then by Lemma \ref{lemma-tensor-product-exact}
 the complex
-$\mathcal{F}_2 \otimes \mathcal{G} \to
-\mathcal{F}_1 \otimes \mathcal{G} \to
-\mathcal{F} \otimes \mathcal{G} \to 0$
+$\mathcal{F}_2 \otimes_{\mathcal{O}_X} \mathcal{G} \to
+\mathcal{F}_1 \otimes_{\mathcal{O}_X} \mathcal{G} \to
+\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G} \to 0$
 is exact. Using this we can prove (5). Namely, in this case there
 exists locally such an exact sequence with $\mathcal{F}_i$, $i = 1, 2$
-finite free. Hence the two terms $\mathcal{F}_2 \otimes \mathcal{G}$
-are isomorphic to finite direct sums of $\mathcal{G}$.
+finite free. Hence the two terms
+$\mathcal{F}_2 \otimes_{\mathcal{O}_X} \mathcal{G}$ and
+$\mathcal{F}_1 \otimes_{\mathcal{O}_X} \mathcal{G}$
+are isomorphic to finite direct sums of $\mathcal{G}$ (for example
+by Lemma \ref{lemma-tensor-commute-colimits}).
 Since finite direct sums are coherent sheaves, these are coherent
 and so is the cokernel of the map, see Lemma \ref{lemma-coherent-abelian}.
 
@@ -2411,39 +2493,6 @@ is a presentation of the tensor product by free sheaves as well.
 
 \medskip\noindent
 The proof of the other statements is omitted.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-tensor-commute-colimits}
-Let $(X, \mathcal{O}_X)$ be a ringed space.
-For any $\mathcal{O}_X$-module $\mathcal{F}$ the functor
-$$
-\textit{Mod}(\mathcal{O}_X) \longrightarrow \textit{Mod}(\mathcal{O}_X)
-, \quad
-\mathcal{G} \longmapsto \mathcal{F} \otimes_\mathcal{O} \mathcal{G}
-$$
-commutes with arbitrary colimits.
-\end{lemma}
-
-\begin{proof}
-Let $I$ be a preordered set and let $\{\mathcal{G}_i\}$ be
-a system over $I$. Set $\mathcal{G} = \colim_i \mathcal{G}_i$.
-Recall that $\mathcal{G}$ is the sheaf associated to the presheaf
-$\mathcal{G}' : U \mapsto \colim_i \mathcal{G}_i(U)$, see
-Sheaves, Section \ref{sheaves-section-limits-sheaves}.
-By
-Lemma \ref{lemma-tensor-product-sheafification}
-the tensor product $\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G}$
-is the sheafification of the presheaf
-$$
-U \longmapsto
-\mathcal{F}(U) \otimes_{\mathcal{O}_X(U)} \colim_i \mathcal{G}_i(U) =
-\colim_i \mathcal{F}(U) \otimes_{\mathcal{O}_X(U)} \mathcal{G}_i(U)
-$$
-where the equality sign is
-Algebra, Lemma \ref{algebra-lemma-tensor-products-commute-with-limits}.
-Hence the lemma follows from the description of colimits in
-$\textit{Mod}(\mathcal{O}_X)$.
 \end{proof}
 
 
@@ -2701,10 +2750,154 @@ we find $t_1, \ldots, t_m \in \mathcal{F}(V)$ and $a_{ij} \in \mathcal{O}(V)$
 such that $\sum a_{ij}f_i|_V = 0$ and $s_i|_V = \sum a_{ij}t_j$.
 \end{proof}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Duals}
+\label{section-duals}
+
+\noindent
+Let $(X, \mathcal{O}_X)$ be a ringed space. The category of
+$\mathcal{O}_X$-modules endowed with the tensor product
+constructed in Section \ref{section-tensor-product}
+is a symmetric monoidal category. For an $\mathcal{O}_X$-module
+$\mathcal{F}$ the following are equivalent
+\begin{enumerate}
+\item $\mathcal{F}$ has a left dual in the monoidal category
+of $\mathcal{O}_X$-modules,
+\item $\mathcal{F}$ is locally a direct summand of a finite
+free $\mathcal{O}_X$-module, and
+\item $\mathcal{F}$ is of finite presentation and flat as an
+$\mathcal{O}_X$-module.
+\end{enumerate}
+This is proved in Example \ref{example-dual} and
+Lemmas \ref{lemma-left-dual-module} and
+\ref{lemma-flat-locally-finite-presentation} of this section.
+
+\begin{example}
+\label{example-dual}
+Let $(X, \mathcal{O}_X)$ be a ringed space. Let $\mathcal{F}$
+be an $\mathcal{O}_X$-module which is locally a direct summand of a finite
+free $\mathcal{O}_X$-module. Then the map
+$$
+\mathcal{F} \otimes_{\mathcal{O}_X}
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{O}_X)
+\longrightarrow
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{F})
+$$
+is an isomorphism. Namely, this is a local question, it is true
+if $\mathcal{F}$ is finite free, and it holds for any summand
+of a module for which it is true. Denote
+$$
+\eta :
+\mathcal{O}_X
+\longrightarrow
+\mathcal{F} \otimes_{\mathcal{O}_X}
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{O}_X)
+$$
+the map sending $1$ to the section corresponding to
+$\text{id}_\mathcal{F}$ under the isomorphism above.
+Denote
+$$
+\epsilon : 
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{O}_X)
+\otimes_{\mathcal{O}_X} \mathcal{F}
+\longrightarrow
+\mathcal{O}_X
+$$
+the evaluation map. Then
+$\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{O}_X), \eta, \epsilon$
+is a left dual for $\mathcal{F}$ as in
+Categories, Definition \ref{categories-definition-dual}.
+We omit the verification that
+$(1 \otimes \epsilon) \circ (\eta \otimes 1) = \text{id}_\mathcal{F}$
+and
+$(\epsilon \otimes 1) \circ (1 \otimes \eta) =
+\text{id}_{\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{O}_X)}$.
+\end{example}
+
+\begin{lemma}
+\label{lemma-left-dual-module}
+Let $(X, \mathcal{O}_X)$ be a ringed space. Let $\mathcal{F}$ be an
+$\mathcal{O}_X$-module. Let $\mathcal{G}, \eta, \epsilon$
+be a left dual of $\mathcal{F}$ in the monoidal category of
+$\mathcal{O}_X$-modules, see
+Categories, Definition \ref{categories-definition-dual}. Then
+\begin{enumerate}
+\item $\mathcal{F}$ is locally a direct summand of a finite free
+$\mathcal{O}_X$-module,
+\item the map
+$e : \SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{O}_X) \to \mathcal{G}$
+sending a local section $\lambda$ to $(\lambda \otimes 1)(\eta)$
+is an isomorphism,
+\item we have $\epsilon(f, g) = e^{-1}(g)(f)$ for local sections
+$f$ and $g$ of $\mathcal{F}$ and $\mathcal{G}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The assumptions mean that
+$$
+\mathcal{F} \xrightarrow{\eta \otimes 1}
+\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G}
+\otimes_{\mathcal{O}_X} \mathcal{F}
+\xrightarrow{1 \otimes \epsilon} \mathcal{F}
+\quad\text{and}\quad
+\mathcal{G} \xrightarrow{1 \otimes \eta}
+\mathcal{G} \otimes_{\mathcal{O}_X} \mathcal{F}
+\otimes_{\mathcal{O}_X} \mathcal{G}
+\xrightarrow{\epsilon \otimes 1} \mathcal{G}
+$$
+are the identity map. Let $x \in X$. We can find an open neighbourhood
+$U$ of $x$, a finite number of sections $f_1, \ldots, f_n$
+and $g_1, \ldots, g_n$ of
+$\mathcal{F}$ and $\mathcal{G}$ over $U$ such that
+$\eta(1) = \sum f_i g_i$. Denote
+$$
+\mathcal{O}_U^{\oplus n} \to \mathcal{F}|_U
+$$
+the map sending the $i$th basis vector to $f_i$. Then we
+can factor the map $\eta|_U$ over a map
+$\tilde \eta : \mathcal{O}_U \to
+\mathcal{O}_U^{\oplus n} \otimes_{\mathcal{O}_U} \mathcal{G}|_U$.
+We obtain a commutative diagram
+$$
+\xymatrix{
+\mathcal{F}|_U
+\ar[rr]_-{\eta \otimes 1} \ar[rrd]_-{\tilde \eta \otimes 1} & &
+\mathcal{F}|_U \otimes \mathcal{G}|_U \otimes \mathcal{F}|_U
+\ar[r]_-{1 \otimes \epsilon} &
+\mathcal{F}|_U \\
+& &
+\mathcal{O}_U^{\oplus n} \otimes \mathcal{G}|_U \otimes \mathcal{F}|_U
+\ar[u] \ar[r]^-{1 \otimes \epsilon} &
+\mathcal{O}_U^{\oplus n} \ar[u]
+}
+$$
+This shows that the identity on $\mathcal{F}$ locally on $X$
+factors through a finite free module. This proves (1). Part (2) follows from
+Categories, Lemma \ref{categories-lemma-left-dual} and its proof.
+Part (3) follows from the first equality of the proof.
+You can also deduce (2) and (3) from the uniqueness of left duals
+(Categories, Remark \ref{categories-remark-left-dual-adjoint})
+and the construction of the left dual in
+Example \ref{example-dual}.
+\end{proof}
+
 \begin{lemma}
 \label{lemma-flat-locally-finite-presentation}
-Let $(X, \mathcal{O}_X)$ be a ringed space. Let $\mathcal{F}$
-be locally of finite presentation and flat. Then $\mathcal{F}$ is
+Let $(X, \mathcal{O}_X)$ be a ringed space. Let $\mathcal{F}$ be a
+flat $\mathcal{O}_X$-module of finite presentation. Then $\mathcal{F}$ is
 locally a direct summand of a finite free $\mathcal{O}_X$-module.
 \end{lemma}
 
@@ -2800,7 +2993,7 @@ with $U_a$ and $V_b$ in $\mathcal{B}$ and $S_a$ and $S_b$ finite sets.
 
 \begin{proof}
 By Lemma \ref{lemma-surjection} every sheaf of sets $\mathcal{F}$
-is the target of a surjection whose source is a coprod $\mathcal{F}_0$
+is the target of a surjection whose source $\mathcal{F}_0$ is a coproduct
 of sheaves the form $j_{U!}\underline{S}$ with $U \in \mathcal{B}$
 and $S$ finite. Applying this to
 $\mathcal{F}_0 \times_\mathcal{F} \mathcal{F}_0$
@@ -2815,10 +3008,10 @@ $$
 for some index sets $A$, $B$ and $V_b$ and $U_a$ in $\mathcal{B}$ and
 $S_a$ and $S_b$ finite. For every finite subset $B' \subset B$
 there is a finite subset $A' \subset A$ such that the coproduct
-over $b \in B'$ maps into the coprod over $a \in A'$ via both maps.
+over $b \in B'$ maps into the coproduct over $a \in A'$ via both maps.
 Namely, we can view the right hand side as a filtered colimit with
 injective transition maps. Hence taking sections over the quasi-compact
-opens $U_b$, $b \in B'$ commutes with this coproduct,
+opens $V_b$, $b \in B'$ commutes with this coproduct,
 see Sheaves, Lemma \ref{sheaves-lemma-directed-colimits-sections}.
 Thus our sheaf is the colimit of the cokernels of these maps
 between finite coproducts.
@@ -2846,7 +3039,7 @@ the maps $p_i : X \to X_i$ are spectral.
 For some $i$ we can find opens $U_{a, i}$ and $V_{b, i}$
 of $X_i$ whose inverse images are $U_a$ and $V_b$, see
 Topology, Lemma \ref{topology-lemma-descend-opens}.
-The two maps map
+The two maps
 $$
 \beta, \gamma :
 \coprod\nolimits_{b \in B} j_{V_b!}\underline{S_b}
@@ -2940,7 +3133,7 @@ above.
 \begin{definition}
 \label{definition-flat-morphism}
 Let $f : X \to Y$ be a morphism of ringed spaces.
-Let $x \in X$. We say $f$ is said to be {\it flat at $x$}
+Let $x \in X$. We say $f$ is {\it flat at $x$}
 if the map of rings $\mathcal{O}_{Y, f(x)} \to \mathcal{O}_{X, x}$ is flat.
 We say $f$ is {\it flat} if $f$ is flat at every $x \in X$.
 \end{definition}
@@ -2995,6 +3188,24 @@ $f^{-1}\mathcal{O}_Y$-module because
 $(f^{-1}\mathcal{O}_Y)_x = \mathcal{O}_{Y, f(x)}$ by
 Sheaves, Lemma \ref{sheaves-lemma-stalk-pullback}.
 
+\begin{lemma}
+\label{lemma-pullback-tensor-flat-module}
+Let $f : X \to Y$ be a morphism of ringed spaces. Let $\mathcal{F}$
+be an $\mathcal{O}_X$-module flat over $Y$. Then the functor
+$$
+\textit{Mod}(\mathcal{O}_Y) \to \textit{Mod}(\mathcal{O}_X),\quad
+\mathcal{G} \longmapsto f^*\mathcal{G} \otimes_{\mathcal{O}_X} \mathcal{F}
+$$
+is exact.
+\end{lemma}
+
+\begin{proof}
+This is true because
+$f^*\mathcal{G} \otimes_{\mathcal{O}_X} \mathcal{F} =
+f^{-1}\mathcal{G} \otimes_{f^{-1}\mathcal{O}_Y} \mathcal{F}$,
+the functor $f^{-1}$ is exact, and $\mathcal{F}$ is a flat
+$f^{-1}\mathcal{O}_Y$-module.
+\end{proof}
 
 
 
@@ -3330,23 +3541,79 @@ is exact.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $\mathcal{F}_2 \to \mathcal{F}_1 \to \mathcal{F} \to 0$
+be as in (1). For every $U \subset X$ open the sequence
+$$
+0 \to \Hom_{\mathcal{O}_U}(\mathcal{F}|_U, \mathcal{G}|_U) \to
+\Hom_{\mathcal{O}_U}(\mathcal{F}_1|_U, \mathcal{G}|_U) \to
+\Hom_{\mathcal{O}_U}(\mathcal{F}_2|_U, \mathcal{G}|_U)
+$$
+is exact by Homology, Lemma \ref{homology-lemma-check-exactness}.
+This means that
+taking sections over $U$ of the sequence of sheaves in (1) produces
+an exact sequence of abelian groups. Hence the sequence in (1) is exact
+by definition. The proof of (2) is exactly the same.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-adjoint-tensor-restrict}
+Let $X$ be a topological space. Let $\mathcal{O}_1 \to \mathcal{O}_2$
+be a homomorphism of sheaves of rings. Then we have
+$$
+\Hom_{\mathcal{O}_1}(\mathcal{F}_{\mathcal{O}_1}, \mathcal{G}) =
+\Hom_{\mathcal{O}_2}(\mathcal{F},
+\SheafHom_{\mathcal{O}_1}(\mathcal{O}_2, \mathcal{G}))
+$$
+bifunctorially in $\mathcal{F} \in \textit{Mod}(\mathcal{O}_2)$
+and $\mathcal{G} \in \textit{Mod}(\mathcal{O}_1)$.
+\end{lemma}
+
+\begin{proof}
+Omitted. This is the analogue of
+Algebra, Lemma \ref{algebra-lemma-adjoint-hom-restrict}
+and is proved in exactly the same way.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-stalk-internal-hom}
 Let $(X, \mathcal{O}_X)$ be a ringed space.
 Let $\mathcal{F}$, $\mathcal{G}$ be $\mathcal{O}_X$-modules.
-If $\mathcal{F}$ is finitely presented then the canonical map
+If $\mathcal{F}$ is of finite type then the canonical map
 $$
 \SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G})_x
 \to
 \Hom_{\mathcal{O}_{X, x}}(\mathcal{F}_x, \mathcal{G}_x)
 $$
-is an isomorphism.
+is injective.
+If $\mathcal{F}$ is finitely presented,
+this canonical morphism is an isomorphism.
 \end{lemma}
 
 \begin{proof}
+The map sends the equivalence class of
+$(U, \varphi)$ in $\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G})_x$,
+where $x \in U \subset X$ is open and
+$\varphi \in \Hom_{\mathcal{O}_U}(\mathcal{F}|_U, \mathcal{G}|_U)$,
+to the the induced map on stalks at $x$, namely
+$\varphi_x : \mathcal{F}_x \to \mathcal{G}_x$.
+
+\medskip\noindent
+Suppose $\mathcal{F}$ is of finite type.
+Pick a representative $(U, \varphi)$ of an element $\sigma$
+in the kernel of the map, i.e., $\varphi_x = 0$.
+Shrinking $U$ if necessary, choose sections
+$s^1, \ldots, s^n \in \mathcal{F}(U)$ generating $\mathcal{F}|_U$.
+Since $\varphi_x(s^i_x) = 0$
+and we are dealing with a finite number of sections,
+we can find an open neighborhood 
+$V \subset U$ of $x$ such that $\varphi_V(s^i|_V)=0$
+for all $i = 1, \ldots, n$. Since $s^i|_V$, $i = 1, \ldots, n$ generate
+$\mathcal{F}|_V$ this means that $\varphi|_V = 0$.
+Since $(U, \varphi)$ is equivalent to $(V, \varphi|_V)$
+we conclude $\sigma = 0$ and injectivity of the map follows.
+
+\medskip\noindent
+Next, assume $\mathcal{F}$ is finitely presented.
 By localizing on $X$ we may assume that $\mathcal{F}$ has a presentation
 $$
 \bigoplus\nolimits_{j = 1, \ldots, m}
@@ -3419,8 +3686,8 @@ Note that $f^*\mathcal{F}$ is also finitely presented
 Let $x \in X$ map to $y \in Y$. Looking at the stalks
 at $x$ we get an isomorphism by
 Lemma \ref{lemma-stalk-internal-hom} and
-More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}
+More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}
 to see that in this case $\Hom$ commutes with base change by
 $\mathcal{O}_{Y, y} \to \mathcal{O}_{X, x}$.
 Second proof: use the exact same argument as given
@@ -3448,22 +3715,223 @@ Lemma \ref{lemma-coherent-abelian}.
 \end{proof}
 
 \begin{lemma}
-\label{lemma-adjoint-tensor-restrict}
-Let $X$ be a topological space. Let $\mathcal{O}_1 \to \mathcal{O}_2$
-be a homomorphism of sheaves of rings. Then we have
+\label{lemma-hom-finite-presentation-colimit}
+Let $X$ be a ringed space. Let $\mathcal{F}$ be an $\mathcal{O}_X$-module
+of finite presentation. Let
+$\mathcal{G} = \colim_{\lambda \in \Lambda} \mathcal{G}_\lambda$
+be a filtered colimit of $\mathcal{O}_X$-modules. Then the canonical map
 $$
-\Hom_{\mathcal{O}_1}(\mathcal{F}_{\mathcal{O}_1}, \mathcal{G}) =
-\Hom_{\mathcal{O}_2}(\mathcal{F},
-\SheafHom_{\mathcal{O}_1}(\mathcal{O}_2, \mathcal{G}))
+\colim_\lambda \SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}_\lambda)
+\longrightarrow
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G})
 $$
-bifunctorially in $\mathcal{F} \in \textit{Mod}(\mathcal{O}_2)$
-and $\mathcal{G} \in \textit{Mod}(\mathcal{O}_1)$.
+is an isomorphism.
 \end{lemma}
 
 \begin{proof}
-Omitted. This is the analogue of
-Algebra, Lemma \ref{algebra-lemma-adjoint-hom-restrict}
-and is proved in exactly the same way.
+Taking colimits of sheaves of modules commutes with restriction to opens, see
+Sheaves, Section \ref{sheaves-section-limits-sheaves}. Hence we may assume
+$\mathcal{F}$ has a global presentation
+$$
+\bigoplus\nolimits_{j = 1, \ldots, m}
+\mathcal{O}_X
+\longrightarrow
+\bigoplus\nolimits_{i = 1, \ldots, n}
+\mathcal{O}_X
+\to
+\mathcal{F}
+\to
+0
+$$
+The functor $\SheafHom_{\mathcal{O}_X}(-, -)$ commutes with finite direct sums
+in either variable and $\SheafHom_{\mathcal{O}_X}(\mathcal{O}_X, -)$
+is the identity functor. By this and by Lemma \ref{lemma-internal-hom-exact}
+we obtain an exact sequence
+$$
+0 \to
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}) \to
+\bigoplus\nolimits_{i = 1, \ldots, n} \mathcal{G} \to
+\bigoplus\nolimits_{j = 1, \ldots, m} \mathcal{G}
+$$
+Since filtered colimits are exact in $\textit{Mod}(\mathcal{O}_X)$
+also the top row in the following commutative diagram is exact
+$$
+\xymatrix{
+0 \ar[r] &
+\colim_\lambda \SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}_\lambda)
+\ar[r] \ar[d] &
+\colim_\lambda \bigoplus\nolimits_{i = 1, \ldots, n} \mathcal{G}_\lambda
+\ar[r] \ar[d] &
+\colim_\lambda \bigoplus\nolimits_{j = 1, \ldots, m} \mathcal{G}_\lambda
+\ar[d] \\
+0 \ar[r] &
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G}) \ar[r] &
+\bigoplus\nolimits_{i = 1, \ldots, n} \mathcal{G} \ar[r] &
+\bigoplus\nolimits_{j = 1, \ldots, m} \mathcal{G}
+}
+$$
+Since the right two vertical arrows are isomorphisms we conclude.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-finite-presentation-quasi-compact-colimit}
+Let $X$ be a ringed space.
+Let $I$ be a preordered set and
+let $(\mathcal{F}_i, \varphi_{ii'})$ be a system over $I$
+consisting of sheaves of $\mathcal{O}_X$-modules
+(see Categories, Section \ref{categories-section-posets-limits}).
+Assume
+\begin{enumerate}
+\item $I$ is directed,
+\item $\mathcal{G}$ is an $\mathcal{O}_X$-module of finite presentation, and
+\item $X$ has a cofinal system of open coverings
+$\mathcal{U} : X = \bigcup_{j\in J} U_j$ with
+$J$ finite and $U_j \cap U_{j'}$ quasi-compact
+for all $j, j' \in J$.
+\end{enumerate}
+Then we have
+$$
+\colim_i \Hom_X(\mathcal{G}, \mathcal{F}_i)
+=
+\Hom_X(\mathcal{G}, \colim_i \mathcal{F}_i).
+$$
+\end{lemma}
+
+\begin{proof}
+Set
+$\mathcal{H} = \SheafHom_{\mathcal{O}_X}(\mathcal{G}, \colim \mathcal{F}_i)$
+and $\mathcal{H}_i = \SheafHom_{\mathcal{O}_X}(\mathcal{G}, \mathcal{F}_i)$.
+Recall that
+$$
+\Hom_X(\mathcal{G}, \mathcal{F}) = \Gamma(X, \mathcal{H})
+\quad\text{and}\quad
+\Hom_X(\mathcal{G}, \mathcal{F}_i) = \Gamma(X, \mathcal{H}_i)
+$$
+by construction. By Lemma \ref{lemma-hom-finite-presentation-colimit} we have
+$\mathcal{H} = \colim \mathcal{H}_i$. Thus the lemma follows from
+Sheaves, Lemma \ref{sheaves-lemma-directed-colimits-sections}.
+\end{proof}
+
+\begin{remark}
+\label{remark-condition-necessary}
+In the lemma above some condition beyond the condition that $X$
+is quasi-compact is necessary. See
+Sheaves, Example \ref{sheaves-example-conditions-needed-colimit}.
+\end{remark}
+
+
+
+
+\section{The annihilator of a sheaf of modules}
+\label{section-annihilator}
+
+\noindent
+Let $(X, \mathcal{O}_X)$ be a ringed space.
+Let $\mathcal{F}$ be an $\mathcal{O}_X$-module.
+There is a canonical map of sheaves of $\mathcal{O}_X$-modules
+$$
+\mathcal{O}_X
+\longrightarrow
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{F})
+$$
+which sends a local section $f \in \mathcal{O}_X(U)$ to the map
+$f : \mathcal{F}|_U \to \mathcal{F}|_U$ given by multiplication by $f$.
+
+\begin{definition}
+\label{definition-annihilator-sheaf}
+Let $(X, \mathcal{O}_X)$ be a ringed space and let $\mathcal{F}$
+be an $\mathcal{O}_X$-module. The {\it annihilator} of $\mathcal{F}$,
+denoted $\text{Ann}_{\mathcal{O}_X}(\mathcal{F})$
+is the kernel of the map
+$\mathcal{O}_X \to \SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{F})$
+discussed above.
+\end{definition}
+
+\noindent
+For each $x\in X$, there is an inclusion of ideals of $\mathcal{O}_{X, x}$:
+\begin{equation}
+\label{equation-inclusion-of-annihilator-ideals}
+(\text{Ann}_{\mathcal{O}_X}(\mathcal{F}))_x
+\subset
+\text{Ann}_{\mathcal{O}_{X, x}}(\mathcal{F}_x)
+\end{equation}
+since after all any section of $\text{Ann}_{\mathcal{O}_X}(\mathcal{F})$
+will annihilate the stalks of $\mathcal{F}$ at all points at which it is
+defined. Here is a simple situation in which
+(\ref{equation-inclusion-of-annihilator-ideals}) becomes an equality.
+
+\begin{lemma}
+\label{lemma-finite-type-annihilator-stalk}
+Let $(X, \mathcal{O}_X)$ be a ringed space and let
+$\mathcal{F}$ be a sheaf of $\mathcal{O}_X$-modules.
+If $\mathcal{F}$ is of finite type, then
+$(\text{Ann}_{\mathcal{O}_X}(\mathcal{F}))_x =
+\text{Ann}_{\mathcal{O}_{X, x}}(\mathcal{F}_x)$.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-stalk-internal-hom} the map
+$$
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{F})_x \longrightarrow
+\Hom_{\mathcal{O}_{X,x}}(\mathcal{F}_x, \mathcal{F}_x)
+$$
+is injective. Thus any section $f$ of $\mathcal{O}_X$ over an open
+neighbourhood $U$ of $x$ which acts as zero on $\mathcal{F}_x$
+will act as zero on $\mathcal{F}|_V$ for some $U \supset V \ni x$ open.
+Hence the inclusion (\ref{equation-inclusion-of-annihilator-ideals})
+is an equality.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-induced-quotient-ring-sheaf-module-structure}
+Let $(X, \mathcal{O}_X)$ be a ringed space, let $\mathcal{F}$ be an
+$\mathcal{O}_X$-module and let $\mathcal{I} \subset \mathcal{O}_X$
+be an ideal sheaf. If
+$\mathcal{I} \subset \text{Ann}_{\mathcal{O}_X}(\mathcal{F})$,
+then $\mathcal{F}$ has a natural $\mathcal{O}_X/\mathcal{I}$-module structure
+which agrees with the usual commutative algebra construction on stalks.
+\end{lemma}
+
+\begin{proof}
+Applying the universal property of the cokernel of the inclusion
+$\mathcal{I} \to \mathcal{O}_X$, we obtain a commutative diagram
+$$
+\xymatrix{
+\mathcal{O}_X \ar[r] \ar[d] &
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{F}) \\
+\mathcal{O}_X/\mathcal{I} \ar@{-->}[ur]
+}
+$$
+of $\mathcal{O}_X$-modules. By Lemma \ref{lemma-internal-hom}
+the resulting map $\mathcal{O}_X/\mathcal{I} \to
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{F})$
+corresponds to a map of $\mathcal{O}_X$-modules
+$$
+\mathcal{O}_X/\mathcal{I} \otimes_{\mathcal{O}_X} \mathcal{F}
+\longrightarrow
+\mathcal{F}
+$$
+which means we have an $\mathcal{O}_X/\mathcal{I}$-module structure
+on $\mathcal{F}$ compatible with the given $\mathcal{O}_X$-module structure.
+We omit the verification of the statement on stalks.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-coherent-annihilator}
+Let $(X,\mathcal{O}_X)$ be a ringed space.
+If $\mathcal{O}_X$ and $\mathcal{F}$ are coherent,
+then so is $\text{Ann}_{\mathcal{O}_X}(\mathcal{F})$.
+\end{lemma}
+
+\begin{proof}
+Since $\text{Ann}_{\mathcal{O}_X}(\mathcal{F})$ is the kernel of
+$\mathcal{O}_X \to \SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{F})$
+by Lemma \ref{lemma-coherent-abelian} it suffices
+to show that $\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{F})$ is
+coherent. This follows from 
+Lemma \ref{lemma-internal-hom-locally-kernel-direct-sum}
+and the fact that $\mathcal{F}$ is coherent and a fortiori finitely presented
+(Lemma \ref{lemma-coherent-finite-presentation}).
 \end{proof}
 
 
@@ -3888,7 +4356,7 @@ Clearly, for every $x' \in U$ we see that $s$ generates
 the module $\mathcal{L}_{x'}$. Hence $U \subset X_s$.
 This proves that $X_s$ is open. Moreover, the section
 $t$ constructed over $U$ above is unique, and hence
-these glue to give te section $s'$ of the lemma.
+these glue to give the section $s'$ of the lemma.
 \end{proof}
 
 \noindent
@@ -3905,16 +4373,16 @@ $f^*s \in \Gamma(Y, f^*\mathcal{L})$ is the pullback of $s$.
 
 \noindent
 Let $(X, \mathcal{O}_X)$ be a ringed space. Consider the category
-$\mathcal{C}$ of finite locally free $\mathcal{O}_X$-modules.
+$\textit{Vect}(X)$ of finite locally free $\mathcal{O}_X$-modules.
 This is an exact category
 (see Injectives, Remark \ref{injectives-remark-embed-exact-category})
 whose admissible epimorphisms are
 surjections and whose admissible monomorphisms are kernels of
 surjections. Moreover, there is a set of isomorphism classes
-of objects of $\mathcal{C}$ (proof omitted). Thus we can form
-the Grothendieck $K$-group $K(\mathcal{C})$, which is often denoted
-$K_0^{naive}(X)$. Explicitly, in this case $K_0^{naive}(X)$ is
-the abelian group generated by $[\mathcal{E}]$ for $\mathcal{E}$
+of objects of $\textit{Vect}(X)$ (proof omitted). Thus we can form
+the zeroth Grothendieck $K$-group $K_0(\textit{Vect}(X))$.
+Explicitly, in this case $K_0(\textit{Vect}(X))$
+is the abelian group generated by $[\mathcal{E}]$ for $\mathcal{E}$
 a finite locally free $\mathcal{O}_X$-module, subject to the relations
 $$
 [\mathcal{E}'] = [\mathcal{E}] + [\mathcal{E}'']
@@ -3924,26 +4392,27 @@ $0 \to \mathcal{E}' \to \mathcal{E} \to \mathcal{E}'' \to 0$
 of finite locally free $\mathcal{O}_X$-modules.
 
 \medskip\noindent
-Ranks. Given a finite locally free $\mathcal{O}_X$-module $\mathcal{E}$,
+{\bf Ranks.} Assume all stalks $\mathcal{O}_{X, x}$ are nonzero rings.
+Given a finite locally free $\mathcal{O}_X$-module $\mathcal{E}$,
 the {\it rank} is a locally constant function
 $$
-r = r_\mathcal{E} : X \longrightarrow \mathbf{Z}_{\geq 0},\quad
+\text{rank}_\mathcal{E} : X \longrightarrow \mathbf{Z}_{\geq 0},\quad
 x \longmapsto \text{rank}_{\mathcal{O}_{X, x}} \mathcal{E}_x
 $$
-This makes sense as $\mathcal{E}_x \cong \mathcal{O}_{X, x}^{\oplus r(x)}$
-and this uniquely determines $r(x)$. By definition of locally free
-modules the function $r$ is locally constant. If 
+See Lemma \ref{lemma-rank}. By definition of locally free
+modules the function $\text{rank}_\mathcal{E}$ is locally constant. If 
 $0 \to \mathcal{E}' \to \mathcal{E} \to \mathcal{E}'' \to 0$
 is a short exact sequence of finite locally free $\mathcal{O}_X$-modules,
-then $r_\mathcal{E} = r_{\mathcal{E}'} + r_{\mathcal{E}''}$,
+then $\text{rank}_\mathcal{E} = \text{rank}_{\mathcal{E}'} +
+\text{rank}_{\mathcal{E}''}$,
 Thus the rank defines a homomorphism
 $$
-K_0^{naive}(X) \longrightarrow \text{Map}_{cont}(X, \mathbf{Z}),\quad
-[\mathcal{E}] \longmapsto r_\mathcal{E}
+K_0(\textit{Vect}(X)) \longrightarrow \text{Map}_{cont}(X, \mathbf{Z}),\quad
+[\mathcal{E}] \longmapsto \text{rank}_\mathcal{E}
 $$
 
 \medskip\noindent
-Determinants. Given a  finite locally free
+{\bf Determinants.} Given a  finite locally free
 $\mathcal{O}_X$-module $\mathcal{E}$ we obtain a disjoint union
 decomposition
 $$
@@ -3951,23 +4420,24 @@ X = X_0 \amalg X_1 \amalg X_2 \amalg \ldots
 $$
 with $X_i$ open and closed, such that $\mathcal{E}$ is finite locally
 free of rank $i$ on $X_i$ (this is exactly the same as saying the
-$r_\mathcal{E}$ is locally constant). In this case we define
+$\text{rank}_\mathcal{E}$ is locally constant). In this case we define
 $\det(\mathcal{E})$ as the invertible sheaf on $X$ which is equal to
 $\wedge^i(\mathcal{E}|_{X_i})$ on $X_i$ for all $i \geq 0$.
 Since the decomposition above is disjoint, there are no glueing
 conditions to check. By Lemma \ref{lemma-det-ses} below
 this defines a homomorphism
 $$
-\det : K_0^{naive}(X) \longrightarrow \Pic(X),\quad
+\det : K_0(\textit{Vect}(X)) \longrightarrow \Pic(X),\quad
 [\mathcal{E}] \longmapsto \det(\mathcal{E})
 $$
-of abelian groups.
+of abelian groups. The elements of $\Pic(X)$ we get in this manner
+are locally free of rank $1$ (see below the lemma for a generalization).
 
 \begin{lemma}
 \label{lemma-det-ses}
 Let $X$ be a ringed space. Let
 $0 \to \mathcal{E}' \to \mathcal{E} \to \mathcal{E}'' \to 0$
-be a short exact sequence of finite locally free $\mathcal{O}_X$-modules,
+be a short exact sequence of finite locally free $\mathcal{O}_X$-modules.
 Then there is a canonical isomorphism
 $$
 \det(\mathcal{E}') \otimes_{\mathcal{O}_X}\det(\mathcal{E}'')
@@ -4001,6 +4471,84 @@ $$
 where $\tilde s''_i$ is a local lift of the section
 $s''_i$ to a section of $\mathcal{E}$. We omit the details.
 \end{proof}
+
+\noindent
+Let $(X, \mathcal{O}_X)$ be a ringed space. Instead of looking at
+finite locally free $\mathcal{O}_X$-modules we can look at those
+$\mathcal{O}_X$-modules $\mathcal{F}$ which are locally on $X$
+a direct summand of a finite free $\mathcal{O}_X$-module. This is the same
+thing as asking $\mathcal{F}$ to be a flat $\mathcal{O}_X$-module of
+finite presentation, see Lemma \ref{lemma-flat-locally-finite-presentation}.
+If all the stalks $\mathcal{O}_{X, x}$ are local, then such a module
+$\mathcal{F}$ is finite locally free, see
+Lemma \ref{lemma-direct-summand-of-locally-free-is-locally-free}.
+In general however this will not be the case; for
+example $X$ could be a point and $\Gamma(X, \mathcal{O}_X)$ could
+be the product $A \times B$ of two nonzero rings and $\mathcal{F}$
+could correspond to $A \times 0$.
+Thus for such a module the rank function is undefined.
+However, it turns out we can still define $\det(\mathcal{F})$
+and this will be an invertible $\mathcal{O}_X$-module in the sense of
+Definition \ref{definition-invertible} (not necessarily locally
+free of rank $1$). Our construction will agree with the one above
+in the case that $\mathcal{F}$ is finite locally free.
+We urge the reader to skip the rest of this section.
+
+\begin{lemma}
+\label{lemma-determinant-as-socle}
+Let $(X, \mathcal{O}_X)$ be a ringed space. Let $\mathcal{F}$
+be a flat and finitely presented $\mathcal{O}_X$-module.
+Denote
+$$
+\det(\mathcal{F}) \subset
+\wedge^*_{\mathcal{O}_X}(\mathcal{F})
+$$
+the annihilator of $\mathcal{F} \subset \wedge^*_{\mathcal{O}_X}(\mathcal{F})$.
+Then $\det(\mathcal{F})$ is an invertible $\mathcal{O}_X$-module.
+\end{lemma}
+
+\begin{proof}
+To prove this we may work locally on $X$. Hence we may assume $\mathcal{F}$
+is a direct summand of a finite free module, see
+Lemma \ref{lemma-flat-locally-finite-presentation}. Say
+$\mathcal{F} \oplus \mathcal{G} = \mathcal{O}_X^{\oplus n}$.
+Set $R = \mathcal{O}_X(X)$. Then we see
+$\mathcal{F}(X) \oplus \mathcal{G}(X) = R^{\oplus n}$
+and correspondingly
+$\mathcal{F}(U) \oplus \mathcal{G}(U) = \mathcal{O}_X(U)^{\oplus n}$
+for all opens $U \subset X$.
+We conclude that $\mathcal{F} = \mathcal{F}_M$ as in
+Lemma \ref{lemma-construct-quasi-coherent-sheaves}
+with $M = \mathcal{F}(X)$ a finite projective $R$-module.
+In other words, we have $\mathcal{F}(U) = M \otimes_R \mathcal{O}_X(U)$.
+This implies that
+$\det(M) \otimes_R \mathcal{O}_X(U) = \det(\mathcal{F}(U))$
+for all open $U \subset X$ with $\det$ as in
+More on Algebra, Section \ref{more-algebra-section-determinants}. By
+More on Algebra, Remark \ref{more-algebra-remark-determinant-as-socle}
+we see that
+$$
+\det(M) \otimes_R \mathcal{O}_X(U) =
+\det(\mathcal{F}(U)) \subset
+\wedge^*_{\mathcal{O}_X(U)}(\mathcal{F}(U))
+$$
+is the annihilator of $\mathcal{F}(U)$. We conclude that
+$\det(\mathcal{F})$ as defined in the statement of the lemma
+is equal to $\mathcal{F}_{\det(M)}$. Some details omitted; one has
+to be careful as annihilators cannot be defined as the sheafification
+of taking annihilators on sections over opens. Thus $\det(\mathcal{F})$
+is the pullback of an invertible module and we conclude.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4070,7 +4618,7 @@ presheaf of rings. Let $\mathcal{S} \subset \mathcal{O}_X$
 be a presheaf of sets contained in $\mathcal{O}_X$.
 Suppose that for every open $U \subset X$ the set
 $\mathcal{S}(U) \subset \mathcal{O}_X(U)$ is a multiplicative subset.
-Let $\mathcal{F}$ be a presheaf of $\mathcal{O}_X$-modules
+Let $\mathcal{F}$ be a presheaf of $\mathcal{O}_X$-modules.
 In this case we can consider the presheaf of
 $\mathcal{S}^{-1}\mathcal{O}_X$-modules
 $$
@@ -4130,7 +4678,7 @@ a look at the corresponding section in the chapter on commutative algebra
 \label{definition-derivation}
 Let $X$ be a topological space. Let $\varphi : \mathcal{O}_1 \to \mathcal{O}_2$
 be a homomorphism of sheaves of rings. Let $\mathcal{F}$ be an
-$\mathcal{O}_2$-module. A {\it $\mathcal{O}_1$-derivation} or more precisely
+$\mathcal{O}_2$-module. An {\it $\mathcal{O}_1$-derivation} or more precisely
 a {\it $\varphi$-derivation} into $\mathcal{F}$ is a map
 $D : \mathcal{O}_2 \to \mathcal{F}$ which is additive, annihilates the image
 of $\mathcal{O}_1 \to \mathcal{O}_2$, and satisfies the
@@ -4178,7 +4726,7 @@ This is proved in exactly the same way as the analogous statement in algebra.
 During this proof, for any sheaf of sets $\mathcal{F}$ on $X$,
 let us denote $\mathcal{O}_2[\mathcal{F}]$ the sheafification of the
 presheaf $U \mapsto \mathcal{O}_2(U)[\mathcal{F}(U)]$ where this denotes
-the free $\mathcal{O}_1(U)$-module on the set $\mathcal{F}(U)$.
+the free $\mathcal{O}_2(U)$-module on the set $\mathcal{F}(U)$.
 For $s \in \mathcal{F}(U)$ we denote $[s]$ the corresponding section
 of $\mathcal{O}_2[\mathcal{F}]$ over $U$. If $\mathcal{F}$ is a sheaf of
 $\mathcal{O}_2$-modules, then there is a canonical map
@@ -4321,10 +4869,10 @@ $\Omega_{\mathcal{O}_2/\mathcal{O}_1, x} =
 
 \begin{proof}
 This is a special case of Lemma \ref{lemma-pullback-differentials}
-for the inclusion map $\{x\} \to X$. An alternative proof is the use
+for the inclusion map $\{x\} \to X$. An alternative proof is to use
 Lemma \ref{lemma-differentials-sheafify},
 Sheaves, Lemma \ref{sheaves-lemma-stalk-sheafification}, and
-Algebra, Lemma \ref{algebra-lemma-colimit-differentials}
+Algebra, Lemma \ref{algebra-lemma-colimit-differentials}.
 \end{proof}
 
 \begin{lemma}
@@ -4524,6 +5072,461 @@ as maps $(f \circ g)^*\Omega_{X/S} \to \Omega_{X''/S''}$.
 \begin{proof}
 Omitted.
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Finite order differential operators}
+\label{section-differential-operators}
+
+\noindent
+In this section we introduce differential operators of finite order.
+We suggest the reader take a look at the corresponding section
+in the chapter on commutative algebra
+(Algebra, Section \ref{algebra-section-differential-operators}).
+
+\begin{definition}
+\label{definition-differential-operators}
+Let $X$ be a topological space. Let $\varphi : \mathcal{O}_1 \to \mathcal{O}_2$
+be a homomorphism of sheaves of rings on $X$. Let $k \geq 0$ be an integer.
+Let $\mathcal{F}$, $\mathcal{G}$ be sheaves of $\mathcal{O}_2$-modules.
+A {\it differential operator $D : \mathcal{F} \to \mathcal{G}$ of order $k$}
+is an is an $\mathcal{O}_1$-linear map such that for all local sections
+$g$ of $\mathcal{O}_2$ the map $s \mapsto D(gs) - gD(s)$ is a
+differential operator of order $k - 1$. For the base case $k = 0$
+we define a differential operator of order $0$ to be an
+$\mathcal{O}_2$-linear map.
+\end{definition}
+
+\noindent
+If $D : \mathcal{F} \to \mathcal{G}$ is a differential operator of order $k$,
+then for all local sections $g$ of $\mathcal{O}_2$ the map $gD$ is a
+differential operator of order $k$. The sum of two differential operators of
+order $k$ is another. Hence the set of all these
+$$
+\text{Diff}^k(\mathcal{F}, \mathcal{G}) =
+\text{Diff}^k_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F}, \mathcal{G})
+$$
+is a $\Gamma(X, \mathcal{O}_2)$-module. We have
+$$
+\text{Diff}^0(\mathcal{F}, \mathcal{G}) \subset
+\text{Diff}^1(\mathcal{F}, \mathcal{G}) \subset
+\text{Diff}^2(\mathcal{F}, \mathcal{G}) \subset \ldots
+$$
+The rule which maps $U \subset X$ open to the module of
+differential operators $D : \mathcal{F}|_U \to \mathcal{G}|_U$
+of order $k$ is a sheaf of $\mathcal{O}_2$-modules on $X$.
+Thus we obtain a sheaf of differential operators (if we ever need this we will
+add a definition here).
+
+\begin{lemma}
+\label{lemma-composition-differential-operators}
+Let $X$ be a topological space.
+Let $\mathcal{O}_1 \to \mathcal{O}_2$ be a map of sheaves of rings on $X$.
+Let $\mathcal{E}, \mathcal{F}, \mathcal{G}$ be sheaves of
+$\mathcal{O}_2$-modules.
+If $D : \mathcal{E} \to \mathcal{F}$ and $D' : \mathcal{F} \to \mathcal{G}$
+are differential operators of order $k$ and $k'$, then $D' \circ D$ is a
+differential operator of order $k + k'$.
+\end{lemma}
+
+\begin{proof}
+Let $g$ be a local section of $\mathcal{O}_2$.
+Then the map which sends a local section $x$ of $\mathcal{E}$ to
+$$
+D'(D(gx)) - gD'(D(x)) = D'(D(gx)) - D'(gD(x)) + D'(gD(x)) - gD'(D(x))
+$$
+is a sum of two compositions of differential operators of lower order.
+Hence the lemma follows by induction on $k + k'$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-module-principal-parts}
+Let $X$ be a topological space.
+Let $\mathcal{O}_1 \to \mathcal{O}_2$ be a map of sheaves of rings on $X$.
+Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_2$-modules.
+Let $k \geq 0$. There exists a sheaf of $\mathcal{O}_2$-modules
+$\mathcal{P}^k_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F})$
+and a canonical isomorphism
+$$
+\text{Diff}^k_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F}, \mathcal{G}) =
+\Hom_{\mathcal{O}_2}(
+\mathcal{P}^k_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F}), \mathcal{G})
+$$
+functorial in the $\mathcal{O}_2$-module $\mathcal{G}$.
+\end{lemma}
+
+\begin{proof}
+The existence follows from general category theoretic arguments
+(insert future reference here), but we will also give a direct
+construction as this construction will be useful in the future proofs.
+We will freely use the notation introduced in the proof of
+Lemma \ref{lemma-universal-module}.
+Given any differential operator $D : \mathcal{F} \to \mathcal{G}$
+we obtain an $\mathcal{O}_2$-linear map
+$L_D : \mathcal{O}_2[\mathcal{F}] \to \mathcal{G}$
+sending $[m]$ to $D(m)$. If $D$ has order $0$
+then $L_D$ annihilates the local sections
+$$
+[m + m'] - [m] - [m'],\quad
+g_0[m] - [g_0m]
+$$
+where $g_0$ is a local section of $\mathcal{O}_2$ and $m, m'$
+are local sections of $\mathcal{F}$. If $D$ has order $1$, then $L_D$
+annihilates the local sections
+$$
+[m + m' - [m] - [m'],\quad
+f[m] - [fm], \quad
+g_0g_1[m] - g_0[g_1m] - g_1[g_0m] + [g_1g_0m]
+$$
+where $f$ is a local section of $\mathcal{O}_1$,
+$g_0, g_1$ are local sections of $\mathcal{O}_2$, and
+$m, m'$ are local sections of $\mathcal{F}$.
+If $D$ has order $k$, then $L_D$ annihilates the local sections
+$[m + m'] - [m] - [m']$, $f[m] - [fm]$, and the local sections
+$$
+g_0g_1\ldots g_k[m] - \sum g_0 \ldots \hat g_i \ldots g_k[g_im] + \ldots
++(-1)^{k + 1}[g_0\ldots g_km]
+$$
+Conversely, if $L : \mathcal{O}_2[\mathcal{F}] \to \mathcal{G}$ is an
+$\mathcal{O}_2$-linear map annihilating all the local sections
+listed in the previous sentence, then $m \mapsto L([m])$ is a
+differential operator of order $k$. Thus we see that
+$\mathcal{P}^k_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F})$
+is the quotient of $\mathcal{O}_2[\mathcal{F}]$
+by the $\mathcal{O}_2$-submodule generated by these local sections.
+\end{proof}
+
+\begin{definition}
+\label{definition-module-principal-parts}
+Let $X$ be a topoological space.
+Let $\mathcal{O}_1 \to \mathcal{O}_2$ be a map of sheaves of rings on $X$.
+Let $\mathcal{F}$ be a sheaf of $\mathcal{O}_2$-modules.
+The module $\mathcal{P}^k_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F})$
+constructed in Lemma \ref{lemma-module-principal-parts}
+is called the {\it module of principal parts of order $k$} of $\mathcal{F}$.
+\end{definition}
+
+\noindent
+Note that the inclusions
+$$
+\text{Diff}^0(\mathcal{F}, \mathcal{G}) \subset
+\text{Diff}^1(\mathcal{F}, \mathcal{G}) \subset
+\text{Diff}^2(\mathcal{F}, \mathcal{G}) \subset \ldots
+$$
+correspond via Yoneda's lemma (Categories, Lemma \ref{categories-lemma-yoneda})
+to surjections
+$$
+\ldots \to \mathcal{P}^2_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F})
+\to \mathcal{P}^1_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F})
+\to \mathcal{P}^0_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F}) = \mathcal{F}
+$$
+
+\begin{lemma}
+\label{lemma-differential-operators-sheafify}
+Let $X$ be a topological space. Let $\mathcal{O}_1 \to \mathcal{O}_2$
+be a homomorphism of presheaves of rings on $X$. Let $\mathcal{F}$ be a
+presheaf of $\mathcal{O}_2$-modules. Then
+$\mathcal{P}^k_{\mathcal{O}_2^\#/\mathcal{O}_1^\#}(\mathcal{F}^\#)$
+is the sheaf associated to the presheaf
+$U \mapsto P^k_{\mathcal{O}_2(U)/\mathcal{O}_1(U)}(\mathcal{F}(U))$.
+\end{lemma}
+
+\begin{proof}
+This can be proved in exactly the same way as is done for the sheaf
+of differentials in Lemma \ref{lemma-differentials-sheafify}.
+Perhaps a more pleasing approach is to use the universal property
+of Lemma \ref{lemma-module-principal-parts} directly to see the equality.
+We omit the details.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-sequence-of-principal-parts}
+Let $X$ be a topological space. Let $\mathcal{O}_1 \to \mathcal{O}_2$
+be a homomorphism of sheaves of rings on $X$. Let $\mathcal{F}$ be a
+sheaf of $\mathcal{O}_2$-modules. There is a
+canonical short exact sequence
+$$
+0 \to
+\Omega_{\mathcal{O}_2/\mathcal{O}_1} \otimes_{\mathcal{O}_2} \mathcal{F} \to
+\mathcal{P}^1_{\mathcal{O}_2/\mathcal{O}_1}(\mathcal{F}) \to
+\mathcal{F} \to 0
+$$
+functorial in $\mathcal{F}$ called the {\it sequence of principal parts}.
+\end{lemma}
+
+\begin{proof}
+Follows from the commutative algebra version
+(Algebra, Lemma \ref{algebra-lemma-sequence-of-principal-parts})
+and Lemmas \ref{lemma-differentials-sheafify} and
+\ref{lemma-differential-operators-sheafify}.
+\end{proof}
+
+\begin{remark}
+\label{remark-functoriality-principal-parts}
+Let $X$ be a topological space. Suppose given a commutative diagram of
+sheaves of rings
+$$
+\xymatrix{
+\mathcal{B} \ar[r] & \mathcal{B}' \\
+\mathcal{A} \ar[u] \ar[r] & \mathcal{A}' \ar[u]
+}
+$$
+on $X$, a $\mathcal{B}$-module $\mathcal{F}$,
+a $\mathcal{B}'$-module $\mathcal{F}'$, and
+a $\mathcal{B}$-linear map $\mathcal{F} \to \mathcal{F}'$.
+Then we get a compatible system of module maps
+$$
+\xymatrix{
+\ldots \ar[r] &
+\mathcal{P}^2_{\mathcal{B}'/\mathcal{A}'}(\mathcal{F}') \ar[r] &
+\mathcal{P}^1_{\mathcal{B}'/\mathcal{A}'}(\mathcal{F}') \ar[r] &
+\mathcal{P}^0_{\mathcal{B}'/\mathcal{A}'}(\mathcal{F}') \\
+\ldots \ar[r] &
+\mathcal{P}^2_{\mathcal{B}/\mathcal{A}}(\mathcal{F}) \ar[r] \ar[u] &
+\mathcal{P}^1_{\mathcal{B}/\mathcal{A}}(\mathcal{F}) \ar[r] \ar[u] &
+\mathcal{P}^0_{\mathcal{B}/\mathcal{A}}(\mathcal{F}) \ar[u]
+}
+$$
+These maps are compatible with further composition of maps of this type.
+The easiest way to see this is to use the description of the modules
+$\mathcal{P}^k_{\mathcal{B}/\mathcal{A}}(\mathcal{M})$ in terms of
+(local) generators and relations in the proof of
+Lemma \ref{lemma-module-principal-parts} but it can also be seen
+directly from the universal
+property of these modules. Moreover, these maps are compatible with
+the short exact sequences of Lemma \ref{lemma-sequence-of-principal-parts}.
+\end{remark}
+
+\noindent
+Next, we extend our definition to morphisms of ringed spaces.
+
+\begin{definition}
+\label{definition-relative-differential-operators}
+Let $(f, f^\sharp) : (X, \mathcal{O}_X) \to (S, \mathcal{O}_S)$
+be a morphism of ringed spaces.
+Let $\mathcal{F}$ and $\mathcal{G}$ be $\mathcal{O}_X$-modules.
+Let $k \geq 0$ be an integer.
+A {\it differential operator of order $k$ on $X/S$}
+is a differential operator $D : \mathcal{F} \to \mathcal{G}$
+with respect to $f^\sharp : f^{-1}\mathcal{O}_S \to \mathcal{O}_X$
+We denote $\text{Diff}^k_{X/S}(\mathcal{F}, \mathcal{G})$
+the set of these differential operators.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{The de Rham complex}
+\label{section-de-rham-complex}
+
+\noindent
+The section is the analogue of
+Algebra, Section \ref{algebra-section-de-rham-complex} for morphisms of ringed
+spaces. We urge the reader to read that section first.
+
+\medskip\noindent
+Let $X$ be a topological space. Let $\mathcal{A} \to \mathcal{B}$ be a
+homomorphism of sheaves of rings. Denote
+$\text{d} : \mathcal{B} \to \Omega_{\mathcal{B}/\mathcal{A}}$
+the module of differentials with its universal $\mathcal{A}$-derivation
+constructed in Section \ref{section-differentials}.
+Let
+$$
+\Omega_{\mathcal{B}/\mathcal{A}}^i =
+\wedge^i_\mathcal{B}(\Omega_{\mathcal{B}/\mathcal{A}})
+$$
+for $i \geq 0$ be the $i$th exterior power as in
+Section \ref{section-symmetric-exterior}.
+
+\begin{definition}
+\label{definition-de-rham-complex}
+In the situation above, the
+{\it de Rham complex of $\mathcal{B}$ over $\mathcal{A}$}
+is the unique complex
+$$
+\Omega_{\mathcal{B}/\mathcal{A}}^0 \to
+\Omega_{\mathcal{B}/\mathcal{A}}^1 \to
+\Omega_{\mathcal{B}/\mathcal{A}}^2 \to \ldots
+$$
+of sheaves of $\mathcal{A}$-modules whose differential in degree
+$0$ is given by $\text{d} : \mathcal{B} \to \Omega_{\mathcal{B}/\mathcal{A}}$
+and whose differentials in higher degrees have the following property
+\begin{equation}
+\label{equation-rule}
+\text{d}\left(b_0\text{d}b_1 \wedge \ldots \wedge \text{d}b_p\right) =
+\text{d}b_0 \wedge \text{d}b_1 \wedge \ldots \wedge \text{d}b_p
+\end{equation}
+where $b_0, \ldots, b_p \in \mathcal{B}(U)$ are sections over a common
+open $U \subset X$.
+\end{definition}
+
+\noindent
+We could construct this complex by repeating the cumbersome arguments
+given in Algebra, Section \ref{algebra-section-de-rham-complex}.
+Instead we recall that $\Omega_{\mathcal{B}/\mathcal{A}}$ is the
+sheafification of the presheaf
+$U \mapsto \Omega_{\mathcal{B}(U)/\mathcal{A}(U)}$, see
+Lemma \ref{lemma-differentials-sheafify}.
+Thus $\Omega_{\mathcal{B}/\mathcal{A}}^i$ is the sheafification of
+the presheaf
+$U \mapsto \Omega^i_{\mathcal{B}(U)/\mathcal{A}(U)}$, see
+Lemma \ref{lemma-local-tensor-algebra}.
+Therefore we can define the de Rham complex
+as the sheafification of the rule
+$$
+U \longmapsto
+\Omega^\bullet_{\mathcal{B}(U)/\mathcal{A}(U)}
+$$
+
+\begin{lemma}
+\label{lemma-pullback-de-rham-complex}
+Let $f : Y \to X$ be a continuous map of topological spaces.
+Let $\mathcal{A} \to \mathcal{B}$
+be a homomorphism of sheaves of rings on $X$.
+Then there is a canonical identification
+$f^{-1}\Omega^\bullet_{\mathcal{B}/\mathcal{A}} =
+\Omega^\bullet_{f^{-1}\mathcal{B}/f^{-1}\mathcal{A}}$
+of de Rham complexes.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hint: compare with Lemma \ref{lemma-pullback-differentials}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-differentials-de-rham-complex-order-1}
+Let $X$ be a topological space. Let $\mathcal{A} \to \mathcal{B}$
+be a homomorphism of sheaves of rings on $X$. The differentials
+$\text{d} : \Omega^i_{\mathcal{B}/\mathcal{A}}  \to
+\Omega^{i + 1}_{\mathcal{B}/\mathcal{A}}$
+are differential operators of order $1$.
+\end{lemma}
+
+\begin{proof}
+Via our construction of the de Rham complex above as the sheafification
+of the rule  $U \mapsto \Omega^\bullet_{\mathcal{B}(U)/\mathcal{A}(U)}$
+this follows from
+Algebra, Lemma \ref{algebra-lemma-differentials-de-rham-complex-order-1}.
+\end{proof}
+
+\noindent
+Let $X$ be a topological space. Let
+$$
+\xymatrix{
+\mathcal{B} \ar[r] & \mathcal{B}' \\
+\mathcal{A} \ar[r] \ar[u] & \mathcal{A}' \ar[u]
+}
+$$
+be a commutative diagram of sheaves of rings on $X$.
+There is a natural map of de Rham complexes
+$$
+\Omega^\bullet_{\mathcal{B}/\mathcal{A}} \longrightarrow
+\Omega^\bullet_{\mathcal{B}'/\mathcal{A}'}
+$$
+Namely, in degree $0$ this is the map $\mathcal{B} \to \mathcal{B}'$,
+in degree $1$ this is the map
+$\Omega_{\mathcal{B}/\mathcal{A}} \to \Omega_{\mathcal{B}'/\mathcal{A}'}$
+constructed in Section \ref{section-differentials}, and for $p \geq 2$
+it is the induced map
+$\Omega^p_{\mathcal{B}/\mathcal{A}} =
+\wedge^p_\mathcal{B}(\Omega_{\mathcal{B}/\mathcal{A}}) \to
+\wedge^p_{\mathcal{B}'}(\Omega_{\mathcal{B}'/\mathcal{A}'}) =
+\Omega^p_{\mathcal{B}'/\mathcal{A}'}$.
+The compatibility with differentials follows from the characterization
+of the differentials by the formula (\ref{equation-rule}).
+
+\begin{definition}
+\label{definition-de-rham-complex-morphism-ringed-spaces}
+Let $f : (X, \mathcal{O}_X) \to (Y, \mathcal{O}_Y)$ be a morphism
+of ringed spaces. The {\it de Rham complex} of $f$ or of $X$ over $Y$
+is the complex
+$$
+\Omega^\bullet_{X/Y} = \Omega^\bullet_{\mathcal{O}_X/f^{-1}\mathcal{O}_Y}
+$$
+\end{definition}
+
+\noindent
+Consider a commutative diagram of ringed spaces
+$$
+\xymatrix{
+X' \ar[d]_{h'} \ar[r]_f & X \ar[d]^h \\
+S' \ar[r]^g & S
+}
+$$
+Then we obtain a canonical map
+$$
+\Omega^\bullet_{X/S} \to f_*\Omega^\bullet_{X'/S'}
+$$
+of de Rham complexes. Namely, the commutative diagram
+of sheaves of rings
+$$
+\xymatrix{
+f^{-1}\mathcal{O}_X \ar[r] & \mathcal{O}_{X'} \\
+f^{-1}h^{-1}\mathcal{O}_S \ar[u] \ar[r] & (h')^{-1}\mathcal{O}_{S'} \ar[u]
+}
+$$
+on $X'$ produces a map of complexes (see above)
+$$
+f^{-1}\Omega^\bullet_{X/S} =
+\Omega^\bullet_{f^{-1}\mathcal{O}_X/f^{-1}h^{-1}\mathcal{O}_S}
+\longrightarrow
+\Omega^\bullet_{\mathcal{O}_{X'}/(h')^{-1}\mathcal{O}_{S'}} =
+\Omega^\bullet_{X'/S'}
+$$
+(using Lemma \ref{lemma-pullback-de-rham-complex} for the first equality)
+and then we can use adjunction.
+
+\begin{lemma}
+\label{lemma-differentials-relative-de-rham-complex-order-1}
+Let $f : X \to Y$ be a morphism of ringed spaces. The differentials
+$\text{d} : \Omega^i_{X/Y}  \to \Omega^{i + 1}_{X/Y}$
+are differential operators of order $1$ on $X/Y$.
+\end{lemma}
+
+\begin{proof}
+Immediate from Lemma \ref{lemma-differentials-de-rham-complex-order-1}
+and the definition.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{The naive cotangent complex}
@@ -4740,7 +5743,7 @@ of cohomology sheaves.
 \begin{proof}
 To give the map $c$ we have to give a map
 $c_1 : \NL_{\mathcal{B}/\mathcal{A}} \otimes_\mathcal{B} \mathcal{C}
-\to \NL_{\mathcal{C}/\mathcal{A}}$ and an explicity homotopy
+\to \NL_{\mathcal{C}/\mathcal{A}}$ and an explicit homotopy
 between the composition
 $$
 \NL_{\mathcal{B}/\mathcal{A}} \otimes_\mathcal{B} \mathcal{C} \to

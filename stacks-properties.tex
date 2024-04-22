@@ -145,6 +145,9 @@ space whenever $Z \to \mathcal{Y}$ is a morphism whose source is
 an algebraic space, see
 Algebraic Stacks,
 Lemma \ref{algebraic-lemma-base-change-by-space-representable-by-space}.
+\item We may abuse notation and say that a diagram of algebraic stacks
+commutes if the diagram is $2$-commutative in the $2$-category of
+algebraic stacks.
 \end{enumerate}
 Note that every morphism $X \to \mathcal{Y}$ from an algebraic space
 to an algebraic stack is representable by algebraic spaces, see
@@ -480,9 +483,9 @@ $T \to \mathcal{Y}$ be a morphism. Consider the commutative diagram
 $$
 \xymatrix{
 T \times_\mathcal{Y} \mathcal{X} \ar[d] &
-T \times_\mathcal{Y} W \ar[d] \ar[l] \ar[r] &
-W \ar[d] \\
-T & T \times_\mathcal{Y} V \ar[l] \ar[r] & V
+T \times_\mathcal{Y} V \ar[d] \ar[l] \ar[r] &
+V \ar[d] \\
+T & T \times_\mathcal{Y} W \ar[l] \ar[r] & W
 }
 $$
 of algebraic spaces. The squares are cartesian.
@@ -819,7 +822,7 @@ is surjective.
 Namely, suppose given fields $K$, $L$ and morphisms
 $\Spec(K) \to \mathcal{X}$, $\Spec(L) \to \mathcal{Z}$,
 then the assumption that they agree as elements of $|\mathcal{Y}|$ means that
-there is a common extension $K \subset M$ and $L \subset M$
+there is a common extension $M/K$ and $M/L$
 such that
 $\Spec(M) \to \Spec(K) \to \mathcal{X} \to \mathcal{Y}$ and
 $\Spec(M) \to \Spec(L) \to \mathcal{Z} \to \mathcal{Y}$
@@ -857,7 +860,7 @@ $\Spec(K) \times_{y, \mathcal{Y}} \mathcal{X} \to \Spec(K)$
 of algebraic spaces is surjective. By
 Morphisms of Spaces, Definition \ref{spaces-morphisms-definition-surjective}
 this means there exists a field extension
-$K \subset K'$ and a morphism
+$K'/K$ and a morphism
 $\Spec(K') \to \Spec(K) \times_{y, \mathcal{Y}} \mathcal{X}$
 such that the left square of the diagram
 $$
@@ -1171,6 +1174,8 @@ The following are equivalent:
 \begin{enumerate}
 \item $\mathcal{X}$ is quasi-compact,
 \item there exists a surjective smooth morphism $U \to \mathcal{X}$
+with $U$ an affine scheme,
+\item there exists a surjective smooth morphism $U \to \mathcal{X}$
 with $U$ a quasi-compact scheme,
 \item there exists a surjective smooth morphism $U \to \mathcal{X}$
 with $U$ a quasi-compact algebraic space, and
@@ -1182,15 +1187,20 @@ of algebraic stacks such that $\mathcal{U}$ is quasi-compact.
 \begin{proof}
 We will use
 Lemma \ref{lemma-characterize-surjective}.
-Suppose $\mathcal{U}$ and $\mathcal{U} \to \mathcal{X}$ are as in (4).
+Suppose $\mathcal{U}$ and $\mathcal{U} \to \mathcal{X}$ are as in (5).
 Then since $|\mathcal{U}| \to |\mathcal{X}|$ is surjective and
 continuous we conclude that $|\mathcal{X}|$ is quasi-compact.
-Thus (4) implies (1). The implications (2) $\Rightarrow$ (3) $\Rightarrow$ (4)
+Thus (5) implies (1). The implications
+(2) $\Rightarrow$ (3) $\Rightarrow$ (4) $\Rightarrow$ (5)
 are immediate. Assume (1), i.e., $\mathcal{X}$ is quasi-compact, i.e., that
 $|\mathcal{X}|$ is quasi-compact. Choose a scheme $U$ and a surjective
 smooth morphism $U \to \mathcal{X}$. Then since $|U| \to |\mathcal{X}|$
 is open we see that there exists a quasi-compact open $U' \subset U$
 such that $|U'| \to |X|$ is surjective (and still smooth).
+Choose a finite affine open covering $U' = U_1 \cup \ldots \cup U_n$.
+Then $U_1 \amalg \ldots \amalg U_n \to \mathcal{X}$
+is a surjective smooth morphism whose source is an
+affine scheme (Schemes, Lemma \ref{schemes-lemma-disjoint-union-affines}).
 Hence (2) holds.
 \end{proof}
 
@@ -1521,7 +1531,7 @@ $2$-isomorphism $\beta : f \circ x_1 \circ c_1 \to f \circ x_1 \circ c_2$.
 As $f$ is fully faithful, see
 Lemma \ref{lemma-monomorphism},
 we can lift $\beta$ to an isomorphism
-$\alpha : f \circ x_1 \circ c_1 \to f \circ x_1 \circ c_2$.
+$\alpha : x_1 \circ c_1 \to x_1 \circ c_2$.
 Hence $x_1$ and $x_2$ define the same point of $|\mathcal{X}|$
 as desired.
 \end{proof}
@@ -1647,6 +1657,18 @@ An immersion is a monomorphism.
 See
 Morphisms of Spaces,
 Lemma \ref{spaces-morphisms-lemma-immersions-monomorphisms}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-subspace-induced-topology}
+If $f : \mathcal{X} \to \mathcal{Y}$ is an immersion, then
+$|f| : |\mathcal{X}| \to |\mathcal{Y}|$ is a homeomorphism
+onto a locally closed subset. If $f$ is a closed, resp.\ open
+immersion, then $|f|$ is closed, resp.\ open.
+\end{lemma}
+
+\begin{proof}
+Omitted.
 \end{proof}
 
 \noindent
@@ -2776,8 +2798,20 @@ Morphisms of Stacks, Lemma
 that $\mathcal{Z}_x$ is a gerbe. Existence of residual gerbes is
 discussed in Morphisms of Stacks, Section
 \ref{stacks-morphisms-section-existence-residual-gerbes}.
-It turns out that $\mathcal{Z}_x$
-is a regular algebraic stack as follows from the following lemma.
+
+\begin{example}
+\label{example-residual-gerbe}
+Let $X$ be a scheme and let $x \in X$ be a point. Then the monomorphism
+$x \to X$ is the residual gerbe of $X$ at $x$ where we, as usual, identify
+$x$ with the scheme $x = \Spec(\kappa(x))$. If $X$ is an algebraic space
+and $x \in |X|$, then the residual gerbe at $x$ (which is called
+the residual space) always exists, see
+Decent Spaces, Section \ref{decent-spaces-section-singleton}.
+\end{example}
+
+\noindent
+The residual gerbe, if it exists, is a regular algebraic stack
+by the following lemma.
 
 \begin{lemma}
 \label{lemma-residual-gerbe-regular}
@@ -3093,7 +3127,7 @@ we may use $P_n$ to define an \'etale local property $\mathcal{P}_n$
 of germs $(U, u)$ of schemes by setting
 $\mathcal{P}_n(U, u) = P_n(\mathcal{O}_{U, u})$.
 The corresponding property $\mathcal{P}_n$
-of an algebraic spaces $X$ at a point $x$
+of an algebraic space $X$ at a point $x$
 (see Properties of Spaces, Definition
 \ref{spaces-properties-definition-property-at-point})
 is just the property
@@ -3157,6 +3191,16 @@ Morphisms of Spaces, Lemma
 and the principle of Algebraic Stacks, Lemma
 \ref{algebraic-lemma-representable-transformations-property-implication}.
 \end{proof}
+
+\noindent
+Sometimes people say that a point $x \in |\mathcal{X}|$ satisfying
+the equivalent conditions of Lemma \ref{lemma-UR-quasi-compact-above-x}
+is a ``{\it quasi-compact point}''.
+
+
+
+
+
 
 
 

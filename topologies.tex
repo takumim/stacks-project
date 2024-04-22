@@ -219,22 +219,29 @@ A covering of $S_{Zar}$ is any covering $\{U_i \to U\}$ of
 $(\Sch/S)_{Zar}$ with $U \in \Ob(S_{Zar})$.
 \item The {\it big affine Zariski site of $S$}, denoted
 $(\textit{Aff}/S)_{Zar}$, is the full subcategory of
-$(\Sch/S)_{Zar}$ whose objects are affine $U/S$.
-A covering of $(\textit{Aff}/S)_{Zar}$ is any covering
-$\{U_i \to U\}$ of $(\Sch/S)_{Zar}$ which is a
-standard Zariski covering.
+$(\Sch/S)_{Zar}$ consisting of objects $U/S$ such that $U$ is an
+affine scheme. A covering of $(\textit{Aff}/S)_{Zar}$ is any covering
+$\{U_i \to U\}$ of $(\Sch/S)_{Zar}$ with $U \in \Ob((\textit{Aff}/S)_{Zar})$
+which is a standard Zariski covering.
+\item The {\it small affine Zariski site of $S$}, denoted
+$S_{affine, Zar}$, is the full subcategory of $S_{Zar}$
+whose objects are those $U/S$ such that $U$ is an affine scheme.
+A covering of $S_{affine, Zar}$ is any covering $\{U_i \to U\}$ of
+$S_{Zar}$ with $U \in \Ob(S_{affine, Zar})$
+which is a standard Zariski covering.
 \end{enumerate}
 \end{definition}
 
 \noindent
-It is not completely clear that the small Zariski site and
-the big affine Zariski site are sites. We check this now.
+It is not completely clear that the small Zariski site,
+the big affine Zariski site, and the small affine Zariski site
+are sites. We check this now.
 
 \begin{lemma}
 \label{lemma-verify-site-Zariski}
 Let $S$ be a scheme. Let $\Sch_{Zar}$ be a big Zariski
-site containing $S$.
-Both $S_{Zar}$ and $(\textit{Aff}/S)_{Zar}$ are sites.
+site containing $S$. The structures $S_{Zar}$, $(\textit{Aff}/S)_{Zar}$,
+and $S_{affine, Zar}$ defined above are sites.
 \end{lemma}
 
 \begin{proof}
@@ -265,6 +272,9 @@ the family of morphisms $\{D(g_{ij}) \to \Spec(R)\}$
 is a standard Zariski covering. From these considerations
 it follows that (2) holds for standard Zariski coverings.
 We omit the verification of (1) and (3).
+
+\medskip\noindent
+We omit the proof that $S_{affine, Zar}$ is a site.
 \end{proof}
 
 \begin{lemma}
@@ -272,7 +282,7 @@ We omit the verification of (1) and (3).
 Let $S$ be a scheme. Let $\Sch_{Zar}$ be a big Zariski
 site containing $S$. The underlying categories of the sites
 $\Sch_{Zar}$, $(\Sch/S)_{Zar}$,
-$S_{Zar}$, and $(\textit{Aff}/S)_{Zar}$ have fibre products.
+$S_{Zar}$, $(\textit{Aff}/S)_{Zar}$, and $S_{affine, Zar}$ have fibre products.
 In each case the obvious functor into the category $\Sch$ of
 all schemes commutes with taking fibre products. The categories
 $(\Sch/S)_{Zar}$, and $S_{Zar}$ both have a final object,
@@ -293,12 +303,12 @@ This proves the result for $(\Sch/S)_{Zar}$.
 If $U \to S$, $V \to U$ and $W \to U$ are open immersions then so is
 $V \times_U W \to S$ and hence we get the result for $S_{Zar}$.
 If $U, V, W$ are affine, so is $V \times_U W$ and hence the
-result for $(\textit{Aff}/S)_{Zar}$.
+result for $(\textit{Aff}/S)_{Zar}$ and $S_{affine, Zar}$.
 \end{proof}
 
 \noindent
-Next, we check that the big affine site defines the same
-topos as the big site.
+Next, we check that the big, resp.\ small affine site defines the same
+topos as the big, resp.\ small site.
 
 \begin{lemma}
 \label{lemma-affine-big-site-Zariski}
@@ -326,6 +336,19 @@ Zariski covering is a Zariski covering. Hence (2) holds.
 Parts (3) and (4) follow immediately from the fact that $u$ is
 fully faithful. And finally condition (5) follows from the
 fact that every scheme has an affine open covering.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-alternative-zariski}
+Let $S$ be a scheme.  Let $\Sch_{Zar}$ be a big Zariski
+site containing $S$. The functor $S_{affine, Zar} \to S_{Zar}$
+is a special cocontinuous functor. Hence it induces an equivalence
+of topoi from $\Sh(S_{affine, Zar})$ to $\Sh(S_{Zar})$.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hint: compare with the proof of
+Lemma \ref{lemma-affine-big-site-Zariski}.
 \end{proof}
 
 \noindent
@@ -565,7 +588,7 @@ formula involving pullbacks and restrictions is false.
 
 \begin{lemma}
 \label{lemma-composition}
-Given schemes $X$, $Y$, $Y$ in $(\Sch/S)_{Zar}$
+Given schemes $X$, $Y$, $Z$ in $(\Sch/S)_{Zar}$
 and morphisms $f : X \to Y$, $g : Y \to Z$ we have
 $g_{big} \circ f_{big} = (g \circ f)_{big}$ and
 $g_{small} \circ f_{small} = (g \circ f)_{small}$.
@@ -633,6 +656,11 @@ open immersion then $c_f$ is an isomorphism.
 \end{lemma}
 
 \begin{proof}
+This lemma follows from a purely sheaf theoretic statement discussed
+in Sites, Remark \ref{sites-remark-variant-glue-sheaves-absolute}.
+We also give a direct proof in this case.
+
+\medskip\noindent
 Given a sheaf $\mathcal{F}$ on $\Sh((\Sch/S)_{Zar})$
 we set $\mathcal{F}_T = i_p^{-1}\mathcal{F}$ where $p : T \to S$
 is the structure morphism. Note that
@@ -859,23 +887,31 @@ A covering of $S_\etale$ is any covering $\{U_i \to U\}$ of
 $(\Sch/S)_\etale$ with $U \in \Ob(S_\etale)$.
 \item The {\it big affine \'etale site of $S$}, denoted
 $(\textit{Aff}/S)_\etale$, is the full subcategory of
-$(\Sch/S)_\etale$ whose objects are affine $U/S$.
+$(\Sch/S)_\etale$ whose objects are those $U/S$
+such that $U$ is an affine scheme.
 A covering of $(\textit{Aff}/S)_\etale$ is any covering
-$\{U_i \to U\}$ of $(\Sch/S)_\etale$ which is a
-standard \'etale covering.
+$\{U_i \to U\}$ of $(\Sch/S)_\etale$ with $U \in \Ob((\textit{Aff}/S)_\etale)$
+which is a standard \'etale covering.
+\item The {\it small affine \'etale site of $S$}, denoted
+$S_{affine, \etale}$, is the full subcategory of $S_\etale$
+whose objects are those $U/S$ such that $U$ is an affine scheme.
+A covering of $S_{affine, \etale}$ is any covering $\{U_i \to U\}$
+of $S_\etale$ with $U \in \Ob(S_{affine, \etale})$ which is a standard
+\'etale covering.
 \end{enumerate}
 \end{definition}
 
 \noindent
-It is not completely clear that
-the big affine \'etale site or the small \'etale site are sites.
+It is not completely clear that the big affine \'etale site,
+the small \'etale site, and the small affine \'etale site are sites.
 We check this now.
 
 \begin{lemma}
 \label{lemma-verify-site-etale}
 Let $S$ be a scheme. Let $\Sch_\etale$ be a big \'etale
 site containing $S$.
-Both $S_\etale$ and $(\textit{Aff}/S)_\etale$ are sites.
+The structures $S_\etale$, $(\textit{Aff}/S)_\etale$, and $S_{affine, \etale}$
+are sites.
 \end{lemma}
 
 \begin{proof}
@@ -901,14 +937,17 @@ covering $\{T_i \to T\}_{i\in I}$ and for each
 $i$ we have a standard \'etale covering $\{T_{ij} \to T_i\}_{j\in J_i}$, then
 $\{T_{ij} \to T\}_{i \in I, j\in J_i}$ is a standard \'etale covering
 because $\bigcup_{i\in I} J_i$ is finite and each $T_{ij}$ is affine.
+
+\medskip\noindent
+We omit the proof that $S_{affine, \'etale}$ is a site.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-fibre-products-etale}
 Let $S$ be a scheme. Let $\Sch_\etale$ be a big \'etale
 site containing $S$. The underlying categories of the sites
-$\Sch_\etale$, $(\Sch/S)_\etale$,
-$S_\etale$, and $(\textit{Aff}/S)_\etale$ have fibre products.
+$\Sch_\etale$, $(\Sch/S)_\etale$, $S_\etale$, $(\textit{Aff}/S)_\etale$,
+and $S_{affine, \etale}$ have fibre products.
 In each case the obvious functor into the category $\Sch$ of
 all schemes commutes with taking fibre products. The categories
 $(\Sch/S)_\etale$, and $S_\etale$ both have a
@@ -929,12 +968,12 @@ This proves the result for $(\Sch/S)_\etale$.
 If $U \to S$, $V \to U$ and $W \to U$ are \'etale then so is
 $V \times_U W \to S$ and hence we get the result for $S_\etale$.
 If $U, V, W$ are affine, so is $V \times_U W$ and hence the
-result for $(\textit{Aff}/S)_\etale$.
+result for $(\textit{Aff}/S)_\etale$ and $S_{affine, \etale}$.
 \end{proof}
 
 \noindent
-Next, we check that the big affine site defines the same
-topos as the big site.
+Next, we check that the big, resp.\ small affine site defines the same
+topos as the big, resp.\ small site.
 
 \begin{lemma}
 \label{lemma-affine-big-site-etale}
@@ -963,6 +1002,19 @@ Hence (1) holds. We see $u$ is continuous simply because a standard
 Parts (3) and (4) follow immediately from the fact that $u$ is
 fully faithful. And finally condition (5) follows from the
 fact that every scheme has an affine open covering.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-alternative}
+Let $S$ be a scheme. Let $\Sch_\etale$ be a big \'etale
+site containing $S$. The functor $S_{affine, \etale} \to S_\etale$
+is special cocontinuous and induces an equivalence of topoi from
+$\Sh(S_{affine, \etale})$ to $\Sh(S_\etale)$.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hint: compare with the proof of
+Lemma \ref{lemma-affine-big-site-etale}.
 \end{proof}
 
 \noindent
@@ -1264,6 +1316,11 @@ is \'etale then $c_f$ is an isomorphism.
 \end{lemma}
 
 \begin{proof}
+This lemma follows from a purely sheaf theoretic statement discussed
+in Sites, Remark \ref{sites-remark-variant-glue-sheaves-absolute}.
+We also give a direct proof in this case.
+
+\medskip\noindent
 Given a sheaf $\mathcal{F}$ on $\Sh((\Sch/S)_\etale)$
 we set $\mathcal{F}_T = i_p^{-1}\mathcal{F}$ where $p : T \to S$
 is the structure morphism. Note that
@@ -1335,7 +1392,7 @@ occasionally.
 
 \begin{definition}
 \label{definition-smooth-covering}
-Let $T$ be a scheme. An {\it smooth covering of $T$} is a family
+Let $T$ be a scheme. A {\it smooth covering of $T$} is a family
 of morphisms $\{f_i : T_i \to T\}_{i \in I}$ of schemes
 such that each $f_i$ is smooth and such
 that $T = \bigcup f_i(T_i)$.
@@ -1363,7 +1420,7 @@ Sites, Definition \ref{sites-definition-site}.
 Let $T$ be a scheme.
 \begin{enumerate}
 \item If $T' \to T$ is an isomorphism then $\{T' \to T\}$
-is an smooth covering of $T$.
+is a smooth covering of $T$.
 \item If $\{T_i \to T\}_{i\in I}$ is a smooth covering and for each
 $i$ we have a smooth covering $\{T_{ij} \to T_i\}_{j\in J_i}$, then
 $\{T_{ij} \to T\}_{i \in I, j\in J_i}$ is a smooth covering.
@@ -1451,7 +1508,7 @@ it is tautologically equivalent to a covering of $\Sch_{smooth}$.
 For each $i$ choose an affine open covering $T_i = \bigcup_{j \in J_i} T_{ij}$
 such that each $T_{ij}$ maps into an affine open subscheme of $T$. By
 Lemma \ref{lemma-smooth}
-the refinement $\{T_{ij} \to T\}_{i \in I, j \in J_i}$ is an smooth covering
+the refinement $\{T_{ij} \to T\}_{i \in I, j \in J_i}$ is a smooth covering
 of $T$ as well. Hence we may assume each $T_i$ is affine, and maps into
 an affine open $W_i$ of $T$. Applying
 Sets, Lemma \ref{sets-lemma-what-is-in-it}
@@ -1498,7 +1555,7 @@ topos as the big site.
 
 \begin{lemma}
 \label{lemma-affine-big-site-smooth}
-Let $S$ be a scheme. Let $\Sch_\etale$ be a big smooth
+Let $S$ be a scheme. Let $\Sch_{smooth}$ be a big smooth
 site containing $S$.
 The functor
 $(\textit{Aff}/S)_{smooth} \to (\Sch/S)_{smooth}$
@@ -1621,7 +1678,7 @@ Sites, Definition \ref{sites-definition-site}.
 Let $T$ be a scheme.
 \begin{enumerate}
 \item If $T' \to T$ is an isomorphism then $\{T' \to T\}$
-is an syntomic covering of $T$.
+is a syntomic covering of $T$.
 \item If $\{T_i \to T\}_{i\in I}$ is a syntomic covering and for each
 $i$ we have a syntomic covering $\{T_{ij} \to T_i\}_{j\in J_i}$, then
 $\{T_{ij} \to T\}_{i \in I, j\in J_i}$ is a syntomic covering.
@@ -1708,7 +1765,7 @@ it is tautologically equivalent to a covering in $\Sch_{syntomic}$.
 For each $i$ choose an affine open covering $T_i = \bigcup_{j \in J_i} T_{ij}$
 such that each $T_{ij}$ maps into an affine open subscheme of $T$. By
 Lemma \ref{lemma-syntomic}
-the refinement $\{T_{ij} \to T\}_{i \in I, j \in J_i}$ is an syntomic covering
+the refinement $\{T_{ij} \to T\}_{i \in I, j \in J_i}$ is a syntomic covering
 of $T$ as well. Hence we may assume each $T_i$ is affine, and maps into
 an affine open $W_i$ of $T$. Applying
 Sets, Lemma \ref{sets-lemma-what-is-in-it}
@@ -2675,6 +2732,10 @@ Zariski coverings, and
 $\mathcal{F}(U)$ maps bijectively to the equalizer
 of the two maps $\mathcal{F}(V) \to \mathcal{F}(V \times_U V)$.
 \end{enumerate}
+Moreover, in the presence of (1) property (2) is equivalent to property
+\begin{enumerate}
+\item[(2')] the sheaf property for $\{V \to U\}$ as in (2) with $U$ affine.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -2702,6 +2763,27 @@ maps $\mathcal{F}(V_j) \to \mathcal{F}(V_j \times_{U_j} V_j)$.
 Hence by (2) we find that $s'_j$ comes from a unique section
 $s_j \in \mathcal{F}(U_j)$. We omit the verification that these
 sections $s_j$ have all the desired properties.
+
+\medskip\noindent
+Proof of the equivalence of (2) and (2') in the presence of (1).
+Suppose $V \to U$ is a morphism of $(\Sch/S)_{ph}$ which is
+proper and surjective. Choose an
+affine open covering $U = \bigcup U_i$ and set $V_i = V \times_U U_i$.
+Then we see that $\mathcal{F}(U) \to \mathcal{F}(V)$
+is injective because we know $\mathcal{F}(U_i) \to \mathcal{F}(V_i)$
+is injective by (2') and we know $\mathcal{F}(U) \to \prod \mathcal{F}(U_i)$
+is injective by (1). Finally, suppose that we are given an
+$t \in \mathcal{F}(V)$ in the equalizer of the two maps
+$\mathcal{F}(V) \to \mathcal{F}(V \times_U V)$.
+Then $t|_{V_i}$ is in the equalizer of the two maps
+$\mathcal{F}(V_i) \to \mathcal{F}(V_i \times_{U_i} V_i)$
+for all $i$. Hence we obtain a unique section $s_i \in \mathcal{F}(U_i)$
+mapping to $t|_{V_i}$ for all $i$ by (2').
+We omit the verification that $s_i|_{U_i \cap U_j} = s_j|_{U_i \cap U_j}$
+for all $i, j$; this uses the uniqueness property just shown.
+By the sheaf property for the covering $U = \bigcup U_i$ we obtain
+a section $s \in \mathcal{F}(U)$. We omit the proof that $s$
+maps to $t$ in $\mathcal{F}(V)$.
 \end{proof}
 
 \noindent
@@ -3023,7 +3105,7 @@ $i$ we have an fpqc covering $\{f_{ij} : T_{ij} \to T_i\}_{j\in J_i}$.
 Let $U \subset T$ be an affine open. We can find
 quasi-compact opens $U_i \subset T_i$ for $i \in I$, almost all empty,
 such that $U = \bigcup f_i(U_i)$. Then for each $i$ we can choose
-quasi-compact opens $W_{ij} \subset T_{ij}$ for $j \in J_i$, almost all empty,
+quasi-compact opens $U_{ij} \subset T_{ij}$ for $j \in J_i$, almost all empty,
 with $U_i = \bigcup_j f_{ij}(U_{ij})$. Thus
 $\{T_{ij} \to T\}$ is an fpqc covering.
 
@@ -3213,7 +3295,7 @@ be refined by an element of $A$.
 \begin{proof}
 Let us first explain this when $R = k$ is a field. For any set $I$ consider
 the purely transcendental field extension
-$k \subset k_I = k(\{t_i\}_{i \in I})$. Since $k \to k_I$ is faithfully flat
+$k_I = k(\{t_i\}_{i \in I})/k$. Since $k \to k_I$ is faithfully flat
 we see that $\{\Spec(k_I) \to \Spec(k)\}$ is an fpqc covering.
 Let $A$ be a set and for each $\alpha \in A$ let
 $\mathcal{U}_\alpha = \{S_{\alpha, j} \to \Spec(k)\}_{j \in J_\alpha}$ be an
@@ -3269,7 +3351,7 @@ such that this is not the case and the lemma is proved.
 \label{section-V}
 
 \noindent
-The V topology is weaker than all other topologies in this chapter.
+The V topology is stronger than all other topologies in this chapter.
 Roughly speaking it is generated by Zariski coverings and
 by quasi-compact morphisms satisfying a lifting property
 for specializations (Lemma \ref{lemma-refine-qcqs-V}).
@@ -4007,7 +4089,7 @@ of the category $\Sch/S$ of all schemes over $S$. Assume
 $U \subset X$ is an affine open, then $U \to S$ is isomorphic
 to an object of $\mathcal{C}$,
 \item if $V$ is an affine scheme lying over an affine open $U \subset S$
-such that $V \to U$ is of finite presentation, then $U \to S$ is isomorphic
+such that $V \to U$ is of finite presentation, then $V \to S$ is isomorphic
 to an object of $\mathcal{C}$.
 \end{enumerate}
 Let $F : \mathcal{C}^{opp} \to \textit{Sets}$ be a functor.
@@ -4027,8 +4109,10 @@ over $S$ with $X, X_i$ objects of $\mathcal{C}$, then
 $F(X) = \colim F(X_i)$.
 \end{enumerate}
 Then there is a unique way to extend $F$ to a functor
-$(\Sch/S)^{opp} \to \textit{Sets}$ satisfying
-(a) and (b).
+$F' : (\Sch/S)^{opp} \to \textit{Sets}$ satisfying the analogues of
+(a) and (b), i.e., $F'$ satisfies the sheaf condition for any
+Zariski covering and $F'(X) = \colim F'(X_i)$ whenever $X = \lim X_i$
+is a directed limit of affine schemes over $S$.
 \end{lemma}
 
 \begin{proof}
@@ -4255,21 +4339,28 @@ from Limits, Lemmas
 \end{proof}
 
 \begin{lemma}
-\label{lemma-extend-sheaf}
-Let $\tau \in \{Zariski, \etale, smooth, syntomic, fppf\}$.
-Let $S$ be a scheme contained in a big site $\Sch_\tau$.
-Let $\mathcal{F}$ be a sheaf on $(\Sch/S)_\tau$ satisfying
-property (b) of Lemma \ref{lemma-extend}. Then the extension
-$F$ of $\mathcal{F}$ to the category of all schemes over $S$
-satisfies the sheaf condition for all $\tau$-coverings.
+\label{lemma-extend-sheaf-general}
+Let $S$, $\mathcal{C}$, $F$ satisfy conditions (1), (2), (a), and (b) of
+Lemma \ref{lemma-extend} and denote $F' : (\Sch/S)^{opp} \to \textit{Sets}$
+the unique extension constructed in the lemma. Let
+$\tau \in \{Zariski, \etale, smooth, syntomic, fppf\}$. Assume
+\begin{enumerate}
+\item[(c)] for any standard $\tau$-covering $\{V_i \to V\}_{i = 1, \ldots, n}$
+of affines in $\Sch/S$ such that $V \to S$ factors through an affine open
+$U \subset S$ and $V \to U$ is of finite presentation, the sheaf condition
+hold for $F$ and $\{V_i \to V\}_{i = 1, \ldots, n}$\footnote{This makes
+sense as $V$, $V_i$, and $V_i \times_V V_j$ are isomorphic to objects
+of $\mathcal{C}$ by (2).}.
+\end{enumerate}
+Then $F'$ satisfies the sheaf condition for all $\tau$-coverings.
 \end{lemma}
 
 \begin{proof}
 Let $X$ be a scheme over $S$ and let $\{X_i \to X\}_{i \in I}$
-be a $\tau$-covering. Let $s_i \in F(X_i)$ be elements such that
-$s_i$ and $s_j$ map to the same element of $F(X_i \times_X X_j)$
+be a $\tau$-covering. Let $s_i \in F'(X_i)$ be elements such that
+$s_i$ and $s_j$ map to the same element of $F'(X_i \times_X X_j)$
 for all $i, j \in I$. We have to show that there is a
-unique element of $F(X)$ restricting to $s_i \in F(X_i)$ for all $i \in I$.
+unique element $s \in F'(X)$ restricting to $s_i \in F'(X_i)$ for all $i \in I$.
 
 \medskip\noindent
 Special case: $X$ is an affine such that the structure morphism
@@ -4282,22 +4373,12 @@ $$
 as a cofiltered limit with $V_k \to U$ of finite presentation
 and $V_k$ affine. See Algebra, Lemma \ref{algebra-lemma-ring-colimit-fp}.
 By Lemma \ref{lemma-limit-fppf-topology} there exists a $k$ and a standard
-$\tau$-covering $\{W_{k, i} \to V_k\}_{i \in I}$ whose base change
+$\tau$-covering $\{V_{k, i} \to V_k\}_{i \in I}$ whose base change
 to $X$ is the given covering. For $k' \geq k$ denote
-$\{W_{k', i} \to V_{k'}\}_{i \in I}$ the base change to $V_{k'}$
-of our covering. Observe that $\{W_{k', i} \to V_{k'}\}_{i \in I}$
-is tautologically equivalent to a covering in $(\Sch/S)_\tau$, see
-Sets, Lemma \ref{sets-lemma-what-is-in-it} as well as
-Lemmas \ref{lemma-zariski-induced},
-\ref{lemma-etale-induced},
-\ref{lemma-smooth-induced},
-\ref{lemma-syntomic-induced}, and
-\ref{lemma-fppf-induced}. Thus we know the sheaf property holds
-for $F$ and all of these coverings (because $F$ restricts to
-$\mathcal{F}$ on $(\Sch/S)_\tau$ by construction).
-Then we see that
+$\{V_{k', i} \to V_{k'}\}_{i \in I}$ the base change to $V_{k'}$
+of our covering. Then we see that
 \begin{align*}
-F(X)
+F'(X)
 & =
 \colim_{k' \geq k} F(V_k) \\
 & =
@@ -4322,15 +4403,16 @@ F(X)
 & =
 \text{Equalizer}(
 \xymatrix{
-\prod F(X_i)
+\prod F'(X_i)
 \ar@<1ex>[r] \ar@<-1ex>[r] &
-\prod F(X_i \times_X X_j)
+\prod F'(X_i \times_X X_j)
 }
 \end{align*}
-The first equality by property (b) for $F$. The second because of the
-sheaf property for $F$ on these coverings. The third because
-filtered colimits are exact. The fourth by property (b) for $F$.
-In this way we find that the sheaf property holds for $\{X_i \to X\}_{i \in I}$.
+The first equality holds by construction of $F'$. The second holds by
+assumption (c). The third holds because filtered colimits are exact.
+The fourth again holds by construction of $F'$.
+In this way we find that the sheaf property holds for $F'$
+with respect to $\{X_i \to X\}_{i \in I}$.
 
 \medskip\noindent
 General case. Choose an affine open covering $X = \bigcup U_k$ such that
@@ -4339,30 +4421,59 @@ a standard $\tau$-covering $\{V_{k, j} \to U_k\}_{j = 1, \ldots, m_k}$
 which refines $\{X_i \times_X U_k \to U_k\}_{i \in I}$. For each
 $j \in \{1, \ldots, m_k\}$ choose an index $i_{k, j} \in I$
 and a morphism $g_{k, j} : V_{k, j} \to X_{i_{k, j}}$ over $X$.
-Let $s_{k, j}$ be the element of $F(V_{k, j})$ we get by restricting
+Let $s_{k, j}$ be the element of $F'(V_{k, j})$ we get by restricting
 $s_{i_{k, j}}$ via $g_{k, j}$. Observe that $s_{k, j}$ and $s_{k', j'}$
-restrict to the same element of $F(V_{k, j} \times_X V_{k', j'})$
+restrict to the same element of $F'(V_{k, j} \times_X V_{k', j'})$
 for all $k$ and $k'$ and all $j \in \{1, \ldots, m_k\}$
 and $j' \in \{1, \ldots, m_{k'}\}$; verification omitted.
 In particular, by the result of the previous paragraph there is a unique
-element $s_k \in F(U_k)$ restricting to $s_{k, j}$ for all $j$.
+element $s_k \in F'(U_k)$ restricting to $s_{k, j}$ for all $j$.
 With this notation we are ready to finish the proof.
 
 \medskip\noindent
-Proof of uniqueness of $s$: this is true because $F$ satisfies
+Proof of uniqueness of $s$: this is true because $F'$ satisfies
 the sheaf property for Zariski coverings and $s|_{U_k}$ must be equal
 to $s_k$ because both restrict to $s_{k, j}$ for all $j$.
 This uniqueness then shows that $s_k$ and $s_{k'}$ must restrict
-to the same section of $F$ over (the non-affine scheme) $U_k \cap U_{k'}$
+to the same section of $F'$ over (the non-affine scheme) $U_k \cap U_{k'}$
 because these sections restrict to the same section over the
 $\tau$-covering $\{V_{k, j} \times_X V_{k', j'} \to U_k \cap U_{k'}\}$.
 Thus by the sheaf property for Zariski coverings, there is a unique
-section $s$ of $F$ over $X$ whose restriction to $U_k$ is $s_k$.
+section $s$ of $F'$ over $X$ whose restriction to $U_k$ is $s_k$.
 We omit the verification (similar to the above) that $s$ restricts
 to $s_i$ over $X_i$.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-extend-sheaf}
+Let $\tau \in \{Zariski, \etale, smooth, syntomic, fppf\}$.
+Let $S$ be a scheme contained in a big site $\Sch_\tau$.
+Let $F : (\Sch/S)_\tau^{opp} \to \textit{Sets}$ be a $\tau$-sheaf
+satisfying property (b) of Lemma \ref{lemma-extend} with
+$\mathcal{C} = (\Sch/S)_\tau$. Then the extension
+$F'$ of $F$ to the category of all schemes over $S$
+satisfies the sheaf condition for all $\tau$-coverings.
+\end{lemma}
 
+\begin{proof}
+This follows from Lemma \ref{lemma-extend-sheaf-general}
+applied with $\mathcal{C} = (\Sch/S)_\tau$.
+Conditions (1), (2), (a), and (b) of Lemma \ref{lemma-extend}
+hold; we omit the details. Thus we get our unique extension $F'$
+to the category of all schemes over $S$. Finally, observe that
+any standard $\tau$-covering is tautologically equivalent to a
+covering in $(\Sch/S)_\tau$, see Sets, Lemma \ref{sets-lemma-what-is-in-it}
+as well as Lemmas \ref{lemma-zariski-induced},
+\ref{lemma-etale-induced},
+\ref{lemma-smooth-induced},
+\ref{lemma-syntomic-induced}, and
+\ref{lemma-fppf-induced}. By
+Sites, Lemma \ref{sites-lemma-tautological-same-sheaf}
+the sheaf property passes through tautological equivalence
+of coverings. Hence the fact that $F$ is a $\tau$-sheaf implies
+that property (c) of Lemma \ref{lemma-extend-sheaf-general} holds
+and we conclude.
+\end{proof}
 
 
 

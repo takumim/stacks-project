@@ -413,7 +413,7 @@ and $\sigma^0_0 \circ \delta^1_1 = \text{id}$.
 The first one, $\sigma^0_0 \circ \delta^1_0 = \text{id}$, is clear from
 the explicit description of the morphisms above.
 To prove the second relation we have to use the cocycle condition
-(because it does not holds for an arbitrary isomorphism
+(because it does not hold for an arbitrary isomorphism
 $\varphi : N \otimes_R A \to A \otimes_R N$). Write
 $p = \sigma^0_0 \circ \delta^1_1 : N \to N$. By the description of the
 maps above we deduce that $p$ is also equal to
@@ -684,15 +684,20 @@ The cocycle condition means that
 $$
 \sum a_i \otimes a_{ij} \otimes y_j = \sum a_i \otimes 1 \otimes x_i
 $$
-in $A \otimes_R A \otimes_R N$. We conclude two things from this.
-First, by applying $\sigma$ to the first $A$ we conclude that
-$\sum \sigma(a_i) \varphi(x_i \otimes 1) = \sum \sigma(a_i) \otimes x_i$
-which means that $\sum \sigma(a_i) x_i \in M$. Next, by applying
-$\sigma$ to the middle $A$ and multiplying out we conclude that
-$\sum_i a_i (\sum_j \sigma(a_{ij}) y_j) = \sum a_i x_i = n$. Hence
-by the first conclusion we see that $A \otimes_R M \to N$ is
-surjective. Finally, suppose that $m_i \in M$ and
-$\sum a_i m_i = 0$. Then we see by applying $\varphi$ to
+in $A \otimes_R A \otimes_R N$. We conclude two things from this:
+\begin{enumerate}
+\item applying $\sigma$ to the first $A$ we get
+$\sum \sigma(a_i) \varphi(x_i \otimes 1) = \sum \sigma(a_i) \otimes x_i$,
+\item applying $\sigma$ to the middle $A$ we get
+$\sum_i a_i \otimes \sum_j \sigma(a_{ij}) y_j = \sum a_i \otimes x_i$.
+\end{enumerate}
+Part (1) shows that $\sum \sigma(a_i) x_i \in M$. Applying this to
+$x_i$ we see that $\sum \sigma(a_{ij})y_i \in M$ for all $i$.
+Multiplying out the equation in (2) we conclude that
+$\sum_i a_i (\sum_j \sigma(a_{ij}) y_j) = \sum a_i x_i = n$.
+Hence $A \otimes_R M \to N$ is surjective.
+Finally, suppose that $m_i \in M$ and $\sum a_i m_i = 0$.
+Then we see by applying $\varphi$ to
 $\sum a_im_i \otimes 1$ that $\sum a_i \otimes m_i = 0$.
 In other words $A \otimes_R M \to N$ is injective and we win.
 \end{proof}
@@ -1617,7 +1622,7 @@ functor from quasi-coherent sheaves to descent data.
 Faithfulness. Let $\mathcal{F}$, $\mathcal{G}$ be quasi-coherent
 sheaves on $S$ and let $a, b : \mathcal{F} \to \mathcal{G}$ be
 homomorphisms of $\mathcal{O}_S$-modules.
-Suppose $\varphi_i^*(a) = \varphi^*(b)$ for all $i$.
+Suppose $\varphi_i^*(a) = \varphi_i^*(b)$ for all $i$.
 Pick $s \in S$. Then $s = \varphi_i(u)$ for some $i \in I$ and
 $u \in U_i$. Since $\mathcal{O}_{S, s} \to \mathcal{O}_{U_i, u}$
 is flat, hence faithfully flat
@@ -1633,9 +1638,9 @@ $\text{pr}_0^*a_i = \text{pr}_1^*a_j$ on $U_i \times_U U_j$.
 We can pull back these morphisms to get morphisms
 $$
 a_k :
-\mathcal{F}|_{U_{\underline{i}(k), k}}
+\varphi_{i(k)}^*\mathcal{F}|_{U_{\underline{i}(k), k}}
 \longrightarrow
-\mathcal{G}|_{U_{\underline{i}(k), k}}
+\varphi_{i(k)}^*\mathcal{G}|_{U_{\underline{i}(k), k}}
 $$
 $k \in K_j$ with notation as above. Moreover,
 Lemma \ref{lemma-refine-descent-datum} assures us
@@ -2125,11 +2130,16 @@ this proves the lemma.
 
 
 
-\section{Quasi-coherent sheaves and topologies}
+\section{Quasi-coherent sheaves and topologies, I}
 \label{section-quasi-coherent-sheaves}
 
-
 \noindent
+The results in this section say there is a natural equivalence between
+the category quasi-coherent modules on a scheme $S$ and the category
+of quasi-coherent modules on many of the sites associated to $S$
+in the chapter on topologies.
+
+\medskip\noindent
 Let $S$ be a scheme.
 Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_S$-module.
 Consider the functor
@@ -2144,16 +2154,16 @@ Consider the functor
 \label{lemma-sheaf-condition-holds}
 Let $S$ be a scheme.
 Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_S$-module.
-Let $\tau \in \{Zariski, \linebreak[0] fpqc, \linebreak[0] fppf, \linebreak[0]
-\etale, \linebreak[0] smooth, \linebreak[0] syntomic\}$.
+Let $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0] smooth,
+\linebreak[0] syntomic, \linebreak[0] fppf, \linebreak[0] fpqc\}$.
 The functor defined in (\ref{equation-quasi-coherent-presheaf})
 satisfies the sheaf condition with respect to any $\tau$-covering
 $\{T_i \to T\}_{i \in I}$ of any scheme $T$ over $S$.
 \end{lemma}
 
 \begin{proof}
-For $\tau \in \{Zariski, \linebreak[0] fppf, \linebreak[0] \etale,
-\linebreak[0] smooth, \linebreak[0] syntomic\}$ a $\tau$-covering
+For $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0] smooth,
+\linebreak[0] syntomic, \linebreak[0] fppf\}$ a $\tau$-covering
 is also a fpqc-covering, see the results in
 Topologies, Lemmas
 \ref{topologies-lemma-zariski-etale},
@@ -2182,8 +2192,8 @@ We may in particular make the following definition.
 
 \begin{definition}
 \label{definition-structure-sheaf}
-Let $\tau \in \{Zariski, \linebreak[0] fppf, \linebreak[0]
-\etale, \linebreak[0] smooth, \linebreak[0] syntomic\}$.
+Let $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0]
+smooth, \linebreak[0] syntomic, \linebreak[0] fppf\}$.
 Let $S$ be a scheme.
 Let $\Sch_\tau$ be a big site containing $S$.
 Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_S$-module.
@@ -2191,17 +2201,18 @@ Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_S$-module.
 \item The {\it structure sheaf of the big site $(\Sch/S)_\tau$}
 is the sheaf of rings $T/S \mapsto \Gamma(T, \mathcal{O}_T)$ which is
 denoted $\mathcal{O}$ or $\mathcal{O}_S$.
-\item If $\tau = \etale$ the structure sheaf of the small site
-$S_\etale$ is the sheaf of rings $T/S \mapsto \Gamma(T, \mathcal{O}_T)$
+\item If $\tau = Zariski$ or $\tau = \etale$ the
+{\it structure sheaf of the small site} $S_{Zar}$ or $S_\etale$
+is the sheaf of rings $T/S \mapsto \Gamma(T, \mathcal{O}_T)$
 which is denoted $\mathcal{O}$ or $\mathcal{O}_S$.
 \item The {\it sheaf of $\mathcal{O}$-modules associated to
 $\mathcal{F}$} on the big site $(\Sch/S)_\tau$
 is the sheaf of $\mathcal{O}$-modules
 $(f : T \to S) \mapsto \Gamma(T, f^*\mathcal{F})$
 which is denoted $\mathcal{F}^a$ (and often simply $\mathcal{F}$).
-\item Let $\tau = \etale$ (resp.\ $\tau = Zariski$). The
+\item If $\tau = Zariski$ or $\tau = \etale$ the
 {\it sheaf of $\mathcal{O}$-modules associated to $\mathcal{F}$}
-on the small site $S_\etale$ (resp.\ $S_{Zar}$) is the sheaf of
+on the small site $S_{Zar}$ or $S_\etale$ is the sheaf of
 $\mathcal{O}$-modules $(f : T \to S) \mapsto \Gamma(T, f^*\mathcal{F})$
 which is denoted $\mathcal{F}^a$ (and often simply $\mathcal{F}$).
 \end{enumerate}
@@ -2384,15 +2395,15 @@ Lemma \ref{sites-modules-lemma-push-pull-composition-modules}.
 \label{lemma-quasi-coherent-gives-quasi-coherent}
 Let $S$ be a scheme.
 Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_S$-module.
-Let $\tau \in \{Zariski, \linebreak[0] fppf, \linebreak[0]
-\etale, \linebreak[0] smooth, \linebreak[0] syntomic\}$.
+Let $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0]
+smooth, \linebreak[0] syntomic, \linebreak[0] fppf\}$.
 \begin{enumerate}
 \item The sheaf $\mathcal{F}^a$ is a quasi-coherent
 $\mathcal{O}$-module on $(\Sch/S)_\tau$, as defined in
 Modules on Sites, Definition \ref{sites-modules-definition-site-local}.
-\item If $\tau = \etale$ (resp.\ $\tau = Zariski$), then the sheaf
+\item If $\tau = Zariski$ or $\tau = \etale$, then the sheaf
 $\mathcal{F}^a$ is a quasi-coherent $\mathcal{O}$-module on
-$S_\etale$ (resp.\ $S_{Zar}$) as defined in
+$S_{Zar}$ or $S_\etale$ as defined in
 Modules on Sites, Definition \ref{sites-modules-definition-site-local}.
 \end{enumerate}
 \end{lemma}
@@ -2439,6 +2450,234 @@ Lemma \ref{sites-modules-lemma-local-final-object}.
 The case $\tau = Zariski$ is similar (actually, it is really
 tautological since the corresponding ringed topoi agree).
 \end{proof}
+
+\begin{lemma}
+\label{lemma-fully-faithful-associated}
+Let $S$ be a scheme.
+Let $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0]
+smooth, \linebreak[0] syntomic, \linebreak[0] fppf\}$.
+Each of the functors $\mathcal{F} \mapsto \mathcal{F}^a$
+of Definition \ref{definition-structure-sheaf}
+$$
+\QCoh(\mathcal{O}_S) \to \QCoh((\Sch/S)_\tau, \mathcal{O})
+\quad\text{or}\quad
+\QCoh(\mathcal{O}_S) \to \QCoh(S_\tau, \mathcal{O})
+$$
+is fully faithful.
+\end{lemma}
+
+\begin{proof}
+(By Lemma \ref{lemma-quasi-coherent-gives-quasi-coherent} we do
+indeed get functors as indicated.)
+We may and do identify $\mathcal{O}_S$-modules on $S$ with
+modules on $(S_{Zar}, \mathcal{O}_S)$.
+The functor $\mathcal{F} \mapsto \mathcal{F}^a$ on quasi-coherent modules
+$\mathcal{F}$ is given by pullback by a morphism $f$
+of ringed sites, see Remark \ref{remark-change-topologies-ringed-sites}.
+In each case the functor $f_*$ is given by restriction
+along the inclusion functor $S_{Zar} \to S_\tau$ or
+$S_{Zar} \to (\Sch/S)_\tau$ (see discussion of how
+these morphisms of sites are defined in Topologies, Section
+\ref{topologies-section-change-topologies}).
+Combining this with the description of $f^*\mathcal{F} = \mathcal{F}^a$
+we see that $f_*f^*\mathcal{F} = \mathcal{F}$ provided that
+$\mathcal{F}$ is quasi-coherent. Then we see that
+$$
+\Hom_\mathcal{O}(\mathcal{F}^a, \mathcal{G}^a) =
+\Hom_\mathcal{O}(f^*\mathcal{F}, f^*\mathcal{G}) =
+\Hom_{\mathcal{O}_S}(\mathcal{F}, f_*f^*\mathcal{G}) =
+\Hom_{\mathcal{O}_S}(\mathcal{F}, \mathcal{G})
+$$
+as desired.
+\end{proof}
+
+\begin{proposition}
+\label{proposition-equivalence-quasi-coherent}
+Let $S$ be a scheme.
+Let $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0]
+smooth, \linebreak[0] syntomic, \linebreak[0] fppf\}$.
+\begin{enumerate}
+\item The functor $\mathcal{F} \mapsto \mathcal{F}^a$
+defines an equivalence of categories
+$$
+\QCoh(\mathcal{O}_S)
+\longrightarrow
+\QCoh((\Sch/S)_\tau, \mathcal{O})
+$$
+between the category of quasi-coherent sheaves on $S$ and the category
+of quasi-coherent $\mathcal{O}$-modules on the big $\tau$ site of $S$.
+\item Let $\tau = Zariski$ or $\tau = \etale$.
+The functor $\mathcal{F} \mapsto \mathcal{F}^a$
+defines an equivalence of categories
+$$
+\QCoh(\mathcal{O}_S)
+\longrightarrow
+\QCoh(S_\tau, \mathcal{O})
+$$
+between the category of quasi-coherent sheaves on $S$ and the category
+of quasi-coherent $\mathcal{O}$-modules on the small $\tau$ site of $S$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+We have seen in Lemma \ref{lemma-quasi-coherent-gives-quasi-coherent}
+that the functor is well defined. By Lemma \ref{lemma-fully-faithful-associated}
+the functor is fully faithful. To finish the proof we will show that a
+quasi-coherent $\mathcal{O}$-module on $(\Sch/S)_\tau$ gives
+rise to a descent datum for quasi-coherent sheaves relative to a
+$\tau$-covering of $S$. Having produced this descent datum we will appeal
+to Proposition \ref{proposition-fpqc-descent-quasi-coherent} to get the
+corresponding quasi-coherent sheaf on $S$.
+
+\medskip\noindent
+Let $\mathcal{G}$ be a quasi-coherent $\mathcal{O}$-modules on
+the big $\tau$ site of $S$. By
+Modules on Sites, Definition \ref{sites-modules-definition-site-local}
+there exists a $\tau$-covering $\{S_i \to S\}_{i \in I}$ of $S$
+such that each of the restrictions
+$\mathcal{G}|_{(\Sch/S_i)_\tau}$ has a global presentation
+$$
+\bigoplus\nolimits_{k \in K_i} \mathcal{O}|_{(\Sch/S_i)_\tau}
+\longrightarrow
+\bigoplus\nolimits_{j \in J_i} \mathcal{O}|_{(\Sch/S_i)_\tau}
+\longrightarrow
+\mathcal{G}|_{(\Sch/S_i)_\tau} \longrightarrow 0
+$$
+for some index sets $J_i$ and $K_i$. We claim that this implies
+that $\mathcal{G}|_{(\Sch/S_i)_\tau}$ is $\mathcal{F}_i^a$
+for some quasi-coherent sheaf $\mathcal{F}_i$ on $S_i$. Namely,
+this is clear for the direct sums
+$\bigoplus\nolimits_{k \in K_i} \mathcal{O}|_{(\Sch/S_i)_\tau}$
+and
+$\bigoplus\nolimits_{j \in J_i} \mathcal{O}|_{(\Sch/S_i)_\tau}$.
+Hence we see that $\mathcal{G}|_{(\Sch/S_i)_\tau}$ is a
+cokernel of a map $\varphi : \mathcal{K}_i^a \to \mathcal{L}_i^a$
+for some quasi-coherent sheaves $\mathcal{K}_i$, $\mathcal{L}_i$
+on $S_i$. By the fully faithfulness of $(\ )^a$ we see that
+$\varphi = \phi^a$ for some map of quasi-coherent sheaves
+$\phi : \mathcal{K}_i \to \mathcal{L}_i$ on $S_i$. Then it is
+clear that
+$\mathcal{G}|_{(\Sch/S_i)_\tau} \cong \Coker(\phi)^a$
+as claimed.
+
+\medskip\noindent
+Since $\mathcal{G}$ lives on all of the category
+$(\Sch/S)_\tau$ we see that
+$$
+(\text{pr}_0^*\mathcal{F}_i)^a
+\cong
+\mathcal{G}|_{(\Sch/(S_i \times_S S_j))_\tau}
+\cong
+(\text{pr}_1^*\mathcal{F})^a
+$$
+as $\mathcal{O}$-modules on $(\Sch/(S_i \times_S S_j))_\tau$.
+Hence, using fully faithfulness again we get canonical isomorphisms
+$$
+\phi_{ij} :
+\text{pr}_0^*\mathcal{F}_i
+\longrightarrow
+\text{pr}_1^*\mathcal{F}_j
+$$
+of quasi-coherent modules over $S_i \times_S S_j$. We omit the verification
+that these satisfy the cocycle condition. Since they do we see by
+effectivity of descent for quasi-coherent sheaves and the covering
+$\{S_i \to S\}$ (Proposition \ref{proposition-fpqc-descent-quasi-coherent})
+that there exists a quasi-coherent sheaf $\mathcal{F}$ on $S$
+with $\mathcal{F}|_{S_i} \cong \mathcal{F}_i$ compatible
+with the given descent data. In other words we are given
+$\mathcal{O}$-module isomorphisms
+$$
+\phi_i :
+\mathcal{F}^a|_{(\Sch/S_i)_\tau}
+\longrightarrow
+\mathcal{G}|_{(\Sch/S_i)_\tau}
+$$
+which agree over $S_i \times_S S_j$. Hence, since
+$\SheafHom_\mathcal{O}(\mathcal{F}^a, \mathcal{G})$ is
+a sheaf (Modules on Sites, Lemma \ref{sites-modules-lemma-internal-hom}),
+we conclude that
+there is a morphism of $\mathcal{O}$-modules $\mathcal{F}^a \to \mathcal{G}$
+recovering the isomorphisms $\phi_i$ above. Hence this is an isomorphism
+and we win.
+
+\medskip\noindent
+The case of the sites $S_\etale$ and $S_{Zar}$ is proved in the
+exact same manner.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-equivalence-quasi-coherent-properties}
+Let $S$ be a scheme.
+Let $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0]
+smooth, \linebreak[0] syntomic, \linebreak[0] fppf\}$.
+Let $\mathcal{P}$ be one of the properties of modules\footnote{The list is:
+free, finite free, generated by global sections,
+generated by $r$ global sections, generated by finitely many global sections,
+having a global presentation, having a global finite presentation,
+locally free, finite locally free, locally generated by sections,
+locally generated by $r$ sections, finite type, of finite presentation,
+coherent, or flat.} defined in
+Modules on Sites, Definitions \ref{sites-modules-definition-global},
+\ref{sites-modules-definition-site-local}, and
+\ref{sites-modules-definition-flat}.
+The equivalences of categories
+$$
+\QCoh(\mathcal{O}_S)
+\longrightarrow
+\QCoh((\Sch/S)_\tau, \mathcal{O})
+\quad\text{and}\quad
+\QCoh(\mathcal{O}_S)
+\longrightarrow
+\QCoh(S_\tau, \mathcal{O})
+$$
+defined by the rule $\mathcal{F} \mapsto \mathcal{F}^a$ seen in
+Proposition \ref{proposition-equivalence-quasi-coherent}
+have the property
+$$
+\mathcal{F}\text{ has }\mathcal{P}
+\Leftrightarrow
+\mathcal{F}^a\text{ has }\mathcal{P}\text{ as an }\mathcal{O}\text{-module}
+$$
+except (possibly) when $\mathcal{P}$ is ``locally free'' or ``coherent''.
+If $\mathcal{P}=$``coherent'' the equivalence
+holds for $\QCoh(\mathcal{O}_S) \to \QCoh(S_\tau, \mathcal{O})$
+when $S$ is locally Noetherian and $\tau$ is Zariski or \'etale.
+\end{lemma}
+
+\begin{proof}
+This is immediate for the global properties, i.e., those defined in
+Modules on Sites, Definition \ref{sites-modules-definition-global}.
+For the local properties we can use
+Modules on Sites, Lemma \ref{sites-modules-lemma-local-final-object}
+to translate ``$\mathcal{F}^a$ has $\mathcal{P}$'' into a property
+on the members of a covering of $X$. Hence the result follows from
+Lemmas \ref{lemma-finite-type-descends},
+\ref{lemma-finite-presentation-descends},
+\ref{lemma-locally-generated-by-r-sections-descends},
+\ref{lemma-flat-descends}, and
+\ref{lemma-finite-locally-free-descends}.
+Being coherent for a quasi-coherent module is the same as being
+of finite type over a locally Noetherian scheme (see
+Cohomology of Schemes, Lemma \ref{coherent-lemma-coherent-Noetherian})
+hence this reduces
+to the case of finite type modules (details omitted).
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Cohomology of quasi-coherent modules and topologies}
+\label{section-quasi-coherent-cohomology}
+
+\noindent
+In this section we prove that cohomology of quasi-coherent
+modules is independent of the choice of topology.
 
 \begin{lemma}
 \label{lemma-standard-covering-Cech}
@@ -2533,8 +2772,8 @@ Cohomology of quasi-coherent sheaves is the same no matter which
 topology you use.
 \end{slogan}
 Let $S$ be a scheme. Let $\mathcal{F}$ be a quasi-coherent sheaf on $S$.
-Let $\tau \in \{Zariski, \linebreak[0] fppf, \linebreak[0]
-\etale, \linebreak[0] smooth, \linebreak[0] syntomic\}$.
+Let $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0]
+smooth, \linebreak[0] syntomic, \linebreak[0] fppf\}$.
 \begin{enumerate}
 \item There is a canonical isomorphism
 $$
@@ -2646,312 +2885,6 @@ are isomorphisms, and we win.
 \end{proof}
 
 \begin{proposition}
-\label{proposition-equivalence-quasi-coherent}
-Let $S$ be a scheme.
-Let $\tau \in \{Zariski, \linebreak[0] fppf, \linebreak[0]
-\etale, \linebreak[0] smooth, \linebreak[0] syntomic\}$.
-\begin{enumerate}
-\item The functor $\mathcal{F} \mapsto \mathcal{F}^a$
-defines an equivalence of categories
-$$
-\QCoh(\mathcal{O}_S)
-\longrightarrow
-\QCoh((\Sch/S)_\tau, \mathcal{O})
-$$
-between the category of quasi-coherent sheaves on $S$ and the category
-of quasi-coherent $\mathcal{O}$-modules on the big $\tau$ site of $S$.
-\item Let $\tau = \etale$, or $\tau = Zariski$.
-The functor $\mathcal{F} \mapsto \mathcal{F}^a$
-defines an equivalence of categories
-$$
-\QCoh(\mathcal{O}_S)
-\longrightarrow
-\QCoh(S_\tau, \mathcal{O})
-$$
-between the category of quasi-coherent sheaves on $S$ and the category
-of quasi-coherent $\mathcal{O}$-modules on the small $\tau$ site of $S$.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-We have seen in Lemma \ref{lemma-quasi-coherent-gives-quasi-coherent}
-that the functor is well defined.
-It is straightforward to show that the functor is fully faithful (we omit
-the verification). To finish the proof we will show that a
-quasi-coherent $\mathcal{O}$-module on $(\Sch/S)_\tau$ gives
-rise to a descent datum for quasi-coherent sheaves relative to a
-$\tau$-covering of $S$. Having produced this descent datum we will appeal
-to Proposition \ref{proposition-fpqc-descent-quasi-coherent} to get the
-corresponding quasi-coherent sheaf on $S$.
-
-\medskip\noindent
-Let $\mathcal{G}$ be a quasi-coherent $\mathcal{O}$-modules on
-the big $\tau$ site of $S$. By
-Modules on Sites, Definition \ref{sites-modules-definition-site-local}
-there exists a $\tau$-covering $\{S_i \to S\}_{i \in I}$ of $S$
-such that each of the restrictions
-$\mathcal{G}|_{(\Sch/S_i)_\tau}$ has a global presentation
-$$
-\bigoplus\nolimits_{k \in K_i} \mathcal{O}|_{(\Sch/S_i)_\tau}
-\longrightarrow
-\bigoplus\nolimits_{j \in J_i} \mathcal{O}|_{(\Sch/S_i)_\tau}
-\longrightarrow
-\mathcal{G}|_{(\Sch/S_i)_\tau} \longrightarrow 0
-$$
-for some index sets $J_i$ and $K_i$. We claim that this implies
-that $\mathcal{G}|_{(\Sch/S_i)_\tau}$ is $\mathcal{F}_i^a$
-for some quasi-coherent sheaf $\mathcal{F}_i$ on $S_i$. Namely,
-this is clear for the direct sums
-$\bigoplus\nolimits_{k \in K_i} \mathcal{O}|_{(\Sch/S_i)_\tau}$
-and
-$\bigoplus\nolimits_{j \in J_i} \mathcal{O}|_{(\Sch/S_i)_\tau}$.
-Hence we see that $\mathcal{G}|_{(\Sch/S_i)_\tau}$ is a
-cokernel of a map $\varphi : \mathcal{K}_i^a \to \mathcal{L}_i^a$
-for some quasi-coherent sheaves $\mathcal{K}_i$, $\mathcal{L}_i$
-on $S_i$. By the fully faithfulness of $(\ )^a$ we see that
-$\varphi = \phi^a$ for some map of quasi-coherent sheaves
-$\phi : \mathcal{K}_i \to \mathcal{L}_i$ on $S_i$. Then it is
-clear that
-$\mathcal{G}|_{(\Sch/S_i)_\tau} \cong \Coker(\phi)^a$
-as claimed.
-
-\medskip\noindent
-Since $\mathcal{G}$ lives on all of the category
-$(\Sch/S_i)_\tau$ we see that
-$$
-(\text{pr}_0^*\mathcal{F}_i)^a
-\cong
-\mathcal{G}|_{(\Sch/(S_i \times_S S_j))_\tau}
-\cong
-(\text{pr}_1^*\mathcal{F})^a
-$$
-as $\mathcal{O}$-modules on $(\Sch/(S_i \times_S S_j))_\tau$.
-Hence, using fully faithfulness again we get canonical isomorphisms
-$$
-\phi_{ij} :
-\text{pr}_0^*\mathcal{F}_i
-\longrightarrow
-\text{pr}_1^*\mathcal{F}_j
-$$
-of quasi-coherent modules over $S_i \times_S S_j$. We omit the verification
-that these satisfy the cocycle condition. Since they do we see by
-effectivity of descent for quasi-coherent sheaves and the covering
-$\{S_i \to S\}$ (Proposition \ref{proposition-fpqc-descent-quasi-coherent})
-that there exists a quasi-coherent sheaf $\mathcal{F}$ on $S$
-with $\mathcal{F}|_{S_i} \cong \mathcal{F}_i$ compatible
-with the given descent data. In other words we are given
-$\mathcal{O}$-module isomorphisms
-$$
-\phi_i :
-\mathcal{F}^a|_{(\Sch/S_i)_\tau}
-\longrightarrow
-\mathcal{G}|_{(\Sch/S_i)_\tau}
-$$
-which agree over $S_i \times_S S_j$. Hence, since
-$\SheafHom_\mathcal{O}(\mathcal{F}^a, \mathcal{G})$ is
-a sheaf (Modules on Sites, Lemma \ref{sites-modules-lemma-internal-hom}),
-we conclude that
-there is a morphism of $\mathcal{O}$-modules $\mathcal{F}^a \to \mathcal{G}$
-recovering the isomorphisms $\phi_i$ above. Hence this is an isomorphism
-and we win.
-
-\medskip\noindent
-The case of the sites $S_\etale$ and $S_{Zar}$ is proved in the
-exact same manner.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-equivalence-quasi-coherent-properties}
-Let $S$ be a scheme.
-Let $\tau \in \{Zariski, \linebreak[0] fppf, \linebreak[0]
-\etale, \linebreak[0] smooth, \linebreak[0] syntomic\}$.
-Let $\mathcal{P}$ be one of the properties of modules\footnote{The list is:
-free, finite free, generated by global sections,
-generated by $r$ global sections, generated by finitely many global sections,
-having a global presentation, having a global finite presentation,
-locally free, finite locally free, locally generated by sections,
-locally generated by $r$ sections, finite type, of finite presentation,
-coherent, or flat.} defined in
-Modules on Sites, Definitions \ref{sites-modules-definition-global},
-\ref{sites-modules-definition-site-local}, and
-\ref{sites-modules-definition-flat}.
-The equivalences of categories
-$$
-\QCoh(\mathcal{O}_S)
-\longrightarrow
-\QCoh((\Sch/S)_\tau, \mathcal{O})
-\quad\text{and}\quad
-\QCoh(\mathcal{O}_S)
-\longrightarrow
-\QCoh(S_\tau, \mathcal{O})
-$$
-defined by the rule $\mathcal{F} \mapsto \mathcal{F}^a$ seen in
-Proposition \ref{proposition-equivalence-quasi-coherent}
-have the property
-$$
-\mathcal{F}\text{ has }\mathcal{P}
-\Leftrightarrow
-\mathcal{F}^a\text{ has }\mathcal{P}\text{ as an }\mathcal{O}\text{-module}
-$$
-except (possibly) when $\mathcal{P}$ is ``locally free'' or ``coherent''.
-If $\mathcal{P}=$``coherent'' the equivalence
-holds for $\QCoh(\mathcal{O}_S) \to \QCoh(S_\tau, \mathcal{O})$
-when $S$ is locally Noetherian and $\tau$ is Zariski or \'etale.
-\end{lemma}
-
-\begin{proof}
-This is immediate for the global properties, i.e., those defined in
-Modules on Sites, Definition \ref{sites-modules-definition-global}.
-For the local properties we can use
-Modules on Sites, Lemma \ref{sites-modules-lemma-local-final-object}
-to translate ``$\mathcal{F}^a$ has $\mathcal{P}$'' into a property
-on the members of a covering of $X$. Hence the result follows from
-Lemmas \ref{lemma-finite-type-descends},
-\ref{lemma-finite-presentation-descends},
-\ref{lemma-locally-generated-by-r-sections-descends},
-\ref{lemma-flat-descends}, and
-\ref{lemma-finite-locally-free-descends}.
-Being coherent for a quasi-coherent module is the same as being
-of finite type over a locally Noetherian scheme (see
-Cohomology of Schemes, Lemma \ref{coherent-lemma-coherent-Noetherian})
-hence this reduces
-to the case of finite type modules (details omitted).
-\end{proof}
-
-\begin{lemma}
-\label{lemma-equivalence-quasi-coherent-limits}
-Let $S$ be a scheme.
-Let $\tau \in \{Zariski, \linebreak[0] fppf, \linebreak[0]
-\etale, \linebreak[0] smooth, \linebreak[0] syntomic\}$.
-The functors
-$$
-\QCoh(\mathcal{O}_S)
-\longrightarrow
-\textit{Mod}((\Sch/S)_\tau, \mathcal{O})
-\quad\text{and}\quad
-\QCoh(\mathcal{O}_S)
-\longrightarrow
-\textit{Mod}(S_\tau, \mathcal{O})
-$$
-defined by the rule $\mathcal{F} \mapsto \mathcal{F}^a$ seen in
-Proposition \ref{proposition-equivalence-quasi-coherent}
-are
-\begin{enumerate}
-\item fully faithful,
-\item compatible with direct sums,
-\item compatible with colimits,
-\item right exact,
-\item exact as a functor
-$\QCoh(\mathcal{O}_S) \to \textit{Mod}(S_\etale, \mathcal{O})$,
-\item {\bf not} exact as a functor
-$\QCoh(\mathcal{O}_S) \to
-\textit{Mod}((\Sch/S)_\tau, \mathcal{O})$
-in general,
-\item given two quasi-coherent $\mathcal{O}_S$-modules
-$\mathcal{F}$, $\mathcal{G}$ we have
-$(\mathcal{F} \otimes_{\mathcal{O}_S} \mathcal{G})^a =
-\mathcal{F}^a \otimes_\mathcal{O} \mathcal{G}^a$,
-\item given two quasi-coherent $\mathcal{O}_S$-modules
-$\mathcal{F}$, $\mathcal{G}$ such that $\mathcal{F}$
-is of finite presentation we have
-$(\SheafHom_{\mathcal{O}_S}(\mathcal{F}, \mathcal{G}))^a =
-\SheafHom_\mathcal{O}(\mathcal{F}^a, \mathcal{G}^a)$, and
-\item given a short exact sequence
-$0 \to \mathcal{F}_1^a \to \mathcal{E} \to \mathcal{F}_2^a \to 0$
-of $\mathcal{O}$-modules then $\mathcal{E}$ is
-quasi-coherent\footnote{Warning: This is misleading. See part (6).}, i.e.,
-$\mathcal{E}$ is in the essential image of the functor.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-Part (1) we saw in
-Proposition \ref{proposition-equivalence-quasi-coherent}.
-
-\medskip\noindent
-We have seen in
-Schemes, Section \ref{schemes-section-quasi-coherent}
-that a colimit of quasi-coherent sheaves on a scheme is a quasi-coherent
-sheaf. Moreover, in
-Remark \ref{remark-change-topologies-ringed-sites}
-we saw that $\mathcal{F} \mapsto \mathcal{F}^a$ is the pullback functor
-for a morphism of ringed sites, hence commutes with all colimits, see
-Modules on Sites, Lemma
-\ref{sites-modules-lemma-exactness-pushforward-pullback}.
-Thus (3) and its special case (3) hold.
-
-\medskip\noindent
-This also shows that the functor is right exact (i.e., commutes with
-finite colimits), hence (4).
-
-\medskip\noindent
-The functor $\QCoh(\mathcal{O}_S) \to
-\QCoh(S_\etale, \mathcal{O})$,
-$\mathcal{F} \mapsto \mathcal{F}^a$
-is left exact because an \'etale morphism is flat, see
-Morphisms, Lemma \ref{morphisms-lemma-etale-flat}.
-This proves (5).
-
-\medskip\noindent
-To see (6), suppose that $S = \Spec(\mathbf{Z})$.
-Then $2 : \mathcal{O}_S \to \mathcal{O}_S$ is injective but the associated
-map of $\mathcal{O}$-modules on $(\Sch/S)_\tau$ isn't
-injective because $2 : \mathbf{F}_2 \to \mathbf{F}_2$ isn't injective
-and $\Spec(\mathbf{F}_2)$ is an object of $(\Sch/S)_\tau$.
-
-\medskip\noindent
-We omit the proofs of (7) and (8).
-
-\medskip\noindent
-Let $0 \to \mathcal{F}_1^a \to \mathcal{E} \to \mathcal{F}_2^a \to 0$
-be a short exact sequence of $\mathcal{O}$-modules with $\mathcal{F}_1$
-and $\mathcal{F}_2$ quasi-coherent on $S$. Consider the restriction
-$$
-0 \to \mathcal{F}_1 \to \mathcal{E}|_{S_{Zar}} \to \mathcal{F}_2
-$$
-to $S_{Zar}$. By
-Proposition \ref{proposition-same-cohomology-quasi-coherent}
-we see that on any affine $U \subset S$ we have
-$H^1(U, \mathcal{F}_1^a) = H^1(U, \mathcal{F}_1) = 0$.
-Hence the sequence above is also exact on the right. By
-Schemes, Section \ref{schemes-section-quasi-coherent}
-we conclude that $\mathcal{F} = \mathcal{E}|_{S_{Zar}}$ is
-quasi-coherent. Thus we obtain a commutative diagram
-$$
-\xymatrix{
-& \mathcal{F}_1^a \ar[r] \ar[d] &
-\mathcal{F}^a \ar[r] \ar[d] &
-\mathcal{F}_2^a \ar[r] \ar[d] & 0 \\
-0 \ar[r] &
-\mathcal{F}_1^a \ar[r] &
-\mathcal{E} \ar[r] &
-\mathcal{F}_2^a \ar[r] & 0
-}
-$$
-To finish the proof it suffices to show that the top row is also
-right exact. To do this, denote once more $U = \Spec(A) \subset S$
-an affine open of $S$. We have seen above that
-$0 \to \mathcal{F}_1(U) \to \mathcal{E}(U) \to \mathcal{F}_2(U) \to 0$
-is exact. For any affine scheme $V/U$,
-$V = \Spec(B)$ the map $\mathcal{F}_1^a(V) \to \mathcal{E}(V)$
-is injective. We have $\mathcal{F}_1^a(V) = \mathcal{F}_1(U) \otimes_A B$
-by definition. The injection
-$\mathcal{F}_1^a(V) \to \mathcal{E}(V)$ factors as
-$$
-\mathcal{F}_1(U) \otimes_A B \to
-\mathcal{E}(U) \otimes_A B \to \mathcal{E}(U)
-$$
-Considering $A$-algebras $B$ of the form $B = A \oplus M$
-we see that $\mathcal{F}_1(U) \to \mathcal{E}(U)$ is
-universally injective (see
-Algebra, Definition \ref{algebra-definition-universally-injective}).
-Since $\mathcal{E}(U) = \mathcal{F}(U)$ we conclude that
-$\mathcal{F}_1 \to \mathcal{F}$ remains injective after any base change,
-or equivalently that $\mathcal{F}_1^a \to \mathcal{F}^a$ is injective.
-\end{proof}
-
-
-\begin{proposition}
 \label{proposition-equivalence-quasi-coherent-functorial}
 Let $f : T \to S$ be a morphism of schemes.
 \begin{enumerate}
@@ -3051,14 +2984,770 @@ on every affine object of $S_\etale$ are canonically isomorphic
 which implies they are canonically isomorphic.
 \end{proof}
 
+
+
+
+\section{Quasi-coherent sheaves and topologies, II}
+\label{section-quasi-coherent-sheaves-bis}
+
 \noindent
-The results in this section say there is virtually no difference between
-quasi-coherent sheaves on $S$ and quasi-coherent sheaves on any of the
-sites associated to $S$ in the chapter on topologies. Hence one often
-sees statements on quasi-coherent sheaves formulated in either language,
-without restatements in the other.
+We continue the discussion comparing quasi-coherent modules on a scheme $S$
+with quasi-coherent modules on any of the sites associated to $S$
+in the chapter on topologies.
 
 
+\begin{lemma}
+\label{lemma-compare-etale-zariski-flat}
+In Lemma \ref{lemma-compare-sites} the morphism of ringed
+sites $\text{id}_{small, \etale, Zar} : S_\etale \to S_{Zar}$ is flat.
+\end{lemma}
+
+\begin{proof}
+Let us denote $\epsilon = \text{id}_{small, \etale, Zar}$ and
+$\mathcal{O}_\etale$ and $\mathcal{O}_{Zar}$ the structure
+sheaves on $S_\etale$ and $S_{Zar}$. We have to show that
+$\mathcal{O}_\etale$ is a flat $\epsilon^{-1}\mathcal{O}_{Zar}$-module.
+Recall that \'etale morphisms are open, see
+Morphisms, Lemma \ref{morphisms-lemma-etale-open}.
+It follows (from the construction of pullback on sheaves)
+that $\epsilon^{-1}\mathcal{O}_{Zar}$ is the sheafification
+of the presheaf $\mathcal{O}'$ on $S_\etale$
+which sends an \'etale morphism $f : V \to S$ to $\mathcal{O}_S(f(V))$.
+If both $V$ and $U = f(V) \subset S$ are affine,
+then $V \to U$ is an \'etale morphism of affines,
+hence corresponds to an \'etale ring map.
+Since \'etale ring maps are flat, we see that
+$\mathcal{O}_S(U) = \mathcal{O}'(V) \to
+\mathcal{O}_\etale(V) = \mathcal{O}_V(V)$ is flat.
+Finally, for every \'etale morphism $f : V \to S$, i.e., object of
+$S_\etale$, there is an affine open covering $V = \bigcup V_i$
+such that $f(V_i)$ is an affine open in
+$S$ for all $i$\footnote{Namely, for $y \in V$, we pick an affine open
+$y \in V' \subset V$ with $f(V')$ contained in an affine
+open $U \subset S$. Then we pick an affine open $f(y) \in U' \subset f(V')$.
+Then $V'' = f^{-1}(U') \subset V'$ is affine as it is equal
+to $U' \times_U V'$ and $f(V'') = U'$ is affine too.}.
+Thus the result by Modules on Sites, Lemma
+\ref{sites-modules-lemma-flatness-sheafification-refined}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-equivalence-quasi-coherent-limits}
+Let $S$ be a scheme.
+Let $\tau \in \{Zariski, \linebreak[0] \etale,
+\linebreak[0] smooth, \linebreak[0] syntomic, \linebreak[0] fppf\}$.
+The functors
+$$
+\QCoh(\mathcal{O}_S)
+\longrightarrow
+\textit{Mod}((\Sch/S)_\tau, \mathcal{O})
+\quad\text{and}\quad
+\QCoh(\mathcal{O}_S)
+\longrightarrow
+\textit{Mod}(S_\tau, \mathcal{O})
+$$
+defined by the rule $\mathcal{F} \mapsto \mathcal{F}^a$ seen in
+Proposition \ref{proposition-equivalence-quasi-coherent}
+are
+\begin{enumerate}
+\item fully faithful,
+\item compatible with direct sums,
+\item compatible with colimits,
+\item right exact,
+\item exact as a functor
+$\QCoh(\mathcal{O}_S) \to \textit{Mod}(S_\etale, \mathcal{O})$,
+\item {\bf not} exact as a functor
+$\QCoh(\mathcal{O}_S) \to
+\textit{Mod}((\Sch/S)_\tau, \mathcal{O})$
+in general,
+\item given two quasi-coherent $\mathcal{O}_S$-modules
+$\mathcal{F}$, $\mathcal{G}$ we have
+$(\mathcal{F} \otimes_{\mathcal{O}_S} \mathcal{G})^a =
+\mathcal{F}^a \otimes_\mathcal{O} \mathcal{G}^a$,
+\item if $\tau = \etale$ or $\tau = Zariski$,
+given two quasi-coherent $\mathcal{O}_S$-modules
+$\mathcal{F}$, $\mathcal{G}$ such that $\mathcal{F}$
+is of finite presentation we have
+$(\SheafHom_{\mathcal{O}_S}(\mathcal{F}, \mathcal{G}))^a =
+\SheafHom_\mathcal{O}(\mathcal{F}^a, \mathcal{G}^a)$ in
+$\textit{Mod}(S_\tau, \mathcal{O})$,
+\item given two quasi-coherent $\mathcal{O}_S$-modules
+$\mathcal{F}$, $\mathcal{G}$ we do {\bf not} have
+$(\SheafHom_{\mathcal{O}_S}(\mathcal{F}, \mathcal{G}))^a =
+\SheafHom_\mathcal{O}(\mathcal{F}^a, \mathcal{G}^a)$
+in $\textit{Mod}((\Sch/S)_\tau, \mathcal{O})$ in general
+even if $\mathcal{F}$ is of finite presentation, and
+\item given a short exact sequence
+$0 \to \mathcal{F}_1^a \to \mathcal{E} \to \mathcal{F}_2^a \to 0$
+of $\mathcal{O}$-modules then $\mathcal{E}$ is
+quasi-coherent\footnote{Warning: This is misleading. See part (6).}, i.e.,
+$\mathcal{E}$ is in the essential image of the functor.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Part (1) we saw in
+Proposition \ref{proposition-equivalence-quasi-coherent}.
+
+\medskip\noindent
+We have seen in
+Schemes, Section \ref{schemes-section-quasi-coherent}
+that a colimit of quasi-coherent sheaves on a scheme is a quasi-coherent
+sheaf. Moreover, in
+Remark \ref{remark-change-topologies-ringed-sites}
+we saw that $\mathcal{F} \mapsto \mathcal{F}^a$ is the pullback functor
+for a morphism of ringed sites, hence commutes with all colimits, see
+Modules on Sites, Lemma
+\ref{sites-modules-lemma-exactness-pushforward-pullback}.
+Thus (3) and its special case (3) hold.
+
+\medskip\noindent
+This also shows that the functor is right exact (i.e., commutes with
+finite colimits), hence (4).
+
+\medskip\noindent
+The functor $\QCoh(\mathcal{O}_S) \to
+\QCoh(S_\etale, \mathcal{O})$,
+$\mathcal{F} \mapsto \mathcal{F}^a$
+is left exact because an \'etale morphism is flat, see
+Morphisms, Lemma \ref{morphisms-lemma-etale-flat}.
+This proves (5).
+
+\medskip\noindent
+To see (6), suppose that $S = \Spec(\mathbf{Z})$.
+Then $2 : \mathcal{O}_S \to \mathcal{O}_S$ is injective but the associated
+map of $\mathcal{O}$-modules on $(\Sch/S)_\tau$ isn't
+injective because $2 : \mathbf{F}_2 \to \mathbf{F}_2$ isn't injective
+and $\Spec(\mathbf{F}_2)$ is an object of $(\Sch/S)_\tau$.
+
+\medskip\noindent
+Part (7) holds because, as mentioned above, the functor
+$\mathcal{F} \mapsto \mathcal{F}^a$ is the pullback functor
+for a morphism of ringed sites and such commute with tensor
+products by Modules on Sites, Lemma
+\ref{sites-modules-lemma-tensor-product-pullback}.
+
+\medskip\noindent
+Part (8) is obvious if $\tau = Zariski$ because the category of
+$\mathcal{O}$-modules on $S_{Zar}$ is the same as the category
+of $\mathcal{O}_S$-modules on the topological space $S$.
+If $\tau = \etale$ then (8) holds because, as mentioned above,
+the functor $\mathcal{F} \mapsto \mathcal{F}^a$ is the pullback functor
+for the flat morphism of ringed sites
+$(S_\etale, \mathcal{O}) \to (S_{Zar}, \mathcal{O}_S)$, see
+Lemma \ref{lemma-compare-etale-zariski-flat}.
+Pullback by flat morphisms of ringed sites commutes with
+taking internal hom out of a finitely presented module by
+Modules on Sites, Lemma \ref{sites-modules-lemma-pullback-internal-hom}.
+
+\medskip\noindent
+To see (9), suppose that $S = \Spec(\mathbf{Z})$. Let
+$\mathcal{F} = \Coker(2 : \mathcal{O}_S \to \mathcal{O}_S)$
+and $\mathcal{G} = \mathcal{O}_S$.
+Then $\mathcal{F}^a = \Coker(2 : \mathcal{O} \to \mathcal{O})$
+and $\mathcal{G}^a = \mathcal{O}$.
+Hence
+$\SheafHom_\mathcal{O}(\mathcal{F}^a, \mathcal{G}^a) = \mathcal{O}[2]$
+is equal to the $2$-torsion in $\mathcal{O}$, which is not zero,
+see proof of (6). On the other hand, the module
+$\SheafHom_{\mathcal{O}_S}(\mathcal{F}, \mathcal{G})$
+is zero.
+
+\medskip\noindent
+Proof of (10).
+Let $0 \to \mathcal{F}_1^a \to \mathcal{E} \to \mathcal{F}_2^a \to 0$
+be a short exact sequence of $\mathcal{O}$-modules with $\mathcal{F}_1$
+and $\mathcal{F}_2$ quasi-coherent on $S$. Consider the restriction
+$$
+0 \to \mathcal{F}_1 \to \mathcal{E}|_{S_{Zar}} \to \mathcal{F}_2
+$$
+to $S_{Zar}$. By
+Proposition \ref{proposition-same-cohomology-quasi-coherent}
+we see that on any affine $U \subset S$ we have
+$H^1(U, \mathcal{F}_1^a) = H^1(U, \mathcal{F}_1) = 0$.
+Hence the sequence above is also exact on the right. By
+Schemes, Section \ref{schemes-section-quasi-coherent}
+we conclude that $\mathcal{F} = \mathcal{E}|_{S_{Zar}}$ is
+quasi-coherent. Thus we obtain a commutative diagram
+$$
+\xymatrix{
+& \mathcal{F}_1^a \ar[r] \ar[d] &
+\mathcal{F}^a \ar[r] \ar[d] &
+\mathcal{F}_2^a \ar[r] \ar[d] & 0 \\
+0 \ar[r] &
+\mathcal{F}_1^a \ar[r] &
+\mathcal{E} \ar[r] &
+\mathcal{F}_2^a \ar[r] & 0
+}
+$$
+To finish the proof it suffices to show that the top row is also
+right exact. To do this, denote once more $U = \Spec(A) \subset S$
+an affine open of $S$. We have seen above that
+$0 \to \mathcal{F}_1(U) \to \mathcal{E}(U) \to \mathcal{F}_2(U) \to 0$
+is exact. For any affine scheme $V/U$,
+$V = \Spec(B)$ the map $\mathcal{F}_1^a(V) \to \mathcal{E}(V)$
+is injective. We have $\mathcal{F}_1^a(V) = \mathcal{F}_1(U) \otimes_A B$
+by definition. The injection
+$\mathcal{F}_1^a(V) \to \mathcal{E}(V)$ factors as
+$$
+\mathcal{F}_1(U) \otimes_A B \to
+\mathcal{E}(U) \otimes_A B \to \mathcal{E}(U)
+$$
+Considering $A$-algebras $B$ of the form $B = A \oplus M$
+we see that $\mathcal{F}_1(U) \to \mathcal{E}(U)$ is
+universally injective (see
+Algebra, Definition \ref{algebra-definition-universally-injective}).
+Since $\mathcal{E}(U) = \mathcal{F}(U)$ we conclude that
+$\mathcal{F}_1 \to \mathcal{F}$ remains injective after any base change,
+or equivalently that $\mathcal{F}_1^a \to \mathcal{F}^a$ is injective.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-properties-quasi-coherent}
+Let $S$ be a scheme. The category $\QCoh(S_\etale, \mathcal{O})$
+of quasi-coherent modules on $S_\etale$
+has the following properties:
+\begin{enumerate}
+\item Any direct sum of quasi-coherent sheaves is quasi-coherent.
+\item Any colimit of quasi-coherent sheaves is quasi-coherent.
+\item The kernel and cokernel of a morphism of quasi-coherent sheaves
+is quasi-coherent.
+\item Given a short exact sequence of $\mathcal{O}$-modules
+$0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$
+if two out of three are quasi-coherent so is the third.
+\item Given two quasi-coherent $\mathcal{O}$-modules
+the tensor product is quasi-coherent.
+\item Given two quasi-coherent $\mathcal{O}$-modules
+$\mathcal{F}$, $\mathcal{G}$ such that $\mathcal{F}$
+is of finite presentation.
+then the internal hom
+$\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G})$
+is quasi-coherent.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The corresponding facts hold for quasi-coherent modules on the scheme $S$,
+see Schemes, Section \ref{schemes-section-quasi-coherent}. The proof will
+be to use Lemma \ref{lemma-equivalence-quasi-coherent-limits} to transfer
+these truths to $S_\etale$.
+
+\medskip\noindent
+Proof of (1). Let $\mathcal{F}_i$, $i \in I$ be a family of objects of
+$\QCoh(S_\etale, \mathcal{O})$. Write $\mathcal{F}_i = \mathcal{G}_i^a$
+for some quasi-coherent modules $\mathcal{G}_i$ on $S$.
+Then $\bigoplus \mathcal{F}_i = (\bigoplus \mathcal{G}_i)^a$ by
+the lemma cited and we conclude.
+
+\medskip\noindent
+Proof of (2). Let $\mathcal{I} \to \QCoh(S_\etale, \mathcal{O})$,
+$i \mapsto \mathcal{F}_i$ be a diagram. Write
+$\mathcal{F}_i = \mathcal{G}_i^a$ so we get a diagram
+$\mathcal{I} \to \QCoh(\mathcal{O}_S)$.
+Then $\colim \mathcal{F}_i = (\colim \mathcal{G}_i)^a$ by
+the lemma cited and we conclude.
+
+\medskip\noindent
+Proof of (3). Let $a : \mathcal{F} \to \mathcal{F}'$
+be an arrow of $\QCoh(S_\etale, \mathcal{O})$.
+Write $a = b^a$ for some map $b : \mathcal{G} \to \mathcal{G}'$
+of quasi-coherent modules on $S$. By the lemma cited
+we have $\Ker(a) = \Ker(b)^a$ and $\Coker(a) = \Coker(b)^a$
+and we conclude.
+
+\medskip\noindent
+Proof of (4). This follows from (3) except in the case when
+we know $\mathcal{F}_1$ and $\mathcal{F}_3$ are quasi-coherent.
+In this case write $\mathcal{F}_1 = \mathcal{G}_1^a$
+and $\mathcal{F}_3 = \mathcal{G}_3^a$ with
+$\mathcal{G}_i$ quasi-coherent on $S$.
+By Lemma \ref{lemma-equivalence-quasi-coherent-limits} part (10)
+we conclude.
+
+\medskip\noindent
+Proof of (5). Let $\mathcal{F}$ and $\mathcal{F}'$
+be in $\QCoh(S_\etale, \mathcal{O})$.
+Write $\mathcal{F} = \mathcal{G}^a$
+and $\mathcal{F}' = (\mathcal{G}')^a$
+with $\mathcal{G}$ and $\mathcal{G}'$ quasi-coherent on $S$.
+By the lemma cited we have
+$\mathcal{F} \otimes_\mathcal{O} \mathcal{F}' =
+(\mathcal{G} \otimes_{\mathcal{O}_S} \mathcal{G}')^a$
+and we conclude.
+
+\medskip\noindent
+Proof of (6). Let $\mathcal{F}$ and $\mathcal{G}$
+be in $\QCoh(S_\etale, \mathcal{O})$ with $\mathcal{F}$
+of finite presentation. Write $\mathcal{F} = \mathcal{H}^a$
+and $\mathcal{G} = (\mathcal{I})^a$
+with $\mathcal{H}$ and $\mathcal{I}$ quasi-coherent on $S$.
+By Lemma \ref{lemma-equivalence-quasi-coherent-properties}
+we see that $\mathcal{H}$ is of finite presentation.
+By Lemma \ref{lemma-equivalence-quasi-coherent-limits} part (8)
+we have
+$\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}) =
+(\SheafHom_{\mathcal{O}_S}(\mathcal{H}, \mathcal{I}))^a$
+and we conclude.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-properties-quasi-coherent-on-big}
+Let $S$ be a scheme.
+Let $\tau \in \{Zariski, \linebreak[0] \etale, \linebreak[0]
+smooth, \linebreak[0] syntomic, \linebreak[0] fppf\}$.
+The category $\QCoh((\Sch/S)_\tau, \mathcal{O})$
+of quasi-coherent modules on $(\Sch/S)_\tau$
+has the following properties:
+\begin{enumerate}
+\item Any direct sum of quasi-coherent sheaves is quasi-coherent.
+\item Any colimit of quasi-coherent sheaves is quasi-coherent.
+\item The cokernel of a morphism of quasi-coherent sheaves
+is quasi-coherent.
+\item Given a short exact sequence of $\mathcal{O}$-modules
+$0 \to \mathcal{F}_1 \to \mathcal{F}_2 \to \mathcal{F}_3 \to 0$
+if $\mathcal{F}_1$ and $\mathcal{F}_3$ are quasi-coherent so is
+$\mathcal{F}_2$.
+\item Given two quasi-coherent $\mathcal{O}$-modules
+the tensor product is quasi-coherent.
+\item Given two quasi-coherent $\mathcal{O}$-modules
+$\mathcal{F}$, $\mathcal{G}$ such that $\mathcal{F}$
+is finite locally free, the internal hom
+$\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G})$
+is quasi-coherent.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The corresponding facts hold for quasi-coherent modules on the scheme $S$,
+see Schemes, Section \ref{schemes-section-quasi-coherent}. The proof will
+be to use Lemma \ref{lemma-equivalence-quasi-coherent-limits} to transfer
+these truths to $(\Sch/S)_\tau$.
+
+\medskip\noindent
+Proof of (1). Let $\mathcal{F}_i$, $i \in I$ be a family of objects of
+$\QCoh((\Sch/S)_\tau, \mathcal{O})$. Write $\mathcal{F}_i = \mathcal{G}_i^a$
+for some quasi-coherent modules $\mathcal{G}_i$ on $S$.
+Then $\bigoplus \mathcal{F}_i = (\bigoplus \mathcal{G}_i)^a$ by
+the lemma cited and we conclude.
+
+\medskip\noindent
+Proof of (2). Let $\mathcal{I} \to \QCoh((\Sch/S)_\tau, \mathcal{O})$,
+$i \mapsto \mathcal{F}_i$ be a diagram. Write
+$\mathcal{F}_i = \mathcal{G}_i^a$ so we get a diagram
+$\mathcal{I} \to \QCoh(\mathcal{O}_S)$.
+Then $\colim \mathcal{F}_i = (\colim \mathcal{G}_i)^a$ by
+the lemma cited and we conclude.
+
+\medskip\noindent
+Proof of (3). Let $a : \mathcal{F} \to \mathcal{F}'$
+be an arrow of $\QCoh((\Sch/S)_\tau, \mathcal{O})$.
+Write $a = b^a$ for some map $b : \mathcal{G} \to \mathcal{G}'$
+of quasi-coherent modules on $S$. By the lemma cited
+we have $\Coker(a) = \Coker(b)^a$ (because a cokernel is a colimit)
+and we conclude.
+
+\medskip\noindent
+Proof of (4). Write $\mathcal{F}_1 = \mathcal{G}_1^a$
+and $\mathcal{F}_3 = \mathcal{G}_3^a$ with
+$\mathcal{G}_i$ quasi-coherent on $S$.
+By Lemma \ref{lemma-equivalence-quasi-coherent-limits} part (10)
+we conclude.
+
+\medskip\noindent
+Proof of (5). Let $\mathcal{F}$ and $\mathcal{F}'$ be in
+$\QCoh((\Sch/S)_\tau, \mathcal{O})$. Write $\mathcal{F} = \mathcal{G}^a$
+and $\mathcal{F}' = (\mathcal{G}')^a$
+with $\mathcal{G}$ and $\mathcal{G}'$ quasi-coherent on $S$.
+By the lemma cited we have
+$\mathcal{F} \otimes_\mathcal{O} \mathcal{F}' =
+(\mathcal{G} \otimes_{\mathcal{O}_S} \mathcal{G}')^a$
+and we conclude.
+
+\medskip\noindent
+Proof of (6). Write $\mathcal{F} = \mathcal{H}^a$ for some
+quasi-coherent $\mathcal{O}_S$-module. By
+Lemma \ref{lemma-equivalence-quasi-coherent-properties}
+we see that $\mathcal{H}$ is finite locally free.
+The problem is Zariski local on $S$ (details omitted) hence
+we may assume $\mathcal{H} = \mathcal{O}_S^{\oplus n}$ is
+finite free. Then $\mathcal{F} = \mathcal{O}^{\oplus n}$
+and $\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}) = \mathcal{G}^{\oplus n}$
+is quasi-coherent.
+\end{proof}
+
+\begin{example}
+\label{example-internal-hom-not-qcoh}
+Let $S$ be a scheme. Let $\mathcal{F}$ and $\mathcal{G}$ be quasi-coherent
+modules on $(\Sch/S)_\tau$ for one of the topologies $\tau$ considered in
+Lemma \ref{lemma-properties-quasi-coherent-on-big}.
+In general it is not the case that
+$\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G})$
+is quasi-coherent even if $\mathcal{F}$ is of finite presentation.
+Namely, say $S = \Spec(\mathbf{Z})$,
+$\mathcal{F} = \Coker(2 : \mathcal{O} \to \mathcal{O})$,
+and $\mathcal{G} = \mathcal{O}$. Then
+$\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G}) = \mathcal{O}[2]$
+is equal to the $2$-torsion in $\mathcal{O}$, which is not quasi-coherent.
+\end{example}
+
+\begin{lemma}
+\label{lemma-qc-colimits}
+Let $S$ be a scheme.
+\begin{enumerate}
+\item The category $\QCoh((\Sch/S)_{fppf}, \mathcal{O})$
+has colimits and they agree with colimits in the categories
+$\textit{Mod}((\Sch/S)_{Zar}, \mathcal{O})$,
+$\textit{Mod}((\Sch/S)_\etale, \mathcal{O})$, and
+$\textit{Mod}((\Sch/S)_{fppf}, \mathcal{O})$.
+\item Given $\mathcal{F}, \mathcal{G}$ in $\QCoh((\Sch/S)_{fppf}, \mathcal{O})$
+the tensor products $\mathcal{F} \otimes_\mathcal{O} \mathcal{G}$
+computed in $\textit{Mod}((\Sch/S)_{Zar}, \mathcal{O})$,
+$\textit{Mod}((\Sch/S)_\etale, \mathcal{O})$, or
+$\textit{Mod}((\Sch/S)_{fppf}, \mathcal{O})$ agree and the common value
+is an object of $\QCoh((\Sch/S)_{fppf}, \mathcal{O})$.
+\item Given $\mathcal{F}, \mathcal{G}$ in $\QCoh((\Sch/S)_{fppf}, \mathcal{O})$
+with $\mathcal{F}$ finite locally free (in fppf, or equivalently \'etale, or
+equivalently Zariski topology) the internal homs
+$\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G})$
+computed in $\textit{Mod}((\Sch/S)_{Zar}, \mathcal{O})$,
+$\textit{Mod}((\Sch/S)_\etale, \mathcal{O})$, or
+$\textit{Mod}((\Sch/S)_{fppf}, \mathcal{O})$ agree and the common value
+is an object of $\QCoh((\Sch/S)_{fppf}, \mathcal{O})$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+This lemma collects the results shown above in a slightly different manner.
+First of all, by Lemma \ref{lemma-properties-quasi-coherent-on-big}
+we already know the output of the construction in (1), (2), or (3)
+ends up in $\QCoh((\Sch/S)_\tau, \mathcal{O})$.
+It remains to show in each case that the result is
+independent of the topology used. The key to this is that the equivalence
+$\QCoh(\mathcal{O}_S) \to \QCoh((\Sch/S)_\tau, \mathcal{O})$,
+$\mathcal{F} \mapsto \mathcal{F}^a$
+of Proposition \ref{proposition-equivalence-quasi-coherent}
+is given by the same formula independent of the choice
+of the topology $\tau \in \{Zariski, \etale, fppf\}$.
+
+\medskip\noindent
+Proof of (1). Let $\mathcal{I} \to \QCoh((\Sch/S)_{fppf}, \mathcal{O})$,
+$i \mapsto \mathcal{F}_i$ be a diagram. Write
+$\mathcal{F}_i = \mathcal{G}_i^a$ so we get a diagram
+$\mathcal{I} \to \QCoh(\mathcal{O}_S)$.
+Then $\colim \mathcal{F}_i = (\colim \mathcal{G}_i)^a$ in
+$\textit{Mod}((\Sch/S)_\tau, \mathcal{O})$ for
+$\tau \in \{Zariski, \etale, fppf\}$
+by Lemma \ref{lemma-equivalence-quasi-coherent-limits}.
+This proves (1).
+
+\medskip\noindent
+Proof of (2). Write $\mathcal{F} = \mathcal{H}^a$ and
+$\mathcal{G} = (\mathcal{I})^a$ with $\mathcal{H}$ and $\mathcal{I}$
+quasi-coherent on $S$. Then
+$\mathcal{F} \otimes_\mathcal{O} \mathcal{G} =
+(\mathcal{H} \otimes_\mathcal{O} \mathcal{I})^a$ in
+$\textit{Mod}((\Sch/S)_\tau, \mathcal{O})$ for
+$\tau \in \{Zariski, \etale, fppf\}$
+by Lemma \ref{lemma-equivalence-quasi-coherent-limits}.
+This proves (2).
+
+\medskip\noindent
+Proof of (3). Let $\mathcal{F}$ and $\mathcal{G}$ be in
+$\QCoh((\Sch/S)_{fppf}, \mathcal{O})$. Write
+$\mathcal{F} = \mathcal{H}^a$ with $\mathcal{H}$
+quasi-coherent on $S$. By
+Lemma \ref{lemma-equivalence-quasi-coherent-properties} we have
+\begin{align*}
+\mathcal{F}\text{ finite locally free in fppf topology}
+& \Leftrightarrow
+\mathcal{H}\text{ finite locally free on }S \\
+& \Leftrightarrow
+\mathcal{F}\text{ finite locally free in \'etale topology} \\
+& \Leftrightarrow
+\mathcal{H}\text{ finite locally free on }S \\
+& \Leftrightarrow
+\mathcal{F}\text{ finite locally free in Zariski topology}
+\end{align*}
+This explains the parenthetical statement of part (3).
+Now, if these equivalent conditions hold, then $\mathcal{H}$
+is finite locally free. The construction of
+$\SheafHom_\mathcal{O}(\mathcal{F}, \mathcal{G})$ in
+Modules on Sites, Section \ref{sites-modules-section-internal-hom}
+depends only on $\mathcal{F}$ and $\mathcal{G}$ as presheaves
+of modules (only whether the output $\SheafHom$ is
+a sheaf depends on whether $\mathcal{F}$ and $\mathcal{G}$ are
+sheaves).
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{Quasi-coherent modules and affines}
+\label{section-alternative-quasi-coherent}
+
+\noindent
+Let $S$ be a scheme\footnote{In this section, as in
+Topologies, Section \ref{topologies-section-change-topologies},
+we choose our sites $(\Sch/S)_\tau$ to have the same underlying category
+for $\tau \in \{Zariski, \etale, smooth, syntomic, fppf\}$. Then also
+the sites $(\textit{Aff}/S)_\tau$ have the same underlying category.}.
+Let $\tau \in \{Zariski, \etale, smooth, syntomic, fppf\}$.
+Recall that $(\textit{Aff}/S)_\tau$ is the full subcategory
+of $(\Sch/S)_\tau$ whose objects are affine turned into
+a site by declaring the coverings to be the standard $\tau$-coverings.
+By Topologies, Lemmas
+\ref{topologies-lemma-affine-big-site-Zariski},
+\ref{topologies-lemma-affine-big-site-etale},
+\ref{topologies-lemma-affine-big-site-smooth},
+\ref{topologies-lemma-affine-big-site-syntomic}, and
+\ref{topologies-lemma-affine-big-site-fppf}
+we have an equivalence of topoi
+$g : \Sh((\textit{Aff}/S)_\tau) \to \Sh((\Sch/S)_\tau)$
+whose pullback functor is given by restriction.
+Recalling that $\mathcal{O}$ denotes the structure sheaf on
+$(\Sch/S)_\tau$, let us temporarily and pedantically
+denote $\mathcal{O}_{\textit{Aff}}$
+the restriction of $\mathcal{O}$ to $(\textit{Aff}/S)_\tau$.
+Then we obtain an equivalence
+\begin{equation}
+\label{equation-alternative-ringed}
+(\Sh((\textit{Aff}/S)_\tau), \mathcal{O}_{\textit{Aff}})
+\longrightarrow
+(\Sh((\Sch/S)_\tau), \mathcal{O})
+\end{equation}
+of ringed topoi. Having said this we can compare quasi-coherent modules
+as well.
+
+\begin{lemma}
+\label{lemma-quasi-coherent-alternative}
+Let $S$ be a scheme. Let $\mathcal{F}$ be a presheaf
+of $\mathcal{O}_{\textit{Aff}}$-modules on $(\textit{Aff}/S)_{fppf}$.
+The following are equivalent
+\begin{enumerate}
+\item for every morphism $U \to U'$ of $(\textit{Aff}/S)_{fppf}$ the map
+$\mathcal{F}(U') \otimes_{\mathcal{O}(U')} \mathcal{O}(U) \to \mathcal{F}(U)$
+is an isomorphism,
+\item $\mathcal{F}$ is a sheaf on $(\textit{Aff}/S)_{Zar}$ and
+a quasi-coherent module on the ringed site
+$((\textit{Aff}/S)_{Zar}, \mathcal{O}_{\textit{Aff}})$ in the sense of
+Modules on Sites, Definition \ref{sites-modules-definition-site-local},
+\item same as in (3) for the \'etale topology,
+\item same as in (3) for the smooth topology,
+\item same as in (3) for the syntomic topology,
+\item same as in (3) for the fppf topology,
+\item $\mathcal{F}$ corresponds to a quasi-coherent module on
+$(\Sch/S)_{Zar}$,
+$(\Sch/S)_\etale$,
+$(\Sch/S)_{smooth}$,
+$(\Sch/S)_{syntomic}$, or
+$(\Sch/S)_{fppf}$
+via the equivalence (\ref{equation-alternative-ringed}),
+\item $\mathcal{F}$ comes from a unique quasi-coherent
+$\mathcal{O}_S$-module $\mathcal{G}$ by the procedure
+described in Section \ref{section-quasi-coherent-sheaves}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Since the notion of a quasi-coherent module is intrinsic
+(Modules on Sites, Lemma \ref{sites-modules-lemma-special-locally-free})
+we see that the equivalence (\ref{equation-alternative-ringed})
+induces an equivalence between categories of quasi-coherent modules.
+Proposition \ref{proposition-equivalence-quasi-coherent}
+says the topology we use to study quasi-coherent modules on
+$\Sch/S$ does not matter and it also tells us that (8)
+is the same as (7). Hence we see that (2) -- (8) are all equivalent.
+
+\medskip\noindent
+Assume the equivalent conditions (2) -- (8) hold and let
+$\mathcal{G}$ be as in (8). Let $h : U \to U' \to S$ be a morphism
+of $\textit{Aff}/S$. Denote $f : U \to S$ and $f' : U' \to S$ the
+structure morphisms, so that $f = f' \circ h$.
+We have $\mathcal{F}(U') = \Gamma(U', (f')^*\mathcal{G})$ and
+$\mathcal{F}(U) = \Gamma(U, f^*\mathcal{G}) = \Gamma(U, h^*(f')^*\mathcal{G})$.
+Hence (1) holds by Schemes, Lemma \ref{schemes-lemma-widetilde-pullback}.
+
+\medskip\noindent
+Assume (1) holds. To finish the proof it suffices to prove (2).
+Let $U$ be an object of $(\textit{Aff}/S)_{Zar}$.
+Say $U = \Spec(R)$. A standard open covering $U = U_1 \cup \ldots \cup U_n$
+is given by $U_i = D(f_i)$ for some elements $f_1, \ldots, f_n \in R$
+generating the unit ideal of $R$. By property (1) we see that
+$$
+\mathcal{F}(U_i) =
+\mathcal{F}(U) \otimes_R R_{f_i} =
+\mathcal{F}(U)_{f_i}
+$$
+and
+$$
+\mathcal{F}(U_i \cap U_j) =
+\mathcal{F}(U) \otimes_R R_{f_if_j} =
+\mathcal{F}(U)_{f_if_j}
+$$
+Thus we conclude from Algebra, Lemma \ref{algebra-lemma-cover-module}
+that $\mathcal{F}$ is a sheaf on $(\textit{Aff}/S)_{Zar}$. Choose a
+presentation
+$$
+\bigoplus\nolimits_{k \in K} R
+\longrightarrow
+\bigoplus\nolimits_{l \in L} R
+\longrightarrow
+\mathcal{F}(U)
+\longrightarrow 0
+$$
+by free $R$-modules. By property (1) and the right exactness of tensor product
+we see that for every morphism $U' \to U$ in $(\textit{Aff}/S)_{Zar}$
+we obtain a presentation
+$$
+\bigoplus\nolimits_{k \in K} \mathcal{O}_{Aff}(U')
+\longrightarrow
+\bigoplus\nolimits_{l \in L} \mathcal{O}_{Aff}(U')
+\longrightarrow
+\mathcal{F}(U')
+\longrightarrow 0
+$$
+In other words, we see that the restriction of $\mathcal{F}$
+to the localized category $(\textit{Aff}/S)_{Zar}/U$ has a presentation
+$$
+\bigoplus\nolimits_{k \in K} \mathcal{O}_{Aff}|_{(\textit{Aff}/S)_{Zar}/U}
+\longrightarrow
+\bigoplus\nolimits_{l \in L} \mathcal{O}_{Aff}|_{(\textit{Aff}/S)_{Zar}/U}
+\longrightarrow
+\mathcal{F}|_{(\textit{Aff}/S)_{Zar}/U}
+\longrightarrow 0
+$$
+With apologies for the horrible notation, this finishes the proof.
+\end{proof}
+
+\noindent
+We continue the discussion started in the introduction to this section.
+Let $\tau \in \{Zariski, \etale\}$. Recall that $S_{affine, \tau}$
+is the full subcategory of $S_\tau$ whose objects are affine turned
+into a site by declaring the coverings to be the standard $\tau$
+coverings. See Topologies, Definitions
+\ref{topologies-definition-big-small-Zariski} and
+\ref{topologies-definition-big-small-etale}.
+By Topologies, Lemmas \ref{topologies-lemma-alternative-zariski},
+resp.\  \ref{topologies-lemma-alternative}
+we have an equivalence of topoi $g : \Sh(S_{affine, \tau}) \to \Sh(S_\tau)$,
+whose pullback functor is given by restriction.
+Recalling that $\mathcal{O}$ denotes the structure sheaf on
+$S_\tau$ let us temporarily and pedantically denote
+$\mathcal{O}_{affine}$ the restriction of $\mathcal{O}$ to
+$S_{affine, \tau}$. Then we obtain an equivalence
+\begin{equation}
+\label{equation-alternative-small-ringed}
+(\Sh(S_{affine, \tau}), \mathcal{O}_{affine})
+\longrightarrow
+(\Sh(S_\tau), \mathcal{O})
+\end{equation}
+of ringed topoi. Having said this we can compare quasi-coherent modules
+as well.
+
+\begin{lemma}
+\label{lemma-quasi-coherent-alternative-small}
+Let $S$ be a scheme. Let $\tau \in \{Zariski, \etale\}$.
+Let $\mathcal{F}$ be a presheaf of $\mathcal{O}_{affine}$-modules
+on $S_{affine, \tau}$. The following are equivalent
+\begin{enumerate}
+\item for every morphism $U \to U'$ of $S_{affine, \tau}$ the map
+$\mathcal{F}(U') \otimes_{\mathcal{O}(U')} \mathcal{O}(U) \to \mathcal{F}(U)$
+is an isomorphism,
+\item $\mathcal{F}$ is a sheaf on $S_{affine, \tau}$ and
+a quasi-coherent module on the ringed site
+$(S_{affine, \tau}, \mathcal{O}_{affine})$ in the sense of
+Modules on Sites, Definition \ref{sites-modules-definition-site-local},
+\item $\mathcal{F}$ corresponds to a quasi-coherent module on
+$S_\tau$ via the equivalence (\ref{equation-alternative-small-ringed}),
+\item $\mathcal{F}$ comes from a unique quasi-coherent
+$\mathcal{O}_S$-module $\mathcal{G}$ by the procedure
+described in Section \ref{section-quasi-coherent-sheaves}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let us prove this in the case of the \'etale topology.
+
+\medskip\noindent
+Assume (1) holds. To show that $\mathcal{F}$ is a sheaf, let
+$\mathcal{U} = \{U_i \to U\}_{i = 1, \ldots, n}$ be a covering
+of $S_{affine, \etale}$. The sheaf condition for $\mathcal{F}$
+and $\mathcal{U}$, by our assumption on $\mathcal{F}$.
+reduces to showing that
+$$
+0 \to \mathcal{F}(U) \to
+\prod \mathcal{F}(U) \otimes_{\mathcal{O}(U)} \mathcal{O}(U_i) \to
+\prod \mathcal{F}(U) \otimes_{\mathcal{O}(U)} \mathcal{O}(U_i \times_U U_j)
+$$
+is exact. This is true because $\mathcal{O}(U) \to \prod \mathcal{O}(U_i)$
+is faithfully flat (by Lemma \ref{lemma-standard-covering-Cech} and
+the fact that coverings in $S_{affine, \etale}$ are standard \'etale
+coverings) and we may apply Lemma \ref{lemma-ff-exact}.
+Next, we show that $\mathcal{F}$ is quasi-coherent on $S_{affine, \etale}$.
+Namely, for $U$ in $S_{affine, \etale}$, set $R = \mathcal{O}(U)$
+and choose a presentation
+$$
+\bigoplus\nolimits_{k \in K} R
+\longrightarrow
+\bigoplus\nolimits_{l \in L} R
+\longrightarrow
+\mathcal{F}(U)
+\longrightarrow 0
+$$
+by free $R$-modules. By property (1) and the right exactness of tensor product
+we see that for every morphism $U' \to U$ in $S_{affine, \etale}$
+we obtain a presentation
+$$
+\bigoplus\nolimits_{k \in K} \mathcal{O}(U')
+\longrightarrow
+\bigoplus\nolimits_{l \in L} \mathcal{O}(U')
+\longrightarrow
+\mathcal{F}(U')
+\longrightarrow 0
+$$
+In other words, we see that the restriction of $\mathcal{F}$
+to the localized category $S_{affine, etale}/U$ has a presentation
+$$
+\bigoplus\nolimits_{k \in K} \mathcal{O}_{affine}|_{S_{affine, \etale}/U}
+\longrightarrow
+\bigoplus\nolimits_{l \in L} \mathcal{O}_{affine}|_{S_{affine, \etale}/U}
+\longrightarrow
+\mathcal{F}|_{S_{affine, \etale}/U}
+\longrightarrow 0
+$$
+as required to show that $\mathcal{F}$ is quasi-coherent.
+With apologies for the horrible notation, this finishes the proof
+that (1) implies (2).
+
+\medskip\noindent
+Since the notion of a quasi-coherent module is intrinsic
+(Modules on Sites, Lemma \ref{sites-modules-lemma-special-locally-free})
+we see that the equivalence (\ref{equation-alternative-small-ringed})
+induces an equivalence between categories of quasi-coherent modules.
+Thus we have the equivalence of (2) and (3).
+
+\medskip\noindent
+The equivalence of (3) and (4) follows from
+Proposition \ref{proposition-equivalence-quasi-coherent}.
+
+\medskip\noindent
+Let us assume (4) and prove (1). Namely, let
+$\mathcal{G}$ be as in (4). Let $h : U \to U' \to S$ be a morphism
+of $S_{affine, \etale}$. Denote $f : U \to S$ and $f' : U' \to S$ the
+structure morphisms, so that $f = f' \circ h$.
+We have $\mathcal{F}(U') = \Gamma(U', (f')^*\mathcal{G})$ and
+$\mathcal{F}(U) = \Gamma(U, f^*\mathcal{G}) = \Gamma(U, h^*(f')^*\mathcal{G})$.
+Hence (1) holds by Schemes, Lemma \ref{schemes-lemma-widetilde-pullback}.
+
+\medskip\noindent
+We omit the proof in the case of the Zariski topology.
+\end{proof}
 
 
 
@@ -3340,7 +4029,7 @@ to see that any $x \in X$ has to be in the image.
 Let $\{f_i : X_i \to X\}_{i \in I}$ be a family of morphisms of schemes.
 If for every morphism $Y \to X$ with $Y$ affine the family of base changes
 $g_i : Y_i \to Y$ forms an effective epimorphism, then
-the family of $f_i$ forms a universally effective epimorphism
+the family of $f_i$ forms a universal effective epimorphism
 in the category of schemes.
 \end{lemma}
 
@@ -3381,7 +4070,7 @@ in the category of schemes.
 By Lemma \ref{lemma-check-universal-effective-epimorphism-affine}
 it suffices to base change our family of morphisms
 by $Y \to X$ with $Y$ affine. Set $Y_i = X_i \times_X Y$.
-Let $T$ be a scheme and let $h_i : Y_i \to Y$ be a family of morphisms
+Let $T$ be a scheme and let $h_i : Y_i \to T$ be a family of morphisms
 such that $h_i \circ \text{pr}_1 = h_j \circ \text{pr}_2$
 on $Y_i \times_Y Y_j$. Note that $Y$ as a set is the coequalizer
 of the two maps from $\coprod Y_i \times_Y Y_j$ to $\coprod Y_i$.
@@ -3421,13 +4110,17 @@ to the map $\coprod_{i \in I} T_i \to T$.
 It implies there exists a subset $W \subset T$ such that
 $W_i = f_i^{-1}(W)$ for each $i$, namely $W = \bigcup f_i(W_i)$.
 To see that $W$ is open we may work Zariski locally on $T$.
-Hence we may assume that $T$ is affine. Using the definition
-of a fpqc covering, this reduces us to the case where
-$\{f_i : T_i \to T\}$ is a standard fpqc covering. In this case we
-may apply
+Hence we may assume that $T$ is affine. Using Topologies, Definition
+\ref{topologies-definition-fpqc-covering} we may choose
+a standard fpqc covering $\{g_j : V_j \to T\}_{j \in J}$ which refines
+$\{T_i \to T\}_{i \in I}$. Let $\alpha : J \to I$ and
+$h_j : V_j \to T_{\alpha(j)}$ be as in
+Sites, Definition \ref{sites-definition-morphism-coverings}.
+Then $g_j^{-1}(W) = h_j^{-1}(W_{\alpha(j)})$.
+Thus we may assume $\{f_i : T_i \to T\}$ is a standard fpqc covering.
+In this case we may apply
 Morphisms, Lemma \ref{morphisms-lemma-fpqc-quotient-topology}
-to the morphism
-$\coprod T_i \to T$ to conclude that $W$ is open.
+to the morphism $\coprod T_i \to T$ to conclude that $W$ is open.
 \end{proof}
 
 \begin{lemma}
@@ -4174,11 +4867,10 @@ Morphisms, Lemma \ref{morphisms-lemma-base-change-finite-type}.
 Hence $T_s$ is Noetherian and has a finite number of irreducible components
 (Morphisms, Lemma \ref{morphisms-lemma-finite-type-noetherian} and
 Properties, Lemma \ref{properties-lemma-Noetherian-irreducible-components}).
-Finally, we have to show that if $T \to S$ is a surjective
-flat, finitely presented morphism of affines and $T$ has a finite
-number of irreducible components, then so does $S$. In this case
-the arguments above show that every generic point of $S$ is the
-image of a generic point of $T$ and the result is clear.
+Finally, we have to show that if $T \to S$ is a surjective flat,
+finitely presented morphism of affines and $T$ has a finite number of
+irreducible components, then so does $S$. This follows from Topology, Lemma
+\ref{topology-lemma-surjective-continuous-irreducible-components}.
 Thus (1), (2) and (3) of Lemma \ref{lemma-descending-properties} hold
 and we win.
 \end{proof}
@@ -4937,7 +5629,7 @@ $a, b : \Spec(K) \to X$ be two morphisms such that
 $f \circ a = f \circ b$. As $S' \to S$ is surjective and
 by the discussion in Schemes,
 Section \ref{schemes-section-points} there exists a field
-extension $K \subset K'$ and a morphism $\Spec(K')
+extension $K'/K$ and a morphism $\Spec(K')
 \to S'$ such that the following solid diagram commutes
 $$
 \xymatrix{
@@ -5125,42 +5817,45 @@ The property of being an open immersion is stable under base change,
 see Schemes, Lemma \ref{schemes-lemma-base-change-immersion}.
 The property of being an open immersion is Zariski local on the base
 (this is obvious).
-Finally, let
-$S' \to S$ be a flat surjective morphism of affine schemes,
+
+\medskip\noindent
+Let $S' \to S$ be a flat surjective morphism of affine schemes,
 and let $f : X \to S$ be a morphism. Assume that the base change
-$f' : X' \to S'$ is an open immersion.
+$f' : X' \to S'$ is an open immersion. We claim that $f$ is an
+open immersion.
 Then $f'$ is universally open, and universally injective.
 Hence we conclude that $f$ is universally open by
 Lemma \ref{lemma-descending-property-universally-open}, and
 universally injective by
 Lemma \ref{lemma-descending-property-universally-injective}.
-In particular $f(X) \subset S$ is open, and we may replace
-$S$ by $f(X)$ and assume that $f$ is surjective.
-This implies that $f'$ is an isomorphism and
-we have to show that $f$ is an isomorphism also.
-Since $f$ is universally injective we see that $f$ is bijective.
-Hence $f$ is a homeomorphism.
-Let $x \in X$ and choose $U \subset X$ an
-affine open neighbourhood of $x$. Since $f(U) \subset S$
-is open, and $S$ is affine we may choose a standard open
-$D(g) \subset f(U)$ containing $f(x)$ where $g \in \Gamma(S, \mathcal{O}_S)$.
-It is clear that $U \cap f^{-1}(D(g))$ is still affine and still an
-open neighbourhood of $x$.
-Replace $U$ by $U \cap f^{-1}(D(g))$ and write $V = D(g) \subset S$
-and $V'$ the inverse image of $V$ in $S'$.
-Note that $V'$ is a standard open of $S'$ as well and
-in particular that $V'$ is affine.
-Since $f'$ is an isomorphism we have $V' \times_V U \to V'$ is
-an isomorphism. In terms of rings this means that
+In particular $f(X) \subset S$ is open. If for every affine
+open $U \subset f(X)$ we can prove that $f^{-1}(U) \to U$
+is an isomorphism, then $f$ is an open immersion and we're done.
+If $U' \subset S'$ denotes the inverse image of $U$,
+then $U' \to U$ is a faithfully flat morphism of affines and
+$(f')^{-1}(U') \to U'$ is an isomorphism (as $f'(X')$ contains $U'$
+by our choice of $U$). Thus we reduce to the case discussed
+in the next paragraph.
+
+\medskip\noindent
+Let $S' \to S$ be a flat surjective morphism of affine schemes,
+let $f : X \to S$ be a morphism, and assume that the base change
+$f' : X' \to S'$ is an isomorphism. We have to show that $f$ is an
+isomorphism also. It is clear that $f$ is surjective, universally injective,
+and universally open (see arguments above for the last two).
+Hence $f$ is bijective, i.e., $f$ is a homeomorphism.
+Thus $f$ is affine by
+Morphisms, Lemma \ref{morphisms-lemma-homeomorphism-affine}.
+Since
 $$
-\mathcal{O}(V')
-\longrightarrow
-\mathcal{O}(V') \otimes_{\mathcal{O}(V)} \mathcal{O}(U)
+\mathcal{O}(S') \to
+\mathcal{O}(X') =
+\mathcal{O}(S') \otimes_{\mathcal{O}(S)} \mathcal{O}(X)
 $$
-is an isomorphism. Since $\mathcal{O}(V) \to \mathcal{O}(V')$
-is faithfully flat this implies that $\mathcal{O}(V) \to \mathcal{O}(U)$
-is an isomorphism. Hence $U \cong V$ and we see that $f$ is
-an isomorphism.
+is an isomorphism and since $\mathcal{O}(S) \to \mathcal{O}(S')$
+is faithfully flat this implies that $\mathcal{O}(S) \to \mathcal{O}(X)$
+is an isomorphism. Thus $f$ is an isomorphism. This finishes the proof of
+the claim above.
 Therefore Lemma \ref{lemma-descending-properties-morphisms} applies and we win.
 \end{proof}
 
@@ -5617,7 +6312,8 @@ Then f is an isomorphism.
 \begin{proof}
 As $f$ is a flat, quasi-compact, surjective morphism
 we see $\{X \to Y\}$ is an fpqc covering of $Y$.
-The diagonal $\Delta : X \to X \times_Y X$ is an isomorphism.
+The diagonal $\Delta : X \to X \times_Y X$ is an isomorphism
+(Schemes, Lemma \ref{schemes-lemma-monomorphism}).
 This implies that the base change of $f$ by $f$ is an
 isomorphism. Hence we see $f$ is an isomorphism by
 Lemma \ref{lemma-descending-property-isomorphism}.
@@ -5733,6 +6429,29 @@ then $f$ is an open immersion.
 \begin{proof}
 Immediate from Lemmas \ref{lemma-flat-universally-injective} and
 \ref{lemma-universally-injective-etale-open-immersion}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-descending-property-proper-over-base}
+Let $f : X \to Y$ be a morphism of schemes which is locally of finite type.
+Let $Z$ be a closed subset of $X$. If there exists an fpqc covering
+$\{Y_i \to Y\}$ such that the inverse image $Z_i \subset Y_i \times_Y X$
+is proper over $Y_i$
+(Cohomology of Schemes, Definition \ref{coherent-definition-proper-over-base})
+then $Z$ is proper over $Y$.
+\end{lemma}
+
+\begin{proof}
+Endow $Z$ with the reduced induced closed subscheme structure, see
+Schemes, Definition \ref{schemes-definition-reduced-induced-scheme}.
+For every $i$ the base change $Y_i \times_Y Z$ is a closed subscheme
+of $Y_i \times_Y X$ whose underlying closed subset is $Z_i$.
+By definition (via
+Cohomology of Schemes, Lemma \ref{coherent-lemma-closed-proper-over-base})
+we conclude that the projections $Y_i \times_Y Z \to Y_i$ are proper
+morphisms. Hence $Z \to Y$ is a proper morphism by
+Lemma \ref{lemma-descending-property-proper}.
+Thus $Z$ is proper over $Y$ by definition.
 \end{proof}
 
 \begin{lemma}
@@ -5917,7 +6636,7 @@ flat, flat locally of finite presentation, \'etale, smooth or syntomic morphisms
 depending on whether $\tau$ is fpqc, fppf, \'etale, smooth, or syntomic,
 \item the property is Zariski local on the source,
 \item the property is Zariski local on the target,
-\item for any morphism of affine schemes $X \to Y$, and
+\item for any morphism of affine schemes $f : X \to Y$, and
 any surjective morphism of affine schemes $X' \to X$
 which is flat, flat of finite presentation,
 \'etale, smooth or syntomic depending on whether $\tau$ is
@@ -6126,7 +6845,7 @@ and Lemma \ref{lemma-syntomic-smooth-etale-permanence} (part (4)).
 
 \noindent
 Here are some properties of morphisms that are smooth local on the source.
-ote also the (in some respects stronger) result
+Note also the (in some respects stronger) result
 on descending smoothness via flat morphisms,
 Lemma \ref{lemma-smooth-permanence}.
 
@@ -6573,7 +7292,7 @@ During the rest of the proof we let $f : X \to Y$ be a
 morphism with property $\mathcal{P}$ and $g : Y \to Z$ is an \'etale
 morphism. Consider the following statements:
 \begin{enumerate}
-\item[($\emptyset$)] With no additional assumptions $g \circ f$
+\item[(-)] With no additional assumptions $g \circ f$
 has property $\mathcal{P}$.
 \item[(A)] Whenever $Z$ is affine
 $g \circ f$ has property $\mathcal{P}$.
@@ -6582,7 +7301,7 @@ $g \circ f$ has property $\mathcal{P}$.
 \item[(AAA)] Whenever $X$, $Y$, and $Z$ are affine
 $g \circ f$ has property $\mathcal{P}$.
 \end{enumerate}
-Once we have proved ($\emptyset$) the proof of the lemma will be complete.
+Once we have proved (-) the proof of the lemma will be complete.
 
 \medskip\noindent
 Claim 1: (AAA) $\Rightarrow$ (AA).
@@ -6615,7 +7334,7 @@ local on the source we conclude that
 $X \to Z$ has $\mathcal{P}$.
 
 \medskip\noindent
-Claim 3: (AAA) $\Rightarrow$ ($\emptyset$).
+Claim 3: (AAA) $\Rightarrow$ (-).
 Namely, let $f : X \to Y$, $g : Y \to Z$ be as above.
 Choose an affine open covering $Z = \bigcup Z_i$.
 Set $Y_i = g^{-1}(Z_i)$ and $X_i = f^{-1}(Y_i)$. By
@@ -7180,7 +7899,7 @@ U' \ar[r] \ar[d] & V' \ar[d] \\
 U \ar[r] & V
 }
 $$
-with \'etale vertical arrows and a point $v' \in U'$ mapping to $v \in U$.
+with \'etale vertical arrows and a point $v' \in V'$ mapping to $v \in V$.
 Then the morphism of fibres $U'_{v'} \to U_v$ is \'etale.
 \end{lemma}
 
@@ -7251,7 +7970,7 @@ $$
 Note that the vertical arrows are localizations of \'etale ring maps,
 in particular they are unramified (see
 Algebra, Section \ref{algebra-section-etale}).
-Hence $\kappa(u) \subset \kappa(u')$ and $\kappa(v) \subset \kappa(v')$
+Hence $\kappa(u')/\kappa(u)$ and $\kappa(v')/\kappa(v)$
 are finite separable field extensions.
 Thus we have
 $\text{trdeg}_{\kappa(v)} \kappa(u) = \text{trdeg}_{\kappa(v')} \kappa(u)$
@@ -7770,8 +8489,7 @@ assume
 \begin{enumerate}
 \item $\{f : X' \to X\}$ is an fpqc covering (for example if $f$ is
 surjective, flat, and quasi-compact), and
-\item $f \times f : X' \times_{S'} X' \to X \times_S X$ is
-surjective and flat\footnote{This follows from (1) if $S = S'$.}.
+\item $S = S'$.
 \end{enumerate}
 Then the pullback functor is fully faithful.
 \end{lemma}
@@ -7783,7 +8501,7 @@ Lemma \ref{lemma-faithful}.
 Let $(V, \varphi)$ and $(W, \psi)$ be two descent data relative
 to $X \to S$. Set $(V', \varphi') = f^*(V, \varphi)$ and
 $(W', \psi') = f^*(W, \psi)$.
-Let $\alpha' : V' \to W'$ be a morphism of descent data for $X'$ over $S'$.
+Let $\alpha' : V' \to W'$ be a morphism of descent data for $X'$ over $S$.
 We have to show there exists a morphism $\alpha : V \to W$ of
 descent data for $X$ over $S$ whose pullback is $\alpha'$.
 
@@ -7794,10 +8512,10 @@ $\varphi'$ is the base change of $\varphi$ by $f \times f$
 By assumption the diagram
 $$
 \xymatrix{
-V' \times_{S'} X' \ar[r]_{\varphi'} \ar[d]_{\alpha' \times \text{id}} &
-X' \times_{S'} V' \ar[d]^{\text{id} \times \alpha'} \\
-W' \times_{S'} X' \ar[r]^{\psi'} &
-X' \times_{S'} W'
+V' \times_S X' \ar[r]_{\varphi'} \ar[d]_{\alpha' \times \text{id}} &
+X' \times_S V' \ar[d]^{\text{id} \times \alpha'} \\
+W' \times_S X' \ar[r]^{\psi'} &
+X' \times_S W'
 }
 $$
 commutes. We claim the two compositions
@@ -7834,7 +8552,7 @@ $$
 ((x_i, x_j), \psi(u_i, x)) = ((x_i, x_j), (x, u'_j))
 $$
 as points of
-$(X' \times_{S'} X') \times_{X \times_S X} (X \times_S W)$
+$(X' \times_S X') \times_{X \times_S X} (X \times_S W)$
 for all $i, j \in \{0, 1\}$. This shows that $\psi(u_0, x) = \psi(u_1, x)$
 and hence $u_0 = u_1$ by taking $\psi^{-1}$.
 This proves the claim because the argument above was formal
@@ -7858,8 +8576,8 @@ X \times_S V \ar[d]^{\text{id} \times \alpha} \\
 W \times_S X \ar[r]^{\psi} & X \times_S W
 }
 $$
-commutes because its base change to $X' \times_{S'} X'$
-commutes and the morphism $X' \times_{S'} X' \to X \times_S X$
+commutes because its base change to $X' \times_S X'$
+commutes and the morphism $X' \times_S X' \to X \times_S X$
 is surjective and flat (use Lemma \ref{lemma-ff-base-change-faithful}).
 Hence $\alpha$ is a morphism of descent data
 $(V, \varphi) \to (W, \psi)$ as desired.
@@ -8153,8 +8871,8 @@ $\alpha_i^{-1}(W_i \cap W_j) \subset X \times_S U_i$.
 Because everything is compatible with descent data
 and since $\{X \to S\}$ is an fpqc covering, we
 may apply Lemma \ref{lemma-open-fpqc-covering}
-to find an open $V_{ij} \subset V_j$ such that
-$\alpha_i^{-1}(W_i \cap W_j) = X \times_S V_{ij}$.
+to find an open $U_{ij} \subset U_j$ such that
+$\alpha_i^{-1}(W_i \cap W_j) = X \times_S U_{ij}$.
 Now the identity morphism on $W_i \cap W_j$ is
 compatible with descent data, hence comes from a
 unique morphism $\varphi_{ij} : U_{ij} \to U_{ji}$ over $S$
@@ -8239,7 +8957,8 @@ Suppose that
 \begin{enumerate}
 \item $\mathcal{P}$ is stable under any base change
 (see Schemes, Definition \ref{schemes-definition-preserved-by-base-change}),
-and
+\item if $Y_j \to V_j$, $j = 1, \ldots, m$ have $\mathcal{P}$,
+then so does $\coprod Y_j \to \coprod V_j$, and
 \item for any surjective morphism of affines
 $X \to S$ which is flat, flat of finite presentation,
 \'etale, smooth or syntomic depending on whether $\tau$ is
@@ -8267,7 +8986,7 @@ morphism of families $\mathcal{V} \to \mathcal{U}$, if we pullback
 the descent datum $(X_i, \varphi_{ii'})$ to a descent datum
 $(Y_j, \varphi_{jj'})$ over $\mathcal{V}$, then each of the
 morphisms $Y_j \to V_j$ has property $\mathcal{P}$ also.
-This is true because we assumed that $\mathcal{P}$ is stable
+This is true because of assumption (1) that $\mathcal{P}$ is stable
 under any base change and the definition of pullback
 (see Definition \ref{definition-pullback-functor-family}).
 We will use this without further mention.
@@ -8288,9 +9007,11 @@ between categories of descent data is fully faithful
 by Lemma \ref{lemma-refine-coverings-fully-faithful}.
 Hence it suffices to prove that the descent datum over
 the standard $\tau$-covering $\mathcal{V}$ is effective.
-By Lemma \ref{lemma-family-is-one} this reduces to the covering
+By assumption (2) we see that $\coprod Y_j \to \coprod V_j$
+has property $\mathcal{P}$.
+By Lemma \ref{lemma-family-is-one} this reduces us to the covering
 $\{\coprod_{j = 1, \ldots, m} V_j \to S\}$ for which we have
-assumed the result in property (2) of the lemma.
+assumed the result in assumption (3) of the lemma.
 Hence the lemma holds when $S$ is affine.
 
 \medskip\noindent
@@ -8361,8 +9082,9 @@ effective.
 
 \begin{proof}
 Being affine is a property of morphisms of schemes
-which is preserved under any base change, see
-Morphisms, Lemma \ref{morphisms-lemma-base-change-affine}.
+which is local on the base and preserved under any base change, see
+Morphisms, Lemmas \ref{morphisms-lemma-characterize-affine} and
+\ref{morphisms-lemma-base-change-affine}.
 Hence Lemma \ref{lemma-descending-types-morphisms} applies
 and it suffices to prove the statement of the lemma
 in case the fpqc-covering is given by a single
@@ -8446,7 +9168,8 @@ effective.
 \begin{proof}
 Being quasi-affine is a property of morphisms of schemes
 which is preserved under any base change, see
-Morphisms, Lemma \ref{morphisms-lemma-base-change-quasi-affine}.
+Morphisms, Lemmas \ref{morphisms-lemma-characterize-quasi-affine} and
+\ref{morphisms-lemma-base-change-quasi-affine}.
 Hence Lemma \ref{lemma-descending-types-morphisms} applies
 and it suffices to prove the statement of the lemma
 in case the fpqc-covering is given by a single

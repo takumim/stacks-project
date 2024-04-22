@@ -82,9 +82,9 @@ discussed above.
 
 \noindent
 Let $A$ be a ring. Let $\textit{Alg}_A$ be the category of $A$-algebras.
-Consider the pair of adjoint functors $(F, i)$ where
-$i : \textit{Alg}_A \to \textit{Sets}$ is the forgetful functor and
-$F : \textit{Sets} \to \textit{Alg}_A$ assigns to a set $E$ the polynomial
+Consider the pair of adjoint functors $(U, V)$ where
+$V : \textit{Alg}_A \to \textit{Sets}$ is the forgetful functor and
+$U : \textit{Sets} \to \textit{Alg}_A$ assigns to a set $E$ the polynomial
 algebra $A[E]$ on $E$ over $A$. Let $X_\bullet$ be the simplicial object of
 $\text{Fun}(\textit{Alg}_A, \textit{Alg}_A)$ constructed in
 Simplicial, Section \ref{simplicial-section-standard}.
@@ -136,8 +136,8 @@ for $m > 0$.
 Let $A \to B$ be a ring map. Let $\mathcal{A}$ be the category of
 arrows $\psi : C \to B$ of $A$-algebras and let $\mathcal{S}$ be
 the category of maps $E \to B$ where $E$ is a set. There are adjoint
-functors $i : \mathcal{A} \to \mathcal{S}$ (the forgetful functor)
-and $F : \mathcal{S} \to \mathcal{A}$ which sends $E \to B$ to
+functors $V : \mathcal{A} \to \mathcal{S}$ (the forgetful functor)
+and $U : \mathcal{S} \to \mathcal{A}$ which sends $E \to B$ to
 $A[E] \to B$. Let $X_\bullet$ be the simplicial object of
 $\text{Fun}(\mathcal{A}, \mathcal{A})$ constructed in
 Simplicial, Section \ref{simplicial-section-standard}.
@@ -160,8 +160,8 @@ set $I$. Then $\colim L_{B_i/A_i} = L_{\colim B_i/\colim A_i}$.
 
 \begin{proof}
 This is true because the forgetful functor
-$i : A\textit{-Alg} \to \textit{Sets}$ and its adjoint
-$F : \textit{Sets} \to A\textit{-Alg}$ commute with filtered colimits.
+$V : A\textit{-Alg} \to \textit{Sets}$ and its adjoint
+$U : \textit{Sets} \to A\textit{-Alg}$ commute with filtered colimits.
 Moreover, the functor $B/A \mapsto \Omega_{B/A}$ does as well
 (Algebra, Lemma \ref{algebra-lemma-colimit-differentials}).
 \end{proof}
@@ -174,10 +174,12 @@ Moreover, the functor $B/A \mapsto \Omega_{B/A}$ does as well
 \label{section-compute-L-pi-shriek}
 
 \noindent
-Let $A \to B$ be a ring map. Consider the category of $A$-algebra maps
-$\alpha : P \to B$ where $P$ is a polynomial algebra over $A$
+Let $A \to B$ be a ring map. Consider the category whose objects are
+$A$-algebra maps $\alpha : P \to B$ where $P$ is a polynomial algebra over $A$
 (in some set\footnote{It suffices to consider sets of cardinality
-at most the cardinality of $B$.} of variables).
+at most the cardinality of $B$.} of variables) and whose
+morphisms $s : (\alpha : P \to B) \to (\alpha' : P' \to B)$ are
+$A$-algebra homomorphisms $s : P \to P'$ with $\alpha' \circ s = \alpha$.
 Let $\mathcal{C} = \mathcal{C}_{B/A}$ denote the {\bf opposite}
 of this category. The reason for
 taking the opposite is that we want to think of objects
@@ -914,12 +916,12 @@ and a commutative diagram of maps of ringed topoi
 \label{equation-double-square}
 \vcenter{
 \xymatrix{
-(\Sh(\mathcal{C}), \underline{B}) \ar[d]_\pi &
-(\Sh(\mathcal{C}'), \underline{B'}) \ar[d]_\pi \ar[l]^h \ar[r]_g &
-(\Sh(\mathcal{C}), \underline{B'}) \ar[d]_{\pi'} \\
+(\Sh(\mathcal{C}'), \underline{B}) \ar[d]_\pi &
+(\Sh(\mathcal{C}'), \underline{B'}) \ar[d]_\pi \ar[l]^h &
+(\Sh(\mathcal{C}), \underline{B'}) \ar[d]_{\pi'} \ar[l]^g \\
 (\Sh(*), B) &
-(\Sh(*), B') \ar[l]_f \ar[r] &
-(\Sh(*), B')
+(\Sh(*), B') \ar[l]_f &
+(\Sh(*), B') \ar[l]
 }
 }
 \end{equation}
@@ -1632,7 +1634,7 @@ the cotangent complex vanishes,
 In case (1) we may apply
 Lemma \ref{lemma-derived-diagonal}
 to the surjective flat ring map $B \otimes_A B \to B$
-to conclude that $L_{B \otimes_A B/B} = 0$ and then we use
+to conclude that $L_{B/B \otimes_A B} = 0$ and then we use
 Lemma \ref{lemma-bootstrap}
 to conclude. The cases (2) -- (5) are each special cases of (1).
 Part (6) follows from Lemma \ref{lemma-colimit-cotangent-complex}.
@@ -1729,6 +1731,100 @@ Lemma \ref{lemma-localize-on-top} show that
 $L_{B/A} = L_{A[x_1, \ldots, x_n]/A} \otimes B$
 whence the conclusion by
 Lemma \ref{lemma-cotangent-complex-polynomial-algebra}.
+\end{proof}
+
+
+
+
+
+\section{Positive characteristic}
+\label{section-positive-characteristic}
+
+\noindent
+In this section we fix a prime number $p$.
+If $A$ is a ring with $p = 0$ in $A$, then $F_A : A \to A$
+denotes the Frobenius endomorphism $a \mapsto a^p$.
+
+\begin{lemma}
+\label{lemma-frobenius-homotopy}
+Let $A \to B$ be a ring map with $p = 0$ in $A$. Let $P_\bullet$ be the
+standard resolution of $B$ over $A$. The map $P_\bullet \to P_\bullet$
+induced by the diagram
+$$
+\xymatrix{
+B \ar[r]_{F_B} & B \\
+A \ar[u] \ar[r]^{F_A} & A \ar[u]
+}
+$$
+discussed in Section \ref{section-functoriality} is homotopic to the Frobenius
+endomorphism $P_\bullet \to P_\bullet$ given by Frobenius on each $P_n$.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{A}$ be the category of $\mathbf{F}_p$-algebra maps
+$A \to B$. Let $\mathcal{S}$ be the category of pairs $(A, E)$
+where $A$ is an $\mathbf{F}_p$-algebra and $E$ is a set. Consider the
+adjoint functors
+$$
+V : \mathcal{A} \to \mathcal{S}, \quad (A \to B) \mapsto (A, B)
+$$
+and
+$$
+U : \mathcal{S} \to \mathcal{A}, \quad (A, E) \mapsto (A \to A[E])
+$$
+Let $X$ be the simplicial object in 
+in the category of functors from $\mathcal{A}$ to $\mathcal{A}$
+constructed in Simplicial, Section \ref{simplicial-section-standard}.
+It is clear that $P_\bullet = X(A \to B)$ because if we fix
+$A$ then.
+
+\medskip\noindent
+Set $Y = U \circ V$. Recall that $X$ is constructed from $Y$
+and certain maps and has terms $X_n = Y \circ \ldots \circ Y$
+with $n + 1$ terms; the construction is given in
+Simplicial, Example \ref{simplicial-example-godement} and please see
+proof of Simplicial, Lemma \ref{simplicial-lemma-standard-simplicial}
+for details.
+
+\medskip\noindent
+Let $f : \text{id}_\mathcal{A} \to \text{id}_\mathcal{A}$
+be the Frobenius endomorphism of the identity functor.
+In other words, we set $f_{A \to B} = (F_A, F_B) : (A \to B) \to (A \to B)$.
+Then our two maps on $X(A \to B)$ are given by the natural transformations
+$f \star 1_X$ and $1_X \star f$. Details omitted.
+Thus we conclude by Simplicial, Lemma
+\ref{simplicial-lemma-godement-before-after}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-frobenius-acts-as-zero}
+Let $p$ be a prime number. Let $A \to B$ be a ring homomorphism
+and assume that $p = 0$ in $A$. The map $L_{B/A} \to L_{B/A}$
+of Section \ref{section-functoriality} induced by the
+Frobenius maps $F_A$ and $F_B$ is homotopic to zero.
+\end{lemma}
+
+\begin{proof}
+Let $P_\bullet$ be the standard resolution of $B$ over $A$.
+By Lemma \ref{lemma-frobenius-homotopy} the map $P_\bullet \to P_\bullet$
+induced by $F_A$ and $F_B$ is homotopic to the map
+$F_{P_\bullet} : P_\bullet \to P_\bullet$ given by
+Frobenius on each term. Hence we obtain what we want as clearly
+$F_{P_\bullet}$ induces the zero zero map $\Omega_{P_n/A} \to \Omega_{P_n/A}$
+(since the derivative of a $p$th power is zero).
+\end{proof}
+
+\begin{lemma}
+\label{lemma-perfect-zero}
+Let $p$ be a prime number. Let $A \to B$ be a ring homomorphism
+and assume that $p = 0$ in $A$. If $A$ and $B$ are perfect, then
+$L_{B/A}$ is zero in $D(B)$.
+\end{lemma}
+
+\begin{proof}
+The map $(F_A, F_B) : (A \to B) \to (A \to B)$ is an isomorphism
+hence induces an isomorphism on $L_{B/A}$ and on the other hand
+induces zero on $L_{B/A}$ by Lemma \ref{lemma-frobenius-acts-as-zero}.
 \end{proof}
 
 
@@ -2356,7 +2452,7 @@ to $\tau_{\geq -3}$.
 \label{lemma-compare-higher}
 In the situation above denote $L$ the complex
 (\ref{equation-lichtenbaum-schlessinger}).
-There is a canonical map $L_{B/A} \to L$ in $D(A)$ which
+There is a canonical map $L_{B/A} \to L$ in $D(B)$ which
 induces an isomorphism $\tau_{\geq -2}L_{B/A} \to L$ in $D(B)$.
 \end{lemma}
 
@@ -2574,26 +2670,26 @@ the following lemma.
 
 \begin{lemma}
 \label{lemma-special-case}
-Let $A = \mathbf{Z}[x] \to B = \mathbf{Z}$ be the ring map which sends
-$x$ to $0$. Let $I = (x) \subset A$. Then $L_{B/A}$ is quasi-isomorphic to
+Let $A = \mathbf{Z}[x_1, \ldots, x_n] \to B = \mathbf{Z}$
+be the ring map which sends $x_i$ to $0$ for $i = 1, \ldots, n$.
+Let $I = (x_1, \ldots, x_n) \subset A$. Then $L_{B/A}$ is quasi-isomorphic to
 $I/I^2[1]$.
 \end{lemma}
 
 \begin{proof}
 There are several ways to prove this. For example one can explicitly construct
-a resolution of $B$ over $A$ and compute. Or one can use the spectral sequence
-of Quillen (Theorem \ref{theorem-quillen-spectral-sequence})
-and the vanishing of $\text{Tor}_i^A(B, B)$ for $i > 1$.
-Finally, one can use (\ref{equation-triangle}) which is what we will do here.
+a resolution of $B$ over $A$ and compute. We will use (\ref{equation-triangle}).
 Namely, consider the distinguished triangle
 $$
-L_{\mathbf{Z}[x]/\mathbf{Z}} \otimes_{\mathbf{Z}[x]} \mathbf{Z} \to
+L_{\mathbf{Z}[x_1, \ldots, x_n]/\mathbf{Z}}
+\otimes_{\mathbf{Z}[x_1, \ldots, x_n]} \mathbf{Z} \to
 L_{\mathbf{Z}/\mathbf{Z}} \to
-L_{\mathbf{Z}/\mathbf{Z}[x]}\to
-L_{\mathbf{Z}[x]/\mathbf{Z}} \otimes_{\mathbf{Z}[x]} \mathbf{Z}[1]
+L_{\mathbf{Z}/\mathbf{Z}[x_1, \ldots, x_n]}\to
+L_{\mathbf{Z}[x_1, \ldots, x_n]/\mathbf{Z}}
+\otimes_{\mathbf{Z}[x_1, \ldots, x_n]} \mathbf{Z}[1]
 $$
-The complex $L_{\mathbf{Z}[x]/\mathbf{Z}}$ is quasi-isomorphic to
-$\Omega_{\mathbf{Z}[x]/\mathbf{Z}}$ by
+The complex $L_{\mathbf{Z}[x_1, \ldots, x_n]/\mathbf{Z}}$
+is quasi-isomorphic to $\Omega_{\mathbf{Z}[x_1, \ldots, x_n]/\mathbf{Z}}$ by
 Lemma \ref{lemma-cotangent-complex-polynomial-algebra}.
 The complex $L_{\mathbf{Z}/\mathbf{Z}}$ is zero in $D(\mathbf{Z})$ by
 Lemma \ref{lemma-when-zero}.
@@ -2604,30 +2700,27 @@ which is as described in the lemma by Lemma \ref{lemma-surjection}.
 \begin{lemma}
 \label{lemma-mod-regular-sequence}
 Let $A \to B$ be a surjective ring map whose kernel $I$ is generated
-by a regular sequence. Then $L_{B/A}$ is quasi-isomorphic to $I/I^2[1]$.
+by a Koszul-regular sequence (for example a regular sequence).
+Then $L_{B/A}$ is quasi-isomorphic to $I/I^2[1]$.
 \end{lemma}
 
 \begin{proof}
-This is true if $I = (0)$. If $I = (f)$ is generated by a single
-nonzerodivisor, then consider the ring map $\mathbf{Z}[x] \to A$
-which sends $x$ to $f$. By assumption we have
-$B = A \otimes_{\mathbf{Z}[x]}^\mathbf{L} \mathbf{Z}$.
-Thus we obtain $L_{B/A} = I/I^2[1]$ from
+Let $f_1, \ldots, f_r \in I$ be a Koszul regular sequence generating $I$.
+Consider the ring map $\mathbf{Z}[x_1, \ldots, x_r] \to A$ sending
+$x_i$ to $f_i$. Since $x_1, \ldots, x_r$ is a regular sequence in
+$\mathbf{Z}[x_1, \ldots, x_r]$ we see that the Koszul complex
+on $x_1, \ldots, x_r$ is a free resolution of
+$\mathbf{Z} = \mathbf{Z}[x_1, \ldots, x_r]/(x_1, \ldots, x_r)$
+over $\mathbf{Z}[x_1, \ldots, x_r]$
+(see More on Algebra, Lemma \ref{more-algebra-lemma-regular-koszul-regular}).
+Thus the assumption that $f_1, \ldots, f_r$ is Koszul regular
+exactly means that
+$B = A \otimes_{\mathbf{Z}[x_1, \ldots, x_r]}^\mathbf{L} \mathbf{Z}$.
+Hence
+$L_{B/A} = L_{\mathbf{Z}/\mathbf{Z}[x_1, \ldots, x_r]}
+\otimes_\mathbf{Z}^\mathbf{L} B$ by
 Lemmas \ref{lemma-flat-base-change-cotangent-complex} and
 \ref{lemma-special-case}.
-
-\medskip\noindent
-We prove the general case by induction. Suppose that we have
-$I = (f_1, \ldots, f_r)$ where $f_1, \ldots, f_r$ is a regular sequence.
-Set $C = A/(f_1, \ldots, f_{r - 1})$. By induction the result is
-true for $A \to C$ and $C \to B$. We have a distinguished triangle
-(\ref{equation-triangle})
-$$
-L_{C/A} \otimes_C^\mathbf{L} B \to L_{B/A} \to L_{B/C} \to
-L_{C/A} \otimes_C^\mathbf{L} B[1]
-$$
-which shows that $L_{B/A}$ has only one nonzero cohomology group
-which is as described in the lemma by Lemma \ref{lemma-surjection}.
 \end{proof}
 
 \begin{lemma}
@@ -2637,12 +2730,11 @@ Then $L_{B/A}$ is quasi-isomorphic to $I/I^2[1]$.
 \end{lemma}
 
 \begin{proof}
-Flat locally on $\Spec(A)$ the ideal $I$ is generated by a regular
-sequence, see More on Algebra, Lemma
-\ref{more-algebra-lemma-Koszul-regular-flat-locally-regular}.
+Locally on $\Spec(A)$ the ideal $I$ is generated by a Koszul regular
+sequence, see More on Algebra, Definition
+\ref{more-algebra-definition-regular-ideal}.
 Hence this follows from
-Lemma \ref{lemma-flat-base-change-cotangent-complex}
-and flat descent.
+Lemma \ref{lemma-flat-base-change-cotangent-complex}.
 \end{proof}
 
 \begin{proposition}
@@ -2851,6 +2943,7 @@ the question mark fitting into the following diagram
 \end{equation}
 and moreover how unique the solution is (if it exists). More precisely,
 we look for a surjection of $A'$-algebras $B' \to B$ whose kernel is
+an ideal of square zero and is
 identified with $N$ such that $A' \to B'$ induces the given map $c$.
 We will say $B'$ is a {\it solution} to (\ref{equation-to-solve}).
 
@@ -2873,42 +2966,44 @@ to $\Ext^0_B(L_{B/A}, N)$.
 \begin{proof}
 Via the identifications $\NL_{B/A} = \tau_{\geq -1}L_{B/A}$
 (Lemma \ref{lemma-relation-with-naive-cotangent-complex}) and
-$H^0(L_{B/A}) = \Omega_{B/A}$
-(Lemma \ref{lemma-identify-H0})
+$H^0(L_{B/A}) = \Omega_{B/A}$ (Lemma \ref{lemma-identify-H0})
 we have seen parts (2) and (3) in
 Deformation Theory, Lemmas \ref{defos-lemma-huge-diagram} and
 \ref{defos-lemma-choices}.
 
 \medskip\noindent
-Proof of (1). We will use the results of
-Deformation Theory, Lemma \ref{defos-lemma-extensions-of-rings}
-without further mention.
-Let $\alpha \in \Ext^1_A(\NL_{A/\mathbf{Z}}, I)$
-be the element corresponding to the isomorphism class of $A'$.
-The existence of $B'$ corresponds to an element
-$\beta \in \Ext_B^1(\NL_{B/\mathbf{Z}}, N)$
-which maps to the image of $\alpha$ in
-$\Ext^1_A(\NL_{A/\mathbf{Z}}, N)$. Note that
+Proof of (1). Roughly speaking, this follows from the discussion in 
+Deformation Theory, Remark \ref{defos-remark-parametrize-solutions}
+by replacing the naive cotangent complex by the full cotangent complex.
+Here is a more detailed explanation. By
+Deformation Theory, Lemma \ref{defos-lemma-parametrize-solutions}
+and Remark \ref{defos-remark-parametrize-solutions}
+there exists an element
 $$
-\Ext^1_A(\NL_{A/\mathbf{Z}}, N) =
-\Ext^1_A(L_{A/\mathbf{Z}}, N) =
-\Ext^1_B(L_{A/\mathbf{Z}} \otimes_A^\mathbf{L} B, N)
+\xi' \in
+\Ext^1_A(\NL_{A/A'}, N) =
+\Ext^1_B(\NL_{A/A'} \otimes_A^\mathbf{L} B, N) =
+\Ext^1_B(L_{A/A'} \otimes_A^\mathbf{L} B, N)
 $$
-and
+(for the equalities see Deformation Theory, Remark
+\ref{defos-remark-parametrize-solutions} and use that
+$\NL_{A'/A} = \tau_{\geq -1} L_{A'/A}$)
+such that a solution exists if and only if this element is in
+the image of the map
 $$
-\Ext^1_B(\NL_{B/\mathbf{Z}}, N) =
-\Ext^1_B(L_{B/\mathbf{Z}}, N)
+\Ext^1_B(\NL_{B/A'}, N) = \Ext^1_B(L_{B/A'}, N)
+\longrightarrow
+\Ext^1_B(L_{A/A'} \otimes_A^\mathbf{L} B, N)
 $$
-by Lemma \ref{lemma-relation-with-naive-cotangent-complex}.
-Since the distinguished triangle (\ref{equation-triangle})
-for $\mathbf{Z} \to A \to B$ gives rise to a long exact sequence
+The distinguished triangle (\ref{equation-triangle})
+for $A' \to A \to B$ gives rise to a long exact sequence
 $$
 \ldots \to
-\Ext^1_B(L_{B/\mathbf{Z}}, N) \to
-\Ext^1_B(L_{A/\mathbf{Z}} \otimes_A^\mathbf{L} B, N) \to
+\Ext^1_B(L_{B/A'}, N) \to
+\Ext^1_B(L_{A/A'} \otimes_A^\mathbf{L} B, N) \to
 \Ext^2_B(L_{B/A}, N) \to \ldots
 $$
-we obtain the result with $\xi$ the image of $\alpha$.
+Hence taking $\xi$ the image of $\xi'$ works.
 \end{proof}
 
 
@@ -2975,9 +3070,9 @@ ringed spaces, a morphism of schemes, a morphism of algebraic space, etc.
 Let $\mathcal{C}$ be a site and let $\Sh(\mathcal{C})$ denote the
 associated topos. Let $\mathcal{A}$ denote a sheaf of rings
 on $\mathcal{C}$. Let $\mathcal{A}\textit{-Alg}$ be the category of
-$\mathcal{A}$-algebras. Consider the pair of adjoint functors $(F, i)$ where
-$i : \mathcal{A}\textit{-Alg} \to \Sh(\mathcal{C})$ is the forgetful functor and
-$F : \Sh(\mathcal{C}) \to \mathcal{A}\textit{-Alg}$ assigns to a sheaf of sets
+$\mathcal{A}$-algebras. Consider the pair of adjoint functors $(U, V)$ where
+$V : \mathcal{A}\textit{-Alg} \to \Sh(\mathcal{C})$ is the forgetful functor and
+$U : \Sh(\mathcal{C}) \to \mathcal{A}\textit{-Alg}$ assigns to a sheaf of sets
 $\mathcal{E}$ the polynomial algebra $\mathcal{A}[\mathcal{E}]$ on
 $\mathcal{E}$ over $\mathcal{A}$.
 Let $X_\bullet$ be the simplicial object of
@@ -3548,35 +3643,35 @@ Deformation Theory, Lemmas \ref{defos-lemma-huge-diagram-ringed-spaces} and
 \ref{defos-lemma-choices-ringed-spaces}.
 
 \medskip\noindent
-Proof of (1). We will use the results of
-Deformation Theory, Lemma \ref{defos-lemma-extensions-of-ringed-spaces}
-without further mention.
-Let $\alpha \in \Ext^1_{\mathcal{O}_S}(\NL_{S/\mathbf{Z}}, \mathcal{J})$
-be the element corresponding to the isomorphism class of $S'$.
-The existence of $X'$ corresponds to an element
-$\beta \in \Ext_{\mathcal{O}_X}^1(\NL_{X/\mathbf{Z}}, \mathcal{G})$
-which maps to the image of $\alpha$ in
-$\Ext^1_{\mathcal{O}_X}(Lf^*\NL_{S/\mathbf{Z}}, \mathcal{G})$.
-Note that
+Proof of (1). Roughly speaking, this follows from the discussion in
+Deformation Theory, Remark
+\ref{defos-remark-parametrize-solutions-ringed-spaces}
+by replacing the naive cotangent complex by the full cotangent complex.
+Here is a more detailed explanation. By
+Deformation Theory, Lemma \ref{defos-lemma-parametrize-solutions-ringed-spaces}
+there exists an element
 $$
-\Ext^1_{\mathcal{O}_X}(Lf^*\NL_{S/\mathbf{Z}}, \mathcal{G}) =
-\Ext^1_{\mathcal{O}_X}(Lf^*L_{S/\mathbf{Z}}, \mathcal{G})
+\xi' \in
+\Ext^1_{\mathcal{O}_X}(Lf^*\NL_{S/S'}, \mathcal{G}) =
+\Ext^1_{\mathcal{O}_X}(Lf^*L_{S/S'}, \mathcal{G})
 $$
-and
+such that a solution exists if and only if this element is in
+the image of the map
 $$
-\Ext^1_{\mathcal{O}_X}(\NL_{X/\mathbf{Z}}, \mathcal{G}) =
-\Ext^1_{\mathcal{O}_X}(L_{X/\mathbf{Z}}, \mathcal{G})
+\Ext^1_{\mathcal{O}_X}(NL_{X/S'}, \mathcal{G}) =
+\Ext^1_{\mathcal{O}_X}(L_{X/S'}, \mathcal{G})
+\longrightarrow
+\Ext^1_{\mathcal{O}_X}(Lf^*L_{S/S'}, \mathcal{G})
 $$
-by Lemma \ref{lemma-compare-cotangent-complex-with-naive-ringed-spaces}.
 The distinguished triangle of Lemma \ref{lemma-triangle-ringed-spaces}
-for $X \to S \to (*, \mathbf{Z})$ gives rise to a long exact sequence
+for $X \to S \to S'$ gives rise to a long exact sequence
 $$
 \ldots \to
-\Ext^1_{\mathcal{O}_X}(L_{X/\mathbf{Z}}, \mathcal{G}) \to
-\Ext^1_{\mathcal{O}_X}(Lf^*L_{S/\mathbf{Z}}, \mathcal{G}) \to
+\Ext^1_{\mathcal{O}_X}(L_{X/S'}, \mathcal{G}) \to
+\Ext^1_{\mathcal{O}_X}(Lf^*L_{S/S'}, \mathcal{G}) \to
 \Ext^2_{\mathcal{O}_X}(L_{X/S}, \mathcal{G}) \to \ldots
 $$
-We obtain the result with $\xi$ the image of $\alpha$.
+Hence taking $\xi$ the image of $\xi'$ works.
 \end{proof}
 
 
@@ -3732,48 +3827,51 @@ to $\Ext^0_\mathcal{O}(L_f, \mathcal{G})$.
 \begin{proof}
 Via the identifications $\NL_f = \tau_{\geq -1}L_f$
 (Lemma \ref{lemma-compare-cotangent-complex-with-naive-ringed-topoi}) and
-$H^0(L_{X/S}) = \Omega_{X/S}$
+$H^0(L_f) = \Omega_f$
 (Lemma \ref{lemma-H0-L-morphism-ringed-topoi})
 we have seen parts (2) and (3) in
 Deformation Theory, Lemmas \ref{defos-lemma-huge-diagram-ringed-topoi} and
 \ref{defos-lemma-choices-ringed-topoi}.
 
 \medskip\noindent
-Proof of (1). We will use the results of
-Deformation Theory, Lemma \ref{defos-lemma-extensions-of-ringed-topoi}
-without further mention. Denote
+Proof of (1). To match notation with Deformation Theory, Section
+\ref{defos-section-deformations-ringed-topoi} we will write
+$\NL_f = \NL_{\mathcal{O}/\mathcal{O}_\mathcal{B}}$ and
+$L_f = L_{\mathcal{O}/\mathcal{O}_\mathcal{B}}$ and similarly
+for the morphisms $t$ and $t \circ f$. By
+Deformation Theory, Lemma \ref{defos-lemma-parametrize-solutions-ringed-topoi}
+there exists an element
 $$
-p : (\Sh(\mathcal{C}), \mathcal{O}) \to (\Sh(*), \mathbf{Z})
-\quad\text{and}\quad
-q : (\Sh(\mathcal{B}), \mathcal{O}_\mathcal{B}) \to (\Sh(*), \mathbf{Z}).
+\xi' \in
+\Ext^1_\mathcal{O}(
+Lf^*\NL_{\mathcal{O}_\mathcal{B}/\mathcal{O}_{\mathcal{B}'}}, \mathcal{G}) =
+\Ext^1_\mathcal{O}(
+Lf^*L_{\mathcal{O}_\mathcal{B}/\mathcal{O}_{\mathcal{B}'}}, \mathcal{G})
 $$
-Let $\alpha \in \Ext^1_{\mathcal{O}_\mathcal{B}}(\NL_q, \mathcal{J})$
-be the element corresponding to the isomorphism class of
-$\mathcal{O}_{\mathcal{B}'}$. The existence of $\mathcal{O}'$
-corresponds to an element
-$\beta \in \Ext_\mathcal{O}^1(\NL_p, \mathcal{G})$
-which maps to the image of $\alpha$ in
-$\Ext^1_{\mathcal{O}_X}(Lf^*\NL_q, \mathcal{G})$.
-Note that
+such that a solution exists if and only if this element is in
+the image of the map
 $$
-\Ext^1_{\mathcal{O}_X}(Lf^*\NL_q, \mathcal{G}) =
-\Ext^1_{\mathcal{O}_X}(Lf^*L_q, \mathcal{G})
+\Ext^1_\mathcal{O}(
+\NL_{\mathcal{O}/\mathcal{O}_{\mathcal{B}'}}, \mathcal{G}) =
+\Ext^1_\mathcal{O}(
+L_{\mathcal{O}/\mathcal{O}_{\mathcal{B}'}}, \mathcal{G})
+\longrightarrow
+\Ext^1_\mathcal{O}(
+Lf^*L_{\mathcal{O}_\mathcal{B}/\mathcal{O}_{\mathcal{B}'}}, \mathcal{G})
 $$
-and
-$$
-\Ext^1_{\mathcal{O}_X}(\NL_p, \mathcal{G}) =
-\Ext^1_{\mathcal{O}_X}(L_p, \mathcal{G})
-$$
-by Lemma \ref{lemma-compare-cotangent-complex-with-naive-ringed-topoi}.
 The distinguished triangle of Lemma \ref{lemma-triangle-ringed-topoi}
-for $p = q \circ f$ gives rise to a long exact sequence
+for $f$ and $t$ gives rise to a long exact sequence
 $$
 \ldots \to
-\Ext^1_{\mathcal{O}_X}(L_p, \mathcal{G}) \to
-\Ext^1_{\mathcal{O}_X}(Lf^*L_q, \mathcal{G}) \to
-\Ext^2_{\mathcal{O}_X}(L_f, \mathcal{G}) \to \ldots
+\Ext^1_\mathcal{O}(
+L_{\mathcal{O}/\mathcal{O}_{\mathcal{B}'}}, \mathcal{G}) \to
+\Ext^1_\mathcal{O}(
+Lf^*L_{\mathcal{O}_\mathcal{B}/\mathcal{O}_{\mathcal{B}'}}, \mathcal{G})
+\to
+\Ext^1_\mathcal{O}(
+L_{\mathcal{O}/\mathcal{O}_\mathcal{B}}, \mathcal{G})
 $$
-We obtain the result with $\xi$ the image of $\alpha$.
+Hence taking $\xi$ the image of $\xi'$ works.
 \end{proof}
 
 

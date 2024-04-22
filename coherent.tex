@@ -104,7 +104,7 @@ h(s)_{i_0 \ldots i_p} = s_{i_{\text{fix}} i_0 \ldots i_p}
 $$
 (This is ``dual'' to the homotopy in the proof of
 Cohomology, Lemma \ref{cohomology-lemma-homology-complex}.)
-In other words, $h : \prod_{i_0} M_{f_{i_0}, \mathfrak p} \to M$
+In other words, $h : \prod_{i_0} M_{f_{i_0}, \mathfrak p} \to M_\mathfrak p$
 is projection onto the factor
 $M_{f_{i_{\text{fix}}}, \mathfrak p} = M_{\mathfrak p}$ and in general
 the map $h$ equal projection onto the factors
@@ -498,6 +498,39 @@ There is a variant of Lemma \ref{lemma-quasi-compact-h1-zero-invertible}
 with finite type ideal sheaves which we will formulate and prove here if
 we ever need it.
 
+\begin{lemma}
+\label{lemma-criterion-affine-morphism}
+Let $f : X \to Y$ be a quasi-compact morphism with $X$ and $Y$ quasi-separated.
+If $R^1f_*\mathcal{I} = 0$ for every quasi-coherent sheaf of ideals
+$\mathcal{I}$ on $X$, then $f$ is affine.
+\end{lemma}
+
+\begin{proof}
+Let $V \subset Y$ be an affine open subscheme. We have to show that
+$U = f^{-1}(V)$ is affine. The inclusion morphism $V \to Y$ is quasi-compact
+by Schemes, Lemma \ref{schemes-lemma-quasi-compact-permanence}.
+Hence the base change $U \to X$ is quasi-compact, see
+Schemes, Lemma \ref{schemes-lemma-quasi-compact-preserved-base-change}.
+Thus any quasi-coherent sheaf of ideals $\mathcal{I}$ on $U$
+extends to a quasi-coherent sheaf of ideals on $X$, see
+Properties, Lemma \ref{properties-lemma-extend-trivial}.
+Since the formation of $R^1f_*$ is local on $Y$
+(Cohomology, Section \ref{cohomology-section-locality})
+we conclude that $R^1(U \to V)_*\mathcal{I} = 0$ by the assumption
+in the lemma. Hence by the Leray Spectral sequence
+(Cohomology, Lemma \ref{cohomology-lemma-Leray})
+we conclude that $H^1(U, \mathcal{I}) = H^1(V, (U \to V)_*\mathcal{I})$.
+Since $(U \to V)_*\mathcal{I}$ is quasi-coherent by
+Schemes, Lemma \ref{schemes-lemma-push-forward-quasi-coherent}, we have
+$H^1(V, (U \to V)_*\mathcal{I}) = 0$ by
+Lemma \ref{lemma-quasi-coherent-affine-cohomology-zero}.
+Thus we find that $U$ is affine by
+Lemma \ref{lemma-quasi-compact-h1-zero-covering}.
+\end{proof}
+
+
+
+
 
 
 
@@ -514,14 +547,17 @@ we ever need it.
 
 \noindent
 We have seen that the higher cohomology groups of a quasi-coherent module on
-an affine is zero. For (quasi-)separated quasi-compact schemes $X$ this implies
+an affine are zero. For (quasi-)separated quasi-compact schemes $X$ this implies
 vanishing of cohomology groups of quasi-coherent sheaves beyond a certain
 degree. However, it may not be the case that $X$ has finite cohomological
 dimension, because that is defined in terms of vanishing of cohomology
 of {\it all} $\mathcal{O}_X$-modules.
 
-\begin{lemma}
+\begin{lemma}[Induction Principle]
 \label{lemma-induction-principle}
+\begin{reference}
+\cite[Proposition 3.3.1]{BvdB}
+\end{reference}
 Let $X$ be a quasi-compact and quasi-separated scheme. Let $P$ be a property
 of the quasi-compact opens of $X$. Assume that
 \begin{enumerate}
@@ -623,9 +659,12 @@ $\textit{Ab}$.
 \end{lemma}
 
 \begin{proof}
-Let $X = \bigcup U_i$ be an affine open covering.
-Set $U = \coprod U_i$ and denote $f : U \to X$
+Let $X = \bigcup U_i$ be a finite affine open covering.
+Set $U = \coprod U_i$ and denote $j : U \to X$
 the morphism inducing the given open immersions $U_i \to X$.
+Since $U$ is an affine scheme and $X$ has affine diagonal,
+the morphism $j$ is affine, see
+Morphisms, Lemma \ref{morphisms-lemma-affine-permanence}.
 For every $\mathcal{O}_X$-module $\mathcal{F}$ there is
 a canonical map $\mathcal{F} \to j_*j^*\mathcal{F}$.
 This map is injective as can be seen by checking on stalks:
@@ -637,11 +676,13 @@ $$
 where $x' \in U$ is the point $x$ viewed as a point of $U_i \subset U$.
 Now if $\mathcal{F}$ is quasi-coherent, then $j^*\mathcal{F}$
 is quasi-coherent on the affine scheme $U$ hence has vanishing
-higher cohomology. Then $H^p(X, j_*j^*\mathcal{F}) = 0$ for
-$p > 0$ by Lemma \ref{lemma-relative-affine-cohomology} as $j$ is affine by
-Morphisms, Lemma \ref{morphisms-lemma-affine-permanence}.
-This proves (1).
-Then $H^p(X, \mathcal{F}) \to H^p(X, j_*j^*\mathcal{F})$
+higher cohomology by
+Lemma \ref{lemma-quasi-coherent-affine-cohomology-zero}.
+Then $H^p(X, j_*j^*\mathcal{F}) = 0$ for
+$p > 0$ by Lemma \ref{lemma-relative-affine-cohomology}
+as $j$ is affine. This proves (1).
+Finally, we see that the map
+$H^p(X, \mathcal{F}) \to H^p(X, j_*j^*\mathcal{F})$
 is zero and part (2) follows from
 Homology, Lemma \ref{homology-lemma-efface-implies-universal}.
 \end{proof}
@@ -649,11 +690,12 @@ Homology, Lemma \ref{homology-lemma-efface-implies-universal}.
 \begin{lemma}
 \label{lemma-vanishing-nr-affines-quasi-separated}
 Let $X$ be a quasi-compact quasi-separated scheme.
-Let $X = U_1 \cup \ldots \cup U_t$ be an affine open covering.
+Let $X = U_1 \cup \ldots \cup U_t$ be an open covering
+with each $U_i$ quasi-compact and separated (for example affine).
 Set
 $$
 d = \max\nolimits_{I \subset \{1, \ldots, t\}}
-\left(|I| + t(\bigcap\nolimits_{i \in I} U_i)\right)
+\left(|I| + t(\bigcap\nolimits_{i \in I} U_i) - 1\right)
 $$
 where $t(U)$ is the minimal number of affines needed to cover
 the scheme $U$. Then $H^n(X, \mathcal{F}) = 0$ for all $n \geq d$ and all
@@ -661,28 +703,36 @@ quasi-coherent sheaves $\mathcal{F}$.
 \end{lemma}
 
 \begin{proof}
-Note that since $X$ is quasi-separated the numbers
-$t(\bigcap_{i \in I} U_i)$ are finite.
-Let $\mathcal{U} : X = \bigcup_{i = 1}^t U_i$.
-By
-Cohomology, Lemma \ref{cohomology-lemma-cech-spectral-sequence}
-there is a spectral sequence
+Note that since $X$ is quasi-separated and $U_i$ quasi-compact the numbers
+$t(\bigcap_{i \in I} U_i)$ are finite. Proof using induction on $t$.
+If $t = 1$ then the result follows from
+Lemma \ref{lemma-vanishing-nr-affines}. If $t > 1$,
+write $X = U \cup V$ with $U = U_1 \cup \ldots \cup U_{t - 1}$ and $V = U_t$.
+We apply the Mayer-Vietoris long exact sequence
 $$
-E_2^{p, q} = \check{H}^p(\mathcal{U}, \underline{H}^q(\mathcal{F}))
+0 \to
+H^0(X, \mathcal{F}) \to
+H^0(U, \mathcal{F}) \oplus H^0(V, \mathcal{F}) \to
+H^0(U \cap V, \mathcal{F}) \to
+H^1(X, \mathcal{F}) \to \ldots
 $$
-converging to $H^{p + q}(U, \mathcal{F})$. By
-Cohomology, Lemma \ref{cohomology-lemma-alternating-usual}
-we have
+see Cohomology, Lemma \ref{cohomology-lemma-mayer-vietoris}.
+Since $V$ is affine, we have $H^i(V, \mathcal{F}) = 0$ for $i \geq 0$.
+By induction hypothesis we have $H^i(U, \mathcal{F}) = 0$ for
 $$
-E_2^{p, q} =
-H^p(\check{\mathcal{C}}_{alt}^\bullet(
-\mathcal{U}, \underline{H}^q(\mathcal{F}))
+i \geq \max\nolimits_{I \subset \{1, \ldots, t - 1\}}
+\left(|I| + t(\bigcap\nolimits_{i \in I} U_i) - 1\right)
 $$
-The alternating {\v C}ech complex with values in the presheaf
-$\underline{H}^q(\mathcal{F})$ vanishes in high degrees by
-Lemma \ref{lemma-vanishing-nr-affines},
-more precisely $E_2^{p, q} = 0$ for $p + q \geq d$.
-Hence the result follows.
+and the bound on the right is less than the bound in the statement of the
+lemma. Finally we may use our induction hypothesis for the open
+$U \cap V = (U_1 \cap U_t) \cup \ldots \cup (U_{t - 1} \cap U_t)$ to get
+the vanishing of $H^i(U \cap V, \mathcal{F}) = 0$ for
+$$
+i \geq \max\nolimits_{I \subset \{1, \ldots, t - 1\}}
+\left(|I| + t(U_t \cap \bigcap\nolimits_{i \in I} U_i) - 1\right)
+$$
+Since the bound on the right is at least $1$ less than the bound in
+the statement of the lemma, the lemma follows.
 \end{proof}
 
 \begin{lemma}
@@ -711,69 +761,47 @@ Using
 Cohomology, Lemma \ref{cohomology-lemma-localize-higher-direct-images}
 we see that forming higher direct images commutes with restriction
 to open subschemes. Since being quasi-coherent is local on $S$ we
-may assume $S$ is affine.
+reduce to the case discussed in the next paragraph.
 
 \medskip\noindent
-Assume $S$ is affine and $f$ quasi-compact and separated.
-Let $t \geq 1$ be the minimal number of affine opens needed to cover $X$.
-We will prove this case of (1) by induction on $t$.
-If $t = 1$ then the morphism $f$ is affine by
-Morphisms, Lemma \ref{morphisms-lemma-morphism-affines-affine}
-and (1) follows from
-Lemma \ref{lemma-relative-affine-vanishing}.
-If $t > 1$ write $X = U \cup V$ with $V$ affine open and
-$U = U_1 \cup \ldots \cup U_{t - 1}$ a union of $t - 1$ open affines.
-Note that in this case
-$U \cap V =  (U_1 \cap V) \cup \ldots (U_{t - 1} \cap V)$
-is also a union of $t - 1$ affine open subschemes, see
-Schemes, Lemma \ref{schemes-lemma-characterize-separated}.
-We will apply the relative Mayer-Vietoris sequence
+Proof of (1) in case $S$ is affine. We will use the induction principle.
+Since $f$ quasi-compact and quasi-separated we see that $X$
+is quasi-compact and quasi-separated. For $U \subset X$
+quasi-compact open and $a = f|_U$ we let $P(U)$ be the property that
+$R^pa_*\mathcal{F}$ is quasi-coherent on $S$ for all quasi-coherent modules
+$\mathcal{F}$ on $U$ and all $p \geq 0$. Since $P(X)$ is (1), it suffices
+the prove conditions (1) and (2) of Lemma \ref{lemma-induction-principle} hold.
+If $U$ is affine, then $P(U)$ holds because $R^pa_*\mathcal{F} = 0$ for
+$p \geq 1$ (by  Lemma \ref{lemma-relative-affine-vanishing} and
+Morphisms, Lemma \ref{morphisms-lemma-morphism-affines-affine})
+and we've already observed the result holds for $p = 0$ in the first
+paragraph. Next, let $U \subset X$ be a quasi-compact open, $V \subset X$
+an affine open, and assume $P(U)$, $P(V)$, $P(U \cap V)$ hold.
+Let $a = f|_U$, $b = f|_V$, $c = f|_{U \cap V}$, and $g = f|_{U \cup V}$.
+Then for any quasi-coherent $\mathcal{O}_{U \cup V}$-module $\mathcal{F}$
+we have the relative Mayer-Vietoris sequence
 $$
 0 \to
-f_*\mathcal{F} \to
+g_*\mathcal{F} \to
 a_*(\mathcal{F}|_U) \oplus b_*(\mathcal{F}|_V) \to
 c_*(\mathcal{F}|_{U \cap V}) \to
-R^1f_*\mathcal{F} \to \ldots
+R^1g_*\mathcal{F} \to \ldots
 $$
 see Cohomology, Lemma \ref{cohomology-lemma-relative-mayer-vietoris}.
-By induction we see that
-$R^pa_*\mathcal{F}$, $R^pb_*\mathcal{F}$ and $R^pc_*\mathcal{F}$
-are all quasi-coherent. This implies that each of the sheaves
-$R^pf_*\mathcal{F}$ is quasi-coherent since it sits in the middle of a short
+By $P(U)$, $P(V)$, $P(U \cap V)$ we see that
+$R^pa_*(\mathcal{F}|_U)$, $R^pb_*(\mathcal{F}|_V)$ and
+$R^pc_*(\mathcal{F}|_{U \cap V})$ are all quasi-coherent.
+Using the results on quasi-coherent sheaves in
+Schemes, Section \ref{schemes-section-quasi-coherent}
+this implies that each of the sheaves
+$R^pg_*\mathcal{F}$ is quasi-coherent since it sits in the middle of a short
 exact sequence with a cokernel of a map between quasi-coherent sheaves
 on the left and a kernel of a map between quasi-coherent sheaves on the right.
-Using the results on quasi-coherent sheaves in
-Schemes, Section \ref{schemes-section-quasi-coherent} we see
-conclude $R^pf_*\mathcal{F}$ is quasi-coherent.
-
-\medskip\noindent
-Assume $S$ is affine and $f$ quasi-compact and quasi-separated.
-Let $t \geq 1$ be the minimal number of affine opens needed to cover $X$.
-We will prove (1) by induction on $t$.
-In case $t = 1$ the morphism $f$ is separated and we are back
-in the previous case (see previous paragraph).
-If $t > 1$ write $X = U \cup V$ with $V$ affine open and
-$U$ a union of $t - 1$ open affines.
-Note that in this case $U \cap V$ is an open subscheme of an affine
-scheme and hence separated (see
-Schemes, Lemma \ref{schemes-lemma-affine-separated}).
-We will apply the relative Mayer-Vietoris sequence
-$$
-0 \to
-f_*\mathcal{F} \to
-a_*(\mathcal{F}|_U) \oplus b_*(\mathcal{F}|_V) \to
-c_*(\mathcal{F}|_{U \cap V}) \to
-R^1f_*\mathcal{F} \to \ldots
-$$
-see Cohomology, Lemma \ref{cohomology-lemma-relative-mayer-vietoris}.
-By induction and the result of the previous paragraph we see that
-$R^pa_*\mathcal{F}$, $R^pb_*\mathcal{F}$ and $R^pc_*\mathcal{F}$
-are quasi-coherent. As in the previous paragraph this implies each of
-sheaves $R^pf_*\mathcal{F}$ is quasi-coherent.
+Whence $P(U \cup V)$ and the proof of (1) is complete.
 
 \medskip\noindent
 Next, we prove (3) and a fortiori (2). Choose a finite affine open
-covering $S = \bigcup_{j = 1, \ldots m} S_j$. For each $i$ choose
+covering $S = \bigcup_{j = 1, \ldots m} S_j$. For each $j$ choose
 a finite affine open covering
 $f^{-1}(S_j) = \bigcup_{i = 1, \ldots t_j} U_{ji} $.
 Let
@@ -939,7 +967,10 @@ $H^i(X, \mathcal{F}) \otimes_A B = H^i(X', \mathcal{F}')$.
 \end{lemma}
 
 \begin{proof}
-We claim that part (1) follows from part (2). Namely,
+Using Cohomology, Lemma \ref{cohomology-lemma-base-change-map-flat-case} in (1)
+is allowed since $g'$ is flat by
+Morphisms, Lemma \ref{morphisms-lemma-base-change-flat}.
+Having said this, part (1) follows from part (2). Namely,
 part (1) is local on $S'$ and hence we may assume $S$
 and $S'$ are affine. In other words, we have $S = \Spec(A)$
 and $S' = \Spec(B)$ as in (2).
@@ -967,8 +998,7 @@ $$
 H^i(X, \mathcal{F}) \otimes_A B \longrightarrow H^i(X_B, \mathcal{F}_B)
 $$
 (given by the reference in the statement of the lemma)
-is an isomorphism where $X_B = \Spec(B) \times_{\Spec(A)} X$ and
-$\mathcal{F}_B$ is the pullback of $\mathcal{F}$ to $X_B$.
+is an isomorphism.
 
 \medskip\noindent
 In case $X$ is separated, choose an affine open covering
@@ -1113,23 +1143,23 @@ Modules, Lemma \ref{modules-lemma-finite-presentation-quasi-compact-colimit}.
 \label{lemma-colimit-cohomology}
 Let $f : X \to S$ be a quasi-compact and quasi-separated morphism of schemes.
 Let $\mathcal{F} = \colim \mathcal{F}_i$ be a filtered colimit
-of quasi-coherent sheaves on $X$.
-Then for any $p \geq 0$ we have
+of abelian sheaves on $X$. Then for any $p \geq 0$ we have
 $$
 R^pf_*\mathcal{F} = \colim R^pf_*\mathcal{F}_i.
 $$
 \end{lemma}
 
 \begin{proof}
-Recall that $R^pf_*\mathcal{F}$ is the sheaf associated to
-$U \mapsto H^p(f^{-1}U, \mathcal{F})$, see
-Cohomology, Lemma \ref{cohomology-lemma-describe-higher-direct-images}.
-Recall that the colimit is the sheaf associated to the presheaf colimit
-(taking colimits over opens). Hence we can apply
-Cohomology, Lemma \ref{cohomology-lemma-quasi-separated-cohomology-colimit}
-to $H^p(f^{-1}U, -)$ where $U$ is affine to conclude. (Because the
-basis of affine opens in $f^{-1}U$ satisfies the assumptions of that
-lemma.)
+We will apply Cohomology, Lemma
+\ref{cohomology-lemma-higher-direct-image-colimit}.
+Since the affine opens form a basis for the topology of $S$,
+it suffices to show that for $U \subset S$ affine open we have
+$H^p(f^{-1}U, \mathcal{F}) = \colim H^p(f^{-1}U, \mathcal{F}_i$.
+Since $f^{-1}U$ is quasi-compact and quasi-separated we conclude
+using
+Cohomology, Lemma \ref{cohomology-lemma-quasi-separated-cohomology-colimit}.
+(Because the basis of affine opens in $f^{-1}U$
+satisfies the assumptions of that lemma.)
 \end{proof}
 
 
@@ -1392,6 +1422,130 @@ This finishes the proof of the lemma as it suffices to prove
 the equality of complexes Zariski locally on $S'$.
 \end{proof}
 
+\noindent
+The following lemma is a variant to flat base change.
+
+\begin{lemma}
+\label{lemma-base-change-tensor-with-flat}
+Consider a cartesian diagram of schemes
+$$
+\xymatrix{
+X' \ar[d]_{f'} \ar[r]_{g'} & X \ar[d]^f \\
+S' \ar[r]^g & S
+}
+$$
+Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_X$-module.
+Let $\mathcal{G}$ be a quasi-coherent $\mathcal{O}_{S'}$-module
+flat over $S$. Assume $f$ is quasi-compact and quasi-separated.
+For any $i \geq 0$ there is an identification
+$$
+\mathcal{G} \otimes_{\mathcal{O}_{S'}} g^*R^if_*\mathcal{F} =
+R^if'_*\left((f')^*\mathcal{G}
+\otimes_{\mathcal{O}_{X'}} (g')^*\mathcal{F}\right)
+$$
+\end{lemma}
+
+\begin{proof}
+Let us construct a map from left to right. First, we have the base change map
+$Lg^*Rf_*\mathcal{F} \to Rf'_*L(g')^*\mathcal{F}$. There is also the adjunction
+map $\mathcal{G} \to Rf'_*L(f')^*\mathcal{G}$. Using the relative cup product
+We obtain
+\begin{align*}
+\mathcal{G}
+\otimes_{\mathcal{O}_{S'}}^\mathbf{L}
+Lg^*Rf_*\mathcal{F}
+& \to
+Rf'_*L(f')^*\mathcal{G}
+\otimes_{\mathcal{O}_{S'}}^\mathbf{L}
+Rf'_*L(g')^*\mathcal{F} \\
+& \to
+Rf'_*\left(L(f')^*\mathcal{G}
+\otimes_{\mathcal{O}_{X'}}^\mathbf{L}
+L(g')^*\mathcal{F}\right) \\
+& \to
+Rf'_*\left((f')^*\mathcal{G}
+\otimes_{\mathcal{O}_{X'}} (g')^*\mathcal{F}\right)
+\end{align*}
+where for the middle arrow we used the relative cup product, see
+Cohomology, Remark \ref{cohomology-remark-cup-product}.
+The source of the composition is
+$$
+\mathcal{G} \otimes_{\mathcal{O}_{S'}}^\mathbf{L} Lg^*Rf_*\mathcal{F} =
+\mathcal{G} \otimes_{g^{-1}\mathcal{O}_S}^\mathbf{L} g^{-1}Rf_*\mathcal{F}
+$$
+by Cohomology, Lemma \ref{cohomology-lemma-variant-derived-pullback}.
+Since $\mathcal{G}$ is flat as a sheaf of $g^{-1}\mathcal{O}_S$-modules
+and since $g^{-1}$ is an exact functor, this is a complex whose
+$i$th cohomology sheaf is
+$\mathcal{G} \otimes_{g^{-1}\mathcal{O}_S} g^{-1}R^if_*\mathcal{F} =
+\mathcal{G} \otimes_{\mathcal{O}_{S'}} g^*R^if_*\mathcal{F}$.
+In this way we obtain global maps from left to right in the
+equality of the lemma. To show this map is an isomorphism we may
+work locally on $S'$. Thus we may and do assume that $S$ and $S'$
+are affine schemes.
+
+\medskip\noindent
+Proof in case $S$ and $S'$ are affine. Say $S = \Spec(A)$ and $S' = \Spec(B)$
+and say $\mathcal{G}$ corresponds to the $B$-module $N$ which is assumed to be
+$A$-flat. Since $S$ is affine, $X$ is quasi-compact and quasi-separated.
+We will use a hypercovering argument to finish the proof; if $X$ is separated
+or has affine diagonal, then you can use a {\v C}ech covering.
+Let $\mathcal{B}$ be the set of affine opens of $X$. By
+Hypercoverings,
+Lemma \ref{hypercovering-lemma-quasi-separated-quasi-compact-hypercovering}
+we can find a hypercovering $K = (I, \{U_i\})$ of $X$ such that each
+$I_n$ is finite and each $U_i$ is an affine open of $X$. By
+Hypercoverings, Lemma \ref{hypercovering-lemma-cech-spectral-sequence}
+there is a spectral sequence with $E_2$-page
+$$
+E_2^{p, q} = \check{H}^p(K, \underline{H}^q(\mathcal{F}))
+$$
+converging to $H^{p + q}(X, \mathcal{F})$. Since each $U_i$ is affine
+and $\mathcal{F}$ is quasi-coherent the value of
+$\underline{H}^q(\mathcal{F})$ is zero on $U_i$ for $q > 0$. Thus the
+spectral sequence degenerates and we conclude that the cohomology
+modules $H^q(X, \mathcal{F})$ are computed by
+$$
+\prod\nolimits_{i \in I_0} \mathcal{F}(U_i)
+\to
+\prod\nolimits_{i \in I_1} \mathcal{F}(U_i)
+\to
+\prod\nolimits_{i \in I_2} \mathcal{F}(U_i)
+\to \ldots
+$$
+Next, note that the base change of our hypercovering to
+$S'$ is a hypercovering of $X' = S' \times_S X$.
+The schemes $S' \times_S U_i$ are affine too
+and we have
+$$
+\left((f')^*\mathcal{G} \otimes_{\mathcal{O}_{S'}} (g')^*\mathcal{F}\right)
+(S' \times_S U_i) =
+N \otimes_A \mathcal{F}(U_i)
+$$
+In this way we conclude that the cohomology modules
+$H^q(X', (f')^*\mathcal{G} \otimes_{\mathcal{O}_{S'}} (g')^*\mathcal{F})$
+are computed by
+$$
+N \otimes_A \left(
+\prod\nolimits_{i \in I_0} \mathcal{F}(U_i)
+\to
+\prod\nolimits_{i \in I_1} \mathcal{F}(U_i)
+\to
+\prod\nolimits_{i \in I_2} \mathcal{F}(U_i)
+\to \ldots
+\right)
+$$
+Since $N$ is flat over $A$, we conclude that
+$$
+H^q(X', (f')^*\mathcal{G} \otimes_{\mathcal{O}_{S'}} (g')^*\mathcal{F})
+=
+N \otimes_A H^q(X, \mathcal{F})
+$$
+Since this is the translation into algebra of the statement
+we had to show the proof is complete.
+\end{proof}
+
+
 
 
 
@@ -1613,22 +1767,63 @@ h :
 \to
 \check{\mathcal{C}}^p(\vec{e})
 $$
-given by the rule
+given by the rule that for $i_0 < \ldots < i_p$ we have
 $$
-h(s)_{i_0 \ldots i_p} = s_{i_{\text{fix}} i_0 \ldots i_p}
+h(s)_{i_0 \ldots i_p} =
+\left\{
+\begin{matrix}
+0 & \text{if} & p \not \in \{0, \ldots, n - 1\} \\
+0 & \text{if} & i_{\text{fix}} \in \{i_0, \ldots, i_p\} \\
+s_{i_{\text{fix}} i_0 \ldots i_p} & \text{if} & i_{\text{fix}} < i_0 \\
+(-1)^a s_{i_0 \ldots i_{a - 1} i_{\text{fix}} i_a \ldots i_p} &
+\text{if} & i_{a - 1} < i_{\text{fix}} < i_a \\
+(-1)^p s_{i_0 \ldots i_p} & \text{if} & i_p < i_{\text{fix}}
+\end{matrix}
+\right.
 $$
-(compare with the proof of
-Lemma \ref{lemma-cech-cohomology-quasi-coherent-trivial}).
-It is clear that this is well defined since
+Please compare with the proof of
+Lemma \ref{lemma-cech-cohomology-quasi-coherent-trivial}.
+This makes sense because we have
 $$
 NEG(\vec{e}) \subset \{i_0, \ldots, i_p\}
 \Leftrightarrow
 NEG(\vec{e}) \subset \{i_{\text{fix}}, i_0, \ldots, i_p\}
 $$
-Also $\check{\mathcal{C}}^0(\vec{e}) = 0$ so that this
-formula does work for all $p$ including $p = - 1$.
-The exact same (combinatorial) computation as in the
-proof of Lemma \ref{lemma-cech-cohomology-quasi-coherent-trivial}
+The exact same (combinatorial) computation\footnote{
+For example, suppose that $i_0 < \ldots < i_p$ is such that
+$i_{\text{fix}} \not \in \{i_0, \ldots, i_p\}$ and that
+$i_{a - 1} < i_{\text{fix}} < i_a$ for some $1 \leq a \leq p$. Then we have
+\begin{align*}
+&
+(dh + hd)(s)_{i_0 \ldots i_p} \\
+& =
+\sum\nolimits_{j = 0}^p
+(-1)^j
+h(s)_{i_0 \ldots \hat i_j \ldots i_p}
++
+(-1)^a d(s)_{i_0 \ldots i_{a - 1} i_{\text{fix}} i_a \ldots i_p}\\
+& =
+\sum\nolimits_{j = 0}^{a - 1}
+(-1)^{j + a - 1}
+s_{i_0 \ldots \hat i_j \ldots i_{a - 1} i_{\text{fix}} i_a \ldots i_p} +
+\sum\nolimits_{j = a}^p
+(-1)^{j + a}
+s_{i_0 \ldots i_{a - 1} i_{\text{fix}} i_a \ldots \hat i_j \ldots i_p}
++ \\
+&
+\sum\nolimits_{j = 0}^{a - 1}
+(-1)^{a + j}
+s_{i_0 \ldots \hat i_j \ldots i_{a - 1} i_{\text{fix}} i_a \ldots i_p} +
+(-1)^{2a} s_{i_0 \ldots i_p} +
+\sum\nolimits_{j = a}^p
+(-1)^{a + j + 1}
+s_{i_0 \ldots i_{a - 1} i_{\text{fix}} i_a \ldots \hat i_j \ldots i_p}
+\\
+& =
+s_{i_0 \ldots i_p}
+\end{align*}
+as desired. The other cases are similar.}
+as in the proof of Lemma \ref{lemma-cech-cohomology-quasi-coherent-trivial}
 shows that
 $$
 (hd + dh)(s)_{i_0 \ldots i_p}
@@ -2282,7 +2477,8 @@ Algebra, Lemma \ref{algebra-lemma-finite-module-over-finite-extension}.
 In the situation of the lemma also the higher direct images are
 coherent since they vanish.
 We will show that this is always the case for a proper morphism
-between locally Noetherian schemes (insert future reference here).
+between locally Noetherian schemes
+(Proposition \ref{proposition-proper-pushforward-coherent}).
 
 \begin{lemma}
 \label{lemma-coherent-support-dimension-0}
@@ -2324,6 +2520,7 @@ Then $j_*\mathcal{F}|_U = \mathcal{F}$ is coherent and
 $j_*\mathcal{F}|_{X \setminus T} = 0$ is also coherent.
 Hence $j_*\mathcal{F}$ is coherent.
 \end{proof}
+
 
 
 
@@ -2403,10 +2600,24 @@ because $X$ has a finite covering by spectra of Noetherian rings.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-directed-colimit-coherent}
+Let $X$ be a Noetherian scheme. Every quasi-coherent $\mathcal{O}_X$-module
+is the filtered colimit of its coherent submodules.
+\end{lemma}
+
+\begin{proof}
+This is a reformulation of Properties, Lemma
+\ref{properties-lemma-quasi-coherent-colimit-finite-type}
+in view of the fact that a finite type quasi-coherent
+$\mathcal{O}_X$-module is coherent by
+Lemma \ref{lemma-coherent-Noetherian}.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-homs-over-open}
 Let $X$ be a Noetherian scheme.
 Let $\mathcal{F}$ be a quasi-coherent $\mathcal{O}_X$-module.
-Let $\mathcal{G}$ be coherent $\mathcal{O}_X$-module.
+Let $\mathcal{G}$ be a coherent $\mathcal{O}_X$-module.
 Let $\mathcal{I} \subset \mathcal{O}_X$ be a quasi-coherent sheaf of
 ideals. Denote $Z \subset X$ the corresponding closed subscheme and
 set $U = X \setminus Z$.
@@ -2489,7 +2700,7 @@ Modules, Lemma \ref{modules-lemma-internal-hom}
 $\varphi$ corresponds to a map
 $$
 \varphi :
-\mathcal{I}^{\otimes n} \otimes_{\mathcal{O}_X} \mathcal{G}
+\mathcal{I}^n \otimes_{\mathcal{O}_X} \mathcal{G}
 \longrightarrow
 \mathcal{F}.
 $$
@@ -2525,6 +2736,54 @@ Then $\varphi'$ gives an element
 of the left hand side of the first arrow of the lemma which
 maps to $\psi$ via the arrow. In other words we have proved surjectivity
 of the arrow. We omit the proof of injectivity.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-extend-coherent}
+Let $X$ be a locally Noetherian scheme. Let $\mathcal{F}$, $\mathcal{G}$
+be coherent $\mathcal{O}_X$-modules. Let $U \subset X$ be open and
+let $\varphi : \mathcal{F}|_U \to \mathcal{G}|_U$ be an
+$\mathcal{O}_U$-module map. Then there exists a coherent
+submodule $\mathcal{F}' \subset \mathcal{F}$ agreeing with
+$\mathcal{F}$ over $U$ such that $\varphi$ extends to
+$\varphi' : \mathcal{F}' \to \mathcal{G}$.
+\end{lemma}
+
+\begin{proof}
+Let $\mathcal{I} \subset \mathcal{O}_X$ be the coherent sheaf of ideals
+cutting out the reduced induced scheme structure on $X \setminus U$.
+If $X$ is Noetherian, then Lemma \ref{lemma-homs-over-open} tells us that
+we can take $\mathcal{F}' = \mathcal{I}^n\mathcal{F}$
+for some $n$. The general case will follow from this using Zorn's lemma.
+
+\medskip\noindent
+Consider the set of triples $(U', \mathcal{F}', \varphi')$ where
+$U \subset U' \subset X$ is open, $\mathcal{F}' \subset \mathcal{F}|_{U'}$
+is a coherent subsheaf agreeing with $\mathcal{F}$ over $U$, and
+$\varphi' : \mathcal{F}' \to \mathcal{G}|_{U'}$ restricts to
+$\varphi$ over $U$. We say
+$(U'', \mathcal{F}'', \varphi'') \geq (U', \mathcal{F}', \varphi')$
+if and only if $U'' \supset U'$, $\mathcal{F}''|_{U'} = \mathcal{F}'$,
+and $\varphi''|_{U'} = \varphi'$.
+It is clear that if we have a totally ordered collection
+of triples $(U_i, \mathcal{F}_i, \varphi_i)$, then we
+can glue the $\mathcal{F}_i$ to a subsheaf $\mathcal{F}'$ of $\mathcal{F}$
+over $U' = \bigcup U_i$ and extend $\varphi$ to a map
+$\varphi' : \mathcal{F}' \to \mathcal{G}|_{U'}$.
+Hence any totally ordered subset of triples has an upper bound.
+Finally, suppose that $(U', \mathcal{F}', \varphi')$
+is any triple but $U' \not = X$. Then we can choose an
+affine open $W \subset X$ which is not contained in $U'$.
+By the result of the first paragraph we can extend
+the subsheaf $\mathcal{F}'|_{W \cap U'}$ and the restriction
+$\varphi'|_{W \cap U'}$ to some subsheaf $\mathcal{F}'' \subset \mathcal{F}|_W$
+and map $\varphi'' : \mathcal{F}'' \to \mathcal{G}|_W$.
+Of course the agreement between $(\mathcal{F}', \varphi')$ and
+$(\mathcal{F}'', \varphi'')$ over $W \cap U'$ exactly means that
+we can extend this to a triple $(U' \cup W, \mathcal{F}''', \varphi''')$.
+Hence any maximal triple $(U', \mathcal{F}', \varphi')$
+(which exist by Zorn's lemma) must have $U' = X$ and the
+proof is complete.
 \end{proof}
 
 
@@ -2632,7 +2891,7 @@ Let $X$ be a regular scheme. Let $\mathcal{F}$ be a coherent
 $\mathcal{O}_X$-module. The following are equivalent
 \begin{enumerate}
 \item $\mathcal{F}$ is Cohen-Macaulay and $\text{Supp}(\mathcal{F}) = X$,
-\item $\mathcal{F}$ is finite locally free of rank $>0$.
+\item $\mathcal{F}$ is finite locally free of rank $> 0$.
 \end{enumerate}
 \end{lemma}
 
@@ -2722,8 +2981,8 @@ Let $i : Z \to X$ be an integral closed subscheme.
 Let $\xi \in Z$ be the generic point.
 Let $\mathcal{F}$ be a coherent sheaf on $X$.
 Assume that $\mathcal{F}_\xi$ is annihilated by
-$\mathfrak m_\xi$. Then there exists an integer
-$r \geq 0$ and a sheaf of ideals $\mathcal{I} \subset \mathcal{O}_Z$
+$\mathfrak m_\xi$. Then there exist an integer
+$r \geq 0$ and a coherent sheaf of ideals $\mathcal{I} \subset \mathcal{O}_Z$
 and an injective map of coherent sheaves
 $$
 i_*\left(\mathcal{I}^{\oplus r}\right) \to \mathcal{F}
@@ -2773,7 +3032,7 @@ Lemma \ref{lemma-local-isomorphism}.
 By Schemes, Lemma \ref{schemes-lemma-reduced-closed-subscheme}
 there exists a quasi-coherent sheaf of ideals
 $\mathcal{I} \subset \mathcal{O}_X$
-whose associated closed subscheme $Z \subset X$ is the complement
+whose associated closed subscheme $Y \subset X$ is the complement
 of $U$.
 By Lemma \ref{lemma-homs-over-open} there exists an $n \geq 0$ and a morphism
 $\mathcal{I}^n(\mathcal{O}_X^{\oplus r}) \to \mathcal{F}$
@@ -2794,8 +3053,8 @@ $$
 \ldots \subset \mathcal{F}_m = \mathcal{F}
 $$
 by coherent subsheaves such that for each $j = 1, \ldots, m$
-there exists an integral closed subscheme $Z_j \subset X$
-and a sheaf of ideals $\mathcal{I}_j \subset \mathcal{O}_{Z_j}$
+there exist an integral closed subscheme $Z_j \subset X$ and
+a nonzero coherent sheaf of ideals $\mathcal{I}_j \subset \mathcal{O}_{Z_j}$
 such that
 $$
 \mathcal{F}_j/\mathcal{F}_{j - 1}
@@ -3209,7 +3468,8 @@ Lemma \ref{lemma-property-irreducible}.
 In this section we use the results of the preceding sections
 to show that the image of a Noetherian affine scheme under a finite
 morphism is affine. We will see later that this result holds more
-generally (see Limits, Lemma \ref{limits-lemma-affine}).
+generally (see Limits, Lemma \ref{limits-lemma-affine} and
+Proposition \ref{limits-proposition-affine}).
 
 \begin{lemma}
 \label{lemma-finite-morphism-Noetherian}
@@ -3612,23 +3872,47 @@ are isomorphisms for all sufficiently large $n$.
 Because $M$ is a finite $A$-module we see that
 $\widetilde{M}$ is a finite type $\mathcal{O}_X$-module,
 i.e., a coherent $\mathcal{O}_X$-module.
-Set $N = \bigoplus_{n \geq 0} \Gamma(X, \widetilde{M}(n))$.
+Set $N = \bigoplus_{n \in \mathbf{Z}} \Gamma(X, \widetilde{M}(n))$.
 We have to show that the map $M \to N$ of graded $A$-modules
 is an isomorphism in all sufficiently large degrees.
 By Properties, Lemma \ref{properties-lemma-proj-quasi-coherent}
 we have a canonical isomorphism $\widetilde{N} \to \widetilde{M}$
-such that $M_n \to N_n = \Gamma(X, \widetilde{M}(n))$
-is the canonical map. Let $K = \Ker(M \to N)$ and $Q = \Coker(M \to N)$.
-Recall that the functor
-$M \mapsto \widetilde{M}$ is exact, see
+such that the induced maps $N_n \to N_n = \Gamma(X, \widetilde{M}(n))$
+are the identity maps. Thus we have maps
+$\widetilde{M} \to \widetilde{N} \to \widetilde{M}$
+such that for all $n$ the diagram
+$$
+\xymatrix{
+M_n \ar[d] \ar[r] & N_n \ar[d] \ar@{=}[rd] \\
+\Gamma(X, \widetilde{M}(n)) \ar[r] &
+\Gamma(X, \widetilde{N}(n)) \ar[r]^{\cong} &
+\Gamma(X, \widetilde{M}(n))
+}
+$$
+is commutative. This means that the composition
+$$
+M_n \to \Gamma(X, \widetilde{M}(n))
+\to \Gamma(X, \widetilde{N}(n)) \to \Gamma(X, \widetilde{M}(n))
+$$
+is equal to the canonical map $M_n \to \Gamma(X, \widetilde{M}(n))$.
+Clearly this implies that the composition
+$\widetilde{M} \to \widetilde{N} \to \widetilde{M}$
+is the identity. Hence $\widetilde{M} \to \widetilde{N}$ is an isomorphism.
+Let $K = \Ker(M \to N)$ and $Q = \Coker(M \to N)$.
+Recall that the functor $M \mapsto \widetilde{M}$ is exact, see
 Constructions, Lemma \ref{constructions-lemma-proj-sheaves}.
 Hence we see that $\widetilde{K} = 0$ and $\widetilde{Q} = 0$.
-On the other hand, $A$ is a Noetherian ring and $M$ and $N$
-are finitely generated $A$-modules (for $N$ this follows from
-the last part of Lemma \ref{lemma-coherent-on-proj}).
-Hence $K$ and $Q$ are finite $A$-modules. Thus it suffices to show
+Recall that $A$ is a Noetherian ring, $M$ is a finitely generated
+$A$-module, and $N$ is a graded $A$-module such that
+$N' = \bigoplus_{n \geq 0} N_n$ is finitely generated by
+the last part of Lemma \ref{lemma-coherent-on-proj}.
+Hence $K' = \bigoplus_{n \geq 0} K_n$ and
+$Q' = \bigoplus_{n \geq 0} Q_n$ are finite $A$-modules.
+Observe that $\widetilde{Q} = \widetilde{Q'}$ and
+$\widetilde{K} = \widetilde{K'}$.
+Thus to finish the proof it suffices to show
 that a finite $A$-module $K$ with $\widetilde{K} = 0$
-has only finitely many nonzero homogeneous parts $K_d$.
+has only finitely many nonzero homogeneous parts $K_d$ with $d \geq 0$.
 To do this, let $x_1, \ldots, x_r \in K$ be homogeneous generators
 say sitting in degrees $d_1, \ldots, d_r$.
 Let $f_1, \ldots, f_n \in A_1$ be elements generating $A$ over $A_0$.
@@ -3768,7 +4052,7 @@ By Constructions, Lemma \ref{constructions-lemma-d-uple} there exist
 an isomorphism of schemes $i : X \to X'$ and
 isomorphisms $\mathcal{O}_X(nd) \to i^*\mathcal{O}_{X'}(n)$
 compatible with the map $A' \to A$ and the maps
-$A_n \to H^0(X, \mathcal{O}_X(n)$ and $A'_n \to H^0(X', \mathcal{O}_{X'}(n))$.
+$A_n \to H^0(X, \mathcal{O}_X(n))$ and $A'_n \to H^0(X', \mathcal{O}_{X'}(n))$.
 Thus Lemma \ref{lemma-coherent-on-proj} implies $X$ is Noetherian and that
 (1) and (2) hold. To see (3) and (4)
 we can use that for any fixed $k$, $p$, and $q$ we have
@@ -4126,7 +4410,7 @@ of integers modulo $d$ this proves (4).
 \medskip\noindent
 Proof of (5). Fix an integer $k$. Set
 $M = \bigoplus_{n \geq k} H^0(X, \mathcal{F} \otimes \mathcal{L}^{\otimes n})$.
-Arguing as above we conclude that $\bigoplus_{nd + q \geq k} A_{nd + q}$
+Arguing as above we conclude that $\bigoplus_{nd + q \geq k} M_{nd + q}$
 is a finite graded $S$-module. Since
 $M = \bigoplus_{q \in \{0, \ldots, d - 1\}}
 \bigoplus_{nd + q \geq k} M_{nd + q}$
@@ -4269,16 +4553,15 @@ The pullback of an ample invertible sheaf by a quasi-affine morphism
 is ample, see Morphisms, Lemma
 \ref{morphisms-lemma-pullback-ample-tensor-relatively-ample}.
 This proves one of the implications as a finite morphism is affine
-by definition. To prove the other we will use
-the criterion of Lemma \ref{lemma-vanshing-gives-ample}.
+by definition.
 
 \medskip\noindent
 Assume that $f^*\mathcal{L}$ is ample. Let $P$ be the following property on
 coherent $\mathcal{O}_X$-modules $\mathcal{F}$: there exists an $n_0$
 such that $H^p(X, \mathcal{F} \otimes \mathcal{L}^{\otimes n}) = 0$
 for all $n \geq n_0$ and $p > 0$. We will prove that $P$ holds
-for any coherent $\mathcal{O}_X$-module $\mathcal{F}$, which suffices
-to prove that $\mathcal{L}$ is ample.
+for any coherent $\mathcal{O}_X$-module $\mathcal{F}$, which implies
+$\mathcal{L}$ is ample by Lemma \ref{lemma-vanshing-gives-ample}.
 We are going to apply Lemma \ref{lemma-property-higher-rank-cohomological}.
 Thus we have to verify (1), (2) and (3) of that lemma for $P$.
 Property (1) follows from the long exact cohomology sequence associated
@@ -4301,7 +4584,8 @@ $\mathcal{J}\mathcal{G} = f_*(f^{-1}\mathcal{J}\mathcal{F})$.
 Also, as pointed out in the proof of
 Lemma \ref{lemma-affine-morphism-projection-ideal} the sheaf
 $f^{-1}\mathcal{J}\mathcal{F}$ is a coherent $\mathcal{O}_Y$-module.
-By assumption we see that there exists an $n_0$ such that
+As $\mathcal{L}$ is ample we see from Lemma \ref{lemma-vanshing-gives-ample}
+that there exists an $n_0$ such that
 $$
 H^p(Y, f^{-1}\mathcal{J}\mathcal{F}
 \otimes_{\mathcal{O}_Y} f^*\mathcal{L}^{\otimes n}) = 0,
@@ -4320,7 +4604,9 @@ f^*\mathcal{L}^{\otimes n})) \\
 H^p(Y, f^{-1}\mathcal{J}\mathcal{F} \otimes_{\mathcal{O}_Y}
 f^*\mathcal{L}^{\otimes n}) = 0
 \end{align*}
-by references cited earlier in this proof.
+Here we have used the projection formula
+(Cohomology, Lemma \ref{cohomology-lemma-projection-formula}) and
+Lemma \ref{lemma-relative-affine-cohomology}.
 Hence the quasi-coherent subsheaf $\mathcal{G}' = \mathcal{J}\mathcal{G}$
 satisfies $P$. This verifies property (3)(c) of
 Lemma \ref{lemma-property-higher-rank-cohomological} as desired.
@@ -4636,7 +4922,7 @@ we prove some variants for the non-Noetherian case.
 \end{reference}
 Let $S$ be a Noetherian scheme.
 Let $f : X \to S$ be a separated morphism of finite type.
-Then there exists an $n \geq 0$ and a diagram
+Then there exist an $n \geq 0$ and a diagram
 $$
 \xymatrix{
 X \ar[rd] & X' \ar[d] \ar[l]^\pi \ar[r] & \mathbf{P}^n_S \ar[dl] \\
@@ -4677,7 +4963,7 @@ each $U_i$ contains $\eta_1, \ldots, \eta_r$.
 In particular we conclude that the open
 $U = U_1 \cap \ldots \cap U_m \subset X$ is
 a dense open. This and the fact that the $U_i$ are affine opens
-covering $X$ is all that we will use below.
+covering $X$ are all that we will use below.
 
 \medskip\noindent
 Let $X^* \subset X$ be the scheme theoretic closure of $U \to X$, see
@@ -4891,18 +5177,18 @@ We can apply Chow's Lemma \ref{lemma-chow-Noetherian}
 to the morphism $Z \to S$. Thus we get a diagram
 $$
 \xymatrix{
-Z \ar[rd]_g & Z' \ar[d]^-{g'} \ar[l]^\pi \ar[r]_i & \mathbf{P}^n_S \ar[dl] \\
+Z \ar[rd]_g & Z' \ar[d]^-{g'} \ar[l]^\pi \ar[r]_i & \mathbf{P}^m_S \ar[dl] \\
 & S &
 }
 $$
 as in the statement of Chow's lemma. Also, let $U \subset Z$ be
 the dense open subscheme such that $\pi^{-1}(U) \to U$ is an isomorphism.
 By the discussion in Remark \ref{remark-chow-Noetherian} we see that
-$i' = (i, \pi) : Z' \to \mathbf{P}^n_Z$ is
+$i' = (i, \pi) : Z' \to \mathbf{P}^m_Z$ is
 a closed immersion. Hence
 $$
-\mathcal{L} = i^*\mathcal{O}_{\mathbf{P}^n_S}(1) \cong
-(i')^*\mathcal{O}_{\mathbf{P}^n_Z}(1)
+\mathcal{L} = i^*\mathcal{O}_{\mathbf{P}^m_S}(1) \cong
+(i')^*\mathcal{O}_{\mathbf{P}^m_Z}(1)
 $$
 is $g'$-relatively ample and $\pi$-relatively ample (for example by
 Morphisms, Lemma \ref{morphisms-lemma-characterize-ample-on-finite-type}).
@@ -4911,7 +5197,7 @@ there exists an $n \geq 0$ such that
 both $R^p\pi_*\mathcal{L}^{\otimes n} = 0$ for all $p > 0$ and
 $R^p(g')_*\mathcal{L}^{\otimes n} = 0$ for all $p > 0$.
 Set $\mathcal{G} = \pi_*\mathcal{L}^{\otimes n}$.
-Property (a) holds because $\pi_*\mathcal{L}^{\otimes}|_U$ is
+Property (a) holds because $\pi_*\mathcal{L}^{\otimes n}|_U$ is
 an invertible sheaf (as $\pi^{-1}(U) \to U$ is an isomorphism).
 Properties (b) and (c) hold because by the relative Leray
 spectral sequence
@@ -4938,7 +5224,7 @@ coherent as desired.
 Let $S = \Spec(A)$ with $A$ a Noetherian ring.
 Let $f : X \to S$ be a proper morphism.
 Let $\mathcal{F}$ be a coherent $\mathcal{O}_X$-module.
-Then $H^i(X, \mathcal{F})$ is finite $A$-module for all $i \geq 0$.
+Then $H^i(X, \mathcal{F})$ is a finite $A$-module for all $i \geq 0$.
 \end{lemma}
 
 \begin{proof}
@@ -5088,6 +5374,9 @@ to be a module of finite type.
 
 \begin{lemma}
 \label{lemma-cohomology-powers-ideal-times-F}
+\begin{reference}
+\cite[III Cor 3.3.2]{EGA}
+\end{reference}
 Let $A$ be a Noetherian ring.
 Let $I \subset A$ be an ideal.
 Set $B = \bigoplus_{n \geq 0} I^n$.
@@ -5138,35 +5427,110 @@ such that
 \begin{enumerate}
 \item the multiplication map
 $I^{n - c} \otimes H^p(X, I^c\mathcal{F}) \to H^p(X, I^n\mathcal{F})$
-is surjective for all $n \geq c$, and
+is surjective for all $n \geq c$,
 \item the image of $H^p(X, I^{n + m}\mathcal{F}) \to H^p(X, I^n\mathcal{F})$
-is contained in the submodule $I^{m - c} H^p(X, I^n\mathcal{F})$
-for all $n \geq 0$, $m \geq c$.
+is contained in the submodule $I^{m - e} H^p(X, I^n\mathcal{F})$
+where $e = \max(0, c - n)$ for $n + m \geq c$, $n, m \geq 0$,
+\item we have
+$$
+\Ker(H^p(X, I^n\mathcal{F}) \to H^p(X, \mathcal{F})) =
+\Ker(H^p(X, I^n\mathcal{F}) \to H^p(X, I^{n - c}\mathcal{F}))
+$$
+for $n \geq c$,
+\item there are maps $I^nH^p(X, \mathcal{F}) \to H^p(X, I^{n - c}\mathcal{F})$
+for $n \geq c$ such that the compositions
+$$
+H^p(X, I^n\mathcal{F}) \to 
+I^{n - c}H^p(X, \mathcal{F}) \to
+H^p(X, I^{n - 2c}\mathcal{F})
+$$
+and
+$$
+I^nH^p(X, \mathcal{F}) \to
+H^p(X, I^{n - c}\mathcal{F}) \to
+I^{n - 2c}H^p(X, \mathcal{F})
+$$
+for $n \geq 2c$ are the canonical ones, and
+\item the inverse systems $(H^p(X, I^n\mathcal{F}))$ and
+$(I^nH^p(X, \mathcal{F}))$ are pro-isomorphic.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-By Lemma \ref{lemma-cohomology-powers-ideal-times-F}
-we can find $d_1, \ldots, d_t \geq 0$, and
-$x_i \in H^p(X, I^{d_i}\mathcal{F})$ such that
-$\bigoplus_{n \geq 0} H^p(X, I^n\mathcal{F})$ is generated
-by $x_1, \ldots, x_t$ over $S = \bigoplus_{n \geq 0} I^n$.
-Take $c = \max\{d_i\}$. It is clear that (1) holds.
-For (2) let $b = \max(0, n - c)$.
-Consider the commutative diagram of $A$-modules
+Write $M_n = H^p(X, I^n\mathcal{F})$ for $n \geq 1$ and
+$M_0 = H^p(X, \mathcal{F})$ so that we have maps
+$\ldots \to M_3 \to M_2 \to M_1 \to M_0$. Setting
+$B = \bigoplus_{n \geq 0} I^n$, then $M = \bigoplus_{n \geq 0} M_n$
+is a finite graded $B$-module, see
+Lemma \ref{lemma-cohomology-powers-ideal-times-F}.
+Observe that the products
+$B_n \otimes M_m \to M_{m + n}$, $a \otimes m \mapsto a \cdot m$
+are compatible with the maps in our inverse system in the sense
+that the diagrams
 $$
 \xymatrix{
-I^{n + m - c - b} \otimes I^b \otimes
-H^p(X, I^c\mathcal{F}) \ar[r] \ar[d] &
-I^{n + m - c} \otimes H^p(X, I^c\mathcal{F}) \ar[r] &
-H^p(X, I^{n + m}\mathcal{F}) \ar[d] \\
-I^{n + m - c - b} \otimes H^p(X, I^n\mathcal{F}) \ar[rr] & &
-H^p(X, I^n\mathcal{F})
+B_n \otimes_A M_m \ar[r] \ar[d] & M_{n + m} \ar[d] \\
+B_n \otimes_A M_{m'} \ar[r] & M_{n + m'}
 }
 $$
-By part (1) of the lemma the composition of the horizontal arrows
-is surjective if $n + m \geq c$. On the other hand, it is clear
-that $n + m - c - b \geq m - c$. Hence part (2).
+commute for $n, m' \geq 0$ and $m \geq m'$.
+
+\medskip\noindent
+Proof of (1). Choose $d_1, \ldots, d_t \geq 0$ and $x_i \in M_{d_i}$
+such that $M$ is generated by $x_1, \ldots, x_t$ over $B$.
+For any $c \geq \max\{d_i\}$ we conclude that
+$B_{n - c} \cdot M_c = M_n$ for $n \geq c$ and we conclude (1) is true.
+
+\medskip\noindent
+Proof of (2). Let $c$ be as in the proof of (1). Let $n + m \geq c$.
+We have $M_{n + m} = B_{n + m - c} \cdot M_c$.
+If $c > n$ then we use $M_c \to M_n$ and the compatibility of products
+with transition maps pointed out above to conclude that
+the image of $M_{n + m} \to M_n$ is contained in $I^{n + m - c}M_n$.
+If $c \leq n$, then we write $M_{n + m} = B_m \cdot B_{n - c} \cdot M_c =
+B_m \cdot M_n$ to see that the image is contained in $I^m M_n$.
+This proves (2).
+
+\medskip\noindent
+Let $K_n \subset M_n$ be the kernel of the map $M_n \to M_0$. The
+compatibility of products with transition maps pointed out above
+shows that $K = \bigoplus K_n \subset M$ is a graded $B$-submodule.
+As $B$ is Noetherian and $M$ is a finitely generated graded $B$-module,
+this shows that $K$ is a finitely generated graded $B$-module.
+Choose $d'_1, \ldots, d'_{t'} \geq 0$ and $y_i \in K_{d'_i}$
+such that $K$ is generated by $y_1, \ldots, y_{t'}$ over $B$.
+Set $c = \max(d'_i, d'_j)$. Since $y_i \in \Ker(M_{d'_i} \to M_0)$
+we see that $B_n \cdot y_i \subset \Ker(M_{n + d'_i} \to M_n)$.
+In this way we see that $K_n = \Ker(M_n \to M_{n - c})$ for $n \geq c$.
+This proves (3).
+
+\medskip\noindent
+Consider the following commutative solid diagram
+$$
+\xymatrix{
+I^n \otimes_A M_0 \ar[r] \ar[d] &
+I^nM_0 \ar[r] \ar@{..>}[d] &
+M_0 \ar[d] \\
+M_n \ar[r] &
+M_{n - c} \ar[r] &
+M_0
+}
+$$
+Since the kernel of the surjective arrow $I^n \otimes_A M_0 \to I^nM_0$
+maps into $K_n$ by the above we obtain the dotted arrow and the
+composition $I^nM_0 \to M_{n - c} \to M_0$ is the canonical map.
+Then clearly the composition $I^nM_0 \to M_{n - c} \to I^{n - 2c}M_0$
+is the canonical map for $n \geq 2c$. Consider the composition
+$M_n \to I^{n - c}M_0 \to M_{n - 2c}$. The first map
+sends an element of the form $a \cdot m$
+with $a \in I^{n - c}$ and $m \in M_c$
+to $a m'$ where $m'$ is the image of $m$ in $M_0$.
+Then the second map sends this to $a \cdot m'$ in $M_{n - 2c}$ and
+we see (4) is true.
+
+\medskip\noindent
+Part (5) is an immediate consequence of (4) and the definition of
+morphisms of pro-objects.
 \end{proof}
 
 \noindent
@@ -5187,25 +5551,20 @@ Let $A$ be a Noetherian ring.
 Let $I \subset A$ be an ideal.
 Let $f : X \to \Spec(A)$ be a proper morphism.
 Let $\mathcal{F}$ be a coherent sheaf on $X$.
-Fix $p \geq 0$.
+Fix $p \geq 0$. There exists a $c \geq 0$ such that
 \begin{enumerate}
-\item There exists a $c_1 \geq 0$ such that for all $n \geq c_1$
-we have
+\item for all $n \geq c$ we have
 $$
-\Ker(
-H^p(X, \mathcal{F}) \to H^p(X, \mathcal{F}/I^n\mathcal{F})
-)
-\subset
-I^{n - c_1}H^p(X, \mathcal{F}).
+\Ker(H^p(X, \mathcal{F}) \to H^p(X, \mathcal{F}/I^n\mathcal{F})) \subset
+I^{n - c}H^p(X, \mathcal{F}).
 $$
-\item The inverse system
+\item the inverse system
 $$
 \left(H^p(X, \mathcal{F}/I^n\mathcal{F})\right)_{n \in \mathbf{N}}
 $$
 satisfies the Mittag-Leffler condition (see
-Homology, Definition \ref{homology-definition-Mittag-Leffler}).
-\item In fact for any $p$ and $n$ there exists a $c_2(n) \geq n$
-such that
+Homology, Definition \ref{homology-definition-Mittag-Leffler}), and
+\item we have
 $$
 \Im(H^p(X, \mathcal{F}/I^k\mathcal{F})
 \to H^p(X, \mathcal{F}/I^n\mathcal{F}))
@@ -5213,15 +5572,14 @@ $$
 \Im(H^p(X, \mathcal{F})
 \to H^p(X, \mathcal{F}/I^n\mathcal{F}))
 $$
-for all $k \geq c_2(n)$.
+for all $k \geq n + c$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-Let $c_1 = \max\{c_p, c_{p + 1}\}$, where $c_p, c_{p +1}$ are the integers
+Let $c = \max\{c_p, c_{p + 1}\}$, where $c_p, c_{p + 1}$ are the integers
 found in Lemma \ref{lemma-cohomology-powers-ideal-application} for
-$H^p$ and $H^{p + 1}$. We will use this constant in the proofs of
-(1), (2) and (3).
+$H^p$ and $H^{p + 1}$.
 
 \medskip\noindent
 Let us prove part (1). Consider the short exact sequence
@@ -5238,17 +5596,15 @@ H^p(X, \mathcal{F}) \to H^p(X, \mathcal{F}/I^n\mathcal{F})
 H^p(X, I^n\mathcal{F}) \to H^p(X, \mathcal{F})
 )
 $$
-Hence by our choice of $c_1$ we see that this is contained in
-$I^{n - c_1}H^p(X, \mathcal{F})$ for $n \geq c_1$.
+Hence by Lemma \ref{lemma-cohomology-powers-ideal-application} part (2)
+we see that this is contained in $I^{n - c}H^p(X, \mathcal{F})$ for $n \geq c$.
 
 \medskip\noindent
 Note that part (3) implies part (2) by definition of the Mittag-Leffler
-condition.
+systems.
 
 \medskip\noindent
-Let us prove part (3).
-Fix an $n$ throughout the rest of the proof.
-Consider the commutative diagram
+Let us prove part (3). Fix an $n$. Consider the commutative diagram
 $$
 \xymatrix{
 0 \ar[r] &
@@ -5266,36 +5622,22 @@ $$
 This gives rise to the following commutative diagram
 $$
 \xymatrix{
-H^p(X, I^n\mathcal{F}) \ar[r] &
 H^p(X, \mathcal{F}) \ar[r] &
 H^p(X, \mathcal{F}/I^n\mathcal{F}) \ar[r]_\delta &
-H^{p + 1}(X, I^n\mathcal{F}) \\
-H^p(X, I^{n + m}\mathcal{F}) \ar[r] \ar[u] &
+H^{p + 1}(X, I^n\mathcal{F}) \ar[r] &
+H^{p + 1}(X, \mathcal{F}) \\
 H^p(X, \mathcal{F}) \ar[r] \ar[u]^1 &
-H^p(X, \mathcal{F}/I^{n + m}\mathcal{F}) \ar[r] \ar[u] &
-H^{p + 1}(X, I^{n + m}\mathcal{F}) \ar[u]^a
+H^p(X, \mathcal{F}/I^{n + m}\mathcal{F}) \ar[r] \ar[u]^\gamma &
+H^{p + 1}(X, I^{n + m}\mathcal{F}) \ar[u]^\alpha \ar[r]^-\beta &
+H^{p + 1}(X, \mathcal{F}) \ar[u]_1
 }
 $$
-If $m \geq c_1$ we see that the image of $a$ is
-contained in $I^{m - c_1} H^{p + 1}(X, I^n\mathcal{F})$.
-By the Artin-Rees lemma (see Algebra, Lemma \ref{algebra-lemma-map-AR})
-there exists an integer $c_3(n)$ such that
-$$
-I^N H^{p + 1}(X, I^n\mathcal{F}) \cap \Im(\delta)
-\subset
-\delta\left(I^{N - c_3(n)}H^p(X, \mathcal{F}/I^n\mathcal{F})\right)
-$$
-for all $N \geq c_3(n)$. As $H^p(X, \mathcal{F}/I^n\mathcal{F})$
-is annihilated by $I^n$, we see that if $m \geq c_3(n) + c_1 + n$,
-then
-$$
-\Im(H^p(X, \mathcal{F}/I^{n + m}\mathcal{F})
-\to H^p(X, \mathcal{F}/I^n\mathcal{F}))
-=
-\Im(H^p(X, \mathcal{F})
-\to H^p(X, \mathcal{F}/I^n\mathcal{F}))
-$$
-In other words, part (3) holds with $c_2(n) = c_3(n) + c_1 + n$.
+with exact rows. By
+Lemma \ref{lemma-cohomology-powers-ideal-application} part (4) the kernel
+of $\beta$ is equal to the kernel of $\alpha$ for $m \geq c$.
+By a diagram chase this shows that the image of $\gamma$ is contained
+in the kernel of $\delta$ which shows that part (3) is true
+(set $k = n + m$ to get it).
 \end{proof}
 
 \begin{theorem}[Theorem on formal functions]
@@ -5324,38 +5666,28 @@ Moreover, this is in fact a homeomorphism for the limit topologies.
 \end{theorem}
 
 \begin{proof}
-In fact, this follows immediately from
-Lemma \ref{lemma-ML-cohomology-powers-ideal}. We spell out the details.
-Set $M = H^p(X, \mathcal{F})$ and $M_n = H^p(X, \mathcal{F}/I^n\mathcal{F})$.
-Denote $N_n = \Im(M \to M_n)$.
-By the description of the limit in Homology, Section
-\ref{homology-section-inverse-systems} we have
-$$
-\lim_n M_n
-=
-\{(x_n) \in \prod M_n \mid \varphi_i(x_n) = x_{n - 1}, \ n = 2, 3, \ldots\}
-$$
-Pick an element $x = (x_n) \in \lim_n M_n$.
-By Lemma \ref{lemma-ML-cohomology-powers-ideal} part (3)
-we have $x_n \in N_n$ for all $n$ since by
-definition $x_n$ is the image of some $x_{n + m} \in M_{n + m}$ for
-all $m$. By Lemma \ref{lemma-ML-cohomology-powers-ideal} part (1)
-we see that there exists a factorization
-$$
-M \to N_n \to M/I^{n - c_1}M
-$$
-of the reduction map. Denote $y_n \in M/I^{n - c_1}M$ the image of $x_n$
-for $n \geq c_1$. Since for $n' \geq n$ the composition
-$M \to M_{n'} \to M_n$ is the given map $M \to M_n$ we see that
-$y_{n'}$ maps to $y_n$ under the canonical map
-$M/I^{n' - c_1}M \to M/I^{n - c_1}M$. Hence $y = (y_{n + c_1})$
-defines an element of $\lim_n M/I^nM$.
-We omit the verification that $y$ maps to $x$ under the
-map
-$$
-M^\wedge = \lim_n M/I^nM \longrightarrow \lim_n M_n
-$$
-of the lemma. We also omit the verification on topologies.
+This follows from Lemma \ref{lemma-ML-cohomology-powers-ideal} as follows.
+Set $M = H^p(X, \mathcal{F})$, $M_n = H^p(X, \mathcal{F}/I^n\mathcal{F})$,
+and denote $N_n = \Im(M \to M_n)$. By
+Lemma \ref{lemma-ML-cohomology-powers-ideal} parts (2) and (3) we see that
+$(M_n)$ is a Mittag-Leffler system with
+$N_n \subset M_n$ equal to the image of $M_k$ for all $k \gg n$.
+It follows that $\lim M_n = \lim N_n$ as topological modules (with limit
+topologies). On the other hand, the $N_n$ form an inverse system of quotients
+of the module $M$ and hence $\lim N_n$ is the completion of $M$
+with respect to the topology given by the kernels $K_n = \Ker(M \to N_n)$.
+By Lemma \ref{lemma-ML-cohomology-powers-ideal} part (1)
+we have $K_n \subset I^{n - c}M$ and since $N_n \subset M_n$
+is annihilated by $I^n$ we have $I^n M \subset K_n$.
+Thus the topology defined using the submodules $K_n$
+as a fundamental system of open neighbourhoods of $0$
+is the same as the $I$-adic topology and we find that the
+induced map $M^\wedge = \lim M/I^nM \to \lim N_n = \lim M_n$
+is an isomorphism of topological modules\footnote{
+To be sure, the limit topology on $M^\wedge$ is the same as its
+$I$-adic topology as follows from
+Algebra, Lemma \ref{algebra-lemma-hathat-finitely-generated}.
+See More on Algebra, Section \ref{more-algebra-section-topological-ring}.}.
 \end{proof}
 
 \begin{lemma}
@@ -5445,7 +5777,7 @@ Note that $i_{n, *}\mathcal{F}_n = i_{n, *}i_n^*\mathcal{F}
 for $i_n$, and Lemma \ref{lemma-finite-pushforward-coherent} we see that
 $$
 H^p(X_n, \mathcal{F}_n) =
-H^p(X, i_{n, *}\mathcal{F}) =
+H^p(X, i_{n, *}\mathcal{F}_n) =
 H^p(X, \mathcal{F}/\mathfrak m^n\mathcal{F})
 $$
 Hence we may indeed apply the theorem on formal functions to compute
@@ -5539,14 +5871,12 @@ $(R^pf_*\mathcal{F})_y = 0$.
 
 \noindent
 We will add more here as needed. For the moment we need the
-following characterization of finite morphisms (in the Noetherian
-case -- for a more general version see the chapter More on Morphisms,
-Section \ref{more-morphisms-section-application-etale-neighbourhoods}).
+following characterization of finite morphisms in the Noetherian case.
 
 \begin{lemma}
 \label{lemma-characterize-finite}
 (For a more general version see
-More on Morphisms, Lemma \ref{more-morphisms-lemma-characterize-finite}).
+More on Morphisms, Lemma \ref{more-morphisms-lemma-characterize-finite}.)
 Let $f : X \to S$ be a morphism of schemes.
 Assume $S$ is locally Noetherian.
 The following are equivalent
@@ -5607,7 +5937,7 @@ A proper morphism is finite in a neighbourhood of a finite fiber.
 \end{slogan}
 (For a more general version see
 More on Morphisms,
-Lemma \ref{more-morphisms-lemma-proper-finite-fibre-finite-in-neighbourhood}).
+Lemma \ref{more-morphisms-lemma-proper-finite-fibre-finite-in-neighbourhood}.)
 Let $f : X \to S$ be a morphism of schemes.
 Let $s \in S$.
 Assume
@@ -5689,7 +6019,7 @@ Lemma \ref{lemma-i-star-equivalence}. Then
 $\bigoplus_{n \geq 0} \mathfrak m^n\mathcal{F}/\mathfrak m^{n + 1}\mathcal{F}$
 is a quasi-coherent graded $\mathcal{B}$-module of finite type
 because it is generated in degree zero over $\mathcal{B}$
-abd because the degree zero part is
+and because the degree zero part is
 $\mathcal{F}_y = \mathcal{F}/\mathfrak m \mathcal{F}$
 which is a coherent $\mathcal{O}_{X_y}$-module.
 Hence by Lemma \ref{lemma-graded-finiteness} part (2)
@@ -5757,7 +6087,7 @@ is surjective, which gives the final statement of the lemma.
 \label{lemma-ample-in-neighbourhood}
 (For a more general version see
 More on Morphisms,
-Lemma \ref{more-morphisms-lemma-ample-in-neighbourhood}).
+Lemma \ref{more-morphisms-lemma-ample-in-neighbourhood}.)
 Let $f : X \to Y$ be a proper morphism of schemes with $Y$ Noetherian.
 Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
 Let $y \in Y$ be a point such that $\mathcal{L}_y$ is ample
@@ -6132,8 +6462,8 @@ H^\wedge = \Hom_A(M, N) \otimes_A A^\wedge =
 \Hom_{A^\wedge}(M^\wedge, N^\wedge)
 $$
 where the second equality uses that $A^\wedge$ is flat over $A$
-(see More on Algebra, Remark
-\ref{more-algebra-remark-pseudo-coherence-and-base-change-ext}).
+(see More on Algebra, Lemma
+\ref{more-algebra-lemma-pseudo-coherence-and-base-change-ext}).
 The lemma follows.
 \end{proof}
 
@@ -6450,7 +6780,7 @@ for the coherent sheaf $\mathcal{H}$.
 
 \begin{lemma}
 \label{lemma-vanishing-projective}
-Let $A$ be Noetherian ring and $I \subset A$ and ideal.
+Let $A$ be Noetherian ring and $I \subset A$ an ideal.
 Let $f : X \to \Spec(A)$ be a proper morphism and let
 $\mathcal{L}$ be an $f$-ample invertible sheaf. Let
 $\mathcal{I} = I\mathcal{O}_X$. Let $(\mathcal{F}_n)$ be an
@@ -6891,7 +7221,7 @@ $Z \to S$ is proper.
 \end{lemma}
 
 \begin{proof}
-The implications (3) $\Rightarrow$ (2) and (1) $\Rightarrow$ (2)
+The implications (3) $\Rightarrow$ (1) and (1) $\Rightarrow$ (2)
 are immediate. Thus it suffices to prove that (2) implies (3).
 We urge the reader to find their own proof of this fact.
 Let $Z'$ and $Z''$ be closed subscheme structures on $Z$
@@ -7399,8 +7729,8 @@ $$
 The structure morphism $p' : Y' \to \Spec(A)$ is proper, hence
 $p'(\text{Supp}(\mathcal{F}') \setminus j(Y))$
 is closed in $\Spec(A)$. A nonempty closed subset of $\Spec(A)$
-contains a point of $V(I)$ as $I \subset \text{rad}(A)$
-by Algebra, Lemma \ref{algebra-lemma-radical-completion}.
+contains a point of $V(I)$ as $I$ is contained in the Jacobson radical
+of $A$ by Algebra, Lemma \ref{algebra-lemma-radical-completion}.
 The displayed equation shows that
 $\text{Supp}(\mathcal{F}') \cap (p')^{-1}V(I) \subset j(Y)$
 hence we conclude that $\text{Supp}(\mathcal{F}') \subset j(Y)$.

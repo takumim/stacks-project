@@ -42,8 +42,8 @@ Let $\mathcal{B}$ be a basis for the topology of $S$.
 Suppose given the following data:
 \begin{enumerate}
 \item For every $U \in \mathcal{B}$ a scheme $f_U : X_U \to U$ over $U$.
-\item For every pair $U, V \in \mathcal{B}$ such that
-$V \subset U$ a morphism $\rho^U_V : X_V \to X_U$.
+\item For $U, V \in \mathcal{B}$ with $V \subset U$ a morphism
+$\rho^U_V : X_V \to X_U$ over $U$.
 \end{enumerate}
 Assume that
 \begin{enumerate}
@@ -99,8 +99,8 @@ the morphisms $g_i$ glue to a unique global morphism
 $g : T \to S$. Moreover, it is clear that
 $g^{-1}(U) = \bigcup g_i^{-1}(U)$. Hence the morphisms
 $h_{i, U} : g_i^{-1}(U) \to X_U$ glue to a unique morphism
-$h_U : U \to X_U$. It is easy to verify that the system
-$(g, \{f_U\})$ is an element of $F(T)$. Hence $F$ satisfies the
+$h_U : g^{-1}(U) \to X_U$. It is easy to verify that the system
+$(g, \{h_U\})$ is an element of $F(T)$. Hence $F$ satisfies the
 sheaf property for the Zariski topology.
 
 \medskip\noindent
@@ -388,7 +388,7 @@ $$
 with the following properties:
 \begin{enumerate}
 \item for every affine open $U \subset S$ there exists an isomorphism
-$i_U : \pi^{-1}(U) \to \Spec(\mathcal{A}(U))$, and
+$i_U : \pi^{-1}(U) \to \Spec(\mathcal{A}(U))$ over $U$, and
 \item for $U \subset U' \subset S$ affine open the composition
 $$
 \xymatrix{
@@ -400,6 +400,7 @@ $$
 $$
 is the open immersion of Lemma \ref{lemma-spec-inclusion} above.
 \end{enumerate}
+Moreover, $\underline{\Spec}_S(\mathcal{A})$ is unique up to unique isomorphism over $S$.
 \end{lemma}
 
 \begin{proof}
@@ -407,6 +408,8 @@ Follows immediately from
 Lemmas \ref{lemma-relative-glueing},
 \ref{lemma-spec-inclusion}, and
 \ref{lemma-transitive-spec}.
+Uniqueness is stated in the last sentence of
+Lemma \ref{lemma-relative-glueing}.
 \end{proof}
 
 
@@ -437,7 +440,7 @@ is a morphism of $\mathcal{O}_T$-algebras. Note that this is the
 same as giving a $f^{-1}\mathcal{O}_S$-algebra homomorphism
 $\varphi : f^{-1}\mathcal{A} \to \mathcal{O}_T$, see
 Sheaves, Lemma \ref{sheaves-lemma-adjointness-tensor-restrict}.
-This is also the same as giving a $\mathcal{O}_S$-algebra map
+This is also the same as giving an $\mathcal{O}_S$-algebra map
 $\varphi : \mathcal{A} \to f_*\mathcal{O}_T$, see
 Sheaves, Lemma \ref{sheaves-lemma-adjoint-push-pull-modules}.
 We will use all three ways of thinking about $\varphi$,
@@ -455,7 +458,7 @@ $a^\sharp : \mathcal{O}_T \to a_*\mathcal{O}_{T'}$.
 In this way we have defined a functor
 \begin{eqnarray}
 \label{equation-spec}
-F : (\Sch/S)^{opp} & \longrightarrow & \textit{Sets} \\
+F : \Sch^{opp} & \longrightarrow & \textit{Sets} \\
 T & \longmapsto & F(T) = \{\text{pairs }(f, \varphi) \text{ as above}\}
 \nonumber
 \end{eqnarray}
@@ -517,7 +520,7 @@ $(f_{univ}, \varphi_{univ})$ represents $F$ in this case.
 In other words we claim that for any scheme $T$ the map
 $$
 \Mor(T, \Spec(A)) \longrightarrow \{\text{pairs } (f, \varphi)\},\quad
-a \longmapsto (f_{univ} \circ a, a^*\varphi)
+a \longmapsto (f_{univ} \circ a, a^*\varphi_{univ})
 $$
 is bijective.
 
@@ -557,7 +560,7 @@ and that $(f_i, \varphi_i) \in F(U_i)$ such that
 $(f_i, \varphi_i)|_{U_i \cap U_j} = (f_j, \varphi_j)|_{U_i \cap U_j}$.
 This implies that the morphisms $f_i : U_i \to S$
 glue to a morphism of schemes $f : T \to S$ such that
-$f|_{I_i} = f_i$, see Schemes, Section \ref{schemes-section-glueing-schemes}.
+$f|_{U_i} = f_i$, see Schemes, Section \ref{schemes-section-glueing-schemes}.
 Thus $f_i^*\mathcal{A} = f^*\mathcal{A}|_{U_i}$ and by assumption the
 morphisms $\varphi_i$ agree on $U_i \cap U_j$. Hence by Sheaves,
 Section \ref{sheaves-section-glueing-sheaves} these glue to a
@@ -855,8 +858,10 @@ anti-equivalent to the category of quasi-coherent $\mathcal{O}_S$-modules.
 
 \begin{proof}
 Omitted. Hint: In one direction one uses the functor
-$\underline{\Spec}_S(-)$ and in the other the functor
-$(\pi : V \to S) \leadsto (\pi_*\mathcal{O}_V)_1$ (degree $1$ part).
+$\underline{\Spec}_S(\text{Sym}^*_{\mathcal{O}_S}(-))$
+and in the other the functor
+$(\pi : V \to S) \leadsto (\pi_*\mathcal{O}_V)_1$ where the subscript
+indicates we take the degree $1$ part.
 \end{proof}
 
 
@@ -1100,7 +1105,7 @@ If $f_1, f_2 \in S \setminus \mathfrak p$ are homogeneous of positive
 degree, then we have
 $f_1f_2 \geq f_1$ in this ordering. In
 Algebra, Section \ref{algebra-section-proj}
-we defined $M_{(\mathfrak p)}$ as the ring whose elements are fractions
+we defined $M_{(\mathfrak p)}$ as the module whose elements are fractions
 $x/f$ with $x, f$ homogeneous, $\deg(x) = \deg(f)$, $f \not \in \mathfrak p$.
 Since $\mathfrak p \in \text{Proj}(S)$ there exists at least
 one $f_0 \in S$ homogeneous of positive degree with $f_0 \not\in \mathfrak p$.
@@ -1245,7 +1250,7 @@ It is easy to see that $\widetilde M = 0$, but $M_0 = k$.
 \label{lemma-standard-open-proj}
 Let $S$ be a graded ring. Let $f \in S$ be homogeneous of positive degree.
 Suppose that $D(g) \subset \Spec(S_{(f)})$ is a standard open.
-Then there exists a $h \in S$ homogeneous of positive degree such that
+Then there exists an $h \in S$ homogeneous of positive degree such that
 $D(g)$ corresponds to $D_{+}(h) \subset D_{+}(f)$ via the homeomorphism
 of Algebra, Lemma \ref{algebra-lemma-topology-proj}. In fact we can
 take $h$ such that $g = h/f^n$ for some $n$.
@@ -1275,7 +1280,7 @@ By Lemmas \ref{lemma-standard-open} and \ref{lemma-proj-sheaves}
 we have $\Gamma(D_{+}(f), \mathcal{O}_{\text{Proj}(S)}) = S_{(f)}$, and
 we have a homeomorphism $\varphi : D_{+}(f) \to \Spec(S_{(f)})$.
 For any standard open $D(g) \subset \Spec(S_{(f)})$ we may
-pick a $h \in S_{+}$ as in Lemma \ref{lemma-standard-open-proj}.
+pick an $h \in S_{+}$ as in Lemma \ref{lemma-standard-open-proj}.
 Then $\varphi^{-1}(D(g)) = D_{+}(h)$, and by
 Lemmas \ref{lemma-proj-sheaves} and \ref{lemma-standard-open} we see
 $$
@@ -1450,13 +1455,13 @@ that, under the hypotheses of that lemma, the morphism
 $\text{Proj}(S) \to \Spec(S_0)$ is quasi-compact as well. Hence (by
 Schemes, Proposition \ref{schemes-proposition-characterize-universally-closed})
 we see that $\text{Proj}(S) \to \Spec(S_0)$ is universally closed in
-the situation of the lemma. We give two examples showing these results
+the situation of the lemma. We give several examples showing these results
 do not hold without some assumption on the graded ring $S$.
 
 \begin{example}
 \label{example-not-existence-valuative-big-proj}
 Let $\mathbf{C}[X_1, X_2, X_3, \ldots]$ be the graded $\mathbf{C}$-algebra
-with each $X_i$ in degree $0$. Consider the ring map
+with each $X_i$ in degree $1$. Consider the ring map
 $$
 \mathbf{C}[X_1, X_2, X_3, \ldots]
 \longrightarrow
@@ -1504,7 +1509,41 @@ Then the canonical morphism $\text{Proj}(S) \to \Spec(A)$
 is an isomorphism.
 \end{example}
 
+\begin{example}
+\label{example-open-subset-proj}
+Let $X = \Spec(A)$ be an affine scheme, and let $U \subset X$
+be an open subscheme.  Grade $A[T]$ by setting $\deg T = 1$.  Define $S$
+to be the subring of $A[T]$ generated by $A$ and all $fT^i$, where $i \ge 0$
+and where $f \in A$ is such that $D(f) \subset U$.  We claim that $S$
+is a graded ring with $S_0 = A$ such that $\text{Proj}(S) \cong U$,
+and this isomorphism identifies the canonical morphism
+$\text{Proj}(S) \to \Spec(A)$ of Lemma \ref{lemma-structure-morphism-proj}
+with the inclusion $U \subset X$.
 
+\medskip\noindent
+Suppose $\mathfrak p \in \text{Proj}(S)$ is such that every $fT \in S_1$
+is in $\mathfrak p$.  Then every generator $fT^i$ with $i \ge 1$
+is in $\mathfrak p$ because $(fT^i)^2 = (fT)(fT^{2i-1}) \in \mathfrak p$
+and $\mathfrak p$ is radical.  But then $\mathfrak p \supset S_+$, which
+is impossible. Consequently $\text{Proj}(S)$ is covered by the standard
+open affine subsets $\{D_+(fT)\}_{fT \in S_1}$.
+
+\medskip\noindent
+Observe that, if $fT \in S_1$, then the inclusion $S \subset A[T]$
+induces a graded isomorphism of $S[(fT)^{-1}]$ with $A[T, T^{-1}, f^{-1}]$.
+Hence the standard open subset $D_+(fT) \cong \Spec(S_{(fT)})$
+is isomorphic to $\Spec(A[T, T^{-1}, f^{-1}]_0) = \Spec(A[f^{-1}])$.
+It is clear that this isomorphism is a restriction of the canonical morphism
+$\text{Proj}(S) \to \Spec(A)$.  If in addition $gT \in S_1$, then
+$S[(fT)^{-1}, (gT)^{-1}] \cong A[T, T^{-1}, f^{-1}, g^{-1}]$
+as graded rings, so $D_+(fT) \cap D_+(gT) \cong \Spec(A[f^{-1}, g^{-1}])$.
+Therefore $\text{Proj}(S)$ is the union of open subschemes $D_+(fT)$
+which are isomorphic to the open subschemes $D(f) \subset X$
+under the canonical morphism, and these open subschemes intersect
+in $\text{Proj}(S)$ in the same way they do in $X$.
+We conclude that the canonical morphism is an isomorphism of
+$\text{Proj}(S)$ with the union of all $D(f) \subset U$, which is $U$.
+\end{example}
 
 
 
@@ -1583,7 +1622,7 @@ $$
 M_0 \otimes_{S_0} N_0 \ar[r] \ar[d] &
 (M \otimes_S N)_0 \ar[d] \\
 \Gamma(X, \widetilde M \otimes_{\mathcal{O}_X} \widetilde N) \ar[r] &
-\Gamma(X, \widetilde{M \otimes_R N})
+\Gamma(X, \widetilde{M \otimes_S N})
 }
 $$
 is commutative where the vertical maps are given by
@@ -1596,7 +1635,7 @@ a $\mathcal{O}_X$-bilinear map
 $$
 \widetilde M \times \widetilde N
 \longrightarrow
-\widetilde{M \otimes_R N}
+\widetilde{M \otimes_S N}
 $$
 see Modules, Section \ref{modules-section-tensor-product}.
 It suffices to define this on sections over the opens $D_{+}(f)$
@@ -1844,13 +1883,13 @@ in an open neighbourhood $V$ of $x \in X$ and all the
 multiplication maps
 $\mathcal{O}_X(nd)|_V \otimes_{\mathcal{O}_V} \mathcal{O}_X(md)|_V
 \to \mathcal{O}_X(nd + md)|_V$ are isomorphisms.
-We may choose $h \in S_{+}$ homogeneous such that $D_{+}(h) \subset V$.
+We may choose $h \in S_{+}$ homogeneous such that $x \in D_{+}(h) \subset V$.
 By the definition of the twists of the structure sheaf we conclude there
 exists an element $s$ of $(S_h)_d$ such that $s^n$ is a basis of $(S_h)_{nd}$
 as a module over $S_{(h)}$ for all $n \in \mathbf{Z}$.
 We may write
 $s = f/h^m$ for some $m \geq 1$ and $f \in S_{d + m \deg(h)}$.
-Set $g = h^m$ so $s = f/g$. Note that $x \in D(g)$ by construction.
+Set $g = h^m$ so $s = f/g$. Note that $x \in D_{+}(g)$ by construction.
 Note that $g^d \in (S_h)_{-d\deg(g)}$.
 By assumption we can write this as a multiple of
 $s^{\deg(g)} = f^{\deg(g)}/g^{\deg(g)}$, say
@@ -2153,7 +2192,7 @@ For an example where this map is not an isomorphism
 consider the graded ring $A = k[x, y]$ where $k$ is a field
 and $\deg(x) = 1$, $\deg(y) = 2$. Set $I = (x)$, so that
 $B = k[y]$. Note that $\mathcal{O}_Y(1) = 0$ in this case.
-But it is easy to see that $r_\psi^*\mathcal{O}_Y(1)$
+But it is easy to see that $r_\psi^*\mathcal{O}_X(1)$
 is not zero. (There are less silly examples.)
 \end{proof}
 
@@ -2359,7 +2398,7 @@ By Lemma \ref{lemma-when-invertible}
 we know that $\mathcal{O}_{U_d}(nd)$, $n \in \mathbf{Z}$
 is an invertible $\mathcal{O}_{U_d}$-module and
 that all the multiplication maps
-$\mathcal{O}_{U_d}(nd) \otimes_{\mathcal{O}_{U_d}} \mathcal{O}_X(m)
+$\mathcal{O}_{U_d}(nd) \otimes_{\mathcal{O}_{U_d}} \mathcal{O}_{U_d}(m)
 \to \mathcal{O}_{U_d}(nd + m)$ of
 (\ref{equation-multiply}) are isomorphisms. In particular we have
 $\mathcal{O}_{U_d}(nd) \cong \mathcal{O}_{U_d}(d)^{\otimes n}$.
@@ -2414,7 +2453,7 @@ Let $\psi : S^{(d)} \to \Gamma_*(Y, \mathcal{L})$ be
 a graded ring homomorphism such that $\mathcal{L}$ is
 generated by the sections in the image of
 $\psi|_{S_d} : S_d \to \Gamma(Y, \mathcal{L})$.
-Then there exists a morphism
+Then there exist a morphism
 $\varphi : Y \to X$ such that $\varphi(Y) \subset U_d$ and
 an isomorphism $\alpha : \varphi^*\mathcal{O}_{U_d}(d) \to \mathcal{L}$
 such that $\psi_\varphi^d$ agrees with $\psi$ via $\alpha$:
@@ -2447,7 +2486,7 @@ $\alpha_f : \varphi_f^*\mathcal{O}_{D_{+}(f)}(d) \to \mathcal{L}|_{Y_s}$
 which maps the pullback of the trivializing section
 $f$ over $D_{+}(f)$ to the trivializing section $s$ over $Y_s$.
 With this choice the commutativity of the diagram in the lemma
-holds with $Y$ replace by $Y_s$, $\varphi$ replaced by $\varphi_f$,
+holds with $Y$ replaced by $Y_s$, $\varphi$ replaced by $\varphi_f$,
 and $\alpha$ replaced by $\alpha_f$; verification omitted.
 
 \medskip\noindent
@@ -2509,7 +2548,7 @@ for all $x \in S_{nd}$. By construction of $\psi^d_{\varphi}$
 and $\psi^d_{\varphi'}$ we have
 $\psi^d_{\varphi}(x) = \varphi^\sharp(x/f^n) \psi^d_{\varphi}(f^n)$
 over $Y_{\psi(f)}$,
-and similarly for $\psi^d_{\varphi'}$. by the commutativity of
+and similarly for $\psi^d_{\varphi'}$. By the commutativity of
 the diagrams of the lemma we deduce that
 $\varphi^\sharp(x/f^n) = (\varphi')^\sharp(x/f^n)$.
 This proves that $\varphi$ and $\varphi'$ induce the same morphism
@@ -3117,10 +3156,10 @@ In fact the result is true if $X$ is any locally ringed space.
 The sheaf $\mathcal{F}$ is a finite locally free $\mathcal{O}_X$-module
 of rank $n$. The elements
 $$
-s_{ij} = (0, \ldots, 0, s_j, 0, \ldots, 0, s_i, 0, \ldots, 0)
+s_{ij} = (0, \ldots, 0, s_j, 0, \ldots, 0, -s_i, 0, \ldots, 0)
 \in \Gamma(X, \mathcal{L}^{\oplus n + 1})
 $$
-with $s_j$ in the $i$th spot and $s_i$ in the $j$th spot map to zero
+with $s_j$ in the $i$th spot and $-s_i$ in the $j$th spot map to zero
 in $\mathcal{L}^{\otimes 2}$. Hence
 $s_{ij} \in \Gamma(X, \mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{L})$.
 A local computation shows that these sections generate
@@ -3142,7 +3181,7 @@ where the second map is given by $T_0, \ldots, T_n$. In this
 case the statement above translates into the statement that
 the elements
 $$
-T_{ij} = (0, \ldots, 0, T_j, 0, \ldots, 0, T_i, 0, \ldots, 0)
+T_{ij} = (0, \ldots, 0, T_j, 0, \ldots, 0, -T_i, 0, \ldots, 0)
 \in M(1)_0
 $$
 generate the graded module $M(1)$ over $S$. We omit the details.
@@ -3291,7 +3330,7 @@ Consider the composition $\psi$ of the maps
 $$
 S \to k[X_0, X_1, X_2] \to \Gamma_*(T, \mathcal{L}).
 $$
-Here the first map is $A \mapsto X_0^6$, $B \mapsto X_1^3$,
+Here the first map is $A \mapsto X_0$, $B \mapsto X_1^2$,
 $C \mapsto X_2^3$ and the second map is (\ref{equation-global-sections}).
 By the lemma this corresponds to a morphism
 $r_{\mathcal{L}, \psi} : T \to X = \text{Proj}(S)$
@@ -3687,7 +3726,7 @@ We have to show each $F_{d, i}$ is representable.
 This is the case because $F_{d, i}$ is identified with
 the functor associated to $U_i$ equipped with
 the quasi-coherent graded $\mathcal{O}_{U_i}$-algebra
-$\mathcal{A}|_{U_i})$ by Lemma \ref{lemma-proj-base-change}.
+$\mathcal{A}|_{U_i}$ by Lemma \ref{lemma-proj-base-change}.
 Thus the result follows from Lemma \ref{lemma-relative-proj-affine}.
 
 \medskip\noindent
@@ -4128,7 +4167,7 @@ Let $\mathcal{M} = \bigoplus_{n \in \mathbf{Z}} \mathcal{M}_n$
 be a graded $\mathcal{A}$-module, quasi-coherent as an $\mathcal{O}_S$-module.
 We are going to describe the associated quasi-coherent sheaf
 of modules on $\underline{\text{Proj}}_S(\mathcal{A})$.
-We first describe the value of this sheaf schemes $T$ mapping
+We first describe the value of this sheaf on schemes $T$ mapping
 into the relative Proj.
 
 \medskip\noindent
@@ -4637,28 +4676,131 @@ S
 $$
 and we call it the {\it projective bundle associated to $\mathcal{E}$}.
 The symbol $\mathcal{O}_{\mathbf{P}(\mathcal{E})}(n)$
-indicates the invertible $\mathcal{O}_{\mathbf{P}(\mathcal{E})}$-modules
-introduced in Lemma \ref{lemma-relative-proj} and is called the $n$th
+indicates the invertible $\mathcal{O}_{\mathbf{P}(\mathcal{E})}$-module
+of Lemma \ref{lemma-apply-relative} and is called the $n$th
 {\it twist of the structure sheaf}.
 \end{definition}
 
 \noindent
-Note that according to Lemma \ref{lemma-relative-proj} there are canonical
-$\mathcal{O}_S$-module homomorphisms
+According to Lemma \ref{lemma-glue-relative-proj-twists} there are
+canonical $\mathcal{O}_S$-module homomorphisms
 $$
 \text{Sym}^n(\mathcal{E})
 \longrightarrow
-\pi_*(\mathcal{O}_{\mathbf{P}(\mathcal{E})}(n))
+\pi_*\mathcal{O}_{\mathbf{P}(\mathcal{E})}(n)
+\quad\text{equivalently}\quad
+\pi^*\text{Sym}^n(\mathcal{E})
+\longrightarrow
+\mathcal{O}_{\mathbf{P}(\mathcal{E})}(n)
 $$
-for all $n \geq 0$. This, combined with the fact that
-$\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$ is the canonical
-relatively ample invertible sheaf on $\mathbf{P}(\mathcal{E})$,
-is a good way to remember how we have normalized our
-construction of $\mathbf{P}(\mathcal{E})$. Namely, in some references
-the space $\mathbf{P}(\mathcal{E})$ is only defined for $\mathcal{E}$
-finite locally free on $S$, and sometimes $\mathbf{P}(\mathcal{E})$
-is actually defined as our $\mathbf{P}(\mathcal{E}^\vee)$ where
-$\mathcal{E}^\vee$ is the dual of the sheaf $\mathcal{E}$.
+for all $n \geq 0$. In particular, for $n = 1$ we have
+$$
+\mathcal{E}
+\longrightarrow
+\pi_*\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)
+\quad\text{equivalently}\quad
+\pi^*\mathcal{E}
+\longrightarrow
+\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)
+$$
+and the map $\pi^*\mathcal{E} \to \mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$
+is a surjection by Lemma \ref{lemma-apply-relative}.
+This is a good way to remember how we have normalized
+our construction of $\mathbf{P}(\mathcal{E})$.
+
+\medskip\noindent
+Warning: In some references the scheme $\mathbf{P}(\mathcal{E})$
+is only defined for $\mathcal{E}$ finite locally free on $S$.
+Moreover sometimes $\mathbf{P}(\mathcal{E})$ is actually defined as our
+$\mathbf{P}(\mathcal{E}^\vee)$ where $\mathcal{E}^\vee$
+is the dual of $\mathcal{E}$ (and this is done only when $\mathcal{E}$ is
+finite locally free).
+
+\medskip\noindent
+Let $S$, $\mathcal{E}$, $\mathbf{P}(\mathcal{E}) \to S$ be as in
+Definition \ref{definition-projective-bundle}. Let $f : T \to S$
+be a scheme over $S$. Let $\psi : f^*\mathcal{E} \to \mathcal{L}$
+be a surjection where $\mathcal{L}$ is an invertible $\mathcal{O}_T$-module.
+The induced graded $\mathcal{O}_T$-algebra map
+$$
+f^*\text{Sym}(\mathcal{E}) = \text{Sym}(f^*\mathcal{E}) \to
+\text{Sym}(\mathcal{L}) = \bigoplus\nolimits_{n \geq 0} \mathcal{L}^{\otimes n}
+$$
+corresponds to a morphism
+$$
+\varphi_{\mathcal{L}, \psi} : T \longrightarrow \mathbf{P}(\mathcal{E})
+$$
+over $S$ by our construction of the relative Proj as the scheme representing
+the functor $F$ in Section \ref{section-relative-proj}. On the other hand,
+given a morphism $\varphi : T \to \mathbf{P}(\mathcal{E})$ over $S$
+we can set $\mathcal{L} = \varphi^*\mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$
+and $\psi : f^*\mathcal{E} \to \mathcal{L}$ equal to the pullback
+by $\varphi$ of the canonical surjection
+$\pi^*\mathcal{E} \to \mathcal{O}_{\mathbf{P}(\mathcal{E})}(1)$.
+By Lemma \ref{lemma-apply-relative} these constructions
+are inverse bijections between the set of isomorphism classes of pairs
+$(\mathcal{L}, \psi)$ and the set of morphisms
+$\varphi : T \to \mathbf{P}(\mathcal{E})$ over $S$.
+Thus we see that $\mathbf{P}(\mathcal{E})$ represents the functor
+which associates to $f : T \to S$ the set of $\mathcal{O}_T$-module
+quotients of $f^*\mathcal{E}$ which are locally free of rank $1$.
+
+\begin{example}[Projective space of a vector space]
+\label{example-projective-space}
+Let $k$ be a field. Let $V$ be a $k$-vector space. The corresponding
+{\it projective space} is the $k$-scheme
+$$
+\mathbf{P}(V) = \text{Proj}(\text{Sym}(V))
+$$
+where $\text{Sym}(V)$ is the symmetric algebra on $V$ over $k$.
+Of course we have $\mathbf{P}(V) \cong \mathbf{P}^n_k$ if $\dim(V) = n + 1$
+because then the symmetric algebra on $V$ is isomorphic to a polynomial
+ring in $n + 1$ variables. If we
+think of $V$ as a quasi-coherent module on $\Spec(k)$, then $\mathbf{P}(V)$
+is the corresponding projective space bundle over $\Spec(k)$. By the
+discussion above a $k$-valued point $p$ of $\mathbf{P}(V)$ corresponds to
+a surjection of $k$-vector spaces $V \to L_p$ with $\dim(L_p) = 1$.
+More generally, let $X$ be a scheme over $k$, let $\mathcal{L}$ be an
+invertible $\mathcal{O}_X$-module, and let
+$\psi : V \to \Gamma(X, \mathcal{L})$ be a $k$-linear map
+such that $\mathcal{L}$ is generated as an $\mathcal{O}_X$-module
+by the sections in the image of $\psi$. Then the discussion above
+gives a canonical morphism
+$$
+\varphi_{\mathcal{L}, \psi} : X \longrightarrow \mathbf{P}(V)
+$$
+of schemes over $k$ such that there is an isomorphism
+$\theta : \varphi_{\mathcal{L}, \psi}^*\mathcal{O}_{\mathbf{P}(V)}(1)
+\to \mathcal{L}$ and such that $\psi$ agrees with the composition
+$$
+V \to
+\Gamma(\mathbf{P}(V), \mathcal{O}_{\mathbf{P}(V)}(1))
+\to
+\Gamma(X, \varphi_{\mathcal{L}, \psi}^*\mathcal{O}_{\mathbf{P}(V)}(1))
+\to
+\Gamma(X, \mathcal{L})
+$$
+See Lemma \ref{lemma-invertible-map-into-proj}. If
+$V \subset \Gamma(X, \mathcal{L})$ is a subspace, then we will
+denote the morphism constructed above simply as
+$\varphi_{\mathcal{L}, V}$.
+If $\dim(V) = n + 1$ and we choose a basis $v_0, \ldots, v_n$ of $V$
+then the diagram
+$$
+\xymatrix{
+X \ar@{=}[d] \ar[rr]_{\varphi_{\mathcal{L}, \psi}} & &
+\mathbf{P}(V) \ar[d]^{\cong} \\
+X \ar[rr]^{\varphi_{(\mathcal{L}, (s_0, \ldots, s_n))}} & &
+\mathbf{P}^n_k
+}
+$$
+is commutative, where $s_i = \psi(v_i) \in \Gamma(X, \mathcal{L})$, where
+$\varphi_{(\mathcal{L}, (s_0, \ldots, s_n))}$
+is as in Section \ref{section-projective-space},
+and where the right vertical arrow corresponds
+to the isomorphism $k[T_0, \ldots, T_n] \to \text{Sym}(V)$ sending
+$T_i$ to $v_i$.
+\end{example}
 
 \begin{example}
 \label{example-projective-bundle}
@@ -4946,7 +5088,7 @@ $$
 $$
 induced by $(f^*q \circ f^*s_i)_t$ is the base change of the map
 $\kappa(s)^{\oplus n - k} \to \mathcal{Q}_s/\mathfrak m_s\mathcal{Q}_s$
-above by the field extension $\kappa(s) \subset \kappa(t)$. It follows
+above by the field extension $\kappa(t)/\kappa(s)$. It follows
 that $s \in U_i$ if and only if $t$ is in the corresponding open
 for $f^*q$. In particular $T \to S$ factors through $U_i$ if
 and only if $f^*q \in F_i(T)$ as desired.

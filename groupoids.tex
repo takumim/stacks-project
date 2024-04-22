@@ -309,7 +309,7 @@ is commutative:
 $$
 \xymatrix{
 G \times_S G \ar[r]_-{f \times f} \ar[d]_m &
-G' \times_S G' \ar[d]^m \\
+G' \times_S G' \ar[d]^{m'} \\
 G \ar[r]^f & G'
 }
 $$
@@ -342,6 +342,24 @@ and induces a group scheme structure on $G'$ over $S$.
 Alternatively, we could say that $H$ is a closed subgroup scheme of $G$
 if it is a group scheme over $S$ endowed with a morphism of group schemes
 $i : H \to G$ over $S$ which identifies $H$ with a closed subscheme of $G$.
+
+\begin{lemma}
+\label{lemma-closed-subgroup-scheme}
+Let $S$ be a scheme. Let $(G, m, e, i)$ be a group scheme over $S$.
+\begin{enumerate}
+\item A closed subscheme $H \subset G$ is a closed subgroup scheme
+if and only if $e : S \to G$, $m|_{H \times_S H} : H \times_S H \to G$,
+and $i|_H : H \to G$ factor through $H$.
+\item An open subscheme $H \subset G$ is an open subgroup scheme
+if and only if $e : S \to G$, $m|_{H \times_S H} : H \times_S H \to G$,
+and $i|_H : H \to G$ factor through $H$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Looking at $T$-valued points this translates into the well known
+conditions characterizing subsets of groups as subgroups.
+\end{proof}
 
 \begin{definition}
 \label{definition-smooth-group-scheme}
@@ -617,8 +635,11 @@ Morphisms, Lemma \ref{morphisms-lemma-base-change-flat}.
 
 \begin{lemma}
 \label{lemma-group-scheme-module-differentials}
+\begin{reference}
+\cite[Proposition 3.15]{BookAV}
+\end{reference}
 Let $(G, m, e, i)$ be a group scheme over the scheme $S$.
-Denote $f : G \to S$ the structure morphism. Assume $f$ is flat.
+Denote $f : G \to S$ the structure morphism.
 Then there exist canonical isomorphisms
 $$
 \Omega_{G/S} \cong f^*\mathcal{C}_{S/G} \cong f^*e^*\Omega_{G/S}
@@ -629,25 +650,37 @@ $\Omega_{G/S}$ is a free $\mathcal{O}_G$-module.
 \end{lemma}
 
 \begin{proof}
-In
-Morphisms, Lemma \ref{morphisms-lemma-differentials-diagonal}
-we identified $\Omega_{G/S}$ with the conormal sheaf of the
-diagonal morphism $\Delta_{G/S}$. In the proof of
-Lemma \ref{lemma-group-scheme-separated}
-we showed that $\Delta_{G/S}$ is a base change of the immersion $e$
-by the morphism $(g, g') \mapsto m(i(g), g')$. This morphism
-is isomorphic to the morphism $(g, g') \mapsto m(g, g')$
-hence is flat by
-Lemma \ref{lemma-flat-action-on-group-scheme}.
-Hence we get the first isomorphism by
-Morphisms, Lemma \ref{morphisms-lemma-conormal-functorial-flat}.
-By
+By Morphisms, Lemma \ref{morphisms-lemma-base-change-differentials} we have
+$$
+\Omega_{G \times_S G/G} = \text{pr}_0^*\Omega_{G/S}
+$$
+where on the left hand side we view $G \times_S G$ as a scheme over $G$
+using $\text{pr}_1$.
+Let $\tau : G \times_S G \to G \times_S G$ be the ``shearing map''
+given by $(g, h) \mapsto (m(g, h), h)$ on points. This map is an automorphism
+of $G \times_S G$ viewed as a scheme over $G$ via the projection $\text{pr}_1$.
+Combining these two remarks we obtain an isomorphism
+$$
+\tau^*\text{pr}_0^*\Omega_{G/S} \to \text{pr}_0^*\Omega_{G/S}
+$$
+Since $\text{pr}_0 \circ \tau = m$ this can be rewritten as an isomorphism
+$$
+m^*\Omega_{G/S} \to \text{pr}_0^*\Omega_{G/S}
+$$
+Pulling back this isomorphism by
+$(e \circ f, \text{id}_G) : G \to G \times_S G$
+and using that $m \circ (e \circ f, \text{id}_G) = \text{id}_G$
+and $\text{pr}_0 \circ (e \circ f, \text{id}_G) = e \circ f$
+we obtain an isomorphism
+$$
+\Omega_{G/S} \to f^*e^*\Omega_{G/S}
+$$
+as desired. By
 Morphisms, Lemma \ref{morphisms-lemma-differentials-relative-immersion-section}
 we have $\mathcal{C}_{S/G} \cong e^*\Omega_{G/S}$.
-
-\medskip\noindent
-If $S$ is the spectrum of a field, then $G \to S$ is flat, and
-any $\mathcal{O}_S$-module on $S$ is free.
+If $S$ is the spectrum of a field, then
+any $\mathcal{O}_S$-module on $S$ is free
+and the final statement follows.
 \end{proof}
 
 \begin{lemma}
@@ -719,7 +752,7 @@ composition $T \times_k U \to G \times_k G \to G$ is open.
 \end{lemma}
 
 \begin{proof}
-For any field extension $k \subset K$ the morphism $G_K \to G$ is open
+For any field extension $K/k$ the morphism $G_K \to G$ is open
 (Morphisms, Lemma \ref{morphisms-lemma-scheme-over-field-universally-open}).
 Every point $\xi$ of $T \times_k U$ is the image of a morphism
 $(t, u) : \Spec(K) \to T \times_k U$ for some $K$. Then the image of
@@ -764,7 +797,7 @@ passing through $e$, and
 
 \begin{proof}
 For any point $g \in G$ there exists a field extension
-$k \subset K$ and a $K$-valued point $g' \in G(K)$ mapping to
+$K/k$ and a $K$-valued point $g' \in G(K)$ mapping to
 $g$. If we think of $g'$ as a $K$-rational point of the
 group scheme $G_K$, then we see that
 $\mathcal{O}_{G, g} \to \mathcal{O}_{G_K, g'}$ is a faithfully flat
@@ -885,7 +918,7 @@ then $G$ is quasi-compact.
 \end{lemma}
 
 \begin{proof}
-Suppose that $k \subset K$ is a field extension. If $G_K$
+Suppose that $K/k$ is a field extension. If $G_K$
 is quasi-compact, then $G$ is too as $G_K \to G$ is surjective.
 By Lemma \ref{lemma-group-scheme-field-geometrically-irreducible}
 we see that $G_K$ is irreducible. Hence it suffices to prove the lemma
@@ -919,9 +952,10 @@ then $G$ is irreducible.
 \end{lemma}
 
 \begin{proof}
-By Varieties, Lemma \ref{varieties-lemma-geometrically-connected-criterion}
+By Varieties, Lemma
+\ref{varieties-lemma-geometrically-connected-if-connected-and-point}
 we see that $G$ is geometrically connected. If we show that $G_K$
-is irreducible for some field extension $k \subset K$, then
+is irreducible for some field extension $K/k$, then
 the lemma follows. Hence we may apply
 Varieties, Lemma \ref{varieties-lemma-make-Jacobson}
 to reduce to the case where $k$ is algebraically closed,
@@ -950,9 +984,6 @@ The image $W$ of $Z \times_k U \to G$ is open in $G$ by
 Lemma \ref{lemma-group-scheme-over-field-translate-open}.
 On the other hand, $W$ is quasi-compact as the image of a
 quasi-compact space. We claim that $W$ is closed.
-If the claim is true, then $W \subset G \setminus Z'$ is a proper open
-and closed subset of $G$, which contradicts the assumption that
-$G$ is connected.
 
 \medskip\noindent
 Proof of the claim. Since $W$ is quasi-compact, we see that
@@ -965,6 +996,14 @@ $Z'' \cap W$ has a rational point
 $g \in Z''(k) \cap W(k)$ and hence $Z'' = Zg$. But $W = m(Z \times_k W)$
 by construction, so $Z'' \cap W \not = \emptyset$ implies
 $Z'' \subset W$.
+
+\medskip\noindent
+By the claim $W \subset G$ is an open and closed subset of $G$.
+Now $W \cap Z' = \emptyset$ since otherwise by the argument given in
+the precending paragraph we would get $Z' = Zg$ for some $g \in W(k)$.
+Then as $Z$ is a subgroup we could even pick $g \in U(k)$ which would
+contradict $Z' \cap U = \emptyset$. Hence $W \subset G$ is a proper open
+and closed subset which contradicts the assumption that $G$ is connected.
 \end{proof}
 
 \begin{proposition}
@@ -983,18 +1022,21 @@ subgroup scheme $G^0 \subset G$ with the following properties
 Let $G^0$ be the connected component of the identity with its canonical
 scheme structure (Morphisms, Definition
 \ref{morphisms-definition-scheme-structure-connected-component}).
+To show that $G^0$ is a closed subsgroup scheme we will use the
+criterion of Lemma \ref{lemma-closed-subgroup-scheme}.
+The morphism $e : \Spec(k) \to G$ factors through $G^0$ as we chose
+$G^0$ to be the connected component of $G$ containing $e$.
+Since $i : G \to G$ is an automorphism fixing $e$, we see that
+$i$ sends $G^0$ into itself.
 By Varieties, Lemma \ref{varieties-lemma-geometrically-connected-criterion}
-we see that $G^0$ is geometrically connected. Thus
-$G^0 \times_k G^0$ is connected
+the scheme $G^0$ is geometrically connected over $k$.
+Thus $G^0 \times_k G^0$ is connected
 (Varieties, Lemma \ref{varieties-lemma-bijection-connected-components}).
 Thus $m(G^0 \times_k G^0) \subset G^0$ set theoretically.
-To see that this holds scheme theoretically, note that
-$G^0 \times_k G^0 \to G \times_k G$ is a flat closed immersion.
-By Morphisms, Lemma \ref{morphisms-lemma-characterize-flat-closed-immersions}
-it follows that $G^0 \times_k G^0$ is a closed subscheme of
-$(G \times_k G) \times_{m, G} G^0$. Thus we see that
-$m|_{G^0 \times_k G^0} : G^0 \times_k G^0 \to G$ factors through
-$G^0$. Hence $G^0$ becomes a closed subgroup scheme of $G$.
+Thus $m|_{G^0 \times_k G^0} : G^0 \times_k G^0 \to G$
+factors through $G^0$ by
+Morphisms, Lemma \ref{morphisms-lemma-characterize-flat-closed-immersions}.
+Hence $G^0$ is a closed subgroup scheme of $G$.
 By Lemma \ref{lemma-connected-group-scheme-over-field-irreducible}
 we see that $G^0$ is irreducible. By
 Lemma \ref{lemma-group-scheme-field-geometrically-irreducible}
@@ -1074,7 +1116,7 @@ Properties, Lemma
 \ref{properties-lemma-quasi-compact-quasi-separated-spectral}).
 Let $F_\xi \subset T$ be the fibre of $T \to \pi_0(W)$ over $\xi \in \pi_0(W)$.
 Assume that for all $\xi$ we can find an affine open $U_\xi \subset W$ with
-$F \subset U$. Since $\psi : T \to \pi_0(W)$ is proper as a map of
+$F \subset U$. Since $\psi : T \to \pi_0(W)$ is universally closed as a map of
 topological spaces (Topology, Lemma \ref{topology-lemma-closed-map}),
 we can find a quasi-compact open $V_\xi \subset \pi_0(W)$ such that
 $\psi^{-1}(V_\xi) \subset f^{-1}(U_\xi)$ (easy topological argument omitted).
@@ -1549,7 +1591,8 @@ look there. There are many equivalent definitions; here is one.
 \begin{definition}
 \label{definition-abelian-variety}
 Let $k$ be a field. An {\it abelian variety} is a group scheme over
-$k$ which is also a proper, geometrically integral variety over $k$.
+$k$ which is also a proper, geometrically integral variety over
+$k$\footnote{For equivalent definitions see Remark \ref{remark-16-equivalent}.}.
 \end{definition}
 
 \noindent
@@ -1735,11 +1778,11 @@ as well. Thus $\mathcal{N} = \mathcal{L} \otimes [-1]^*\mathcal{L}$
 is ample, see
 Properties, Lemma \ref{properties-lemma-ample-tensor-globally-generated}.
 Since $\mathcal{N} \cong [-1]^*\mathcal{N}$ we see that
-$[d]^*\mathcal{N} \cong \mathcal{N}^{\otimes n^2}$ by
+$[d]^*\mathcal{N} \cong \mathcal{N}^{\otimes d^2}$ by
 Lemma \ref{lemma-pullbacks-by-n}.
 
 \medskip\noindent
-To get a contradiction $C \subset X$ be a proper curve contained in a
+To get a contradiction, let $C \subset X$ be a proper curve contained in a
 fibre of $[d]$. Then $\mathcal{N}^{\otimes d^2}|_C \cong \mathcal{O}_C$
 is an ample invertible $\mathcal{O}_C$-module of degree $0$ which
 contradicts Varieties, Lemma \ref{varieties-lemma-ample-curve} for example.
@@ -1781,7 +1824,7 @@ we see that $\deg([d]) = d^{2 \dim(A)}$.
 Multiplication by an integer on an abelian variety is an etale morphism
 if and only if the integer is invertible in the base field.
 \end{slogan}
-Let $k$ be a field. Let $A$ be an abelian variety over $k$.
+Let $k$ be a field. Let $A$ be a nonzero abelian variety over $k$.
 Then $[d] : A \to A$ is \'etale if and only if $d$ is invertible in $k$.
 \end{lemma}
 
@@ -1803,6 +1846,7 @@ $\text{d}[d]$ is given by multiplication by $d$ on $T_{A/k, e}$.
 \begin{lemma}
 \label{lemma-abelian-variety-multiplication-by-p}
 Let $k$ be a field of characteristic $p > 0$. Let $A$ be an abelian variety
+of dimension $g$
 over $k$. The fibre of $[p] : A \to A$ over $0$ has at most
 $p^g$ distinct points.
 \end{lemma}
@@ -1919,6 +1963,38 @@ Lemma \ref{lemma-abelian-variety-multiplication-by-p} gives
 $A(k)[p] \cong (\mathbf{Z}/p\mathbf{Z})^{\oplus f}$ for some $0 \leq f \leq g$.
 \end{proof}
 
+\begin{remark}
+\label{remark-16-equivalent}
+Let $k$ be a field. There are $2 \times 4 \times 2 = 16$ equivalent
+definitions of abelian varieties. Let
+\begin{itemize}
+\item projective, proper,
+\item geometrically irreducible, irreducible, geometrically connected,
+connected,
+\item smooth, geometrically reduced
+\end{itemize}
+be three sets of properties, pick one from each of them, and let $A$
+be a group scheme over $k$ with the chosen properties over $k$.
+Then $A$ is an abelian variety.
+If we pick the options ``proper, geometrically irreducible, geometrically
+reduced'', then we recover Definition \ref{definition-abelian-variety}
+(use Varieties, Lemma \ref{varieties-lemma-geometrically-integral}).
+The weakest possible options would be ``proper, connected,
+and geometrically reduced'', see for example
+Morphisms, Lemma \ref{morphisms-lemma-locally-projective-proper} and
+Varieties, Lemma \ref{varieties-lemma-smooth-geometrically-normal}.
+So say $A$ is a proper, connected,
+and geometrically reduced group scheme over $k$.
+Then $A$ is geometrically irreducible by
+Lemmas \ref{lemma-connected-group-scheme-over-field-irreducible} and
+\ref{lemma-group-scheme-field-geometrically-irreducible}
+and hence an abelian variety.
+Finally, if $A/k$ is an abelian variety, then it is projective
+and smooth over $k$ (Proposition
+\ref{proposition-review-abelian-varieties}), whence satisfies
+the strongest possible options "projective, geometrically irreducible, smooth".
+\end{remark}
+
 
 
 
@@ -1963,23 +2039,27 @@ a morphism of $G(T)$-sets.
 In situation (1) this means that the diagrams
 \begin{equation}
 \label{equation-action}
+\vcenter{
 \xymatrix{
 G \times_S G \times_S X \ar[r]_-{1_G \times a} \ar[d]_{m \times 1_X} &
 G \times_S X \ar[d]^a \\
 G \times_S X \ar[r]^a & X
 }
-\quad
+}
+\quad\quad
+\vcenter{
 \xymatrix{
 G \times_S X \ar[r]_-a & X \\
 X\ar[u]^{e \times 1_X} \ar[ru]_{1_X}
+}
 }
 \end{equation}
 are commutative. In situation (2) this just means that the diagram
 $$
 \xymatrix{
-G \times_S X \ar[r]_-{\text{id} \times f} \ar[d]_a &
+G \times_S X \ar[r]_-{\text{id} \times \psi} \ar[d]_a &
 G \times_S Y \ar[d]^a \\
-X \ar[r]^f & Y
+X \ar[r]^\psi & Y
 }
 $$
 commutes.
@@ -2139,10 +2219,11 @@ For example:
 If $S$ is the spectrum of a field, then the answer to (1) is yes
 because then $\{X \to S\}$ is a fpqc covering trivializing $X$.
 If $G \to S$ is affine, then the answer to (2) is yes
-(insert future reference here).
+(this follows from Descent, Lemma \ref{descent-lemma-affine}).
 If $G = \text{GL}_{n, S}$ then the answer to (3) is yes
 and in fact any $\text{GL}_{n, S}$-torsor is locally trivial
-(insert future reference here).
+(this follows from
+Descent, Lemma \ref{descent-lemma-finite-locally-free-descends}).
 \end{remark}
 
 
@@ -2160,8 +2241,8 @@ to the direction of the arrows chosen in the following definition.
 \label{definition-equivariant-module}
 Let $S$ be a scheme, let $(G, m)$ be a group scheme over $S$, and
 let $a : G \times_S X \to X$ be an action of the group scheme $G$
-on $X/S$. An {\it $G$-equivariant quasi-coherent $\mathcal{O}_X$-module},
-or simply a {\it equivariant quasi-coherent $\mathcal{O}_X$-module},
+on $X/S$. A {\it $G$-equivariant quasi-coherent $\mathcal{O}_X$-module},
+or simply an {\it equivariant quasi-coherent $\mathcal{O}_X$-module},
 is a pair $(\mathcal{F}, \alpha)$, where $\mathcal{F}$ is a quasi-coherent
 $\mathcal{O}_X$-module, and $\alpha$ is a $\mathcal{O}_{G \times_S X}$-module
 map
@@ -2203,8 +2284,9 @@ Let $S$ be a scheme. Let $G$ be a group scheme over $S$.
 Let $f : Y \to X$ be a $G$-equivariant morphism between $S$-schemes
 endowed with $G$-actions. Then pullback $f^*$ given by
 $(\mathcal{F}, \alpha) \mapsto (f^*\mathcal{F}, (1_G \times f)^*\alpha)$
-defines a functor from the category of $G$-equivariant sheaves on
-$X$ to the category of quasi-coherent $G$-equivariant sheaves on $Y$.
+defines a functor from the category of $G$-equivariant quasi-coherent
+$\mathcal{O}_X$-modules  to the category of
+$G$-equivariant quasi-coherent $\mathcal{O}_Y$-modules.
 \end{lemma}
 
 \begin{proof}
@@ -2294,7 +2376,7 @@ and such that the isomorphism $\widetilde{M} \to \mathcal{F}$
 (Schemes, Lemma \ref{schemes-lemma-quasi-coherent-affine})
 is an isomorphism of $\mathbf{G}_m$-equivariant modules where
 the $\mathbf{G}_m$-equivariant structure on $\widetilde{M}$
-is the onde from Example \ref{example-Gm-on-affine}.
+is the one from Example \ref{example-Gm-on-affine}.
 \end{lemma}
 
 \begin{proof}
@@ -2426,7 +2508,7 @@ This is a nice exercise in the definitions.
 
 \begin{lemma}
 \label{lemma-equivalence-groupoid}
-Given an equivalence relation $j : R \to U$ over $S$
+Given an equivalence relation $j : R \to U \times_S U$ over $S$
 there is a unique way to extend it to a groupoid
 $(U, R, s, t, c)$ over $S$.
 \end{lemma}
@@ -2739,8 +2821,8 @@ Let $(U, R, s, t, c)$ be a groupoid scheme over $S$.
 Assume $s, t$ are flat, quasi-compact, and quasi-separated.
 For any quasi-coherent module $\mathcal{G}$ on $U$, there exists
 a canonical isomorphism
-$\alpha : t^*t_*s^*\mathcal{G} \to s^*t_*s^*\mathcal{G}$
-which turns $(t_*s^*\mathcal{G}, \alpha)$ into a quasi-coherent module
+$\alpha : t^*s_*t^*\mathcal{G} \to s^*s_*t^*\mathcal{G}$
+which turns $(s_*t^*\mathcal{G}, \alpha)$ into a quasi-coherent module
 on $(U, R, s, t, c)$. This construction defines a functor
 $$
 \QCoh(\mathcal{O}_U) \longrightarrow \QCoh(U, R, s, t, c)
@@ -2752,15 +2834,15 @@ $(\mathcal{F}, \beta) \mapsto \mathcal{F}$.
 \begin{proof}
 The pushforward of a quasi-coherent module along a quasi-compact and
 quasi-separated morphism is quasi-coherent, see Schemes, Lemma
-\ref{schemes-lemma-push-forward-quasi-coherent}. Hence $t_*s^*\mathcal{G}$
+\ref{schemes-lemma-push-forward-quasi-coherent}. Hence $s_*t^*\mathcal{G}$
 is quasi-coherent. With notation as in Lemma \ref{lemma-diagram} we have
 $$
-t^*t_*s^*\mathcal{G} =
-\text{pr}_{0, *}c^* s^*\mathcal{G} =
-\text{pr}_{0, *}\text{pr}_1^*s^*\mathcal{G} =
-s^*t_*s^*\mathcal{G}
+t^*s_*t^*\mathcal{G} =
+\text{pr}_{1, *}\text{pr}_0^*t^*\mathcal{G} =
+\text{pr}_{1, *}c^*t^*\mathcal{G} =
+s^*s_*t^*\mathcal{G}
 $$
-The middle equality because $s \circ c = s \circ \text{pr}_1$ as
+The middle equality because $t \circ c = t \circ \text{pr}_0$ as
 morphisms $R \times_{s, U, t} R \to U$, and the first and the last
 equality because we know that base change and pushforward commute in
 these steps by Cohomology of Schemes, Lemma
@@ -2769,44 +2851,104 @@ these steps by Cohomology of Schemes, Lemma
 \medskip\noindent
 To verify the cocycle condition of Definition \ref{definition-groupoid-module}
 for $\alpha$ and the adjointness property we describe the construction
-$\mathcal{G} \mapsto (\mathcal{G}, \alpha)$ in another way.
+$\mathcal{G} \mapsto (s_*t^*\mathcal{G}, \alpha)$ in another way.
 Consider the groupoid scheme
-$(R, R \times_{s, U, s} R, \text{pr}_0, \text{pr}_1, \text{pr}_{02})$
-associated to the equivalence relation $R \times_{s, U, s} R$
+$(R, R \times_{t, U, t} R, \text{pr}_0, \text{pr}_1, \text{pr}_{02})$
+associated to the equivalence relation $R \times_{t, U, t} R$
 on $R$, see Lemma \ref{lemma-equivalence-groupoid}.
 There is a morphism
 $$
 f :
-(R, R \times_{s, U, s} R, \text{pr}_1, \text{pr}_0, \text{pr}_{02})
+(R, R \times_{t, U, t} R, \text{pr}_1, \text{pr}_0, \text{pr}_{02})
 \longrightarrow
 (U, R, s, t, c)
 $$
-of groupoid schemes given by $t : R \to U$ and $R \times_{t, U, t} R \to R$
-given by $(r_0, r_1) \mapsto r_0 \circ r_1^{-1}$ (we omit the verification
-of the commutativity of the required diagrams). Since
+of groupoid schemes given by $s : R \to U$ and $R \times_{t, U, t} R \to R$
+given by $(r_0, r_1) \mapsto r_0^{-1} \circ r_1$; we omit the verification
+of the commutativity of the required diagrams. Since
 $t, s : R \to U$ are quasi-compact, quasi-separated, and flat,
 and since we have a cartesian square
 $$
 \xymatrix{
-R \times_{s, U, s} R \ar[d]_{\text{pr}_0}
-\ar[rr]_-{(r_0, r_1) \mapsto r_0 \circ r_1^{-1}} & & R \ar[d]^t \\
-R \ar[rr]^t & & U
+R \times_{t, U, t} R \ar[d]_{\text{pr}_0}
+\ar[rr]_-{(r_0, r_1) \mapsto r_0^{-1} \circ r_1} & & R \ar[d]^t \\
+R \ar[rr]^s & & U
 }
 $$
 by Lemma \ref{lemma-diagram-pull} it follows that
-Lemma \ref{lemma-pushforward} applies to $f$. Note that
+Lemma \ref{lemma-pushforward} applies to $f$.
+Thus pushforward and pullback of quasi-coherent modules along
+$f$ are adjoint functors. To finish the proof we will identify these functors
+with the functors described above. To do this, note that
 $$
-\QCoh(R, R \times_{s, U, s} R, \text{pr}_1, \text{pr}_0, \text{pr}_{02})
-= \QCoh(\mathcal{O}_U)
+t^* :
+\QCoh(\mathcal{O}_U)
+\longrightarrow
+\QCoh(R, R \times_{t, U, t} R, \text{pr}_1, \text{pr}_0, \text{pr}_{02})
 $$
-by the theory of descent of quasi-coherent sheaves as $\{t : R \to U\}$
-is an fpqc covering, see
+is an equivalence by the theory of descent of quasi-coherent sheaves as
+$\{t : R \to U\}$ is an fpqc covering, see
 Descent, Proposition \ref{descent-proposition-fpqc-descent-quasi-coherent}.
-Observe that pullback along $f$ agrees with the forgetful functor and
-that pushforward agrees with the construction that assigns to
-$\mathcal{G}$ the pair $(\mathcal{G}, \alpha)$. We omit the precise
-verifications. Thus the lemma follows from Lemma \ref{lemma-pushforward}.
+
+\medskip\noindent
+Pushforward along $f$ precomposed with the equivalence $t^*$ sends
+$\mathcal{G}$ to $(s_*t^*\mathcal{G}, \alpha)$;
+we omit the verification that the isomorphism $\alpha$
+obtained in this fashion is the same as the one constructed above.
+
+\medskip\noindent
+Pullback along $f$ postcomposed with the inverse of the equivalence $t^*$
+sends $(\mathcal{F}, \beta)$ to the descent relative to $\{t : R \to U\}$
+of the module $s^*\mathcal{F}$ endowed with the descent datum $\gamma$ on
+$R \times_{t, U, t} R$ which is the pullback of $\beta$ by
+$(r_0, r_1) \mapsto r_0^{-1} \circ r_1$.
+Consider the isomorphism $\beta : t^*\mathcal{F} \to s^*\mathcal{F}$.
+The canonical descent datum (Descent, Definition
+\ref{descent-definition-descent-datum-effective-quasi-coherent})
+on $t^*\mathcal{F}$ relative to $\{t : R \to U\}$
+translates via $\beta$ into the map
+$$
+\text{pr}_0^*s^*\mathcal{F}
+\xrightarrow{\text{pr}_0^*\beta^{-1}}
+\text{pr}_0^*t^*\mathcal{F}
+\xrightarrow{can}
+\text{pr}_1^*t^*\mathcal{F}
+\xrightarrow{\text{pr}_1^*\beta}
+\text{pr}_1^*s^*\mathcal{F}
+$$
+Since $\beta$ satisfies the cocycle condition, this is equal to the pullback
+of $\beta$ by $(r_0, r_1) \mapsto r_0^{-1} \circ r_1$. To see this
+take the actual cocycle relation in Definition \ref{definition-groupoid-module}
+and pull it back by the morphism
+$(\text{pr}_0, c \circ (i, 1)) : R \times_{t, U, t} R \to R \times_{s, U, t} R$
+which also plays a role in the commutative diagram of
+Lemma \ref{lemma-diagram-pull}. It follows that
+$(s^*\mathcal{F}, \gamma)$ is isomorphic to $(t^*\mathcal{F}, can)$.
+All in all, we conclude that pullback by $f$ postcomposed with the
+inverse of the equivalence $t^*$ is isomorphic to the forgetful functor
+$(\mathcal{F}, \beta) \mapsto \mathcal{F}$.
 \end{proof}
+
+\begin{remark}
+\label{remark-adjunction-map}
+In the situation of Lemma \ref{lemma-construct-quasi-coherent} denote
+$$
+F : \QCoh(U, R, s, t, c) \to \QCoh(\mathcal{O}_U),\quad
+(\mathcal{F}, \beta) \mapsto \mathcal{F}
+$$
+the forgetful functor and denote
+$$
+G : \QCoh(\mathcal{O}_U) \to \QCoh(U, R, s, t, c),\quad
+\mathcal{G} \mapsto (s_*t^*\mathcal{G}, \alpha)
+$$
+the right adjoint constructed in the lemma. Then the unit
+$\eta : \text{id} \to G \circ F$ of the adjunction evaluated
+on $(\mathcal{F}, \beta)$ is given by the map
+$$
+\mathcal{F} \to s_*s^*\mathcal{F} \xrightarrow{\beta^{-1}} s_*t^*\mathcal{F}
+$$
+We omit the verification.
+\end{remark}
 
 \begin{lemma}
 \label{lemma-push-pull}
@@ -2867,37 +3009,58 @@ Assume that
 \item $U$, $R$ are Noetherian,
 \item $s, t$ are flat, quasi-compact, and quasi-separated.
 \end{enumerate}
-Then every quasi-coherent module $(\mathcal{F}, \alpha)$ on $(U, R, s, t, c)$
+Then every quasi-coherent module $(\mathcal{F}, \beta)$ on $(U, R, s, t, c)$
 is a filtered colimit of coherent modules.
 \end{lemma}
 
 \begin{proof}
 We will use the characterization of Cohomology of Schemes, Lemma
 \ref{coherent-lemma-coherent-Noetherian} of coherent modules on locally
-Noetherian scheme without further mention. Write
-$\mathcal{F} = \colim \mathcal{H}_i$ with $\mathcal{H}_i$ coherent, see
-Properties, Lemma \ref{properties-lemma-directed-colimit-finite-presentation}.
-Given a quasi-coherent sheaf $\mathcal{H}$ on $U$ we denote $t_*s^*\mathcal{H}$
-the quasi-coherent sheaf on $(U, R, s, t, c)$ of
-Lemma \ref{lemma-construct-quasi-coherent}. There is an adjunction map
-$\mathcal{F} \to t_*s^*\mathcal{F}$ in $\QCoh(U, R, s, t, c)$.
-Consider the pullback diagram
+Noetherian scheme without further mention. We can write
+$\mathcal{F} = \colim \mathcal{H}_i$ as the filtered colimit
+of coherent submodules $\mathcal{H}_i \subset \mathcal{F}$, see
+Cohomology of Schemes, Lemma \ref{coherent-lemma-directed-colimit-coherent}.
+Given a quasi-coherent sheaf $\mathcal{H}$ on $U$ we denote
+$(s_*t^*\mathcal{H}, \alpha)$ the quasi-coherent sheaf on $(U, R, s, t, c)$ of
+Lemma \ref{lemma-construct-quasi-coherent}. Consider the adjunction map
+$(\mathcal{F}, \beta) \to (s_*t^*\mathcal{F}, \alpha)$ in
+$\QCoh(U, R, s, t, c)$, see Remark \ref{remark-adjunction-map}.
+Set
+$$
+(\mathcal{F}_i, \beta_i) =
+(\mathcal{F}, \beta)
+\times_{(s_*t^*\mathcal{F}, \alpha)}
+(s_*t^*\mathcal{H}_i, \alpha)
+$$
+in $\QCoh(U, R, s, t, c)$. Since restriction to $U$ is an exact functor
+on $\QCoh(U, R, s, t, c)$  by the proof of Lemma \ref{lemma-abelian}
+we obtain a pullback diagram
 $$
 \xymatrix{
-\mathcal{F} \ar[r] & t_*s^*\mathcal{F} \\
-\mathcal{F}_i \ar[r] \ar[u] & t_*s^*\mathcal{H}_i \ar[u]
+\mathcal{F} \ar[r] & s_*t^*\mathcal{F} \\
+\mathcal{F}_i \ar[r] \ar[u] & s_*t^*\mathcal{H}_i \ar[u]
 }
 $$
-in other words $\mathcal{F}_i = \mathcal{F} \cap t_*s^*\mathcal{H}_i$.
-Then $\mathcal{F}_i$ is coherent by Lemma \ref{lemma-push-pull}.
-On the other hand, the diagram above is a pullback diagram in
-$\QCoh(U, R, s, t, c)$ also as restriction to $U$ is an
-exact functor by (the proof of) Lemma \ref{lemma-abelian}. Finally,
-because $t$ is quasi-compact and quasi-separated we see that
-$t_*$ commutes with colimits (see
+in other words $\mathcal{F}_i = \mathcal{F} \cap s_*t^*\mathcal{H}_i$.
+By the description of the adjunction map in Remark \ref{remark-adjunction-map}
+this diagram is isomorphic to the diagram
+$$
+\xymatrix{
+\mathcal{F} \ar[r] & s_*s^*\mathcal{F} \\
+\mathcal{F}_i \ar[r] \ar[u] & s_*t^*\mathcal{H}_i \ar[u]
+}
+$$
+where the right vertical arrow is the result of appplying $s_*$ to the map
+$$
+t^*\mathcal{H}_i \to t^*\mathcal{F} \xrightarrow{\beta} s^*\mathcal{F}
+$$
+This arrow is injective as $t$ is a flat morphism. It follows that
+$\mathcal{F}_i$ is coherent by Lemma \ref{lemma-push-pull}.
+Finally, because $s$ is quasi-compact and quasi-separated we see that
+$s_*$ commutes with colimits (see
 Cohomology of Schemes, Lemma \ref{coherent-lemma-colimit-cohomology}).
-Hence $t_*s^*\mathcal{F} = \colim t_*\mathcal{H}_i$ and hence
-$\mathcal{F} = \colim \mathcal{F}_i$ as desired.
+Hence $s_*t^*\mathcal{F} = \colim s_*t^*\mathcal{H}_i$ and hence
+$(\mathcal{F}, \beta) = \colim (\mathcal{F}_i, \beta_i)$ as desired.
 \end{proof}
 
 \noindent
@@ -4105,15 +4268,15 @@ $$
 of Lemma \ref{lemma-diagram}.
 Think of $f \in \Gamma(U, \mathcal{O}_U)$. The commutativity of the
 top part of the diagram shows that
-$pr_0^\sharp(t^\sharp(f)) = c^\sharp(t^\sharp(f))$ as elements of
+$\text{pr}_0^\sharp(t^\sharp(f)) = c^\sharp(t^\sharp(f))$ as elements of
 $\Gamma(R \times_{S, U, t} R, \mathcal{O})$.
 Looking at the right lower cartesian square
 the compatibility of the norm construction with base change shows that
 $s^\sharp(\text{Norm}_{s^\sharp}(t^\sharp(f))) =
-\text{Norm}_{\text{pr}_1}(c^\sharp(t^\sharp(f)))$.
+\text{Norm}_{\text{pr}_1^\sharp}(c^\sharp(t^\sharp(f)))$.
 Similarly we get
 $t^\sharp(\text{Norm}_{s^\sharp}(t^\sharp(f))) =
-\text{Norm}_{\text{pr}_1}(\text{pr}_0^\sharp(t^\sharp(f)))$.
+\text{Norm}_{\text{pr}_1^\sharp}(\text{pr}_0^\sharp(t^\sharp(f)))$.
 Hence by the first equality of this proof we see that
 $s^\sharp(\text{Norm}_{s^\sharp}(t^\sharp(f))) =
 t^\sharp(\text{Norm}_{s^\sharp}(t^\sharp(f)))$ as desired.
@@ -4239,8 +4402,8 @@ Thus also $\Spec(A') \to \Spec(C')$ is surjective
 as a base change of a surjective morphism
 (Morphisms, Lemma \ref{morphisms-lemma-base-change-surjective}).
 Hence $\Spec(C^1) \to \Spec(C')$ is surjective also.
-This implies that the kernel of $\varphi$ is contained in the
-radical of the ring $C'$, i.e., (2)(b) holds.
+This implies (2)(b) holds for example by
+Algebra, Lemma \ref{algebra-lemma-image-dense-generic-points}.
 
 \medskip\noindent
 Proof of part (2)(a). By Lemma \ref{lemma-finite-locally-free-disjoint-free}
@@ -4300,24 +4463,25 @@ $$
 \end{lemma}
 
 \begin{proof}
-Let $k$ be an algebraically closed field.
 Since $C \to A$ is integral (Lemma \ref{lemma-integral-over-invariants})
-and injective we see that
-$\Spec(A) \to \Spec(C)$ is surjective, see
+and injective we see that $\Spec(A) \to \Spec(C)$ is surjective, see
 Algebra, Lemma \ref{algebra-lemma-integral-overring-surjective}.
 Thus $|U| \to |M|$ is surjective.
-Let $C \to k$ be a ring map. Since surjective morphisms are
-preserved under base change
-(Morphisms, Lemma \ref{morphisms-lemma-base-change-surjective}) we see that
-$A \otimes_C k$ is not zero. Now $k \subset A \otimes_C k$ is a
+
+\medskip\noindent
+Let $k$ be an algebraically closed field and let $C \to k$ be a ring map.
+Since surjective morphisms are preserved under base change
+(Morphisms, Lemma \ref{morphisms-lemma-base-change-surjective})
+we see that $A \otimes_C k$ is not zero. Now $k \subset A \otimes_C k$ is a
 nonzero integral extension. Hence any residue field of $A \otimes_C k$
 is an algebraic extension of $k$, hence equal to $k$. Thus we see that
 $U(k) \to M(k)$ is surjective.
 
 \medskip\noindent
-Let $a_0, a_1 : A \to k$ be ring maps. If there exists a ring map
+Let $a_0, a_1 : A \to k$ be two ring maps. If there exists a ring map
 $b : B \to k$ such that $a_0 = b \circ t^\sharp$ and $a_1 = b \circ s^\sharp$
-then we see that $a_0|_C = a_1|_C$ by definition.
+then we see that $a_0|_C = a_1|_C$ by definition. Thus the map
+$U(k) \to M(k)$ equalizes the two maps $R(k) \to U(k)$.
 Conversely, suppose that $a_0|_C = a_1|_C$. Let us name this algebra
 map $c : C \to k$. Consider the diagram
 $$
@@ -4334,9 +4498,8 @@ A
 C \ar[u] \ar[llu]^c
 }
 $$
-We are trying to construct the dotted arrow, and if we do then
-part (2) follows, which in turn implies part (1).
-Since $A \to B$ is finite and faithfully flat
+If we can construct a dotted arrow making the diagram commute, then
+the proof of part (2) of the lemma is complete. Since $s : A \to B$ is finite
 there exist finitely many ring maps
 $b_1, \ldots, b_n : B \to k$ such that $b_i \circ s^\sharp = a_1$.
 If the dotted arrow does not exist, then we see that none of the
@@ -4376,6 +4539,21 @@ we see that the map of $k$ into the invariants $C^1$ is injective
 and moreover, that for any element $x \in C^1$ there exists an integer
 $n > 0$ such that $x^n \in k$. Hence every element of $C^1$ is
 either a unit or nilpotent.
+
+\medskip\noindent
+We still have to finish the proof of (1). We already know that
+$|U| \to |M|$ is surjective. It is clear that $|U| \to |M|$ is
+$|R|$-invariant. Finally, suppose $u_0, u_1 \in U$ maps to the same
+point $m \in M$. Then the induced field extensions $\kappa(u_0)/\kappa(m)$
+and $\kappa(u_1)/\kappa(m)$ are algebraic (as $A$ is integral over $C$
+as used above). Hence if $k$ is an algebraic closure of $\kappa(m)$
+then we can find $\kappa(m)$-embeddings $\overline{u}_0 : \kappa(u_0) \to k$
+and $\overline{u}_1 : \kappa(u_1) \to k$. These determine $k$-valued
+points $\overline{u}_0, \overline{u}_1 \in U(k)$ mapping to the same
+point of $M(k)$. By part (2) we see that there exists a point
+$\overline{r} \in R(k)$ with $s(\overline{r}) = \overline{u}_0$ and
+$t(\overline{r}) = \overline{u}_1$. The image $r \in R$ of $\overline{r}$
+is a point with $s(r) = u_0$ and $t(r) = u_1$ as desired.
 \end{proof}
 
 \begin{lemma}
@@ -4546,7 +4724,7 @@ is an isomorphism. It is an \'etale morphism
 (Morphisms, Lemma \ref{morphisms-lemma-etale-permanence}).
 On the other hand, by base changing to strictly henselian local rings
 (as in the third paragraph of the proof) and using the bijectivity
-$U'_{p'} \to U_p$ esthablished in the course of the proof of the claim,
+$U'_{p'} \to U_p$ established in the course of the proof of the claim,
 we see that $U' \to M' \times_M U$ is universally bijective
 (some details omitted). However, a universally bijective
 \'etale morphism is an isomorphism

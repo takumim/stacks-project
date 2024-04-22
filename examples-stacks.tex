@@ -90,7 +90,7 @@ p : \QCohstack \to (\Sch/S)_{fppf},
 (X, \mathcal{F}) \mapsto X
 $$
 is a functor. Note that the fibre category of $\QCohstack$ over
-a scheme $X$ is just the category $\QCoh(\mathcal{O}_X)$
+a scheme $X$ is the opposite of the category $\QCoh(\mathcal{O}_X)$
 of quasi-coherent $\mathcal{O}_X$-modules.
 We remark for later use that given
 $(X, \mathcal{F}), (Y, \mathcal{G}) \in \Ob(\QCohstack)$
@@ -168,7 +168,7 @@ that $\QCohstack$ is a fibred category over $(\Sch/S)_{fppf}$.
 Given covering $\mathcal{U} = \{X_i \to X\}_{i \in I}$ of
 $(\Sch/S)_{fppf}$ the functor
 $$
-\QCoh(\mathcal{O}_T) \longrightarrow DD(\mathcal{U})
+\QCoh(\mathcal{O}_X) \longrightarrow DD(\mathcal{U})
 $$
 is fully faithful and essentially surjective, see
 Descent, Proposition \ref{descent-proposition-fpqc-descent-quasi-coherent}.
@@ -351,7 +351,7 @@ The functor
 $$
 p : \textit{F\'Et} \longrightarrow (\Sch/S)_{fppf}
 $$
-defines a stack in groupoids over $(\Sch/S)_{fppf}$.
+defines a stack over $(\Sch/S)_{fppf}$.
 \end{lemma}
 
 \begin{proof}
@@ -1360,10 +1360,10 @@ U \ar[rr]^{\pi \circ x} & & B
 $$
 commutes, and the two horizontal arrows are $G$-equivariant if we think
 of the fibre products as trivial $G$-torsors over $U$, resp.\ $X$.
-On morphisms $(f, g) : (U, x) \to (U', x')$ we set $F_p(f, g) = (f, R_g)$
-where $R_g$ denotes right translation by $g$. More precisely, the
-morphism of $F_p(f, g) : F_p(U, x) \to F_p(U', x')$ is given by the cartesian
-diagram
+On morphisms $(f, g) : (U, x) \to (U', x')$ we set
+$F_p(f, g) = (f, R_{g^{-1}})$ where $R_{g^{-1}}$ denotes right translation
+by the inverse of $g$. More precisely, the morphism
+$F_p(f, g) : F_p(U, x) \to F_p(U', x')$ is given by the cartesian diagram
 $$
 \xymatrix{
 G \times_{B, \pi \circ x} U \ar[d] \ar[r]_{R_{g^{-1}}} &
@@ -1373,7 +1373,7 @@ U \ar[r]^f & U'
 $$
 where $R_{g^{-1}}$ on $T$-valued points is given by
 $$
-R_{g^{-1}}(g', u) = (m(g', i(g)), f(u))
+R_{g^{-1}}(g', u) = (m(g', i(g(u))), f(u))
 $$
 To see that this works we have to verify that
 $$
@@ -1384,11 +1384,11 @@ $$
 which is true because the right hand side applied to the $T$-valued point
 $(g', u)$ gives the desired equality
 \begin{align*}
-a((\text{id}_G \times x')(m(g', i(g)), f(u)))
+a((\text{id}_G \times x')(m(g', i(g(u))), f(u)))
 & =
-a(m(g', i(g)), x'(f(u))) \\
+a(m(g', i(g(u))), x'(f(u))) \\
 & =
-a(g', a(i(g), x'(f(u)))) \\
+a(g', a(i(g(u)), x'(f(u)))) \\
 & =
 a(g', x(u))
 \end{align*}
@@ -1657,7 +1657,7 @@ $$
 Indeed, for any $S$-scheme $T$, a
 $T$-point on the inertia stack of $[X/G]$ consists of a
 triple $(P/T, \phi, \alpha)$ consisting of an fppf $G$-torsor
-$P\to T$ together with a $G$-equivariant isomorphism
+$P\to T$ together with a $G$-equivariant morphism
 $\phi : P \to X$, together
 with an automorphism $\alpha$ of $P\to T$ over $T$ such that
 $\phi \circ \alpha = \phi$.
@@ -1675,7 +1675,7 @@ above. We omit showing that this is an equivalence.
 
 \begin{example}
 \label{example-inertia-stack-of-picard}
-Let $X\to S$ be a morphism of schemes.
+Let $f : X \to S$ be a morphism of schemes.
 Assume that for any $T \to S$ the base change $f_T : X_T \to T$
 has the property that the map $\mathcal{O}_T \to f_{T, *}\mathcal{O}_{X_T}$
 is an isomorphism. (This implies that $f$ is

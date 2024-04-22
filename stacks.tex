@@ -244,7 +244,7 @@ Categories, Lemma \ref{categories-lemma-2-category-fibred-setoids}.
 
 \begin{proof}
 Omitted. Hint: Objects of the $2$-fibre product are
-$(a : V \to U, z, a : V \to U, (\alpha, \beta))$ where
+$(a : V \to U, z, (\alpha, \beta))$ where
 $\alpha : z \to a^*x$ and $\beta : z \to a^*y$ are isomorphisms
 in $\mathcal{S}_V$. Thus the relationship with $\mathit{Isom}(x, y)$
 comes by assigning to such an object the isomorphism
@@ -346,18 +346,18 @@ be as in Definition \ref{definition-descent-data}.
 \begin{enumerate}
 \item There is a diagonal morphism $\Delta : U_i \to U_i \times_U U_i$.
 We can pull back $\varphi_{ii}$ via this morphism to get an automorphism
-$\Delta^\ast \varphi_{ii} \in \text{Aut}_{U_i}(x_i)$.
+$\Delta^\ast \varphi_{ii} \in \text{Aut}_{U_i}(X_i)$.
 On pulling back the cocycle condition for the triple $(i, i, i)$
 by $\Delta_{123} : U_i \to U_i \times_U U_i \times_U U_i$ we deduce that
 $\Delta^\ast \varphi_{ii} \circ \Delta^\ast \varphi_{ii} =
 \Delta^\ast \varphi_{ii}$; thus $\Delta^\ast \varphi_{ii} =
-\text{id}_{x_i}$.
+\text{id}_{X_i}$.
 \item There is a morphism
 $\Delta_{13}: U_i \times_U U_j \to U_i \times_U U_j \times_U U_i$
 and we can pull back the
 cocycle condition for the triple $(i, j, i)$ to get the
 identity $(\sigma^\ast \varphi_{ji}) \circ \varphi_{ij} =
-\text{id}_{\text{pr}_0^\ast x_i}$, where
+\text{id}_{\text{pr}_0^\ast X_i}$, where
 $\sigma : U_i \times_U U_j \to U_j \times_U U_i$ is the switching morphism.
 \end{enumerate}
 \end{remarks}
@@ -478,6 +478,73 @@ as maps $U_i \times_U U_j \to U$.
 \begin{proof}
 Omitted.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-compare-descent-condition}
+Let $\mathcal{C}$ be a category. Let
+$\mathcal{V} = \{V_j \to U\}_{j \in J} \to
+\mathcal{U} = \{U_i \to U\}_{i \in I}$
+be a morphism of families of maps with fixed target of
+$\mathcal{C}$ given by $\text{id} : U \to U$,
+$\alpha : J \to I$ and $f_j : V_j \to U_{\alpha(j)}$. Let
+$p : \mathcal{S} \to \mathcal{C}$ be a fibred category. If
+\begin{enumerate}
+\item for $0 \leq p \leq 3$ and $0 \leq q \leq 3$ with $p + q \geq 2$
+and $i_1, \ldots, i_p \in I$ and $j_1, \ldots, j_q \in J$
+the fibre products $U_{i_1} \times_U \ldots \times_U U_{i_p} \times_U
+V_{j_1} \times_U \ldots \times_U V_{j_q}$ exist,
+\item the functor $\mathcal{S}_U \to DD(\mathcal{V})$
+is an equivalence,
+\item for every $i \in I$ the functor
+$\mathcal{S}_{U_i} \to DD(\mathcal{V}_i)$
+is fully faithful, and
+\item for every $i, i' \in I$ the functor
+$\mathcal{S}_{U_i \times_U U_{i'}} \to DD(\mathcal{V}_{ii'})$
+is faithful.
+\end{enumerate}
+Here $\mathcal{V}_i = \{U_i \times_U V_j \to U_i\}_{j \in J}$ and
+$\mathcal{V}_{ii'} =
+\{U_i \times_U U_{i'} \times_U V_j \to U_i \times_U U_{i'}\}_{j \in J}$.
+Then $\mathcal{S}_U \to DD(\mathcal{U})$ is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Condition (1) guarantees we have enough fibre products so that
+the statement makes sense.
+We will show that the functor $\mathcal{S}_U \to DD(\mathcal{U})$ is
+essentially surjective. Suppose given a descent datum
+$(X_i, \varphi_{ii'})$ relative to $\mathcal{U}$.
+By Lemma \ref{lemma-pullback} we can pull this back to a descent datum
+$(X_j, \varphi_{jj'})$ for $\mathcal{V}$.
+By assumption (2) this descent datum is effective, hence we
+get an object $X$ of $\mathcal{S}_U$ such that the
+pullback of the trivial descent datum $(X, \text{id}_X)$
+by the morphism $\mathcal{V} \to \{U \to U\}$ is isomorphic to
+$(X_j, \varphi_{jj'})$. Next, observe that we have a diagram
+$$
+\xymatrix{
+\mathcal{V}_i \ar[r] \ar[d] &
+\mathcal{V} \ar[r] &
+\mathcal{U} \ar[d] \\
+\{U_i \to U_i\} \ar[rr] \ar[rru] & &
+\{U \to U\}
+}
+$$
+of morphisms of families of maps with fixed target of $\mathcal{C}$.
+This diagram does not commute, but by Lemma \ref{lemma-pullback}
+the pullback functors on descent data one gets are canonically
+isomorphic. Hence $(X, \text{id}_X)$ and $(X_i, \text{id}_{X_i})$
+pull back to isomorphic objects in $DD(\mathcal{V}_i)$.
+Hence by assumption (3) we obtain an isomorphism
+$(U_i \to U)^*X \to X_i$ in the category $\mathcal{S}_{U_i}$.
+We omit the verification that these arrows are compatible
+with the morphisms $\varphi_{ii'}$; hint: use the faithfulness
+of the functors in condition (4).
+We also omit the verification that the functor
+$\mathcal{S}_U \to DD(\mathcal{U})$ is
+fully faithful.
+\end{proof}
+
 
 
 
@@ -1348,7 +1415,7 @@ Let $F : \mathcal{S} \to \mathcal{S}'$ be a $1$-morphism of
 fibred categories over $\mathcal{C}$.
 Recall that we have defined in
 Categories, Definition \ref{categories-definition-inertia-fibred-category}
-an {\it relative inertia fibred category}
+a {\it relative inertia fibred category}
 $\mathcal{I}_{\mathcal{S}/\mathcal{S}'} \to \mathcal{C}$ as the
 category whose objects are pairs $(x , \alpha)$ where
 $x \in \Ob(\mathcal{S})$ and $\alpha : x \to x$ with
@@ -1369,9 +1436,9 @@ stacks over $\mathcal{C}$.
 \item The inertia $\mathcal{I}_{\mathcal{S}/\mathcal{S}'}$ and
 $\mathcal{I}_\mathcal{S}$ are stacks over $\mathcal{C}$.
 \item If $\mathcal{S}, \mathcal{S}'$ are stacks in groupoids over
-$\mathcal{S}$, then so are $\mathcal{I}_{\mathcal{S}/\mathcal{S}'}$ and
+$\mathcal{C}$, then so are $\mathcal{I}_{\mathcal{S}/\mathcal{S}'}$ and
 $\mathcal{I}_\mathcal{S}$.
-\item If $\mathcal{S}, \mathcal{S}'$ are stacks in setoids over $\mathcal{S}$,
+\item If $\mathcal{S}, \mathcal{S}'$ are stacks in setoids over $\mathcal{C}$,
 then so are $\mathcal{I}_{\mathcal{S}/\mathcal{S}'}$ and
 $\mathcal{I}_\mathcal{S}$.
 \end{enumerate}
@@ -1429,7 +1496,7 @@ of the left hand side, and
 $x' \in \Ob(\mathcal{S}'_U)$ there exists a covering
 $\{U_i \to U\}_{i \in I}$ such that for every $i \in I$ the
 object $x'|_{U_i}$ is in the essential image of the
-functor $G : \mathcal{S}_U \to \mathcal{S}'_U$.
+functor $G : \mathcal{S}_{U_i} \to \mathcal{S}'_{U_i}$.
 \end{enumerate}
 Moreover the stack $\mathcal{S}'$ is determined up to unique
 $2$-isomorphism by these conditions.
@@ -1586,17 +1653,17 @@ $(\text{Ob}, \text{Arrows}, s, t, \circ)$ as in
 Categories, Section \ref{categories-section-definition-categories}.
 Consider the forgetful functor
 $$
-forget : \textit{Cat} \to \textit{Sets}, \quad
+forget : \textit{Cat} \to \textit{Sets} \times \textit{Sets}, \quad
 (\text{Ob}, \text{Arrows}, s, t, \circ)
 \mapsto
-\text{Ob} \amalg \text{Arrows}.
+(\text{Ob}, \text{Arrows}).
 $$
 Then $forget$ is faithful, $\textit{Cat}$ has limits and
 $forget$ commutes with them, $\textit{Cat}$ has directed colimits and
 $forget$ commutes with them, and $forget$ reflects isomorphisms.
-Hence, according to the first part of
+We can sheafify presheaves with values in $\textit{Cat}$, and
+by an argument similar to the one in the first part of
 Sites, Section \ref{sites-section-sheaves-algebraic-structures}
-we can sheafify presheaves with values in $\textit{Cat}$, and
 the result commutes with $forget$. Applying this to
 $\mathcal{S}$ we obtain a sheafification $\mathcal{S}^\#$
 which has a sheaf of objects and a sheaf of morphisms
@@ -1755,21 +1822,21 @@ Sites, Section \ref{sites-section-glueing-sheaves}).
 Hence by construction of $\mathcal{W}$ (see
 Lemma \ref{lemma-stackify})
 we may assume that $\xi, \xi'$
-actually come from objects $(x, y, \alpha)$ and $(x', y', \alpha')$
+actually come from objects $(x, z, \alpha)$ and $(x', z', \alpha')$
 of $\mathcal{X} \times_\mathcal{Y} \mathcal{Z}$ over $U$.
 By the same lemma once more we see that in this case
 $\mathit{Mor}(\xi, \xi')$ is the sheafification of
 $$
 V/U \longmapsto
 \Mor_{\mathcal{X}_V}(x|_V, x'|_V)
-\times_{\Mor_{\mathcal{Z}_V}(f(x)|_V, f(x')|_V)}
-\Mor_{\mathcal{Y}_V}(y|_V, y'|_V)
+\times_{\Mor_{\mathcal{Y}_V}(f(x)|_V, f(x')|_V)}
+\Mor_{\mathcal{Z}_V}(z|_V, z'|_V)
 $$
 and that $\mathit{Mor}(h(\xi), h(\xi'))$ is equal to the fibre product
 $$
 \mathit{Mor}(i(x), i(x'))
-\times_{\mathit{Mor}(k(f(x)), k(f(x'))}
-\mathit{Mor}(j(x), j(x'))
+\times_{\mathit{Mor}(j(f(x)), j(f(x'))}
+\mathit{Mor}(k(z), k(z'))
 $$
 where $i : \mathcal{X} \to \mathcal{X}'$,
 $j : \mathcal{Y} \to \mathcal{Y}'$, and
@@ -1782,12 +1849,12 @@ of presheaves is the fibre product of the sheafifications).
 Finally, we have to check that any object of
 $\mathcal{X}' \times_{\mathcal{Y}'} \mathcal{Z}'$
 over $U$ is locally on $U$ in the essential image of $h$.
-Write such an object as a triple $(x', y', \alpha)$.
+Write such an object as a triple $(x', z', \alpha)$.
 Then $x'$ locally comes from an object of $\mathcal{X}$,
-$y'$ locally comes from an object of $\mathcal{Y}$, and
-having made suitable replacements for $x'$, $y'$ the morphism
-$\alpha$ of $\mathcal{Z}'_U$ locally comes from a morphism of
-$\mathcal{Z}$. In other words, we have shown that any object of
+$z'$ locally comes from an object of $\mathcal{Z}$, and
+having made suitable replacements for $x'$, $z'$ the morphism
+$\alpha$ of $\mathcal{Y}'_U$ locally comes from a morphism of
+$\mathcal{Y}$. In other words, we have shown that any object of
 $\mathcal{X}' \times_{\mathcal{Y}'} \mathcal{Z}'$
 over $U$ is locally on $U$ in the essential image of
 $\mathcal{X} \times_\mathcal{Y} \mathcal{Z} \to
@@ -2225,11 +2292,11 @@ Section \ref{section-topology}
 the category $\mathcal{Y}$ inherits the structure of a site from
 $\mathcal{C}$. A naive guess is: Just require that
 $\mathcal{X} \to \mathcal{Y}$ {\it is} a gerbe in the sense above. Except
-the notion so obtained is not invariants under replacing $\mathcal{X}$
+the notion so obtained is not invariant under replacing $\mathcal{X}$
 by an equivalent stack in groupoids over $\mathcal{C}$; this is even the
 case for the property of being fibred in groupoids over $\mathcal{Y}$.
 However, it turns out that we can replace $\mathcal{X}$ by an equivalent
-stack in groupoids over $\mathcal{Y}$ which is fibred in groupoids over
+stack in groupoids over $\mathcal{C}$ which is fibred in groupoids over
 $\mathcal{Y}$, and then the property of being a gerbe over $\mathcal{Y}$
 is independent of this choice. Here is the precise formulation.
 

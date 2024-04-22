@@ -229,7 +229,7 @@ Schemes, Section \ref{schemes-section-points}.
 \medskip\noindent
 Let $S$ be a scheme.
 Let $F$ be a presheaf on $(\Sch/S)_{fppf}$.
-Let $K$ is a field. Consider a morphism
+Let $K$ be a field. Consider a morphism
 $$
 \Spec(K) \longrightarrow F.
 $$
@@ -300,7 +300,7 @@ is surjective.
 Namely, suppose given fields $K$, $L$ and morphisms
 $\Spec(K) \to X$, $\Spec(L) \to Z$, then the
 assumption that they agree as elements of $|Y|$ means that
-there is a common extension $K \subset M$ and $L \subset M$
+there is a common extension $M/K$ and $M/L$
 such that
 $\Spec(M) \to \Spec(K) \to X \to Y$ and
 $\Spec(M) \to \Spec(L) \to Z \to Y$ agree.
@@ -326,7 +326,7 @@ and
 Assume (1). Let $x : \Spec(K) \to X$ be a morphism
 from the spectrum of a field into $X$. By assumption the morphism of
 schemes $\Spec(K) \times_X T \to \Spec(K)$ is surjective.
-Hence there exists a field extension $K \subset K'$ and a morphism
+Hence there exists a field extension $K'/K$ and a morphism
 $\Spec(K') \to \Spec(K) \times_X T$ such that the left
 square in the diagram
 $$
@@ -380,6 +380,8 @@ Combining these two statements we get the result of the lemma.
 Let $S$ be a scheme. There exists a unique topology on the sets of points
 of algebraic spaces over $S$ with the following properties:
 \begin{enumerate}
+\item if $X$ is a scheme over $S$, then the topology on $|X|$ is the usual one
+(via the identification of Lemma \ref{lemma-scheme-points}),
 \item for every morphism of algebraic spaces $X \to Y$ over $S$
 the map $|X| \to |Y|$ is continuous, and
 \item for every \'etale morphism $U \to X$ with $U$ a scheme
@@ -400,7 +402,7 @@ Let us prove that the topology is independent of the choice of
 the presentation. To do this it suffices to show that if $U'$ is a scheme,
 and $U' \to X$ is an \'etale morphism, then the map $|U'| \to |X|$
 (with topology on $|X|$ defined using $U \to X$ as above)
-is open and continuous; which in addition will prove that (2) holds.
+is open and continuous; which in addition will prove that (3) holds.
 Set $U'' = U \times_X U'$, so that we have the commutative diagram
 $$
 \xymatrix{
@@ -431,7 +433,7 @@ again.) Hence it follows formally that the right vertical
 arrow is continuous and open.
 
 \medskip\noindent
-To finish the proof we prove (1).
+To finish the proof we prove (2).
 Let $a : X \to Y$ be a morphism of algebraic spaces. According to
 Spaces, Lemma \ref{spaces-lemma-lift-morphism-presentations}
 we can find a diagram
@@ -557,6 +559,28 @@ Spaces, Lemma \ref{spaces-lemma-space-presentation}.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-equivalence-class-point-monomorphism}
+Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
+Let $p : \Spec(K) \to X$ and $q : \Spec(L) \to X$
+be morphisms where $K$ and $L$ are fields. Assume $p$ and $q$
+determine the same point of $|X|$ and $p$ is a monomorphism.
+Then $q$ factors uniquely through $p$.
+\end{lemma}
+
+\begin{proof}
+Since $p$ and $q$ define the same point of $|X|$, we see that the scheme
+$$
+Y = \Spec(K) \times_{p, X, q} \Spec(L)
+$$
+is nonempty. Since the base change of a monomorphism is a monomorphism
+this means that the projection morphism $Y \to \Spec(L)$
+is a monomorphism. Hence $Y = \Spec(L)$, see
+Schemes, Lemma \ref{schemes-lemma-mono-towards-spec-field}.
+We conclude that $q$ factors through $p$. Uniqueness
+comes from the fact that $p$ is a monomorphism.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-points-monomorphism}
 Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
 Consider the map
@@ -569,25 +593,14 @@ This map is injective.
 \end{lemma}
 
 \begin{proof}
-Suppose that $\varphi_i : \Spec(k_i) \to X$ are monomorphisms
-for $i = 1, 2$. If $\varphi_1$ and $\varphi_2$ define the same point
-of $|X|$, then we see that the scheme
-$$
-Y = \Spec(k_1) \times_{\varphi_1, X, \varphi_2} \Spec(k_2)
-$$
-is nonempty. Since the base change of a monomorphism is a monomorphism
-this means that the projection morphisms $Y \to \Spec(k_i)$
-are monomorphisms. Hence $\Spec(k_1) = Y = \Spec(k_2)$
-as schemes over $X$, see
-Schemes, Lemma \ref{schemes-lemma-mono-towards-spec-field}.
-We conclude that $\varphi_1 = \varphi_2$, which proves the lemma.
+This follows from Lemma \ref{lemma-equivalence-class-point-monomorphism}.
 \end{proof}
 
 \noindent
-We will see in
-Decent Spaces,
+We will see in Decent Spaces,
 Lemma \ref{decent-spaces-lemma-decent-points-monomorphism}
-that this map is a bijection when $X$ is decent.
+that the map of Lemma \ref{lemma-points-monomorphism}
+is a bijection when $X$ is decent.
 
 
 
@@ -1152,9 +1165,9 @@ Let $W' \subset U'$ be an affine open. Since $\text{pr}_2$ is
 \'etale and hence open, we can choose a quasi-compact open
 $W'' \subset U \times_X U'$ with $\text{pr}_2(W'') = W'$.
 Then $\text{pr}_2|_{W''} : W'' \to W'$ is quasi-compact.
-We have $W \cap (\varphi')^{-1}(E) = \text{pr}_2(E'' \cap W'')$
+We have $W' \cap (\varphi')^{-1}(E) = \text{pr}_2(E'' \cap W'')$
 as $\varphi$ is surjective, see Lemma \ref{lemma-points-cartesian}.
-Thus $W \cap (\varphi')^{-1}(E) = \text{pr}_2(E'' \cap W'')$
+Thus $W' \cap (\varphi')^{-1}(E) = \text{pr}_2(E'' \cap W'')$
 is locally constructible by
 Morphisms, Theorem \ref{morphisms-theorem-chevalley} as desired.
 \end{proof}
@@ -1208,9 +1221,9 @@ Descent, Lemma \ref{descent-lemma-dimension-at-point-local}.
 Warning: It is {\bf not} the case that $\dim_x(X) = \dim_x(|X|)$
 in general. A counter example is the algebraic space $X$ of
 Spaces, Example \ref{spaces-example-infinite-product}.
-Namely, in this example we have $\dim_x(X) = 0$ and
-$\dim_x(|X|) = 1$ (this holds for any $x \in |X|$).
-In particular, it also means that the dimension of $X$ (as defined
+Namely, let $x \in |X|$ be a point not equal to the generic point $x_0$
+of $|X|$. Then we have $\dim_x(X) = 0$ but $\dim_x(|X|) = 1$.
+In particular, the dimension of $X$ (as defined
 below) is different from the dimension of $|X|$.
 
 \begin{definition}
@@ -1371,28 +1384,6 @@ We have already defined reduced algebraic spaces in
 Section \ref{section-types-properties}.
 Here we just prove some simple lemmas regarding reduced algebraic
 spaces.
-
-\begin{lemma}
-\label{lemma-reduced-space}
-Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
-The following are equivalent
-\begin{enumerate}
-\item $X$ is reduced,
-\item for every $x \in |X|$ the local ring of $X$ at $x$ is
-reduced (Remark \ref{remark-list-properties-local-ring-local-etale-topology}).
-\end{enumerate}
-In this case $\Gamma(X, \mathcal{O}_X)$ is a reduced ring and
-if $f \in \Gamma(X, \mathcal{O}_X)$ has $X = V(f)$, then $f = 0$.
-\end{lemma}
-
-\begin{proof}
-The equivalence of (1) and (2) follows from
-Properties, Lemma \ref{properties-lemma-characterize-reduced}
-applied to affine schemes \'etale over $X$. The final statements
-follow the cited lemma and fact that $\Gamma(X, \mathcal{O}_X)$ is
-a subring of $\Gamma(U, \mathcal{O}_U)$ for some
-reduced scheme $U$ \'etale over $X$.
-\end{proof}
 
 \begin{lemma}
 \label{lemma-subspace-induced-topology}
@@ -1594,7 +1585,7 @@ is a surjective map of sheaves on $(\Sch/S)_{fppf}$.
 But since each $X_i \to X'$ is representable by open immersions
 we see that in fact the map is surjective in the Zariski
 topology. Namely, if $T \to X'$ is a morphism from a scheme
-into $X'$, then $X_i \times_X' T$ is an open subscheme of $T$.
+into $X'$, then $X_i \times_{X'} T$ is an open subscheme of $T$.
 Hence we can apply
 Schemes, Lemma \ref{schemes-lemma-glue-functors}
 to see that $X'$ is a scheme.
@@ -1763,14 +1754,15 @@ a morphism of schemes. Let $a : G \times_S X \to X$ be an action. Assume that
 \item the action $a$ is free,
 \item $X \to S$ is affine, or quasi-affine, or projective, or
 quasi-projective, or $X$ is isomorphic to an open subscheme of an
-affine scheme or isomorphic to an open subscheme of $\text{Proj}(A)$
-for some graded ring $A$.
+affine scheme, or $X$ is isomorphic to an open subscheme of $\text{Proj}(A)$
+for some graded ring $A$, or $G \to S$ is radicial.
 \end{enumerate}
-Then the fppf quotient sheaf $X/G$ is a scheme.
+Then the fppf quotient sheaf $X/G$ is a scheme and $X \to X/G$
+is an fppf $G$-torsor.
 \end{lemma}
 
 \begin{proof}
-Since the action is free the morphism
+We first show that $X/G$ is a scheme. Since the action is free the morphism
 $j = (a, \text{pr}) : G \times_S X \to X \times_S X$
 is a monomorphism and hence an equivalence relation, see
 Groupoids, Lemma \ref{groupoids-lemma-free-action}. The maps
@@ -1784,8 +1776,22 @@ affine open of $X$. If $X$ is isomorphic to an open subscheme of an
 affine scheme or isomorphic to an open subscheme of $\text{Proj}(A)$
 for some graded ring $A$ this follows from
 Properties, Lemma \ref{properties-lemma-ample-finite-set-in-affine}.
-In the remaining cases, we may replace $S$ by an affine open and we
-get back to the case we just dealt with. Some details omitted.
+If $X \to S$ is affine, or quasi-affine, or projective, or
+quasi-projective, we may replace $S$ by an affine open and we
+get back to the case we just dealt with. If $G \to S$ is radicial,
+then the orbits of points on $X$ under the action of $G$ are singletons
+and the condition trivially holds. Some details omitted.
+
+\medskip\noindent
+To see that $X \to X/G$ is an fppf $G$-torsor
+(Groupoids, Definition \ref{groupoids-definition-principal-homogeneous-space})
+we have to show that $G \times_S X \to X \times_{X/G} X$
+is an isomorphism and that $X \to X/G$ fppf locally has sections.
+The second part is clear from the fact that $X \to X/G$ is surjective
+as a map of fppf sheaves (by construction). The first part follows from
+the isomorphism $R = U \times_M U$ in the conclusion of
+Proposition \ref{proposition-finite-flat-equivalence-global}
+(note that $R = G \times_S X$ in our case).
 \end{proof}
 
 \begin{lemma}
@@ -1936,7 +1942,7 @@ Let $S$ be a scheme. Let $k$ be a field.
 Let $X$ be an algebraic space over $S$ and assume that there exists
 a surjective \'etale morphism $\Spec(k) \to X$.
 If $X$ is quasi-separated, then $X \cong \Spec(k')$
-where $k' \subset k$ is a finite separable extension.
+where $k/k'$ is a finite separable extension.
 \end{lemma}
 
 \begin{proof}
@@ -2050,7 +2056,7 @@ surjective \'etale morphism $W \to X$. Consider the base change
 $\chi_W : W \times_X U \to W \times_X U'$ of $\chi$.
 As $W \times_X U$ and $W \times_X U'$ are \'etale over $W$, we conclude that
 $\chi_W$ is \'etale, by
-Morphisms, Lemma \ref{morphisms-lemma-etale-permanence-two}.
+Morphisms, Lemma \ref{morphisms-lemma-etale-permanence}.
 On the other hand, in the commutative diagram
 $$
 \xymatrix{
@@ -2064,7 +2070,7 @@ Descent, Lemma \ref{descent-lemma-syntomic-smooth-etale-permanence}
 we conclude that $U \to U'$ is \'etale.
 
 \medskip\noindent
-To prove part (2) choose a scheme $W$ over $S$ and a morphism $W \to X$.
+To prove part (3) choose a scheme $W$ over $S$ and a morphism $W \to X$.
 As above we consider the diagram
 $$
 \xymatrix{
@@ -2334,7 +2340,7 @@ $a : T \to X$ whose composition with $T' \to T$ is $c$. Choose an
 affine scheme $U$ and an \'etale morphism $U \to X$ such that the image
 of $|U| \to |X|$ contains the image of $|c| : |T'| \to |X|$.
 This is possible by Lemmas \ref{lemma-topology-points} and
-\ref{lemma-cover-by-union-affines}, the fact that a finite union of
+\ref{lemma-cover-by-union-affines}, the fact that a finite disjoint union of
 affines is affine, and the fact that $|T'|$ is quasi-compact
 (small argument omitted). Since $U \to X$ is separated
 (Lemma \ref{lemma-separated-cover}), we see that
@@ -2444,16 +2450,14 @@ to be a scheme, then the definition above agrees with
 Topologies, Definition \ref{topologies-definition-big-small-etale}.
 
 \medskip\noindent
-There are several other choices we could have made here. For example
-we could have considered all {\it algebraic spaces} $U$ which are \'etale
-over $X$, or we could have considered all {\it affine schemes} $U$ which
-are \'etale over $X$. We decided not to do so, since we like to think of
-plain old schemes as the fundamental objects of algebraic geometry. On
-the other hand, we do need these notions also, since the small \'etale site
-of an algebraic space is not sufficiently flexible, especially when
-discussing functoriality of the small \'etale site, see
-Lemma \ref{lemma-functoriality-etale-site}
-below.
+The above is our default site, but there are a couple of variants
+which we will also use. Namely, we can consider all {\it algebraic spaces}
+$U$ which are \'etale over $X$ and this produces the site
+$X_{spaces, \etale}$ we define below or we can consider all {\it affine schemes}
+$U$ which are \'etale over $X$ and this produces the site
+$X_{affine, \etale}$ we define below. The first of these two notions
+is used when discussing functoriality of the small \'etale site, see
+Lemma \ref{lemma-functoriality-etale-site}.
 
 \begin{definition}
 \label{definition-spaces-etale-site}
@@ -2475,10 +2479,10 @@ $\{\varphi_i : (U_i \to X) \to (U \to X)\}_{i \in I}$
 of $X_{spaces, \etale}$ is a covering if and only if
 $|U| = \bigcup \varphi_i(|U_i|)$.
 \end{enumerate}
-(As usual we choose a set of coverings of this type, including at least
+As usual we choose a set of coverings of this type, including at least
 the coverings in $X_\etale$, as in
 Sets, Lemma \ref{sets-lemma-coverings-site}
-to turn $X_{spaces, \etale}$ into a site.)
+to turn $X_{spaces, \etale}$ into a site.
 \end{definition}
 
 \noindent
@@ -2535,32 +2539,43 @@ Thus we see how to compute $\mathcal{F}'$
 when given the sheaf $\mathcal{F}$.
 \end{remark}
 
+\begin{definition}
+\label{definition-affine-etale-site}
+Let $S$ be a scheme.
+Let $\Sch_{fppf}$ be a big fppf site containing $S$,
+and let $\Sch_\etale$ be the corresponding big \'etale site
+(i.e., having the same underlying category).
+Let $X$ be an algebraic space over $S$.
+The site {\it $X_{affine, \etale}$} of $X$ is defined as follows:
+\begin{enumerate}
+\item An object of $X_{affine, \etale}$ is a morphism
+$\varphi : U \to X$ where $U \in \Ob((\Sch/S)_\etale)$ is an affine scheme and
+$\varphi$ is an \'etale morphism,
+\item a morphism $(\varphi : U \to X) \to (\varphi' : U' \to X)$ of
+$X_{affine, \etale}$ is given by a morphism of schemes
+$\chi : U \to U'$ such that $\varphi = \varphi' \circ \chi$, and
+\item a family of morphisms
+$\{\varphi_i : (U_i \to X) \to (U \to X)\}_{i \in I}$
+of $X_{affine, \etale}$ is a covering if and only if
+$\{U_i \to U\}$ is a standard \'etale covering, see
+Topologies, Definition \ref{topologies-definition-standard-etale}.
+\end{enumerate}
+As usual we choose a set of coverings of this type, as in
+Sets, Lemma \ref{sets-lemma-coverings-site}
+to turn $X_{affine, \etale}$ into a site.
+\end{definition}
+
 \begin{lemma}
 \label{lemma-alternative}
-Let $S$ be a scheme.
-Let $X$ be an algebraic space over $S$.
-Let $X_{affine, \etale}$ denote the full subcategory of
-$X_\etale$ whose objects are those
-$U/X \in \Ob(X_\etale)$ with $U$ affine.
-A covering of $X_{affine, \etale}$ will be a
-standard \'etale covering, see
-Topologies, Definition \ref{topologies-definition-standard-etale}.
-Then restriction
-$$
-\mathcal{F} \longmapsto \mathcal{F}|_{X_{affine, \etale}}
-$$
-defines an equivalence of topoi
-$\Sh(X_\etale) \cong \Sh(X_{affine, \etale})$.
+Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
+The functor $X_{affine, \etale} \to X_\etale$
+is special cocontinuous and induces an equivalence of topoi from
+$\Sh(X_{affine, \etale})$ to $\Sh(X_\etale)$.
 \end{lemma}
 
 \begin{proof}
-This you can show directly from the definitions, and is a good exercise.
-But it also follows immediately from
-Sites, Lemma \ref{sites-lemma-equivalence}
-by checking that the inclusion functor
-$X_{affine, \etale} \to X_\etale$ is a special cocontinuous
-functor as in
-Sites, Definition \ref{sites-definition-special-cocontinuous-functor}.
+Omitted. Hint: compare with the proof of
+Topologies, Lemma \ref{topologies-lemma-affine-big-site-etale}.
 \end{proof}
 
 \begin{definition}
@@ -2908,25 +2923,13 @@ $c_f : f_{small}^{-1}\mathcal{F}_U \to \mathcal{F}_{U'}$.
 \end{enumerate}
 These data are subject to the condition that given any $f : U' \to U$
 and $g : U'' \to U'$ in $X_\etale$ the composition
-$g_{small}^{-1}c_f \circ c_g$ is equal to $c_{f \circ g}$.
+$c_g \circ g_{small}^{-1} c_f$ is equal to $c_{f \circ g}$.
 \end{lemma}
 
 \begin{proof}
-Given a sheaf $\mathcal{F}$ on $X_\etale$ and an object
-$\varphi : U \to X$ of
-$X_\etale$ we set $\mathcal{F}_U = \varphi_{small}^{-1}\mathcal{F}$.
-If $\varphi' : U' \to X$ is a second object of $X_\etale$, and
-$f : U' \to U$ is a morphism between them, then
-the isomorphism $c_f$ comes from the fact that
-$f_{small}^{-1} \circ \varphi_{small}^{-1} = (\varphi')^{-1}_{small}$, see
-Lemma \ref{lemma-functoriality-etale-site}. The condition on the
-transitivity of the isomorphisms $c_f$ follows from the functoriality
-of the small \'etale sites also; verification omitted.
-
-\medskip\noindent
-Conversely, suppose we are given a collection of data $(\mathcal{F}_U, c_f)$
-as in the lemma. In this case we simply define $\mathcal{F}$ by the rule
-$U \mapsto \mathcal{F}_U(U)$. Details omitted.
+We may interpret $g_{small}^{-1}$ as in Lemma \ref{lemma-etale-morphism-topoi}.
+Then the lemma follows from a general fact about sites, see
+Sites, Lemma \ref{sites-lemma-glue-sheaves-absolute}.
 \end{proof}
 
 \noindent
@@ -3054,7 +3057,7 @@ write $\overline{x} = \Spec(k)$.
 
 \noindent
 It turns out that we can take stalks of sheaves on $X_\etale$
-at geometric point exactly in the same way as was done in the
+at geometric points exactly in the same way as was done in the
 case of the small \'etale site of a scheme. In order to do this we
 define the notion of an \'etale neighbourhood as follows.
 
@@ -3160,7 +3163,7 @@ lying over $x \in |X|$. Let $\varphi : U \to X$ be an \'etale morphism
 of algebraic spaces and let $u \in |U|$ with $\varphi(u) = x$.
 Then there exists a geometric point
 $\overline{u} : \Spec(k) \to U$ lying over $u$ with
-$\overline{x} = f \circ \overline{u}$.
+$\overline{x} = \varphi \circ \overline{u}$.
 \end{lemma}
 
 \begin{proof}
@@ -3187,7 +3190,7 @@ But $k$ is algebraically closed, so all these extensions are trivial,
 so $\Spec(k) \times_{\overline{x}, X, \varphi} U$
 is a disjoint union of copies of $\Spec(k)$ and each of
 these corresponds to a geometric point $\overline{u}$ with
-$f \circ \overline{u} = \overline{x}$. By
+$\varphi \circ \overline{u} = \overline{x}$. By
 Lemma \ref{lemma-points-cartesian}
 the map
 $$
@@ -3306,7 +3309,7 @@ schemes isomorphic to $\overline{x}$. Thus we can also think of
 $|U_{\overline{x}}|$ as the set of geometric points of $U$ lying over
 $\overline{x}$, i.e., as the collection of morphisms
 $\overline{u} : \overline{x} \to U$ fitting into the diagram of
-Definition \ref{definition-geometric-point}.
+Definition \ref{definition-etale-neighbourhood}.
 From this it follows that $u(X)$ is a singleton, and that
 $u(U \times_V W) = u(U) \times_{u(V)} u(W)$
 whenever $U \to V$ and $W \to V$ are morphisms in $X_\etale$.
@@ -3832,6 +3835,28 @@ construction in
 Descent, Remark \ref{descent-remark-change-topologies-ringed}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-reduced-space}
+Let $S$ be a scheme. Let $X$ be an algebraic space over $S$.
+The following are equivalent
+\begin{enumerate}
+\item $X$ is reduced,
+\item for every $x \in |X|$ the local ring of $X$ at $x$ is
+reduced (Remark \ref{remark-list-properties-local-ring-local-etale-topology}).
+\end{enumerate}
+In this case $\Gamma(X, \mathcal{O}_X)$ is a reduced ring and
+if $f \in \Gamma(X, \mathcal{O}_X)$ has $X = V(f)$, then $f = 0$.
+\end{lemma}
+
+\begin{proof}
+The equivalence of (1) and (2) follows from
+Properties, Lemma \ref{properties-lemma-characterize-reduced}
+applied to affine schemes \'etale over $X$. The final statements
+follow the cited lemma and fact that $\Gamma(X, \mathcal{O}_X)$ is
+a subring of $\Gamma(U, \mathcal{O}_U)$ for some
+reduced scheme $U$ \'etale over $X$.
+\end{proof}
+
 
 
 
@@ -4208,7 +4233,7 @@ Choose an \'etale neighbourhood $(U, \overline{u})$ of $\overline{x}$
 where $U$ is a scheme. Then $\mathcal{O}_{X, \overline{x}}$ is the
 strict henselization of the local ring of $U$ at $u$, see
 Lemma \ref{lemma-describe-etale-local-ring}.
-By our definition of Noetherian spaces the scheme $U$ is Noetherian.
+By our definition of Noetherian spaces the scheme $U$ is locally Noetherian.
 Hence we conclude by
 More on Algebra, Lemma \ref{more-algebra-lemma-henselization-noetherian}.
 \end{proof}
@@ -4355,7 +4380,7 @@ Let $f : X \to Y$ be an \'etale morphism of algebraic spaces over $S$.
 Then $f^{-1}\mathcal{O}_Y = \mathcal{O}_X$, and
 $f^*\mathcal{G} = f_{small}^{-1}\mathcal{G}$ for any sheaf of
 $\mathcal{O}_Y$-modules $\mathcal{G}$. In particular,
-$f^* : \textit{Mod}(\mathcal{O}_X) \to \textit{Mod}(\mathcal{O}_Y)$
+$f^* : \textit{Mod}(\mathcal{O}_Y) \to \textit{Mod}(\mathcal{O}_X)$
 is exact.
 \end{lemma}
 
@@ -4424,7 +4449,7 @@ $c_f : f_{small}^*\mathcal{F}_U \to \mathcal{F}_{U'}$.
 \end{enumerate}
 These data are subject to the condition that given any $f : U' \to U$
 and $g : U'' \to U'$ in $X_\etale$ the composition
-$g_{small}^{-1}c_f \circ c_g$ is equal to $c_{f \circ g}$.
+$c_g \circ g_{small}^*c_f$ is equal to $c_{f \circ g}$.
 \end{lemma}
 
 \begin{proof}
@@ -4592,10 +4617,107 @@ Modules on Sites,
 Lemma \ref{sites-modules-lemma-relocalize-morphism-compare}.
 \end{proof}
 
+\noindent
+Finally, we discuss the relationship between sheaves of sets on the small
+\'etale site $Y_\etale$ of an algebraic space $Y$ and algebraic spaces
+\'etale over $Y$. Let $S$ be a scheme and let $Y$ be an algebraic space
+over $S$. Let $\mathcal{F}$ be an object of $\Sh(Y_\etale)$. Consider
+the functor
+$$
+X : (\Sch/S)_{fppf}^{opp} \longrightarrow \textit{Sets}
+$$
+defined by the rule
+$$
+X(T) = \{(y, s) \mid y : T \to Y\text{ is a morphism over }S\text{ and }
+s \in \Gamma(T, y_{small}^{-1}\mathcal{F})\}
+$$
+Given a morphism $g : T' \to T$ the restriction map sends
+$(y, s)$ to $(y \circ g, g_{small}^{-1}s)$. This makes sense
+as $y_{small} \circ g_{small} = (y \circ g)_{small}$ by
+Lemma \ref{lemma-functoriality-etale-site}.
 
+\begin{lemma}
+\label{lemma-sheaf-gives-space}
+Let $S$ be a scheme and let $Y$ be an algebraic space over $S$.
+Let $\mathcal{F}$ be a sheaf of sets on $Y_\etale$.
+Provided a set theoretic condition is satisfied (see proof)
+the functor $X$ associated to $\mathcal{F}$ above is an algebraic space
+and there is an \'etale morphism $f : X \to Y$ of algebraic spaces
+such that $\mathcal{F} = f_{small, *}*$ where $*$ is the final object
+of the category $\Sh(X_\etale)$ (constant sheaf with value a singleton).
+\end{lemma}
 
+\begin{proof}
+Let us prove that $X$ is a sheaf for the fppf topology. Namely, suppose
+that $\{g_i : T_i \to T\}$ is a covering of $(\Sch/S)_{fppf}$ and
+$(y_i, s_i) \in X(T_i)$ satisfy the glueing condition, i.e., the
+restriction of $(y_i, s_i)$ and $(y_j, s_j)$ to $T_i \times_T T_j$ agree.
+Then since $Y$ is a sheaf for the fppf topology, we see that
+the $y_i$ give rise to a unique morphism $y : T \to Y$ such that
+$y_i = y \circ g_i$. Then we see that
+$y_{i, small}^{-1}\mathcal{F} = g_{i, small}^{-1}y_{small}^{-1}\mathcal{F}$.
+Hence the sections $s_i$ glue uniquely to a section of
+$y_{small}^{-1}\mathcal{F}$ by
+\'Etale Cohomology, Lemma \ref{etale-cohomology-lemma-describe-pullback}.
 
+\medskip\noindent
+The construction that sends $\mathcal{F} \in \Ob(\Sh(Y_\etale))$
+to $X \in \Ob((\Sch/S)_{fppf})$ preserves finite limits and
+all colimits since each of the functors $y_{small}^{-1}$ have
+this property. Of course, if $V \in \Ob(Y_\etale)$, then
+the construction sends the representable sheaf $h_V$ on $Y_\etale$
+to the representable functor represented by $V$.
 
+\medskip\noindent
+By Sites, Lemma \ref{sites-lemma-sheaf-coequalizer-representable}
+we can find a set $I$, for each $i \in I$ an object $V_i$ of $Y_\etale$
+and a surjective map of sheaves
+$$
+\coprod h_{V_i} \longrightarrow \mathcal{F}
+$$
+on $Y_\etale$. The set theoretic condition we need is that the index
+set $I$ is not too large\footnote{It suffices if the supremum of the
+cardinalities of the stalks of $\mathcal{F}$ at geometric points of $Y$
+is bounded by the size of some object of $(\Sch/S)_{fppf}$.}.
+Then $V = \coprod V_i$ is an object of $(\Sch/S)_{fppf}$ and
+therefore an object of $Y_\etale$ and we have a surjective map
+$h_V \to \mathcal{F}$.
+
+\medskip\noindent
+Observe that the product of $h_V$ with itself in $\Sh(Y_\etale)$
+is $h_{V \times_Y V}$. Consider the fibre product
+$$
+h_V \times_\mathcal{F} h_V \subset h_{V \times_Y V}
+$$
+There is an open subscheme $R$ of $V \times_Y V$ such that
+$h_V \times_\mathcal{F} h_V = h_R$, see
+Lemma \ref{lemma-support-subsheaf-final} (small detail omitted).
+By the Yoneda lemma we obtain two morphisms $s, t : R \to V$ in $Y_\etale$
+and we find a coequalizer diagram
+$$
+\xymatrix{
+h_R \ar@<1ex>[r] \ar@<-1ex>[r] &
+h_V \ar[r] &
+\mathcal{F}
+}
+$$
+in $\Sh(Y_\etale)$. Of course the morphisms $s, t$ are \'etale
+and define an \'etale equivalence relation $(t, s) : R \to V \times_S V$.
+
+\medskip\noindent
+By the discussion in the preceding two paragraphs we find a
+coequalizer diagram
+$$
+\xymatrix{
+R \ar@<1ex>[r] \ar@<-1ex>[r] &
+V \ar[r] &
+X
+}
+$$
+in $(\Sch/S)_{fppf}$. Thus $X = V/R$ is an algebraic space by
+Spaces, Theorem \ref{spaces-theorem-presentation}.
+The other statements follow readily from this; details omitted.
+\end{proof}
 
 
 
@@ -5067,7 +5189,9 @@ $X_\etale$. As it is an isomorphism this is clear.
 
 \noindent
 In
-Descent, Section \ref{descent-section-quasi-coherent-sheaves}
+Descent, Sections \ref{descent-section-quasi-coherent-sheaves},
+\ref{descent-section-quasi-coherent-cohomology}, and
+\ref{descent-section-quasi-coherent-sheaves-bis}
 we have seen that for a scheme $U$, there is no difference between a
 quasi-coherent $\mathcal{O}_U$-module on $U$, or a quasi-coherent
 $\mathcal{O}$-module on the small \'etale site of $U$. Hence the following
@@ -5133,7 +5257,7 @@ $c_f : f_{small}^*\mathcal{F}_U \to \mathcal{F}_{U'}$.
 \end{enumerate}
 These data are subject to the condition that given any $f : U' \to U$
 and $g : U'' \to U'$ in $X_\etale$ the composition
-$g_{small}^{-1}c_f \circ c_g$ is equal to $c_{f \circ g}$.
+$c_g \circ g_{small}^*c_f$ is equal to $c_{f \circ g}$.
 \end{lemma}
 
 \begin{proof}
@@ -5320,23 +5444,23 @@ is quasi-coherent.
 \end{lemma}
 
 \begin{proof}
-Note that we have the corresponding result for quasi-coherent modules
-on schemes, see
-Schemes, Section \ref{schemes-section-quasi-coherent}.
+If $X$ is a scheme, then this is
+Descent, Lemma \ref{descent-lemma-properties-quasi-coherent}.
 We will reduce the lemma to this case by \'etale localization.
+
+\medskip\noindent
 Choose a scheme $U$ and a surjective \'etale morphism $\varphi : U \to X$.
-In order to formulate this proof correctly, we temporarily go back
-to making the (pedantic) distinction between a quasi-coherent sheaf
-$\mathcal{G}$ on the scheme $U$ and the associated quasi-coherent sheaf
-$\mathcal{G}^a$ (see
-Descent, Definition \ref{descent-definition-structure-sheaf})
-on $U_\etale$
-We have a commutative diagram
+Our notation will be that $\textit{Mod}(\mathcal{O}_U) =
+\textit{Mod}(U_\etale, \mathcal{O}_U)$ and
+$\QCoh(\mathcal{O}_U) = \QCoh(U_\etale, \mathcal{O}_U)$; in other
+words, even though $U$ is a scheme we think of quasi-coherent
+modules on $U$ as modules on the small \'etale site of $U$.
+By Lemma \ref{lemma-pullback-quasi-coherent} we have a commutative diagram
 $$
 \xymatrix{
-\QCoh(\mathcal{O}_X) \ar[r] \ar[d] &
+\QCoh(\mathcal{O}_X) \ar[r]_{\varphi^*} \ar[d] &
 \QCoh(\mathcal{O}_U) \ar[d] \\
-\textit{Mod}(\mathcal{O}_X) \ar[r] &
+\textit{Mod}(\mathcal{O}_X) \ar[r]^{\varphi^*} &
 \textit{Mod}(\mathcal{O}_U)
 }
 $$
@@ -5350,22 +5474,65 @@ Moreover, we know that an object of $\textit{Mod}(\mathcal{O}_X)$ is in
 $\QCoh(\mathcal{O}_X)$ if and only if its restriction to $U$ is in
 $\QCoh(\mathcal{O}_U)$, see
 Lemma \ref{lemma-characterize-quasi-coherent}.
-Let $\mathcal{F}_i$ be a family of
-quasi-coherent $\mathcal{O}_X$-modules. Then $\bigoplus \mathcal{F}_i$
-is an $\mathcal{O}_X$-module whose restriction to $U$ is the direct sum
-of the restrictions. Let $\mathcal{G}_i$ be a quasi-coherent sheaf
-on $U$ with $\mathcal{F}_i|_{U_\etale} = \mathcal{G}_i^a$.
-Combining the above with
-Descent, Lemma \ref{descent-lemma-equivalence-quasi-coherent-limits}
-we see that
+With these preliminaries out of the way we can start the proof.
+
+\medskip\noindent
+Proof of (1). Let $\mathcal{F}_i$, $i \in I$ be a family of quasi-coherent
+$\mathcal{O}_X$-modules. By the discussion above we have
 $$
 \Big(\bigoplus \mathcal{F}_i\Big)|_{U_\etale} =
-\bigoplus \mathcal{F}_i|_{U_\etale} =
-\bigoplus \mathcal{G}_i^a =
-\Big(\bigoplus \mathcal{G}_i\Big)^a
+\bigoplus \mathcal{F}_i|_{U_\etale}
 $$
-hence $\bigoplus \mathcal{F}_i$ is quasi-coherent and (1) follows.
-The other statements are proved just so (using the same references).
+Each of the modules $\mathcal{F}_i|_{U_\etale}$ is quasi-coherent.
+Hence the direct sum is quasi-coherent by the case of schemes.
+Hence $\bigoplus \mathcal{F}_i$ is quasi-coherent as a module
+restricting to a quasi-coherent module on $U$.
+
+\medskip\noindent
+Proof of (2). Let $\mathcal{I} \to \QCoh(\mathcal{O}_X)$,
+$i \mapsto \mathcal{F}_i$ be a diagram. Then
+$$
+(\colim \mathcal{F}_i)|_{U_\etale} = \colim \mathcal{F}_i|_{U_\etale}
+$$
+by the discussion above and we conclude in the same manner.
+
+\medskip\noindent
+Proof of (3). Let $a : \mathcal{F} \to \mathcal{F}'$
+be an arrow of $\QCoh(\mathcal{O}_X)$. Then
+we have $\Ker(a)|_{U_\etale} = \Ker(a|_{U_\etale})$
+and $\Coker(a)|_{U_\etale} = \Coker(a|_{U_\etale})$
+and we conclude in the same manner.
+
+\medskip\noindent
+Proof of (4). The restriction
+$0 \to \mathcal{F}_1|_{U_\etale} \to \mathcal{F}_2|_{U_\etale}
+\to \mathcal{F}_3|_{U_\etale} \to 0$
+is short exact. Hence we have the 2-out-of-3 property
+for this sequence and we conclude as before.
+
+\medskip\noindent
+Proof of (5). Let $\mathcal{F}$ and $\mathcal{G}$ be in $\QCoh(\mathcal{O}_X)$.
+Then we have
+$$
+(\mathcal{F} \otimes_{\mathcal{O}_X} \mathcal{G})_{U_\etale} =
+\mathcal{F}|_{U_\etale} \otimes_{\mathcal{O}_U} \mathcal{G}|_{U_\etale}
+$$
+and we conclude as before.
+
+\medskip\noindent
+Proof of (6). Let $\mathcal{F}$ and $\mathcal{G}$
+be in $\QCoh(\mathcal{O}_X)$ with $\mathcal{F}$
+of finite presentation. We have
+$$
+\SheafHom_{\mathcal{O}_X}(\mathcal{F}, \mathcal{G})|_{U_\etale} =
+\SheafHom_{\mathcal{O}_U}(\mathcal{F}|_{U_\etale}, \mathcal{G}|_{U_\etale})
+$$
+Namely, restriction is a localization, see
+Section \ref{section-localize}, especially formula
+(\ref{equation-localize-at-scheme-ringed})) and formation of internal
+hom commutes with localization, see
+Modules on Sites, Lemma \ref{sites-modules-lemma-internal-hom-restriction}.
+Thus we conclude as before.
 \end{proof}
 
 \noindent
@@ -5568,7 +5735,9 @@ $$
 In the statement of the proposition, and in this proof we think of a
 quasi-coherent sheaf on a scheme as a quasi-coherent sheaf on the small
 \'etale site of that scheme. This is permissible by the results of
-Descent, Section \ref{descent-section-quasi-coherent-sheaves}.
+Descent, Sections \ref{descent-section-quasi-coherent-sheaves},
+\ref{descent-section-quasi-coherent-cohomology}, and
+\ref{descent-section-quasi-coherent-sheaves-bis}.
 
 \medskip\noindent
 The existence of $\alpha$ comes from the fact that
@@ -5742,8 +5911,8 @@ $f : X = U/R \to T$ such that $U \to X \to T$ equals $g$. By construction
 the diagram
 $$
 \xymatrix{
-\Gamma(U, \mathcal{O}_U) & \Gamma(X, \mathcal{O}_X) \ar[l]^{f^\sharp} \\
-& \Gamma(T, \mathcal{O}_T) \ar[lu]^{g^\sharp} \ar[u]^\varphi
+\Gamma(U, \mathcal{O}_U) & \Gamma(X, \mathcal{O}_X) \ar[l] \\
+& \Gamma(T, \mathcal{O}_T) \ar[lu]^{g^\sharp} \ar[u]^{\varphi}_{f^\sharp}
 }
 $$
 commutes. Hence $f^\sharp$ equals $\varphi$ because $U \to X$ is an

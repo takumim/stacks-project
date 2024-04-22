@@ -124,7 +124,7 @@ and of finite presentation.
 \end{lemma}
 
 \begin{proof}
-The representability of the diagonal (by algebraic spaces)
+The representability of the diagonal by algebraic spaces
 was shown in Quot, Lemma \ref{quot-lemma-coherent-diagonal}.
 From the proof we find that we have to show
 $\mathit{Isom}(\mathcal{F}, \mathcal{G}) \to T$
@@ -416,10 +416,11 @@ I \longrightarrow D(\mathcal{O}_X),\quad
 (n_1, \ldots, n_r) \longmapsto
 E_1^{\otimes n_1}
 \otimes \ldots \otimes
-E_1^{\otimes n_r}
+E_r^{\otimes n_r}
 $$
 Let $P : I \to \mathbf{Z}$ be a map. Then
 $\Cohstack^P_{X/B} \subset \Cohstack_{X/B}$
+as defined in Situation \ref{situation-numerical}
 is an open and closed substack.
 \end{lemma}
 
@@ -766,7 +767,7 @@ Example \ref{example-hilbert-polynomial}.
 \label{lemma-quot-tensor-invertible}
 Let $f : X \to B$ and $\mathcal{F}$ be as in the introduction to this section.
 Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
-Then tensoring with $\mathcal{L}$ defines an isomophism
+Then tensoring with $\mathcal{L}$ defines an isomorphism
 $$
 \Quotfunctor_{\mathcal{F}/X/B}
 \longrightarrow
@@ -833,7 +834,7 @@ $$
 X = \Quotfunctor^P_{\mathcal{O}^{\oplus r}_{\mathbf{P}^n_\mathbf{Z}}/
 \mathbf{P}^n_\mathbf{Z}/\mathbf{Z}}
 $$
-parametrizing quotients of $\mathcal{O}_{\mathbf{}P^n_\mathbf{Z}}^{\oplus r}$
+parametrizing quotients of $\mathcal{O}_{\mathbf{P}^n_\mathbf{Z}}^{\oplus r}$
 with Hilbert polynomial $P$ is proper over $\Spec(\mathbf{Z})$.
 \end{lemma}
 
@@ -888,7 +889,8 @@ where the sum is over $E$ as above (but $i$ and $j$ are fixed of course).
 
 \medskip\noindent
 Consider the quotient $\mathcal{Q} = \Coker(\Psi)$ on $T \times \mathbf{P}^n$.
-By More on Flatness, Lemma \ref{flat-lemma-generic-flatness-stratification}
+By More on Morphisms, Lemma
+\ref{more-morphisms-lemma-generic-flatness-stratification}
 there exists a $t \geq 0$ and closed subschemes
 $$
 T = T_0 \supset T_1 \supset \ldots \supset T_t = \emptyset
@@ -1101,7 +1103,7 @@ such that $i^*\mathcal{O}_{\mathbf{P}^n}(1) = \mathcal{L}$. By
 Morphisms, Lemma \ref{morphisms-lemma-quasi-compact-immersion}
 there exists a closed subscheme $X' \subset \mathbf{P}^n_B$
 such that $i$ factors through an open immersion $j : X \to X'$.
-By Properties, Lemma \ref{properties-lemma-extend-finite-presentation}
+By Properties, Lemma \ref{properties-lemma-lift-finite-presentation}
 there exists a finitely presented $\mathcal{O}_{X'}$-module
 $\mathcal{G}$ such that $j^*\mathcal{G} = \mathcal{F}$.
 Thus we obtain an open immersion
@@ -1388,7 +1390,7 @@ More on Morphisms of Spaces, Lemma
 By More on Morphisms of Spaces, Lemma
 \ref{spaces-more-morphisms-lemma-picard-group-first-order-thickening}
 we see that it suffices to show $H^2(X, \mathcal{I}) = 0$
-where $I$ is the quasi-coherent ideal cutting out $X$ in $X'$.
+where $\mathcal{I}$ is the quasi-coherent ideal cutting out $X$ in $X'$.
 Denote $f : X \to T$ the structure morphism.
 By Cohomology of Spaces, Lemma
 \ref{spaces-cohomology-lemma-higher-direct-images-zero-above-dimension-fibre}
@@ -2006,7 +2008,7 @@ and of finite presentation.
 \end{lemma}
 
 \begin{proof}
-The representability of the diagonal (by algebraic spaces)
+The representability of the diagonal by algebraic spaces
 was shown in Quot, Lemma \ref{quot-lemma-complexes-diagonal}.
 From the proof we find that we have to show:
 given a scheme $T$ over $B$ and objects

@@ -144,7 +144,7 @@ and $\kappa(\mathfrak m_A)$
 is separably closed, then $A^\wedge \to B^\wedge$ is surjective,
 \item if $A$ and $B$ are complete discrete valuation rings, then
 $A \to B$ is an unramified homomorphism of local rings
-if and only the uniformizer for $A$ maps to a uniformizer for $B$,
+if and only if the uniformizer for $A$ maps to a uniformizer for $B$,
 and the residue field extension is finite separable (and $B$ is
 essentially of finite type over $A$).
 \end{enumerate}
@@ -567,7 +567,7 @@ Since $Y$ is Noetherian it has finitely many connected components. Thus we
 may assume $Y$ is connected. Choose a point $y \in Y$ with image $s \in S$.
 Since $X \to S$ is unramified and quasi-compact
 then fibre $X_s$ is finite, say $X_s = \{x_1, \ldots, x_n\}$
-and $\kappa(s) \subset \kappa(x_i)$ is a finite field extension.
+and $\kappa(x_i)/\kappa(s)$ is a finite field extension.
 See Morphisms, Lemma \ref{morphisms-lemma-unramified-quasi-finite},
 \ref{morphisms-lemma-residue-field-quasi-finite}, and
 \ref{morphisms-lemma-quasi-finite}.
@@ -577,7 +577,7 @@ Thus $\Mor_S(Y, X)$ is finite by
 Proposition \ref{proposition-equality}.
 
 \medskip\noindent
-General case. There exists a nonempty open $U \subset X$ such
+General case. There exists a nonempty open $U \subset S$ such
 that $X_U \to U$ is finite (in particular separated), see
 Morphisms, Lemma \ref{morphisms-lemma-generically-finite}
 (the lemma applies since we've already seen above that a quasi-compact
@@ -624,8 +624,8 @@ The following are equivalent:
 \item $f$ is locally of finite type and a monomorphism,
 \item $f$ is universally injective, locally of finite type, and
 formally unramified,
-\item $f$ is locally of finite type and $X_y$ is either empty
-or $X_y \to y$ is an isomorphism for all $y \in Y$.
+\item $f$ is locally of finite type and $X_s$ is either empty
+or $X_s \to s$ is an isomorphism for all $s \in S$.
 \end{enumerate}
 \end{lemma}
 
@@ -725,10 +725,10 @@ By definition of a finite morphism this implies $X = \Spec(B)$.
 Note that the ring map $\varphi : A \to B$ defining $\pi$
 is a finite unramified ring map.
 Let $\mathfrak p \subset A$ be the prime corresponding to $s$.
-Let $\mathfrak q \subset B$ be the prime corresponding to $x$. By
+Let $\mathfrak q \subset B$ be the prime corresponding to $x$.
 Conditions (2), (3) and (4) imply that
 $B_{\mathfrak q}/\mathfrak pB_{\mathfrak q} = \kappa(\mathfrak p)$.
-Algebra, Lemma \ref{algebra-lemma-unique-prime-over-localize-below}
+By Algebra, Lemma \ref{algebra-lemma-unique-prime-over-localize-below}
 we have $B_{\mathfrak q} = B_{\mathfrak p}$
 (note that a finite ring map satisfies going up, see
 Algebra, Section \ref{algebra-section-going-up}.)
@@ -820,7 +820,7 @@ The vanishing set of the discriminant is precisely the set
 of points of $K$ which ramify in $L$.
 Thus, denoting by $X$ the complement of the closed subset
 defined by the different in $\Spec(\mathcal{O}_L)$,
-we obtain a morphism $X \to \Spec(\mathcal{O}_L)$ which is unramified.
+we obtain a morphism $X \to \Spec(\mathcal{O}_K)$ which is unramified.
 Furthermore, this morphism is also flat, as any local homomorphism
 of discrete valuation rings is flat, and hence this morphism is
 actually \'etale. If $L/K$ is finite Galois, then denoting by
@@ -888,7 +888,7 @@ See Algebra, Lemma \ref{algebra-lemma-local-flat-ff}.
 \item A map $A \to B$ of rings is faithfully flat if and only if it is
 flat and the induced map on spectra is surjective.
 See Algebra, Lemma \ref{algebra-lemma-ff-rings}.
-\item If $A$ is a noetherian local ring, the completion
+\item If $A$ is a Noetherian local ring, the completion
 $A^\wedge$ is faithfully flat over $A$.
 See Algebra, Lemma \ref{algebra-lemma-completion-faithfully-flat}.
 \item Let $A$ be a Noetherian local ring and $M$ an $A$-module.
@@ -1759,7 +1759,7 @@ unramified morphism is \'etale locally on the base a closed immersion.
 Let $f : X \to S$ be a finite unramified morphism of schemes.
 Let $s \in S$.
 There exists an \'etale neighbourhood $(U, u) \to (S, s)$
-and a disjoint union decomposition
+and a finite disjoint union decomposition
 $$
 X_U = \coprod\nolimits_j V_j
 $$
@@ -1767,7 +1767,7 @@ such that each $V_j \to U$ is a closed immersion.
 \end{lemma}
 
 \begin{proof}
-Since $X \to S$ is finite the fibre over $S$ is a finite set
+Since $X \to S$ is finite the fibre over $s$ is a finite set
 $\{x_1, \ldots, x_n\}$ of points of $X$. Apply
 Lemma \ref{lemma-unramified-etale-local-technical}
 to this set (a finite morphism is separated, see
@@ -1822,12 +1822,12 @@ Let $f : X \to S$ be a morphism of schemes.
 Let $x_1, \ldots, x_n \in X$ be points having the same image $s$ in $S$.
 Assume $f$ is separated and $f$ is \'etale at each $x_i$.
 Then there exists an \'etale neighbourhood $(U, u) \to (S, s)$
-and a disjoint union decomposition
+and a finite disjoint union decomposition
 $$
 X_U =
 W \amalg \coprod\nolimits_{i, j} V_{i, j}
 $$
-such that
+of schemes such that
 \begin{enumerate}
 \item $V_{i, j} \to U$ is an isomorphism,
 \item the fibre $W_u$ contains no point mapping to any $x_i$.
@@ -1856,11 +1856,11 @@ but it may be useful to state it explicitly here. It says that a finite
 \label{lemma-finite-etale-etale-local}
 Let $f : X \to S$ be a finite \'etale morphism of schemes.
 Let $s \in S$. There exists an \'etale neighbourhood $(U, u) \to (S, s)$
-and a disjoint union decomposition
+and a finite disjoint union decomposition
 $$
 X_U = \coprod\nolimits_j V_j
 $$
-such that each $V_j \to U$ is an isomorphism.
+of schemes such that each $V_j \to U$ is an isomorphism.
 \end{lemma}
 
 \begin{proof}
@@ -1921,7 +1921,7 @@ Then $A$ is Cohen-Macaulay if and only if $B$ is so.
 \end{proposition}
 
 \begin{proof}
-A local ring $A$ is Cohen-Macaulay if and only $\dim(A) = \text{depth}(A)$.
+A local ring $A$ is Cohen-Macaulay if and only if $\dim(A) = \text{depth}(A)$.
 As both of these invariants is preserved under an \'etale extension,
 the claim follows.
 \end{proof}
@@ -1982,6 +1982,9 @@ this notion only for ring extensions which are essentially of finite type
 
 \begin{proposition}
 \label{proposition-etale-normal}
+\begin{reference}
+\cite[Expose I, Theorem 9.5 part (i)]{SGA1}
+\end{reference}
 Let $A$, $B$ be Noetherian local rings.
 Let $f : A \to B$ be an \'etale homomorphism of local rings.
 Then $A$ is a normal domain if and only if $B$ is so.

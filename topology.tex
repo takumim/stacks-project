@@ -79,6 +79,11 @@ $\mathcal{U} : U = \bigcup_{i \in I} U_i$ is an
 {\it open covering of} $U$ (note: we allow any $U_i$ to be empty
 and we even allow, in case $U$ is empty, the empty set for $I$),
 \item
+\label{item-subcover}
+a {\it subcover} of a covering as in (\ref{item-covering})
+is an open covering $\mathcal{U}' : U = \bigcup_{i \in I'} U_i$
+where $I' \subset I$,
+\item
 \label{item-refinement}
 the open covering $\mathcal{V}$ is a {\it refinement}
 of the open covering $\mathcal{U}$ (if
@@ -124,7 +129,19 @@ Let $X$ be a topological space. The following are equivalent:
 \end{lemma}
 
 \begin{proof}
-Omitted.
+We suppose that $X$ is Hausdorff. Let $(x, y) \not \in \Delta(X)$, i.e.,
+$x \neq y$. There are $U$ and $V$ disjoint open sets of $X$
+such that $x \in U$ and $y \in V$. This implies that $U \times V \subset
+(X \times X) \setminus \Delta(X) $. This shows that $ (X \times X) \setminus
+\Delta(X)$ is an open set of $ X \times X$ which is equivalent to say that the
+diagonal $\Delta(X) \subset X \times X$ is closed in $X \times X$.
+The converse is similar:
+The complement $(X \times X) \setminus \Delta(X)$ consist
+precisely of $(x, y) \in X\times X$ with $ x \neq y$. Thus, if $ \Delta(X)
+\subset X \times X$ is closed, then, by the definition of the product topology,
+for every such $ (x, y)$, there are opens $U, V \subset X$ with $(x, y) \in
+U \times V$ and $(U \times V)\cap \Delta(X) = \emptyset$. In other words, with
+$x \in U$ and $y \in V$ such that $U \cap V = \emptyset$.
 \end{proof}
 
 \begin{lemma}
@@ -195,7 +212,36 @@ $Y$, there exist disjoint open neighbourhoods of $x$ and $x'$.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+If $f$ is separated, by Definition \ref{definition-separated}, $\Delta$ is a
+closed map. The fact that $X$ is closed in $X$ gives us that $\Delta(X)$ is
+closed in $ X\times_Y X $. Thus (1) implies (2).
+
+\medskip\noindent
+Assune $\Delta(X) \subset X \times_Y X$ is a closed subset and denote
+$U$ the complementary open. This means we have an open set
+$W \subset X \times X$ such that $W \cap (X \times_Y X) = U$. However,
+by definition of the product topology, if
+$(x, x') \in W \cap (X \times_Y X)$,
+we have $V$ and $V'$ open sets of $X$ such that $x \in V$, $x' \in V'$ and
+$V \times V' \subset W$. If we had $V \cap V' \neq \emptyset$, we would have
+$z \in V \cap V'$. However, $(z, z) \in X \times_Y X$, so
+$(z,z) \in (V \times V') \cap (X\times_Y X) \subset U$, which is absurd.
+Therefore $V \cap V' = \emptyset $, and we have two disjoint open
+neighborhoods for $x$ and $x'$. It proves that (2) implies (3).
+
+\medskip\noindent
+Finally, we suppose that given distinct points $x, x' \in X$ mapping to
+the same point of $Y$, there exist disjoint open neighbourhoods
+of $x$ and $x'$. Let $F$ be a closed set of $X$. We will show that
+$\Delta(F)$ is a closed subset of $X \times_Y X$. Let
+$(x, x') \in X \times_Y X$ be a point not contained in $\Delta(F)$.
+Then either $x \not = x'$ or $x \not \in F$.
+In the first case, we choose disjoint open neighbourhoods
+$V, V' \subset X$ of $x, x'$ and we see that $(V \times V') \cap X \times_Y X$
+is an open neighbourood of $(x, x')$ not meeting $\Delta(F)$.
+In the second case, we see that $((X \setminus F) \times X) \cap X \times_Y X$
+is an open neighbourood of $(x, x')$ not meeting $\Delta(F)$.
+We have shown that (3) implies (1).
 \end{proof}
 
 \begin{lemma}
@@ -205,17 +251,22 @@ If $X$ is Hausdorff, then $f$ is separated.
 \end{lemma}
 
 \begin{proof}
-Clear from Lemma \ref{lemma-separated}.
+Clear from Lemmas \ref{lemma-separated} and \ref{lemma-Hausdorff}
+as $\Delta(X)$ closed in $X \times X$ implies $\Delta(X)$ closed
+in $X \times_Y X$.
 \end{proof}
 
 \begin{lemma}
 \label{lemma-base-change-separated}
-Let $f : X \to Y$ and $Z \to Y$ be continuous maps of topological spaces.
-If $f$ is separated, then $f' : Z \times_Y X \to Z$ is separated.
+Let $f : X \to Y$ and $Y' \to Y$ be continuous maps of topological spaces.
+If $f$ is separated, then $f' : Y' \times_Y X \to Y'$ is separated.
 \end{lemma}
 
 \begin{proof}
-Follows from characterization (3) of Lemma \ref{lemma-separated}.
+Follows from characterization (2) of Lemma \ref{lemma-separated}.
+Namely, with $X' = Y' \times_Y X$ the diagonal $\Delta(X')$
+in the fibre product $X' \times_{Y'} X'$ is the inverse image of
+$\Delta(X)$ in $X \times_Y X$.
 \end{proof}
 
 
@@ -254,7 +305,30 @@ is a basis for this topology.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $\sigma(\mathcal B)$ be the set of subsets of $X$ which can be written
+as unions of elements of $\mathcal B$. We claim $\sigma(\mathcal{B})$
+is a topology. Namely, the empty set is an element of $\sigma(\mathcal{B})$
+(as an empty union) and $X$ is an element of $\sigma(\mathcal{B})$ (as the
+union of all elements of $\mathcal{B}$). It is clear that $\sigma(\mathcal{B})$
+is preserved under unions. Finally, if $U, V \in \sigma(\mathcal{B})$
+then write $U = \bigcup_{i \in I} U_i$ and $V = \bigcup_{j \in J} V_j$
+with $U_i, V_j \in \mathcal{B}$ for all $i \in I$ and $j \in J$.
+Then
+$$
+U \cap V = \bigcup\nolimits_{i \in I, j \in J}
+U_i \cap V_j
+$$
+The assumption in the lemma tells us that $U_i \cap V_j \in \sigma(\mathcal{B})$
+hence we see that $U \cap V$ is too. Thus $\sigma(\mathcal{B}$ is a topology.
+Properties (1) and (2) of Definition \ref{definition-base} are
+immediate for this topology. To prove the uniqueness of this topology
+let $\mathcal T$ be a topology on $X$ such that $\mathcal B$ is a base for it.
+Then of course every element of $\mathcal{B}$ is in $\mathcal{T}$ by
+(1) of Definition \ref{definition-base} and
+hence $\sigma(\mathcal{B} \subset \mathcal{T}$. Conversely, part
+(2) of Definition \ref{definition-base} tells us that every element
+of $\mathcal{T}$ is a union of elements of $\mathcal{B}$, i.e.,
+$\mathcal{T} \subset \sigma(\mathcal{B})$. This finishes the proof.
 \end{proof}
 
 \begin{lemma}
@@ -268,7 +342,11 @@ $V_j$ is an element of the basis $\mathcal{B}$.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+If $ x \in U = \bigcup_{i\in I} U_i $, there is an $ i_x \in I $ such that
+$ x \in U_{i_x} $. Thus we have a $ B_{i_x} \in \mathcal{B}$
+verifying $ x \in B_{i_x} \subset U_{i_x}$. Set
+$J = \{i_x | x \in U\}$ and for $j = i_x \in J$ set $V_j = B_{i_x}$.
+This gives the desired open covering of $U$ by $\{V_j\}_{j \in J}$.
 \end{proof}
 
 \begin{definition}
@@ -290,7 +368,9 @@ for this topology.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+By convention $\bigcap_\emptyset B = X $. Thus we can apply Lemma
+\ref{lemma-make-base} to the set of finite intersections of elements
+from $\mathcal B$.
 \end{proof}
 
 \begin{lemma}
@@ -352,7 +432,39 @@ closed.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+The set $\mathcal{T} = \{f^{-1}(U) | U \subset X \text{ open}\}$ is a
+topology on $Y$. Firstly, $\emptyset = f^{-1}(\emptyset)$ and $f^{-1}(X) = Y$.
+So $\mathcal{T}$ contains $\emptyset$ and $Y$.
+
+\medskip\noindent
+Now let $\{V_i\}_{i \in I}$ be a collection of open subsets where
+$V_i \in \mathcal{T}$ and write $V_i = f^{-1}(U_i)$ where $U_i$
+is an open subset of $X$, then
+$$
+\bigcup\nolimits_{i\in I} V_i =
+\bigcup\nolimits_{i\in I} f^{-1}(U_i) =
+f^{-1}\left(\bigcup\nolimits_{i\in I} U_i\right)
+$$
+So $\bigcup_{i\in I} V_i \in \mathcal{T}$ as $\bigcup_{i\in I} U_i$
+is open in $X$.
+Now let $V_1, V_2 \in \mathcal{T}$. We have $U_1, U_2$ open in $X$
+such that $V_1 = f^{-1}(U_1)$ and $V_2 = f^{-1}(U_2)$. Then
+$$
+V_1 \cap V_2 = f^{-1}(U_1) \cap f^{-1}(U_2) = f^{-1}(U_1 \cap U_2)
+$$
+So $V_1 \cap V_2 \in \mathcal{T}$ because $U_1 \cap U_2$ is open in $X$.
+
+\medskip\noindent
+Any topology on $Y$ such that $f$ is continuous contains
+$\mathcal{T}$ according to the definition of a continuous map.
+Thus $\mathcal{T}$ is indeed
+the weakest topology on $Y$ such that $f$ is continuous.
+This proves that (1) and (2) are equivalent.
+
+\medskip\noindent
+The equivalence of (2) and (3) follows from the equality
+$f^{-1}(X \setminus E) = Y \setminus f^{-1}(E)$ for all subsets
+$E \subset X$.
 \end{proof}
 
 \noindent
@@ -372,7 +484,35 @@ topology characterized by each of the following statements:
 \end{lemma}
 
 \begin{proof}
-Omitted.
+The set $\mathcal{T} = \{V\subset Y | f^{-1}(V) \text{ is open}\}$ is a
+topology on $Y$. Firstly $\emptyset = f^{-1}(\emptyset)$ and $f^{-1}(Y) = X$.
+So $\mathcal{T}$ contains $\emptyset$ and $Y$.
+
+\medskip\noindent
+Let $(V_i)_{i \in I}$ be a family of elements $V_i \in \mathcal{T}$.
+Then
+$$
+\bigcup\nolimits_{i\in I} f^{-1}(V_i) =
+f^{-1}\left(\bigcup\nolimits_{i\in I} V_i\right)
+$$
+Thus $\bigcup_{i\in I} V_i \in \mathcal{T}$ as
+$\bigcup_{i\in I}f^{-1}(V_i)$ is open in $X$.
+Furthermore if $V_1, V_2 \in \mathcal{T}$ then
+$$
+f^{-1}(V_1) \cap f^{-1}(V_2) = f^{-1}(V_1 \cap V_2)
+$$
+So $V_1 \cap V_2 \in \mathcal{T}$ because
+$f^{-1}(V_1) \cap f^{-1}(V_2)$ is open in $X$.
+
+\medskip\noindent
+Finally a topology on $Y$ such that $f$ is continuous is included in
+$\mathcal{T}$ according to the definition of a continuous function, so
+$\mathcal{T}$ is the strongest topology on $Y$ such that $f$ is continuous. It
+proves that (1) and (2) are equivalent.
+
+\medskip\noindent
+Finally, (2) and (3) equivalence follows from $f^{-1}(X\setminus E) = Y
+\setminus f^{-1}(E)$ for all subsets $E \subset X$.
 \end{proof}
 
 \noindent
@@ -416,9 +556,10 @@ Let $f : X \to Y$ be surjective, open, continuous map of topological spaces.
 Let $T \subset Y$ be a subset. Then
 \begin{enumerate}
 \item $f^{-1}(\overline{T}) = \overline{f^{-1}(T)}$,
-\item $T \subset Y$ is closed if and only $f^{-1}(T)$ is closed,
-\item $T \subset Y$ is open if and only $f^{-1}(T)$ is open, and
-\item $T \subset Y$ is locally closed if and only $f^{-1}(T)$ is locally closed.
+\item $T \subset Y$ is closed if and only if $f^{-1}(T)$ is closed,
+\item $T \subset Y$ is open if and only if $f^{-1}(T)$ is open, and
+\item $T \subset Y$ is locally closed if and only if $f^{-1}(T)$
+is locally closed.
 \end{enumerate}
 In particular we see that $f$ is submersive.
 \end{lemma}
@@ -445,9 +586,10 @@ Let $f : X \to Y$ be surjective, closed, continuous map of topological spaces.
 Let $T \subset Y$ be a subset. Then
 \begin{enumerate}
 \item $\overline{T} = f(\overline{f^{-1}(T)})$,
-\item $T \subset Y$ is closed if and only $f^{-1}(T)$ is closed,
-\item $T \subset Y$ is open if and only $f^{-1}(T)$ is open, and
-\item $T \subset Y$ is locally closed if and only $f^{-1}(T)$ is locally closed.
+\item $T \subset Y$ is closed if and only if $f^{-1}(T)$ is closed,
+\item $T \subset Y$ is open if and only if $f^{-1}(T)$ is open, and
+\item $T \subset Y$ is locally closed if and only if
+$f^{-1}(T)$ is locally closed.
 \end{enumerate}
 In particular we see that $f$ is submersive.
 \end{lemma}
@@ -501,7 +643,15 @@ is connected as well.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $A \subset f(E)$ an open and closed subset of $f(E)$. Because $f$ is
+continuous, $f^{-1}(A)$ is an open and closed subset of $E$. As $E$ is
+connected, $f^{-1}(A) = \emptyset$ or $f^{-1}(A) = E$. However, $A\subset f(E)$
+implies that $A = f(f^{-1}(A))$. Indeed, if $x\in f(f^{-1}(A))$ then there is
+$y\in f^{-1}(A)$ such that $f(y) = x$ and because $y\in f^{-1}(A)$, we have
+$f(y) \in A$ i.e. $x\in A$. Reciprocally, if $x\in A$, $A\subset f(E)$ implies
+that there is $y\in E$ such that $f(y) = x$. Therefore $y\in f^{-1}(A)$, and
+then $x\in f(f^{-1}(A))$. Thus $A = \emptyset$ or $A = f(E)$ proving that
+$f(E)$ is connected.
 \end{proof}
 
 \begin{lemma}
@@ -510,10 +660,10 @@ Let $X$ be a topological space.
 \begin{enumerate}
 \item If $T \subset X$ is connected, then so is its closure.
 \item Any connected component of $X$ is closed (but not necessarily open).
-\item Every connected subset of $X$ is contained in a connected
+\item Every connected subset of $X$ is contained in a unique connected
 component of $X$.
-\item Every point of $X$ is contained in a connected component, in other
-words, $X$ is the union of its connected components.
+\item Every point of $X$ is contained in a unique connected component, in other
+words, $X$ is the disjoint union of its connected components.
 \end{enumerate}
 \end{lemma}
 
@@ -521,24 +671,29 @@ words, $X$ is the union of its connected components.
 Let $\overline{T}$ be the closure of the connected subset $T$.
 Suppose $\overline{T} = T_1 \amalg T_2$ with $T_i \subset \overline{T}$
 open and closed. Then $T = (T\cap T_1) \amalg (T \cap T_2)$. Hence
-$T$ equals one of the two, say $T = T_1 \cap T$. Thus clearly
-$\overline{T} \subset T_1$ as desired.
+$T$ equals one of the two, say $T = T_1 \cap T$. Thus
+$\overline{T} \subset T_1$. This implies (1) and (2).
 
 \medskip\noindent
-Pick a point $x\in X$. Consider the set $A$ of connected subsets
-$x \in T_\alpha \subset X$. Note that $A$ is nonempty since
-$\{x\} \in A$. There is a partial ordering on $A$ coming from
-inclusion: $\alpha \leq \alpha' \Leftrightarrow T_\alpha \subset T_{\alpha'}$.
-Choose a maximal totally ordered subset $A' \subset A$, and let
-$T = \bigcup_{\alpha \in A'} T_\alpha$. We claim that $T$ is
-connected. Namely, suppose that $T =  T_1 \amalg T_2$ is a disjoint
-union of two open and closed subsets of $T$.
-For each $\alpha \in A'$ we have either $T_\alpha \subset T_1$
-or $T_\alpha \subset T_2$, by connectedness of $T_\alpha$.
-Suppose that for some $\alpha_0 \in A'$ we have
-$T_{\alpha_0} \not\subset T_1$ (say, if not we're done anyway).
-Then, since $A'$ is totally ordered we see immediately that
-$T_\alpha \subset T_2$ for all $\alpha \in A'$. Hence $T = T_2$.
+Let $A$ be a nonempty set of connected subsets of $X$ such that
+$\Omega = \bigcap_{T \in A} T$ is nonempty. We claim $E = \bigcup_{T \in A} T$
+is connected. Namely, $E$ is nonempty as it contains $\Omega$.
+Say $E = E_1 \amalg E_2$ with $E_i$ closed in $E$. We may assume
+$E_1$ meets $\Omega$ (after renumbering). Then each $T \in A$ meets $E_1$
+and hence must be contained in $E_1$ as $T$ is connected. Hence $E \subset E_1$
+which proves the claim.
+
+\medskip\noindent
+Let $W \subset X$ be a nonempty connected subset.
+If we apply the result of the previous paragraph to the set of all
+connected subsets of $X$ containing $W$, then we see that $E$ is
+a connected component of $X$. This implies existence and uniqueness in (3).
+
+\medskip\noindent
+Let $x \in X$. Taking $W = \{x\}$ in the previous paragraph
+we see that $x$ is contained in a unique connected component of $X$.
+Any two distinct connected components must be disjoint (by the
+result of the second paragraph).
 
 \medskip\noindent
 To get an example where connected components are not open, just take
@@ -546,6 +701,21 @@ an infinite product $\prod_{n \in \mathbf{N}} \{0, 1\}$
 with the product topology. Its connected components are singletons,
 which are not open.
 \end{proof}
+
+\begin{remark}
+\label{remark-quasi-components}
+\begin{reference}
+\cite[Example 6.1.24]{Engelking}
+\end{reference}
+Let $X$ be a topological space and $x \in X$. Let $Z \subset X$ be the
+connected component of $X$ passing through $x$. Consider the intersection
+$E$ of all open and closed subsets of $X$ containing $x$. It is clear that
+$Z \subset E$. In general $Z \not = E$. For example, let
+$X = \{x, y, z_1, z_2, \ldots\}$ with the topology with the following
+basis of opens, $\{z_n\}$, $\{x, z_n, z_{n + 1}, \ldots\}$, and
+$\{y, z_n, z_{n + 1}, \ldots\}$ for all $n$. Then $Z = \{x\}$ and
+$E = \{x, y\}$. We omit the details.
+\end{remark}
 
 \begin{lemma}
 \label{lemma-connected-fibres-quotient-topology-connected-components}
@@ -659,7 +829,20 @@ neighbourhoods.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+For all $x\in X$ let write $\mathcal{N}(x)$ the fundamental system of connected
+neighbourhoods of $x$ and let $U\subset X$ be an open subset of $X$. Then for
+all $x\in U$, $U$ is a neighbourhood of $x$, so the set
+$\{V \in \mathcal{N}(x) | V\subset U\}$
+is not empty and is a fundamental system of connected
+neighbourhoods of $x$ in $U$. Thus $U$ is locally connected and it proves (1).
+
+\medskip\noindent
+Let $x \in \mathcal{C} \subset X$ where $\mathcal{C}$ is the connected component
+of $x$. Because $X$ is locally connected, there exists $\mathcal{N}$ a
+connected neighbourhood of $x$. Therefore by the definition of a connected
+component, we have $\mathcal{N} \subset \mathcal{C}$ and then $\mathcal{C}$ is
+a neighbourhood of $x$. It implies that $\mathcal{C}$ is a neighbourhood of
+each of his point, in other words $\mathcal{C}$ is open and (2) is proven.
 \end{proof}
 
 
@@ -690,19 +873,13 @@ is irreducible as well.
 \end{lemma}
 
 \begin{proof}
-Suppose $f(E)$ is the union of $Z_1 \cap f(E)$ and $Z_2 \cap f(E)$, for two
-distinct closed subsets $Z_1$ and $Z_2$ of $Y$; this is equal to the
-intersection $(Z_1 \cup Z_2) \cap f(E)$, so $f(E)$ is then contained in the
-union $Z_1 \cup Z_2$.  For the irreducibility of $f(E)$ it suffices to show
-that it is contained in either $Z_1$ or $Z_2$. The relation
-$f(E) \subset Z_1 \cup Z_2$ shows that
-$f^{-1}(f(E)) \subset f^{-1}(Z_1 \cup Z_2)$; as the right-hand side is
-clearly equal to $f^{-1}(Z_1) \cup f^{-1}(Z_2)$ and since
-$E \subset f^{-1}(f(E))$, it follows that
-$E \subset f^{-1}(Z_1) \cup f^{-1}(Z_2)$, from which one concludes by the
-irreducibility of $E$ that $E \subset f^{-1}(Z_1)$ or
-$E \subset f^{-1}(Z_2)$.  Hence one sees that either
-$f(E) \subset f(f^{-1}(Z_1)) \subset Z_1$ or $f(E) \subset Z_2$.
+Clearly we may assume $E = X$ (i.e., $X$ irreducible)
+and $f(E) = Y$ (i.e., $f$ surjective). First, $Y \not = \emptyset$
+since $X \not = \emptyset$. Next, assume $Y = Y_1 \cup Y_2$ with
+$Y_1$, $Y_2$ closed. Then $X = X_1 \cup X_2$ with $X_i = f^{-1}(Y_i)$
+closed in $X$. By assumption on $X$, we must have
+$X = X_1$ or $X = X_2$, hence $Y = Y_1$ or $Y = Y_2$
+since $f$ is surjective.
 \end{proof}
 
 \begin{lemma}
@@ -742,6 +919,48 @@ Then, since $A'$ is totally ordered we see immediately that
 $T_\alpha \subset Z_2$ for all $\alpha \in A'$. Hence $T' = Z_2$.
 This proves (3). Part (4) is an immediate consequence of (3)
 as a singleton space is irreducible.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-pick-irreducible-components}
+Let $X$ be a topological space and suppose $X = \bigcup_{i = 1, \ldots, n} X_i$
+where each $X_i$ is an irreducible closed subset of $X$ and no $X_i$
+is contained in the union of the other members.  Then each $X_i$ is an
+irreducible component of $X$ and each irreducible component of $X$
+is one of the $X_i$.
+\end{lemma}
+
+\begin{proof}
+Let $Y$ be an irreducible component of $X$. Write
+$Y = \bigcup_{i = 1, \ldots, n} (Y \cap X_i)$
+and note that each $Y \cap X_i$ is closed in $Y$ since $X_i$ is closed in $X$.
+By irreducibility of $Y$ we see that $Y$ is equal to one of the $Y \cap X_i$,
+i.e., $Y \subset X_i$.  By maximality of irreducible components we
+get $Y = X_i$.
+
+\medskip\noindent
+Conversely, take one of the $X_i$ and expand it to an irreducible component
+$Y$, which we have already shown is one of the $X_j$.
+So $X_i \subset X_j$ and since the original union does not have
+redundant members, $X_i = X_j$, which is an irreducible component.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-surjective-continuous-irreducible-components}
+Let $f : X \to Y$ be a surjective, continuous map of topological spaces.
+If $X$ has a finite number, say $n$, of irreducible components, then
+$Y$ has $\leq n$ irreducible components.
+\end{lemma}
+
+\begin{proof}
+Say $X_1, \ldots, X_n$ are the irreducible components of $X$.
+By Lemmas \ref{lemma-image-irreducible-space} and \ref{lemma-irreducible}
+the closure $Y_i \subset Y$ of $f(X_i)$ is irreducible.
+Since $f$ is surjective, we see that $Y$ is the union of the $Y_i$.
+We may choose a minimal subset $I \subset \{1, \ldots, n\}$
+such that $Y = \bigcup_{i \in I} Y_i$. Then we may apply
+Lemma \ref{lemma-pick-irreducible-components} to see that the $Y_i$
+for $i \in I$ are the irreducible components of $Y$.
 \end{proof}
 
 \noindent
@@ -799,7 +1018,7 @@ subset of $X$. Hence there exists $x \in Z$ with $\overline{\{x\}} = Z$. It
 follows $\overline{\{x\}} \cap Y = Z$. This shows $Y$ is quasi-sober. Second,
 suppose $Y$ is open. Let $Z$ be an irreducible closed subset of $Y$. Then
 $\overline{Z}$ is an irreducible closed subset of $X$. Hence there
-exists $x\in Z$ with $\overline{\{x\}}=\overline{Z}$. If
+exists $x \in \overline{Z}$ with $\overline{\{x\}}=\overline{Z}$. If
 $x\notin Y$ we get the contradiction
 $Z=Z\cap Y\subset\overline{Z}\cap Y=\overline{\{x\}}\cap Y=\emptyset$.
 Therefore $x\in Y$. It follows $Z=\overline{Z}\cap Y=\overline{\{x\}}\cap Y$.
@@ -997,6 +1216,22 @@ map $f'$ is unique. We also omit the proof of the statements on
 Kolmogorov spaces.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-remove-irreducible-connected}
+Let $X$ be a connected topological space with a finite number of
+irreducible components $X_1, \ldots, X_n$. If $n > 1$ there is an
+$1 \leq j \leq n$ such that $X' = \bigcup_{i \not = j} X_i$ is connected.
+\end{lemma}
+
+\begin{proof}
+This is a graph theory problem. Let $\Gamma$ be the graph with vertices
+$V = \{1, \ldots, n\}$ and an edge between $i$ and $j$ if and only if
+$X_i \cap X_j$ is nonempty. Connectedness of $X$ means that $\Gamma$
+is connected. Our problem is to find $1 \leq j \leq n$ such that
+$\Gamma \setminus \{j\}$ is still connected. You can do this by choosing
+$j, j' \in E$ with maximal distance and then $j$ works (choose a leaf!).
+Details omitted.
+\end{proof}
 
 
 \section{Noetherian topological spaces}
@@ -1047,7 +1282,7 @@ components. Hence $Z = \bigcup Z'_i \cup \bigcup Z''_j$ is
 a finite union of irreducible closed subsets.
 After removing redundant members of this expression,
 this will be the decomposition of $Z$ into its irreducible
-components, a contradiction.
+components (Lemma \ref{lemma-pick-irreducible-components}), a contradiction.
 
 \medskip\noindent
 Let $Z \subset X$ be an irreducible component of $X$.
@@ -1094,7 +1329,20 @@ $\bigcup_{i = 1, \ldots, n}  X_i$ is Noetherian (with the induced topology).
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $\{F_m\}_{m \in \mathbf{N}}$ a decreasing sequence of closed subsets
+of $X' = \bigcup_{i = 1, \ldots, n}  X_i$ with the induced topology.
+Then we can find a decreasing sequence $\{G_m\}_{m \in \mathbf{N}}$
+of closed subsets of $X$ verifying $F_m = G_m \cap X'$ for all $m$
+(small detail omitted). As $X_i$ is noetherian and
+$\{G_m \cap X_i\}_{m \in \mathbf{N}}$ a decreasing sequence
+of closed subsets of $X_i$, there exists $m_i \in \mathbf{N}$
+such that for all $m \geq m_i$ we have $G_m \cap X_i = G_{m_i} \cap X_i$.
+Let $m_0 = \max_{i = 1, \ldots, n} m_i$. Then clearly
+$$
+F_m = G_m \cap X' = G_m \cap (X_1 \cup \ldots \cup X_n) =
+(G_m \cap X_1) \cup \ldots (G_m \cap X_n)
+$$
+stabilizes for $m \geq m_0$ and the proof is complete.
 \end{proof}
 
 \begin{example}
@@ -1184,9 +1432,14 @@ discussion following Definition \ref{definition-Krull}).
 Thus an inequality in one direction. For the converse, let $n \geq 0$
 and suppose that $\dim(X) \geq n$. Then we can find a chain of irreducible
 closed subsets $Z_0 \subset Z_1 \subset \ldots \subset Z_n \subset X$.
-Pick $x \in Z_0$. Then we see that every open neighbourhood $U$ of $x$
-has a chain of irreducible closed subsets
-$Z_0 \cap U \subset Z_1 \cap U \subset \ldots Z_n \cap U \subset U$.
+Pick $x \in Z_0$. For every open neighbourhood $U$ of $x$ we get
+a chain of irreducible closed subsets
+$$
+Z_0 \cap U \subset Z_1 \cap U \subset \ldots \subset Z_n \cap U
+$$
+in $U$. Namely, the sets $U \cap Z_i$ are irreducible closed in $U$ and the
+inclusions are strict (details omitted; hint: the closure of $U \cap Z_i$
+is $Z_i$).
 In this way we see that $\dim_x(X) \geq n$ which proves the other
 inequality.
 \end{proof}
@@ -1320,7 +1573,37 @@ $$
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let suppose that $X$ is catenary. According to
+Definition \ref{definition-catenary}, for every pair of
+irreducible closed subsets $Y \subset Y'$ we have
+$\text{codim}(Y,Y') < \infty$. Let $Y \subset Y' \subset Y''$
+be a triple of irreducible closed subsets of $X$. Let
+$$
+Y = Y_0 \subset Y_1 \subset ... \subset Y_{e_1} = Y'
+$$
+be a maximal chain of irreducible closed subsets between $Y$ and $Y'$
+where $e_1 = \text{codim}(Y,Y')$. Let also
+$$
+Y' = Y_{e_1} \subset Y_{e_1 + 1}\subset ... \subset Y_{e_1 + e_2} = Y''
+$$
+be a maximal chain of irreducible closed subsets between $Y'$
+and $Y''$ where $e_2 = \text{codim}(Y',Y'')$.
+As the two chains are maximal, the concatenation
+$$
+Y = Y_0\subset Y_1 \subset ... \subset Y_{e_1} = Y' =
+Y_{e_1} \subset Y_{e_1+1}\subset ... \subset Y_{e_1+e_2}=Y''
+$$
+is maximal too (between $Y$ and $Y''$) and its length equals to $e_1 + e_2$.
+As $X$ is catenary, each maximal chain has the same length equals to the
+codimension. Thus the point (2) that
+$\text{codim}(Y,Y'') = e_1 + e_2 = \text{codim}(Y,Y') + \text{codim}(Y',Y'')$
+is verified.
+
+\medskip\noindent
+For the reciprocal, we show by induction that : if $Y = Y_1 \subset ... \subset
+Y_n = Y'$, then $ \text{codim}(Y,Y') = \text{codim}(Y_1,Y_2) + ... +
+\text{codim}(Y_{n-1},Y_n)$. Therefore, it forces maximal chains to have the
+same length.
 \end{proof}
 
 
@@ -1342,7 +1625,7 @@ in algebraic geometry are not Hausdorff.
 Quasi-compactness.
 \begin{enumerate}
 \item We say that a topological space $X$ is {\it quasi-compact}
-if every open covering of $X$ has a finite refinement.
+if every open covering of $X$ has a finite subcover.
 \item We say that a continuous map $f : X \to Y$ is {\it quasi-compact}
 if the inverse image $f^{-1}(V)$ of every quasi-compact open $V \subset Y$
 is quasi-compact.
@@ -1355,12 +1638,12 @@ if the inclusion map $Z \to X$ is quasi-compact.
 In many texts on topology a space is called {\it compact} if it
 is quasi-compact and Hausdorff; and in other texts the Hausdorff
 condition is omitted. To avoid confusion in algebraic geometry
-we use the term quasi-compact. Note that the notion of quasi-compactness
-of a map is very different from the notion of a ``proper map''
-in topology, since there one requires the inverse image of any
-(quasi-)compact subset of the target to be (quasi-)compact,
-whereas in the definition above we only consider quasi-compact
-{\it open} sets.
+we use the term quasi-compact. The notion of quasi-compactness
+of a map is very different from the notion of a ``proper map'',
+since there we require (besides closedness and separatedness)
+the inverse image of any quasi-compact subset of the target to be
+quasi-compact, whereas in the definition above we only consider
+quasi-compact {\it open} sets.
 
 \begin{lemma}
 \label{lemma-composition-quasi-compact}
@@ -1442,7 +1725,18 @@ is nonempty, then $\bigcap_{\alpha \in A} Z_\alpha$ is nonempty.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+We suppose that $\bigcap_{\alpha \in A} Z_{\alpha} = \emptyset$.
+So we have $\bigcup_{\alpha \in A} (X\setminus Z_{\alpha})=X$ by
+complementation. As the subsets $Z_\alpha$ are closed,
+$\bigcup_{\alpha \in A} (X \setminus Z_{\alpha})$
+is an open covering of the quasi-compact space $X$.
+Thus there exists a finite subset $J \subset A$ such that
+$X = \bigcup_{\alpha \in J} (X\setminus Z_{\alpha})$.
+The complementary is then empty, which means that
+$\bigcap_{\alpha \in J} Z_{\alpha} = \emptyset$. It proves there exists a
+finite subcollection of $\{Z_{\alpha}\}_{\alpha \in J}$ verifying
+$\bigcap_{\alpha \in J} Z_{\alpha}=\emptyset$, which concludes by
+contraposition.
 \end{proof}
 
 \begin{lemma}
@@ -1996,7 +2290,7 @@ Since $Z \setminus U_i$ is quasi-compact
 we can choose a finite nunber $z'_1, \ldots, z'_r$ such that
 $Z \setminus U_i \subset W_{z, z'_1} \cup \ldots \cup W_{z, z'_r}$.
 Then we see that
-$V_z = U_{z, z'_1} \cap \ldots \cap U_{z, z'_r} \cap U_i$
+$V_z = V_{z, z'_1} \cap \ldots \cap V_{z, z'_r} \cap U_i$
 is an open neighbourhood of $z$ contained in $U_i$
 with the property that $\overline{V_z} \cap Z \subset U_i$.
 Since $z$ and $i$ where arbitrary and since $Z$ is quasi-compact
@@ -2493,6 +2787,28 @@ to the second.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-locally-closed-constructible-image}
+Let $X$ be a quasi-compact topological space having a basis consisting of
+quasi-compact opens such that the intersection of any two
+quasi-compact opens is quasi-compact.
+Let $T \subset X$ be a locally closed subset
+such that $T$ is quasi-compact and $T^c$ is retrocompact in $X$.
+Then $T$ is constructible in $X$.
+\end{lemma}
+
+\begin{proof}
+Note that $T$ is quasi-compact and open in $\overline{T}$.
+Using our basis of quasi-compact opens we can write
+$T = U \cap \overline{T}$ where $U$ is quasi-compact open in $X$.
+Then $V = U \setminus T = U \cap T^c$ is retrocompact in $U$ as $T^c$
+is retrocompact in $X$. Hence $V$ is quasi-compact. Since
+the intersection of any two quasi-compact opens is quasi-compact
+any quasi-compact open of $X$ is retrocompact. Thus $T = U \cap V^c$
+with $U$ and $V = U \setminus T$ retrocompact opens of $X$.
+A fortiori, $T$ is constructible in $X$.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-collate-constructible-from-constructible}
 Let $X$ be a topological space which has a basis for the topology
 consisting of quasi-compact opens. Let $E \subset X$ be a subset.
@@ -2526,26 +2842,16 @@ also equivalent to
 \end{lemma}
 
 \begin{proof}
-Write $E = \bigcup U_i \cap Z_i$ as the finite union of
-intersections of open sets $U_i$ and closed sets $Z_i$.
-Suppose that $E \cap Z$ is dense in $Z$. Note that
-the closure of $E \cap Z$ is the union of the closures
-of the intersections $U_i \cap Z_i \cap Z$. As $Z$ is irreducible we
-conclude that the closure of $U_i \cap Z_i \cap Z$ is $Z$ for some $i$.
-Fix such an $i$. It follows that $Z \subset Z_i$ since otherwise
-the closed subset $Z \cap Z_i$ of $Z$ would not be dense in $Z$.
-Then $U_i \cap Z_i \cap Z = U_i \cap Z$ is an open nonempty subset of $Z$.
-Because $Z$ is irreducible, it is open dense. Hence $E \cap Z$
-contains an open dense subset of $Z$.
-The converse is obvious.
+The implication (1) $\Rightarrow$ (2) is clear. Assume (2).
+Note that $E \cap Z$ is a finite union of locally closed subsets
+$Z_i$ of $Z$. Since $Z$ is irreducible, one of the $Z_i$ must
+be dense in $Z$. Then this $Z_i$ is dense open in $Z$ as it is
+open in its closure. Hence (1) holds.
 
 \medskip\noindent
-Suppose that $\xi \in Z$ is a generic point. Of course if
-(1) $\Leftrightarrow$ (2) holds, then $\xi \in E$. Conversely,
-if $\xi \in E$, then $\xi \in U_i \cap Z_i$ for some $i = i_0$.
-Clearly this implies $Z \subset Z_{i_0}$ and hence
-$U_{i_0} \cap Z_{i_0} \cap Z = U_{i_0} \cap Z$ is an open
-not empty subset of $Z$. We conclude as before.
+Suppose that $\xi \in Z$ is a generic point. If the equivalent conditions
+(1) and (2) hold, then $\xi \in E$. Conversely, if $\xi \in E$ then
+$\xi \in E \cap Z$ and hence $E \cap Z$ is dense in $Z$.
 \end{proof}
 
 
@@ -2699,12 +3005,35 @@ Lemmas \ref{lemma-characterize-constructible-Noetherian} and
 
 \noindent
 We include a section discussing the notion of a proper map in usual
-topology. It turns out that in topology, the notion of being proper
-is the same as the notion of being universally closed, in the sense
-that any base change is a closed morphism (not just taking products
-with spaces). The reason for doing this is that in algebraic geometry
-we use this notion of universal closedness as the basis for our
-definition of properness.
+topology. We define a continuous map of topological spaces to be
+{\it proper} if it is universally closed and separated.
+Although this matches well with the definition of a proper morphism
+in algebraic geometry, this is different from the definition in Bourbaki.
+With our definition of a proper map of topological spaces, the
+proper base change theorem (Cohomology, Theorem
+\ref{cohomology-theorem-proper-base-change})
+holds without any further assumptions. Furthermore, given a morphism
+$f : X \to Y$ of finite type schemes over $\mathbf{C}$ one
+has: $f$ is proper as a morphism of schemes if and only if
+the continuous map $f : X(\mathbf{C}) \to Y(\mathbf{C})$
+on $\mathbf{C}$-points with the classical topology is proper.
+This is explained in \cite[Exp. XII, Prop.\ 3.2(v)]{SGA1}
+which also has a footnote pointing out that they take properness
+in topology to be Bourbaki's notion with separatedness added on.
+
+\medskip\noindent
+We find it useful to have names for three distinct concepts:
+separated, universally closed, and both of those together (i.e., properness).
+For a continuous map $f : X \to Y$ of locally compact Hausdorff spaces
+the word ``proper'' has long been used for the notion
+``$f^{-1}($compact$) =$ compact'' and
+this is equivalent to universal closedness for such nice spaces.
+In fact, we will see the preimage condition formulated for clarity
+using the word ``quasi-compact'' is equivalent to universal closedness
+in general, if one includes the assumption of the map being closed. See
+also \cite[Exercises 22-26 in Chapter II]{LangReal} but
+beware that Lang uses ``proper'' as a synonym for ``universally closed'',
+like Bourbaki does.
 
 \begin{lemma}[Tube lemma]
 \label{lemma-tube}
@@ -2746,18 +3075,18 @@ from what you are used to.
 Let $f : X\to Y$ be a continuous map between topological spaces.
 \begin{enumerate}
 \item We say that the map $f$ is {\it closed}
-iff the image of every closed subset is closed.
-\item We say that the map $f$ is {\it proper}\footnote{This is the
-terminology used in \cite{Bourbaki}. Usually this is what
-is called ``universally closed'' in the literature. Thus our notion
-of proper does not involve any separation conditions.} iff
-the map $Z \times X\to Z \times Y$ is closed for any topological space
-$Z$.
-\item We say that the map $f$ is {\it quasi-proper} iff
+if the image of every closed subset is closed.
+\item We say that the map $f$ is {\it Bourbaki-proper}\footnote{This is the
+terminology used in \cite{Bourbaki}. Sometimes this property may be
+called ``universally closed'' in the literature.} if the map
+$Z \times X\to Z \times Y$ is closed for any topological space $Z$.
+\item We say that the map $f$ is {\it quasi-proper} if
 the inverse image $f^{-1}(V)$ of every quasi-compact subset $V \subset Y$
 is quasi-compact.
-\item We say that $f$ is {\it universally closed} iff
-the map $f': Z \times_Y X \to Z$ is closed for any map $g: Z \to Y$.
+\item We say that $f$ is {\it universally closed} if
+the map $f': Z \times_Y X \to Z$ is closed for any continuous map $g: Z \to Y$.
+\item We say that $f$ is {\it proper} if $f$ is separated
+and universally closed.
 \end{enumerate}
 \end{definition}
 
@@ -2828,7 +3157,7 @@ Let $f: X\to Y$ be a continuous map between
 topological spaces. The following conditions are equivalent:
 \begin{enumerate}
 \item The map $f$ is quasi-proper and closed.
-\item The map $f$ is proper.
+\item The map $f$ is Bourbaki-proper.
 \item The map $f$ is universally closed.
 \item The map $f$ is closed and $f^{-1}(y)$ is quasi-compact for any
 $y\in Y$.
@@ -2917,17 +3246,17 @@ In \cite[I, p. 77, Proposition 6]{Bourbaki} you can find:
 (2) $\Rightarrow$ (1).
 Of course, trivially we have (1) $\Rightarrow$ (4).
 Thus (1), (2) and (4) are equivalent.
-Fan Zhou claimed and proved that (3) and (4) are equivalent;
-let me know if you find a reference in the literature.
+The equivalence of (3) and (4) is \cite[Chapter II, Exercise 25]{LangReal}.
 \end{remark}
 
 \begin{lemma}
 \label{lemma-closed-map}
 \begin{slogan}
-A map from a compact space to a Hausdorff space is a proper.
+A map from a compact space to a Hausdorff space is universally closed.
 \end{slogan}
 Let $f : X \to Y$ be a continuous map of topological spaces.
-If $X$ is quasi-compact and $Y$ is Hausdorff, then $f$ is proper.
+If $X$ is quasi-compact and $Y$ is Hausdorff, then $f$ is
+universally closed.
 \end{lemma}
 
 \begin{proof}
@@ -2952,9 +3281,11 @@ then $f$ is a homeomorphism.
 \end{lemma}
 
 \begin{proof}
-This follows immediately from Lemma \ref{lemma-closed-map}
-which tells us that $f$ is closed, i.e., $f^{-1}$ is
-continuous.
+It suffices to prove $f$ is closed, because this implies that
+$f^{-1}$ is continuous. If $T \subset X$ is closed, then $T$
+is quasi-compact by Lemma \ref{lemma-closed-in-quasi-compact},
+hence $f(T)$ is quasi-compact by Lemma \ref{lemma-image-quasi-compact},
+hence $f(T)$ is closed by Lemma \ref{lemma-quasi-compact-in-Hausdorff}.
 \end{proof}
 
 
@@ -3124,13 +3455,14 @@ As $X$ is Jacobson $A$ has a point closed in $X$.
 \begin{lemma}
 \label{lemma-finite-jacobson}
 A finite Jacobson space is discrete.
+A Jacobson space with finitely many closed points is discrete.
 \end{lemma}
 
 \begin{proof}
-If $X$ is finite Jacobson, $X_0 \subset X$ the subset of closed points,
-then, on the one hand, $\overline{X_0} = X$. On the other hand, $X$,
-and hence $X_0$ is finite, so
-$X_0 =\{x_1, \ldots, x_n\} = \bigcup_{i = 1, \ldots, n} \{x_i\}$
+If $X$ is finite then the set $X_0 \subset X$ of closed points is finite.
+Assume $X_0$ is is finite and $X$ is Jacobson.
+Then $\overline{X_0} = X$ by the Jacobson property.
+Now $X_0 =\{x_1, \ldots, x_n\} = \bigcup_{i = 1, \ldots, n} \{x_i\}$
 is a finite union of closed sets, hence closed, so
 $X = \overline{X_0} = X_0$. Every point is closed, and by
 finiteness, every point is open.
@@ -3145,9 +3477,9 @@ Suppose $X$ is a Jacobson topological space.
 Let $X_0$ be the set of closed points of $X$.
 There is a bijective, inclusion preserving correspondence
 $$
-\{\text{finite unions loc.\ closed subsets of } X\}
+\{\text{finite unions loc. closed subsets of } X\}
 \leftrightarrow
-\{\text{finite unions loc.\ closed subsets of } X_0\}
+\{\text{finite unions loc. closed subsets of } X_0\}
 $$
 given by $E \mapsto E \cap X_0$. This correspondence preserves
 the subsets of locally closed, of open and of closed subsets.
@@ -3240,7 +3572,18 @@ the complement $T^c$ is stable under generalization.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $F$ be a closed subset of $X$, if $y\in F$ then $\{y\} \subset F$, so
+$\overline{\{y\}} \subset \overline{F} = F$ as $F$ is closed. Thus for all
+specialization $x$ of $y$, we have $x\in F$.
+
+\medskip\noindent
+Let $x, y\in X$ such that $x\in \overline{\{y\}}$ and let $T$ be a subset of
+$X$. Saying that $T$ is stable under specialization means that $y\in T$ implies
+$x\in T$ and reciprocally saying that $T$ is stable under generalization means
+that $x\in T$ implies $y\in T$. Therefore (3) is proven using contraposition.
+
+\medskip\noindent
+The second property follows from (1) and (3) by considering the complement.
 \end{proof}
 
 \begin{lemma}
@@ -3254,7 +3597,13 @@ The following are equivalent
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Suppose that $T$ is stable under specialization, then for all $y\in T$ we have
+$\overline{\{y\}} \subset T$. Thus $T = \bigcup_{y\in T} \overline{\{y\}}$
+which is an union of closed subsets of $X$. Reciprocally, suppose that $T =
+\bigcup_{i\in I}F_i$ where $F_i$ are closed subsets of $X$. If $y\in T$ then
+there exists $i\in I$ such that $y\in F_i$. As $F_i$ is closed, we have
+$\overline{\{y\}} \subset F_i \subset T$, which proves that $T$ is stable under
+specialization.
 \end{proof}
 
 \begin{definition}
@@ -3281,7 +3630,13 @@ then specializations lift along $g \circ f$. Similarly for
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $z'\leadsto z$ be a specialization in $Z$ and let $x' \in X$ such as
+$g\circ f (x') = z'$. Then because specializations lift along $g$, there exists
+a specialization $f(x') \leadsto y$ of $f(x')$ in $Y$ such that $g(y) = z$.
+Likewise, because specializations lift along $f$, there exists a specialization
+$x' \leadsto x$ of $x'$ in $X$ such that $f(x) = y$. It provides a
+specialization $x' \leadsto x$ of $x'$ in $X$ such that $g\circ f(x) = z$. In
+other words, specialization lift along $g\circ f$.
 \end{proof}
 
 \begin{lemma}
@@ -3298,7 +3653,14 @@ stable under generalization.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $y' \leadsto y$ be a specialization in $Y$ where $y'\in f(T)$ and let
+$x'\in T$ such that $f(x') = y'$. Because specialization lift along $f$, there
+exists a specialization $x'\leadsto x$ of $x'$ in $X$ such that $f(x) = y$. But
+$T$ is stable under specialization so $x\in T$ and then $y \in f(T)$. Therefore
+$f(T)$ is stable under specialization.
+
+\medskip\noindent
+The proof of (2) is identical, using that generalizations lift along $f$.
 \end{proof}
 
 \begin{lemma}
@@ -3672,7 +4034,16 @@ then $T$ is nowhere dense in $X$.
 \end{lemma}
 
 \begin{proof}
-Omitted. (Hint: closure commutes with intersecting with opens.)
+Denote $\overline{T}_i$ the closure of $T \cap U_i$ in $U_i$.
+We have $\overline{T} \cap U_i = \overline{T}_i$.
+Taking the interior commutes with intersection with opens, thus
+$$
+(\text{interior of }\overline{T}) \cap U_i =
+\text{interior of }(\overline{T} \cap U_i) =
+\text{interior in }U_i\text{ of }\overline{T}_i
+$$
+By assumption the last of these is empty. Hence
+$T$ is nowhere dense in $X$.
 \end{proof}
 
 \begin{lemma}
@@ -3747,7 +4118,8 @@ we see that $X$ is totally disconnected.
 
 \medskip\noindent
 Assume (2). Let $\mathcal{I}$ be the set of finite disjoint union
-decompositions $X = \coprod_{i \in I} U_i$ with $U_i$ open (and closed).
+decompositions $X = \coprod_{i \in I} U_i$ with $U_i$ nonempty open
+(and closed) for all $i \in I$.
 For each $I \in \mathcal{I}$ there is a continuous map
 $X \to I$ sending a point of $U_i$ to $i$. We define a partial
 ordering: $I \leq I'$ for $I, I' \in \mathcal{I}$ if and only
@@ -3773,18 +4145,27 @@ By Lemma \ref{lemma-bijective-map} the map is a homeomorphism.
 
 \begin{lemma}
 \label{lemma-directed-inverse-limit-profinite}
-A cofiltered limit of profinite spaces is profinite.
+A limit of profinite spaces is profinite.
 \end{lemma}
 
 \begin{proof}
+Let $i \mapsto X_i$ be a diagram of profinite spaces
+over the index category $\mathcal{I}$.
 Let us use the characterization of profinite spaces in
-Lemma \ref{lemma-profinite}.
-By Lemma \ref{lemma-limits} the limit exists.
-By Theorem \ref{theorem-tychonov}
-the limit is quasi-compact. A cofiltered limit of
-totally disconnected spaces is totally disconnected
-(details omitted). A cofiltered limit of Hausdorff spaces is Hausdorff
-(details omitted). This finishes the proof.
+Lemma \ref{lemma-profinite}. In particular each $X_i$ is
+Hausdorff, quasi-compact, and totally disconnected.
+By Lemma \ref{lemma-limits} the limit $X = \lim X_i$ exists.
+By Lemma \ref{lemma-inverse-limit-quasi-compact}
+the limit $X$ is quasi-compact. Let $x, x' \in X$ be distinct points.
+Then there exists an $i$ such that $x$ and $x'$
+have distinct images $x_i$ and $x'_i$ in $X_i$
+under the projection $X \to X_i$. Then $x_i$ and $x'_i$
+have disjoint open neighbourhoods in $X_i$. Taking the
+inverse images of these opens we conclude that $X$ is Hausdorff.
+Similarly, $x_i$ and $x'_i$ are in distinct connected components
+of $X_i$ whence necessarily $x$ and $x'$ must be in distinct
+connected components of $X$. Hence $X$ is totally disconnected.
+This finishes the proof.
 \end{proof}
 
 \begin{lemma}
@@ -3876,21 +4257,32 @@ is the topology which has as a subbase of opens the sets $U$ and $U^c$
 where $U$ is a quasi-compact open of $X$. Note that since $X$ is spectral
 an open $U \subset X$ is retrocompact if and only if $U$ is quasi-compact.
 Hence the constructible topology can also be characterized as the coarsest
-topology such that every constructible subset of $X$ is both open and closed.
-Since the collection of quasi-compact opens is a basis for the topology
+topology such that every constructible subset of $X$ is both open and closed
+(see Section \ref{section-constructible} for definitions and properties of
+constructible sets).
+It follows that a subset of $X$ is open, resp.\ closed in the constructible
+topology if and only if it is a union, resp.\ intersection of constructible
+subsets. Since the collection of quasi-compact opens is a basis for the topology
 on $X$ we see that the constructible topology is stronger than the
 given topology on $X$.
 
 \begin{lemma}
 \label{lemma-constructible-hausdorff-quasi-compact}
 Let $X$ be a spectral space. The constructible topology is
-Hausdorff and quasi-compact.
+Hausdorff, totally disconnected, and quasi-compact.
 \end{lemma}
 
 \begin{proof}
-Since the collection of all quasi-compact opens forms a basis for the
-topology on $X$ and $X$ is sober, it is clear that $X$ is Hausdorff in
-the constructible topology.
+Let $x, y \in X$ with $x \not = y$. Since $X$ is sober, there
+is an open subset $U$ containing exactly one of the two points $x, y$.
+Say $x \in U$. We may replace $U$ by a quasi-compact open
+neighbourhood of $x$ contained in $U$. Then $U$ and $U^c$ are open and
+closed in the constructible topology. Hence $X$ is Hausdorff in the
+constructible topology because $x \in U$ and $y \in U^c$ are
+disjoint opens in the constructible topology. The existence of $U$
+also implies $x$ and $y$ are in distinct connected components in the
+constructible topology, whence $X$ is totally disconnected in the
+constructible topology.
 
 \medskip\noindent
 Let $\mathcal{B}$ be the collection of subsets $B \subset X$
@@ -3912,8 +4304,10 @@ of elements of $\mathcal{B}$ having the finite intersection property
 but empty intersection. An application of Zorn's lemma shows that we
 may assume our family is maximal (details omitted).
 Let $I' \subset I$ be those indices such that
-$B_i$ is closed and set $Z = \bigcap_{i \in I'} B_i$. This is a closed
-subset of $X$. If $Z$ is reducible, then we can write $Z = Z' \cup Z''$
+$B_i$ is closed and set $Z = \bigcap_{i \in I'} B_i$.
+This is a closed subset of $X$ which is nonempty by Lemma
+\ref{lemma-intersection-closed-in-quasi-compact}.
+If $Z$ is reducible, then we can write $Z = Z' \cup Z''$
 as a union of two closed subsets, neither equal to $Z$. This means in
 particular that we can find a quasi-compact open $U' \subset X$ meeting
 $Z'$ but not $Z''$. Similarly, we can find a quasi-compact open
@@ -3972,6 +4366,30 @@ that $X_y$ is quasi-compact (Lemma \ref{lemma-image-quasi-compact}).
 \end{proof}
 
 \begin{lemma}
+\label{lemma-spectral-if-continuous-wrt-constructible-top}
+Let $X$ and $Y$ be spectral spaces. Let $f : X \to Y$ be a continuous map.
+Then $f$ is spectral if and only if $f$ is continuous in the constructible
+topology.
+\end{lemma}
+
+\begin{proof}
+The only if part of this is
+Lemma \ref{lemma-fibres-spectral-map-quasi-compact}.
+Assume $f$ is continuous in the constructible topology.
+Let $V \subset Y$ be quasi-compact open.
+Then $V$ is open and closed in the constructible topology.
+Hence $f^{-1}(V)$ is open and closed in the constructible topology.
+Hence $f^{-1}(V)$ is quasi-compact in the constructible topology
+as $X$ is quasi-compact in the constructible topology by
+Lemma \ref{lemma-constructible-hausdorff-quasi-compact}.
+Since the identity $f^{-1}(V) \to f^{-1}(V)$ is surjective
+and continuous from the constructible topology to the usual
+topology, we conclude that $f^{-1}(V)$ is quasi-compact
+in the topology of $X$ by Lemma \ref{lemma-image-quasi-compact}.
+This finishes the proof.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-spectral-sub}
 Let $X$ be a spectral space. Let $E \subset X$ be closed in the constructible
 topology (for example constructible or closed). Then $E$ with the induced
@@ -4025,7 +4443,7 @@ $i$. Since the subsets $U_i \cap E$ are closed in the constructible topology
 we see that $\bigcap (U_i \cap E)$ is nonempty by
 Lemma \ref{lemma-constructible-hausdorff-quasi-compact} and
 Lemma \ref{lemma-intersection-closed-in-quasi-compact}.
-Since $X$ is a sober space and $\{U_i\}$ is a
+Since $\{U_i\}$ is a
 fundamental system of open neighbourhoods of $x$, we see that
 $\bigcap U_i$ is the set of generalizations of $x$. Thus
 $x$ is a specialization of a point of $E$.
@@ -4080,6 +4498,7 @@ Let $X$ be a spectral space. The following are equivalent:
 \item every point of $X$ is closed,
 \item every point of $X$ is the generic point of an irreducible component
 of $X$,
+\item the constructible topology equals the given topology on $X$, and
 \item add more here.
 \end{enumerate}
 \end{lemma}
@@ -4093,7 +4512,9 @@ Assume (5). Then all constructible subsets of $X$ are closed
 (Lemma \ref{lemma-constructible-stable-specialization-closed}), in
 particular all quasi-compact opens are closed. So (5) implies (4).
 Since $X$ is sober, for any two points there is a quasi-compact open
-containing exactly one of them, hence (4) implies (2). 
+containing exactly one of them, hence (4) implies (2).
+Parts (4) and (8) are equivalent by the definition of the
+constructible topology.
 It remains to prove (2) implies (1). Suppose $X$ is Hausdorff. Every
 quasi-compact open is also closed
 (Lemma \ref{lemma-quasi-compact-in-Hausdorff}). This implies $X$
@@ -4278,7 +4699,7 @@ Lemma \ref{lemma-make-sober}.
 \begin{enumerate}
 \item If $X$ is quasi-compact, so is $X'$.
 \item If $X$ is quasi-compact, has a basis of quasi-compact opens,
-and the intersection of two quasi-compact opens is quasi-compact, then 
+and the intersection of two quasi-compact opens is quasi-compact, then
 $X'$ is spectral.
 \item If $X$ is Noetherian, then $X'$ is a Noetherian spectral space.
 \end{enumerate}
@@ -4501,8 +4922,12 @@ So $\xi \in Z$ and hence $\overline{\{\xi\}} \subset Z$. Conversely,
 every $z \in Z$ is in the closure of $\xi$. Namely, given a quasi-compact
 open neighbourhood $U$ of $z$ we write $U = p_i^{-1}(U_i)$ for some $i$
 and quasi-compact open $U_i \subset X_i$. We see that $p_i(z) \in U_i$
-hence $\xi_i \in U_i$ hence $\xi \in U$. Thus $\xi$ is the generic point
-of $Z$. This finishes the proof.
+hence $\xi_i \in U_i$ hence $\xi \in U$. Thus $\xi$ is a generic point
+of $Z$. We omit the proof that $\xi$ is the unique generic point of $Z$
+(hint: show that a second generic point has to be equal to $\xi$
+by showing that it has to map to $\xi_i$ in $X_i$ since
+by spectrality of $X_i$ the irreducible $Z_i$ has a unique generic point).
+This finishes the proof.
 \end{proof}
 
 \begin{lemma}
@@ -4709,7 +5134,7 @@ that $X \to X^*$ identifies $X$ with an open subspace of $X$.
 \medskip\noindent
 Since $X$ is locally quasi-compact, every point $x \in X$ has a
 quasi-compact neighbourhood $x \in E \subset X$. Then $E$
-is closed (Lemma \ref{lemma-closed-in-quasi-compact}) and
+is closed (Lemma \ref{lemma-quasi-compact-in-Hausdorff} part (1)) and
 $V = (X \setminus E) \amalg \{\infty\}$ is an open neighbourhood
 of $\infty$ disjoint from the interior of $E$. Thus $X^*$ is Hausdorff.
 
@@ -4761,12 +5186,12 @@ if the closure of every open subset of $X$ is open.
 If $X$ is Hausdorff and extremally disconnected, then $X$ is totally
 disconnected (this isn't true in general). If $X$ is quasi-compact,
 Hausdorff, and extremally disconnected, then $X$ is profinite by
-Lemma \ref{lemma-profinite}, but the converse does not holds in general.
-Namely, Gleason shows that in an extremally disconnected Hausdorff space $X$
-a convergent sequence $x_1, x_2, x_3, \ldots$ is eventually constant.
-Hence for example the $p$-adic integers
+Lemma \ref{lemma-profinite}, but the converse does not hold in general.
+For example the $p$-adic integers
 $\mathbf{Z}_p = \lim \mathbf{Z}/p^n\mathbf{Z}$ is a profinite space
-which is not extremally disconnected.
+which is not extremally disconnected. Namely, if $U \subset \mathbf{Z}_p$
+is the set of nonzero elements whose valuation is even, then $U$ is open
+but its closure is $U \cup \{0\}$ which is not open.
 
 \begin{lemma}
 \label{lemma-image-open-technical}
@@ -4934,6 +5359,10 @@ we can prove that every quasi-compact Hausdorff space has a
 
 \begin{lemma}
 \label{lemma-existence-projective-cover}
+\begin{slogan}
+Every quasi-compact Hausdorff space has a canonical
+extremally disconnected cover
+\end{slogan}
 Let $X$ be a quasi-compact Hausdorff space.
 There exists a continuous surjection $X' \to X$ with $X'$
 quasi-compact, Hausdorff, and extremally disconnected.
@@ -5153,12 +5582,13 @@ Hence we may assume that $T_i = U_i \cap V_i^c$
 with $U_i, V_i \subset X$ retrocompact open. Let $S$ be the
 finite set of closed subsets of $X$ consisting of
 $\emptyset, X, U_i^c, V_i^c$ and finite intersections of these.
-Write $S = \{Z_s\}$. If $s \in S$, then $Z_s$ is constructible
+If $Z \in S$, then $Z$ is constructible in $X$
 (Lemma \ref{lemma-constructible}).
-Moreover, $Z_s \cap Z_{s'} \in S$ for all $s, s' \in S$.
-Define a partial ordering on $S$ by inclusion. Then set
-$Y_s = Z_s \setminus \bigcup_{s' < s} Z_{s'}$
-to get the desired stratification.
+Moreover, $Z \cap Z' \in S$ for all $Z, Z' \in S$.
+Define a partial ordering on $S$ by inclusion. For $Z \in S$ set
+$X_Z = Z \setminus \bigcup_{Z' < Z,\ Z' \in S} Z'$
+to get a stratification $X = \coprod_{Z \in S} X_Z$
+satisfying the properties stated in the lemma.
 \end{proof}
 
 \begin{lemma}
@@ -5212,7 +5642,7 @@ $U_i \subset X_i$ is open.
 \medskip\noindent
 The category of topological spaces has coequalizers. Namely, if
 $a, b : X \to Y$ are morphisms of topological spaces, then the
-equalizer of $a$ and $b$ is the coequalizer $Y/\sim$ in the category
+coequalizer of $a$ and $b$ is the coequalizer $Y/\sim$ in the category
 of sets endowed with the quotient topology (Section \ref{section-submersive}).
 
 \begin{lemma}

@@ -56,7 +56,7 @@ in the case of curves.
 Let $k$ be a field. Let $X$ be a curve and $Y$ a proper variety.
 Let $U \subset X$ be a nonempty open and let $f : U \to Y$ be a morphism.
 If $x \in X$ is a closed point such that $\mathcal{O}_{X, x}$
-is a discrete valuation ring, then there exists an open
+is a discrete valuation ring, then there exist an open
 $U \subset U' \subset X$ containing $x$ and a morphism of
 varieties $f' : U' \to Y$ extending $f$.
 \end{lemma}
@@ -74,9 +74,12 @@ of morphisms $X \to Y$.
 \end{lemma}
 
 \begin{proof}
-This is clear from Lemma \ref{lemma-extend-over-dvr}
+A rational map from $X$ to $Y$ can be extended to a morphism $X \to Y$
+by Lemma \ref{lemma-extend-over-dvr}
 as every local ring is a discrete valuation ring
 (for example by Varieties, Lemma \ref{varieties-lemma-regular-point-on-curve}).
+Conversely, if two morphisms $f,g: X \to Y$ are equivalent as rational maps,
+then  $f = g$ by Morphisms, Lemma \ref{morphisms-lemma-equality-of-morphisms}.
 \end{proof}
 
 \begin{lemma}
@@ -192,7 +195,11 @@ If $f : X \to Y$ is a nonconstant morphism of nonsingular projective curves,
 then $f$ sends the generic point $\eta$ of $X$ to the generic point $\xi$ of
 $Y$. Hence we obtain a morphism
 $k(Y) = \mathcal{O}_{Y, \xi} \to \mathcal{O}_{X, \eta} = k(X)$
-in the category (1). Conversely, suppose that we have a map
+in the category (1). If two morphisms $f,g: X \to Y$ gives the same morphism
+$k(Y) \to k(X)$, then by the equivalence between (1) and (2),
+$f$ and $g$ are equivalent as rational maps, so $f=g$ by
+Lemma \ref{lemma-extend-over-normal-curve}.
+Conversely, suppose that we have a map
 $k(Y) \to k(X)$ in the category (1). Then we obtain a morphism $U \to Y$
 for some nonempty open $U \subset X$. By Lemma \ref{lemma-extend-over-dvr}
 this extends to all of $X$ and we obtain a morphism in the category (5).
@@ -333,7 +340,7 @@ by defining linear series in the following manner.
 Let $k$ be a field. Let $X$ be a proper scheme of dimension $\leq 1$ over $k$.
 Let $d \geq 0$ and $r \geq 0$.
 A {\it linear series of degree $d$ and dimension $r$}
-is a pair $(\mathcal{L}, V)$ where $\mathcal{L}$ in an
+is a pair $(\mathcal{L}, V)$ where $\mathcal{L}$ is an
 invertible $\mathcal{O}_X$-module of degree $d$
 (Varieties, Definition \ref{varieties-definition-degree-invertible-sheaf})
 and $V \subset H^0(X, \mathcal{L})$ is a $k$-subvector space
@@ -372,7 +379,7 @@ are sent to a basis of $V$ by $\alpha$.
 \begin{proof}
 Let $s_0, \ldots, s_r \in V$ be a $k$-basis. Since $X$ is nonsingular
 the image $\mathcal{L}' \subset \mathcal{L}$ of the map
-$s_0, \ldots, s_r : \mathcal{O}_X^{\oplus r} \to \mathcal{L}$
+$s_0, \ldots, s_r : \mathcal{O}_X^{\oplus r + 1} \to \mathcal{L}$
 is an invertible $\mathcal{O}_X$-module for example by
 Divisors, Lemma \ref{divisors-lemma-torsion-free-over-regular-dim-1}.
 Then we use
@@ -403,7 +410,12 @@ $0 \leq s \leq r$.
 Let $k$ be a field. Let $X$ be a nonsingular proper curve over $k$.
 Let $(\mathcal{L}, V)$ be a $\mathfrak g^1_d$ on $X$. Then the morphism
 $\varphi : X \to \mathbf{P}^1_k$ of Lemma \ref{lemma-linear-series}
-has degree $\leq d$.
+either
+\begin{enumerate}
+\item is nonconstant and has degree $\leq d$, or
+\item factors through a closed point of $\mathbf{P}^1_k$ and in this
+case $H^0(X, \mathcal{O}_X) \not = k$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -411,8 +423,13 @@ By Lemma \ref{lemma-linear-series} we see that
 $\mathcal{L}' = \varphi^*\mathcal{O}_{\mathbf{P}^1_k}(1)$
 has a nonzero map $\mathcal{L}' \to \mathcal{L}$.
 Hence by Varieties, Lemma \ref{varieties-lemma-check-invertible-sheaf-trivial}
-we see that $\deg(\mathcal{L}') \leq d$.
-On the other hand, we have
+we see that $0 \leq \deg(\mathcal{L}') \leq d$.
+If $\deg(\mathcal{L}') = 0$, then the same lemma tells us
+$\mathcal{L}' \cong \mathcal{O}_X$ and since we have
+two linearly independent sections we find we are in case (2).
+If $\deg(\mathcal{L}') > 0$ then $\varphi$ is nonconstant (since the
+pullback of an invertible module by a constant morphism is trivial).
+Hence
 $$
 \deg(\mathcal{L}') =
 \deg(X/\mathbf{P}^1_k) \deg(\mathcal{O}_{\mathbf{P}^1_k}(1))
@@ -532,7 +549,7 @@ $$
 |D| = \mathbf{P}(H^0(X, \mathcal{O}_X(D))^\vee)
 $$
 where $(-)^\vee$ indicates $k$-linear dual and $\mathbf{P}$ is as
-in Intersection Theory, Section \ref{intersection-section-projection}.
+in Constructions, Example \ref{constructions-example-projective-space}.
 In this language a {\it linear system} or a {\it linear series} on
 $X$ is a closed subvariety $L \subset |D|$ which can be cut out by
 linear equations. If $L$ has dimension $r$, then $L = \mathbf{P}(V^\vee)$
@@ -552,8 +569,11 @@ as defined above.
 \label{section-duality}
 
 \noindent
-In this section we work out the consequences the very general
-material on dualizing complexes and duality has for curves.
+In this section we work out the consequences of the very general
+material on dualizing complexes and duality for proper $1$-dimensional
+schemes over fields. If you are interested in the analogous discussion
+for higher dimension proper schemes over fields, see
+Duality for Schemes, Section \ref{duality-section-duality-proper-over-field}.
 
 \begin{lemma}
 \label{lemma-duality-dim-1}
@@ -572,13 +592,16 @@ is nonzero if and only if either
 \item $\dim(\mathcal{O}_{X, x}) = 1$
 and $\mathcal{O}_{X, x}$ is not Cohen-Macaulay,
 \end{enumerate}
-\item there are functorial isomorphisms
-$\Ext^i_X(K, \omega_X^\bullet) = \Hom_k(H^{-i}(X, K), k)$
-compatible with shifts for $K \in D_\QCoh(X)$\footnote{This property
+\item for $K \in D_\QCoh(\mathcal{O}_X)$ there are functorial
+isomorphisms\footnote{This property
 characterizes $\omega_X^\bullet$ in $D_\QCoh(\mathcal{O}_X)$
 up to unique isomorphism by the Yoneda lemma. Since $\omega_X^\bullet$
 is in $D^b_{\textit{Coh}}(\mathcal{O}_X)$ in fact it suffices to consider
-$K \in D^b_{\textit{Coh}}(\mathcal{O}_X)$.},
+$K \in D^b_{\textit{Coh}}(\mathcal{O}_X)$.}
+$$
+\Ext^i_X(K, \omega_X^\bullet) = \Hom_k(H^{-i}(X, K), k)
+$$
+compatible with shifts and distinguished triangles,
 \item there are functorial isomorphisms
 $\Hom(\mathcal{F}, \omega_X) = \Hom_k(H^1(X, \mathcal{F}), k)$
 for $\mathcal{F}$ quasi-coherent on $X$,
@@ -665,7 +688,7 @@ If $X$ is Cohen-Macaulay and equidimensional of dimension $1$, then
 we have canonical isomorphisms
 $$
 \Hom_k(H^{-i}(X, \mathcal{E}), k) =
-H^{1 - i}(X, \mathcal{E}^\vee \otimes_{\mathcal{O}_X} \omega_X)
+H^{1 + i}(X, \mathcal{E}^\vee \otimes_{\mathcal{O}_X} \omega_X)
 $$
 by Lemma \ref{lemma-duality-dim-1-CM}. In particular
 if $\mathcal{L}$ is an invertible $\mathcal{O}_X$-module, then we have
@@ -879,7 +902,7 @@ $\mathcal{E}$ of constant rank by the formula
 \chi(X, \mathcal{E}) - \text{rank}(\mathcal{E})\chi(X, \mathcal{O}_X)
 \end{equation}
 see Varieties, Definition \ref{varieties-definition-degree-invertible-sheaf}.
-In the chapter on Chow Homology we defined the first chern class of
+In the chapter on Chow Homology we defined the first Chern class of
 $\mathcal{E}$ as an operation on cycles
 (Chow Homology, Section
 \ref{chow-section-intersecting-chern-classes}) and we proved that
@@ -967,7 +990,7 @@ Lemma \ref{lemma-duality-dim-1-CM}.
 We will use Lemma \ref{lemma-euler} to get the desired formula for
 $\chi(X, \mathcal{O}_X)$ in the case that $\omega_X$ is
 invertible, i.e., that $X$ is Gorenstein.
-The statement is that $-1/2$ of the first chern class of $\omega_X$
+The statement is that $-1/2$ of the first Chern class of $\omega_X$
 capped with the cycle $[X]_1$ associated to $X$ is a natural zero
 cycle on $X$ with half-integer coefficients whose degree is
 $\chi(X, \mathcal{O}_X)$.
@@ -1425,10 +1448,12 @@ Some details omitted.
 \label{section-genus}
 
 \noindent
-If $X$ is a smooth projective curve over an algebraically closed field,
+If $X$ is a smooth projective geometrically irreducible curve over a field $k$,
 then we've previously defined the genus of $X$ as the dimension of
 $H^1(X, \mathcal{O}_X)$, see
 Picard Schemes of Curves, Definition \ref{pic-definition-genus}.
+Observe that $H^0(X, \mathcal{O}_X) = k$ in this case, see
+Varieties, Lemma \ref{varieties-lemma-regular-functions-proper-variety}.
 Let us generalize this as follows.
 
 \begin{definition}
@@ -2255,13 +2280,16 @@ we see that
 $
 \eta_y \mapsto h \eta_x
 $
-for some nonzero $h \in \mathcal{O}_{X, x}$. By definition
-$R$ is cut out by $h$. By the exact sequence we see that
+for some nonzero $h \in \mathcal{O}_{X, x}$. By the exact sequence we see that
 $\Omega_{X/Y, x} \cong \mathcal{O}_{X, x}/h\mathcal{O}_{X, x}$
-as $\mathcal{O}_{X, x}$-modules. Thus we find the following
-equalities
+as $\mathcal{O}_{X, x}$-modules. Since the divisor
+$R$ is cut out by $h$ (see above) we have
+$\mathcal{O}_{R, x} = \mathcal{O}_{X, x}/h\mathcal{O}_{X, x}$.
+Thus we find the following equalities
 \begin{align*}
 d_x
+& =
+\text{length}_{\mathcal{O}_{X, x}}(\mathcal{O}_{R, x}) \\
 & =
 \text{length}_{\mathcal{O}_{X, x}}(\mathcal{O}_{X, x}/h\mathcal{O}_{X, x}) \\
 & =
@@ -2271,12 +2299,12 @@ d_x
 & =
 \text{ord}_{\mathcal{O}_{X, x}}(``\eta_y/\eta_x")
 \end{align*}
-The first equality by our definition of $d_x$. The second by the above.
-The third equality is the definition of $\text{ord}$, see
-Algebra, Definition \ref{algebra-definition-ord}.
-The fourth equality is a mnemonic.
-Since $\mathcal{O}_{X, x}$ is a discrete valuation ring, the
-integer $\text{ord}_{\mathcal{O}_{X, x}}(h)$ just the valuation of $h$.
+The first equality by our definition of $d_x$. The second and third
+we saw above. The fourth equality is the definition of $\text{ord}$, see
+Algebra, Definition \ref{algebra-definition-ord}. Note that since
+$\mathcal{O}_{X, x}$ is a discrete valuation ring, the integer
+$\text{ord}_{\mathcal{O}_{X, x}}(h)$ just the valuation of $h$.
+The fifth equality is a mnemonic.
 
 \medskip\noindent
 Here is a case where one can ``calculate'' the multiplicity $d_x$ in terms
@@ -2304,7 +2332,7 @@ in which case the order of vanishing is $> e_x - 1$.
 Combining all of the above we find that if $k$ has characteristic
 zero, then
 $$
-2g_x - 2 = (2g_Y - 2)\deg(f) +
+2g_X - 2 = (2g_Y - 2)\deg(f) +
 \sum\nolimits_{x \in X} (e_x - 1)[\kappa(x) : k]
 $$
 where $e_x$ is the ramification index of $\mathcal{O}_{X, x}$ over
@@ -2329,7 +2357,7 @@ The following are equivalent
 $f|_U : U \to Y$ is unramified,
 \item there exists a nonempty open $U \subset X$ such that
 $f|_U : U \to Y$ is \'etale,
-\item the extension $k(Y) \subset k(X)$ of function fields is
+\item the extension $k(X)/k(Y)$ of function fields is
 finite separable.
 \end{enumerate}
 \end{lemma}
@@ -2363,7 +2391,7 @@ Let $f : X \to Y$ be a morphism of smooth proper curves
 over a field $k$ which satisfies the equivalent conditions of
 Lemma \ref{lemma-generically-etale}. If
 $k = H^0(Y, \mathcal{O}_Y) = H^0(X, \mathcal{O}_X)$
-and $X$ and $Y$ have genus $g_X$ and $g_y$, then
+and $X$ and $Y$ have genus $g_X$ and $g_Y$, then
 $$
 2g_X - 2 = (2g_Y - 2) \deg(f) + \deg(R)
 $$
@@ -2523,7 +2551,7 @@ This follows from Lemma \ref{lemma-flat}.
 \label{lemma-purely-inseparable}
 Let $k$ be a field of characteristic $p > 0$. Let $f : X \to Y$ be a
 nonconstant morphism of proper nonsingular curves over $k$.
-If the extension $k(Y) \subset k(X)$ of function fields
+If the extension $k(X)/k(Y)$ of function fields
 is purely inseparable, then there exists a factorization
 $$
 X = X_0 \to X_1 \to \ldots \to X_n = Y
@@ -2633,9 +2661,9 @@ $(0 : 1: 0)$ is a smooth point. Hence $X$ is a nonsingular projective
 curve of genus $1$ (Lemma \ref{lemma-genus-plane-curve}).
 On the other hand, consider the morphism
 $f : X \to \mathbf{P}^1_k$ which on $D_+(T_0)$ sends $(x, y)$ to
-$y \in \mathbf{A}^1_k \subset \mathbf{P}^1_k$.
+$x \in \mathbf{A}^1_k \subset \mathbf{P}^1_k$.
 Then $f$ is a morphism of proper nonsingular curves over $k$
-inducing an inseparable function field extension of degree $p$
+inducing an inseparable function field extension of degree $p = 3$
 but the genus of $X$ is $1$ and the genus of $\mathbf{P}^1_k$ is $0$.
 \end{example}
 
@@ -2696,7 +2724,7 @@ $$
 \varphi = \varphi_{(\mathcal{L}', (s_0, \ldots, s_r)} :
 X
 \longrightarrow
-\mathbf{P}^1_k = \text{Proj}(k[T_0, \ldots, T_r])
+\mathbf{P}^r_k = \text{Proj}(k[T_0, \ldots, T_r])
 $$
 factors through $X^{(p)}$ as this is true over the affine open
 $D_+(T_0)$ and we can extend the morphism over the affine part
@@ -3106,7 +3134,7 @@ Cohomology, Lemma \ref{cohomology-lemma-Leray}).
 Hence the kernel of $\Pic(X) \to \Pic(X')$ is the
 cokernel of $ab^{-1} : H^0(X', \mathcal{O}_{X'}^*) \to k^*$.
 If $a$ and $b$ are on different connected components of $X'$,
-then $ab^{-1}$ is surjective (also for example if $X'$ is affine).
+then $ab^{-1}$ is surjective.
 Because $k$ is algebraically closed any regular function on a
 reduced connected proper scheme over $k$ comes from an element of $k$, see
 Varieties, Lemma
@@ -3411,10 +3439,11 @@ $\Pic(X_{k'})[n] \cong (\mathbf{Z}/n\mathbf{Z})^{\oplus 2g}$.
 
 \begin{proof}
 Assume $g \geq 2$. First we may choose a finite separable extension
-of degree at most $2g - 2$ such that $X$ acquires a rational point.
+of degree at most $2g - 2$ such that $X$ acquires a rational point, see
+Lemma \ref{lemma-point-over-separable-extension}.
 Thus we may assume $X$ has a $k$-rational point $x \in X(k)$
 but now we have to prove the lemma with
-$[k' : k] \leq \leq (n^{2g})!$.
+$[k' : k] \leq (n^{2g})!$.
 Let $k \subset k^{sep} \subset \overline{k}$ be a separable algebraic
 closure inside an algebraic closure.
 By Lemma \ref{lemma-torsion-picard-smooth-projective} we have
@@ -3802,7 +3831,8 @@ Assume $I \not = 0$. Write $I = (f_1, \ldots, f_r)$. As $A$ is a UFD
 we can write $f_i = fg_i$ where $f$ is the gcd of $f_1, \ldots, f_r$.
 Thus the gcd of $g_1, \ldots, g_r$ is $1$ which means that
 there is no height $1$ prime ideal over $g_1, \ldots, g_r$.
-Since $\dim(A) = 2$ this implies that
+Then either $(g_1, \ldots, g_r) = A$ which implies $I = (f)$ or
+if not, then $\dim(A) = 2$ implies that
 $V(g_1, \ldots, g_r) = \{\mathfrak m\}$, i.e.,
 $\mathfrak m = \sqrt{(g_1, \ldots, g_r)}$.
 
@@ -4426,7 +4456,7 @@ Let $y \in Y$ be a point with image $x \in X$. The following are equivalent
 By Lemma \ref{lemma-node-field-extension}
 we may base change to the algebraic closure of $k$.
 Then the residue fields of $x$ and $y$ are $k$.
-Hence the map $\mathcal{O}_{X, x}^\wedge \to \mathcal{O}_{Y, y}$
+Hence the map $\mathcal{O}_{X, x}^\wedge \to \mathcal{O}_{Y, y}^\wedge$
 is an isomorphism (for example by
 \'Etale Morphisms, Lemma \ref{etale-lemma-characterize-etale-completions} or
 More on Algebra, Lemma \ref{more-algebra-lemma-flat-unramified}).
@@ -5089,12 +5119,50 @@ the closed point of $\Spec(\mathcal{O}_{S, s}^\wedge)$
 and having coordinates $u, v$ equal to zero. Since
 $\mathcal{O}_{S, s}$ is a G-ring by
 More on Algebra, Proposition \ref{more-algebra-proposition-ubiquity-G-ring}
-we may apply More on Morphisms, Lemmas
-\ref{more-morphisms-lemma-relative-map-approximation} and
-\ref{more-morphisms-lemma-relative-isomorphism-approximation}
-with $T = S \times \Spec(\mathbf{Z}[a])$ and
-$Y = S \times \Spec(\mathbf{Z}[u, v, a]/(uv -a))$
-to get the conclusion of the lemma.
+we may apply More on Morphisms, Lemma
+\ref{more-morphisms-lemma-relative-map-approximation-pre}
+to conclude.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-genus-in-nodal-family-of-curves}
+Let $f : X \to S$ be a morphism of schemes. Assume
+\begin{enumerate}
+\item $f$ is proper,
+\item $f$ is at-worst-nodal of relative dimension $1$, and
+\item the geometric fibres of $f$ are connected.
+\end{enumerate}
+Then (a) $f_*\mathcal{O}_X = \mathcal{O}_S$ and this holds after
+any base change, (b) $R^1f_*\mathcal{O}_X$ is a finite locally free
+$\mathcal{O}_S$-module whose formation commutes with any base change,
+and (c) $R^qf_*\mathcal{O}_X = 0$ for $q \geq 2$.
+\end{lemma}
+
+\begin{proof}
+Part (a) follows from
+Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-proper-flat-geom-red-connected}.
+By Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-proper-flat-h0} locally on $S$
+we can write $Rf_*\mathcal{O}_X = \mathcal{O}_S \oplus P$
+where $P$ is perfect of tor amplitude in $[1, \infty)$.
+Recall that formation of $Rf_*\mathcal{O}_X$ commutes
+with arbitrary base change
+(Derived Categories of Schemes, Lemma
+\ref{perfect-lemma-flat-proper-perfect-direct-image-general}).
+Thus for $s \in S$ we have
+$$
+H^i(P \otimes_{\mathcal{O}_S}^\mathbf{L} \kappa(s)) =
+H^i(X_s, \mathcal{O}_{X_s})
+\text{ for }i \geq 1
+$$
+This is zero unless $i = 1$ since $X_s$ is a $1$-dimensional
+Noetherian scheme, see
+Cohomology, Proposition \ref{cohomology-proposition-vanishing-Noetherian}.
+Then $P = H^1(P)[-1]$ and $H^1(P)$ is finite locally free
+for example by More on Algebra, Lemma
+\ref{more-algebra-lemma-lift-perfect-from-residue-field}.
+Since everything is compatible with base change we conclude.
 \end{proof}
 
 
@@ -5252,6 +5320,34 @@ If $\mathcal{I} \subset \mathcal{O}_X$ is the ideal sheaf
 of $Z$, then $H^1(X, \mathcal{I}\mathcal{L}) = 0$ by
 Lemma \ref{lemma-h1-nonzero-degree-leq-2g-2}. Hence surjectivity.
 \end{proof}
+
+\begin{lemma}
+\label{lemma-degree-at-least-2g+1}
+In Situation \ref{situation-Cohen-Macaulay-curve},
+assume $X$ is geometrically integral over $k$ and has genus $g$.
+Let $\mathcal{L}$ be an invertible $\mathcal{O}_X$-module.
+If $\deg(\mathcal{L}) \geq 2g + 1$, then $\mathcal{L}$
+is very ample.
+\end{lemma}
+
+\begin{proof}
+By Lemma \ref{lemma-degree-more-than-2g}, $\mathcal{L}$
+is globally generated, and so it determines a morphism
+$f : X \to \mathbf{P}^n_k$ where $n = h^0(X,\mathcal{L}) - 1$. To show that
+$\mathcal{L}$ is very ample means to show that
+$f$ is a closed immersion. It suffices to check that the base change
+of $f$ to an algebraic closure $\overline{k}$ of $k$ is a closed immersion
+(Descent, Lemma \ref{descent-lemma-descending-property-closed-immersion}).
+So we may assume that $k$ is algebraically closed; $X$ remains
+integral, by assumption. Lemma \ref{lemma-degree-more-than-2g-1-and-Z}
+gives that for every $0$-dimensional closed subscheme
+$Z\subset X$ of degree 2,
+the restriction map $H^0(X, \mathcal{L}) \to H^0(X, \mathcal{L}|_Z)$
+is surjective. By Varieties, Lemma
+\ref{varieties-lemma-variant-separate-points-tangent-vectors},
+$\mathcal{L}$ is very ample.
+\end{proof}
+
 
 \begin{lemma}
 \label{lemma-vanishing-on-gorenstein}
@@ -5516,7 +5612,7 @@ A {\it rational tail} will be an irreducible component $C \subset X$
 \begin{enumerate}
 \item $X' \not = \emptyset$ where $X' \subset X$ is the scheme theoretic closure
 of $X \setminus C$,
-\item the scheme theoretic interesection $C \cap X'$ is a single
+\item the scheme theoretic intersection $C \cap X'$ is a single
 reduced point $x$,
 \item $H^0(C, \mathcal{O}_C)$ maps isomorphically to the
 residue field of $x$, and
@@ -5770,7 +5866,8 @@ Lemma \ref{lemma-rational-tail-field-extension}. Some details omitted.
 \label{section-contracting-rational-bridges}
 
 \noindent
-In this section we discuss the simplest possible case of contracting
+In this section we discuss the next simplest possible case (after the case
+discussed in Section \ref{section-contracting-rational-tails}) of contracting
 a scheme to improve positivity properties of its canonical sheaf.
 
 \begin{example}[Contracting a rational bridge]
@@ -5793,7 +5890,7 @@ Then $k'$ is a field (Varieties, Lemma
 \ref{varieties-lemma-proper-geometrically-reduced-global-sections})
 and $\dim_{k'}(k'') = 2$. Since there are at least
 two irreducible components of $X$ passing through
-each point of $C \cap X'$, we conclude these points are nodes
+each point of $C \cap X'$, we conclude these points are nodes of $X$
 and smooth points on both $C$ and $X'$
 (Lemma \ref{lemma-closed-subscheme-nodal-curve}).
 Hence $k'/k$ is a finite separable extension of fields

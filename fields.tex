@@ -48,7 +48,7 @@ here before we discuss these in greater detail in the algebra chapters.
 
 \begin{definition}
 \label{definition-field}
-An {\it field} is a nonzero ring where every nonzero element is invertible.
+A {\it field} is a nonzero ring where every nonzero element is invertible.
 Given a field a {\it subfield} is a subring that is itself a field.
 \end{definition}
 
@@ -405,7 +405,7 @@ over $E$ (the scalar action is just multiplication in $F$).
 \label{definition-degree}
 Let $F/E$ be an extension of fields. The dimension of $F$ considered as an
 $E$-vector space is called the {\it degree} of the extension and is
-denoted $[F : E]$. If $[F : E]<\infty$ then $F$ is said to be a
+denoted $[F : E]$. If $[F : E] < \infty$ then $F$ is said to be a
 {\it finite} extension of $E$.
 \end{definition}
 
@@ -452,7 +452,7 @@ In particular, it could not be zero.
 \medskip\noindent
 Amusingly, this leads to a quick proof of the Hilbert Nullstellensatz over
 the complex numbers. For a slightly more general result, see
-Algebra, Theorem \ref{algebra-theorem-uncountable-nullstellensatz}. 
+Algebra, Theorem \ref{algebra-theorem-uncountable-nullstellensatz}.
 \end{example}
 
 \begin{lemma}
@@ -478,7 +478,7 @@ Then the degree $[E : k]$ is just the degree $d = \deg(P)$ of the
 polynomial $P$. Indeed, say
 \begin{equation}
 \label{equation-P}
-P = a_d t^d + a_1 t^{d - 1} + \ldots + a_0.
+P = a_d t^d + a_{d - 1} t^{d - 1} + \ldots + a_0.
 \end{equation}
 with $a_d \not = 0$. Then the images of $1, t, \ldots, t^{d - 1}$ in
 $k[t]/(P)$ are linearly independent over $k$, because any relation involving
@@ -556,7 +556,7 @@ We sidetrack to a slightly tangential definition.
 \begin{definition}
 \label{definition-number-field}
 A field $K$ is said to be a {\it number field} if it has characteristic
-$0$ and the extension $\mathbf{Q} \subset K$ is finite.
+$0$ and the extension $K/\mathbf{Q}$ is finite.
 \end{definition}
 
 \noindent
@@ -614,7 +614,7 @@ Let $K/E/F$ be a tower of field extensions.
 \begin{enumerate}
 \item If $\alpha \in K$ is algebraic over $F$, then $\alpha$ is algebraic
 over $E$.
-\item if $K$ is algebraic over $F$, then $K$ is algebraic over $E$.
+\item If $K$ is algebraic over $F$, then $K$ is algebraic over $E$.
 \end{enumerate}
 \end{lemma}
 
@@ -644,7 +644,7 @@ linear dependence now gives the desired polynomial that $\alpha$ must satisfy.
 
 \medskip\noindent
 For the last assertion, note that a monogenic extension $k(\alpha)/k$ is
-finite if and only $\alpha$ is algebraic over $k$, by
+finite if and only if $\alpha$ is algebraic over $k$, by
 Examples \ref{example-degree-rational-function-field} and
 \ref{example-degree-simple-algebraic-extension}.
 So if $E/k$ is algebraic, then each $k(\alpha)/k$, $\alpha \in E$, is a finite
@@ -780,7 +780,7 @@ $f : E \to E$ is an automorphism.
 \end{lemma}
 
 \begin{proof}
-If $E/F$ is finite, then $f : E \to E$ is an $F$-linear 
+If $E/F$ is finite, then $f : E \to E$ is an $F$-linear
 injective map (Lemma \ref{lemma-field-maps-injective})
 of finite dimensional vector spaces, and hence bijective.
 In general we still see that $f$ is injective.
@@ -921,9 +921,8 @@ it will be very handy, if not functorial.
 
 \begin{definition}
 \label{definition-algebraic-closure}
-Let $F$ be a field. We say $F$ is {\it algebraically closed} if every
-algebraic extension $E/F$ is trivial, i.e., $E = F$. An {\it algebraic closure}
-of $F$ is a field $\overline{F}$ containing $F$ such that:
+Let $F$ be a field. An {\it algebraic closure} of $F$ is a field
+$\overline{F}$ containing $F$ such that:
 \begin{enumerate}
 \item $\overline{F}$ is algebraic over $F$.
 \item $\overline{F}$ is algebraically closed.
@@ -956,7 +955,7 @@ $(E, \sigma_E, \mu_E)$ where
 are maps of sets such that $(E, \sigma_E, \mu_E)$ defines the structure
 of a field extension of $F$ (in particular $\sigma_E(a, b) = a +_F b$
 for $a, b \in F$ and similarly for $\mu_E$), and
-\item $F \subset E$ is an algebraic field extension.
+\item $E/F$ is an algebraic field extension.
 \end{enumerate}
 The collection of all triples $(E, \sigma_E, \mu_E)$ forms a set $I$.
 For $i \in I$ we will denote $E_i = (E_i, \sigma_i, \mu_i)$ the
@@ -1107,7 +1106,7 @@ to $x$. Then one of the following two cases happens
 \item $P$ and $P'$ are relatively prime, or
 \item $P'$ is the zero polynomial.
 \end{enumerate}
-Then second case can only happen if $F$ has characteristic $p > 0$.
+The second case can only happen if $F$ has characteristic $p > 0$.
 In this case $P(x) = Q(x^q)$ where $q = p^f$ is a power of $p$ and
 $Q \in F[x]$ is an irreducible polynomial such that $Q$ and $Q'$
 are relatively prime.
@@ -1142,7 +1141,9 @@ if it is relatively prime to its derivative.
 {\it separable} over $F$ if its minimal polynomial is separable over $F$.
 \item If $K$ is an algebraic extension of $F$, we say $K$ is
 {\it separable}\footnote{For nonalgebraic extensions
-this definition does not make sense and is not the correct one.}
+this definition does not make sense and is not the correct one. We refer
+the reader to Algebra, Sections \ref{algebra-section-separability} and
+\ref{algebra-section-separability-continued}.}
 over $F$ if every element of $K$ is separable over $F$.
 \end{enumerate}
 \end{definition}
@@ -1329,6 +1330,7 @@ not separable over $K_{i - 1}$.
 
 \medskip\noindent
 Finally, assume again that each $\alpha_i$ is separable over $K_{i - 1}$.
+We will show $K/F$ is separable.
 Let $\gamma = \gamma_1 \in K$ be arbitrary. Then we can find additional
 elements $\gamma_2, \ldots, \gamma_m$ such that
 $K = F(\gamma_1, \ldots, \gamma_m)$ (for example we could take
@@ -1421,7 +1423,7 @@ $\chi_1, \ldots, \chi_n : G \to L$ be pairwise distinct
 homomorphisms of monoids where $L$ is regarded as a monoid
 by multiplication. Then $\chi_1, \ldots, \chi_n$
 are $L$-linearly independent: if $\lambda_1, \ldots, \lambda_n \in L$
-not all zero, then $\sum \lambda_i\sigma_i(g) \not = 0$
+not all zero, then $\sum \lambda_i\chi_i(g) \not = 0$
 for some $g \in G$.
 \end{lemma}
 
@@ -1430,7 +1432,7 @@ If $n = 1$ this is true because $\chi_1(e) = 1$ if $e \in G$ is the
 neutral (identity) element. We prove the result by induction for $n > 1$.
 Suppose that $\lambda_1, \ldots, \lambda_n \in L$ not all zero.
 If $\lambda_i = 0$ for some, then we win by induction on $n$.
-Since we want to show that $\sum \lambda_i\sigma_i(g) \not = 0$
+Since we want to show that $\sum \lambda_i\chi_i(g) \not = 0$
 for some $g \in G$ we may after dividing by $-\lambda_n$
 assume that $\lambda_n = -1$. Then the only way we get in trouble
 is if
@@ -1558,11 +1560,11 @@ K = F[x]/(P) = F[t^{1/p}]
 $$
 is a field. And $K$ is purely inseparable over $F$ because every element
 $$
-a_0 + a_1t^{1/p} + \ldots + a_{p - 1}t^{p - 1/p}, a_i \in F
+a_0 + a_1t^{1/p} + \ldots + a_{p - 1}t^{(p - 1)/p},\quad a_i \in F
 $$
-has $p$th power equal to
+of $K$ has $p$th power equal to
 $$
-(a_0 + a_1t^{1/p} + \ldots + a_{p - 1}t^{p - 1/p})^p =
+(a_0 + a_1t^{1/p} + \ldots + a_{p - 1}t^{(p - 1)/p})^p =
 a_0^p + a_1^p t + \ldots + a_{p - 1}^pt^{p - 1} \in F
 $$
 This situation occurs for the field
@@ -1662,13 +1664,13 @@ Any algebraic field extension is uniquely a separable field extension
 followed by a purely inseparable one.
 \end{slogan}
 Let $E/F$ be an algebraic field extension. There exists a unique subextension
-$F \subset E_{sep} \subset E$ such that $E_{sep}/F$ is separable and
-$E/E_{sep}$ is purely inseparable.
+$E/E_{sep}/F$ such that $E_{sep}/F$ is separable and $E/E_{sep}$ is
+purely inseparable.
 \end{lemma}
 
 \begin{proof}
 If the characteristic is zero we set $E_{sep} = E$. Assume the characteristic
-if $p > 0$. Let $E_{sep}$ be the set of elements of $E$ which are separable
+is $p > 0$. Let $E_{sep}$ be the set of elements of $E$ which are separable
 over $F$. This is a subextension by Lemma \ref{lemma-separable-elements}
 and of course $E_{sep}$ is separable over $F$. Given an $\alpha$ in $E$
 there exists a $p$-power $q$ such that $\alpha^q$ is separable over $F$.
@@ -1754,12 +1756,7 @@ fact that there are $[E : F]_s = |\Mor_F(E, \overline{F})|$ choices
 for $\sigma$ we obtain the result.
 
 \medskip\noindent
-If the extensions are infinite one can write $K$ as the union
-of all finite subextension $F \subset K' \subset K$. For each
-$K'$ we set $E' = E \cap K'$. Then we have the formulas of the
-lemma for $K'/E'/F$ by the first paragraph. Since
-$[K : F]_s = \sup \{[K' : F]_s\}$ and similarly for the other
-degrees (some details omitted) we obtain the result in general.
+We omit the proof if the extensions are infinite.
 \end{proof}
 
 
@@ -1810,12 +1807,29 @@ Hence, if $P$ splits completely over $K$, then so does $Q$.
 \begin{lemma}
 \label{lemma-intersect-normal}
 Let $F$ be a field. Let $M/F$ be an algebraic extension. Let
-$F \subset E_i \subset M$, $i \in I$ be subextensions with
+$M/E_i/F$, $i \in I$ be subextensions with
 $E_i/F$ normal. Then $\bigcap E_i$ is normal over $F$.
 \end{lemma}
 
 \begin{proof}
 Direct from the definitions.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-separable-first-normal}
+Let $E/F$ be a normal algebraic field extension. Then the subextension
+$E/E_{sep}/F$ of Lemma \ref{lemma-separable-first} is normal.
+\end{lemma}
+
+\begin{proof}
+If the characteristic is zero, then $E_{sep} = E$, and the result
+is clear. If the characteristic is $p > 0$, then $E_{sep}$
+is the set of elements of $E$ which are separable over $F$.
+Then if $\alpha \in E_{sep}$ has minimal polynomial $P$
+write $P = c(x - \alpha)(x - \alpha_2) \ldots (x - \alpha_d)$
+with $\alpha_2, \ldots, \alpha_d \in E$. Since
+$P$ is a separable polynomial and since $\alpha_i$
+is a root of $P$, we conclude $\alpha_i \in E_{sep}$ as desired.
 \end{proof}
 
 \begin{lemma}
@@ -1891,7 +1905,7 @@ Let $L/M/K$ be a tower of algebraic extensions.
 \begin{enumerate}
 \item If $M/K$ is normal, then any automorphism $\tau$ of $L/K$
 induces an automorphism $\tau|_M : M \to M$.
-\item If $L/K$ is normal, then $K$-algebra map $\sigma : M \to L$
+\item If $L/K$ is normal, then any $K$-algebra map $\sigma : M \to L$
 extends to an automorphism of $L$.
 \end{enumerate}
 \end{lemma}
@@ -2100,6 +2114,43 @@ Lemma \ref{lemma-normally-generated}
 that $M''$ is normal over $K$.
 \end{proof}
 
+\noindent
+The following lemma can sometimes be used to prove properties
+of the normal closure.
+
+\begin{lemma}
+\label{lemma-normal-closure-tensor-product}
+Let $L/K$ be a finite extension. Let $M/L$ be the normal
+closure of $L$ over $K$. Then there is a surjective map
+$$
+L \otimes_K L \otimes_K \ldots \otimes_K L \longrightarrow M
+$$
+of $K$-algebras where the number of tensors can be taken
+$[L : K]_s \leq [L : K]$.
+\end{lemma}
+
+\begin{proof}
+Choose an algebraic closure $\overline{K}$ of $K$.
+Set $n = [L : K]_s = |\Mor_K(L, \overline{K})|$ with equality by
+Lemma \ref{lemma-separable-degree}.
+Say $\Mor_K(L, \overline{K}) = \{\sigma_1, \ldots, \sigma_n\}$.
+Let $M' \subset \overline{K}$ be the $K$-subalgebra
+generated by $\sigma_i(L)$, $i = 1, \ldots, n$.
+It follows from Lemma \ref{lemma-characterize-normal}
+that $M'$ is normal over $K$ and that it is the
+smallest normal subextension of $\overline{K}$ containing
+$\sigma_1(L)$. By uniqueness of normal closure we
+have $M \cong M'$. Finally, there is a surjective map
+$$
+L \otimes_K L \otimes_K \ldots \otimes_K L \longrightarrow M',
+\quad
+\lambda_1 \otimes \ldots \otimes \lambda_n \longmapsto
+\sigma_1(\lambda_1) \ldots \sigma_n(\lambda_n)
+$$
+and note that $n \leq [L : K]$ by definition.
+\end{proof}
+
+
 
 
 
@@ -2235,7 +2286,7 @@ Next, assume $F$ is infinite and there are at most finitely many proper
 subfields $E/K/F$. List them, say $K_1, \ldots, K_N$. Then
 each $K_i \subset E$ is a proper sub $F$-vector space. As $F$ is infinite
 we can find a vector $\alpha \in E$ with $\alpha \not \in K_i$ for all $i$
-(a finite union of proper subvector spaces is never a subvector space;
+(a vector space can never be equal to a finite union of proper subvector spaces;
 details omitted). Then $\alpha$ is a primitive element for $E$ over $F$.
 
 \medskip\noindent
@@ -2606,6 +2657,21 @@ If $K$ is Galois over $F$, then $K$ is Galois over $E$.
 Combine Lemmas \ref{lemma-normal-goes-up} and \ref{lemma-separable-goes-up}.
 \end{proof}
 
+\begin{lemma}
+\label{lemma-normal-closure-galois}
+Let $L/K$ be a finite separable extension of fields.
+Let $M$ be the normal closure of $L$ over $K$
+(Definition \ref{definition-normal-closure}).
+Then $M/K$ is Galois.
+\end{lemma}
+
+\begin{proof}
+The subextension $M/M_{sep}/K$ of Lemma \ref{lemma-separable-first}
+is normal by Lemma \ref{lemma-separable-first-normal}.
+Since $L/K$ is separable we have $L \subset M_{sep}$.
+By minimality $M = M_{sep}$ and the proof is done.
+\end{proof}
+
 \noindent
 Let $G$ be a group acting on a field $K$ (by field automorphisms).
 We will often use the notation
@@ -2631,7 +2697,7 @@ The key to the whole lemma is that this polynomial is invariant
 under the action of $G$ and hence has coefficients in $K^G$.
 Namely, for $\tau \in G$ we have
 $$
-P^\sigma = \prod\nolimits_{\beta \in G \cdot \alpha} (x - \tau(\beta)) =
+P^\tau = \prod\nolimits_{\beta \in G \cdot \alpha} (x - \tau(\beta)) =
 \prod\nolimits_{\beta \in G \cdot \alpha} (x - \beta) = P
 $$
 because the map $\beta \mapsto \tau(\beta)$ is a permutation of
@@ -2678,7 +2744,7 @@ Then we have $K = L^G$ and the map
 $$
 \{\text{subgroups of }G\}
 \longrightarrow
-\{\text{subextensions }K \subset M \subset L\},\quad
+\{\text{subextensions }L/M/K\},\quad
 H \longmapsto L^H
 $$
 is a bijection whose inverse maps $M$ to $\text{Gal}(L/M)$.
@@ -2825,7 +2891,7 @@ is the induced topology from $G$. An element $(f_S) \in G$ is in
 the image of $c$ exactly if
 (A) $f_S(\alpha) + f_S(\beta) = f_S(\alpha + \beta)$ and
 (M) $f_S(\alpha)f_S(\beta) = f_S(\alpha\beta)$ whenever
-this makes sense (i.e., 
+this makes sense (i.e.,
 $\alpha, \beta, \alpha + \beta, \alpha\beta \in S$).
 Namely, this means
 $\lim f_S : E \to E$ will be an $F$-algebra map
@@ -2949,7 +3015,7 @@ be the Galois group viewed as a profinite topological group
 $$
 \{\text{closed subgroups of }G\}
 \longrightarrow
-\{\text{subextensions }K \subset M \subset L\},\quad
+\{\text{subextensions }L/M/K\},\quad
 H \longmapsto L^H
 $$
 is a bijection whose inverse maps $M$ to $\text{Gal}(L/M)$.
@@ -2971,15 +3037,15 @@ For such an $E$, by Lemma \ref{lemma-galois-infinite}
 the map $\text{Gal}(L/K) \to \text{Gal}(E/K)$ is surjective
 and continuous, i.e., the kernel is open because the topology
 on $\text{Gal}(E/K)$ is discrete.
-In particular we see that no element of $M \setminus K$ is fixed by
+In particular we see that no element of $L \setminus K$ is fixed by
 $\text{Gal}(L/K)$ as $E^{\text{Gal}(E/K)} = K$.
 This proves that $L^G = K$.
 
 \medskip\noindent
-Lemma \ref{lemma-galois-goes-up} given a subextension $L/M/K$
+By Lemma \ref{lemma-galois-goes-up} given a subextension $L/M/K$
 the extension $L/M$ is Galois. It is immediate from the definition
 of the topology on $G$ that the subgroup $\text{Gal}(L/M)$ is closed.
-By the above applied to $L/M$ we see that $L^{\text{Gal}(L/M)} = M$
+By the above applied to $L/M$ we see that $L^{\text{Gal}(L/M)} = M$.
 
 \medskip\noindent
 Conversely, let $H \subset G$ be a closed subgroup. We claim that
@@ -3001,7 +3067,7 @@ subgroups and subextensions.
 
 \medskip\noindent
 Assume $H \subset G$ is open. Arguing as above we find that
-$H$ containes $\text{Gal}(E/K)$ for some large enough finite
+$H$ containes $\text{Gal}(L/E)$ for some large enough finite
 Galois subextension $E$ and we find that $L^H$ is contained
 in $E$ whence finite over $K$. Conversely, if $M$ is a finite
 subextension, then $M$ is generated by a finite subset $S$
@@ -3073,7 +3139,8 @@ would have odd degree minimal polynomials.
 \medskip\noindent
 Next, let $K/\mathbf{R}$ be a finite Galois extension with Galois group $G$.
 Let $P \subset G$ be a $2$-sylow subgroup. Then $K^P/\mathbf{R}$ is an
-odd degree extension, hence by the above $K^P = K$, which in turn implies
+odd degree extension, hence by the above $K^P = \mathbf{R}$,
+which in turn implies
 $G = P$. (All of these arguments rely on Galois theory of course.)
 Thus $G$ is a $2$-group. If $G$ is nontrivial, then we see that
 $\mathbf{C} \subset K$ as $\mathbf{C}$ is (up to isomorphism) the only
@@ -3083,7 +3150,7 @@ This is absurd as every complex number has a square root.
 
 \medskip\noindent
 The conclusion: $\mathbf{C}$ is algebraically closed. Namely, if not
-then we'd get a nontrivial finite extension $\mathbf{C} \subset K$
+then we'd get a nontrivial finite extension $K/\mathbf{C}$
 which we could assume normal (hence Galois) over $\mathbf{R}$ by
 Lemma \ref{lemma-normal-closure}. But we've seen above that then
 $K = \mathbf{C}$.
@@ -3119,14 +3186,133 @@ Kummer theory gives a converse.
 
 \begin{lemma}[Kummer extensions]
 \label{lemma-Kummer}
-Let $K \subset L$ be a Galois extension of fields whose Galois group is
+Let $L/K$ be a Galois extension of fields whose Galois group is
 $\mathbf{Z}/n\mathbf{Z}$. Assume moreover that the characteristic of $K$
 is prime to $n$ and that $K$ contains a primitive $n$th root of $1$.
 Then $L = K[z]$ with $z^n \in K$.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $\zeta \in K$ be a primitive $n$th root of $1$.
+Let $\sigma$ be a generator of $\text{Gal}(L/K)$.
+Consider $\sigma : L \to L$ as a $K$-linear operator.
+Note that $\sigma^n - 1 = 0$ as a linear operator.
+Applying linear independence of characters
+(Lemma \ref{lemma-independence-characters}), we see
+that there cannot be a polynomial over $K$ of degree $< n$
+annihilating $\sigma$. Hence the minimal polynomial of $\sigma$
+as a linear operator is $x^n - 1$. 
+Since $\zeta$ is a root of $x^n - 1$ by linear algebra
+there is a $0 \neq z \in L$ such that $\sigma(z) = \zeta z$.
+This $z$ satisfies $z^n \in K$ because
+$\sigma(z^n) = (\zeta z)^n = z^n$. Moreover, we see that
+$z, \sigma(z), \ldots, \sigma^{n - 1}(z) =
+z, \zeta z, \ldots \zeta^{n - 1} z$ are pairwise distinct
+which guarantees that $z$ generates $L$ over $K$.
+Hence $L = K[z]$ as required.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-adjoint-pth-root-unity}
+Let $K$ be a field with algebraic closure $\overline{K}$.
+Let $p$ be a prime different from the characteristic of $K$.
+Let $\zeta \in \overline{K}$ be a primitive $p$th root
+of $1$. Then $K(\zeta)/K$ is a Galois extension of degree dividing $p - 1$.
+\end{lemma}
+
+\begin{proof}
+The polynomial $x^p - 1$ splits completely over
+$K(\zeta)$ as its roots are $1, \zeta, \zeta^2, \ldots, \zeta^{p - 1}$.
+Hence $K(\zeta)/K$ is a splitting field and hence normal.
+The extension is separable as $x^p - 1$ is a separable polynomial.
+Thus the extension is Galois. Any automorphism of $K(\zeta)$ over $K$
+sends $\zeta$ to $\zeta^i$ for some $1 \leq i \leq p - 1$.
+Thus the Galois group is a subgroup of $(\mathbf{Z}/p\mathbf{Z})^*$.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-subfields-kummer}
+Let $K$ be a field. Let $L/K$ be a finite extension of degree $e$
+which is generated by an element $\alpha$ with $a = \alpha^e \in K$.
+Then any sub extension $L/L'/K$ is generated by $\alpha^d$ for some $d | e$.
+\end{lemma}
+
+\begin{proof}
+Observe that for $d | e$ the subfield $K(\alpha^d)$ has
+$[K(\alpha^d) : K] = e/d$ and $[L : K(\alpha^d)] = d$
+and that both extensions $K(\alpha^d)/K$ and $L/K(\alpha^d)$
+are extensions as in the lemma.
+
+\medskip\noindent
+We will use induction on the pair of integers $([L : L'], [L' : K])$
+ordered lexicographically.
+Let $p$ be a prime number dividing $e$ and set $d = e/p$.
+If $K(\alpha^d)$ is contained in $L'$, then we win
+by induction, because then it suffices to prove the lemma
+for $L/L'/K(\alpha^d)$. If not, then $[L'(\alpha^d) : L'] = p$
+and by induction hypothesis we have $L'(\alpha^d) = K(\alpha^i)$
+for some $i | d$. If $i \not = 1$ we are done by induction.
+Thus we may assume that $[L : L'] = p$.
+
+\medskip\noindent
+If $e$ is not a power of $p$, then we can do this trick
+again with a second prime number and we win. Thus we may
+assume $e$ is a power of $p$.
+
+\medskip\noindent
+If the characteristic of $K$ is $p$ and $e$ is a $p$th power, then
+$L/K$ is purely inseparable. Hence $L/L'$ is purely inseparable
+of degree $p$ and hence $\alpha^p \in L'$.
+Thus $L' = K(\alpha^p)$ and this case is done.
+
+\medskip\noindent
+The final case is where $e$ is a power of $p$,
+the characteristic of $K$ is not $p$,
+$L/L'$ is a degree $p$ extension, and
+$L = L'(\alpha^{e/p})$. Claim: this can
+only happen if $e = p$ and $L' = K$. The claim finishes the proof.
+
+\medskip\noindent
+First, we prove the claim when $K$ contains a primitive
+$p$th root of unity $\zeta$. In this case the degree $p$ extension
+$K(\alpha^{e/p})/K$ is Galois with Galois group generated
+by the automorphism $\alpha^{e/p} \mapsto \zeta \alpha^{e/p}$.
+On the other hand, since $L$ is generated by
+$\alpha^{e/p}$ and $L'$ we see that the map
+$$
+K(\alpha^{e/p}) \otimes_K L' \longrightarrow L
+$$
+is an isomorphism of $K$-algebras (look at dimensions).
+Thus $L$ has an automorphism $\sigma$ of order $p$ over $K$ sending
+$\alpha^{e/p}$ to $\zeta \alpha^{e/p}$. Then
+$\sigma(\alpha) = \zeta' \alpha$ for some $e$th root of unity $\zeta'$
+(as $\alpha^e$ is in $K$).
+Then on the one hand $(\zeta')^{e/p} = \zeta$ and on the other
+hand $\zeta'$ has to be a $p$th root of $1$ as $\sigma$
+has order $p$. Thus $e/p = 1$ and the claim has been shown.
+
+\medskip\noindent
+Finally, suppose that $K$ does not contain a primitive
+$p$th root of $1$.
+Choose a primitive $p$th root $\zeta$ in some algebraic closure
+$\overline{L}$ of $L$. Consider the diagram
+$$
+\xymatrix{
+K(\zeta) \ar[r] & L(\zeta) \\
+K \ar[u] \ar[r] & L \ar[u]
+}
+$$
+By Lemma \ref{lemma-adjoint-pth-root-unity}
+the vertical extensions have degree prime to $p$.
+Hence $[L(\zeta) : K(\zeta)]$ is divisible by $e$.
+On the other hand, $L(\zeta)$ is generated by $\alpha$
+over $K(\zeta)$ and hence $[L(\zeta) : K(\zeta)] \leq e$.
+Thus $[L(\zeta) : K(\zeta)] = e$. Similarly we have
+$[K(\alpha^{e/p}, \zeta) : K(\zeta)] = p$ and
+$[L(\zeta) : L'(\zeta)] = p$. Thus the fields
+$K(\zeta), L'(\zeta), L(\zeta)$ and the element $\alpha$
+fall into the case discussed
+in the previous paragraph we conclude $e = p$ as desired.
 \end{proof}
 
 
@@ -3150,14 +3336,32 @@ The theory of Artin-Schreier extensions gives a converse.
 
 \begin{lemma}[Artin-Schreier extensions]
 \label{lemma-Artin-Schreier}
-Let $K \subset L$ be a Galois extension of fields of characteristic $p > 0$
+Let $L/K$ be a Galois extension of fields of characteristic $p > 0$
 with Galois group $\mathbf{Z}/p\mathbf{Z}$. Then $L = K[z]$ with
 $z^p - z \in K$.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $\sigma$ be a generator of $\text{Gal}(L/K)$.
+Consider $\sigma : L \to L$ as a $K$-linear operator.
+Observe that $\sigma^p - 1 = 0$ as a linear operator.
+Applying linear independence of characters
+(Lemma \ref{lemma-independence-characters}),
+there cannot be a polynomial of degree $< p$
+annihilating $\sigma$. We conclude that the minimal
+polynomial of $\sigma$ is $x^p - 1 = (x - 1)^p$.
+This implies that there exists $w \in L$ such that
+$(\sigma - 1)^{p - 1}(w) = y$ is nonzero. Then
+$\sigma(y) = y$, i.e., $y \in K$. Thus
+$z = y^{-1}(\sigma - 1)^{p - 2}(w)$ satisfies
+$\sigma(z) = z + 1$. Since $z \not \in K$ we have $L = K[z]$.
+Moreover since $\sigma(z^p - z) = (z + 1)^p - (z + 1) = z^p - z$
+we see that $z^p - z \in K$ and the proof is complete.
 \end{proof}
+
+
+
+
 
 
 
@@ -3169,7 +3373,7 @@ We recall the standard definitions.
 
 \begin{definition}
 \label{definition-transcendence}
-Let $k \subset K$ be a field extension.
+Let $K/k$ be a field extension.
 \begin{enumerate}
 \item A collection of elements $\{x_i\}_{i \in I}$ of $K$ is called
 {\it algebraically independent} over $k$ if the map
@@ -3180,12 +3384,12 @@ which maps $X_i$ to $x_i$ is injective.
 \item The field of fractions of a polynomial ring
 $k[x_i; i \in I]$ is denoted $k(x_i; i\in I)$.
 \item A {\it purely transcendental extension} of $k$ is any
-field extension $k \subset K$ isomorphic to the field of
+field extension $K/k$ isomorphic to the field of
 fractions of a polynomial ring over $k$.
 \item A {\it transcendence basis} of $K/k$ is a
 collection of elements $\{x_i\}_{i \in I}$ which are
 algebraically independent over $k$ and such that
-the extension $k(x_i; i\in I) \subset K$ is algebraic.
+the extension $K/k(x_i; i\in I)$ is algebraic.
 \end{enumerate}
 \end{definition}
 
@@ -3206,8 +3410,8 @@ Any two transcendence bases have the same cardinality.
 Let $A$ be an algebraically independent subset of $E$. Let $G$ be a subset
 of $E$ containing $A$ that generates $E/F$. We claim we can find a
 transcendence basis $B$ such that $A \subset B \subset G$.
-To prove this consider the collection of algebraically independent subsets
-$\mathcal{B}$ whose members are subsets of $G$ that contain $A$.
+To prove this, consider the collection $\mathcal{B}$ of algebraically
+independent subsets whose members are subsets of $G$ that contain $A$.
 Define a partial ordering on $\mathcal{B}$ using inclusion.
 Then $\mathcal{B}$ contains at least one element $A$.
 The union of the elements of a totally ordered subset $T$ of $\mathcal{B}$
@@ -3218,14 +3422,15 @@ contains $A$ and is contained in $G$. By Zorn's lemma, there is a maximal
 element $B \in \mathcal{B}$. Now we claim $E$ is algebraic over $F(B)$.
 This is because if it wasn't then there would be an element
 $f \in G$ transcendental over $F(B)$ since $F(G) = E$. Then
-$B \cup\{f\}$ wold be algebraically independent contradicting the
+$B \cup\{f\}$ would be algebraically independent contradicting the
 maximality of $B$. Thus $B$ is our transcendence basis.
 
 \medskip\noindent
 Let $B$ and $B'$ be two transcendence bases. Without loss of generality, we
 can assume that $|B'| \leq |B|$. Now we divide the proof into two cases: the
 first case is that $B$ is an infinite set. Then for each $\alpha \in B'$,
-there is a finite set $B_{\alpha}$ such that $\alpha$ is algebraic over
+there is a finite set $B_{\alpha} \subset B$ such that $\alpha$ is algebraic
+over
 $F(B_{\alpha})$ since any algebraic dependence relation only uses finitely many
 indeterminates. Then we define $B^* = \bigcup_{\alpha\in B'} B_{\alpha}$.
 By construction, $B^* \subset B$, but we claim that in fact the two sets are
@@ -3260,7 +3465,7 @@ E/ F(B^*, \alpha_1) / F(B^*)
 $$
 since $\alpha_1$ is algebraic over $F(B^*)$.
 Now we claim that $B^*$ (counting multiplicity of elements) is
-algebraically independent over $E$ because if it weren't, then there would be an
+algebraically independent over $F$ because if it weren't, then there would be an
 irreducible $g\in F[x, y_2, \ldots, y_n]$ such that
 $g(\beta_1, \alpha_2, \ldots, \alpha_n) = 0$
 which must involve $x$ making $\beta_1$
@@ -3268,12 +3473,12 @@ algebraic over $F(\alpha_2, \ldots, \alpha_n)$ which would make $\alpha_1$
 algebraic over $F(\alpha_2, \ldots, \alpha_n)$ which is impossible.
 So this means that $\{\alpha_2, \ldots, \alpha_n\}$ and
 $\{\beta_2, \ldots, \beta_m\}$ are bases for $E$ over $F(\beta_1)$
-which means by induction, $m = n$. 
+which means by induction, $m = n$.
 \end{proof}
 
 \begin{definition}
 \label{definition-transcendence-degree}
-Let $k \subset K$ be a field extension.
+Let $K/k$ be a field extension.
 The {\it transcendence degree} of $K$ over $k$ is
 the cardinality of a transcendence basis of $K$ over $k$.
 It is denoted $\text{trdeg}_k(K)$.
@@ -3281,7 +3486,7 @@ It is denoted $\text{trdeg}_k(K)$.
 
 \begin{lemma}
 \label{lemma-transcendence-degree-tower}
-Let $k \subset K \subset L$ be field extensions.
+Let $L/K/k$ be field extensions.
 Then
 $$
 \text{trdeg}_k(L) =
@@ -3305,7 +3510,7 @@ degree at least $1$ since both $e$ and $\pi$ are transcendental over the
 rationals. However, this field extension might have transcendence
 degree $2$ if $e$ and $\pi$ are algebraically independent. Whether or
 not this is true is unknown and whence the problem of determining
-$trdeg(\mathbf{Q}(e, \pi))$ is open.
+$\text{trdeg}(\mathbf{Q}(e, \pi))$ is open.
 \end{example}
 
 \begin{example}
@@ -3338,14 +3543,15 @@ closed field $k$ (e.g. the complex numbers), one can consider its
 ``field of rational functions'': basically, functions that look like
 quotients of polynomials, where the denominator does not identically
 vanish on the curve. There is a similar anti-equivalence of categories
-(insert future reference here) between smooth projective curves and
+(Algebraic Curves, Theorem \ref{curves-theorem-curves-rational-maps})
+between smooth projective curves and
 non-constant morphisms of curves and finitely generated extensions of $k$ of
 transcendence degree one. See \cite{H}.
 \end{example}
 
 \begin{definition}
 \label{definition-algebraically-closed-in}
-Let $k \subset K$ be a field extension.
+Let $K/k$ be a field extension.
 \begin{enumerate}
 \item The {\it algebraic closure of $k$ in $K$} is the subfield
 $k'$ of $K$ consisting of elements of $K$ which are algebraic over $k$.
@@ -3356,8 +3562,33 @@ contained in $k$.
 \end{definition}
 
 \begin{lemma}
+\label{lemma-purely-transcendental-degree}
+Let $k'/k$ be a finite extension of fields. Let
+$k'(x_1, \ldots, x_r)/k(x_1, \ldots, x_r)$ be the
+induced extension of purely transcendental extensions.
+Then $[k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)] = [k' : k] < \infty$.
+\end{lemma}
+
+\begin{proof}
+By multiplicativity of degrees of extensions
+(Lemma \ref{lemma-multiplicativity-degrees})
+it suffices to prove this when $k'$ is generated by a single element
+$\alpha \in k'$ over $k$. Let $f \in k[T]$ be the minimal polynomial
+of $\alpha$ over $k$. Then $k'(x_1, \ldots, x_r)$ is generated
+by $\alpha, x_1, \ldots, x_r$ over $k$ and hence $k'(x_1, \ldots, x_r)$
+is generated by $\alpha$ over $k(x_1, \ldots, x_r)$.
+Thus it suffices to show that $f$ is still irreducible as
+an element of $k(x_1, \ldots, x_r)[T]$. We only sketch the proof.
+It is clear that $f$ is irreducible as an element of
+$k[x_1, \ldots, x_r, T]$ for example because $f$ is monic
+as a polynomial in $T$ and any putative factorization in
+$k[x_1, \ldots, x_r, T]$ would lead to a factorization in $k[T]$
+by setting $x_i$ equal to $0$. By Gauss' lemma we conclude.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-algebraic-closure-in-finitely-generated}
-Let $k \subset K$ be a finitely generated field extension.
+Let $K/k$ be a finitely generated field extension.
 The algebraic closure of $k$ in $K$ is finite over $k$.
 \end{lemma}
 
@@ -3366,11 +3597,12 @@ Let $x_1, \ldots, x_r \in K$ be a transcendence basis for $K$
 over $k$. Then $n = [K : k(x_1, \ldots, x_r)] < \infty$.
 Suppose that $k \subset k' \subset K$ with $k'/k$ finite.
 In this case
-$[k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)] = [k' : k] < \infty$.
+$[k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)] = [k' : k] < \infty$, see
+Lemma \ref{lemma-purely-transcendental-degree}.
 Hence
 $$
-[k' : k] = [k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)]
-< [K : k(x_1, \ldots, x_r)] = n.
+[k' : k] = [k'(x_1, \ldots, x_r) : k(x_1, \ldots, x_r)] \leq
+[K : k(x_1, \ldots, x_r)] = n.
 $$
 In other words, the degrees of finite subextensions are bounded
 and the lemma follows.
@@ -3419,7 +3651,7 @@ $\mathbf{Q}$. However, if we embed $K = \mathbf{Q}[x]/(x^8 - 2)$ into
 $\mathbf{C}$ by mapping $x$ to $2^{1/8}e^{2\pi i/8}$, then the compositum
 $\mathbf{Q}(2^{1/12}, 2^{1/8}e^{2\pi i/8})$ contains $i = e^{2\pi i/4}$ and has
 degree $48$ over $\mathbf{Q}$ (we omit showing the degree is $48$, but
-the existence of $i$ certainly proves the two composita are not isomorphic). 
+the existence of $i$ certainly proves the two composita are not isomorphic).
 
 \begin{definition}
 \label{definition-linearly-disjoint}
@@ -3469,7 +3701,7 @@ We set $E_{insep} = E^{\text{Aut}(E/F)}$. Details omitted.
 In this section we give a quick review of what has transpired above.
 
 \medskip\noindent
-Let $k \subset K$ be a field extension. Let $\alpha \in K$. Then we have the
+Let $K/k$ be a field extension. Let $\alpha \in K$. Then we have the
 following possibilities:
 \begin{enumerate}
 \item The element $\alpha$ is transcendental over $k$.
@@ -3497,19 +3729,19 @@ a polynomial in $T^q$. Then the element $\alpha^q$ is separable over $k$.
 \label{definition-separable-algebraic}
 Algebraic field extensions.
 \begin{enumerate}
-\item A field extension $k \subset K$ is called {\it algebraic}
+\item A field extension $K/k$ is called {\it algebraic}
 if every element of $K$ is algebraic over $k$.
-\item An algebraic extension $k \subset k'$ is called {\it separable}
+\item An algebraic extension $k'/k$ is called {\it separable}
 if every $\alpha \in k'$ is separable over $k$.
 \item An algebraic
-extension $k \subset k'$ is called {\it purely inseparable} if
+extension $k'/k$ is called {\it purely inseparable} if
 the characteristic of $k$ is $p > 0$ and for every element
 $\alpha \in k'$ there exists a power $q$ of $p$ such that
 $\alpha^q \in k$.
-\item An algebraic extension $k \subset k'$ is called {\it normal}
+\item An algebraic extension $k'/k$ is called {\it normal}
 if for every $\alpha \in k'$ the minimal polynomial $P(T) \in k[T]$
 of $\alpha$ over $k$ splits completely into linear factors over $k'$.
-\item An algebraic extension $k \subset k'$ is called {\it Galois}
+\item An algebraic extension $k'/k$ is called {\it Galois}
 if it is separable and normal.
 \end{enumerate}
 \end{definition}
@@ -3519,7 +3751,7 @@ The following lemma does not seem to fit anywhere else.
 
 \begin{lemma}
 \label{lemma-pth-root}
-Let $K$ be a field of characteristic $p > 0$. Let $K \subset L$ be a separable
+Let $K$ be a field of characteristic $p > 0$. Let $L/K$ be a separable
 algebraic extension. Let $\alpha \in L$.
 \begin{enumerate}
 \item If the coefficients of the minimal polynomial of $\alpha$

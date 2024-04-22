@@ -805,8 +805,7 @@ in cases A and B follows from
 Sites, Lemmas \ref{sites-lemma-cocontinuous-morphism-topoi} and
 \ref{sites-lemma-when-shriek}
 and
-Modules on Sites, Lemmas \ref{sites-modules-lemma-g-shriek-adjoint} and
-\ref{sites-modules-lemma-back-and-forth}.
+Modules on Sites, Lemma \ref{sites-modules-lemma-g-shriek-adjoint}.
 
 \medskip\noindent
 Proof of (3). Let $\mathcal{G}$ be a sheaf on $\mathcal{C}_n$.
@@ -993,7 +992,7 @@ $$
 a_{0, *}\mathcal{F}_0 \to
 a_{0, *}f_{\varphi, *} f_\varphi^{-1}\mathcal{F}_0
 \xrightarrow{\mathcal{F}(\varphi)}
-a_{0, *}f_{\varphi, *} \mathcal{F}_0 = a_{1, *}\mathcal{F}_1
+a_{0, *}f_{\varphi, *} \mathcal{F}_1 = a_{1, *}\mathcal{F}_1
 $$
 where the first arrow comes from $1 \to f_{\varphi, *} f_\varphi^{-1}$.
 Let $\mathcal{G}_\bullet$ denote the constant simplicial sheaf
@@ -1303,7 +1302,7 @@ Thus $\mathcal{H} = g_{n!}\mathcal{G}$ as desired.
 In Situation \ref{situation-simplicial-site}.
 Let $\mathcal{O}$ be a sheaf of rings on $\mathcal{C}_{total}$.
 If $\mathcal{I}$ is injective in $\textit{Mod}(\mathcal{O})$, then
-$\mathcal{I}_n$ is a limp sheaf on $\mathcal{C}_n$.
+$\mathcal{I}_n$ is a totally acyclic sheaf on $\mathcal{C}_n$.
 \end{lemma}
 
 \begin{proof}
@@ -1591,6 +1590,76 @@ Hence the cohomology of the columns computes the groups
 $H^q(\mathcal{C}_p, K_p)$. We conclude by applying
 Homology, Lemmas \ref{homology-lemma-first-quadrant-ss} and
 \ref{homology-lemma-double-complex-gives-resolution}.
+\end{proof}
+
+\begin{remark}
+\label{remark-simplicial-cohomology-site}
+Assumptions and notation as in
+Lemma \ref{lemma-simplicial-sheaf-cohomology-site}
+except we do not require $K$ in $D(\mathcal{C}_{total})$
+to be bounded below. We claim there is a natural
+spectral sequence in this case also. Namely, suppose
+that $\mathcal{I}^\bullet$ is a K-injective complex of sheaves on
+$\mathcal{C}_{total}$ with injective terms representing $K$.
+We have
+\begin{align*}
+R\Gamma(\mathcal{C}_{total}, K)
+& =
+R\Hom(\mathbf{Z}, K) \\
+& =
+R\Hom(
+\ldots \to g_{2!}\mathbf{Z} \to g_{1!}\mathbf{Z} \to g_{0!}\mathbf{Z}, K) \\
+& =
+\Gamma(\mathcal{C}_{total},
+\SheafHom^\bullet(
+\ldots \to g_{2!}\mathbf{Z} \to g_{1!}\mathbf{Z} \to g_{0!}\mathbf{Z},
+\mathcal{I}^\bullet)) \\
+& =
+\text{Tot}_\pi(A^{\bullet, \bullet})
+\end{align*}
+where $A^{\bullet, \bullet}$ is the double complex with terms
+$A^{p, q} = \Gamma(\mathcal{C}_p, \mathcal{I}^q_p)$ and $\text{Tot}_\pi$
+denotes the product totalization of this double complex.
+Namely, the first equality holds in any site. The second equality
+holds by Lemma \ref{lemma-simplicial-resolution-Z-site}.
+The third equality holds because $\mathcal{I}^\bullet$ is K-injective, see
+Cohomology on Sites, Sections \ref{sites-cohomology-section-hom-complexes}
+and \ref{sites-cohomology-section-internal-hom}.
+The final equality holds by the construction of $\SheafHom^\bullet$
+and the fact that $\Hom(g_{p!}\mathbf{Z}, \mathcal{I}^q) =
+\Gamma(\mathcal{C}_p, \mathcal{I}^q_p)$.
+Then we get our spectral sequence by viewing
+$\text{Tot}_\pi(A^{\bullet, \bullet})$ as a filtered
+complex with $F^i\text{Tot}^n_\pi(A^{\bullet, \bullet}) =
+\prod_{p + q = n,\ p \geq i} A^{p, q}$. The spectral sequence
+we obtain behaves like the spectral sequence $({}'E_r, {}'d_r)_{r \geq 0}$ in
+Homology, Section \ref{homology-section-double-complex}
+(where the case of the direct sum totalization
+is discussed) except for regularity, boundedness, convergence, and
+abutment issues. In particular we obtain $E_1^{p, q} = H^q(\mathcal{C}_p, K_p)$
+as in Lemma \ref{lemma-simplicial-sheaf-cohomology-site}.
+\end{remark}
+
+\begin{lemma}
+\label{lemma-simplicial-sheaf-cohomology-site-zero}
+In Situation \ref{situation-simplicial-site}. Let $K$ be an object of
+$D(\mathcal{C}_{total})$.
+\begin{enumerate}
+\item If $H^{-p}(\mathcal{C}_p, K_p) = 0$ for all $p \geq 0$, then
+$H^0(\mathcal{C}_{total}, K) = 0$.
+\item If $R\Gamma(\mathcal{C}_p, K_p) = 0$
+for all $p \geq 0$, then $R\Gamma(\mathcal{C}_{total}, K) = 0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+With notation as in Remark \ref{remark-simplicial-cohomology-site}
+we see that $R\Gamma(\mathcal{C}_{total}, K)$ is
+represented by $\text{Tot}_\pi(A^{\bullet, \bullet})$.
+The assumption in (1) tells us that $H^{-p}(A^{p, \bullet}) = 0$.
+Thus the vanishing in (1) follows from
+More on Algebra, Lemma \ref{more-algebra-lemma-vanishing-coh-prod-totalization}.
+Part (2) follows from part (1) and taking shifts.
 \end{proof}
 
 \begin{lemma}
@@ -1907,7 +1976,7 @@ On the other hand, since restriction to $\mathcal{C}_p$ is exact
 (Lemma \ref{lemma-restriction-to-components-site})
 the complex $\mathcal{I}_p^\bullet$ represents $K_p$ in
 $D(\mathcal{C}_p)$. The sheaves $\mathcal{I}_p^q$
-are limp on $\mathcal{C}_p$
+are totally acyclic on $\mathcal{C}_p$
 (Lemma \ref{lemma-restriction-injective-to-component-limp}).
 Hence the cohomology of the columns computes the groups
 $H^q(\mathcal{C}_p, K_p)$ by Leray's acyclicity lemma
@@ -2136,7 +2205,7 @@ On the other hand, since restriction to $\mathcal{C}_p$ is exact
 (Lemma \ref{lemma-restriction-to-components-site})
 the complex $\mathcal{I}_p^\bullet$ represents $K_p$ in
 $D(\mathcal{C}_p)$. The sheaves $\mathcal{I}_p^q$
-are limp on $\mathcal{C}_p$
+are totally acyclic on $\mathcal{C}_p$
 (Lemma \ref{lemma-restriction-injective-to-component-limp}).
 Hence the cohomology of the columns are the sheaves
 $R^qa_{p, *}K_p$ by Leray's acyclicity lemma
@@ -2162,7 +2231,7 @@ Here is the definition.
 In Situation \ref{situation-simplicial-site}.
 \begin{enumerate}
 \item A sheaf $\mathcal{F}$ of sets or of abelian groups on
-$\mathcal{C}$ is {\it cartesian} if the maps
+$\mathcal{C}_{total}$ is {\it cartesian} if the maps
 $\mathcal{F}(\varphi) : f_\varphi^{-1}\mathcal{F}_m \to \mathcal{F}_n$
 are isomorphisms for all $\varphi : [m] \to [n]$.
 \item If $\mathcal{O}$ is a sheaf of rings on $\mathcal{C}_{total}$,
@@ -2476,7 +2545,7 @@ is an isomorphism for all $n$.
 \item Let $\mathcal{O}$ be a sheaf of rings on $\mathcal{C}_{total}$
 such that the morphisms $f_\varphi^{-1}\mathcal{O}_n \to \mathcal{O}_m$
 are flat for all $\varphi : [n] \to [m]$. Then an object $K$ of
-$D(\mathcal{O})$ is cartesian if and only the canonical map
+$D(\mathcal{O})$ is cartesian if and only if the canonical map
 $$
 g_{n!}K_n \longrightarrow
 g_{n!}\mathcal{O}_n \otimes^\mathbf{L}_\mathcal{O} K
@@ -2610,398 +2679,6 @@ We omit the details.
 
 
 
-\section{Formalities on cohomological descent}
-\label{section-formal-cohomological-descent}
-
-\noindent
-In this section we discuss only to what extent a morphism
-of ringed topoi determines an embedding from the derived
-category downstairs to the derived category upstairs.
-Here is a typical result.
-
-\begin{lemma}
-\label{lemma-downstairs}
-Let $f : (\Sh(\mathcal{C}), \mathcal{O}_\mathcal{C}) \to
-(\Sh(\mathcal{D}), \mathcal{O}_\mathcal{D})$ be a morphism of ringed topoi.
-Consider the full subcategory $D' \subset D(\mathcal{O}_\mathcal{D})$
-consisting of objects $K$ such that
-$$
-K \longrightarrow Rf_*Lf^*K
-$$
-is an isomorphism. Then $D'$ is a saturated triangulated strictly full
-subcategory of $D(\mathcal{O}_\mathcal{D})$ and the functor
-$Lf^* : D' \to D(\mathcal{O}_\mathcal{C})$ is fully faithful.
-\end{lemma}
-
-\begin{proof}
-See Derived Categories, Definition \ref{derived-definition-saturated}
-for the definition of saturated in this setting. See
-Derived Categories, Lemma \ref{derived-lemma-triangulated-subcategory}
-for a discussion of triangulated subcategories.
-The canonical map of the lemma is the unit of the adjoint
-pair of functors $(Lf^*, Rf_*)$, see
-Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-adjoint}.
-Having said this the proof that $D'$ is a saturated triangulated subcategory
-is omitted; it follows formally from the fact that
-$Lf^*$ and $Rf_*$ are exact functors of triangulated categories.
-The final part follows formally from
-fact that $Lf^*$ and $Rf_*$ are adjoint; compare with
-Categories, Lemma \ref{categories-lemma-adjoint-fully-faithful}.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-upstairs}
-Let $f : (\Sh(\mathcal{C}), \mathcal{O}_\mathcal{C}) \to
-(\Sh(\mathcal{D}), \mathcal{O}_\mathcal{D})$ be a morphism of ringed topoi.
-Consider the full subcategory $D' \subset D(\mathcal{O}_\mathcal{C})$
-consisting of objects $K$ such that
-$$
-Lf^*Rf_*K \longrightarrow K
-$$
-is an isomorphism. Then $D'$ is a saturated triangulated strictly full
-subcategory of $D(\mathcal{O}_\mathcal{C})$ and the functor
-$Rf_* : D' \to D(\mathcal{O}_\mathcal{D})$ is fully faithful.
-\end{lemma}
-
-\begin{proof}
-See Derived Categories, Definition \ref{derived-definition-saturated}
-for the definition of saturated in this setting. See
-Derived Categories, Lemma \ref{derived-lemma-triangulated-subcategory}
-for a discussion of triangulated subcategories.
-The canonical map of the lemma is the counit of the adjoint
-pair of functors $(Lf^*, Rf_*)$, see
-Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-adjoint}.
-Having said this the proof that $D'$ is a saturated triangulated subcategory
-is omitted; it follows formally from the fact that
-$Lf^*$ and $Rf_*$ are exact functors of triangulated categories.
-The final part follows formally from
-fact that $Lf^*$ and $Rf_*$ are adjoint; compare with
-Categories, Lemma \ref{categories-lemma-adjoint-fully-faithful}.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-bounded-in-image-upstairs}
-Let $f : (\Sh(\mathcal{C}), \mathcal{O}_\mathcal{C}) \to
-(\Sh(\mathcal{D}), \mathcal{O}_\mathcal{D})$ be a morphism of ringed topoi.
-Let $K$ be an object of $D(\mathcal{O}_\mathcal{C})$. Assume
-\begin{enumerate}
-\item $f$ is flat,
-\item $K$ is bounded below,
-\item $f^*Rf_*H^q(K) \to H^q(K)$ is an isomorphism.
-\end{enumerate}
-Then $f^*Rf_*K \to K$ is an isomorphism.
-\end{lemma}
-
-\begin{proof}
-Observe that $f^*Rf_*K \to K$ is an isomorphism if and only
-if it is an isomorphism on cohomology sheaves $H^j$. Observe that
-$H^j(f^*Rf_*K) = f^*H^j(Rf_*K) = f^*H^j(Rf_*\tau_{\leq j}K) =
-H^j(f^*Rf_*\tau_{\leq j}K)$.
-Hence we may assume that $K$ is bounded. Then property (3)
-tells us the cohomology sheaves are in the triangulated
-subcategory $D' \subset D(\mathcal{O}_\mathcal{C})$ of
-Lemma \ref{lemma-upstairs}. Hence $K$ is in it too.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-bounded-in-image-downstairs}
-Let $f : (\Sh(\mathcal{C}), \mathcal{O}_\mathcal{C}) \to
-(\Sh(\mathcal{D}), \mathcal{O}_\mathcal{D})$ be a morphism of ringed topoi.
-Let $K$ be an object of $D(\mathcal{O}_\mathcal{D})$. Assume
-\begin{enumerate}
-\item $f$ is flat,
-\item $K$ is bounded below,
-\item $H^q(K) \to Rf_*f^*H^q(K)$ is an isomorphism.
-\end{enumerate}
-Then $K \to Rf_*f^*K$ is an isomorphism.
-\end{lemma}
-
-\begin{proof}
-Observe that $K \to Rf_*f^*K$ is an isomorphism if and only
-if it is an isomorphism on cohomology sheaves $H^j$. Observe that
-$H^j(Rf_*f^*K) = H^j(Rf_*\tau_{\leq j}f^*K) = H^j(Rf_*f^*\tau_{\leq j}K)$.
-Hence we may assume that $K$ is bounded. Then property (3)
-tells us the cohomology sheaves are in the triangulated
-subcategory $D' \subset D(\mathcal{O}_\mathcal{D})$ of
-Lemma \ref{lemma-downstairs}. Hence $K$ is in it too.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-equivalence-bounded}
-Let $f : (\Sh(\mathcal{C}), \mathcal{O}) \to (\Sh(\mathcal{C}'), \mathcal{O}')$
-be a morphism of ringed topoi.
-Let $\mathcal{A} \subset \textit{Mod}(\mathcal{O})$
-and $\mathcal{A}' \subset \textit{Mod}(\mathcal{O}')$
-be weak Serre subcategories. Assume
-\begin{enumerate}
-\item $f$ is flat,
-\item $f^*$ induces an equivalence of categories
-$\mathcal{A}' \to \mathcal{A}$,
-\item $\mathcal{F}' \to Rf_*f^*\mathcal{F}'$ is an isomorphism
-for $\mathcal{F}' \in \Ob(\mathcal{A}')$.
-\end{enumerate}
-Then
-$f^* : D_{\mathcal{A}'}^+(\mathcal{O}') \to D_\mathcal{A}^+(\mathcal{O})$
-is an equivalence of categories with quasi-inverse given by
-$Rf_* : D_\mathcal{A}^+(\mathcal{O}) \to D_{\mathcal{A}'}^+(\mathcal{O}')$.
-\end{lemma}
-
-\begin{proof}
-By assumptions (2) and (3) and
-Lemmas \ref{lemma-bounded-in-image-upstairs} and \ref{lemma-downstairs}
-we see that
-$f^* : D_{\mathcal{A}'}^+(\mathcal{O}') \to D_\mathcal{A}^+(\mathcal{O})$
-is fully faithful.
-Let $\mathcal{F} \in \Ob(\mathcal{A})$. Then we can write
-$\mathcal{F} = f^*\mathcal{F}'$. Then
-$Rf_*\mathcal{F} = Rf_* f^*\mathcal{F}' = \mathcal{F}'$.
-In particular, we have $R^pf_*\mathcal{F} = 0$ for $p > 0$
-and $f_*\mathcal{F} \in \Ob(\mathcal{A}')$.
-Thus for any $K \in D^+_\mathcal{A}(\mathcal{O})$ we see,
-using the spectral sequence $E_2^{p, q} = R^pf_*H^q(K)$
-converging to $R^{p + q}f_*K$,
-that $Rf_*K$ is in $D^+_{\mathcal{A}'}(\mathcal{O}')$.
-Of course, it also follows from
-Lemmas \ref{lemma-bounded-in-image-downstairs} and \ref{lemma-upstairs}
-that $Rf_* : D_\mathcal{A}^+(\mathcal{O}) \to D_{\mathcal{A}'}^+(\mathcal{O}')$
-is fully faithful. Since $f^*$ and $Rf_*$ are adjoint
-we then get the result of the lemma, for example by
-Categories, Lemma \ref{categories-lemma-adjoint-fully-faithful}.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-equivalence-unbounded-one}
-\begin{reference}
-This is analogous to \cite[Theorem 2.2.3]{six-I}.
-\end{reference}
-Let $f : (\Sh(\mathcal{C}), \mathcal{O}) \to (\Sh(\mathcal{C}'), \mathcal{O}')$
-be a morphism of ringed topoi.
-Let $\mathcal{A} \subset \textit{Mod}(\mathcal{O})$
-and $\mathcal{A}' \subset \textit{Mod}(\mathcal{O}')$
-be weak Serre subcategories. Assume
-\begin{enumerate}
-\item $f$ is flat,
-\item $f^*$ induces an equivalence of categories
-$\mathcal{A}' \to \mathcal{A}$,
-\item $\mathcal{F}' \to Rf_*f^*\mathcal{F}'$ is an isomorphism
-for $\mathcal{F}' \in \Ob(\mathcal{A}')$,
-\item $\mathcal{C}, \mathcal{O}, \mathcal{A}$ satisfy the
-assumption of
-Cohomology on Sites, Situation \ref{sites-cohomology-situation-olsson-laszlo},
-\item $\mathcal{C}', \mathcal{O}', \mathcal{A}'$ satisfy the
-assumption of
-Cohomology on Sites, Situation \ref{sites-cohomology-situation-olsson-laszlo}.
-\end{enumerate}
-Then $f^* : D_{\mathcal{A}'}(\mathcal{O}') \to D_\mathcal{A}(\mathcal{O})$
-is an equivalence of categories with quasi-inverse given by
-$Rf_* : D_\mathcal{A}(\mathcal{O}) \to D_{\mathcal{A}'}(\mathcal{O}')$.
-\end{lemma}
-
-\begin{proof}
-Since $f^*$ is exact, it is clear that $f^*$ defines a functor
-$f^* : D_{\mathcal{A}'}(\mathcal{O}') \to D_\mathcal{A}(\mathcal{O})$
-as in the statement of the lemma and that moreover this
-functor commutes with the truncation functors $\tau_{\geq -n}$.
-We already know that $f^*$ and $Rf_*$ are quasi-inverse
-equivalence on the corresponding bounded below categories,
-see Lemma \ref{lemma-equivalence-bounded}.
-By Cohomology on Sites, Lemma
-\ref{sites-cohomology-lemma-olsson-laszlo-map-version-one}
-with $N = 0$ we see that $Rf_*$ indeed defines a functor
-$Rf_* : D_\mathcal{A}(\mathcal{O}) \to D_{\mathcal{A}'}(\mathcal{O}')$
-and that moreover this functor commutes with
-the truncation functors $\tau_{\geq -n}$.
-Thus for $K$ in $D_\mathcal{A}(\mathcal{O})$ the map
-$f^*Rf_*K \to K$ is an isomorphism as this is true
-on trunctions.
-Similarly, for $K'$ in $D_{\mathcal{A}'}(\mathcal{O}')$ the map
-$K' \to Rf_*f^*K'$ is an isomorphism as this is true
-on trunctions.
-This finishes the proof.
-\end{proof}
-
-\begin{lemma}
-\label{lemma-equivalence-unbounded-two}
-\begin{reference}
-This is analogous to \cite[Theorem 2.2.3]{six-I}.
-\end{reference}
-Let $f : (\mathcal{C}, \mathcal{O}) \to (\mathcal{C}', \mathcal{O}')$
-be a morphism of ringed sites.
-Let $\mathcal{A} \subset \textit{Mod}(\mathcal{O})$
-and $\mathcal{A}' \subset \textit{Mod}(\mathcal{O}')$
-be weak Serre subcategories. Assume
-\begin{enumerate}
-\item $f$ is flat,
-\item $f^*$ induces an equivalence of categories
-$\mathcal{A}' \to \mathcal{A}$,
-\item $\mathcal{F}' \to Rf_*f^*\mathcal{F}'$ is an isomorphism
-for $\mathcal{F}' \in \Ob(\mathcal{A}')$,
-\item $\mathcal{C}, \mathcal{O}, \mathcal{A}$ satisfy the
-assumption of
-Cohomology on Sites, Situation \ref{sites-cohomology-situation-olsson-laszlo},
-\item $f : (\mathcal{C}, \mathcal{O}) \to (\mathcal{C}', \mathcal{O}')$
-and $\mathcal{A}$ satisfy the assumption of
-Cohomology on Sites, Situation
-\ref{sites-cohomology-situation-olsson-laszlo-prime}.
-\end{enumerate}
-Then $f^* : D_{\mathcal{A}'}(\mathcal{O}') \to D_\mathcal{A}(\mathcal{O})$
-is an equivalence of categories with quasi-inverse given by
-$Rf_* : D_\mathcal{A}(\mathcal{O}) \to D_{\mathcal{A}'}(\mathcal{O}')$.
-\end{lemma}
-
-\begin{proof}
-The proof of this lemma is exactly the same as the proof
-of Lemma \ref{lemma-equivalence-unbounded-one}
-except the reference to
-Cohomology on Sites, Lemma
-\ref{sites-cohomology-lemma-olsson-laszlo-map-version-one}
-is replaced by a reference to
-Cohomology on Sites, Lemma
-\ref{sites-cohomology-lemma-olsson-laszlo-map-version-two}.
-\end{proof}
-
-
-\noindent
-Let $\mathcal{C}$ be a category. Let
-$\text{Cov}(\mathcal{C}) \supset \text{Cov}'(\mathcal{C})$
-be two ways to endow $\mathcal{C}$ with the structure of a site.
-Denote $\tau$ the topology corresponding to $\text{Cov}(\mathcal{C})$
-and $\tau'$ the topology corresponding to $\text{Cov}'(\mathcal{C})$.
-Then the identity functor on $\mathcal{C}$ defines a morphism
-of sites
-$$
-\epsilon : \mathcal{C}_\tau \longrightarrow \mathcal{C}_{\tau'}
-$$
-where $\epsilon_*$ is the identity functor on underlying presheaves and
-where $\epsilon^{-1}$ is the $\tau$-sheafification of a $\tau'$-sheaf
-(hence clearly exact). Let $\mathcal{O}$ be a sheaf of rings for the
-$\tau$-topology. Then $\mathcal{O}$ is also a sheaf for the $\tau'$-topology
-and $\epsilon$ becomes a morphism of ringed sites
-$$
-\epsilon :
-(\mathcal{C}_\tau, \mathcal{O}_\tau)
-\longrightarrow
-(\mathcal{C}_{\tau'}, \mathcal{O}_{\tau'})
-$$
-
-\begin{lemma}
-\label{lemma-compare-topologies-derived-adequate-modules}
-With $\epsilon : (\mathcal{C}_\tau, \mathcal{O}_\tau) \to
-(\mathcal{C}_{\tau'}, \mathcal{O}_{\tau'})$ as above.
-Let $\mathcal{B} \subset \Ob(\mathcal{C})$ be a subset.
-Let $\mathcal{A} \subset \textit{PMod}(\mathcal{O})$
-be a full subcategory. Assume
-\begin{enumerate}
-\item every object of $\mathcal{A}$ is a sheaf for the $\tau$-topology,
-\item $\mathcal{A}$ is a weak Serre subcategory of
-$\textit{Mod}(\mathcal{O}_\tau)$,
-\item every object of $\mathcal{C}$ has a $\tau'$-covering whose
-members are elements of $\mathcal{B}$, and
-\item for every $U \in \mathcal{B}$ we have $H^p_\tau(U, \mathcal{F}) = 0$,
-$p > 0$ for all $\mathcal{F} \in \mathcal{A}$.
-\end{enumerate}
-Then $\mathcal{A}$ is a weak Serre subcategory of
-$\textit{Mod}(\mathcal{O}_{\tau'})$ and there is an equivalence
-of triangulated categories
-$D_\mathcal{A}(\mathcal{O}_\tau) = D_\mathcal{A}(\mathcal{O}_{\tau'})$
-given by $\epsilon^*$ and $R\epsilon_*$.
-\end{lemma}
-
-\begin{proof}
-Since $\epsilon^{-1}\mathcal{O}_{\tau'} = \mathcal{O}_\tau$
-we see that $\epsilon$ is a flat morphism of ringed sites
-and that in fact $\epsilon^{-1} = \epsilon^*$ on sheaves
-of modules. By property (1) we can think of every object of
-$\mathcal{A}$ as a sheaf of $\mathcal{O}_\tau$-modules
-and as a sheaf of $\mathcal{O}_{\tau'}$-modules.
-In other words, we have fully faithful inclusion functors
-$$
-\mathcal{A} \to \textit{Mod}(\mathcal{O}_\tau) \to
-\textit{Mod}(\mathcal{O}_{\tau'})
-$$
-To avoid confusion we will denote
-$\mathcal{A}' \subset \textit{Mod}(\mathcal{O}_{\tau'})$
-the image of $\mathcal{A}$. Then it is clear that
-$\epsilon_* : \mathcal{A} \to \mathcal{A}'$ and
-$\epsilon^* : \mathcal{A}' \to \mathcal{A}$ are
-quasi-inverse equivalences (see discussion preceding
-the lemma and use that objects of $\mathcal{A}'$ are
-sheaves in the $\tau$ topology).
-
-\medskip\noindent
-Conditions (3) and (4) imply that $R^p\epsilon_*\mathcal{F} = 0$
-for $p > 0$ and $\mathcal{F} \in \Ob(\mathcal{A})$.
-This is true because $R^p\epsilon_*$ is the sheaf associated
-to the presheave $U \mapsto H^p_\tau(U, \mathcal{F})$, see
-Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-higher-direct-images}.
-Thus any exact complex in $\mathcal{A}$ (which is the same thing
-as an exact complex in $\textit{Mod}(\mathcal{O}_\tau)$
-whose terms are in $\mathcal{A}$, see
-Homology, Lemma \ref{homology-lemma-characterize-weak-serre-subcategory})
-remains exact upon applying the functor $\epsilon_*$.
-
-\medskip\noindent
-Consider an exact sequence
-$$
-\mathcal{F}'_0 \to \mathcal{F}'_1 \to
-\mathcal{F}'_2 \to \mathcal{F}'_3 \to
-\mathcal{F}'_4
-$$
-in $\textit{Mod}(\mathcal{O}_{\tau'})$ with
-$\mathcal{F}'_0, \mathcal{F}'_1, \mathcal{F}'_3, \mathcal{F}'_4$ in
-$\mathcal{A}'$. Apply the exact functor $\epsilon^*$ to get
-an exact sequence
-$$
-\epsilon^*\mathcal{F}'_0 \to \epsilon^*\mathcal{F}'_1 \to
-\epsilon^*\mathcal{F}'_2 \to \epsilon^*\mathcal{F}'_3 \to
-\epsilon^*\mathcal{F}'_4
-$$
-in $\textit{Mod}(\mathcal{O}_\tau)$. Since $\mathcal{A}$ is
-a weak Serre subcategory and since
-$\epsilon^*\mathcal{F}'_0, \epsilon^*\mathcal{F}'_1,
-\epsilon^*\mathcal{F}'_3, \epsilon^*\mathcal{F}'_4$ are in
-$\mathcal{A}$, we conclude that $\epsilon^*\mathcal{F}_2$
-is in $\mathcal{A}$ by
-Homology, Definition \ref{homology-definition-serre-subcategory}.
-Consider the map of sequences
-$$
-\xymatrix{
-\mathcal{F}'_0 \ar[r] \ar[d] &
-\mathcal{F}'_1 \ar[r] \ar[d] &
-\mathcal{F}'_2 \ar[r] \ar[d] &
-\mathcal{F}'_3 \ar[r] \ar[d] &
-\mathcal{F}'_4 \ar[d] \\
-\epsilon_*\epsilon^*\mathcal{F}'_0 \ar[r] &
-\epsilon_*\epsilon^*\mathcal{F}'_1 \ar[r] &
-\epsilon_*\epsilon^*\mathcal{F}'_2 \ar[r] &
-\epsilon_*\epsilon^*\mathcal{F}'_3 \ar[r] &
-\epsilon_*\epsilon^*\mathcal{F}'_4
-}
-$$
-The lower row is exact by the discussion in the preceding
-paragraph. The vertical arrows with index $0$, $1$, $3$, $4$
-are isomorphisms by the discussion in the first paragraph.
-By the $5$ lemma (Homology, Lemma \ref{homology-lemma-five-lemma})
-we find that $\mathcal{F}'_2 \cong \epsilon_*\epsilon^*\mathcal{F}'_2$
-and hence $\mathcal{F}'_2$ is in $\mathcal{A}'$.
-In this way we see that $\mathcal{A}'$ is a weak Serre subcategory
-of $\textit{Mod}(\mathcal{O}_{\tau'})$, see
-Homology, Definition \ref{homology-definition-serre-subcategory}.
-
-\medskip\noindent
-At this point it makes sense to talk about the
-derived categories $D_\mathcal{A}(\mathcal{O}_\tau)$ and
-$D_{\mathcal{A}'}(\mathcal{O}_{\tau'})$, see
-Derived Categories, Section \ref{derived-section-triangulated-sub}.
-To finish the proof we show that conditions
-(1) -- (5) of Lemma \ref{lemma-equivalence-unbounded-two} apply.
-We have already seen (1), (2), (3) above.
-Note that since every object has a $\tau'$-covering
-by objects of $\mathcal{B}$, a fortiori every object has
-a $\tau$-covering by objects of $\mathcal{B}$. Hence
-condition (4) of Lemma \ref{lemma-equivalence-unbounded-two} is satisfied.
-Similarly, condition (5) is satisfied as well.
-\end{proof}
 
 
 
@@ -3057,6 +2734,51 @@ If $K$ is cartesian, so is the system.
 
 \begin{proof}
 This is obvious.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-construct-cartesian-objects-derived}
+In Situation \ref{situation-simplicial-site}
+suppose given $K_0 \in D(\mathcal{C}_0)$ and an isomorphism
+$$
+\alpha :
+f_{\delta_1^1}^{-1}K_0
+\longrightarrow
+f_{\delta_0^1}^{-1}K_0
+$$
+satisfying the cocycle condition. Set
+$\tau^n_i : [0] \to [n]$, $0 \mapsto i$ and
+set $K_n = f_{\tau^n_n}^{-1}K_0$. Then the $K_n$
+form a cartesian simplicial system of the derived category.
+\end{lemma}
+
+\begin{proof}
+Please compare with Lemma \ref{lemma-characterize-cartesian}
+and its proof (also to see the cocycle condition spelled out).
+The construction is analogous to the construction discussed in
+Descent, Section \ref{descent-section-descent-modules} from which
+we borrow the notation $\tau^n_i : [0] \to [n]$, $0 \mapsto i$ and
+$\tau^n_{ij} : [1] \to [n]$, $0 \mapsto i$, $1 \mapsto j$.
+Given $\varphi : [n] \to [m]$ we define
+$K_\varphi : f_\varphi^{-1}K_n \to K_m$
+using
+$$
+\xymatrix{
+f_\varphi^{-1}K_n \ar@{=}[r] &
+f_\varphi^{-1} f_{\tau^n_n}^{-1}K_0 \ar@{=}[r] &
+f_{\tau^m_{\varphi(n)}}^{-1}K_0 \ar@{=}[r] &
+f_{\tau^m_{\varphi(n)m}}^{-1}f_{\delta^1_1}^{-1}K_0
+\ar[d]_{f_{\tau^m_{\varphi(n)m}}^{-1}\alpha} \\
+&
+K_m \ar@{=}[r] &
+f_{\tau^m_m}^{-1}K_0 \ar@{=}[r] &
+f_{\tau^m_{\varphi(n)m}}^{-1}f_{\delta^1_0}^{-1}K_0
+}
+$$
+We omit the verification that the cocycle condition
+implies the maps compose correctly (in their respective
+derived categories) and hence give rise to a
+simplicial system in the derived category.
 \end{proof}
 
 \begin{lemma}
@@ -3460,6 +3182,52 @@ This is immediate from the definitions.
 \end{proof}
 
 \begin{lemma}
+\label{lemma-construct-cartesian-objects-derived-modules}
+In Situation \ref{situation-simplicial-site} let $\mathcal{O}$ be a
+sheaf of rings on $\mathcal{C}_{total}$.
+Suppose given $K_0 \in D(\mathcal{O}_0)$ and an isomorphism
+$$
+\alpha :
+L(f_{\delta_1^1})^*K_0
+\longrightarrow
+L(f_{\delta_0^1})^*K_0
+$$
+satisfying the cocycle condition. Set $\tau^n_i : [0] \to [n]$, $0 \mapsto i$
+and set $K_n = Lf_{\tau^n_n}^*K_0$. The objects $K_n$ form the members of a 
+cartesian simplicial system of the derived category of modules.
+\end{lemma}
+
+\begin{proof}
+Please compare with Lemmas \ref{lemma-construct-cartesian-objects-derived}
+and \ref{lemma-characterize-cartesian} and its proof
+(also to see the cocycle condition spelled out).
+The construction is analogous to the construction discussed in
+Descent, Section \ref{descent-section-descent-modules} from which we borrow
+the notation $\tau^n_i : [0] \to [n]$, $0 \mapsto i$ and
+$\tau^n_{ij} : [1] \to [n]$, $0 \mapsto i$, $1 \mapsto j$.
+Given $\varphi : [n] \to [m]$ we define
+$K_\varphi : L(f_\varphi)^*K_n \to K_m$
+using
+$$
+\xymatrix{
+L(f_\varphi)^*K_n \ar@{=}[r] &
+L(f_\varphi)^* L(f_{\tau^n_n})^*K_0 \ar@{=}[r] &
+L(f_{\tau^m_{\varphi(n)}})^*K_0 \ar@{=}[r] &
+L(f_{\tau^m_{\varphi(n)m}})^* L(f_{\delta^1_1})^*K_0
+\ar[d]_{L(f_{\tau^m_{\varphi(n)m}})^*\alpha} \\
+&
+K_m \ar@{=}[r] &
+L(f_{\tau^m_m})^*K_0 \ar@{=}[r] &
+L(f_{\tau^m_{\varphi(n)m}})^* L(f_{\delta^1_0})^*K_0
+}
+$$
+We omit the verification that the cocycle condition
+implies the maps compose correctly (in their respective
+derived categories) and hence give rise to a
+simplicial systems of the derived category of modules.
+\end{proof}
+
+\begin{lemma}
 \label{lemma-modules-postnikov}
 In Situation \ref{situation-simplicial-site} let $\mathcal{O}$
 be a sheaf of rings on $\mathcal{C}_{total}$. Let $K$ be
@@ -3621,7 +3389,7 @@ a family of sheaves $\mathcal{F}_i$ on $\mathcal{C}/U_i$, i.e.,
 $$
 \Sh(\mathcal{C}/K) = \prod\nolimits_{i \in I} \Sh(\mathcal{C}/U_i)
 $$
-This is occasionally usefull to understand what is going on.
+This is occasionally useful to understand what is going on.
 
 \medskip\noindent
 Let $\mathcal{C}$ be a site. Let $K = \{U_i\}_{i \in I}$ be an object of
@@ -3790,17 +3558,34 @@ to get (3).
 \label{lemma-localize-injective}
 Let $\mathcal{C}$ be a site. For $K$ in $\text{SR}(\mathcal{C})$
 the functor $j^{-1}$ sends injective abelian sheaves to injective
+abelian sheaves. Similarly, the functor $j^{-1}$ sends K-injective
+complexes of abelian sheaves to K-injective complexes of
 abelian sheaves.
 \end{lemma}
 
 \begin{proof}
-This is the natural generalization of
+The first statement is the natural generalization of
 Cohomology on Sites, Lemma
 \ref{sites-cohomology-lemma-cohomology-of-open}
 to semi-representable objects.
 In fact, it follows from this lemma
 by the product decomposition of $\Sh(\mathcal{C}/K)$
 and the description of the functor $j^{-1}$ given above.
+The second statement is the natural generalization of
+Cohomology on Sites, Lemma
+\ref{sites-cohomology-lemma-restrict-K-injective-to-open}
+and follows from it by the product decomposition of the topos.
+
+\medskip\noindent
+Alternative: since $j$ induces a localization of topoi by
+Lemma \ref{lemma-localize-compare} part (1)
+it also follows immediately from
+Cohomology on Sites, Lemmas \ref{sites-cohomology-lemma-cohomology-of-open}
+and \ref{sites-cohomology-lemma-restrict-K-injective-to-open}
+by enlarging the site; compare with the proof of
+Cohomology on Sites, Lemma
+\ref{sites-cohomology-lemma-cohomology-on-sheaf-sets}
+in the case of injective sheaves.
 \end{proof}
 
 \begin{remark}[Variant for over an object]
@@ -4242,7 +4027,7 @@ $$
 \mathcal{K}_1 \to \mathcal{K}_0 \times \mathcal{K}_0
 \quad\text{and}\quad
 \mathcal{K}_2 \to
-\left(\text{cosq}_1(
+\left(\text{cosk}_1(
 \xymatrix{
 \mathcal{K}_1
 \ar@<0.5ex>[r]
@@ -4290,7 +4075,7 @@ $K_n = \{U_n\}$ for all $n$.
 Let $X$ be the final object of $\mathcal{C}$.
 Then $\{U_0 \to X\}$ is a covering,
 $\{U_1 \to U_0 \times U_0\}$ is a covering, and
-$\{U_2 \to (\text{cosq}_1 \text{sk}_1 U)_2\}$ is a covering.
+$\{U_2 \to (\text{cosk}_1 \text{sk}_1 U)_2\}$ is a covering.
 Let us use $d^n_i : U_n \to U_{n - 1}$ and
 $s^n_j : U_n \to U_{n + 1}$ the morphisms corresponding
 to $\delta^n_i$ and $\sigma^n_j$ as in
@@ -4303,11 +4088,11 @@ on $\mathcal{C}/U_0$ and an isomorphism
 $\alpha : (d^1_1)^{-1}\mathcal{G}_0 \to (d^1_0)^{-1}\mathcal{G}_0$
 satisfying the cocycle condition on $\mathcal{C}/U_2$
 formulated in Lemma \ref{lemma-characterize-cartesian}.
-Since $\{U_2 \to (\text{cosq}_1 \text{sk}_1 U)_2\}$
+Since $\{U_2 \to (\text{cosk}_1 \text{sk}_1 U)_2\}$
 is a covering, the corresponding pullback functor
 on sheaves is faithful (small detail omitted).
 Hence we may replace $U$ by $\text{cosk}_1 \text{sk}_1 U$, because
-this replaces $U_2$ by $(\text{cosq}_1 \text{sk}_1 U)_2$ and leaves
+this replaces $U_2$ by $(\text{cosk}_1 \text{sk}_1 U)_2$ and leaves
 $U_1$ and $U_0$ unchanged. Then
 $$
 (d^2_0, d^2_1, d^2_2) : U_2 \to U_1 \times U_1 \times U_1
@@ -4383,7 +4168,7 @@ $\mathcal{G}$ in $\Sh(\mathcal{C})$.
 \label{lemma-hypercovering-descent-bounded-abelian}
 Let $\mathcal{C}$ be a site with equalizers and fibre products.
 Let $K$ be a hypercovering. For
-$E \in D^+(\mathcal{C})$ the map
+$E \in D(\mathcal{C})$ the map
 $$
 E \longrightarrow Ra_*a^{-1}E
 $$
@@ -4420,7 +4205,7 @@ On the other hand, we have $\mathcal{I} = a_*a^{-1}\mathcal{I}$
 by Lemma \ref{lemma-hypercovering-descent-sheaves}.
 
 \medskip\noindent
-Next, let $E$ be as in the statement of the lemma.
+Bounded case. Let $E \in D^+(\mathcal{C})$.
 Choose a bounded below complex $\mathcal{I}^\bullet$ of injectives
 representing $E$. By the result of the first paragraph and
 Leray's acyclicity lemma
@@ -4428,7 +4213,138 @@ Leray's acyclicity lemma
 $Ra_*a^{-1}\mathcal{I}^\bullet$
 is computed by the complex
 $a_*a^{-1}\mathcal{I}^\bullet = \mathcal{I}^\bullet$
-and we conclude the lemma is true.
+and we conclude the lemma is true in this case.
+
+\medskip\noindent
+Unbounded case. We urge the reader to skip this, since the argument
+is the same as above, except that we use explicit representation
+by double complexes to get around convergence issues.
+Let $E \in D(\mathcal{C})$.
+To show the map $E \to Ra_*a^{-1}E$ is an isomorphism,
+it suffices to show for every object $U$ of $\mathcal{C}$ that
+$$
+R\Gamma(U, E) = R\Gamma(U, Ra_*a^{-1}E)
+$$
+We will compute both sides and show the map $E \to Ra_*a^{-1}E$
+induces an isomorphism. Choose a K-injective
+complex $\mathcal{I}^\bullet$ representing $E$. Choose a quasi-isomorphism
+$a^{-1}\mathcal{I}^\bullet \to \mathcal{J}^\bullet$
+for some K-injective complex $\mathcal{J}^\bullet$ on
+$(\mathcal{C}/K)_{total}$. We have
+$$
+R\Gamma(U, E) = R\Hom(\mathbf{Z}_U^\#, E)
+$$
+and
+$$
+R\Gamma(U, Ra_*a^{-1}E) = R\Hom(\mathbf{Z}_U^\#, Ra_*a^{-1}E) =
+R\Hom(a^{-1}\mathbf{Z}_U^\#, a^{-1}E)
+$$
+By Lemma \ref{lemma-simplicial-resolution-augmentation}
+we have a quasi-isomorphism
+$$
+\Big(\ldots \to
+g_{2!}(a_2^{-1}\mathbf{Z}_U^\#) \to
+g_{1!}(a_1^{-1}\mathbf{Z}_U^\#) \to
+g_{0!}(a_0^{-1}\mathbf{Z}_U^\#)\Big)
+\longrightarrow
+a^{-1}\mathbf{Z}_U^\#
+$$
+Hence $R\Hom(a^{-1}\mathbf{Z}_U^\#, a^{-1}E)$ is equal to
+$$
+R\Gamma((\mathcal{C}/K)_{total},
+R\SheafHom(
+\ldots \to
+g_{2!}(a_2^{-1}\mathbf{Z}_U^\#) \to
+g_{1!}(a_1^{-1}\mathbf{Z}_U^\#) \to
+g_{0!}(a_0^{-1}\mathbf{Z}_U^\#),
+\mathcal{J}^\bullet))
+$$
+By the construction in Cohomology on Sites, Section
+\ref{sites-cohomology-section-internal-hom}
+and since $\mathcal{J}^\bullet$ is K-injective, we see that
+this is represented by the complex of abelian groups with terms
+$$
+\prod\nolimits_{p + q = n}
+\Hom(g_{p!}(a_p^{-1}\mathbf{Z}_U^\#), \mathcal{J}^q) =
+\prod\nolimits_{p + q = n}
+\Hom(a_p^{-1}\mathbf{Z}_U^\#, g_p^{-1}\mathcal{J}^q)
+$$
+See Cohomology on Sites, Lemmas
+\ref{sites-cohomology-lemma-RHom-into-K-injective} and
+\ref{sites-cohomology-lemma-section-RHom-over-U} for more information.
+Thus we find that $R\Gamma(U, Ra_*a^{-1}E)$ is computed by
+the product total complex $\text{Tot}_\pi(B^{\bullet, \bullet})$
+with $B^{p, q} = \Hom(a_p^{-1}\mathbf{Z}_U^\#, g_p^{-1}\mathcal{J}^q)$.
+For the other side we argue similarly. First we note that
+$$
+s(\mathbf{Z}_{F(K)}^\#) \longrightarrow \mathbf{Z}
+$$
+is a quasi-isomorphism of complexes on $\mathcal{C}$
+by Hypercoverings, Lemma \ref{hypercovering-lemma-acyclic-hypercover-sheaves}.
+Since $\mathbf{Z}_U^\#$ is a flat sheaf of $\mathbf{Z}$-modules
+we see that
+$$
+s(\mathbf{Z}_{F(K)}^\#) \otimes_\mathbf{Z} \mathbf{Z}_U^\#
+\longrightarrow
+\mathbf{Z}_U^\#
+$$
+is a quasi-isomorphism. Therefore
+$R\Hom(\mathbf{Z}_U^\#, E)$ is equal to
+$$
+R\Gamma(\mathcal{C}, R\SheafHom(
+s(\mathbf{Z}_{F(K)}^\#) \otimes_\mathbf{Z} \mathbf{Z}_U^\#,
+\mathcal{I}^\bullet))
+$$
+By the construction of $R\SheafHom$ and since $\mathcal{I}^\bullet$
+is K-injective, this is represented by the complex of abelian groups
+with terms
+$$
+\prod\nolimits_{p + q = n}
+\Hom(\mathbf{Z}^\#_{K_p} \otimes_\mathbf{Z} \mathbf{Z}_U^\#, \mathcal{I}^q)
+=
+\prod\nolimits_{p + q = n}
+\Hom(a_p^{-1}\mathbf{Z}_U^\#, a_p^{-1}\mathcal{I}^q)
+$$
+The equality of terms follows from the fact that
+$\mathbf{Z}^\#_{K_p} \otimes_\mathbf{Z} \mathbf{Z}_U^\# =
+a_{p!}a_p^{-1}\mathbf{Z}_U^\#$ by Modules on Sites,
+Remark \ref{sites-modules-remark-j-shriek-tensor}.
+Thus we find that $R\Gamma(U, E)$ is computed by
+the product total complex $\text{Tot}_\pi(A^{\bullet, \bullet})$
+with $A^{p, q} = \Hom(a_p^{-1}\mathbf{Z}_U^\#, a_p^{-1}\mathcal{I}^q)$.
+
+\medskip\noindent
+Since $\mathcal{I}^\bullet$ is K-injective we see that
+$a_p^{-1}\mathcal{I}^\bullet$ is K-injective, see
+Lemma \ref{lemma-localize-injective}.
+Since $\mathcal{J}^\bullet$ is K-injective we see that
+$g_p^{-1}\mathcal{J}^\bullet$ is K-injective, see
+Lemma \ref{lemma-restriction-injective-to-component-site}.
+Both represent the object $a_p^{-1}E$.
+Hence for every $p \geq 0$ the map of complexes
+$$
+A^{p, \bullet} = \Hom(a_p^{-1}\mathbf{Z}_U^\#, a_p^{-1}\mathcal{I}^\bullet)
+\longrightarrow
+\Hom(a_p^{-1}\mathbf{Z}_U^\#, g_p^{-1}\mathcal{J}^\bullet) = B^{p, \bullet}
+$$
+induced by $g_p^{-1}$ applied to the given map
+$a^{-1}\mathcal{I}^\bullet \to \mathcal{J}^\bullet$
+is a quasi-isomorphisms as these complexes both compute
+$$
+R\Hom(a_p^{-1}\mathbf{Z}_U^\#, a_p^{-1}E)
+$$
+By More on Algebra, Lemma \ref{more-algebra-lemma-prod-qis-gives-qis}
+we conclude that the right vertical arrow in the commutative diagram
+$$
+\xymatrix{
+R\Gamma(U, E) \ar[r] \ar[d] &
+\text{Tot}_\pi(A^{\bullet, \bullet}) \ar[d] \\
+R\Gamma(U, Ra_*a^{-1}E) \ar[r] &
+\text{Tot}_\pi(B^{\bullet, \bullet})
+}
+$$
+is a quasi-isomorphism. Since we saw above that the horizontal arrows
+are quasi-isomorphisms, so is the left vertical arrow.
 \end{proof}
 
 \begin{lemma}
@@ -4440,7 +4356,7 @@ $$
 R\Gamma(\mathcal{C}, E) =
 R\Gamma((\mathcal{C}/K)_{total}, a^{-1}E)
 $$
-for $E \in D^+(\mathcal{C})$.
+for $E \in D(\mathcal{C})$.
 \end{lemma}
 
 \begin{proof}
@@ -4468,9 +4384,9 @@ Observe that $\mathcal{A}$ is a weak Serre subcategory by
 Lemma \ref{lemma-Serre-subcat-cartesian-modules}.
 The equivalence is a
 formal consequence of the results obtained so far. Use
-Lemmas \ref{lemma-equivalence-bounded},
-\ref{lemma-hypercovering-descent-sheaves}, and
-\ref{lemma-hypercovering-descent-bounded-abelian}.
+Lemmas \ref{lemma-hypercovering-descent-sheaves} and
+\ref{lemma-hypercovering-descent-bounded-abelian} and
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-equivalence-bounded}
 \end{proof}
 
 \noindent
@@ -4578,7 +4494,7 @@ immediately from Lemma \ref{lemma-hypercovering-descent-sheaves}.
 Let $\mathcal{C}$ be a site with equalizers and fibre products.
 Let $\mathcal{O}_\mathcal{C}$ be a sheaf of rings.
 Let $K$ be a hypercovering. For
-$E \in D^+(\mathcal{O}_\mathcal{C})$ the map
+$E \in D(\mathcal{O}_\mathcal{C})$ the map
 $$
 E \longrightarrow Ra_*La^*E
 $$
@@ -4605,7 +4521,7 @@ $$
 R\Gamma(\mathcal{C}, E) =
 R\Gamma((\mathcal{C}/K)_{total}, La^*E)
 $$
-for $E \in D^+(\mathcal{O}_\mathcal{C})$.
+for $E \in D(\mathcal{O}_\mathcal{C})$.
 \end{lemma}
 
 \begin{proof}
@@ -4638,9 +4554,9 @@ Lemma \ref{lemma-Serre-subcat-cartesian-modules}
 Remark \ref{remark-augmentation-ringed}).
 The equivalence is a
 formal consequence of the results obtained so far. Use
-Lemmas \ref{lemma-equivalence-bounded},
-\ref{lemma-hypercovering-descent-modules}, and
-\ref{lemma-hypercovering-descent-bounded-modules}.
+Lemmas \ref{lemma-hypercovering-descent-modules} and
+\ref{lemma-hypercovering-descent-bounded-modules} and
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-equivalence-bounded}.
 \end{proof}
 
 
@@ -4706,7 +4622,7 @@ this follows from Lemma \ref{lemma-hypercovering-descent-sheaves}.
 \label{lemma-hypercovering-X-descent-bounded-abelian}
 Let $\mathcal{C}$ be a site with fibre product and $X \in \Ob(\mathcal{C})$.
 Let $K$ be a hypercovering of $X$. For
-$E \in D^+(\mathcal{C}/X)$ the map
+$E \in D(\mathcal{C}/X)$ the map
 $$
 E \longrightarrow Ra_*a^{-1}E
 $$
@@ -4728,7 +4644,7 @@ Then we have a canonical isomorphism
 $$
 R\Gamma(X, E) = R\Gamma((\mathcal{C}/K)_{total}, a^{-1}E)
 $$
-for $E \in D^+(\mathcal{C}/X)$.
+for $E \in D(\mathcal{C}/X)$.
 \end{lemma}
 
 \begin{proof}
@@ -4812,7 +4728,7 @@ this follows from Lemma \ref{lemma-hypercovering-descent-modules}.
 Let $\mathcal{C}$ be a site with fibre products and $X \in \Ob(\mathcal{C})$.
 Let $\mathcal{O}_\mathcal{C}$ be a sheaf of rings.
 Let $K$ be a hypercovering of $X$. For
-$E \in D^+(\mathcal{O}_X)$ the map
+$E \in D(\mathcal{O}_X)$ the map
 $$
 E \longrightarrow Ra_*La^*E
 $$
@@ -4835,7 +4751,7 @@ Then we have a canonical isomorphism
 $$
 R\Gamma(X, E) = R\Gamma((\mathcal{C}/K)_{total}, La^*E)
 $$
-for $E \in D^+(\mathcal{O}_\mathcal{C})$.
+for $E \in D(\mathcal{O}_\mathcal{C})$.
 \end{lemma}
 
 \begin{proof}
@@ -4898,13 +4814,11 @@ and an augmentation morphism
 $$
 a : \Sh((\mathcal{C}/U)_{total}) \longrightarrow \Sh(\mathcal{C}/X)
 $$
-by thinking of $U$ as a simiplical semi-representable
-object of $\mathcal{C}/X$ whose degree $n$ part is the singleton
-element $\{U_n/X\}$ and applying the constructions in
+Namely, from $U$ we obtain a simiplical object $K$ of
+$\text{SR}(\mathcal{C}, X)$ with degree $n$ part
+$K_n = \{U_n \to X\}$ and we can apply the constructions in
 Remark \ref{remark-augmentation-over-object}.
-
-\medskip\noindent
-An object of the site $(\mathcal{C}/U)_{total}$ is given by
+More precisely, an object of the site $(\mathcal{C}/U)_{total}$ is given by
 a $V/U_n$ and a morphism $(\varphi, f) : V/U_n \to W/U_m$ is given
 by a morphism $\varphi : [m] \to [n]$ in $\Delta$ and a morphism
 $f : V \to W$ such that the diagram
@@ -4918,20 +4832,17 @@ is commutative. The morphism of topoi $a$ is given by the cocontinuous
 functor $V/U_n \mapsto V/X$. That's all folks!
 
 \medskip\noindent
-Let us say that the augmentation $a : U \to X$ is a
-{\it hypercovering of $X$ in $\mathcal{C}$}
-if the following hold
+In this section we will say the augmentation $a : U \to X$ is a
+{\it hypercovering of $X$ in $\mathcal{C}$} if the following hold
 \begin{enumerate}
 \item $\{U_0 \to X\}$ is a covering of $\mathcal{C}$,
 \item $\{U_1 \to U_0 \times_X U_0\}$ is a covering of $\mathcal{C}$,
 \item $\{U_{n + 1} \to (\text{cosk}_n\text{sk}_n U)_{n + 1}\}$
 is a covering of $\mathcal{C}$ for $n \geq 1$.
 \end{enumerate}
-The category $\mathcal{C}/X$ has all connected finite limits, hence the
-coskeleta used in the formulation above exist. Of course, we see
-that $U$ is a hypercovering of $X$ in $\mathcal{C}$ if and only if
-the simplicial semi-representable object $\{U_n\}$ is a hypercovering of $X$
-in the sense of Section \ref{section-cohomological-descent-hypercoverings-X}.
+This is equivalent to the condition that $K$ (as above) is a hypercovering
+of $X$, see
+Hypercoverings, Example \ref{hypercovering-example-hypercovering-in-C}.
 
 \begin{lemma}
 \label{lemma-hypercovering-X-simple-descent-sheaves}
@@ -4958,7 +4869,7 @@ Lemma \ref{lemma-hypercovering-X-descent-sheaves}.
 \label{lemma-hypercovering-X-simple-descent-bounded-abelian}
 Let $\mathcal{C}$ be a site with fibre product and $X \in \Ob(\mathcal{C})$.
 Let $a : U \to X$ be a hypercovering of $X$ in $\mathcal{C}$ as defined above.
-For $E \in D^+(\mathcal{C}/X)$ the map
+For $E \in D(\mathcal{C}/X)$ the map
 $$
 E \longrightarrow Ra_*a^{-1}E
 $$
@@ -4978,7 +4889,7 @@ Then we have a canonical isomorphism
 $$
 R\Gamma(X, E) = R\Gamma((\mathcal{C}/U)_{total}, a^{-1}E)
 $$
-for $E \in D^+(\mathcal{C}/X)$.
+for $E \in D(\mathcal{C}/X)$.
 \end{lemma}
 
 \begin{proof}
@@ -5099,7 +5010,7 @@ Lemma \ref{lemma-hypercovering-X-descent-modules}.
 Let $\mathcal{C}$ be a site with fibre products and $X \in \Ob(\mathcal{C})$.
 Let $\mathcal{O}_\mathcal{C}$ be a sheaf of rings.
 Let $U$ be a hypercovering of $X$ in $\mathcal{C}$. For
-$E \in D^+(\mathcal{O}_X)$ the map
+$E \in D(\mathcal{O}_X)$ the map
 $$
 E \longrightarrow Ra_*La^*E
 $$
@@ -5120,7 +5031,7 @@ Then we have a canonical isomorphism
 $$
 R\Gamma(X, E) = R\Gamma((\mathcal{C}/U)_{total}, La^*E)
 $$
-for $E \in D^+(\mathcal{O}_\mathcal{C})$.
+for $E \in D(\mathcal{O}_\mathcal{C})$.
 \end{lemma}
 
 \begin{proof}
@@ -5160,8 +5071,9 @@ Lemma \ref{lemma-hypercovering-X-equivalence-bounded-modules}.
 In this section we discuss unbounded cohomological descent.
 The results themselves will be immediate consequences of
 our results on bounded cohomological descent in the previous
-sections and Lemmas \ref{lemma-equivalence-unbounded-one} and/or
-\ref{lemma-equivalence-unbounded-two}; the real work lies
+sections and Cohomology on Sites, Lemmas
+\ref{sites-cohomology-lemma-equivalence-unbounded-one} and/or
+\ref{sites-cohomology-lemma-equivalence-unbounded-two}; the real work lies
 in setting up notation and choosing appropriate assumptions.
 Our discussion is motivated by the discussion in \cite{six-I}
 although the details are a good bit different.
@@ -5365,8 +5277,8 @@ is in $\mathcal{A}_U$.
 
 \medskip\noindent
 In particular the statement of the lemma makes sense.
-The lemma now follows from
-Lemma \ref{lemma-equivalence-unbounded-one}.
+The lemma now follows from Cohomology on Sites,
+Lemma \ref{sites-cohomology-lemma-equivalence-unbounded-one}.
 Assumption (1) is clear (see Remark \ref{remark-augmentation-ringed}).
 Assumptions (2) and (3) we proved in the preceding paragraph.
 Assumption (4) is immediate from (\ref{item-bounded-dimension}).
@@ -5406,11 +5318,15 @@ of sheaves of modules may consult Cohomology on Sites, Lemma
 \noindent
 This section is the continuation of
 Cohomology, Section \ref{cohomology-section-glueing-complexes}.
-The goal is to prove a slight generalizaton of \cite[Theorem 3.2.4]{BBD}.
+The goal is to prove a slight generalization of \cite[Theorem 3.2.4]{BBD}.
 Our method will be a tiny bit different in that we use
 the material from Sections \ref{section-glueing} and
 \ref{section-glueing-modules}. We will also reprove the
 unbounded version as it is proved in \cite{six-I}.
+
+\medskip\noindent
+Advice to the reader: We suggest the reader first look at the statement of
+Lemma \ref{lemma-bbd-glueing-cech} as well as the second proof of this lemma.
 
 \medskip\noindent
 Here is the situation we are interested in.
@@ -5605,6 +5521,134 @@ and hence we use Lemma \ref{lemma-hypercovering-equivalence-modules}
 to obtain $F$ with $E = a^*F$
 instead of Lemma \ref{lemma-hypercovering-equivalence-bounded-modules}.
 \end{proof}
+
+\noindent
+Here is an example application of the general theory above.
+
+\begin{lemma}
+\label{lemma-bbd-glueing-cech}
+\begin{reference}
+Email of Martin Olsson dated Sep 9, 2021.
+\end{reference}
+Let $(\mathcal{C}, \mathcal{O}_\mathcal{C})$ be a ringed site.
+Assume $\mathcal{C}$ has fibre products.
+Let $\{U_i \to X\}_{i \in I}$ be a covering in $\mathcal{C}$.
+For $i \in I$ let $E_i$ be an object of $D(\mathcal{O}_{U_i})$ and
+for $i, j \in I$ let
+$$
+\rho_{ij} : E_i|_{\mathcal{C}/U_{ij}} \longrightarrow E_j|_{\mathcal{C}/U_{ij}}
+$$
+be an isomorphism in $D(\mathcal{O}_{U_{ij}})$ where
+$U_{ij} = U_i \times_X U_j$. Assume
+\begin{enumerate}
+\item the $\rho_{ij}$ satisfy the cocycle condition on
+$U_i \times_X U_j \times_X U_k$ for all $i, j, k \in I$,
+\item $\SheafExt^p_{\mathcal{O}_{U_i}}(E_i, E_i) = 0$
+for all $p < 0$ and $i \in I$, and
+\item there exists a $t \in \mathbf{Z}$ such that
+$H^p(E_i) = 0$ for $p < t$ and all $i \in I$.
+\end{enumerate}
+Then there exists a unique pair $(E, \rho_i)$ where $E$ is an object of 
+$D(\mathcal{O}_X)$ and $\rho_i : E|_{U_i} \to E_i$ are isomorphisms in
+$D(\mathcal{O}_{U_i})$ compatible with the $\rho_{ij}$.
+\end{lemma}
+
+\begin{proof}[First proof]
+In this proof we deduce the lemma from the very general
+Lemma \ref{lemma-bbd-glueing}. We urge the reader to look
+at the second proof in stead.
+
+\medskip\noindent
+We may replace $\mathcal{C}$ with $\mathcal{C}/X$.
+Thus we may and do assume $X$ is the final object of $\mathcal{C}$
+and that $\mathcal{C}$ has all finite limits.
+
+\medskip\noindent
+Let $\mathcal{B}$ be the full subcategory of $\mathcal{C}$
+consisting of $U \in \Ob(\mathcal{C})$ such that there exists
+an $i(U) \in I$ and a morphism $a_U : U \to U_{i(U)}$.
+We denote $E_U = a_U^*E_{i(U)}$ in $D(\mathcal{O}_U)$
+the pullback (restriction) of $E_i$ via $a_U$.
+Given a morphism $a : U \to U'$ of $\mathcal{B}$
+we obtain a morphism
+$(a_{U'} \circ a, a_U) : U \to U_{i(U')} \times_X U_{i(U)} = U_{i(U')i(U)}$
+and hence an isomorphism
+$$
+\rho_a :
+a^*E_{U'} = a^*a_{U'}^*E_{i(U')}
+\xrightarrow{(a_{U'} \circ a, a_U)^*\rho_{i(U')i(U)}}
+a_{U}^*E_{i(U)} = E_{U}
+$$
+in $D(\mathcal{O}_U)$. The data $\mathcal{B}, E_U, \rho_a$
+are as in Situation \ref{situation-locally-given}; the
+isomorphisms $\rho_a$ satisfy the cocycle condition
+exactly because of condition (1) in the statement of the lemma
+(details omitted).
+
+\medskip\noindent
+We are going to apply Lemma \ref{lemma-bbd-glueing} with $\mathcal{B}$,
+$E_U$, $\rho_a$ as above and with $\mathcal{D} = \mathcal{C}$ and
+$f : \mathcal{C} \to \mathcal{D}$ the identity morphism.
+Assumptions (1) and (2)(a) of Lemma \ref{lemma-bbd-glueing} we have seen above.
+Assumption (2)(b) of Lemma \ref{lemma-bbd-glueing} is clear.
+Assumption (2)(c) of Lemma \ref{lemma-bbd-glueing} holds because
+$\{U_i \to X\}$ is a covering\footnote{In fact, it would suffice
+if the map $\coprod_{i \in I} h_{U_i} \to h_X$ becomes
+surjective on sheafification and the lemma holds in this case
+with the same proof.}.
+Assumption (3) of Lemma \ref{lemma-bbd-glueing} holds
+because we have assumed the vanishing of all negative Ext sheaves
+of $E_i$ which certainly implies that for any object $U$ lying over $U_i$
+the negative self-Exts of $E_i|_U$ are zero.
+Assumption (4) of Lemma \ref{lemma-bbd-glueing} holds because
+we have assumed the cohomology sheaves of each $E_i$ are zero
+to the left of $t$.
+
+\medskip\noindent
+We obtain a unique solution $(E, \rho_U)$.
+Setting $\rho_i = \rho_{U_i}$ the lemma follows.
+\end{proof}
+
+\begin{proof}[Second proof]
+We sketch a more direct proof.
+Denote $K$ the {\v C}ech hypercovering of $X$ associated to the
+covering $\{U_i \to X\}_{i \in I}$, see
+Hypercoverings, Example \ref{hypercovering-example-cech}.
+Thus for example $K_0 = \{U_i \to X\}_{i \in I}$ and
+$K_1 = \{U_i \times_X U_j \to X\}_{i, j \in I}$ and so on.
+Let $((\mathcal{C}/K)_{total}, \mathcal{O})$, $a$, $a_n$ be as in
+Remark \ref{remark-augmentation-ringed-over-object}.
+The objects $E_i$ determine an object $M_0$ in
+$D(\mathcal{O}_0) = \prod D(\mathcal{O}_{U_i})$.
+Similarly, the isomorphisms $\rho_{ij}$ determine an isomorphism
+$$
+\alpha :
+L(f_{\delta_1^1})^*M_0
+\longrightarrow
+L(f_{\delta_0^1})^*M_0
+$$
+in $D(\mathcal{O}_1)$ satisfying the cocycle condition.
+By Lemma \ref{lemma-construct-cartesian-objects-derived-modules}
+we obtain a cartesian simplicial system $(M_n)$ of the derived
+category. By the assumed vanishing of the negative Ext sheaves we see that
+the objects $M_n$ have vanishing negative self-exts.
+Thus we find a cartesian object $M$ of $D(\mathcal{O})$
+whose associated simplicial system is isomorphic to $(M_n)$ by
+Lemma \ref{lemma-cartesian-module-derived-from-simplicial}.
+Since the cohomology sheaves of $M$ are zero in degrees $< t$
+we see that by Lemma \ref{lemma-hypercovering-X-equivalence-bounded-modules}
+we have $M = La^*E$ for some $E$ in $D(\mathcal{O}_X)$.
+The isomorphism $La^*E \to M$ restricted to $\mathcal{C}/U_i$
+produces the isomorphisms $\rho_i$. We omit the verification
+of the compatibility with the isomorphisms $\rho_{ij}$.
+\end{proof}
+
+
+
+
+
+
+
 
 
 
@@ -5857,9 +5901,9 @@ Observe that $\mathcal{A}$ is a weak Serre subcategory by
 Lemma \ref{lemma-Serre-subcat-cartesian-modules}.
 The equivalence is a
 formal consequence of the results obtained so far. Use
-Lemmas \ref{lemma-equivalence-bounded},
-\ref{lemma-descent-sheaves-for-proper-hypercovering}, and
-\ref{lemma-cohomological-descent-for-proper-hypercovering}.
+Lemmas \ref{lemma-descent-sheaves-for-proper-hypercovering} and
+\ref{lemma-cohomological-descent-for-proper-hypercovering} and
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-equivalence-bounded}.
 \end{proof}
 
 \begin{lemma}
@@ -7180,9 +7224,9 @@ Observe that $\mathcal{A}$ is a weak Serre subcategory by
 Lemma \ref{lemma-Serre-subcat-cartesian-modules}.
 The equivalence is a
 formal consequence of the results obtained so far. Use
-Lemmas \ref{lemma-equivalence-bounded},
-\ref{lemma-descent-sheaves-for-fppf-hypercovering}, and
-\ref{lemma-cohomological-descent-for-fppf-hypercovering}.
+Lemmas \ref{lemma-descent-sheaves-for-fppf-hypercovering} and
+\ref{lemma-cohomological-descent-for-fppf-hypercovering} and
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-equivalence-bounded}.
 \end{proof}
 
 \begin{lemma}
@@ -7448,7 +7492,8 @@ is a weak Serre subcategory.
 
 \medskip\noindent
 To finish the proof we check the conditions (1) -- (5) of
-Lemma \ref{lemma-equivalence-unbounded-one} one by one.
+Cohomology on Sites, Lemma
+\ref{sites-cohomology-lemma-equivalence-unbounded-one} one by one.
 
 \medskip\noindent
 Ad (1). This holds since $a_n$ flat (seen above) implies $a$ is flat
@@ -7632,41 +7677,10 @@ and an isomorphism $La_0^*K \to K$ compatible with $\alpha$.
 \end{lemma}
 
 \begin{proof}
-We claim that the objects $K_n$ form the members of a 
-simplicial system of the derived category of modules
-(Definition \ref{definition-cartesian-derived-modules})
-of the ringed simplicial site $U_\etale$ of
-Section \ref{section-simplicial-algebraic-spaces}.
-The construction is analogous to the construction discussed in
-Descent, Section \ref{descent-section-descent-modules} from which we borrow
-the notation $\tau^n_i : [0] \to [n]$, $0 \mapsto i$ and
-$\tau^n_{ij} : [1] \to [n]$, $0 \mapsto i$, $1 \mapsto j$.
-Given $\varphi : [n] \to [m]$ we define
-$K_\varphi : L(f_\varphi)^*K_n \to K_m$
-using
-$$
-\xymatrix{
-L(f_\varphi)^*K_n \ar@{=}[r] &
-L(f_\varphi)^* L(f_{\tau^n_n})^*K_0 \ar@{=}[r] &
-L(f_{\tau^m_{\varphi(n)}})^*K_0 \ar@{=}[r] &
-L(f_{\tau^m_{\varphi(n)m}})^* L(f_{\delta^1_1})^*K_0
-\ar[d]_{L(f_{\tau^m_{\varphi(n)m}})^*\alpha} \\
-&
-K_m \ar@{=}[r] &
-L(f_{\tau^m_m})^*K_0 \ar@{=}[r] &
-L(f_{\tau^m_{\varphi(n)m}})^* L(f_{\delta^1_0})^*K_0
-}
-$$
-We omit the verification that the cocycle condition
-implies the maps compose correctly (in their respective
-derived categories) and hence give rise to a
-simplicial systems of the derived category of modules\footnote{This
-verification is the same as that done in the proof
-of Lemma \ref{lemma-characterize-cartesian}
-as well as in the chapter on descent referenced
-above. We should probably write this as a general lemma about
-fibred and cofibred categories over $\Delta$.}.
-Once this is verified, we obtain an object
+The objects $K_n$ form the members of a  simplicial system of the
+derived category of modules by
+Lemma \ref{lemma-construct-cartesian-objects-derived-modules}.
+Then we obtain an object
 $K' \in D_\QCoh(\mathcal{O}_{U_\etale})$
 such that $(K_n, K_\varphi)$ is the system deduced from $K'$, see
 Lemma \ref{lemma-cartesian-module-derived-from-simplicial}.
@@ -7981,9 +7995,9 @@ Observe that $\mathcal{A}$ is a weak Serre subcategory by
 Lemma \ref{lemma-Serre-subcat-cartesian-modules}.
 The equivalence is a
 formal consequence of the results obtained so far. Use
-Lemmas \ref{lemma-equivalence-bounded},
-\ref{lemma-descent-sheaves-for-ph-hypercovering}, and
-\ref{lemma-cohomological-descent-for-ph-hypercovering}.
+Lemmas \ref{lemma-descent-sheaves-for-ph-hypercovering} and
+\ref{lemma-cohomological-descent-for-ph-hypercovering} and
+Cohomology on Sites, Lemma \ref{sites-cohomology-lemma-equivalence-bounded}.
 \end{proof}
 
 \begin{lemma}

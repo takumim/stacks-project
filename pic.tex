@@ -318,8 +318,9 @@ we reduce to the case where $S$ is affine. Details omitted.
 
 \medskip\noindent
 Assume $S$ is affine. For $U \subset X$ affine open, denote
-$F_U \subset \Hilbfunctor^d_{X/S}$ the subfunctor parametrizing
-closed subschemes of $U$. We will use
+$F_U \subset \Hilbfunctor^d_{X/S}$ the subfunctor such that
+for a scheme $T/S$ an element $Z \in \Hilbfunctor^d_{X/S}(T)$
+is in $F_U(T)$ if and only if $Z \subset U_T$. We will use
 Schemes, Lemma \ref{schemes-lemma-glue-functors}
 and the subfunctors $F_U$ to conclude.
 
@@ -327,9 +328,28 @@ and the subfunctors $F_U$ to conclude.
 Condition (1) is Lemma \ref{lemma-hilb-d-sheaf}.
 
 \medskip\noindent
-Condition (2)(a) follows from the fact that
-$F_U = \Hilbfunctor^d_{U/S}$ and that this is representable
-by Lemma \ref{lemma-hilb-d-An}.
+Condition (2)(a) follows from the fact that $F_U = \Hilbfunctor^d_{U/S}$
+and that this is representable by Lemma \ref{lemma-hilb-d-An}.
+Namely, if $Z \in F_U(T)$, then $Z$ can be viewed as a closed subscheme
+of $U_T$ which is finite locally free of degree $d$ over $T$ and hence
+$Z \in \Hilbfunctor^d_{U/S}(T)$. Conversely, if $Z \in \Hilbfunctor^d_{U/S}(T)$
+then $Z \to U_T \to X_T$ is a closed immersion\footnote{This is clear
+if $X \to S$ is separated as in this case Morphisms, Lemma
+\ref{morphisms-lemma-image-proper-scheme-closed}
+tells us that the immersion $\varphi : Z \to X_T$ has closed image
+and hence is a closed immersion by
+Schemes, Lemma \ref{schemes-lemma-immersion-when-closed}. We suggest the
+reader skip the rest of this footnote as we don't know of any instance
+where the assumptions on $X \to S$ hold but $X \to S$ is not separated.
+In the general case, let $x \in X_T$ be a point in the closure of
+$\varphi(Z)$. We have to show that $x \in \varphi(Z)$. Let $t \in T$ be the
+image of $x$. By assumption on $X \to S$ we can choose an affine open
+$W \subset X_T$ containing $x$ and $\varphi(Z_t)$. Then $\varphi^{-1}(W)$
+is an open containing the whole fibre $Z_t$ and since $Z \to T$ is closed,
+we may after replacing $T$ by an open neighbourhood of $t$ assume that
+$Z = \varphi^{-1}(W)$. Then $\varphi(Z) \subset W$ is closed by the
+separated case (as $W \to T$ is separated) and we conclude $x \in \varphi(Z)$.}
+and we may view $Z$ as an element of $F_U(T)$.
 
 \medskip\noindent
 Let $Z \in \Hilbfunctor^d_{X/S}(T)$ for some scheme $T$ over $S$. Let
@@ -592,7 +612,7 @@ relative dimension $d$.
 \end{lemma}
 
 \begin{proof}
-We have $\underline{\Hilbfunctor}^d_{X/S} = S$ and
+We have $\underline{\Hilbfunctor}^0_{X/S} = S$ and
 $\underline{\Hilbfunctor}^1_{X/S} = X$ thus the result is true for $d = 0, 1$.
 Assuming the result for $d$, we see that
 $\underline{\Hilbfunctor}^d_{X/S} \times_S X$ is smooth over $S$
@@ -693,7 +713,7 @@ In particular, $D_{univ}$ is an effective Cartier divisor and
 we obtain an invertible module
 $\mathcal{O}(D_{univ})$. If $[D] \in \underline{\Hilbfunctor}^{d + 1}_{X/k}$
 denotes the $k$-rational point corresponding to the effective
-Cartier divisor $D \subset X$ of degree $d$, then the restriction
+Cartier divisor $D \subset X$ of degree $d + 1$, then the restriction
 of $\mathcal{O}(D_{univ})$ to the fibre $[D] \times X$ is
 $\mathcal{O}_X(D)$.
 \end{remark}
@@ -938,10 +958,10 @@ This finishes the proof.
 Let $X$ be a smooth projective curve over a field $k$ with a
 $k$-rational point $\sigma$. Then the functor
 $$
-\Picardfunctor_{X/k, \sigma} : (\Sch/S)^{opp} \longrightarrow \textit{Ab},\quad
+\Picardfunctor_{X/k, \sigma} : (\Sch/k)^{opp} \longrightarrow \textit{Ab},\quad
 T \longmapsto \Ker(\Pic(X_T) \xrightarrow{\sigma_T^*} \Pic(T))
 $$
-is isomorphic to $\Picardfunctor_{X/k}$ on $(\Sch/S)_{fppf}$
+is isomorphic to $\Picardfunctor_{X/k}$ on $(\Sch/k)_{fppf}$
 by Lemmas \ref{lemma-check-conditions} and
 \ref{lemma-flat-geometrically-connected-fibres-with-section}.
 Hence it will suffice to prove that $\Picardfunctor_{X/k, \sigma}$
@@ -974,7 +994,7 @@ To continue it is convenient to make the following definition.
 
 \begin{definition}
 \label{definition-genus}
-Let $k$ be an algebraically closed field. Let $X$ be a smooth projective
+Let $k$ be a field. Let $X$ be a smooth projective geometrically irreducible
 curve over $k$. The {\it genus} of $X$ is $g = \dim_k H^1(X, \mathcal{O}_X)$.
 \end{definition}
 
@@ -1081,7 +1101,7 @@ This is clear.
 
 \begin{lemma}
 \label{lemma-twist-with-general-divisor}
-Let $k$ be an algebraically closed field. Let $X$ be a smooth projective
+Let $k$ be a separably closed field. Let $X$ be a smooth projective
 curve of genus $g$ over $k$. Let $K/k$ be a field extension and let
 $\mathcal{L}$ be an invertible sheaf on $X_K$. Then there exists an
 invertible sheaf $\mathcal{L}_0$ on $X$ such that
@@ -1110,14 +1130,16 @@ $t = \dim_K H^0(X_K, \mathcal{L})$. The base case $t = 1$ is trivial.
 Assume $t > 1$.
 
 \medskip\noindent
-Observe that for a closed and hence $k$-rational point $x$
-of $X$, the inverse image $x_K$ is a $K$-rational point of $X_K$.
-Moreover, there are infinitely many $k$-rational points. Therefore
+Observe that for a $k$-rational point $x$ of $X$, the inverse image $x_K$
+is a $K$-rational point of $X_K$. Moreover, there are infinitely many
+$k$-rational points by Varieties, Lemma
+\ref{varieties-lemma-smooth-separable-closed-points-dense}. Therefore
 the points $x_K$ form a Zariski dense collection of points of $X_K$.
 
 \medskip\noindent
-Let $s \in H^0(X_K, \mathcal{L})$ be nonzero. There exists an $x$
-as above such that $s$ does not vanish in $x_K$. Let $\mathcal{I}$
+Let $s \in H^0(X_K, \mathcal{L})$ be nonzero. From the previous paragraph
+we deduce there exists a $k$-rational
+point $x$ such that $s$ does not vanish in $x_K$. Let $\mathcal{I}$
 be the ideal sheaf of $i : x_K \to X_K$ as in
 Varieties, Lemma \ref{varieties-lemma-regular-point-on-curve}. Look at the
 short exact sequence
@@ -1139,13 +1161,15 @@ thereby finishing the proof of the induction step.
 
 \begin{proposition}
 \label{proposition-pic-curve}
-Let $k$ be an algebraically closed field. Let $X$ be a smooth projective
+Let $k$ be a separably closed field. Let $X$ be a smooth projective
 curve over $k$. The Picard functor $\Picardfunctor_{X/k}$ is representable.
 \end{proposition}
 
 \begin{proof}
-Since $k$ is algebraically closed there exists a rational point $\sigma$
-of $X$. As discussed above, it suffices to show that the functor
+Since $k$ is separably closed there exists a $k$-rational point $\sigma$
+of $X$, see
+Varieties, Lemma \ref{varieties-lemma-smooth-separable-closed-points-dense}.
+As discussed above, it suffices to show that the functor
 $\Picardfunctor_{X/k, \sigma}$ classifying invertible modules trivial along
 $\sigma$ is representable. To do this we will check conditions (1),
 (2)(a), (2)(b), and (2)(c) of
@@ -1173,7 +1197,7 @@ collect here.
 
 \begin{lemma}
 \label{lemma-picard-pieces}
-Let $k$ be an algebraically closed field. Let $X$ be a smooth projective
+Let $k$ be a separably closed field. Let $X$ be a smooth projective
 curve of genus $g$ over $k$.
 \begin{enumerate}
 \item $\underline{\Picardfunctor}_{X/k}$ is a disjoint union of
